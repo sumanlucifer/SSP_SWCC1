@@ -20,6 +20,7 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("DetailView");
 			},
 			onPressViewRequest: function () {
+			    
 				this.getOwnerComponent().getTargets().display("ViewRequest");
 			},
 
