@@ -9,6 +9,7 @@ sap.ui.define([
 
 		},
 		onback: function () {
+
 			this.getOwnerComponent().getTargets().display("LandingView");
 
 		}
