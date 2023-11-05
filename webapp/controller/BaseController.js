@@ -6,7 +6,8 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
 		/**
-		 * Convenience method for accessing the router.
+		 * 
+	
 		 * @public
 		 * @returns {sap.ui.core.routing.Router} the router for this component
 		 */
