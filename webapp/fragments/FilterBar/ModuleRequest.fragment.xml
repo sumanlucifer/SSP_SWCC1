@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns:fm="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+	<!--<fb:FilterBar id="filterbar" reset="onResetFilters" search="onSearch" useToolbar="false" showGoOnFB="true" showRestoreOnFB="true">-->
+	<!--	<fb:filterGroupItems>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="PONOs" label="{i18n>Service}" visibleInFilterBar="true" class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="dew" width="100%" valueState="None" enabled="true">-->
+	<!--					<items>-->
+	<!--						<core:Item key="2" text="Finance"/>-->
+	<!--						<core:Item key="S" text="Human Resource"/>-->
+	<!--						<core:Item key="d" text="Information Technology"/>-->
+	<!--						<core:Item key="f" text="Plant Maintainance"/>-->
+	<!--						<core:Item key="fef" text="Supply Chain"/>-->
+	<!--					</items>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="mdccNos" label="{i18n>SelectServiceType}" visibleInFilterBar="true"-->
+	<!--			class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+	<!--					items="{TabDetailsModel>/ProductTypeSet}">-->
+	<!--					<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="CreatedAt" label="{i18n>SelectSubService}" visibleInFilterBar="true"-->
+	<!--			class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+	<!--					items="{TabDetailsModel>/ProductTypeSet}">-->
+	<!--					<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--	</fb:filterGroupItems>-->
+	<!--</fb:FilterBar>-->
+	<VBox alignContent="SpaceBetween">
+		<HBox>
+			<fm:SimpleForm layout="ColumnLayout" binding="{HeaderDetailsModel>/}" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+				class="style-RemoveTitleHeight">
+				<Label text="{i18n>Service}" required="true"/>
+				<ComboBox id="dew" width="100%" valueState="None" enabled="true">
+					<items>
+						<core:Item key="2" text="Finance"/>
+						<core:Item key="S" text="Human Resource"/>
+						<core:Item key="d" text="Information Technology"/>
+						<core:Item key="f" text="Plant Maintainance"/>
+						<core:Item key="fef" text="Supply Chain"/>
+					</items>
+				</ComboBox>
+				<Label text="{i18n>SelectServiceType}" required="true"/>
+				<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
+					items="{TabDetailsModel>/ProductTypeSet}">
+					<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>
+				</ComboBox>
+				<Label text="{i18n>SelectSubService}" required="true"/>
+				<Select id="idSelPlant" forceSelection="false" selectedKey="{HeaderDetailsModel>Plant}" items="{ path: '/MasterPlantDetailSet' }">
+					<core:Item key="{PlantId}" text="{PlantId} - {Name}"/>
+				</Select>
+			</fm:SimpleForm>
+			<Button text="Search" type="Emphasized" press="onSearch" class="sapUiMediumMarginTop"/>
+		</HBox>
+	</VBox>
+</core:FragmentDefinition>

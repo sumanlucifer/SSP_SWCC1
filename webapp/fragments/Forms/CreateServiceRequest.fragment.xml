@@ -1,0 +1,81 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>Invoicedoc}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Invoicedoc}" required="true"/>
+				<Input id="productInput" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Fiscalyr}" required="false"/>
+				<DatePicker id="fiscalyr" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
+					change="handleChange" placeholder="" class="sapUiSmallMarginBottom"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>Basicdetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Invoicedt}" required="true"/>
+				<Input id="productInput1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Postingdt}" required="false"/>
+				<DatePicker id="fiscalyr1" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
+					change="handleChange" placeholder="" class="sapUiSmallMarginBottom"/>
+				<Label text="{i18n>Amount}" required="true"/>
+				<Input id="productInput2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Taxamt}" required="true"/>
+				<Input id="productInput3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Paymentterms}" required="true"/>
+				<Input id="productInput4" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Baselinedt}" required="true"/>
+				<Input id="productInput5" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table id="totalamount" sticky="ColumnHeaders,HeaderToolbar" inset="false" items="{/yourData}"
+			class="swcc-request-Table sapUiContentPadding">
+			<headerToolbar>
+				<OverflowToolbar>
+					<Title text="Requests order Amount Details" level="H2"/>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+			</headerToolbar>
+			<columns>
+				<Column width="20em">
+					<Text text=""/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text=""/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Amount"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+					<Text text="Value"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<ObjectIdentifier title="Temp" text="Temp"/>
+						<ObjectNumber number="{Property1}" unit="SAR" state=""/>
+						<ObjectNumber number="{Property2}" unit="SAR"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<Link text=" *Cancellation charges will be leveled in case you cancel the request after 24 hours" class="cancel-link sapUiContentPadding"
+			target="_blank" href="#" press="handleLinkPress1"/>
+	</VBox>
+</core:FragmentDefinition>

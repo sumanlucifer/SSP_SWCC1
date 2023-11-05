@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.suite.ui.commons" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:m="sap.m">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<m:Text text="Request Status"/>
+			<MicroProcessFlow class="sapUiLargeMarginBegin sapUiLargeMarginBottom ssp-processflow" renderType="ScrollingWithResizer">
+				<content>
+					<MicroProcessFlowItem state="Success" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Open"/>
+							<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>
+							<core:CustomData key="subTitle" value="Service request 543276"/>
+							<core:CustomData key="description" value="Test data to display open status info"/>
+						</customData>
+						<!--	<customData>
+							<m:Text text="Basic"/>
+						</customData>-->
+					</MicroProcessFlowItem>
+					<MicroProcessFlowItem state="Success" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Inprogress"/>
+							<core:CustomData key="icon" value="sap-icon://accept"/>
+							<core:CustomData key="subTitle" value="Payment successful"/>
+							<core:CustomData key="description" value="Lorem ipsum dolor sit amet."/>
+						</customData>
+					</MicroProcessFlowItem>
+					<MicroProcessFlowItem state="Warning" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Closed"/>
+							<core:CustomData key="icon" value="sap-icon://warning"/>
+							<core:CustomData key="subTitle" value="Complete in 15 hours"/>
+							<core:CustomData key="description"
+								value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>
+						</customData>
+					</MicroProcessFlowItem>
+				</content>
+			</MicroProcessFlow>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

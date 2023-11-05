@@ -1,0 +1,128 @@
+/* Enter your custom styles here */
+
+/*s*/
+/* Enter your custom styles here */
+
+.swcc-pmy-btn .sapMBtnDefault {
+    Background-color: #0066cc;
+    color: #FFFFFF;
+}
+
+.swcc-sec-btn .sapMBtnReject {
+    Background-color: #ff0000;
+}
+
+.SSP-objectpage {}
+
+.ssp-page .ssp-vtl {
+    border: 1px solid #4b84b396;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.swcc-tabbar,
+.swcc-tabbar>.sapUiHLayoutChildWrapper {
+    display: block !important;
+}
+
+.ssp-hdr-cnt .sapMFlexItemAlignAuto {
+    min-width: 20% !important;
+}
+
+.ssp-hdr-cnt .sapMNCValue {
+    display: -webkit-box !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+}
+
+.ssp-hdr-cnt .sapMNCLargeFontSize {
+    font-size: 1rem;
+}
+
+.ssp-hdr-cnt .sapMNCIndScale.sapMNCLargeFontSize {
+    padding: 0px 5px 0px 5px;
+}
+
+.ssp-hdr-cnt .sapMNCIndScale.sapMNCLargeFontSize .sapMNCScale {
+    margin-top: 0px;
+}
+
+.ssp-hdr-cnt .sapMNCIconImage {
+    color: #840606;
+    font-size: 1rem;
+    justify-content: left;
+}
+
+.ssp-processflow .sapSuiteUiCommonsMicroProcessFlowItem {
+    width: 100px;
+    height: 100px;
+}
+
+.ssp-processflow .sapUiIcon.sapSuiteUiCommonsMicroProcessFlowItemIcon {
+    font-size: 2rem !important;
+}
+
+.ssp-form-bg .sapUiFormTitle {
+    background: #4B84B3;
+    color: #fff;
+    border-radius: 10px 10px 5px 5px;
+}
+
+.ssp-form-bg .sapUiForm {
+    background: #ffffff82;
+}
+
+.ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,
+.ssp-form-bg .sapMInputBase .sapMInputBaseInner,
+.ssp-form-bg .sapMInputBaseContentWrapper {
+    background: #EFF0F2;
+    border: 0px;
+    height: 2rem;
+    /*padding: 15px;*/
+}
+
+.ssp-form-bg .sapMInputBaseIconContainer .sapUiIcon.sapMInputBaseIcon {
+    line-height: 1.9rem;
+    font-size: 18px !important;
+}
+
+.ssp-tlbr-title {
+    display: block;
+    width: 100%;
+
+}
+
+.ssp-tlbr-title span {
+    display: flex;
+    color: #0066cc;
+}
+
+.ssp-tlbr-title span:after {
+    color: #0066CC;
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid #0066cc;
+    margin: 0.3rem;
+}
+
+.ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #0854a0;
+    border: 1px solid #0066cc;
+    box-shadow: 2px 2px 5px 1px #729ac39e;
+    background: #ffffff;
+}
+
+.btn-proceed .sapMBtnInner.sapMBtnAccept {
+    background-color: #004687;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.btn-cancel .sapMBtnInner.sapMBtnReject {
+    background-color: #B03636;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.cancel-link {
+    color: #B03636;
+}
