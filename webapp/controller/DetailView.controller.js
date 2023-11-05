@@ -5,6 +5,7 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.DetailView", {
 		onInit: function () {
+
 			this.oRouter = this.getOwnerComponent().getRouter();
 
 		},
