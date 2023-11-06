@@ -4,19 +4,30 @@
 /* Enter your custom styles here */
 
 .swcc-pmy-btn .sapMBtnDefault {
-    Background-color: #0066cc;
+    Background-color: #4B84B3;
     color: #FFFFFF;
+    margin-top: 1px;
 }
 
 .swcc-sec-btn .sapMBtnReject {
     Background-color: #ff0000;
 }
 
-.SSP-objectpage {}
+.ssp-hbox .sapMFlexItem {
+    background: #FFFFFF;
+}
 
-.ssp-page .ssp-vtl {
+.ssp-page .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
+    background-image: url(https://webidetesting7243553-mfee955b6.dispatcher.sa1.hana.ondemand.com/~1699263228284~/webapp/util/Images/bg.png) !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+}
+
+.ssp-page .sapFDynamicPageContentFitContainerFooterVisible {
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
+    background: #ffffff;
 }
 
 .swcc-tabbar,
@@ -68,7 +79,7 @@
 }
 
 .ssp-form-bg .sapUiForm {
-    background: #ffffff82;
+    background: #FFFFFF;
 }
 
 .ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,

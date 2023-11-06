@@ -57,9 +57,9 @@
 		</uxap:headerContent>
 		<uxap:sections>
 			<!-- Vendor Basic Details Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>BasicDetails}">
+			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>requestdetails}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>BasicDetails}" titleLevel="H6">
+					<uxap:ObjectPageSubSection title="{i18n>requestdetails}" titleLevel="H6">
 						<uxap:blocks>
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? false : true}">
 								<!-- Display Service request Overview Details -->
@@ -75,7 +75,7 @@
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
 			<!-- Locations Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>Locations}">
+			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>Status}">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title="{i18n>Status}" titleLevel="H6">
 						<uxap:blocks>
@@ -92,7 +92,7 @@
 			</uxap:ObjectPageSection>
 			<!-- Location ends here -->
 			<!-- Comment Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>Locations}">
+			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>comment}">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title="{i18n>comment}" titleLevel="H6">
 						<uxap:blocks>
