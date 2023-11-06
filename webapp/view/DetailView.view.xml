@@ -29,8 +29,7 @@
 						visible="{= ${objectViewModel>/EditMode} === false ? true : false}"/>
 					<Button text="{i18n>Save}" type="Emphasized" press="onSaveVendorDetails" class="sapUiSizeCompact"
 						visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
-					<Button text="{i18n>Cancel}" press="onCancelVendorDetails" class="sapUiSizeCompact"
-						visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
+					<Button text="{i18n>Cancel}" press="onCancel" class="sapUiSizeCompact" visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
 				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>

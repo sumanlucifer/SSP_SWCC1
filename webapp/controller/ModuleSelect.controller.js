@@ -1,20 +1,24 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
-], function (Controller) {
-	"use strict";
+		"./BaseController",
+		"sap/ui/model/json/JSONModel"
+	],
 
-	return Controller.extend("com.swcc.Template.controller.MouleSelect", {
-		onInit: function () {
-			this.oRouter = this.getOwnerComponent().getRouter();
+	function (BaseController, JSONModel, Sorter) {
+		"use strict";
+		return BaseController.extend("com.swcc.Template.controller.MouleSelect", {
+			onInit: function () {
+				this.oRouter = this.getRouter();
 
-		},
-		onback: function () {
-			this.getOwnerComponent().getTargets().display("LandingView");
+			},
+			onback: function () {
+				this.getOwnerComponent().getTargets().display("LandingView");
 
-		},
+			},
 
-		onSearch: function () {
-			this.getOwnerComponent().getTargets().display("LandingView");
-		}
+			onSearch: function () {
+
+				this.oRouter.navTo("LandingView");
+
+			}
+		})
 	})
-})
