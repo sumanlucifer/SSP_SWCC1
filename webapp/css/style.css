@@ -18,7 +18,7 @@
 }
 
 .ssp-page .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
-    background-image: url(https://webidetesting7243553-mfee955b6.dispatcher.sa1.hana.ondemand.com/~1699263228284~/webapp/util/Images/bg.png) !important;
+    background-image: url(../util/Images/bg.png) !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat;
@@ -137,7 +137,3 @@
 .cancel-link {
     color: #B03636;
 }
-
-
-
-
