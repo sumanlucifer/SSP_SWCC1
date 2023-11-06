@@ -45,7 +45,7 @@
 						select="onPressItems" userPicture="{Photo}" text="{JobResponsibilities}" userName="{Name}" filterValue="{JobTitle}" icon="{Icon}"></TimelineItem>
 				</content>
 			</Timeline>-->
-			<Timeline id="idTimeline" enableDoubleSided="true" groupByType="Year" groupBy="dateTime" textHeight="8" sortOldestFirst="true"
+			<Timeline id="idTimeline" enableDoubleSided="true" groupByType="Year" groupBy="dateTime" textHeight="4" sortOldestFirst="true"
 				showFilterBar="false">
 				<content>
 					<TimelineItem userName="Laurent Dubois" select="onPressItems" title="Accounts Payables Manager" userPicture="/images/Laurent_Dubois.png"
