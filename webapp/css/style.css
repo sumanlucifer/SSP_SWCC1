@@ -1,8 +1,19 @@
 /* Enter your custom styles here */
+@font-face {
+    src:
+        url("../util/Fonts/SWCC-2-Regular.ttf") format("ttf");
+    font-family: 'SWCC';
+    font-style: normal;
+    font-weight: 400;
+}
 
-/*s*/
+.sapUiBody {
+    font-family: 'SWCC';
+}
+
 /* Enter your custom styles here */
 
+/* common css */
 .swcc-pmy-btn .sapMBtnDefault {
     Background-color: #4B84B3;
     color: #FFFFFF;
@@ -13,15 +24,18 @@
     Background-color: #ff0000;
 }
 
+
 .ssp-hbox .sapMFlexItem {
     background: #FFFFFF;
 }
 
-.ssp-page .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
-    background-image: url(../util/Images/bg.png) !important;
-    background-size: cover !important;
+.sapUiGlobalBackgroundColor,
+.ssp-page.sapFDynamicPage .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
+    background-image: url(../util/Images/bg.jpg) !important;
     background-position: center !important;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed !important;
+    background-size: cover !important;
 }
 
 .ssp-page .sapFDynamicPageContentFitContainerFooterVisible {
@@ -30,6 +44,53 @@
     background: #ffffff;
 }
 
+.ssp-form-bg .sapUiFormTitle {
+    background: #4B84B3;
+    color: #fff;
+    border-radius: 10px 10px 5px 5px;
+}
+
+.ssp-form-bg .sapUiForm {
+    background: #FFFFFF;
+    min-height: 35vh;
+
+}
+
+.ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,
+.ssp-form-bg .sapMInputBase .sapMInputBaseInner,
+.ssp-form-bg .sapMInputBaseContentWrapper {
+    background: #EFF0F2;
+    border: 0px;
+    height: 2rem;
+    /*padding: 15px;*/
+}
+
+.ssp-form-bg .sapMInputBaseIconContainer .sapUiIcon.sapMInputBaseIcon {
+    line-height: 1.9rem;
+    font-size: 18px !important;
+}
+
+.ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
+    border-color: #0854a0;
+    border: 1px solid #0066cc;
+    box-shadow: 2px 2px 5px 1px #729ac39e;
+    background: #ffffff;
+}
+
+.btn-proceed .sapMBtnInner.sapMBtnAccept {
+    background-color: #004687;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.btn-cancel .sapMBtnInner.sapMBtnReject {
+    background-color: #B03636;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+
+/* common css ends here */
 .swcc-tabbar,
 .swcc-tabbar>.sapUiHLayoutChildWrapper {
     display: block !important;
@@ -63,6 +124,12 @@
     justify-content: left;
 }
 
+/* Detail page CSS */
+.ssp-dtl-title {
+    font-weight: bold;
+    color: #004687;
+}
+
 .ssp-processflow .sapSuiteUiCommonsMicroProcessFlowItem {
     width: 100px;
     height: 100px;
@@ -72,29 +139,22 @@
     font-size: 2rem !important;
 }
 
-.ssp-form-bg .sapUiFormTitle {
-    background: #4B84B3;
-    color: #fff;
-    border-radius: 10px 10px 5px 5px;
+.SSP-objectpage.sapUxAPObjectPageLayout {
+    width: 93%;
+    height: 95%;
 }
 
-.ssp-form-bg .sapUiForm {
+
+.cancel-link {
+    color: #B03636;
+}
+
+.ssp-object-bg {
     background: #FFFFFF;
 }
 
-.ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,
-.ssp-form-bg .sapMInputBase .sapMInputBaseInner,
-.ssp-form-bg .sapMInputBaseContentWrapper {
-    background: #EFF0F2;
-    border: 0px;
-    height: 2rem;
-    /*padding: 15px;*/
-}
+/* Detail page css ends here */
 
-.ssp-form-bg .sapMInputBaseIconContainer .sapUiIcon.sapMInputBaseIcon {
-    line-height: 1.9rem;
-    font-size: 18px !important;
-}
 
 .ssp-tlbr-title {
     display: block;
@@ -113,27 +173,4 @@
     flex: 1;
     border-bottom: 2px solid #0066cc;
     margin: 0.3rem;
-}
-
-.ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
-    border-color: #0854a0;
-    border: 1px solid #0066cc;
-    box-shadow: 2px 2px 5px 1px #729ac39e;
-    background: #ffffff;
-}
-
-.btn-proceed .sapMBtnInner.sapMBtnAccept {
-    background-color: #004687;
-    border-radius: 5px;
-    color: #ffffff;
-}
-
-.btn-cancel .sapMBtnInner.sapMBtnReject {
-    background-color: #B03636;
-    border-radius: 5px;
-    color: #ffffff;
-}
-
-.cancel-link {
-    color: #B03636;
 }

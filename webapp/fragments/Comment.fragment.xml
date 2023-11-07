@@ -83,6 +83,7 @@
 				</content>
 			</Timeline>
 			<m:TextArea placeholder="Enter Text" growing="true" growingMaxLines="7" width="100%"/>
+			<m:Button text="Add Comment" type="Default" press="oncomment" width="10%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</l:content>
 	</l:VerticalLayout>
 </core:FragmentDefinition>

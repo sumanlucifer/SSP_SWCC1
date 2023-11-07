@@ -35,12 +35,13 @@
 	<!--	</fb:filterGroupItems>-->
 	<!--</fb:FilterBar>-->
 	<HBox class="ssp-hbox" alignContent="SpaceBetween">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg style-RemoveTitleHeight" binding="{HeaderDetailsModel>/}" columnsM="2" columnsL="3"
-			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg style-RemoveTitleHeight sapUiContentPadding" title="{i18n>modulesearch}"
+			binding="{HeaderDetailsModel>/}" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12"
+			labelSpanM="12" labelSpanS="12">
 			<Label text="{i18n>Service}" required="true"/>
 			<ComboBox id="dew" width="100%" valueState="None" enabled="false">
 				<items>
-					<core:Item key="2" text="Finance" />
+					<core:Item key="2" text="Finance"/>
 					<core:Item key="S" text="Human Resource"/>
 					<core:Item key="d" text="Information Technology"/>
 					<core:Item key="f" text="Plant Maintainance"/>

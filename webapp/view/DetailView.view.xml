@@ -1,19 +1,20 @@
 <mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
-	xmlns:tnt="sap.tnt" xmlns:f="sap.f" xmlns:smartTable="sap.ui.comp.smarttable" controllerName="com.swcc.Template.controller.DetailView">
+	xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.swcc.Template.controller.DetailView">
 	<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-page">
 		<f:content>-->
-	<uxap:ObjectPageLayout id="ObjectPageLayout1" showTitleInHeaderContent=" true" upperCaseAnchorBar=" false" headerContentPinnable=" true"
-		toggleHeaderOnTitleClick=" true" showFooter=" true" showAnchorBar="true" class="SSP-objectpage">
+	<uxap:ObjectPageLayout id="ObjectPageLayout1" showTitleInHeaderContent=" true" width="90%" upperCaseAnchorBar=" false"
+		headerContentPinnable="true" toggleHeaderOnTitleClick=" true" showFooter=" true" preserveHeaderStateOnScroll="true" showAnchorBar="true"
+		class="SSP-objectpage ssp-page sapUiLargeMarginBeginEnd sapUiMediumMarginTopBottom">
 		<!--<uxap:content>
 			<Button text="{i18n>iWantToNavigate}" class="sapUiTinyMarginEnd"/>
 		</uxap:content>-->
 		<uxap:headerTitle>
 			<uxap:ObjectPageDynamicHeaderTitle>
 				<uxap:expandedHeading>
-					<Title text="Request ID : 5467364" wrapping="true" level="H3"/>
+					<Title text="Request ID : 5467364" wrapping="true" level="H3" class="ssp-dtl-title"/>
 				</uxap:expandedHeading>
 				<uxap:expandedContent>
-					<Text text="PRICE : 10SAR"/>
+					<Text text="PRICE : 10SAR" class="ssp-dtl-value"/>
 				</uxap:expandedContent>
 				<uxap:snappedHeading>
 					<FlexBox direction="Column" renderType="Bar">
@@ -56,13 +57,17 @@
 			</FlexBox>
 		</uxap:headerContent>
 		<uxap:sections>
-			<!-- Vendor Basic Details Section -->
+			<!-- Vendor Request Details Section -->
 			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>requestdetails}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>requestdetails}" titleLevel="H6">
+					<uxap:ObjectPageSubSection title="{i18n>requestdetails}" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? false : true}">
+							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? false : true}" width="100%">
 								<!-- Display Service request Overview Details -->
+								<Toolbar>
+									<Title level="H3" text="{i18n>requestdetails}"/>
+									<ToolbarSpacer/>
+								</Toolbar>
 								<Text
 									text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"/>
 							</VBox>
@@ -77,7 +82,7 @@
 			<!-- Locations Section -->
 			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>Status}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>Status}" titleLevel="H6">
+					<uxap:ObjectPageSubSection title="{i18n>Status}" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
 								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
@@ -94,7 +99,7 @@
 			<!-- Comment Section -->
 			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>comment}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>comment}" titleLevel="H6">
+					<uxap:ObjectPageSubSection title="{i18n>comment}" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
 							<!--	<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
 								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
