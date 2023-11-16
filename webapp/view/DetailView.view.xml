@@ -1,5 +1,5 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:layout="sap.ui.layout" xmlns:core="sap.ui.core"
-	xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.swcc.Template.controller.DetailView">
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:fm="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.swcc.Template.controller.DetailView">
 	<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-page">
 		<f:content>-->
 	<uxap:ObjectPageLayout id="ObjectPageLayout1" showTitleInHeaderContent=" true" width="90%" upperCaseAnchorBar=" false"
@@ -26,11 +26,12 @@
 					<Title text="{i18n>VendorDetails}: {VendorViewModel>/VendorCode}" wrapping="true" titleStyle="Auto"/>
 				</uxap:snappedTitleOnMobile>
 				<uxap:actions>
-					<Button text="{i18n>Edit}" type="Emphasized" class="sapUiSizeCompact" press="onVendorEditPress"
-						visible="{= ${objectViewModel>/EditMode} === false ? true : false}"/>
-					<Button text="{i18n>Save}" type="Emphasized" press="onSaveVendorDetails" class="sapUiSizeCompact"
-						visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
-					<Button text="{i18n>Cancel}" press="onCancel" class="sapUiSizeCompact" visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
+					<Button text="{i18n>Approve}" type="Success" class="sapUiSizeCompact" press="onApprovePress"
+						visible="{= ${objectViewModel>/EditMode} === false ? true : false}" ariaHasPopup="Dialog"/>
+					<Button text="{i18n>Assign}" type="Neutral" press="onAssignPress" class="sapUiSizeCompact"
+						visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
+					<Button text="{i18n>Close}" type="Negative" press="onCancelPress" class="sapUiSizeCompact"
+						visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
 				</uxap:actions>
 			</uxap:ObjectPageDynamicHeaderTitle>
 		</uxap:headerTitle>
@@ -58,53 +59,61 @@
 		</uxap:headerContent>
 		<uxap:sections>
 			<!-- Vendor Request Details Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>requestdetails}">
+			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>requestdetails}">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title="{i18n>requestdetails}" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? false : true}" width="100%">
 								<!-- Display Service request Overview Details -->
 								<Toolbar>
-									<Title level="H3" text="{i18n>requestdetails}"/>
+									<Title level="H3" text="{i18n>requestdetails}" class="ssp-dtl-title"/>
 									<ToolbarSpacer/>
 								</Toolbar>
-								<Text
+								<Text class="sapUiSmallMarginTop"
 									text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"/>
 							</VBox>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? true : false}">
-								<!-- Edit Vendor Basic Details -->
-								<!--	<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditVendorDetails" type="XML"/>-->
-							</VBox>
+							<!--<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? true : false}">
+								Edit Vendor Basic Details 
+								<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditVendorDetails" type="XML"/>
+							</VBox>-->
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
 			<!-- Locations Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>Status}">
+			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Status}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>Status}" titleLevel="H6" class="ssp-object-bg">
+					<uxap:ObjectPageSubSection title="" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+								<Toolbar>
+									<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
+									<ToolbarSpacer/>
+								</Toolbar>
 								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
 							</VBox>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
-								<!-- Edit Locations Details -->
-								<!--<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditLocationDetails" type="XML"/>-->
-							</VBox>
+							<!--<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
+								 Edit Locations Details 
+								<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditLocationDetails" type="XML"/>
+							</VBox>-->
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
 			</uxap:ObjectPageSection>
 			<!-- Location ends here -->
 			<!-- Comment Section -->
-			<uxap:ObjectPageSection titleUppercase="false" title="{i18n>comment}">
+			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Comment}">
 				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>comment}" titleLevel="H6" class="ssp-object-bg">
+					<uxap:ObjectPageSubSection title="" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
 							<!--	<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
 								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
 							</VBox>-->
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
+								<Toolbar>
+									<Title level="H3" text="{i18n>Comment}" class="ssp-dtl-title"/>
+									<ToolbarSpacer/>
+								</Toolbar>
 								<core:Fragment fragmentName="com.swcc.Template.fragments.Comment" type="XML"/>
 							</VBox>
 						</uxap:blocks>

@@ -42,21 +42,21 @@
 			<ComboBox id="dew" width="100%" valueState="None" enabled="false">
 				<items>
 					<core:Item key="2" text="Finance"/>
-					<core:Item key="S" text="Human Resource"/>
-					<core:Item key="d" text="Information Technology"/>
-					<core:Item key="f" text="Plant Maintainance"/>
-					<core:Item key="fef" text="Supply Chain"/>
+					<core:Item key="3" text="Human Resource"/>
+					<core:Item key="4" text="Information Technology"/>
+					<core:Item key="5" text="Plant Maintainance"/>
+					<core:Item key="6" text="Supply Chain"/>
 				</items>
 			</ComboBox>
 			<Label text="{i18n>SelectServiceType}" required="true"/>
 			<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
 				items="{TabDetailsModel>/ProductTypeSet}">
-				<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>
+				<core:ListItem key="{key}" text="{text}"/>
 			</ComboBox>
 			<Label text="{i18n>SelectSubService}" required="true"/>
 			<ComboBox id="idsubservice" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
 				items="{TabDetailsModel>/ProductTypeSet}">
-				<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>
+				<core:ListItem key="{key}" text="{text}"/>
 			</ComboBox>
 			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>

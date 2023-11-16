@@ -1,21 +1,22 @@
 /* Enter your custom styles here */
-@font-face {
+/*@font-face {
     src:
-        url("../util/Fonts/SWCC-2-Regular.ttf") format("ttf");
+        url("https://webidetesting7243553-mfee955b6.dispatcher.sa1.hana.ondemand.com/~1699529295289~/webapp/util/Fonts/SWCC-2-Regular.ttf") format("truetype");
     font-family: 'SWCC';
     font-style: normal;
     font-weight: 400;
 }
+*/
 
 .sapUiBody {
-    font-family: 'SWCC';
+    font-family: 'SWCC', sans-serif;
 }
 
 /* Enter your custom styles here */
 
 /* common css */
 .swcc-pmy-btn .sapMBtnDefault {
-    Background-color: #4B84B3;
+    Background-color: #004687;
     color: #FFFFFF;
     margin-top: 1px;
 }
@@ -27,6 +28,7 @@
 
 .ssp-hbox .sapMFlexItem {
     background: #FFFFFF;
+    border-radius: 10px;
 }
 
 .sapUiGlobalBackgroundColor,
@@ -36,16 +38,20 @@
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-size: cover !important;
+    padding: 0px;
 }
 
-.ssp-page .sapFDynamicPageContentFitContainerFooterVisible {
+.ssp-page .sapFDynamicPageContentFitContainerFooterVisible,
+.sapFDynamicPage-Std-Desktop-XL .sapFDynamicPageContentFitContainer {
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
     background: #ffffff;
+    margin: 1rem 2rem 0rem 2rem;
+    padding: 0px !important;
 }
 
 .ssp-form-bg .sapUiFormTitle {
-    background: #4B84B3;
+    background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
 }
@@ -53,6 +59,7 @@
 .ssp-form-bg .sapUiForm {
     background: #FFFFFF;
     min-height: 35vh;
+    border-radius: 10px 10px 0 0;
 
 }
 
@@ -62,7 +69,10 @@
     background: #EFF0F2;
     border: 0px;
     height: 2rem;
-    /*padding: 15px;*/
+}
+
+.ssp-form-bg .sapMInputBaseDisabled {
+    opacity: 1;
 }
 
 .ssp-form-bg .sapMInputBaseIconContainer .sapUiIcon.sapMInputBaseIcon {
@@ -89,6 +99,26 @@
     color: #ffffff;
 }
 
+.sapMTBStandard {
+    border-bottom: 0px;
+}
+
+.ssp-request-Table .sapMTableTH {
+    background: #004687;
+    border: 1px solid #e5e5e5;
+    vertical-align: middle;
+}
+
+.ssp-request-Table .sapMListTblRow .sapMListTblCell {
+    border: 1px solid #e5e5e5;
+    vertical-align: middle;
+
+}
+
+.ssp-request-Table .sapMColumnHeader .sapMText {
+    color: #fff;
+    font-weight: bold;
+}
 
 /* common css ends here */
 .swcc-tabbar,
@@ -130,6 +160,14 @@
     color: #004687;
 }
 
+.SSP-objectpage .sapUxAPObjectPageSectionHeader {
+    display: none;
+}
+
+.SSP-objectpage .sapMTB {
+    padding: 0px;
+}
+
 .ssp-processflow .sapSuiteUiCommonsMicroProcessFlowItem {
     width: 100px;
     height: 100px;
@@ -137,6 +175,12 @@
 
 .ssp-processflow .sapUiIcon.sapSuiteUiCommonsMicroProcessFlowItemIcon {
     font-size: 2rem !important;
+}
+
+.ssp-processflow .sapSuiteUiCommonsMicroProcessFlowContent {
+    display: block;
+    margin: 0 auto;
+    width: auto;
 }
 
 .SSP-objectpage.sapUxAPObjectPageLayout {
@@ -160,6 +204,12 @@
     display: block;
     width: 100%;
 
+
+}
+
+.ssp-table-box .ssp-tlbr-title {
+    font-weight: bold;
+    padding: 1rem 0.75rem;
 }
 
 .ssp-tlbr-title span {
@@ -173,4 +223,33 @@
     flex: 1;
     border-bottom: 2px solid #0066cc;
     margin: 0.3rem;
+}
+
+
+/* comment section css */
+.ssp-comment.sapSuiteUiCommonsTimeline {
+    max-width: 1200px;
+}
+
+.ssp-cmt .sapMInputBaseContentWrapper {
+    background: #EFF0F2;
+    border: 0px;
+    border: 1px solid #0066cc;
+}
+
+.ssp-cmt .sapMInputBaseContentWrapper:hover {
+    border-color: #0854a0;
+    border: 1px solid #0066cc;
+    box-shadow: 2px 2px 5px 1px #729ac39e;
+    background: #ffffff;
+}
+
+.ssp-send {
+    float: right;
+    margin-right: 1.5rem;
+}
+
+.ssp-comment .sapSuiteUiCommonsTimelineScroll {
+    overflow: auto !important;
+    height: auto !important;
 }
