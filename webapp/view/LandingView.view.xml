@@ -11,7 +11,6 @@
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>-->
-		
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content>
