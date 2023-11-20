@@ -3,7 +3,7 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/library"
-], function (BaseController, History, JSONModel, Sorter) {
+], function (BaseController, History, JSONModel, coreLibrary) {
 	"use strict";
 	return BaseController.extend("com.swcc.Template.controller.DetailView", {
 		onInit: function () {

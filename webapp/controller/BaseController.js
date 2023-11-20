@@ -1,16 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
-	'sap/ui/core/BusyIndicator'
-], function (Controller, BusyIndicator) {
+	'sap/ui/core/BusyIndicator',
+	'com/swcc/Template/util/api'
+], function (Controller, BusyIndicator, api) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
-		/**
-		 * 
-	
-		 * @public
-		 * @returns {sap.ui.core.routing.Router} the router for this component
-		 */
+		getAPI: api,
 		getRouter: function () {
 			return sap.ui.core.UIComponent.getRouterFor(this);
 		},

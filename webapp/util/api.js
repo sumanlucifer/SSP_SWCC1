@@ -54,7 +54,8 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 		// 		});
 		//	call API below: 
 		baseURL: function (oOptions) {
-			return "../EIFA-NODE_api/" + oOptions.url;
+			//return "../EIFA-NODE_api/" + oOptions.url;
+			return "/CPI/" + oOptions.url;
 		}
 
 	};

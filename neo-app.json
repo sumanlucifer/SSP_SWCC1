@@ -1,42 +1,55 @@
 {
-  "welcomeFile": "/webapp/index.html",
-  "routes": [
-    {
-      "path": "/resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/resources"
-      },
-      "description": "SAPUI5 Resources"
-    },
-    {
-      "path": "/test-resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/test-resources"
-      },
-      "description": "SAPUI5 Resources"
-    },
-    {
-      "path": "/webapp/resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/resources"
-      },
-      "description": "SAPUI5 Resources"
-    },
-    {
-      "path": "/webapp/test-resources",
-      "target": {
-        "type": "service",
-        "name": "sapui5",
-        "entryPath": "/test-resources"
-      },
-      "description": "SAPUI5 Test Resources"
-    }
-  ],
-  "sendWelcomeFileRedirect": true
+	"welcomeFile": "/webapp/index.html",
+	"routes": [{
+			"path": "/resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/resources"
+			},
+			"description": "SAPUI5 Resources"
+		}, {
+			"path": "/test-resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/test-resources"
+			},
+			"description": "SAPUI5 Resources"
+		}, {
+			"path": "/webapp/resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/resources"
+			},
+			"description": "SAPUI5 Resources"
+		}, {
+			"path": "/webapp/test-resources",
+			"target": {
+				"type": "service",
+				"name": "sapui5",
+				"entryPath": "/test-resources"
+			},
+			"description": "SAPUI5 Test Resources"
+		},
+
+		{
+			"path": "/CPI",
+			"target": {
+				"type": "destination",
+				"name": "CPI"
+			},
+			"description": "tet"
+		}, {
+			"path": "/SF_QA",
+			"target": {
+				"type": "destination",
+				"name": "SF_QA"
+			},
+			"description": "tet"
+		}
+
+	],
+	"sendWelcomeFileRedirect": true
 }
