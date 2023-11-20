@@ -64,9 +64,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -83,41 +85,47 @@
 					]
 				}
 			},
-			"routes": [{
+			"routes": [
+				{
 					"name": "RouteApp",
 					"pattern": "",
 					"target": [
 						"TargetApp"
 					]
 				},
-
 				{
 					"name": "DetailView",
 					"pattern": "",
 					"target": [
 						"DetailView"
 					]
-				}, {
+				},
+				{
 					"name": "ViewRequest",
 					"pattern": "",
 					"target": [
 						"ViewRequest"
 					]
 				},
-				
-				 {
+				{
 					"name": "LandingView",
 					"pattern": "LandingView",
 					"target": [
 						"LandingView"
 					]
 				},
-
 				{
 					"name": "CustRegistration",
 					"pattern": "",
 					"target": [
 						"CustRegistration"
+					]
+				},
+				{
+					"name": "HomePage",
+					"pattern": "",
+					"target": [
+						"HomePage"
 					]
 				}
 			],
@@ -127,44 +135,45 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "ModuleSelect"
-
 				},
-
 				"LandingView": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "LandingView"
-
 				},
 				"DetailView": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "DetailView"
-
 				},
-
 				"ViewRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "ViewRequest"
-
 				},
-
 				"CustRegistration": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "CustomerRegistration"
-
 				},
-
+				"HomePage": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "HomePage"
+				},
 				"notFound": {
 					"viewName": "NotFound"
 				}
 			}
 		}
+	},
+	"sap.platform.abap": {
+		"uri": "/sap/bc/ui5_ui5/sap/zssp_app/webapp",
+		"_version": "1.1.0"
 	}
 }

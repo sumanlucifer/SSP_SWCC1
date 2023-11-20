@@ -23,6 +23,7 @@
 		<f:footer>
 			<OverflowToolbar id="idOverflowToolbar" visible="true">
 				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button text="{i18n>Homepage}" type="Success" press="onPresshomepage"/>
 				<Button text="{i18n>CustomerRegistration}" type="Success" press="onPressCustRegistration"/>
 				<Button text="{i18n>View_Request}" type="Neutral" press="onPressViewRequest"/>
 				<Button text="{i18n>SLA_Agreement}" type="Negative" press="onPressAgreement"/>
