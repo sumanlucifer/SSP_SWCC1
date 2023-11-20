@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<!--	<fm:SimpleForm id="ssp-create-sr-3" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content></fm:content>
+		</fm:SimpleForm>-->
+		<TileContainer id="container" tileDelete="handleTileDelete" tiles="{/TileCollection}">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Status Loaded - no press event" subheader="Subheader">
+				<TileContent unit="Unit" footer="Footer">
+					<ImageContent src="sap-icon://line-charts"/>
+				</TileContent>
+			</GenericTile>
+		</TileContainer>
+	</VBox>
+</core:FragmentDefinition>

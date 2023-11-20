@@ -38,6 +38,9 @@ sap.ui.define([
 			onPressCustRegistration: function () {
 				this.getOwnerComponent().getTargets().display("CustRegistration");
 			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getTargets().display("HomePage");
+			},
 			onPressAgreement: function (oEvent) {
 
 				var oView = this.getView();
