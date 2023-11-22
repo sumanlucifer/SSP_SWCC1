@@ -1,6 +1,6 @@
 <mvc:View controllerName="com.swcc.Template.controller.ModuleSelect" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f">
-	<f:DynamicPage headerExpanded="true" busy="{objectViewModel>/busy}" class="ssp-page">
+	<f:DynamicPage headerExpanded="true" busy="{objectViewModel>/busy}" class="ssp-page" fitContent="true">
 		<!-- DynamicPage Title -->
 		<!--<f:title>
 			<f:DynamicPageTitle>
