@@ -70,12 +70,19 @@
     margin: 1rem 2rem 0rem 2rem;
 }
 
-.ssp-form-bg .sapUiFormTitle {
+.ssp-form-bg .sapUiFormTitle,
+.sapMTBStandard.ssp-title {
     background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
-    height: auto;
+    height: fit-content;
 }
+
+.ssp-title .sapMBtnIcon,
+.ssp-title .sapMTitle {
+    color: #ffffff;
+}
+
 
 .ssp-form-bg .sapUiForm {
     /*background: #FFFFFF;

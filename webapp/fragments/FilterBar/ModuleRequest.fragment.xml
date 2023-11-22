@@ -38,11 +38,10 @@
 		<fm:SimpleForm layout="ColumnLayout" class="style-RemoveTitleHeight sapUiContentPadding" binding="{HeaderDetailsModel>/}" columnsM="2"
 			columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
-				<Toolbar id="TB1">
+				<Toolbar id="TB1" class="ssp-title">
+					<Button icon="sap-icon://nav-back"/>
 					<Title class="ssp-form-bg" id="Title1" text="{i18n>modulesearch}"/>
 					<ToolbarSpacer/>
-					<Button icon="sap-icon://settings"/>
-					<Button icon="sap-icon://drop-down-list"/>
 				</Toolbar>
 			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>
