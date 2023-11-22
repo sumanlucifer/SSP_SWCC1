@@ -9,6 +9,7 @@ sap.ui.define([
 		getAPI: api,
 		getRouter: function () {
 			return sap.ui.core.UIComponent.getRouterFor(this);
+
 		},
 
 		addContentDensityClass: function () {
