@@ -63,11 +63,11 @@
 					"bundleName": "com.swcc.Template.i18n.i18n"
 				}
 			},
-			  "sfsfModel": {
-                "type": "sap.ui.model.odata.v2.ODataModel",
+			"sfsfModel": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
 				"dataSource": "sfsfService",
-                "preload": false
-            },
+				"preload": false
+			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},

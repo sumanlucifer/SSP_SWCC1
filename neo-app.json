@@ -41,13 +41,6 @@
 				"name": "CPI"
 			},
 			"description": "tet"
-		}, {
-			"path": "/SF_QA",
-			"target": {
-				"type": "destination",
-				"name": "SF_QA"
-			},
-			"description": "tet"
 		}
 
 	],

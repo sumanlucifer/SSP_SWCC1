@@ -31,7 +31,12 @@
     border-radius: 10px;
 }
 
-.sapUiGlobalBackgroundColor,
+/*.ne-flexbox2 div:hover {
+    flex-basis: 35% !important;
+    background-color: orange;
+}*/
+
+/*.sapUiGlobalBackgroundColor,
 .ssp-page.sapFDynamicPage .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
     background-image: url(../util/Images/bg.jpg) !important;
     background-position: center !important;
@@ -39,26 +44,40 @@
     background-attachment: fixed !important;
     background-size: cover !important;
     padding: 0px;
-}
+}*/
 
-.ssp-page .sapFDynamicPageContentFitContainerFooterVisible,
+/*.ssp-page .sapFDynamicPageContentFitContainerFooterVisible,
 .sapFDynamicPage-Std-Desktop-XL .sapFDynamicPageContentFitContainer {
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
     background: #ffffff;
     margin: 1rem 2rem 0rem 2rem;
     padding: 0px !important;
+}*/
+
+.ssp-page .sapFDynamicPageContentFitContainer,
+.ssp-homepage .ssp-tile {
+    padding: 0 0 1rem 0;
+    background: #ffffff;
+    border: 1px solid #4b84b396;
+    border-radius: 10px 10px 0px 0px;
+    height: fit-content;
+}
+
+.ssp-page .sapFDynamicPageContentFitContainer {
+    margin: 1rem 2rem 0rem 2rem;
 }
 
 .ssp-form-bg .sapUiFormTitle {
     background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
+    height: auto;
 }
 
 .ssp-form-bg .sapUiForm {
-    background: #FFFFFF;
-    min-height: 35vh;
+    /*background: #FFFFFF;
+    min-height: 35vh;*/
     border-radius: 10px 10px 0 0;
 
 }
@@ -119,6 +138,52 @@
     color: #fff;
     font-weight: bold;
 }
+
+.ssp-open {
+    background: rgb(187, 249, 18);
+    background: linear-gradient(180deg, rgba(187, 249, 18, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    border: 1px solid rgb(187, 249, 18);
+}
+
+.ssp-progress {
+    background: rgb(231, 101, 0);
+    background: linear-gradient(180deg, rgba(231, 101, 0, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    border: 1px solid rgb(231, 101, 0);
+}
+
+.ssp-done {
+    background: rgb(150, 150, 150);
+    background: linear-gradient(180deg, rgba(150, 150, 150, 1) 0%, rgba(255, 255, 255, 1) 100%);
+    border: 1px solid rgb(150, 150, 150);
+}
+
+.ssp-newservice .sapMGTContent {
+    background: #4B84B3;
+}
+
+.ssp-viewservice .sapMGTContent {
+    background: #0066cc45;
+}
+
+.ssp-newservice .sapMImageContentImageIcon.sapUiIcon,
+.ssp-viewservice .sapMImageContentImageIcon.sapUiIcon {
+    color: #ffffff;
+    font-size: 2.5rem;
+    line-height: 8rem;
+}
+
+
+/*.ssp-vtl .sapUiVltCell {
+    background: #FFFFFF;
+    padding: 1rem;
+
+}*/
+
+/*.ssp-tile {
+    border: 1px solid #e5e5e5;
+    border-radius: 10px 10px 0px 0px;
+
+}*/
 
 /* common css ends here */
 .swcc-tabbar,
