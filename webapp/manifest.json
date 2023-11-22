@@ -10,14 +10,19 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"dataSources": {
-			"sfsfService": {
-				"uri": "SF_QA/odata/v2/",
+		
+			"ZCDSV_SS_SERVICES_F4_CDS": {
+				"uri": "/sap/opu/odata/sap/ZCDSV_SS_SERVICES_F4_CDS/",
 				"type": "OData",
 				"settings": {
-					"annotations": [],
-					"odataVersion": "2.0"
+				    "odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
 				}
 			}
+		},
+		"sourceTemplate": {
+			"id": "servicecatalog.connectivityComponentForManifest",
+			"version": "0.0.0"
 		}
 	},
 	"sap.ui": {
@@ -63,15 +68,9 @@
 					"bundleName": "com.swcc.Template.i18n.i18n"
 				}
 			},
-			"sfsfModel": {
-				"type": "sap.ui.model.odata.v2.ODataModel",
-				"dataSource": "sfsfService",
-				"preload": false
-			},
-			"": {
-				"type": "sap.ui.model.json.JSONModel",
-				"settings": {},
-				"preload": false
+			"ModuleInput": {
+				"dataSource": "ZCDSV_SS_SERVICES_F4_CDS",
+				"preload": true
 			}
 		},
 		"resources": {
