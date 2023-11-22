@@ -8,17 +8,9 @@ sap.ui.define([
 		return BaseController.extend("com.swcc.Template.controller.MouleSelect", {
 			onInit: function () {
 				this.oRouter = this.getRouter();
-				// this.testAPI2();
-
-				var oOptions = {
-					url: "http/sf",
-					type: "GET"
-				};
-				this.getAPI.crudOperations_REST(oOptions)
-					.then(function (oResponse) {
-						var aData = oResponse.data;
-
-					}.bind(this));
+				debugger;
+				this.testCPI_API();
+				this.testOdata_API();
 
 			},
 			onback: function () {
@@ -31,23 +23,28 @@ sap.ui.define([
 				this.oRouter.navTo("LandingView");
 
 			},
+			testOdata_API: function () {
+				const oModel = this.getOwnerComponent().getModel("ModuleInput");
 
-			testAPI2: function () {
-				var oModel = new sap.ui.model.json.JSONModel();
-				var that = this;
-				var aData = jQuery.ajax({
-					type: "GET",
-					contentType: "application/json",
-					url: "/CPI/http/sf",
-					dataType: "json",
-					async: false,
-					success: function (data, textStatus, jqXHR) {
-						// 		oModel.setData(data);
-						var myJSON = JSON.stringify(data);
-						console.log(myJSON);
-					}
-				});
-				this.getView().setModel(oModel);
+				this.getAPI.crudOperations_ODATA(oModel, 'read', '/I_Producttype')
+					.then(function (oResponse) {
+						var aData = oResponse.data;
+
+					}.bind(this));
+
+			},
+
+			testCPI_API: function () {
+
+				var oOptions = {
+					url: "http/sf",
+					type: "GET"
+				};
+				this.getAPI.crudOperations_REST(oOptions)
+					.then(function (oResponse) {
+						var aData = oResponse.data;
+
+					}.bind(this));
 			}
 
 		})

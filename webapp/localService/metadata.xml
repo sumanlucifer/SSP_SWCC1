@@ -1,0 +1,129 @@
+<edmx:Edmx xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+	xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/></edmx:Reference>
+	<edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+		Uri="./iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value"><edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/></edmx:Reference>
+	<edmx:DataServices m:DataServiceVersion="2.0">
+		<Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZCDSV_SS_SERVICES_F4_CDS" xml:lang="en" sap:schema-version="1"><Annotation xmlns="http://docs.oasis-open.org/odata/ns/edm" Term="Core.SchemaVersion" String="1.0.0"/>
+			<EntityType Name="I_ProductGroupType" sap:label="Product Group Value Help" sap:content-version="1">
+				<Key><PropertyRef Name="MaterialGroup"/></Key><Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:display-format="UpperCase" sap:text="MaterialGroup_Text"
+					sap:label="Product Group"/><Property Name="MaterialGroup_Text" Type="Edm.String" MaxLength="20" sap:label="Product Group Desc."
+					sap:quickinfo="Product Group Description" sap:creatable="false" sap:updatable="false"/><Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization Group"/></EntityType>
+			<EntityType Name="I_ProductGroupTextType" sap:label="Product Group Value Help Text" sap:content-version="1">
+				<Key><PropertyRef Name="MaterialGroup"/><PropertyRef Name="Language"/></Key><Property Name="MaterialGroup" Type="Edm.String" Nullable="false" MaxLength="9" sap:display-format="UpperCase"
+					sap:text="to_MaterialGroup/MaterialGroup_Text" sap:label="Product Group" sap:value-list="standard"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="MaterialGroupName" Type="Edm.String" MaxLength="20" sap:label="Product Group Desc."
+					sap:quickinfo="Product Group Description"/><Property Name="MaterialGroupText" Type="Edm.String" MaxLength="60" sap:label="Mat.Grp Desc. 2"
+					sap:quickinfo="Description of the Material Group"/><NavigationProperty Name="to_MaterialGroup" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_450834AD2664C4A083C1781FD978D439"
+					FromRole="FromRole_assoc_450834AD2664C4A083C1781FD978D439" ToRole="ToRole_assoc_450834AD2664C4A083C1781FD978D439"/></EntityType>
+			<EntityType Name="I_ProductTextType" sap:label="Product Text" sap:content-version="1">
+				<Key><PropertyRef Name="Product"/><PropertyRef Name="Language"/></Key><Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:label="Material"
+					sap:quickinfo="Material Number"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="ProductName" Type="Edm.String" MaxLength="40" sap:label="Product Description"/></EntityType>
+			<EntityType Name="I_ProducttypeType" sap:label="Product type view" sap:content-version="1">
+				<Key><PropertyRef Name="ProductType"/></Key><Property Name="ProductType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="ProductType_Text"
+					sap:label="Product Type"/><Property Name="ProductType_Text" Type="Edm.String" MaxLength="25" sap:label="Product Type Descr."
+					sap:quickinfo="Description of product type" sap:creatable="false" sap:updatable="false"/><Property Name="ProductTypeCode" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="to_ProductTypeCode/ProductTypeCode_Text" sap:label="Product Type Group" sap:value-list="standard"/><Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization group"
+					sap:quickinfo="Authorization group in the material master"/><Property Name="MaintenanceStatus" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Maintenance status"/><Property Name="ReferenceProductType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Ref. material type"
+					sap:quickinfo="Reference material type"/><NavigationProperty Name="to_ProductTypeCode" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"
+					FromRole="FromRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE" ToRole="ToRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"/></EntityType>
+			<EntityType Name="I_ProductTypeCodeType" sap:label="Product Type Code Basic" sap:content-version="1">
+				<Key><PropertyRef Name="ProductTypeCode"/></Key><Property Name="ProductTypeCode" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase"
+					sap:text="ProductTypeCode_Text" sap:label="Product Type Group"/><Property Name="ProductTypeCode_Text" Type="Edm.String" MaxLength="40" sap:label="Description"
+					sap:quickinfo="Product Type Group Description" sap:creatable="false" sap:updatable="false"/></EntityType>
+			<EntityType Name="I_ProductTypeTextType" sap:label="Product Type Text" sap:content-version="1">
+				<Key><PropertyRef Name="ProductType"/><PropertyRef Name="Language"/></Key><Property Name="ProductType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Product Type"/><Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/><Property Name="MaterialTypeName" Type="Edm.String" MaxLength="25" sap:label="Product Type Descr."
+					sap:quickinfo="Description of product type"/></EntityType>
+			<EntityType Name="ZCDSV_SS_SERVICES_F4Type" sap:label="F4 for Service Selection" sap:content-version="1">
+				<Key><PropertyRef Name="Product"/></Key><Property Name="Product" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:text="Product_Text"
+					sap:label="Product" sap:quickinfo="Product Number"/><Property Name="Product_Text" Type="Edm.String" MaxLength="40" sap:label="Product Description" sap:creatable="false" sap:updatable="false"/><Property Name="ProductType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:text="ProductType_Text"
+					sap:label="Product Type" sap:value-list="standard"/><Property Name="ProductType_Text" Type="Edm.String" MaxLength="25" sap:label="Product Type Descr."
+					sap:quickinfo="Description of product type" sap:creatable="false" sap:updatable="false"/><Property Name="ProductGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:text="ProductGroup_Text"
+					sap:label="Product Group"/><Property Name="ProductGroup_Text" Type="Edm.String" MaxLength="20" sap:label="Product Group Desc."
+					sap:quickinfo="Product Group Description" sap:creatable="false" sap:updatable="false"/><NavigationProperty Name="to_ProductGroupText" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_2B13BB1CFF9D880C162A875515EFD40D"
+					FromRole="FromRole_assoc_2B13BB1CFF9D880C162A875515EFD40D" ToRole="ToRole_assoc_2B13BB1CFF9D880C162A875515EFD40D"/><NavigationProperty Name="to_ProductType" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_A4C51E2B54985EAABA5E49B942F50C6D"
+					FromRole="FromRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D" ToRole="ToRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"/><NavigationProperty Name="to_ProductTypeName" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_9B2F35A65FC76BB6E37C9E8664955B65"
+					FromRole="FromRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65" ToRole="ToRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65"/><NavigationProperty Name="to_Text" Relationship="ZCDSV_SS_SERVICES_F4_CDS.assoc_38058CD22FC914CD7705F3309C5EDA4F"
+					FromRole="FromRole_assoc_38058CD22FC914CD7705F3309C5EDA4F" ToRole="ToRole_assoc_38058CD22FC914CD7705F3309C5EDA4F"/></EntityType>
+			<Association Name="assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProducttypeType" Multiplicity="1" Role="FromRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTypeCodeType" Multiplicity="0..1" Role="ToRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"><PropertyRef Name="ProductTypeCode"/></Principal>
+					<Dependent Role="FromRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"><PropertyRef Name="ProductTypeCode"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_450834AD2664C4A083C1781FD978D439" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupTextType" Multiplicity="1" Role="FromRole_assoc_450834AD2664C4A083C1781FD978D439"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupType" Multiplicity="0..1" Role="ToRole_assoc_450834AD2664C4A083C1781FD978D439"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_450834AD2664C4A083C1781FD978D439"><PropertyRef Name="MaterialGroup"/></Principal>
+					<Dependent Role="FromRole_assoc_450834AD2664C4A083C1781FD978D439"><PropertyRef Name="MaterialGroup"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_2B13BB1CFF9D880C162A875515EFD40D" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type" Multiplicity="1" Role="FromRole_assoc_2B13BB1CFF9D880C162A875515EFD40D"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupTextType" Multiplicity="*" Role="ToRole_assoc_2B13BB1CFF9D880C162A875515EFD40D"/></Association>
+			<Association Name="assoc_A4C51E2B54985EAABA5E49B942F50C6D" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type" Multiplicity="1" Role="FromRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProducttypeType" Multiplicity="1" Role="ToRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"/>
+				<ReferentialConstraint>
+					<Principal Role="ToRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"><PropertyRef Name="ProductType"/></Principal>
+					<Dependent Role="FromRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"><PropertyRef Name="ProductType"/></Dependent>
+				</ReferentialConstraint>
+			</Association>
+			<Association Name="assoc_9B2F35A65FC76BB6E37C9E8664955B65" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type" Multiplicity="1" Role="FromRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTypeTextType" Multiplicity="*" Role="ToRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65"/></Association>
+			<Association Name="assoc_38058CD22FC914CD7705F3309C5EDA4F" sap:content-version="1"><End Type="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type" Multiplicity="1" Role="FromRole_assoc_38058CD22FC914CD7705F3309C5EDA4F"/><End Type="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTextType" Multiplicity="*" Role="ToRole_assoc_38058CD22FC914CD7705F3309C5EDA4F"/></Association>
+			<EntityContainer Name="ZCDSV_SS_SERVICES_F4_CDS_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx"><EntitySet Name="I_ProductGroup" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_ProductGroupText" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupTextType" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_ProductText" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTextType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_Producttype" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProducttypeType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="I_ProductTypeCode" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTypeCodeType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:content-version="1"/><EntitySet Name="I_ProductTypeText" EntityType="ZCDSV_SS_SERVICES_F4_CDS.I_ProductTypeTextType" sap:creatable="false" sap:updatable="false"
+				sap:deletable="false" sap:searchable="true" sap:content-version="1"/><EntitySet Name="ZCDSV_SS_SERVICES_F4" EntityType="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type" sap:creatable="false"
+				sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+				<AssociationSet Name="assoc_450834AD2664C4A083C1781FD978D439" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_450834AD2664C4A083C1781FD978D439"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="I_ProductGroupText" Role="FromRole_assoc_450834AD2664C4A083C1781FD978D439"/><End EntitySet="I_ProductGroup" Role="ToRole_assoc_450834AD2664C4A083C1781FD978D439"/></AssociationSet>
+				<AssociationSet Name="assoc_38058CD22FC914CD7705F3309C5EDA4F" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_38058CD22FC914CD7705F3309C5EDA4F"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDSV_SS_SERVICES_F4" Role="FromRole_assoc_38058CD22FC914CD7705F3309C5EDA4F"/><End EntitySet="I_ProductText" Role="ToRole_assoc_38058CD22FC914CD7705F3309C5EDA4F"/></AssociationSet>
+				<AssociationSet Name="assoc_A4C51E2B54985EAABA5E49B942F50C6D" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_A4C51E2B54985EAABA5E49B942F50C6D"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDSV_SS_SERVICES_F4" Role="FromRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"/><End EntitySet="I_Producttype" Role="ToRole_assoc_A4C51E2B54985EAABA5E49B942F50C6D"/></AssociationSet>
+				<AssociationSet Name="assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="I_Producttype" Role="FromRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"/><End EntitySet="I_ProductTypeCode" Role="ToRole_assoc_4DF4949EC9B667ED5EBEFD66EA9F3CEE"/></AssociationSet>
+				<AssociationSet Name="assoc_2B13BB1CFF9D880C162A875515EFD40D" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_2B13BB1CFF9D880C162A875515EFD40D"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDSV_SS_SERVICES_F4" Role="FromRole_assoc_2B13BB1CFF9D880C162A875515EFD40D"/><End EntitySet="I_ProductGroupText" Role="ToRole_assoc_2B13BB1CFF9D880C162A875515EFD40D"/></AssociationSet>
+				<AssociationSet Name="assoc_9B2F35A65FC76BB6E37C9E8664955B65" Association="ZCDSV_SS_SERVICES_F4_CDS.assoc_9B2F35A65FC76BB6E37C9E8664955B65"
+					sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"><End EntitySet="ZCDSV_SS_SERVICES_F4" Role="FromRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65"/><End EntitySet="I_ProductTypeText" Role="ToRole_assoc_9B2F35A65FC76BB6E37C9E8664955B65"/></AssociationSet>
+			</EntityContainer>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZCDSV_SS_SERVICES_F4_CDS.I_ProductGroupTextType/MaterialGroup">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Product Group Value Help"/><PropertyValue Property="CollectionPath" String="I_ProductGroup"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="MaterialGroup"/><PropertyValue Property="ValueListProperty" String="MaterialGroup"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="MaterialGroup_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZCDSV_SS_SERVICES_F4_CDS.I_ProducttypeType/ProductTypeCode">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Product Type Code Basic"/><PropertyValue Property="CollectionPath" String="I_ProductTypeCode"/><PropertyValue Property="SearchSupported" Bool="false"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="ProductTypeCode"/><PropertyValue Property="ValueListProperty" String="ProductTypeCode"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ProductTypeCode_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations>
+			<Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm" Target="ZCDSV_SS_SERVICES_F4_CDS.ZCDSV_SS_SERVICES_F4Type/ProductType">
+				<Annotation Term="Common.ValueList">
+					<Record><PropertyValue Property="Label" String="Product type view"/><PropertyValue Property="CollectionPath" String="I_Producttype"/><PropertyValue Property="SearchSupported" Bool="true"/>
+						<PropertyValue Property="Parameters">
+							<Collection>
+								<Record Type="Common.ValueListParameterInOut"><PropertyValue Property="LocalDataProperty" PropertyPath="ProductType"/><PropertyValue Property="ValueListProperty" String="ProductType"/></Record>
+								<Record Type="Common.ValueListParameterDisplayOnly"><PropertyValue Property="ValueListProperty" String="ProductType_Text"/></Record>
+							</Collection>
+						</PropertyValue>
+					</Record>
+				</Annotation>
+			</Annotations><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZCDSV_SS_SERVICES_F4_CDS/$metadata"/><atom:link xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZCDSV_SS_SERVICES_F4_CDS/$metadata"/></Schema>
+	</edmx:DataServices>
+</edmx:Edmx>

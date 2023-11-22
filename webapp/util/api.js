@@ -28,9 +28,8 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 
 		//	call API below for REST
 
-		crudOperations_ODATA: function (entity, filter, apiCall) {
+		crudOperations_ODATA: function (oModel, apiCall, entity, filter) {
 			return new Promise(function (resolve, reject) {
-				const oModel = this.getOwnerComponent().getModel("UserAction");
 
 				// Use bracket notation to call the dynamic function
 				oModel[apiCall](entity, {

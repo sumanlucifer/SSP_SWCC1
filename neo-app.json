@@ -1,55 +1,60 @@
 {
 	"welcomeFile": "/webapp/index.html",
 	"routes": [{
-			"path": "/resources",
-			"target": {
-				"type": "service",
-				"name": "sapui5",
-				"entryPath": "/resources"
-			},
-			"description": "SAPUI5 Resources"
-		}, {
-			"path": "/test-resources",
-			"target": {
-				"type": "service",
-				"name": "sapui5",
-				"entryPath": "/test-resources"
-			},
-			"description": "SAPUI5 Resources"
-		}, {
-			"path": "/webapp/resources",
-			"target": {
-				"type": "service",
-				"name": "sapui5",
-				"entryPath": "/resources"
-			},
-			"description": "SAPUI5 Resources"
-		}, {
-			"path": "/webapp/test-resources",
-			"target": {
-				"type": "service",
-				"name": "sapui5",
-				"entryPath": "/test-resources"
-			},
-			"description": "SAPUI5 Test Resources"
+		"path": "/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
 		},
-
-		{
-			"path": "/CPI",
-			"target": {
-				"type": "destination",
-				"name": "CPI"
-			},
-			"description": "tet"
-		}, {
-			"path": "/SF_QA",
-			"target": {
-				"type": "destination",
-				"name": "SF_QA"
-			},
-			"description": "tet"
-		}
-
-	],
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/resources"
+		},
+		"description": "SAPUI5 Resources"
+	}, {
+		"path": "/webapp/test-resources",
+		"target": {
+			"type": "service",
+			"name": "sapui5",
+			"entryPath": "/test-resources"
+		},
+		"description": "SAPUI5 Test Resources"
+	}, {
+		"path": "/sap/bc/lrep",
+		"target": {
+			"type": "destination",
+			"name": "S4D",
+			"entryPath": "/sap/bc/lrep"
+		},
+		"description": "S4D"
+	}, {
+		"path": "/CPI",
+		"target": {
+			"type": "destination",
+			"name": "CPI"
+		},
+		"description": "tet"
+	}, {
+		"path": "/sap/opu/odata",
+		"target": {
+			"type": "destination",
+			"name": "S4D",
+			"entryPath": "/sap/opu/odata"
+		},
+		"description": "S4D Dev 601"
+	}],
 	"sendWelcomeFileRedirect": true
 }

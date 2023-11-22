@@ -35,9 +35,16 @@
 	<!--	</fb:filterGroupItems>-->
 	<!--</fb:FilterBar>-->
 	<HBox class="ssp-hbox" alignContent="SpaceBetween">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg style-RemoveTitleHeight sapUiContentPadding" title="{i18n>modulesearch}"
-			binding="{HeaderDetailsModel>/}" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12"
-			labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="style-RemoveTitleHeight sapUiContentPadding" binding="{HeaderDetailsModel>/}" columnsM="2"
+			columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1">
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>modulesearch}"/>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://settings"/>
+					<Button icon="sap-icon://drop-down-list"/>
+				</Toolbar>
+			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>
 			<ComboBox id="dew" width="100%" valueState="None" enabled="false">
 				<items>
