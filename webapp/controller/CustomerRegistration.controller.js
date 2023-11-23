@@ -5,6 +5,7 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.CustomerRegistration", {
 		onInit: function () {
+
 			this.oRouter = this.getOwnerComponent().getRouter();
 
 		},
