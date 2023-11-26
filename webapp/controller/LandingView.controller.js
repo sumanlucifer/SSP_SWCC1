@@ -1,18 +1,19 @@
 sap.ui.define([
-		"sap/ui/core/mvc/Controller",
+		"./BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/Fragment",
-		"sap/ui/Device"
+		"sap/ui/Device",
+		"sap/m/MessageBox"
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (Controller, JSONModel, Fragment, Device) {
+	function (BaseController, JSONModel, Fragment, Device, MessageBox) {
 		"use strict";
+		return BaseController.extend("com.swcc.Template.controller.LandingView", {
 
-		return Controller.extend("com.swcc.Template.controller.LandingView", {
 			onInit: function () {
-
+				this.oRouter = this.getRouter();
 			},
 			onCancel: function () {
 
@@ -28,7 +29,23 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("DetailView");
+				//	this.getOwnerComponent().getTargets().display("DetailView");
+				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
+			},
+
+			_handleMessageBoxProceed: function (sMessage) {
+				var that = this;
+				sap.m.MessageBox.success(sMessage, {
+					icon: MessageBox.Icon.SUCCESS,
+					title: "Success",
+					actions: [MessageBox.Action.OK],
+					emphasizedAction: MessageBox.Action.YES,
+					onClose: function (oAction) {
+						if (oAction == "OK") {
+							that.onPresshomepage();
+						}
+					},
+				});
 			},
 			onPressViewRequest: function () {
 
@@ -39,7 +56,10 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("CustRegistration");
 			},
 			onPresshomepage: function () {
-				this.getOwnerComponent().getTargets().display("HomePage");
+				debugger;
+
+				this.oRouter.navTo("HomePage");
+				//this.getOwnerComponent().getTargets().display("HomePage");
 			},
 			onPressAgreement: function (oEvent) {
 

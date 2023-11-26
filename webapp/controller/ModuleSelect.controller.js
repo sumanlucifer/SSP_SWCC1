@@ -3,7 +3,7 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel"
 	],
 
-	function (BaseController, JSONModel, Sorter) {
+	function (BaseController, JSONModel) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.MouleSelect", {
 			onInit: function () {

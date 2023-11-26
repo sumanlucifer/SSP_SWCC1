@@ -24,10 +24,10 @@
 		<f:footer>
 			<OverflowToolbar id="idOverflowToolbar" visible="true">
 				<ToolbarSpacer id="idToolbarSpacer"/>
-				<Button text="{i18n>Homepage}" type="Success" press="onPresshomepage"/>
-				<Button text="{i18n>CustomerRegistration}" type="Success" press="onPressCustRegistration"/>
-				<Button text="{i18n>View_Request}" type="Neutral" press="onPressViewRequest"/>
-				<Button text="{i18n>SLA_Agreement}" type="Negative" press="onPressAgreement"/>
+				<!--<Button text="{i18n>Homepage}" type="Success" press="onPresshomepage"/>-->
+				<!--<Button text="{i18n>CustomerRegistration}" type="Success" press="onPressCustRegistration"/>-->
+				<!--<Button text="{i18n>View_Request}" type="Neutral" press="onPressViewRequest"/>-->
+				<!--<Button text="{i18n>SLA_Agreement}" type="Negative" press="onPressAgreement"/>-->
 				<Button id="idproceed" text="{i18n>Proceed}" type="Accept" class="btn-proceed" press="onProceed"/>
 				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
 				<!--<Button id="idResetBTN" text="{i18n>Submit}" type="Emphasized" press="onResetPress"/>-->

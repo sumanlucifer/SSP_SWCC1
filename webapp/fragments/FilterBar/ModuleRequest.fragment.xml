@@ -45,7 +45,7 @@
 				</Toolbar>
 			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>
-			<ComboBox id="dew" width="100%" valueState="None" enabled="false">
+			<ComboBox id="dew" width="100%" valueState="None" enabled="true">
 				<items>
 					<core:Item key="2" text="Finance"/>
 					<core:Item key="3" text="Human Resource"/>
@@ -55,9 +55,18 @@
 				</items>
 			</ComboBox>
 			<Label text="{i18n>SelectServiceType}" required="true"/>
-			<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
-				items="{TabDetailsModel>/ProductTypeSet}">
-				<core:ListItem key="{key}" text="{text}"/>
+			<!--<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+			<!--	items="{TabDetailsModel>/ProductTypeSet}">-->
+			<!--	<core:ListItem key="{key}" text="{text}"/>-->
+			<!--</ComboBox>-->
+			<ComboBox id="SD" width="100%" valueState="None" enabled="true">
+				<items>
+					<core:Item key="2" text="Accounts Payable"/>
+					<core:Item key="3" text="Test1"/>
+					<core:Item key="4" text="Test2"/>
+					<core:Item key="5" text="Test3"/>
+					<core:Item key="6" text="Test4"/>
+				</items>
 			</ComboBox>
 			<Label text="{i18n>SelectSubService}" required="true"/>
 			<ComboBox id="idsubservice" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
