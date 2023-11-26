@@ -17,6 +17,15 @@ sap.ui.define([
 
 			},
 
+			onSelect: function (oEve) {
+
+				var sKey = oEve.getSource().getSelectedKey();
+				if (sKey === "1") {
+					this.oRouter.navTo("FinanceRequest");
+				}
+
+			},
+
 			onSearch: function () {
 
 				this.oRouter.navTo("LandingView");
@@ -36,36 +45,15 @@ sap.ui.define([
 
 			testCPI_API: function () {
 
-				var oManifest = this.getOwnerComponent().getManifest();
-				var oDataSources = oManifest["sap.app"].dataSources;
-				var oRemoteService = oDataSources.CPI_API;
+				var oOptions = {
+					url: "http/sf",
+					type: "GET"
+				};
+				this.getAPI.crudOperations_REST(oOptions)
+					.then(function (oResponse) {
+						var aData = oResponse.data;
 
-				// Create an OData model using the configured data source
-				var oModel = new sap.ui.model.odata.v2.ODataModel(oRemoteService.uri);
-
-				debugger
-
-				// Perform a read operation to fetch data from the remote API
-				oModel.read("/http/sf", {
-					success: function (data) {
-						// Handle successful data retrieval
-						console.log("Data from remote API:", data);
-					},
-					error: function (error) {
-						// Handle error
-						console.error("Error fetching data from remote API:", error);
-					}
-				});
-
-				// var oOptions = {
-				// 	url: "http/sf",
-				// 	type: "GET"
-				// };
-				// this.getAPI.crudOperations_REST(oOptions)
-				// 	.then(function (oResponse) {
-				// 		var aData = oResponse.data;
-
-				// 	}.bind(this));
+					}.bind(this));
 			}
 
 		})

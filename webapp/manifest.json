@@ -106,49 +106,72 @@
 				}
 			},
 			"routes": [{
-				"name": "RouteApp",
-				"pattern": "",
-				"target": [
-					"TargetApp"
-				]
-			}, {
-				"name": "DetailView",
-				"pattern": "",
-				"target": [
-					"DetailView"
-				]
-			}, {
-				"name": "ViewRequest",
-				"pattern": "ViewRequest",
-				"target": [
-					"ViewRequest"
-				]
-			}, {
-				"name": "LandingView",
-				"pattern": "LandingView",
-				"target": [
-					"LandingView"
-				]
-			}, {
-				"name": "CustRegistration",
-				"pattern": "",
-				"target": [
-					"CustRegistration"
-				]
-			}, {
-				"name": "HomePage",
-				"pattern": "HomePage",
-				"target": [
-					"HomePage"
-				]
-			}],
+					"name": "RouteApp",
+					"pattern": "",
+					"target": [
+						"TargetApp"
+					]
+				},
+
+				{
+					"name": "ModuleSelect",
+					"pattern": "ModuleSelect",
+					"target": [
+						"ModuleSelect"
+					]
+				}, {
+					"name": "DetailView",
+					"pattern": "",
+					"target": [
+						"DetailView"
+					]
+				}, {
+					"name": "ViewRequest",
+					"pattern": "ViewRequest",
+					"target": [
+						"ViewRequest"
+					]
+				}, {
+					"name": "LandingView",
+					"pattern": "LandingView",
+					"target": [
+						"LandingView"
+					]
+				}, {
+					"name": "CustRegistration",
+					"pattern": "",
+					"target": [
+						"CustRegistration"
+					]
+				}, {
+					"name": "HomePage",
+					"pattern": "HomePage",
+					"target": [
+						"HomePage"
+					]
+				}, {
+					"name": "FinanceRequest",
+					"pattern": "FinanceRequest",
+					"target": [
+						"FinanceRequest"
+					]
+				}
+			],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
+					"viewName": "HomePage"
+				},
+
+				"ModuleSelect": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
 					"viewName": "ModuleSelect"
 				},
+
 				"LandingView": {
 					"viewType": "XML",
 					"transition": "slide",
@@ -178,6 +201,12 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "HomePage"
+				},
+				"FinanceRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "FinanceCreateRequest"
 				},
 				"notFound": {
 					"viewName": "NotFound"

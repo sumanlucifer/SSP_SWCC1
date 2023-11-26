@@ -5,21 +5,10 @@ sap.ui.define([
 
 	function (BaseController, JSONModel) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.HomePage", {
+		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
 			onInit: function () {
-				debugger;
 				this.oRouter = this.getRouter();
 
-			},
-
-			onPressCreateRequest: function () {
-				debugger;
-
-				this.oRouter.navTo("ModuleSelect");
-			},
-
-			onPressViewAllRequest: function () {
-				this.oRouter.navTo("ViewRequest");
 			},
 			onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
