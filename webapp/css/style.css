@@ -58,7 +58,8 @@
 }*/
 
 .ssp-page .sapFDynamicPageContentFitContainer,
-.ssp-homepage .ssp-tile {
+.ssp-homepage .ssp-tile,
+.ssp-page .sapFDynamicPageContentFitContainerFooterVisible {
     padding: 0 0 1rem 0;
     background: #ffffff;
     border: 1px solid #4b84b396;

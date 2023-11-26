@@ -3,12 +3,13 @@ sap.ui.define([
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/Fragment",
 		"sap/ui/Device",
-		"sap/m/MessageBox"
+		"sap/m/MessageBox",
+		"sap/m/MessageToast"
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (BaseController, JSONModel, Fragment, Device, MessageBox) {
+	function (BaseController, JSONModel, Fragment, Device, MessageBox, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.LandingView", {
 
@@ -86,6 +87,19 @@ sap.ui.define([
 					this.loadPDFView();
 
 				}.bind(this));
+
+			},
+
+			onStartUpload: function () {
+				var oUploadCollection = this.byId("UploadCollection");
+				var oTextArea = this.byId("TextArea");
+				var cFiles = oUploadCollection.getItems().length;
+				var uploadInfo = cFiles + " file(s)";
+
+				if (cFiles > 0) {
+					oUploadCollection.upload();
+					MessageBox.information("Uploaded " + uploadInfo);
+				}
 
 			},
 

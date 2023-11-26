@@ -50,7 +50,16 @@
 				</ComboBox>
 				<Label text="{i18n>equipment}" required="true"/>
 				<Input id="productInput6" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>maintenanceorder}" required="true"/>
+				<Input id="productInput7" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<UploadCollection id="UploadCollection" fileType="docx" maximumFilenameLength="55" maximumFileSize="10" multiple="true"
+			sameFilenameAllowed="true" instantUpload="false" noDataDescription="Quotation Upload" change="onChange" fileDeleted="onFileDeleted"
+			filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
+			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts" class="btn-upload"/>
+		<Button id="upload" text="Upload Now" press="onStartUpload"/>
 	</VBox>
 </core:FragmentDefinition>
