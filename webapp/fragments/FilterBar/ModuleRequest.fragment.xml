@@ -35,8 +35,8 @@
 	<!--	</fb:filterGroupItems>-->
 	<!--</fb:FilterBar>-->
 	<HBox class="ssp-hbox" alignContent="SpaceBetween">
-		<fm:SimpleForm layout="ColumnLayout" class="style-RemoveTitleHeight sapUiContentPadding" binding="{HeaderDetailsModel>/}" columnsM="2"
-			columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="style-RemoveTitleHeight sapUiContentPadding" binding="" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar id="TB1" class="ssp-title">
 					<Button icon="sap-icon://nav-back"/>
@@ -45,7 +45,10 @@
 				</Toolbar>
 			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>
-			<ComboBox id="dew" width="100%" valueState="None" enabled="true">
+			<ComboBox items="{ path: 'oModel>/Product', sorter: { path: 'text' } }">
+				<core:Item key="{oModel>Product}" text="{oModel>Product}"/>
+			</ComboBox>
+			<!--	<ComboBox id="dew" width="100%" valueState="None" enabled="true">
 				<items>
 					<core:Item key="2" text="Finance"/>
 					<core:Item key="3" text="Human Resource"/>
@@ -53,7 +56,7 @@
 					<core:Item key="5" text="Plant Maintainance"/>
 					<core:Item key="6" text="Supply Chain"/>
 				</items>
-			</ComboBox>
+			</ComboBox>-->
 			<Label text="{i18n>SelectServiceType}" required="true"/>
 			<!--<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
 			<!--	items="{TabDetailsModel>/ProductTypeSet}">-->
