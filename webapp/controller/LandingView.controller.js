@@ -15,6 +15,13 @@ sap.ui.define([
 
 			onInit: function () {
 				this.oRouter = this.getRouter();
+				var oLocalViewModel = new JSONModel({
+					busy: false,
+					uploadAttachment: true
+				});
+				const fileInput = document.getElementById('UploadSet');
+
+				this.getView().setModel(oLocalViewModel, "LocalViewModel");
 			},
 			onCancel: function () {
 
@@ -57,7 +64,6 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("CustRegistration");
 			},
 			onPresshomepage: function () {
-				debugger;
 
 				this.oRouter.navTo("HomePage");
 				//this.getOwnerComponent().getTargets().display("HomePage");
@@ -90,19 +96,6 @@ sap.ui.define([
 
 			},
 
-			onStartUpload: function () {
-				var oUploadCollection = this.byId("UploadCollection");
-				var oTextArea = this.byId("TextArea");
-				var cFiles = oUploadCollection.getItems().length;
-				var uploadInfo = cFiles + " file(s)";
-
-				if (cFiles > 0) {
-					oUploadCollection.upload();
-					MessageBox.information("Uploaded " + uploadInfo);
-				}
-
-			},
-
 			loadPDFView: function () {
 				var oScrollContainer = this.getView().byId("myScrollContainer");
 				oScrollContainer.$().on("scroll", this.onScroll.bind(this));
@@ -119,7 +112,68 @@ sap.ui.define([
 					// Implement your scroll-down functionality
 					console.log("Scrolled down!");
 				}
-			}
+			},
+
+			/*** Upload attach code **********/
+			onFileAdded: function (oEvent) {
+
+				debugger;
+				var file = oEvent.getParameter("item");
+				var Filename = file.getFileName(),
+					Filetype = file.getMediaType(),
+					Filesize = file.getFileObject().size,
+					Filedata = oEvent.getParameter("item").getFileObject();
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					this._addData(Filecontent, Filename, Filetype, Filesize);
+				}.bind(this));
+				var oUploadSet = this.getView().byId("UploadSet");
+				//oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+			onFileSizeExceed: function () {
+				MessageBox.error("File size exceeded, Please upload file upto 10MB.");
+				this.isAttachment = false;
+			},
+
+			onFileNameLengthExceed: function () {
+				MessageBox.error("File name length exceeded, Please upload file with name lenght upto 50 characters.");
+			},
+			_getImageData: function (url, callback, fileName) {
+				var reader = new FileReader();
+
+				reader.onloadend = function (evt) {
+					if (evt.target.readyState === FileReader.DONE) {
+
+						var binaryString = evt.target.result,
+							base64file = btoa(binaryString);
+
+						callback(base64file);
+					}
+				};
+				reader.readAsBinaryString(url);
+			},
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+				this.getViewModel("LocalViewModel").setProperty(
+					"/busy",
+					true
+				);
+				this.fileContent = Filecontent;
+				this.fileName = Filename;
+				this.isAttachment = true;
+
+			},
+			onFileDeleted: function (oEvent) {
+				var oUploadSet = this.getView().byId("UploadSet");
+				oUploadSet.getDefaultFileUploader().setEnabled(true);
+				this.isAttachment = false;
+
+			},
+			onFileRenamed: function (oEvent) {
+					this.onFileAdded(oEvent);
+				}
+				/* upload attach code ends here ****/
 
 		});
 	});

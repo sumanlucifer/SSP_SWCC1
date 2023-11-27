@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
-	xmlns:core="sap.ui.core">
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
 		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
@@ -19,12 +19,7 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input id="qty" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>baseunit}" required="false"/>
-				<ComboBox id="Tender" width="100%" valueState="None">
-					<items>
-						<core:Item key="Yes" text="Yes"/>
-						<core:Item key="No" text="No"/>
-					</items>
-				</ComboBox>
+				<Input id="baseunit" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>priority}" required="true"/>
 				<ComboBox id="priority" width="100%" valueState="None">
 					<items>
@@ -55,11 +50,21 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox width="100%">
-		<UploadCollection id="UploadCollection" fileType="docx" maximumFilenameLength="55" maximumFileSize="10" multiple="true"
-			sameFilenameAllowed="true" instantUpload="false" noDataDescription="Quotation Upload" change="onChange" fileDeleted="onFileDeleted"
-			filenameLengthExceed="onFilenameLengthExceed" fileSizeExceed="onFileSizeExceed" typeMissmatch="onTypeMissmatch"
-			uploadComplete="onUploadComplete" beforeUploadStarts="onBeforeUploadStarts" class="btn-upload"/>
-		<Button id="upload" text="Upload Now" press="onStartUpload"/>
+	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
+		<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
+			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
+			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
+			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
+			mediaTypes="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple="true"
+			afterItemAdded="onFileAdded">
+			<upload:toolbar>
+				<OverflowToolbar>
+					<Label text="Attachments" class="lbl-attach" required="true"/>
+					<core:Icon id="idInfoIconLeave" src="sap-icon://message-information" size="1rem" height="3rem"
+						tooltip="Please Upload File types ( pdf, docs) and File size upto 250 MB"></core:Icon>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+			</upload:toolbar>
+		</upload:UploadSet>
 	</VBox>
 </core:FragmentDefinition>
