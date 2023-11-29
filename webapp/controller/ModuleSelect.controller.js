@@ -27,8 +27,10 @@ sap.ui.define([
 			},
 
 			onSearch: function () {
-
-				this.oRouter.navTo("LandingView");
+				this.getModel().setProperty("/VisibleManagePttyCash", true);
+				this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
+				this.oRouter.navTo("FinanceRequest");
+				//	this.oRouter.navTo("LandingView");
 
 			},
 			testOdata_API: function () {

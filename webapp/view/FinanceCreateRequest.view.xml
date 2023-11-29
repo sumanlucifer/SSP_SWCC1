@@ -14,8 +14,16 @@
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content>
-					<!--<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.RecordProcessInvoice" type="XML"/>-->
-					<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.ManagePettyCash" type="XML"/>
+					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>-->
+					<!--</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"
+							type="XML"/>
+					</VBox>
+					<!--<VBox visible="{/VisibleManagePttyCash}">-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>-->
+					<!--</VBox>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

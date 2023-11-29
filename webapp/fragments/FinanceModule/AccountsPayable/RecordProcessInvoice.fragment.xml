@@ -1,18 +1,25 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2"
+		<fm:SimpleForm id="ssp-create-srs" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2"
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>
-				<Toolbar>
-					<Title level="H3" text="{i18n>RecordandProcessofInvoice}" class="ssp-tlbr-title"/>
+			<fm:toolbar>
+				<Toolbar id="TB1s" class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" id="Title2" text="{i18n>RecordandProcessofInvoice}"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<!--<Toolbar>-->
+				<!--	<Title level="H3" text="{i18n>RecordandProcessofInvoice}" class="ssp-tlbr-title"/>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="productInput" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="dd" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker id="DP11" displayFormat="yyyy"
+				<DatePicker id="ss" displayFormat="yyyy"
 					value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }" change="handleChange"
 					class="sapUiSmallMarginBottom"/>
 			</fm:content>
@@ -28,7 +35,7 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table id="totalamount" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table id="rfrr" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column>
 					<Text text="Sno"/>

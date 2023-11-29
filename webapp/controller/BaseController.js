@@ -1,8 +1,9 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	'sap/ui/core/BusyIndicator',
-	'com/swcc/Template/util/api'
-], function (Controller, BusyIndicator, api) {
+	'com/swcc/Template/util/api',
+	"sap/ui/model/json/JSONModel"
+], function (Controller, BusyIndicator, api, JSONModel) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -21,7 +22,7 @@ sap.ui.define([
 		 * @param {string} [sName] the model name
 		 * @returns {sap.ui.model.Model} the model instance
 		 */
-		getViewModel: function (sName) {
+		getModel: function (sName) {
 			return this.getView().getModel(sName);
 		},
 
