@@ -12,11 +12,11 @@
 		</ScrollContainer>
 		<!--<html:iframe id="idPDFScrollContainer" src="./SLA_PDF/SLA.pdf" height="100%" width="100%"></html:iframe>-->
 		<beginButton>
-			<Button enabled="false" id="idRequestButton" text="{i18n>Accept}" visible="{objectViewModel>/popupEditable}" press="onBoqQtySavePress"
+			<Button enabled="false" id="idacceptpdf" text="{i18n>Accept}" visible="{objectViewModel>/popupEditable}" press="onacceptpdf"
 				type="Emphasized"/>
 		</beginButton>
 		<endButton>
-			<Button enabled="false" text="{i18n>Decline}" press="onManageBoqDialogClosePress"/>
+			<Button enabled="false" id="ideclinepdf" text="{i18n>Decline}" press="onrejectpdf"/>
 		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
