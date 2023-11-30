@@ -10,7 +10,6 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"dataSources": {
-
 			"ZCDSV_SS_SERVICES_F4_CDS": {
 				"uri": "/sap/opu/odata/sap/ZCDSV_SS_SERVICES_F4_CDS/",
 				"type": "OData",
@@ -83,18 +82,13 @@
 					"bundleName": "com.swcc.Template.i18n.i18n"
 				}
 			},
-
 			"CPI_API": {
 				"dataSource": "CPI_API"
 			},
-
 			"ZAPI_BUSINESS_PARTNER": {
-
 				"dataSource": "ZAPI_BUSINESS_PARTNER",
 				"preload": true
-
 			},
-
 			"ModuleInput": {
 				"dataSource": "ZCDSV_SS_SERVICES_F4_CDS",
 				"preload": true
@@ -106,9 +100,11 @@
 			}
 		},
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -125,56 +121,61 @@
 					]
 				}
 			},
-			"routes": [{
+			"routes": [
+				{
 					"name": "RouteApp",
 					"pattern": "",
 					"target": [
 						"TargetApp"
 					]
 				},
-
 				{
 					"name": "ModuleSelect",
 					"pattern": "ModuleSelect",
 					"target": [
 						"ModuleSelect"
 					]
-				}, {
+				},
+				{
 					"name": "DetailView",
 					"pattern": "",
 					"target": [
 						"DetailView"
 					]
-				}, {
+				},
+				{
 					"name": "ViewRequest",
 					"pattern": "ViewRequest",
 					"target": [
 						"ViewRequest"
 					]
-				}, {
+				},
+				{
 					"name": "LandingView",
 					"pattern": "LandingView",
 					"target": [
 						"LandingView"
 					]
-				}, {
+				},
+				{
 					"name": "CustRegistration",
 					"pattern": "",
 					"target": [
 						"CustRegistration"
 					]
-				}, {
+				},
+				{
 					"name": "HomePage",
 					"pattern": "HomePage",
 					"target": [
 						"HomePage"
 					]
-				}, 
+				},
 				{
-					"name": "UserHomePage",
-					"pattern": "UserHomePage",
+					"name": "AppHomePage",
+					"pattern": "ModuleSelect/{value}",
 					"target": [
-						"UserHomePage"
+						"ModuleSelect"
 					]
 				},
 				{
@@ -197,16 +198,14 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "HomePage"
+					"viewName": "AppHomePage"
 				},
-
 				"ModuleSelect": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "ModuleSelect"
 				},
-
 				"LandingView": {
 					"viewType": "XML",
 					"transition": "slide",

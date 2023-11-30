@@ -51,31 +51,31 @@ sap.ui.define([
 			},
 
 			/***** Agreement Popup ************/
-			onPressAgreement: function combinedFunction(oEvent) {
+			onPressAgreement: function (oEvent) {
 				var oView = this.getView();
-				if (!this._pDialog) {
-					this._pDialog = Fragment.load({
-						id: oView.getId(),
-						name: "com.swcc.Template.fragments.PDFViewer",
-						controller: this
-					}).then(function (oDialog) {
-						oView.addDependent(oDialog);
-						if (Device.system.desktop) {
-							oDialog.addStyleClass("sapUiSizeCompact");
-						}
-						oDialog.setTitle("SLA Agreement Version");
-						oDialog.open();
-						this.loadPDFView();
-						return oDialog;
-					}.bind(this));
+				if (this._pDialog) {
+					this._pDialog.destroy(); // Destroy the existing dialog if it exists
 				}
-
+				this._pDialog = Fragment.load({
+					id: oView.getId(),
+					name: "com.swcc.Template.fragments.PDFViewer",
+					controller: this
+				}).then(function (oDialog) {
+					oView.addDependent(oDialog);
+					if (Device.system.desktop) {
+						oDialog.addStyleClass("sapUiSizeCompact");
+					}
+					oDialog.setTitle("SLA Agreement Version");
+					oDialog.open();
+					this.loadPDFView(); // Call the loadPDFView function
+					return oDialog;
+				}.bind(this));
 			},
 
 			loadPDFView: function () {
 				var oScrollContainer = this.getView().byId("myScrollContainer");
-				oScrollContainer.$().on("scroll", this.onScroll.bind(this));
-
+				oScrollContainer.$().off("scroll"); // Unbind any existing scroll event handlers
+				oScrollContainer.$().on("scroll", this.onScroll.bind(this)); // Bind the scroll event
 			},
 
 			onScroll: function (event) {
