@@ -8,6 +8,7 @@ sap.ui.define([
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
 			onInit: function () {
+
 				this.oRouter = this.getRouter();
 
 			},
