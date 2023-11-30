@@ -115,7 +115,25 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
-		<CheckBox text="{i18n>clickheretoread}" id="accept_checkbox" tooltip="{i18n>clickheretoread}" select="onPressAgreement"
-			valueState="Information"/>
+		<fm:SimpleForm layout="GridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>selectservice}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<!--<CheckBox text="select / deselect all" selected="{= ${/child1} || ${/child2} || ${/child3} }"
+					partiallySelected="{= !(${/child1} &amp;&amp; ${/child2} &amp;&amp; ${/child3})}" select="onParentClicked"/>-->
+				<CheckBox text="{i18n>FICO}" selected="{/child1}" valueState="Information"/>
+				<CheckBox text="{i18n>PM}" selected="{/child2}" valueState="Information"/>
+				<CheckBox text="{i18n>SCM}" selected="{/child3}" valueState="Information"/>
+				<CheckBox text="{i18n>HR}" selected="{/child4}" valueState="Information"/>
+				<CheckBox text="{i18n>IT}" selected="{/child5}" valueState="Information"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<CheckBox text="{i18n>clickheretoread}" class="sapUiTinyMarginBegin" id="accept_checkbox" tooltip="{i18n>clickheretoread}"
+			select="onPressAgreement" valueState="Information"/>
 	</VBox>
 </core:FragmentDefinition>

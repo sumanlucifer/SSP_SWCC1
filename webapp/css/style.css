@@ -15,6 +15,34 @@
 /* Enter your custom styles here */
 
 
+/* App homepage */
+
+.welcome-title h4 {
+    background: #ffffff;
+    text-align: center;
+    font-size: 2rem;
+    line-height: 3.5rem !important;
+    border: none !important;
+    font-weight: bold !important;
+    color: #004687 !important;
+}
+
+.ssp-module {
+    -webkit-box-shadow: 0 0 3px 0px #004687;
+    -moz-box-shadow: 0 0 3px 0px #004687;
+    box-shadow: 0 0 3px 0px #004687;
+    background: #ffffff;
+    border: 1px solid #004687;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #004687;
+}
+
+.ssp-module .sapMImageContentImageIcon.sapUiIcon {
+    font-size: 2.5rem;
+}
 
 /* common css */
 .swcc-pmy-btn .sapMBtnDefault {
@@ -94,10 +122,15 @@
 
 .ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,
 .ssp-form-bg .sapMInputBase .sapMInputBaseInner,
-.ssp-form-bg .sapMInputBaseContentWrapper {
+.ssp-form-bg .sapMInputBaseContentWrapper,
+.ssp-form-bg .sapMSltDefault {
     background: #EFF0F2;
     border: 0px;
     height: 2rem;
+}
+
+.sapMPopover {
+    border: 1px solid #EFF0F2;
 }
 
 .ssp-form-bg .sapMInputBaseDisabled {
@@ -109,11 +142,12 @@
     font-size: 18px !important;
 }
 
-.ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover {
-    border-color: #0854a0;
-    border: 1px solid #0066cc;
+.ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
+.ssp-form-bg .sapMSltHoverable:not(.sapMSltState):not(.sapMSltIconOnly):hover {
+    background: #EFF0F2;
+    border: 0px;
+    height: 2rem;
     box-shadow: 2px 2px 5px 1px #729ac39e;
-    background: #ffffff;
 }
 
 .btn-proceed .sapMBtnInner.sapMBtnAccept {
