@@ -52,6 +52,18 @@
 					<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RecordAsset" type="XML"/>
 					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.SaleofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RetirementofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.TransferofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

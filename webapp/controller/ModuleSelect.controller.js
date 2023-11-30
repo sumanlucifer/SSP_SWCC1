@@ -43,7 +43,6 @@ sap.ui.define([
 
 				// 	}.bind(this));
 
-				const oModel = this.getOwnerComponent().getModel("ZAPI_BUSINESS_PARTNER");
 				var oPayload = {
 					"BusinessPartnerCategory": "2",
 					"BusinessPartnerFullName": "Test Test",
@@ -81,9 +80,10 @@ sap.ui.define([
 					"BusinessPartnerIDByExtSystem": ""
 				};
 
-				this.getAPI.crudOperations_ODATA(oModel, 'create', '/A_BusinessPartner', oPayload)
+				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZAPI_BUSINESS_PARTNER"), 'create', '/A_BusinessPartner',
+						oPayload)
 					.then(function (oResponse) {
-						var aData = oResponse.data;
+						// 		var aData = oResponse.data;
 
 					}.bind(this));
 
