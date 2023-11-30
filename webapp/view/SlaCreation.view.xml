@@ -1,14 +1,25 @@
-<mvc:View controllerName="com.swcc.Template.controller.HomePage" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+<mvc:View controllerName="com.swcc.Template.controller.SlaCreationView" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
 	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
-	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-homepage">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content>
-					<core:Fragment fragmentName="com.swcc.Template.fragments.CreateNewSrtile" type="XML"/>
-					<!--<core:Fragment fragmentName="com.swcc.Template.fragments.PM Module.PM_Maintenance" type="XML"/>-->
+					<core:Fragment fragmentName="com.swcc.Template.fragments.Forms.SLAAgreementCreation" type="XML"/>
+					<!--<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
+		<!-- DynamicPage Footer -->
 		<f:footer>
 			<OverflowToolbar id="idOverflowToolbar" visible="true">
 				<ToolbarSpacer id="idToolbarSpacer"/>

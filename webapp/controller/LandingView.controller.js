@@ -108,7 +108,8 @@ sap.ui.define([
 				var scrollTop = oScrollContainer.$().scrollTop();
 
 				if (scrollTop > 400) {
-					this.getView().byId("idRequestButton").setEnabled(true);
+					this.getView().byId("idacceptpdf").setEnabled(true);
+					this.getView().byId("ideclinepdf").setEnabled(true);
 					// Implement your scroll-down functionality
 					console.log("Scrolled down!");
 				}

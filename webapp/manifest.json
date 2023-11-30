@@ -149,7 +149,22 @@
 					"target": [
 						"HomePage"
 					]
-				}, {
+				}, 
+				{
+					"name": "UserHomePage",
+					"pattern": "UserHomePage",
+					"target": [
+						"UserHomePage"
+					]
+				},
+				{
+					"name": "SlaCreation",
+					"pattern": "SlaCreation",
+					"target": [
+						"SlaCreation"
+					]
+				},
+				{
 					"name": "FinanceRequest",
 					"pattern": "FinanceRequest",
 					"target": [
@@ -201,6 +216,18 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "HomePage"
+				},
+				"UserHomePage": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "UserHomePage"
+				},
+				"SlaCreation": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "SlaCreation"
 				},
 				"FinanceRequest": {
 					"viewType": "XML",

@@ -12,8 +12,8 @@
 				<Input id="idMobileNumberInp" type="Number" maxLength="10" showClearIcon="true"
 					value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
 				<!--	<Link text="Verify" press="handleLinkPress" width="30%"/>-->
-				<Button id="phone-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="OTP Verify" width="60%"/>
-				<Input id="Mobileotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>
+				<!--	<Button id="phone-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="OTP Verify" width="60%"/>-->
+				<!--<Input id="Mobileotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
 				<Label text="{i18n>customerid}" required="true"/>
 				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
 				<!--	<Select id="idTypeOfPassSLT" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
@@ -25,8 +25,8 @@
 				<Input id="idNationalIDInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
 				<Label text="{i18n>EmailID}" required="true"/>
 				<Input id="idEmail" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
-				<Button id="email-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="Email Verify" width="60%"/>
-				<Input id="emailotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>
+				<!--	<Button id="email-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="Email Verify" width="60%"/>
+				<Input id="emailotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
 				<Label text="{i18n>customername}" required="false"/>
 				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
 				<!--	<Label text="{i18n>AddresofHeadQuarters}" required="true"/>
