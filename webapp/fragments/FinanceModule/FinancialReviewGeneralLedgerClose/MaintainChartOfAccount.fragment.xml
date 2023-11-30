@@ -21,7 +21,6 @@
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 </core:FragmentDefinition>

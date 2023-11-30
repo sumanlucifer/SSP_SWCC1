@@ -6,7 +6,7 @@
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>FinancialClose}"/>
+					<Title class="ssp-form-bg" text="{i18n>PerformAssetInventory}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -16,7 +16,14 @@
 				<!--	<ToolbarSpacer/>-->
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
-				<Label text="{i18n>PostingPeriod}" required="true"/>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>CostCenter}" required="true"/>
+				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>ReportingDate}" required="true"/>
+				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
+					change="handleChange" class="sapUiSmallMarginBottom"/>
+				<Label text="{i18n>DepreciationArea}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 			</fm:content>
 		</fm:SimpleForm>

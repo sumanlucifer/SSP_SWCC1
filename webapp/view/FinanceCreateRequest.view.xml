@@ -13,13 +13,15 @@
 		</f:title>-->
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
-				<l:content>
+				<l:content >
+					<!--.........................................	Accounts Payable................................-->
 					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>-->
 					<!--</VBox>-->
 					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>-->
 					<!--</VBox>-->
+					<!--.................................Financial Review and General Ledger Close...........................-->
 					<!--<VBox>-->
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.FinancialClose" type="XML"/>-->
 					<!--</VBox>-->
@@ -40,6 +42,16 @@
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PrepareReviewTrailBalance"-->
 					<!--		type="XML"/>-->
 					<!--</VBox>-->
+					<!--...............................................Asset Lifecycle...........................................-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.DepreciationProcess" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.PerformAssetInventory" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RecordAsset" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

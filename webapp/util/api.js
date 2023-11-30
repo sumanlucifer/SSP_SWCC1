@@ -28,11 +28,11 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 
 		//	call API below for REST
 
-		crudOperations_ODATA: function (oModel, apiCall, entity, filter) {
+		crudOperations_ODATA: function (oModel, apiCall, entity, oPayload, filter) {
 			return new Promise(function (resolve, reject) {
 
 				// Use bracket notation to call the dynamic function
-				oModel[apiCall](entity, {
+				oModel[apiCall](entity, oPayload, {
 					filters: [filter],
 					success: function (oData) {
 						resolve(oData);
