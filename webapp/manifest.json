@@ -19,6 +19,14 @@
 					"localUri": "localService/metadata.xml"
 				}
 			},
+			"ZAPI_BUSINESS_PARTNER": {
+				"uri": "/sap/opu/odata/sap/API_BUSINESS_PARTNER/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
 			"CPI_API": {
 				"uri": "http://swcc-prxy:8060/https://e650049-iflmap.hcisbt.sa1.hana.ondemand.com/CPI",
 				"type": "OData",
@@ -80,9 +88,21 @@
 				"dataSource": "CPI_API"
 			},
 
+			"ZAPI_BUSINESS_PARTNER": {
+
+				"dataSource": "ZAPI_BUSINESS_PARTNER",
+				"preload": true
+
+			},
+
 			"ModuleInput": {
 				"dataSource": "ZCDSV_SS_SERVICES_F4_CDS",
 				"preload": true
+			},
+			"": {
+				"type": "sap.ui.model.json.JSONModel",
+				"settings": {},
+				"preload": false
 			}
 		},
 		"resources": {
