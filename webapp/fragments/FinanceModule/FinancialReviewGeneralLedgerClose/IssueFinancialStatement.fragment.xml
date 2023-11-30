@@ -32,7 +32,7 @@
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
 					change="handleChange" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>ReportingPeriod}" required="true"/>
-				<DateRangeSelection id="DRS1" class="DRS1"
+				<DateRangeSelection class="DRS1"
 					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
 					change="handleChange"/>
 				<Label text="{i18n>ComparisionYear}" required="true"/>
