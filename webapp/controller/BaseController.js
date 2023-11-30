@@ -9,6 +9,7 @@ sap.ui.define([
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
 		getAPI: api,
 		getRouter: function () {
+
 			return sap.ui.core.UIComponent.getRouterFor(this);
 
 		},
