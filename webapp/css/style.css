@@ -16,6 +16,14 @@
 
 
 /* App homepage */
+.ssp-apphomepage .sapFDynamicPageContent,
+.ssp-apphomepage .sapFDynamicPageContentFitContainer {
+    padding: 0px;
+}
+
+.module-tile {
+    padding-top: 5rem !important;
+}
 
 .welcome-title h4 {
     background: #ffffff;

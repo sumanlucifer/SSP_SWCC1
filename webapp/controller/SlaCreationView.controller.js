@@ -30,11 +30,14 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
+				this._handleMessageBoxProceed("SLA Agreement has been done successfully");
+				//this.getOwnerComponent().getRouter().navTo("AppHomePage");
 
 			},
 
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("AppHomePage");
+			},
 			_handleMessageBoxProceed: function (sMessage) {
 				var that = this;
 				sap.m.MessageBox.success(sMessage, {
@@ -52,24 +55,28 @@ sap.ui.define([
 
 			/***** Agreement Popup ************/
 			onPressAgreement: function (oEvent) {
+
 				var oView = this.getView();
-				if (this._pDialog) {
-					this._pDialog.destroy(); // Destroy the existing dialog if it exists
+
+				if (!this.oSearchResultDialog) {
+					Fragment.load({
+						id: oView.getId(),
+						name: "com.swcc.Template.fragments.PDFViewer",
+						controller: this
+					}).then(function (oDialog) {
+						oDialog.setTitle("SLA Agreement Version");
+						this.oSearchResultDialog = oDialog;
+						this.getView().addDependent(oDialog);
+						oDialog.open();
+						this.loadPDFView();
+
+					}.bind(this));
+				} else {
+					this.oSearchResultDialog.open();
+					this.loadPDFView();
+
 				}
-				this._pDialog = Fragment.load({
-					id: oView.getId(),
-					name: "com.swcc.Template.fragments.PDFViewer",
-					controller: this
-				}).then(function (oDialog) {
-					oView.addDependent(oDialog);
-					if (Device.system.desktop) {
-						oDialog.addStyleClass("sapUiSizeCompact");
-					}
-					oDialog.setTitle("SLA Agreement Version");
-					oDialog.open();
-					this.loadPDFView(); // Call the loadPDFView function
-					return oDialog;
-				}.bind(this));
+
 			},
 
 			loadPDFView: function () {
@@ -91,15 +98,21 @@ sap.ui.define([
 				}
 			},
 
+			onCloseSlaAgreementDialog: function () {
+				this.oSearchResultDialog.close();
+
+			},
 			onacceptpdf: function (event) {
 				var demoToast = this.getView().byId("accept_checkbox");
+				this.onCloseSlaAgreementDialog();
 				demoToast.setSelected(true);
-				event.getSource().getParent().close();
+				//event.getSource().getParent().close();
 			},
 			onrejectpdf: function (event) {
 					var demoToast = this.getView().byId("accept_checkbox");
+					this.oSearchResultDialog.close();
 					demoToast.setSelected(false);
-					event.getSource().getParent().close();
+					//event.getSource().getParent().close();
 				}
 				/****** Agreeement popup code ends here ******************/
 

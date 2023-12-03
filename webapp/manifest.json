@@ -173,9 +173,9 @@
 				},
 				{
 					"name": "AppHomePage",
-					"pattern": "ModuleSelect/{value}",
+					"pattern": "AppHomePage",
 					"target": [
-						"ModuleSelect"
+						"AppHomePage"
 					]
 				},
 				{
@@ -198,7 +198,7 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "AppHomePage"
+					"viewName": "CustomerRegistration"
 				},
 				"ModuleSelect": {
 					"viewType": "XML",
@@ -236,11 +236,11 @@
 					"clearControlAggregation": false,
 					"viewName": "HomePage"
 				},
-				"UserHomePage": {
+				"AppHomePage": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "UserHomePage"
+					"viewName": "AppHomePage"
 				},
 				"SlaCreation": {
 					"viewType": "XML",

@@ -6,7 +6,7 @@
 			<fm:content></fm:content>
 		</fm:SimpleForm>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
-			class="sapUiResponsiveContentPadding ne-flexbox2">
+			class="sapUiResponsiveContentPadding ne-flexbox2 module-tile">
 			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" header="{i18n>FICO}">
 				<TileContent value="{ path: 'modelName>/value' }">
 					<ImageContent src=" sap-icon://add-document"/>

@@ -9,13 +9,5 @@
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
-		<f:footer>
-			<OverflowToolbar id="idOverflowToolbar" visible="true">
-				<ToolbarSpacer id="idToolbarSpacer"/>
-				<Button id="idproceed" text="{i18n>Proceed}" type="Accept" class="btn-proceed" press="onPressAgreement"/>
-				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
-				<!--<Button id="idResetBTN" text="{i18n>Submit}" type="Emphasized" press="onResetPress"/>-->
-			</OverflowToolbar>
-		</f:footer>
 	</f:DynamicPage>
 </mvc:View>
