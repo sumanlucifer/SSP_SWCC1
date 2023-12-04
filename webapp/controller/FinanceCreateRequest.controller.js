@@ -10,7 +10,18 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
+				this._createItemDataModel();
 
+			},
+			_createItemDataModel: function () {
+				this.getModel().setData({
+					busy: false,
+					recognitionAlreadyStarted: false,
+
+					MarineTransportation: {
+						itemData: []
+					}
+				});
 			},
 			handleBackPress: function () {
 				var oHistory, sPreviousHash;
@@ -26,6 +37,33 @@ sap.ui.define([
 			onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
+			},
+			onAddItemsPress: function (oEvent) {
+				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Material: "",
+					Description: "",
+					StorageLocation: "",
+					Quantity: "",
+					BaseUnit: "",
+					Batch: "",
+					M: true,
+					// UnloadPoint: "",
+					AvailableQty: null,
+					PopupItems: null,
+					IsBOQApplicable: ""
+				});
+				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
+
+			},
+			onDeleteItemPress: function (oEvent) {
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
 			},
 
 			onSearch: function () {

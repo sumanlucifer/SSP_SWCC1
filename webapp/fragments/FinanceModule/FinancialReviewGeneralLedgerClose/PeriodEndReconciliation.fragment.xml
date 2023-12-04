@@ -20,28 +20,6 @@
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>CurrencyType}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>Ledger}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>FinanacialStatmentVersion}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>ReportingYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
-					change="handleChange" class="sapUiSmallMarginBottom"/>
-				<Label text="{i18n>ReportingPeriod}" required="true"/>
-				<DateRangeSelection class="DRS1"
-					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
-					change="handleChange"/>
-				<Label text="{i18n>ComparisionYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
-					change="handleChange" class="sapUiSmallMarginBottom"/>
-				<Label text="{i18n>ComparisionPeriod}" required="true"/>
-				<DateRangeSelection class="DRS1"
-					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
-					change="handleChange"/>
-				<Label text="{i18n>Language}" required="true"/>
-				<Input value="EN" required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 				<Label text=""/>
 				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="sapUiMediumMarginBottom">
 					<RadioButton id="RB1-1" text="Open Item"/>
@@ -49,7 +27,7 @@
 					<RadioButton id="RB1-3" text="All Item"/>
 				</RadioButtonGroup>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<!--<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>-->
 		</fm:SimpleForm>
 	</VBox>
 </core:FragmentDefinition>

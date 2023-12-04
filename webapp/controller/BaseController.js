@@ -23,11 +23,8 @@ sap.ui.define([
 		 * @param {string} [sName] the model name
 		 * @returns {sap.ui.model.Model} the model instance
 		 */
-		getModel: function (sName) {
-			return this.getView().getModel(sName);
-		},
 
-		getComponentModel: function () {
+		getModel: function () {
 			return this.getOwnerComponent().getModel();
 		},
 
