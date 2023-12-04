@@ -1,18 +1,23 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller"
+	"./BaseController",
+	"sap/ui/model/json/JSONModel"
 
-], function (Controller) {
+], function (BaseController, JSONModel) {
 	"use strict";
 
-	return Controller.extend("com.swcc.Template.controller.CustomerRegistration", {
+	return BaseController.extend("com.swcc.Template.controller.CustomerRegistration", {
 		onInit: function () {
 
-			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter = this.getRouter();
 
 		},
 		onback: function () {
+			//this.getOwnerComponent().getTargets().display("LandingView");
 
-			this.getOwnerComponent().getTargets().display("LandingView");
+		},
+		onSubmit: function () {
+
+			this.getOwnerComponent().getRouter().navTo("LandingView");
 
 		}
 	})

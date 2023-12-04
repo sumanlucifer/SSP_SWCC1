@@ -100,11 +100,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -121,84 +119,85 @@
 					]
 				}
 			},
-			"routes": [
-				{
-					"name": "RouteApp",
-					"pattern": "",
-					"target": [
-						"TargetApp"
-					]
-				},
-				{
-					"name": "ModuleSelect",
-					"pattern": "ModuleSelect",
-					"target": [
-						"ModuleSelect"
-					]
-				},
-				{
-					"name": "DetailView",
-					"pattern": "",
-					"target": [
-						"DetailView"
-					]
-				},
-				{
-					"name": "ViewRequest",
-					"pattern": "ViewRequest",
-					"target": [
-						"ViewRequest"
-					]
-				},
-				{
-					"name": "LandingView",
-					"pattern": "LandingView",
-					"target": [
-						"LandingView"
-					]
-				},
-				{
-					"name": "CustRegistration",
-					"pattern": "",
-					"target": [
-						"CustRegistration"
-					]
-				},
-				{
-					"name": "HomePage",
-					"pattern": "HomePage",
-					"target": [
-						"HomePage"
-					]
-				},
-				{
-					"name": "AppHomePage",
-					"pattern": "ModuleSelect/{value}",
-					"target": [
-						"ModuleSelect"
-					]
-				},
-				{
-					"name": "SlaCreation",
-					"pattern": "SlaCreation",
-					"target": [
-						"SlaCreation"
-					]
-				},
-				{
-					"name": "FinanceRequest",
-					"pattern": "FinanceRequest",
-					"target": [
-						"FinanceRequest"
-					]
-				}
-			],
+			"routes": [{
+				"name": "RouteApp",
+				"pattern": "",
+				"target": [
+					"TargetApp"
+				]
+			}, {
+				"name": "ModuleSelect",
+				"pattern": "ModuleSelect",
+				"target": [
+					"ModuleSelect"
+				]
+			}, {
+				"name": "DetailView",
+				"pattern": "",
+				"target": [
+					"DetailView"
+				]
+			}, {
+				"name": "ViewRequest",
+				"pattern": "ViewRequest",
+				"target": [
+					"ViewRequest"
+				]
+			}, {
+				"name": "LandingView",
+				"pattern": "LandingView",
+				"target": [
+					"LandingView"
+				]
+			}, {
+				"name": "CustRegistration",
+				"pattern": "",
+				"target": [
+					"CustRegistration"
+				]
+			}, {
+				"name": "HomePage",
+				"pattern": "HomePage",
+				"target": [
+					"HomePage"
+				]
+			}, {
+				"name": "AppHomePage",
+				"pattern": "AppHomePage",
+				"target": [
+					"AppHomePage"
+				]
+			}, {
+				"name": "SlaCreation",
+				"pattern": "SlaCreation",
+				"target": [
+					"SlaCreation"
+				]
+			}, {
+				"name": "FinanceRequest",
+				"pattern": "FinanceRequest",
+				"target": [
+					"FinanceRequest"
+				]
+			}, {
+				"name": "PMRequest",
+				"pattern": "PMRequest",
+				"target": [
+					"PMRequest"
+				]
+			}, {
+				"name": "SCMRequest",
+				"pattern": "SCMRequest",
+				"target": [
+					"SCMRequest"
+				]
+			}],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "AppHomePage"
+					"viewName": "CustomerRegistration"
 				},
 				"ModuleSelect": {
 					"viewType": "XML",
@@ -236,11 +235,11 @@
 					"clearControlAggregation": false,
 					"viewName": "HomePage"
 				},
-				"UserHomePage": {
+				"AppHomePage": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "UserHomePage"
+					"viewName": "AppHomePage"
 				},
 				"SlaCreation": {
 					"viewType": "XML",
@@ -253,6 +252,18 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "FinanceCreateRequest"
+				},
+				"PMRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "PMCreateServiceRequest"
+				},
+				"SCMRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "SCMCreateRequest"
 				},
 				"notFound": {
 					"viewName": "NotFound"
