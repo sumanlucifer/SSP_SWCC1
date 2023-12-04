@@ -17,7 +17,7 @@ sap.ui.define([
 		},
 		onSubmit: function () {
 
-			this.getOwnerComponent().getRouter().navTo("SlaCreation");
+			this.getOwnerComponent().getRouter().navTo("LandingView");
 
 		}
 	})

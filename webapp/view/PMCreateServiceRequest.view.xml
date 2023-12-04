@@ -1,0 +1,61 @@
+<mvc:View controllerName="com.swcc.Template.controller.FinanceCreateRequest" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage headerExpanded="true" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content >
+					<!--.........................................	Accounts Payable................................-->
+					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>-->
+					<!--</VBox>-->
+					<!--.................................Financial Review and General Ledger Close...........................-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.FinancialClose" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueFinancialStatement" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"-->
+					<!--		type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.MaintainChartOfAccount" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PeriodEndReconciliation" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PrepareReviewTrailBalance"-->
+					<!--		type="XML"/>-->
+					<!--</VBox>-->
+					<!--...............................................Asset Lifecycle...........................................-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.PMModule.TechnicalService.TechnicalService" type="XML"/>
+					</VBox>
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Save}" type="Accept" class="btn-proceed" press="onProceed"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

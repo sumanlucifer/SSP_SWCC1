@@ -1,19 +1,25 @@
 /* Enter your custom styles here */
-/*@font-face {
+
+/* custom font declare */
+@font-face {
     src:
-        url("https://webidetesting7243553-mfee955b6.dispatcher.sa1.hana.ondemand.com/~1699529295289~/webapp/util/Fonts/SWCC-2-Regular.ttf") format("truetype");
-    font-family: 'SWCC';
-    font-style: normal;
-    font-weight: 400;
-}
-*/
-
-.sapUiBody {
-    font-family: 'SWCC', sans-serif;
+        url("../../webapp/util/Fonts/SWCC-2-Regular.ttf") format("truetype");
+    font-family: 'SWCC-2-Regular';
 }
 
-/* Enter your custom styles here */
+@font-face {
+    src:
+        url("../../webapp/util/Fonts/SWCC-3-Medium.ttf") format("truetype");
+    font-family: 'SWCC-3-Medium';
+}
 
+@font-face {
+    src:
+        url("../../webapp/util/Fonts/SWCC-4-Bold.ttf") format("truetype");
+    font-family: 'SWCC-4-Bold';
+}
+
+/* custom font ends here */
 
 /* App homepage */
 .ssp-apphomepage .sapFDynamicPageContent,
@@ -29,6 +35,7 @@
     background: #ffffff;
     text-align: center;
     font-size: 2rem;
+    font-family: 'SWCC-4-Bold';
     line-height: 3.5rem !important;
     border: none !important;
     font-weight: bold !important;
@@ -52,7 +59,7 @@
     font-size: 2.5rem;
 }
 
-/* common css */
+/* Button css */
 .swcc-pmy-btn .sapMBtnDefault {
     Background-color: #004687;
     color: #FFFFFF;
@@ -63,40 +70,17 @@
     Background-color: #ff0000;
 }
 
-
+/* Button css ends here */
+/* Layout css starts here*/
 .ssp-hbox .sapMFlexItem {
     background: #FFFFFF;
     border-radius: 10px;
 }
 
-/*.ne-flexbox2 div:hover {
-    flex-basis: 35% !important;
-    background-color: orange;
-}*/
-
-/*.sapUiGlobalBackgroundColor,
-.ssp-page.sapFDynamicPage .sapFDynamicPageContentWrapperStandard>.sapFDynamicPageContent {
-    background-image: url(../util/Images/bg.jpg) !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-attachment: fixed !important;
-    background-size: cover !important;
-    padding: 0px;
-}*/
-
-/*.ssp-page .sapFDynamicPageContentFitContainerFooterVisible,
-.sapFDynamicPage-Std-Desktop-XL .sapFDynamicPageContentFitContainer {
-    border: 1px solid #4b84b396;
-    border-radius: 10px 10px 0px 0px;
-    background: #ffffff;
-    margin: 1rem 2rem 0rem 2rem;
-    padding: 0px !important;
-}*/
-
 .ssp-page .sapFDynamicPageContentFitContainer,
 .ssp-homepage .ssp-tile,
 .ssp-page .sapFDynamicPageContentFitContainerFooterVisible {
-    padding: 0 0 1rem 0;
+    padding: 0 0 1rem 0 !important;
     background: #ffffff;
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
@@ -107,25 +91,26 @@
     margin: 1rem 2rem 0rem 2rem;
 }
 
+.ssp-form-bg .sapUiForm {
+    /*background: #FFFFFF;
+    min-height: 35vh;*/
+    border-radius: 10px 10px 0 0;
+
+}
+
+/* Layout css ends here */
 .ssp-form-bg .sapUiFormTitle,
 .sapMTBStandard.ssp-title {
     background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
     height: fit-content;
+    font-family: 'SWCC-4-Bold';
 }
 
 .ssp-title .sapMBtnIcon,
 .ssp-title .sapMTitle {
     color: #ffffff;
-}
-
-
-.ssp-form-bg .sapUiForm {
-    /*background: #FFFFFF;
-    min-height: 35vh;*/
-    border-radius: 10px 10px 0 0;
-
 }
 
 .ssp-form-bg .sapMInput .sapMInputBaseContentWrapper,
@@ -135,6 +120,24 @@
     background: #EFF0F2;
     border: 0px;
     height: 2rem;
+}
+
+.ssp-form-txtarea .sapMInputBaseContentWrapper {
+    background: #EFF0F2;
+    border: 0px;
+    height: auto;
+}
+
+.ssp-form-txtarea .sapMInputBase:not(.sapMFocus) .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
+.ssp-form-txtarea .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):active {
+    background: #EFF0F2;
+    border: 0px;
+    height: auto;
+    box-shadow: 2px 2px 5px 1px #729ac39e;
+}
+
+.ssp-form-txtarea .sapUiFormResGridCont {
+    padding-top: 0px;
 }
 
 .sapMPopover {
