@@ -76,9 +76,16 @@
 					<!--<VBox>-->
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>-->
 					<!--</VBox>-->
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>
-					</VBox>
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>-->
+					<!--</VBox>-->
+					<!--.........................................................................Account Receivable..........................................................			-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.Billing" type="XML"/>-->
+					<!--</VBox>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
