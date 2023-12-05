@@ -6,7 +6,7 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
+		return BaseController.extend("com.swcc.Template.controller.ScmCreateRequest", {
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
@@ -17,7 +17,6 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					recognitionAlreadyStarted: false,
-
 					MarineTransportation: {
 						itemData: []
 					}
@@ -64,9 +63,6 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-			},
-			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
 			},
 
 			onSearch: function () {

@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm id="ssp-projectofmaterial" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2"
+			columnsL="2" columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Toolbar>
 					<Title level="H3" text="{i18n>projectmaterialservice}" class="ssp-tlbr-title"/>
@@ -26,18 +26,18 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>spirsubject}" required="false"/>
-				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Input id="materialgroup5" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="srdesc1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
 				<Input id="crdesc" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>equipmentno}" required="true"/>
-				<Input id="industrysector" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Input id="industrysector6" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
@@ -65,8 +65,7 @@
 			<upload:toolbar>
 				<OverflowToolbar>
 					<Label text="{i18n>spirattachemnt}" class="lbl-attach" required="true"/>
-					<core:Icon id="idInfoIconLeave" src="sap-icon://message-information" size="1rem" height="3rem"
-						tooltip="{i18n>uploadtooltip}"></core:Icon>
+					<core:Icon id="idInfoIconLeave1" src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
 					<ToolbarSpacer/>
 				</OverflowToolbar>
 			</upload:toolbar>
