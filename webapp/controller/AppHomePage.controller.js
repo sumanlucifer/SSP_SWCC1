@@ -6,9 +6,8 @@ sap.ui.define([
 	function (BaseController, JSONModel) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.AppHomePage", {
+
 			onInit: function () {
-			    
-			    
 
 				this.oRouter = this.getRouter();
 
