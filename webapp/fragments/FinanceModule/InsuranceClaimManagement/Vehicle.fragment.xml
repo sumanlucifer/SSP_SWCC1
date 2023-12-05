@@ -31,21 +31,27 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>AssetNumber}" required="true"/>
+				<Label text="{i18n>AssetNumber}"/>
 				<Text text="2389798"/>
-				<Label text="{i18n>SubNumber}" required="true"/>
+				<Label text="{i18n>SubNumber}"/>
 				<Text text="8787867"/>
-				<Label text="{i18n>AssetDesc}" required="false"/>
+				<Label text="{i18n>AssetDesc}"/>
 				<Text text="Aset Gluten"/>
-				<Label text="{i18n>CarModel}" required="true"/>
+				<Label text="{i18n>CarModel}"/>
 				<Text text="HBC-89788"/>
-				<Label text="{i18n>Manufacturer}" required="true"/>
+				<Label text="{i18n>Manufacturer}"/>
 				<Text text="Lambord"/>
-				<Label text="{i18n>Plate Number}" required="true"/>
+				<Label text="{i18n>Plate Number}"/>
 				<Text text="IUI87787"/>
-				<Label text="{i18n>Chassis Number}" required="true"/>
+				<Label text="{i18n>Chassis Number}"/>
 				<Text text="98777YTY"/>
-				<Label text="{i18n>maintenanceorder}" required="true"/>
+				<Label text="{i18n>PlateRegistrationNumber}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>YearManufacture}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>Color}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>Plant}"/>
 				<Text text="huiko"/>
 			</fm:content>
 		</fm:SimpleForm>
