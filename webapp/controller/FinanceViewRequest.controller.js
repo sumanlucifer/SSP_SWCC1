@@ -7,13 +7,13 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History, MessageBox) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
+		return BaseController.extend("com.swcc.Template.controller.FinanceViewRequest", {
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
-				this._createItemDataModel();
 
 			},
+
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
@@ -32,33 +32,11 @@ sap.ui.define([
 					window.history.go(-1);
 				} else {
 					this.getRouter().navTo("LandingView", {}, true);
-
 				}
 
 			},
 			onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
-
-			},
-			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
-			},
-
-			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-
-							that.getRouter().navTo("FinanceRequestView", {}, true);
-						}
-					},
-				});
 
 			},
 			onAddItemsPress: function (oEvent) {

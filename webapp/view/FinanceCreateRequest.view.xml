@@ -65,9 +65,17 @@
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>-->
 					<!--</VBox>-->
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>
-					</VBox>
+					<!--<VBox>-->
+					<!--	<core:Fragment-->
+					<!--		fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.InsuranceResgistration.Create_InsuranceRegistration"-->
+					<!--		type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
+					<!--</VBox>-->
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
+					<!--</VBox>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

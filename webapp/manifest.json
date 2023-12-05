@@ -180,6 +180,12 @@
 					"FinanceRequest"
 				]
 			}, {
+				"name": "FinanceRequestView",
+				"pattern": "FinanceRequestView",
+				"target": [
+					"FinanceRequestView"
+				]
+			}, {
 				"name": "PMRequest",
 				"pattern": "PMRequest",
 				"target": [
@@ -253,6 +259,13 @@
 					"clearControlAggregation": false,
 					"viewName": "FinanceCreateRequest"
 				},
+				"FinanceRequestView": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "FinanceViewRequest"
+				},
+
 				"PMRequest": {
 					"viewType": "XML",
 					"transition": "slide",
