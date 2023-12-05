@@ -5,7 +5,7 @@
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar id="TB1" class="ssp-title">
-					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
 					<Title class="ssp-form-bg" id="Title1" text="{i18n>ManagePettyCash}"/>
 					<ToolbarSpacer/>
 				</Toolbar>

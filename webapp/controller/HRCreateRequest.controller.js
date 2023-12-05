@@ -1,13 +1,12 @@
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/routing/History",
-		"sap/m/MessageBox"
+		"sap/ui/core/routing/History"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox) {
+	function (BaseController, JSONModel, History) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
+		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
@@ -32,33 +31,11 @@ sap.ui.define([
 					window.history.go(-1);
 				} else {
 					this.getRouter().navTo("LandingView", {}, true);
-
 				}
 
 			},
 			onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
-
-			},
-			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
-			},
-
-			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-
-							that.getRouter().navTo("FinanceRequestView", {}, true);
-						}
-					},
-				});
 
 			},
 			onAddItemsPress: function (oEvent) {

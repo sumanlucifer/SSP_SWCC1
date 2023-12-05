@@ -98,6 +98,28 @@
 
 }
 
+
+.ssp-tlbr-title {
+    display: block;
+    width: 100%;
+
+}
+
+.ssp-tlbr-title span {
+    display: flex;
+    color: #0066cc;
+    font-family: 'SWCC-4-Bold';
+}
+
+.ssp-tlbr-title span:after {
+    color: #0066CC;
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid #0066cc;
+    margin: 0.7rem;
+}
+
+
 /* Layout css ends here */
 .ssp-form-bg .sapUiFormTitle,
 .sapMTBStandard.ssp-title {
@@ -120,6 +142,12 @@
     background: #EFF0F2;
     border: 0px;
     height: 2rem;
+    font-family: 'SWCC-3-Medium';
+
+}
+
+.ssp-form-bg .sapMLabel {
+    font-family: 'SWCC-3-Medium';
 }
 
 .ssp-form-txtarea .sapMInputBaseContentWrapper {
@@ -324,29 +352,10 @@
 /* Detail page css ends here */
 
 
-.ssp-tlbr-title {
-    display: block;
-    width: 100%;
-
-
-}
 
 .ssp-table-box .ssp-tlbr-title {
     font-weight: bold;
     padding: 1rem 0.75rem;
-}
-
-.ssp-tlbr-title span {
-    display: flex;
-    color: #0066cc;
-}
-
-.ssp-tlbr-title span:after {
-    color: #0066CC;
-    content: '';
-    flex: 1;
-    border-bottom: 2px solid #0066cc;
-    margin: 0.3rem;
 }
 
 

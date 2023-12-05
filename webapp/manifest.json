@@ -192,6 +192,12 @@
 					"PMRequest"
 				]
 			}, {
+				"name": "HRRequest",
+				"pattern": "HRRequest",
+				"target": [
+					"HRRequest"
+				]
+			}, {
 				"name": "SCMRequest",
 				"pattern": "SCMRequest",
 				"target": [
@@ -215,7 +221,7 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "LandingView"
+					"viewName": "ScmCreateRequest"
 				},
 				"DetailView": {
 					"viewType": "XML",
@@ -276,7 +282,13 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "SCMCreateRequest"
+					"viewName": "ScmCreateRequest"
+				},
+				"HRRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "HRCreateRequest"
 				},
 				"notFound": {
 					"viewName": "NotFound"
