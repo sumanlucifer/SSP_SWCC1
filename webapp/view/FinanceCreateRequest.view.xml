@@ -74,8 +74,11 @@
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
 					<!--</VBox>-->
 					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>-->
 					<!--</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
