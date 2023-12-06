@@ -14,6 +14,7 @@ sap.ui.define([
 		 * @alias com.knpl.pragati.Complaints.controller.ErrorHandler
 		 */
 		constructor: function (oComponent) {
+
 			this._oResourceBundle = oComponent.getModel("i18n").getResourceBundle();
 			this._oComponent = oComponent;
 			this._oModel = oComponent.getModel();
