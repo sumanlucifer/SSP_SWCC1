@@ -89,7 +89,7 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
+				this.getOwnerComponent().getTargets().display("SCMRequest");
 			},
 
 			onSearch: function () {

@@ -58,6 +58,18 @@
 					<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.IssueofMaterial" type="XML"/>
 					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.MaterialSpare" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ServiceProcurement" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.RFCCareCenter" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ProjectandGeneralQualification" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

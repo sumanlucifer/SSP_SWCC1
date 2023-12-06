@@ -5,30 +5,42 @@
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>earlyretirement}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{i18n>medical}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
-				<ComboBox id="pm-serviceproduct" width="100%" valueState="None">
+				<ComboBox id="mi-serviceproduct" width="100%" valueState="None">
 					<items>
 						<core:Item key="Yes" text="Yes"/>
 						<core:Item key="No" text="No"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input id="qty" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="mi-qty" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>userid}" required="false"/>
-				<Input id="baseunit" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>resigndate}" required="true"/>
-				<ComboBox id="priority" width="100%" valueState="None">
+				<Input id="mi-baseunit" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>typeofemployment}" required="true"/>
+				<ComboBox id="mi-priority" width="100%" valueState="None">
 					<items>
 						<core:Item key="Regular" text="Regular"/>
 						<core:Item key="Emergency" text="Emergency"/>
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>description}" required="true"/>
+				<Label text="{i18n>mobileNumber}" required="true"/>
+				<Input id="mi-mobile" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>insurancestdt}" required="true"/>
+				<Input id="mi-insurance" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>dateofBirth}" required="true"/>
+				<Input id="mi-dateofBirth" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>nationality}" required="true"/>
+				<Input id="mi-nationality" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>middlename}" required="true"/>
+				<Input id="mi-middlename" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>depedentnational}" required="true"/>
+				<Input id="mi-depedentnational" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="true"/>
 				<ComboBox id="wrkcenter" width="100%" valueState="None">
 					<items>
 						<core:Item key="Yes" text="Yes"/>
@@ -43,8 +55,20 @@
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>eventreason}" required="true"/>
-				<Input id="productInput6" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>whenshould}" required="true"/>
+				<Input id="mi-when" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>requesttype}" required="true"/>
+				<Input id="mi-rqtype" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>National}" required="true"/>
+				<Input id="mi-national" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>policyno}" required="true"/>
+				<Input id="mi-policy" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>gender}" required="true"/>
+				<Input id="mi-gender" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>FirstName}" required="true"/>
+				<Input id="mi-fname" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>LastName}" required="true"/>
+				<Input id="mi-lname" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
