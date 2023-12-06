@@ -65,11 +65,14 @@
 					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>-->
 					<!--</VBox>-->
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<VBox>
+					<!--	<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Termination.TerminationService" type="XML"/>
-					</VBox>
-					<VBox>
+					</VBox>-->
+					<!--<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Recruitment" type="XML"/>
+					</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.MedicalInsurance" type="XML"/>
 					</VBox>
 				</l:content>
 			</l:VerticalLayout>

@@ -5,37 +5,39 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>sto}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{i18n>materialspare}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input id="srproduct4" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>purchaseorg}" required="true"/>
-				<Input id="crtype2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>supplyingplant}" required="true"/>
-				<Input id="materialtype4" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Label text="{i18n>tenderpre}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc5" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>documenttype}" required="true"/>
-				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>receivingplant}" required="true"/>
-				<Input id="industrysector1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Label text="{i18n>justification}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>description}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>workcenter}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
+				<Label text="{i18n>totalestvalue}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -66,16 +68,22 @@
 						<Text text="{i18n>material}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Description}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>quantity}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>plant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>purchasinggroup}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>requisitioner}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>

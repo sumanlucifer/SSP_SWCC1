@@ -121,7 +121,7 @@
 		</Table>
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<upload:UploadSet id="UploadSet3" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
+		<upload:UploadSet busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
 			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
 			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
 			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
@@ -130,7 +130,7 @@
 			<upload:toolbar>
 				<OverflowToolbar>
 					<Label text="{i18n>Attachments}" class="lbl-attach" required="true"/>
-					<core:Icon id="idInfoIconLeave2" src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
+					<core:Icon src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
 					<ToolbarSpacer/>
 				</OverflowToolbar>
 			</upload:toolbar>
