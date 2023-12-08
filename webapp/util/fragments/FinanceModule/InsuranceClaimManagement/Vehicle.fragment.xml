@@ -1,0 +1,167 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>Vehicle}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<!--<Toolbar>-->
+				<!--	<Title level="H3" text="{i18n>ManagePettyCash}" class="ssp-tlbr-title"/>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				<!--</Toolbar>-->
+				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
+				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+			</fm:content>
+			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>CarDetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>AssetNumber}"/>
+				<Text text="2389798"/>
+				<Label text="{i18n>SubNumber}"/>
+				<Text text="8787867"/>
+				<Label text="{i18n>AssetDesc}"/>
+				<Text text="Aset Gluten"/>
+				<Label text="{i18n>CarModel}"/>
+				<Text text="HBC-89788"/>
+				<Label text="{i18n>Manufacturer}"/>
+				<Text text="Lambord"/>
+				<Label text="{i18n>Plate Number}"/>
+				<Text text="IUI87787"/>
+				<Label text="{i18n>Chassis Number}"/>
+				<Text text="98777YTY"/>
+				<Label text="{i18n>PlateRegistrationNumber}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>YearManufacture}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>Color}"/>
+				<Text text="huiko"/>
+				<Label text="{i18n>Plant}"/>
+				<Text text="huiko"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table id="totalamount" mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="Asset Number"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Sub Number"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Claim Received Date"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Type of Claim"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Claim Value"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Purchase Amount"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Description Amount"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Insurance Policy No."/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Accident Date"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Insurance Claim Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Payment Date"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Insurance Status"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Insurance Start Date "/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="Insurance End Date"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+								suggestionItems="{/ProductCollection}">
+								<suggestionItems>
+									<core:Item text="{Name}"/>
+								</suggestionItems>
+							</Input>
+							<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Text text="Will shi"/>
+							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+								suggestionItems="{/ProductCollection}">
+								<suggestionItems>
+									<core:Item text="{Name}"/>
+								</suggestionItems>
+							</Input>
+							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+								suggestionItems="{/ProductCollection}">
+								<suggestionItems>
+									<core:Item text="{Name}"/>
+								</suggestionItems>
+							</Input>
+							<Input value="SAR"/>
+							<Input id="srproduct3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
+		<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
+			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
+			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
+			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
+			mediaTypes="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple="true"
+			afterItemAdded="onFileAdded">
+			<upload:toolbar>
+				<OverflowToolbar>
+					<Label text="{i18n>Attachments}" class="lbl-attach" required="true"/>
+					<core:Icon id="idInfoIconLeave" src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+			</upload:toolbar>
+		</upload:UploadSet>
+	</VBox>
+</core:FragmentDefinition>

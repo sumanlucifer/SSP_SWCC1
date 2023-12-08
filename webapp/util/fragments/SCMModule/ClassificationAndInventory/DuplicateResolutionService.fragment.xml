@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-duplicate" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>sto}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Input id="srproduct2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>purchaseorg}" required="true"/>
+				<Input id="crtype4" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>supplyingplant}" required="true"/>
+				<Input id="materialtype2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input id="srdesc3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>documenttype}" required="true"/>
+				<Input id="crdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>receivingplant}" required="true"/>
+				<Input id="industrysector3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-duplicate1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Description}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table id="totalamount3" mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>material}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Description}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>purchasinggroup}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input id="tb-material2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+								suggestionItems="{/ProductCollection}">
+								<suggestionItems>
+									<core:Item text="{Name}"/>
+								</suggestionItems>
+							</Input>
+							<Text text="Will shi"/>
+							<Input value="{BaseUnit}"/>
+							<Text text="{uom}"/>
+							<Input id="tb-purchasing3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+								suggestionItems="{/ProductCollection}">
+								<suggestionItems>
+									<core:Item text="{Name}"/>
+								</suggestionItems>
+							</Input>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>

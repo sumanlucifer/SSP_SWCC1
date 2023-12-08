@@ -1,0 +1,49 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<HBox width="100%">
+		<fm:SimpleForm title="{i18n>customerreg}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2"
+			singleContainerFullSize="false" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>customerinformation}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>customername}" required="true"/>
+				<Input id="customername" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="text" placeholder=""
+					ariaLabelledBy="Inputcustomername"/>
+				<Label text="{i18n>street}" required="true"/>
+				<Input id="customerstreet" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="text" placeholder=""
+					ariaLabelledBy="Inputcustomerstreet"/>
+				<Label text="{i18n>postalcode}" required="true"/>
+				<Input id="customerpostalcode" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" type="text" placeholder=""
+					ariaLabelledBy="Inputcustomerpostalcode"/>
+				<Label text="{i18n>country}" required="true"/>
+				<Select selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>
+				<Label text="{i18n>Email}" required="true" labelFor="inputEmail"/>
+				<Input id="inputEmail" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="Email" placeholder=""
+					ariaLabelledBy="InputEmailLabel"/>
+				<Label text="{i18n>shortname}" required="false"/>
+				<Input id="idNationalIDInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="Text" placeholder=""
+					ariaLabelledBy="Inputshortname"/>
+				<Label text="{i18n>POBOX}" required="true"/>
+				<Input id="idMobileNumberInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" type="Number" placeholder=""
+					ariaLabelledBy="Inputponumber"/>
+				<Label text="{i18n>City}" required="true"/>
+				<Select id="idAirPortLocatonSLT" showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
+					change="onAirportLocationChange"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>
+				<Label text="{i18n>Region}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>crno}" required="true"/>
+				<Input id="idcrno" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true" type="Text" placeholder=""
+					ariaLabelledBy="Inputcrno"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</HBox>
+</core:FragmentDefinition>

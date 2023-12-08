@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns:fm="sap.ui.layout.form" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+	<!--<fb:FilterBar id="filterbar" reset="onResetFilters" search="onSearch" useToolbar="false" showGoOnFB="true" showRestoreOnFB="true">-->
+	<!--	<fb:filterGroupItems>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="PONOs" label="{i18n>Service}" visibleInFilterBar="true" class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="dew" width="100%" valueState="None" enabled="true">-->
+	<!--					<items>-->
+	<!--						<core:Item key="2" text="Finance"/>-->
+	<!--						<core:Item key="S" text="Human Resource"/>-->
+	<!--						<core:Item key="d" text="Information Technology"/>-->
+	<!--						<core:Item key="f" text="Plant Maintainance"/>-->
+	<!--						<core:Item key="fef" text="Supply Chain"/>-->
+	<!--					</items>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="mdccNos" label="{i18n>SelectServiceType}" visibleInFilterBar="true"-->
+	<!--			class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+	<!--					items="{TabDetailsModel>/ProductTypeSet}">-->
+	<!--					<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--		<fb:FilterGroupItem groupName="__$INTERNAL$" name="CreatedAt" label="{i18n>SelectSubService}" visibleInFilterBar="true"-->
+	<!--			class="searchFieldLabelHidden">-->
+	<!--			<fb:control>-->
+	<!--				<ComboBox id="idProductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+	<!--					items="{TabDetailsModel>/ProductTypeSet}">-->
+	<!--					<core:Item key="{TabDetailsModel>DDTEXT}" text="{TabDetailsModel>DDTEXT}"/>-->
+	<!--				</ComboBox>-->
+	<!--			</fb:control>-->
+	<!--		</fb:FilterGroupItem>-->
+	<!--	</fb:filterGroupItems>-->
+	<!--</fb:FilterBar>-->
+	<HBox class="ssp-hbox" alignContent="SpaceBetween">
+		<fm:SimpleForm layout="ColumnLayout" class="style-RemoveTitleHeight sapUiContentPadding" binding="{HeaderDetailsModel>/}" columnsM="2"
+			columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>modulesearch}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<Label text="{i18n>Service}" required="true"/>
+			<ComboBox id="dew" width="100%" valueState="None" enabled="true">
+				<items>
+					<core:Item key="2" text="Finance"/>
+					<core:Item key="3" text="Human Resource"/>
+					<core:Item key="4" text="Information Technology"/>
+					<core:Item key="5" text="Plant Maintainance"/>
+					<core:Item key="6" text="Supply Chain"/>
+				</items>
+			</ComboBox>
+			<Label text="{i18n>SelectServiceType}" required="true"/>
+			<!--<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
+			<!--	items="{TabDetailsModel>/ProductTypeSet}">-->
+			<!--	<core:ListItem key="{key}" text="{text}"/>-->
+			<!--</ComboBox>-->
+			<ComboBox id="SD" selectionChange="onSelect" width="100%" valueState="None" enabled="true">
+				<items>
+					<core:Item key="1" text="Accounts Payable_Records Process Invoice"/>
+					<core:Item key="2" text="Accounts Payable_Manage Petty Cash"/>
+					<core:Item key="3" text="Test1"/>
+					<core:Item key="4" text="Test2"/>
+					<core:Item key="5" text="Test3"/>
+					<core:Item key="6" text="Test4"/>
+				</items>
+			</ComboBox>
+			<Label text="{i18n>SelectSubService}" required="true"/>
+			<ComboBox id="idsubservice" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
+				items="{TabDetailsModel>/ProductTypeSet}">
+				<core:ListItem key="{key}" text="{text}"/>
+			</ComboBox>
+			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+		</fm:SimpleForm>
+	</HBox>
+</core:FragmentDefinition>

@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%" class="ssp-tile">
+		<fm:SimpleForm id="ssp-create-sr-3" title="{i18n>welcome}" layout="ColumnLayout" class="welcome-title" columnsM="2" columnsL="3"
+			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content></fm:content>
+		</fm:SimpleForm>
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
+			class="sapUiResponsiveContentPadding ne-flexbox2 module-tile">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" header="{i18n>FICO}">
+				<TileContent value="{ path: 'modelName>/value' }">
+					<ImageContent src=" sap-icon://add-document"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class=" sapUiSmallMargin tileLayout ssp-module" press=" onPressTile" header=" {i18n>PM}">
+				<TileContent>
+					<ImageContent src="sap-icon://attachment-e-pub"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" header="{i18n>SCM}">
+				<TileContent>
+					<ImageContent src="sap-icon://add-document"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
+			class="sapUiResponsiveContentPadding ne-flexbox2">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" header="{i18n>HR}">
+				<TileContent>
+					<ImageContent src="sap-icon://attachment-e-pub"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" header="{i18n>IT}">
+				<TileContent>
+					<ImageContent src="sap-icon://add-document"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>

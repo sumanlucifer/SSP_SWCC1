@@ -1,0 +1,139 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-changerequest" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2"
+			columnsL="2" columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>Changerequest}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Input id="srproduct3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>crtype}" required="true"/>
+				<Input id="crtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Materialtype}" required="true"/>
+				<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Materialgroup1}" required="false"/>
+				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Plant}" required="true"/>
+				<Input id="plant" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Materialdesc}" required="true"/>
+				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input id="srdesc4" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input id="crdesc1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Industrysector}" required="true"/>
+				<Input id="industrysector2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Baseuom}" required="true"/>
+				<Input id="baseuom" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Label text="{i18n>Externalmaterial}" required="true"/>
+				<Input id="externalmaterial" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Description}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+		</Toolbar>
+		<fm:SimpleForm id="ssp-changerequest2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>class}" required="true"/>
+				<Input id="classval" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
+				<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+		<Table id="totalamount2" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+			<columns>
+				<Column>
+					<Text text="Sno"/>
+				</Column>
+				<Column width="">
+					<Text text="{i18n>Characteristicsdescription}"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>value}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="1"/>
+						<Text text="Titanium"/>
+						<Text text="Will shi"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
+		<upload:UploadSet busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
+			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
+			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
+			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
+			mediaTypes="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple="true"
+			afterItemAdded="onFileAdded">
+			<upload:toolbar>
+				<OverflowToolbar>
+					<Label text="{i18n>Attachments}" class="lbl-attach" required="true"/>
+					<core:Icon src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+			</upload:toolbar>
+		</upload:UploadSet>
+	</VBox>
+</core:FragmentDefinition>

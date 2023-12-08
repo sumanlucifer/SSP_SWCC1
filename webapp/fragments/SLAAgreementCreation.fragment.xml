@@ -1,0 +1,139 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm title="{i18n>Servicelevel}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2"
+			singleContainerFullSize="false" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>customerinformation}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>PhoneNumber}" required="true"/>
+				<Input id="idMobileNumberInp" type="Number" maxLength="10" showClearIcon="true"
+					value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
+				<!--	<Link text="Verify" press="handleLinkPress" width="30%"/>-->
+				<!--	<Button id="phone-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="OTP Verify" width="60%"/>-->
+				<!--<Input id="Mobileotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
+				<Label text="{i18n>customerid}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<!--	<Select id="idTypeOfPassSLT" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>-->
+				<Label text="{i18n>crno}" required="false"/>
+				<Input id="idNationalIDInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>EmailID}" required="true"/>
+				<Input id="idEmail" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
+				<!--	<Button id="email-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="Email Verify" width="60%"/>
+				<Input id="emailotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
+				<Label text="{i18n>customername}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<!--	<Label text="{i18n>AddresofHeadQuarters}" required="true"/>
+				<Select id="idAirPortLocatonSLT" showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
+					change="onAirportLocationChange"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>-->
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>Address}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<!--	<Label text="{i18n>street}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Select selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>-->
+				<Label text="{i18n>street}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>Region}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
+				<Label text="{i18n>POBOX}" required="true"/>
+				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationality}"
+					items="{ path: '/SF_Country', parameters:{select:'code,externalName_defaultValue,currency'}, sorter: { path: 'externalName_defaultValue', descending: false }, filters : [{ path : 'externalName_defaultValue', operator : 'NE', value1 : null }] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{code}" text="{externalName_defaultValue}"/>
+				</Select>
+				<Label text="{i18n>City}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="false"/>
+				<Label text="{i18n>country}" required="true"/>
+				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
+					change="onAirportLocationChange"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>
+				<Label text="{i18n>postalcode}" required="true"/>
+				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationality}"
+					items="{ path: '/SF_Country', parameters:{select:'code,externalName_defaultValue,currency'}, sorter: { path: 'externalName_defaultValue', descending: false }, filters : [{ path : 'externalName_defaultValue', operator : 'NE', value1 : null }] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{code}" text="{externalName_defaultValue}"/>
+				</Select>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>represenativedetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>reprenname}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>repreposisition}" required="false"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>correspondancedetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>correspondancename}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>correspondanceposisition}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>correspondanceemail}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>correspondanceext}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="GridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>selectservice}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<!--<CheckBox text="select / deselect all" selected="{= ${/child1} || ${/child2} || ${/child3} }"
+					partiallySelected="{= !(${/child1} &amp;&amp; ${/child2} &amp;&amp; ${/child3})}" select="onParentClicked"/>-->
+				<CheckBox text="{i18n>FICO}" selected="{/child1}" valueState="Information"/>
+				<CheckBox text="{i18n>PM}" selected="{/child2}" valueState="Information"/>
+				<CheckBox text="{i18n>SCM}" selected="{/child3}" valueState="Information"/>
+				<CheckBox text="{i18n>HR}" selected="{/child4}" valueState="Information"/>
+				<CheckBox text="{i18n>IT}" selected="{/child5}" valueState="Information"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<CheckBox text="{i18n>clickheretoread}" class="sapUiTinyMarginBegin" id="accept_checkbox" tooltip="{i18n>clickheretoread}"
+			select="onPressAgreement" valueState="Information"/>
+	</VBox>
+</core:FragmentDefinition>

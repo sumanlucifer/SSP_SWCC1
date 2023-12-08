@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="ssp-title">
+					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>ManagePettyCash}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<!--<Toolbar>-->
+				<!--	<Title level="H3" text="{i18n>ManagePettyCash}" class="ssp-tlbr-title"/>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				<!--</Toolbar>-->
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input id="productInput" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>CashJournalNUmber}" required="true"/>
+				<Input id="idPRN" required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>FiscalYear}" required="true"/>
+				<DatePicker id="DP11" displayFormat="yyyy"
+					value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
+			</fm:content>
+			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+		</Toolbar>
+		<Table id="totalamount" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+			<columns>
+				<Column width="20em">
+					<Text text="Cash Journal Number"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Posting Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Amount"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+					<Text text="Currency"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+					<Text text="Accounting Document Number"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="1"/>
+						<Text text="Titanium"/>
+						<Text text="Will shi"/>
+						<Text text="SAR"/>
+						<Text text="2"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>
