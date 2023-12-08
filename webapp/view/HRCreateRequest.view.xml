@@ -74,6 +74,39 @@
 					<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.MedicalInsurance" type="XML"/>
 					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.ClaimRequest" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.SubmitComplaint" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Activatingaccesscards" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Manageemployeeshifts" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TrainingandDevelopment.Employeelearninganddevelopment" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.CompensationandRewards.Rewards" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TransportationandComission.Employeetransportation" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.Employeevacations" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.timecollection" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.payrolloperation" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.payrollsheets" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
