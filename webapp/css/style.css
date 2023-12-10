@@ -3,7 +3,7 @@
 /* custom font declare */
 @font-face {
     src:
-        url("../../webapp/util/Fonts/SWCC-2-Regular.ttf") format("truetype");
+        url("util/Fonts/SWCC-2-Regular.ttf") format("truetype");
     font-family: 'SWCC-2-Regular';
 }
 
