@@ -3,19 +3,19 @@
 /* custom font declare */
 @font-face {
     src:
-        url("util/Fonts/SWCC-2-Regular.ttf") format("truetype");
+        url("../util/Fonts/SWCC-2-Regular.ttf") format("truetype");
     font-family: 'SWCC-2-Regular';
 }
 
 @font-face {
     src:
-        url("../../webapp/util/Fonts/SWCC-3-Medium.ttf") format("truetype");
+        url("../util/Fonts/SWCC-3-Medium.ttf") format("truetype");
     font-family: 'SWCC-3-Medium';
 }
 
 @font-face {
     src:
-        url("../../webapp/util/Fonts/SWCC-4-Bold.ttf") format("truetype");
+        url("../util/Fonts/SWCC-4-Bold.ttf") format("truetype");
     font-family: 'SWCC-4-Bold';
 }
 
@@ -147,7 +147,8 @@
 
 }
 
-.ssp-form-bg .sapMLabel {
+.ssp-form-bg .sapMLabel,
+.ssp-user .sapMLabelTextWrapper {
     font-family: 'SWCC-3-Medium';
 }
 

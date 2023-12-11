@@ -108,6 +108,8 @@
 		},
 		"routing": {
 			"config": {
+				"sapFiori2Adaptation": true,
+				"fullWidth": true,
 				"routerClass": "sap.m.routing.Router",
 				"viewType": "XML",
 				"async": true,
