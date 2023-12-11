@@ -85,6 +85,7 @@
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
     height: fit-content;
+    margin-bottom: 4rem;
 }
 
 .ssp-page .sapFDynamicPageContentFitContainer {
