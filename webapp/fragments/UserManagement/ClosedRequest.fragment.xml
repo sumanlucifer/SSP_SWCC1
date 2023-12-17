@@ -1,0 +1,76 @@
+<core:FragmentDefinition xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:core="sap.ui.core">
+	<smartTable:SmartTable class="sapUiResponsiveContentPadding" id="idListClosedTable" enableCustomFilter="true" editable="false"
+		placeToolbarInTable="true" enableAutoBinding="true" beforeRebindTable="onBeforeRebindSaleTable" entitySet="ETOItemDetailsSet"
+		showFullScreenButton="true" showRowCount="true" tableType="ResponsiveTable" demandPopin="false" useExportToExcel="true"
+		useTablePersonalisation="true" initialNoDataText="{i18n>NoData}">
+		<smartTable:layoutData><FlexItemData growFactor="1"/></smartTable:layoutData>
+		<Table id="idClosedTabTab" mode="MultiSelect" selectionChange="onSelectionChange" sticky="ColumnHeaders,HeaderToolbar"
+			alternateRowColors="true" updateFinished="onListTableUpdateFinished">
+			<columns>
+				<Column >
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "SONumber", "leadingProperty": "SONumber", "columnIndex": 0 ,"sortProperty": "SONumber","filterProperty": "SONumber"}'/>
+					</customData>
+					<ObjectIdentifier title="{i18n>User ID}"/>
+				</Column>
+				<!--<Column>-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="p13nData"-->
+				<!--			value='\{"columnKey": "SOItem", "leadingProperty": "SOItem", "columnIndex": 1 ,"sortProperty": "SOItem","filterProperty": "SOItem"}'/>-->
+				<!--	</customData>-->
+				<!--	<Text text="{i18n>SOItem}"/>-->
+				<!--</Column>-->
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "SOValue", "leadingProperty": "SOValue", "columnIndex": 1 ,"sortProperty": "SOValue","filterProperty": "SOValue"}'/>
+					</customData>
+					<ObjectIdentifier title="{i18n>FirstName}"/>
+				</Column>
+				<Column demandPopin="true" minScreenWidth="Tablet">
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "CustName", "leadingProperty": "CustName", "columnIndex": 2, "sortProperty": "CustName"}'/>
+					</customData>
+					<ObjectIdentifier title="{i18n>Last Name}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "CustNumber", "leadingProperty": "CustNumber", "columnIndex": 3 ,"sortProperty": "CustNumber","filterProperty": "CustNumber"}'/>
+					</customData>
+					<ObjectIdentifier title="{i18n>Email}"/>
+				</Column>
+				<Column>
+					<customData>
+						<core:CustomData key="p13nData"
+							value='\{"columnKey": "CustNudmber", "leadingProperty": "d", "columnIndex": 4 ,"sortProperty": "CustNumber","filterProperty": "CustNumber"}'/>
+					</customData>
+					<ObjectIdentifier title="{i18n>Roles}"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Navigation" press="onListTablePress">
+					<cells>
+						<ObjectIdentifier title="{path:'SONumber',formatter:'.formatter.removeLeadZero'}"/>
+						<!--<Text text="{path:'SOItem',formatter:'.formatter.removeLeadZero'}"/>-->
+						<Text text="{SOValue}"/>
+						<Text text="{CustName}"/>
+						<Text text="{path:'CustNumber',formatter:'.formatter.removeLeadZero'}"/>
+						<Text text="{path:'CustNumber',formatter:'.formatter.removeLeadZero'}"/>
+						<Text text="{path:'CustNumber',formatter:'.formatter.removeLeadZero'}"/>
+						<!--<Text text="{path:'OrderDate',formatter:'.formatter.dateFormater'}"/>-->
+						<!--<Text text="{path:'ShipDate',formatter:'.formatter.dateFormater'}"/>-->
+						<!--<Text text="{path:'ShipDate', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<!--<Text text="{OrderStatus}"/>-->
+						<!--<Text text="{ItemStatus}"/>-->
+						<!--<Text text="{UserAssignment}"/>-->
+						<!--<Text text="{GroupName}"/>-->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</smartTable:SmartTable>
+</core:FragmentDefinition>

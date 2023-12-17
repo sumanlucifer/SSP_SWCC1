@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
-				<Toolbar id="TB1" class="ssp-title">
+				<Toolbar class="ssp-title">
 					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" id="Title1" text="{i18n>ManagePettyCash}"/>
+					<Title class="ssp-form-bg" text="{i18n>ManagePettyCash}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -37,7 +37,7 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table id="totalamount" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column width="20em">
 					<Text text="Cash Journal Number"/>

@@ -5,7 +5,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>earlyretirement}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{i18n>government}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
@@ -20,7 +20,7 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>resigndate}" required="true"/>
+				<Label text="{i18n>bankcountry}" required="true"/>
 				<ComboBox width="100%" valueState="None">
 					<items>
 						<core:Item key="Regular" text="Regular"/>
@@ -28,7 +28,11 @@
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>description}" required="true"/>
+				<Label text="{i18n>businessIdentifierCode}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>recordstatus}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="true"/>
 				<ComboBox width="100%" valueState="None">
 					<items>
 						<core:Item key="Yes" text="Yes"/>
@@ -43,7 +47,13 @@
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>eventreason}" required="true"/>
+				<Label text="{i18n>bankbranch}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>bankname}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>city}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>routingnumber}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>

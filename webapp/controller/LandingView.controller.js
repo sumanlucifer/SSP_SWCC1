@@ -12,7 +12,6 @@ sap.ui.define([
 	function (BaseController, JSONModel, Fragment, Device, MessageBox, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.LandingView", {
-
 			onInit: function () {
 				this.oRouter = this.getRouter();
 				var oLocalViewModel = new JSONModel({

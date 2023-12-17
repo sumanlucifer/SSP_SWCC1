@@ -15,6 +15,38 @@ sap.ui.define([
 
 			onInit: function () {
 				this.oRouter = this.getRouter();
+				this.getRouter().getRoute("SlaCreation").attachPatternMatched(this._onObjectMatched, this);
+				this._SLARegistrationModel();
+				this.getSLADetails();
+			},
+			_onObjectMatched: function () {
+				this._SLARegistrationModel();
+				this.getSLADetails();
+			},
+			_SLARegistrationModel: function () {
+				this.getModel().setData({
+					busy: false,
+					SLARegistrationData: {
+						Header: {},
+						CustomData: {}
+					}
+
+				});
+			},
+			getSLADetails: function () {
+				debugger;
+
+				var sAPI = `/BPRequestSet(UserName='WT_POWER')`;
+
+				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', sAPI)
+					.then(function (oResponse) {
+						this.getModel().setProperty("/SLARegistrationData/Header/", oResponse);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
 			},
 			onCancel: function () {
 
@@ -29,14 +61,37 @@ sap.ui.define([
 
 			},
 
+			onSubmitBP: function () {
+				var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
+				this.SubmitBPRegistration(oPayload);
+			},
+			SubmitSLARegistration: function (oPayload) {
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'create', '/SLARequestSet',
+						oPayload)
+					.then(function (oResponse) {
+
+						this._handleMessageBoxProceed(`SLA Request has been Created : ${oResponse.ReqID} `);
+						debugger;
+						this.getModel().setProperty("/CustomerRegistrationData/Header/", null);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+			},
+
 			onProceed: function () {
-				this._handleMessageBoxProceed("SLA Agreement has been done successfully");
+
+				var oPayload = this.getModel().getProperty("/SLARegistrationData/CustomData/");
+				this.SubmitSLARegistration(oPayload);
+
 				//this.getOwnerComponent().getRouter().navTo("AppHomePage");
 
 			},
 
 			onPresshomepage: function () {
-				this.getOwnerComponent().getRouter().navTo("AppHomePage");
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			_handleMessageBoxProceed: function (sMessage) {
 				var that = this;
@@ -61,7 +116,7 @@ sap.ui.define([
 				if (!this.oSearchResultDialog) {
 					Fragment.load({
 						id: oView.getId(),
-						name: "com.swcc.Template.fragments.PDFViewer",
+						name: "com.swcc.pm.SSP_PM.fragments.PDFViewer",
 						controller: this
 					}).then(function (oDialog) {
 						oDialog.setTitle("SLA Agreement Version");

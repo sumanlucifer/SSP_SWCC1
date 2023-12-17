@@ -15,80 +15,80 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<!--.................................................................	Accounts Payable................................-->
-					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox visible="{/VisibleRecordProcessInvoice}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>
+					</VBox>
+					<VBox visible="{/VisibleRecordProcessInvoice}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>
+					</VBox>
 					<!--...........................................................Financial Review and General Ledger Close...........................-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.FinancialClose" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueFinancialStatement" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.MaintainChartOfAccount" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PeriodEndReconciliation" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PrepareReviewTrailBalance"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.FinancialClose" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueFinancialStatement" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"
+							type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.MaintainChartOfAccount" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PeriodEndReconciliation" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PrepareReviewTrailBalance"
+							type="XML"/>
+					</VBox>
 					<!--....................................................................Asset Lifecycle...........................................-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.DepreciationProcess" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.PerformAssetInventory" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RecordAsset" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.SaleofAssets" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RetirementofAssets" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.TransferofAssets" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.DepreciationProcess" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.PerformAssetInventory" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RecordAsset" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.SaleofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.RetirementofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.TransferofAssets" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>
+					</VBox>
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<!--<VBox>-->
-					<!--	<core:Fragment-->
-					<!--		fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.InsuranceResgistration.Create_InsuranceRegistration"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox>
+						<core:Fragment
+							fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.InsuranceResgistration.Create_InsuranceRegistration"
+							type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>
+					</VBox>
 					<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Property" type="XML"/>
 					</VBox>
 					<!--.........................................................................Account Receivable..........................................................			-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.Billing" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.Billing" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

@@ -6,7 +6,7 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.ScmCreateRequest", {
+		return BaseController.extend("com.swcc.Template.controller.SCMCreateRequest", {
 			onInit: function () {
 
 				this.oRouter = this.getRouter();

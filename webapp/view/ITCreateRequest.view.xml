@@ -16,7 +16,10 @@
 				<l:content >
 					<!--.................................................................	Accounts Payable................................-->
 					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.ITServiceRequest" type="XML"/>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
+					</VBox>
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Procurement_ITRequest" type="XML"/>
 					</VBox>
 					<!--.........................................................................Account Receivable..........................................................			-->
 					<!--<VBox>-->
