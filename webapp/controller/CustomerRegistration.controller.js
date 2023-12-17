@@ -101,13 +101,15 @@ sap.ui.define([
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 			this.SubmitBPRegistration(oPayload);
 		},
+		onCancel: function () {
+			this.getOwnerComponent().getRouter().navTo("SlaCreation");
+		},
 		SubmitBPRegistration: function (oPayload) {
 			this.getModel().setProperty("/busy", true);
 			this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'create', '/BPRequestSet',
 					oPayload)
 				.then(function (oResponse) {
 					this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.ReqID} `);
-					debugger;
 					this.getModel().setProperty("/CustomerRegistrationData/Header/", null);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {

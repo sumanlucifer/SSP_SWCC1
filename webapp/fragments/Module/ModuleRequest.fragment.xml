@@ -45,9 +45,9 @@
 				</Toolbar>
 			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>
-			<ComboBox id="dew" width="100%" valueState="None" enabled="true">
+			<ComboBox id="idService" width="100%" enabled="false" valueState="None">
 				<items>
-					<core:Item key="2" text="Finance"/>
+					<core:Item key="ZSSM" text="Plant Maintenance"/>
 					<core:Item key="3" text="Human Resource"/>
 					<core:Item key="4" text="Information Technology"/>
 					<core:Item key="5" text="Plant Maintainance"/>
@@ -55,24 +55,14 @@
 				</items>
 			</ComboBox>
 			<Label text="{i18n>SelectServiceType}" required="true"/>
-			<!--<ComboBox id="idPsroductType" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"-->
-			<!--	items="{TabDetailsModel>/ProductTypeSet}">-->
-			<!--	<core:ListItem key="{key}" text="{text}"/>-->
-			<!--</ComboBox>-->
-			<ComboBox id="SD" selectionChange="onSelect" width="100%" valueState="None" enabled="true">
-				<items>
-					<core:Item key="1" text="Accounts Payable_Records Process Invoice"/>
-					<core:Item key="2" text="Accounts Payable_Manage Petty Cash"/>
-					<core:Item key="3" text="Test1"/>
-					<core:Item key="4" text="Test2"/>
-					<core:Item key="5" text="Test3"/>
-					<core:Item key="6" text="Test4"/>
-				</items>
+			<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectServiceTypeDD" valueState="None" placeholder="Select Service Type"
+				selectedKey="{/ModuleSearch/Header/ServiceTypeKey/}" items="{/ModuleSearch/SelectServiceType/}">
+				<core:Item key="{ProductGroup}" text="{MaterialGroupName}"/>
 			</ComboBox>
 			<Label text="{i18n>SelectSubService}" required="true"/>
-			<ComboBox id="idsubservice" width="100%" valueState="None" placeholder="Select" selectedKey="{TabDetailsModel>/TabData/ProdType}"
-				items="{TabDetailsModel>/ProductTypeSet}">
-				<core:ListItem key="{key}" text="{text}"/>
+			<ComboBox id="idsubservice" width="100%" valueState="None" placeholder="Select SubService"
+				selectedKey="{/ModuleSearch/Header/SUbServiceKey/}" items="{/ModuleSearch/SelectSubServiceType/}">
+				<core:ListItem key="{ProductGroup}" text="{ProductName}"/>
 			</ComboBox>
 			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>

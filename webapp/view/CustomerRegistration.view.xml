@@ -1,6 +1,6 @@
 <mvc:View controllerName="com.swcc.Template.controller.CustomerRegistration" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
 	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
-	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-page">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" busy="{/busy}" showFooter="true" class="ssp-page">
 		<!-- DynamicPage Title -->
 		<!--	<f:title>
 			<f:DynamicPageTitle id="idDynamicPageTitle">
@@ -23,7 +23,7 @@
 		<f:footer>
 			<OverflowToolbar id="idOverflowToolbar" visible="true">
 				<ToolbarSpacer id="idToolbarSpacer"/>
-				<Button id="idproceed" text="{i18n>submit}" type="Accept" class="btn-proceed" press="onSubmit"/>
+				<Button id="idproceed" text="{i18n>submit}" type="Accept" class="btn-proceed" press="onSubmitBP"/>
 				<Button id="idcancel" text="{i18n>cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
 				<!--<Button id="idResetBTN" text="{i18n>Submit}" type="Emphasized" press="onResetPress"/>-->
 			</OverflowToolbar>

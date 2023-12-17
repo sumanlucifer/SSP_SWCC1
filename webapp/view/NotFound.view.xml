@@ -2,7 +2,7 @@
 	xmlns:f="sap.f" xmlns:form="sap.ui.layout.form" height="100%">
 	<Page showHeader="false">
 		<VBox height="100%" justifyContent="Center">
-			<f:IllustratedMessage illustrationSize="Auto" description="{i18n>TheResourcenotfoundMSG}" title="{i18n>PageNtFoundMSG}">
+			<f:IllustratedMessage illustrationSize="Auto" description="{i18n>TheResourcenotfoundMSG}" title="{i18n>404}">
 				<f:additionalContent></f:additionalContent>
 			</f:IllustratedMessage>
 		</VBox>

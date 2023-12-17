@@ -10,8 +10,16 @@
 		"title": "{{appTitle}}",
 		"description": "{{appDescription}}",
 		"dataSources": {
-			"ZCDSV_SS_SERVICES_F4_CDS": {
-				"uri": "/sap/opu/odata/sap/ZCDSV_SS_SERVICES_F4_CDS/",
+			"ZSSP_USER_SRV": {
+				"uri": "/sap/opu/odata/sap/ZSSP_USER_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "localService/metadata.xml"
+				}
+			},
+			"ZSSP_COMMON_SRV": {
+				"uri": "/sap/opu/odata/sap/ZSSP_COMMON_SRV/",
 				"type": "OData",
 				"settings": {
 					"odataVersion": "2.0",
@@ -35,8 +43,8 @@
 			}
 		},
 		"sourceTemplate": {
-			"id": "servicecatalog.connectivityComponentForManifest",
-			"version": "0.0.0"
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
 		}
 	},
 	"sap.ui": {
@@ -58,17 +66,17 @@
 	"sap.ui5": {
 		"flexEnabled": false,
 		"rootView": {
-			"viewName": "com.swcc.Template.view.App",
+			"viewName": "com.swcc.Template.view.app",
 			"type": "XML",
 			"async": true,
-			"id": "App"
+			"id": "app"
 		},
 		"dependencies": {
 			"minUI5Version": "1.65.6",
 			"libs": {
-				"sap.m": {},
+				"sap.ui.layout": {},
 				"sap.ui.core": {},
-				"sap.ui.layout": {}
+				"sap.m": {}
 			}
 		},
 		"contentDensities": {
@@ -82,15 +90,24 @@
 					"bundleName": "com.swcc.Template.i18n.i18n"
 				}
 			},
-			"CPI_API": {
-				"dataSource": "CPI_API"
-			},
-			"ZAPI_BUSINESS_PARTNER": {
-				"dataSource": "ZAPI_BUSINESS_PARTNER",
+			"ZSSP_USER_SRV": {
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request",
+					"useBatch": false
+				},
+				"dataSource": "ZSSP_USER_SRV",
 				"preload": true
 			},
-			"ModuleInput": {
-				"dataSource": "ZCDSV_SS_SERVICES_F4_CDS",
+			"ZSSP_COMMON_SRV": {
+				"settings": {
+					"defaultOperationMode": "Server",
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Request",
+					"useBatch": false
+				},
+				"dataSource": "ZSSP_COMMON_SRV",
 				"preload": true
 			},
 			"": {
@@ -100,11 +117,9 @@
 			}
 		},
 		"resources": {
-			"css": [
-				{
-					"uri": "css/style.css"
-				}
-			]
+			"css": [{
+				"uri": "css/style.css"
+			}]
 		},
 		"routing": {
 			"config": {
@@ -123,119 +138,109 @@
 					]
 				}
 			},
-			"routes": [
-				{
-					"name": "RouteApp",
-					"pattern": "",
-					"target": [
-						"TargetApp"
-					]
-				},
-				{
-					"name": "ModuleSelect",
-					"pattern": "ModuleSelect",
-					"target": [
-						"ModuleSelect"
-					]
-				},
-				{
-					"name": "DetailView",
-					"pattern": "",
-					"target": [
-						"DetailView"
-					]
-				},
-				{
-					"name": "ViewRequest",
-					"pattern": "ViewRequest",
-					"target": [
-						"ViewRequest"
-					]
-				},
-				{
-					"name": "LandingView",
-					"pattern": "LandingView",
-					"target": [
-						"LandingView"
-					]
-				},
-				{
-					"name": "CustRegistration",
-					"pattern": "",
-					"target": [
-						"CustRegistration"
-					]
-				},
-				{
-					"name": "HomePage",
-					"pattern": "HomePage",
-					"target": [
-						"HomePage"
-					]
-				},
-				{
-					"name": "AppHomePage",
-					"pattern": "AppHomePage",
-					"target": [
-						"AppHomePage"
-					]
-				},
-				{
-					"name": "SlaCreation",
-					"pattern": "SlaCreation",
-					"target": [
-						"SlaCreation"
-					]
-				},
-				{
-					"name": "FinanceRequest",
-					"pattern": "FinanceRequest",
-					"target": [
-						"FinanceRequest"
-					]
-				},
-				{
-					"name": "FinanceRequestView",
-					"pattern": "FinanceRequestView",
-					"target": [
-						"FinanceRequestView"
-					]
-				},
-				{
-					"name": "ITRequestView",
-					"pattern": "ITRequestView",
-					"target": [
-						"ITRequestView"
-					]
-				},
-				{
-					"name": "PMRequest",
-					"pattern": "PMRequest",
-					"target": [
-						"PMRequest"
-					]
-				},
-				{
-					"name": "HRRequest",
-					"pattern": "HRRequest",
-					"target": [
-						"HRRequest"
-					]
-				},
-				{
-					"name": "SCMRequest",
-					"pattern": "SCMRequest",
-					"target": [
-						"SCMRequest"
-					]
-				}
-			],
+			"routes": [{
+				"name": "RouteApp",
+				"pattern": "",
+				"target": [
+					"TargetApp"
+				]
+			}, {
+				"name": "ModuleSelect",
+				"pattern": "ModuleSelect",
+				"target": [
+					"ModuleSelect"
+				]
+			}, {
+				"name": "DetailView",
+				"pattern": "",
+				"target": [
+					"DetailView"
+				]
+			}, {
+				"name": "ViewRequest",
+				"pattern": "ViewRequest",
+				"target": [
+					"ViewRequest"
+				]
+			}, {
+				"name": "LandingView",
+				"pattern": "LandingView",
+				"target": [
+					"LandingView"
+				]
+			}, {
+				"name": "CustomerRegistration",
+				"pattern": "CustomerRegistration",
+				"target": [
+					"CustomerRegistration"
+				]
+			}, {
+				"name": "HomePage",
+				"pattern": "HomePage",
+				"target": [
+					"HomePage"
+				]
+			}, {
+				"name": "AppHomePage",
+				"pattern": "AppHomePage",
+				"target": [
+					"AppHomePage"
+				]
+			}, {
+				"name": "SlaCreation",
+				"pattern": "SlaCreation",
+				"target": [
+					"SlaCreation"
+				]
+			}, {
+				"name": "FinanceCreateRequest",
+				"pattern": "FinanceCreateRequest",
+				"target": [
+					"FinanceCreateRequest"
+				]
+			}, {
+				"name": "FinanceRequestView",
+				"pattern": "FinanceRequestView",
+				"target": [
+					"FinanceRequestView"
+				]
+			}, {
+				"name": "ITCreateRequest",
+				"pattern": "ITCreateRequest",
+				"target": [
+					"ITCreateRequest"
+				]
+			}, {
+				"name": "PMCreateServiceRequest",
+				"pattern": "PMCreateServiceRequest/{service}",
+				"target": [
+					"PMCreateServiceRequest"
+				]
+			}, {
+				"name": "HRCreateRequest",
+				"pattern": "HRCreateRequest",
+				"target": [
+					"HRCreateRequest"
+				]
+			}, {
+				"name": "PMRequestView",
+				"pattern": "PMRequestView",
+				"target": [
+					"PMRequestView"
+				]
+			}, {
+				"name": "SCMCreateRequest",
+				"pattern": "SCMCreateRequest",
+				"target": [
+					"SCMCreateRequest"
+				]
+			}],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "CustomerRegistration"
+					"viewName": "HomePage"
 				},
 				"ModuleSelect": {
 					"viewType": "XML",
@@ -261,7 +266,7 @@
 					"clearControlAggregation": false,
 					"viewName": "ViewRequest"
 				},
-				"CustRegistration": {
+				"CustomerRegistration": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
@@ -285,7 +290,7 @@
 					"clearControlAggregation": false,
 					"viewName": "SlaCreation"
 				},
-				"FinanceRequest": {
+				"FinanceCreateRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
@@ -297,25 +302,25 @@
 					"clearControlAggregation": false,
 					"viewName": "FinanceViewRequest"
 				},
-				"ITRequestView": {
+				"ITCreateRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "ITCreateRequest"
 				},
-				"PMRequest": {
+				"PMCreateServiceRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "PMCreateServiceRequest"
 				},
-				"SCMRequest": {
+				"SCMCreateRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "ScmCreateRequest"
+					"viewName": "SCMCreateRequest"
 				},
-				"HRRequest": {
+				"HRCreateRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,

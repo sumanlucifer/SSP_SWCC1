@@ -7,16 +7,23 @@ sap.ui.define([
 	function (BaseController, JSONModel, History) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.PMCreateRequest", {
+
 			onInit: function () {
 				debugger;
 				this.oRouter = this.getRouter();
-				this.getRouter().getRoute("PMRequest").attachPatternMatched(this._onObjectMatched, this);
+				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 				this._createItemDataModel();
 				this.PlantF4();
 
 			},
-			_onObjectMatched: function () {
+			_onObjectMatched: function (oevent) {
 				this._createItemDataModel();
+				var sServiceTypeKey = oevent.getParameters("arguments").arguments.service;
+				this.byId("pm-serviceproduct").sServiceTypeKey();
+				var oTitle = this.byId("module-title");
+
+				// Set the title based on the service value
+				oTitle.setText("Your Title: " + sServiceTypeKey);
 
 			},
 			_createItemDataModel: function () {

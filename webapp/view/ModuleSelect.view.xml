@@ -1,6 +1,6 @@
 <mvc:View controllerName="com.swcc.Template.controller.ModuleSelect" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
 	xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:f="sap.f">
-	<f:DynamicPage headerExpanded="true" busy="{objectViewModel>/busy}" class="ssp-page" fitContent="true">
+	<f:DynamicPage headerExpanded="true" busy="{/busy}" class="ssp-page" fitContent="true">
 		<!-- DynamicPage Title -->
 		<!--<f:title>
 			<f:DynamicPageTitle>
@@ -13,7 +13,7 @@
 		<!--	<f:header>
 			<f:DynamicPageHeader pinnable="true">
 				<f:content>
-					<core:Fragment fragmentName="com.swcc.Template.fragments.FilterBar.ModuleRequest" type="XML"/>
+					<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.FilterBar.ModuleRequest" type="XML"/>
 				</f:content>
 			</f:DynamicPageHeader>
 		</f:header>-->

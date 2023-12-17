@@ -86,7 +86,9 @@ sap.ui.define([
 			onSearch: function () {
 				// this.getModel().setProperty("/VisibleManagePttyCash", true);
 				// this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
-				this.oRouter.navTo("PMRequest");
+				this.oRouter.navTo("ITCreateRequest", {
+					service: this.getModel().getData().ModuleSearch.Header.ServiceTypeKey
+				});
 				//	this.oRouter.navTo("LandingView");
 
 			},

@@ -9,39 +9,33 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>customername}" required="true"/>
-				<Input id="customername" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="text" placeholder=""
-					ariaLabelledBy="Inputcustomername"/>
+				<Input value="{/CustomerRegistrationData/Header/Company/}" type="Text" placeholder="Enter Customer Name" ariaLabelledBy="Inputcustomername"/>
 				<Label text="{i18n>street}" required="true"/>
-				<Input id="customerstreet" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="text" placeholder=""
-					ariaLabelledBy="Inputcustomerstreet"/>
+				<Input value="{/CustomerRegistrationData/Header/Stras/}" type="Text" placeholder="Enter Street" ariaLabelledBy="Inputcustomerstreet"/>
 				<Label text="{i18n>postalcode}" required="true"/>
-				<Input id="customerpostalcode" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" type="text" placeholder=""
+				<Input value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"
 					ariaLabelledBy="Inputcustomerpostalcode"/>
 				<Label text="{i18n>country}" required="true"/>
-				<Select selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
-					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
-					change="onTimeTyeChange">
-					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
-				</Select>
-				<Label text="{i18n>Email}" required="true" labelFor="inputEmail"/>
-				<Input id="inputEmail" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="Email" placeholder=""
-					ariaLabelledBy="InputEmailLabel"/>
-				<Label text="{i18n>shortname}" required="false"/>
-				<Input id="idNationalIDInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}" type="Text" placeholder=""
-					ariaLabelledBy="Inputshortname"/>
-				<Label text="{i18n>POBOX}" required="true"/>
-				<Input id="idMobileNumberInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" type="Number" placeholder=""
-					ariaLabelledBy="Inputponumber"/>
-				<Label text="{i18n>City}" required="true"/>
-				<Select id="idAirPortLocatonSLT" showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
-					change="onAirportLocationChange"
-					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
-					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
-				</Select>
+				<ComboBox width="100%" valueState="None" selectionChange="onCountryChange" placeholder="Select Country"
+					selectedKey="{/CustomerRegistrationData/Header/Land1/}" items="{/CustomerRegistrationData/CountryF4/}">
+					<core:Item key="{Country}" text="{CountryName}"/>
+				</ComboBox>
 				<Label text="{i18n>Region}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Region" selectedKey="{/CustomerRegistrationData/Header/Regio/}"
+					items="{/CustomerRegistrationData/RegionF4/}">
+					<core:Item key="{Country}" text="{RegionName}"/>
+				</ComboBox>
+				<Label text="{i18n>shortname}" required="false"/>
+				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
+				<Label text="{i18n>POBOX}" required="true"/>
+				<Input value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>
+				<Label text="{i18n>City}" required="true"/>
+				<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>
+				<Label text="{i18n>Email}" required="true" labelFor="inputEmail"/>
+				<Input id="inputEmail" value="{/CustomerRegistrationData/Header/Email/}" type="Email" placeholder="Enter Email"
+					ariaLabelledBy="InputEmailLabel"/>
 				<Label text="{i18n>crno}" required="true"/>
-				<Input id="idcrno" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true" type="Text" placeholder=""
+				<Input id="idcrno" value="{/CustomerRegistrationData/Header/Cr_No/}" enabled="true" type="Text" placeholder="Enter Customer Registration No"
 					ariaLabelledBy="Inputcrno"/>
 			</fm:content>
 		</fm:SimpleForm>
