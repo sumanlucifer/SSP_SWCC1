@@ -6,7 +6,7 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History) {
 		"use strict";
-		return BaseController.extend("com.swcc.pm.SSP_PM.controller.UserProfile", {
+		return BaseController.extend("com.swcc.Template.controller.UserProfile", {
 
 			onInit: function () {
 

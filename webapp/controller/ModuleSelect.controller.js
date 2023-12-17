@@ -90,10 +90,10 @@ sap.ui.define([
 				}
 
 			},
-			onback: function () {
+			/*onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
-			},
+			},*/
 
 			onSearch: function () {
 				debugger;

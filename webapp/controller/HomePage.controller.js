@@ -58,12 +58,12 @@ sap.ui.define([
 			},
 
 			onPressViewAllRequest: function () {
-				this.oRouter.navTo("ViewRequest");
+				this.oRouter.navTo("UserProfile");
 			},
-			onback: function () {
+			/*onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
-			},
+			},*/
 			onPressBpRequest: function () {
 				this.oRouter.navTo("CustomerRegistration");
 			},

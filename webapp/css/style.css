@@ -57,7 +57,10 @@
     padding: 0 1rem;
 }
 
+.user-dtls {
+    margin-top: 4px;
 
+}
 
 /* App homepage */
 .ssp-apphomepage .sapFDynamicPageContent,
@@ -85,7 +88,7 @@
     border: none !important;
     font-weight: bold !important;
     color: #004687 !important;
-    text-shadow:2px 2px 2px #000;
+    text-shadow: 2px 2px 2px #000;
 }
 
 .ssp-module {
@@ -130,7 +133,7 @@
     background: #ffffff;
     border: 1px solid #4b84b396;
     border-radius: 10px 10px 0px 0px;
-    /* height: fit-content;*/
+    height: fit-content;
     margin-bottom: 4rem;
 }
 
@@ -169,6 +172,7 @@
 
 
 /* Layout css ends here */
+/* form css */
 .ssp-form-bg .sapUiFormTitle,
 .sapMTBStandard.ssp-title {
     background: #004687;
@@ -181,6 +185,15 @@
 .ssp-title .sapMBtnIcon,
 .ssp-title .sapMTitle {
     color: #ffffff;
+    font-family: 'SWCC-4-Bold';
+}
+
+.ssp-fm-stl .sapMLabel {
+    font-family: 'SWCC-3-Medium';
+}
+
+.ssp-fm-stl .sapMSLITitleOnly {
+    font-family: 'SWCC-3-Medium';
 }
 
 .ssp-title .sapMBtnInner {
