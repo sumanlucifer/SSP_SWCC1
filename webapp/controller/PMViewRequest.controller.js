@@ -7,7 +7,7 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History, MessageBox) {
 		"use strict";
-		return BaseController.extend("com.swcc.Template.controller.FinanceViewRequest", {
+		return BaseController.extend("com.swcc.Template.controller.PMViewRequest", {
 			onInit: function () {
 
 				this.oRouter = this.getRouter();

@@ -6,6 +6,7 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.App", {
 		onInit: function () {
+			console.log("test");
 
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		}

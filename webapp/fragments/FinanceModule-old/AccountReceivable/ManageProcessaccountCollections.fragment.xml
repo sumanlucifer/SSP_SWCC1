@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
-				<Toolbar   class="ssp-title">
+				<Toolbar id="TB1" class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>ShipHulls}"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>ManageProcessaccountCollection}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -16,10 +16,15 @@
 				<!--	<ToolbarSpacer/>-->
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
-				<Label text="{i18n>PurchaseOrderNo}" required="true"/>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input required="true" width="100%" value="1000"/>
+				<Label text="{i18n>BANKGL}" required="true"/>
+				<Input required="true" width="100%" value="1000" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>CustomerCode}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>Postingdt}" required="true"/>
+				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
+					value="{ 'type': 'sap.ui.model.type.DateInterval', 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3Start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3End' } ] }"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
@@ -31,67 +36,56 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table   mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
 					<Column>
-						<Text text="Insurance Start Date"/>
+						<Text text="Invoice Number"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Insurance End Date"/>
+						<Text text="Posting Date"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Plant"/>
+						<Text text="Reference"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Purchase Order"/>
+						<Text text="Sales Order Number"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Value(RSA)"/>
+						<Text text="Item Number"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Insurance Policy No."/>
+						<Text text="Amount"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Status"/>
+						<Text text="Currency"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Total Premium"/>
+						<Text text="Customer Code"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Expense"/>
+						<Text text="Material Code"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Total Claim Value"/>
+						<Text text="Quantity"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Accident Date"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Recieved Date"/>
-					</Column>
-					<Column width="5%"></Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
+							<Text text="2"/>
+							<Text text="2"/>
 							<Text text="Will shi"/>
 							<Text text="2"/>
 							<Input value="{BaseUnit}"/>
 							<Text text="2"/>
 							<Text text="2"/>
 							<Text text="2"/>
-							<Input value="SAR"/>
 							<Text text="2"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+							<Text text="2"/>
 						</cells>
 					</ColumnListItem>
 				</items>

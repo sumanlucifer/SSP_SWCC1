@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm id="ssp-create-sr" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
-				<Toolbar class="ssp-title">
+				<Toolbar id="TB1" class="ssp-title">
 					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>ManagePettyCash}"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>ViewRequest}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -17,13 +17,9 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="productInput" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<Input id="idPRN" required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker id="DP11" displayFormat="yyyy"
-					value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<Input id="productInput" placeholder="" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Label text="{i18n>PolicyNo}" required="true"/>
+				<Input id="idPRN" required="true" width="100%"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
@@ -37,22 +33,22 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table id="totalamount" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column width="20em">
-					<Text text="Cash Journal Number"/>
+					<Text text="Policy Number"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
-					<Text text="Posting Date"/>
+					<Text text="Plant"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
-					<Text text="Amount"/>
+					<Text text="Vendor"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-					<Text text="Currency"/>
+					<Text text="Policy Type"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-					<Text text="Accounting Document Number"/>
+					<Text text="Policy Status"/>
 				</Column>
 			</columns>
 			<items>

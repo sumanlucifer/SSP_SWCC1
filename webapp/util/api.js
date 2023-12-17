@@ -28,6 +28,8 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 
 		//	call API below for REST
 
+		// 		Create call
+
 		oDataAPICall: function (oModel, apiCall, entity, oPayload, filter) {
 			return new Promise(function (resolve, reject) {
 
@@ -41,6 +43,50 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 						reject(oResult);
 					}
 				});
+			}.bind(this));
+		},
+		oDataReadAPICall1: function (oModel, apiCall, entity, oPayload, filter, top, skip, ) {
+			return new Promise(function (resolve, reject) {
+
+				// Use bracket notation to call the dynamic function
+				oModel[apiCall](entity, {
+					urlParameters: {
+						"$top": top ? top : null
+					},
+					filters: [filter],
+					success: function (oData) {
+						resolve(oData);
+					},
+					error: function (oResult) {
+						reject(oResult);
+					}
+				});
+			}.bind(this));
+		},
+
+		oDataReadAPICall: function (oModel, apiCall, entity, oPayload, filter, urlParams) {
+			return new Promise(function (resolve, reject) {
+				// Prepare query options object
+				const queryOptions = {
+					filters: [filter],
+					success: function (oData) {
+						resolve(oData);
+					},
+					error: function (oResult) {
+						reject(oResult);
+					}
+				};
+
+				// Check if additional URL parameters are provided and append them
+				if (urlParams) {
+					if (!queryOptions.urlParameters) {
+						queryOptions.urlParameters = {};
+					}
+					Object.assign(queryOptions.urlParameters, urlParams);
+				}
+
+				// Use bracket notation to call the dynamic function
+				oModel[apiCall](entity, queryOptions);
 			}.bind(this));
 		},
 

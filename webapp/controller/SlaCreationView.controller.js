@@ -36,7 +36,7 @@ sap.ui.define([
 			},
 
 			onPresshomepage: function () {
-				this.getOwnerComponent().getRouter().navTo("AppHomePage");
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			_handleMessageBoxProceed: function (sMessage) {
 				var that = this;
@@ -61,7 +61,7 @@ sap.ui.define([
 				if (!this.oSearchResultDialog) {
 					Fragment.load({
 						id: oView.getId(),
-						name: "com.swcc.Template.fragments.PDFViewer",
+						name: "com.swcc.pm.SSP_PM.fragments.PDFViewer",
 						controller: this
 					}).then(function (oDialog) {
 						oDialog.setTitle("SLA Agreement Version");
@@ -109,12 +109,11 @@ sap.ui.define([
 				//event.getSource().getParent().close();
 			},
 			onrejectpdf: function (event) {
-					var demoToast = this.getView().byId("accept_checkbox");
-					this.oSearchResultDialog.close();
-					demoToast.setSelected(false);
-					//event.getSource().getParent().close();
-				}
-				/****** Agreeement popup code ends here ******************/
+				var demoToast = this.getView().byId("accept_checkbox");
+				this.oSearchResultDialog.close();
+				demoToast.setSelected(false);
+				//event.getSource().getParent().close();
+			}
 
 		});
 	});

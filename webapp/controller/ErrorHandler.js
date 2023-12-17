@@ -37,7 +37,6 @@ sap.ui.define([
 				}
 			}, this);
 		},
-
 		/**
 		 * Shows a {@link sap.m.MessageBox} when a service call has failed.
 		 * Only the first error message will be display.

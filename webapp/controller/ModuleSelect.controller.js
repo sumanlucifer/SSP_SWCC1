@@ -9,10 +9,64 @@ sap.ui.define([
 		return BaseController.extend("com.swcc.Template.controller.ModuleSelect", {
 			onInit: function () {
 				this.oRouter = this.getRouter();
+				this._createHeaderModel();
+				this.byId("idService").setSelectedKey("ZSSM");
+				this.getServiceTypeDD();
 				// this.testCPI_API();
-				this.testOdata_API();
 
 			},
+			_createHeaderModel: function () {
+				this.getModel().setData({
+					busy: false,
+					ModuleSearch: {
+						Header: {},
+						SelectServiceType: [],
+						SelectSubServiceType: []
+					}
+				});
+			},
+			getServiceTypeDD: function () {
+
+				var sProductTypeFilter = new sap.ui.model.Filter({
+					path: "ProductType",
+					operator: sap.ui.model.FilterOperator.EQ,
+					value1: this.byId("idService").getSelectedKey()
+				});
+
+				var Filter = [];
+				Filter.push(sProductTypeFilter);
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/ZCDSV_PRODUCTTYPEVH/', null, Filter)
+					.then(function (oResponse) {
+						this.getModel().setProperty("/ModuleSearch/SelectServiceType/", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
+			onSelectServiceTypeDD: function () {
+				var sProductTypeFilter = new sap.ui.model.Filter({
+					path: "ProductGroup",
+					operator: sap.ui.model.FilterOperator.EQ,
+					value1: this.getModel().getProperty("/ModuleSearch/Header/ServiceTypeKey/")
+				});
+
+				var Filter = [];
+				Filter.push(sProductTypeFilter);
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/ZCDSV_SUBSERVICEVH/', null, Filter)
+					.then(function (oResponse) {
+						this.getModel().setProperty("/ModuleSearch/SelectSubServiceType/", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+			},
+
 			handleBackPress: function () {
 				var oHistory, sPreviousHash;
 				oHistory = History.getInstance();
@@ -20,7 +74,7 @@ sap.ui.define([
 				if (sPreviousHash !== undefined) {
 					window.history.go(-1);
 				} else {
-					this.getRouter().navTo("AppHomePage", {}, true);
+					this.getRouter().navTo("HomePage", {}, true);
 				}
 
 			},
@@ -29,75 +83,11 @@ sap.ui.define([
 
 			},
 
-			onSelect: function (oEve) {
-
-				var sKey = oEve.getSource().getSelectedKey();
-				if (sKey === "1") {
-					this.oRouter.navTo("FinanceRequest");
-				}
-
-			},
-
 			onSearch: function () {
-				this.getModel().setProperty("/VisibleManagePttyCash", true);
-				this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
-				this.oRouter.navTo("FinanceRequest");
+				// this.getModel().setProperty("/VisibleManagePttyCash", true);
+				// this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
+				this.oRouter.navTo("PMRequest");
 				//	this.oRouter.navTo("LandingView");
-
-			},
-			testOdata_API: function () {
-				debugger;
-				// const oModel = this.getOwnerComponent().getModel("ModuleInput");
-
-				// this.getAPI.crudOperations_ODATA(oModel, 'read', '/ZCDSV_SS_SERVICES_F4')
-				// 	.then(function (oResponse) {
-				// 		var aData = oResponse.data;
-
-				// 	}.bind(this));
-
-				var oPayload = {
-					"BusinessPartnerCategory": "2",
-					"BusinessPartnerFullName": "Test Test",
-					"BusinessPartnerName": "Test Test",
-					"FirstName": "",
-					"IsFemale": false,
-					"IsMale": false,
-					"IsNaturalPerson": "",
-					"IsSexUnknown": false,
-					"Language": "",
-					"LastName": "",
-					"LegalForm": "",
-					"OrganizationBPName1": "Test Test",
-					"OrganizationBPName2": "Test Test",
-					"OrganizationBPName3": "",
-					"OrganizationBPName4": "",
-					"OrganizationFoundationDate": null,
-					"OrganizationLiquidationDate": null,
-					"SearchTerm1": "TEST",
-					"CreatedByUser": "DV_MKUMAR",
-					"AdditionalLastName": "",
-					"BirthDate": null,
-					"BusinessPartnerIsBlocked": false,
-					"BusinessPartnerType": "",
-					"GroupBusinessPartnerName1": "",
-					"GroupBusinessPartnerName2": "",
-					"IndependentAddressID": "",
-					"InternationalLocationNumber3": "0",
-					"MiddleName": "",
-					"NameCountry": "",
-					"NameFormat": "",
-					"PersonFullName": "",
-					"PersonNumber": "",
-					"IsMarkedForArchiving": false,
-					"BusinessPartnerIDByExtSystem": ""
-				};
-
-				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZAPI_BUSINESS_PARTNER"), 'create', '/A_BusinessPartner',
-						oPayload)
-					.then(function (oResponse) {
-						// 		var aData = oResponse.data;
-
-					}.bind(this));
 
 			},
 

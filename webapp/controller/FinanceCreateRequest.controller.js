@@ -55,7 +55,7 @@ sap.ui.define([
 					onClose: function (oAction) {
 						if (oAction == "OK") {
 
-							that.getRouter().navTo("FinanceRequestView", {}, true);
+							that.getRouter().navTo("HomePage", {}, true);
 						}
 					},
 				});
@@ -88,9 +88,9 @@ sap.ui.define([
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
 			},
-			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
-			},
+			/*	onProceed: function () {
+					this.getOwnerComponent().getTargets().display("FinanceCreateRequest");
+				},*/
 
 			onSearch: function () {
 
