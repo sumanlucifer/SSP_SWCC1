@@ -8,33 +8,16 @@
 					<Title level="H3" text="{i18n>customerinformation}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 				</Toolbar>
-				<Label text="{i18n>PhoneNumber}" required="true"/>
-				<Input id="idMobileNumberInp" type="Number" maxLength="10" showClearIcon="true"
-					value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
-				<!--	<Link text="Verify" press="handleLinkPress" width="30%"/>-->
-				<!--	<Button id="phone-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="OTP Verify" width="60%"/>-->
-				<!--<Input id="Mobileotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
+				<Label text="{i18n>PhoneNumber}"/>
+				<Input enabled="false" maxLength="10" showClearIcon="true" value="{/SLARegistrationData/Header/PhoneNo/}"/>
 				<Label text="{i18n>customerid}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
-				<!--	<Select id="idTypeOfPassSLT" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
-					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
-					change="onTimeTyeChange">
-					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
-				</Select>-->
-				<Label text="{i18n>crno}" required="false"/>
-				<Input id="idNationalIDInp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
-				<Label text="{i18n>EmailID}" required="true"/>
-				<Input id="idEmail" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
-				<!--	<Button id="email-verify" class="sapUiTinyMarginBeginEnd" icon="sap-icon://comment" type="Transparent" text="Email Verify" width="60%"/>
-				<Input id="emailotp" value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" maxLength="6" enabled="false"/>-->
-				<Label text="{i18n>customername}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
-				<!--	<Label text="{i18n>AddresofHeadQuarters}" required="true"/>
-				<Select id="idAirPortLocatonSLT" showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
-					change="onAirportLocationChange"
-					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
-					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
-				</Select>-->
+				<Input value="{/SLARegistrationData/Header/UserName/}"/>
+				<Label text="{i18n>crno}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Cr_No/}"/>
+				<Label text="{i18n>EmailID}"/>
+				<Input value="{/SLARegistrationData/Header/Email/}" enabled="false"/>
+				<Label text="{i18n>customername}"/>
+				<Input value="{/SLARegistrationData/Header/Company/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -53,30 +36,18 @@
 					change="onTimeTyeChange">
 					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
 				</Select>-->
-				<Label text="{i18n>street}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Label text="{i18n>street}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
 				<Label text="{i18n>Region}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="true"/>
-				<Label text="{i18n>POBOX}" required="true"/>
-				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationality}"
-					items="{ path: '/SF_Country', parameters:{select:'code,externalName_defaultValue,currency'}, sorter: { path: 'externalName_defaultValue', descending: false }, filters : [{ path : 'externalName_defaultValue', operator : 'NE', value1 : null }] }"
-					change="onTimeTyeChange">
-					<core:ListItem key="{code}" text="{externalName_defaultValue}"/>
-				</Select>
-				<Label text="{i18n>City}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_mobileNumber}" enabled="false"/>
-				<Label text="{i18n>country}" required="true"/>
-				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_airportLoc}"
-					change="onAirportLocationChange"
-					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_airportLocation'} ] }">
-					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
-				</Select>
-				<Label text="{i18n>postalcode}" required="true"/>
-				<Select showSecondaryValues="true" selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationality}"
-					items="{ path: '/SF_Country', parameters:{select:'code,externalName_defaultValue,currency'}, sorter: { path: 'externalName_defaultValue', descending: false }, filters : [{ path : 'externalName_defaultValue', operator : 'NE', value1 : null }] }"
-					change="onTimeTyeChange">
-					<core:ListItem key="{code}" text="{externalName_defaultValue}"/>
-				</Select>
+				<Input value="{SLARegistrationData/Header/Regio}" enabled="false"/>
+				<Label text="{i18n>POBOX}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
+				<Label text="{i18n>City}"/>
+				<Input value="{/SLARegistrationData/Header/Ort01/}" enabled="false"/>
+				<Label text="{i18n>country}"/>
+				<Input value="{/SLARegistrationData/Header/Land1/}" enabled="false"/>
+				<Label text="{i18n>postalcode}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Pstlz/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -89,9 +60,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>reprenname}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Representative Name" value="{/SLARegistrationData/CustomData/P2_Represen/}"/>
 				<Label text="{i18n>repreposisition}" required="false"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Representative Position" value="{/SLARegistrationData/CustomData/P2_Rep_Pos/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -104,13 +75,13 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>correspondancename}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Correspondance Name" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
 				<Label text="{i18n>correspondanceposisition}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
 				<Label text="{i18n>correspondanceemail}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
 				<Label text="{i18n>correspondanceext}" required="true"/>
-				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Input placeholder="Enter Correspondance Ext" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -124,11 +95,11 @@
 				</Toolbar>
 				<!--<CheckBox text="select / deselect all" selected="{= ${/child1} || ${/child2} || ${/child3} }"
 					partiallySelected="{= !(${/child1} &amp;&amp; ${/child2} &amp;&amp; ${/child3})}" select="onParentClicked"/>-->
-				<CheckBox text="{i18n>FICO}" selected="{/child1}" valueState="Information"/>
-				<CheckBox text="{i18n>PM}" selected="{/child2}" valueState="Information"/>
-				<CheckBox text="{i18n>SCM}" selected="{/child3}" valueState="Information"/>
-				<CheckBox text="{i18n>HR}" selected="{/child4}" valueState="Information"/>
-				<CheckBox text="{i18n>IT}" selected="{/child5}" valueState="Information"/>
+				<CheckBox text="{i18n>FICO}" selected="{/SLARegistrationData/CustomData/Chk_FI/}" valueState="Information"/>
+				<CheckBox text="{i18n>PM}" selected="{/SLARegistrationData/CustomData/Chk_TECH/}" valueState="Information"/>
+				<CheckBox text="{i18n>SCM}" selected="{/SLARegistrationData/CustomData/Chk_SCM/}" valueState="Information"/>
+				<CheckBox text="{i18n>HR}" selected="{/SLARegistrationData/CustomData/Chk_HR/}" valueState="Information"/>
+				<CheckBox text="{i18n>IT}" selected="{/SLARegistrationData/CustomData/Chk_IT/}" valueState="Information"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

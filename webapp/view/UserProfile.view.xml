@@ -1,0 +1,54 @@
+<mvc:View controllerName="com.swcc.pm.SSP_PM.controller.UserProfile" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage headerExpanded="true" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<!--<f:header>-->
+		<!--	<f:DynamicPageHeader pinnable="true">-->
+		<!--		<f:content>-->
+		<!--			<core:Fragment fragmentName="com.swcc.SSP_UserManagement.fragments.UserManagement.UserFilter" type="XML"/>-->
+		<!--		</f:content>-->
+		<!--	</f:DynamicPageHeader>-->
+		<!--</f:header>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content >
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.UserManagement.UserProfile" type="XML"/>
+					</VBox>
+					<!--<IconTabBar id="idIconTabBar" select="" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter icon="sap-icon://visits" iconColor="Negative" text="Pending Users" count="{oIconTabCountModel>/issueCount}">-->
+					<!--	<VBox>
+						<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.Graphview" type="XML"/>
+					</VBox>-->
+					<VBox>
+						<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.UserManagement.OpenRequest" type="XML"/>
+					</VBox>
+					<!--</IconTabFilter>
+							<IconTabFilter icon="sap-icon://employee-lookup" iconColor="Positive" text="Avaliable Users" count="{oIconTabCountModel>/issueCount}">
+								<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.UserManagement.ClosedRequest" type="XML"/>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>-->
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<!--	<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Save}" type="Accept" class="btn-proceed" press="onProceed"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
+			</OverflowToolbar>
+		</f:footer>-->
+	</f:DynamicPage>
+</mvc:View>

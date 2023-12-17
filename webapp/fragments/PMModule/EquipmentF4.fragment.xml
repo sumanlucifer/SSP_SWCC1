@@ -5,7 +5,7 @@
 		<List id="idlistVendorID" items="{/PMCreateRequest/EquipmentF4/}" mode="None" growing="true" growingThreshold="30"
 			growingScrollToLoad="true">
 			<items>
-				<ObjectListItem type="Active" title="{EquipmentName} " press="_handleSelectVendorID">
+				<ObjectListItem type="Active" title="{EquipmentName} " press="_handleSelectEquipment">
 					<attributes>
 						<ObjectAttribute text="{Equipment}"/>
 						<ObjectAttribute text="{EquipmentWithZeros}"/>

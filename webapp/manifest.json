@@ -212,7 +212,7 @@
 				]
 			}, {
 				"name": "PMCreateServiceRequest",
-				"pattern": "PMCreateServiceRequest/{service}",
+				"pattern": "PMCreateServiceRequest/",
 				"target": [
 					"PMCreateServiceRequest"
 				]
@@ -227,6 +227,12 @@
 				"pattern": "PMRequestView",
 				"target": [
 					"PMRequestView"
+				]
+			}, {
+				"name": "UserProfile",
+				"pattern": "UserProfile",
+				"target": [
+					"UserProfile"
 				]
 			}, {
 				"name": "SCMCreateRequest",
@@ -325,6 +331,12 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "HRCreateRequest"
+				},
+				"UserProfile": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "UserProfile"
 				},
 				"notFound": {
 					"viewName": "NotFound"

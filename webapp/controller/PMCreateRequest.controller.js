@@ -1,10 +1,13 @@
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/routing/History"
+		"sap/ui/core/routing/History",
+		"sap/m/MessageBox",
+		"sap/ui/core/Fragment",
+		"sap/ui/Device"
 	],
 
-	function (BaseController, JSONModel, History) {
+	function (BaseController, JSONModel, History, MessageBox, Fragment, Device) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.PMCreateRequest", {
 
@@ -16,14 +19,15 @@ sap.ui.define([
 				this.PlantF4();
 
 			},
-			_onObjectMatched: function (oevent) {
+			_onObjectMatched: function () {
 				this._createItemDataModel();
-				var sServiceTypeKey = oevent.getParameters("arguments").arguments.service;
-				this.byId("pm-serviceproduct").sServiceTypeKey();
-				var oTitle = this.byId("module-title");
-
-				// Set the title based on the service value
-				oTitle.setText("Your Title: " + sServiceTypeKey);
+				this.PlantF4();
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
+					sServiceProductLocalVal = oStorage.get("sSubServiceType");
+				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
+				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
+				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 
 			},
 			_createItemDataModel: function () {
@@ -108,7 +112,7 @@ sap.ui.define([
 				try {
 					if (!this.VDialog) {
 						this.VDialog = this.loadFragment({
-							name: "com.swcc.pm.SSP_PM.fragments.PMModule.EquipmentF4"
+							name: "com.swcc.Template.fragments.PMModule.EquipmentF4"
 						});
 					}
 
@@ -141,6 +145,22 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}
 			},
+			_handleSelectEquipment: function (oEvent) {
+				var selectedVendorDes = oEvent.getSource().getAggregation("attributes");
+				var sEqipmentNo = selectedVendorDes[0].getProperty('text');
+				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", sEqipmentNo);
+				// var oFilter = new sap.ui.model.Filter("LIFNR", sap.ui.model.FilterOperator.Contains, "");
+				// var oFilter1 = new sap.ui.model.Filter("NAME1", sap.ui.model.FilterOperator.Contains, "");
+				// var comFil = new sap.ui.model.Filter([oFilter, oFilter1]);
+				// var oList = this.getView().byId("idlistVendorID");
+				// this.getView().getModel("settingsModel").setProperty("/VendorLIFNR", VendorLIFNR);
+				// this.getView().getModel("settingsModel").setProperty("/VendorNAME1", VendorNAME1);
+				// this.getView().byId("idinputVendorID").setValue(VendorLIFNR);
+				// this.getView().byId("idinputVendorName").setValue(VendorNAME1);
+				// this.getView().byId("idsearchVendorID").setValue(null);
+				// oList.getBinding("items").filter(comFil, sap.ui.model.FilterType.Application);
+				this._oVID.close();
+			},
 
 			onValueHelpSearch: function (oEvent) {
 				var sValue = oEvent.getParameter("value");
@@ -158,16 +178,16 @@ sap.ui.define([
 				oEvent.getSource().getBinding("items").filter([oFilter]);
 			},
 			PMCreateaRequestAPI: function (oPayload) {
-
-				var oPayload = {
-					"NotifType": "ZT",
-					"Equipment": "10000131",
-					"Customer": "300113",
-					"Descript": "TEST STS NOTIFICATION FOR INSTRUMENT",
-					"NotifText": {
-						"Line": "Testing long text"
-					}
-				};
+				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
+				// var oPayload = {
+				// 	"Material": "ZT",
+				// 	"Equipment": "10000131",
+				// 	"Customer": "300113",
+				// 	"Descript": "TEST STS NOTIFICATION FOR INSTRUMENT",
+				// 	"NotifText": {
+				// 		"Line": "Testing long text"
+				// 	}
+				// };
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'create', '/ServNotificationSet',
 						oPayload)
@@ -205,7 +225,7 @@ sap.ui.define([
 				if (sPreviousHash !== undefined) {
 					window.history.go(-1);
 				} else {
-					this.getRouter().navTo("LandingView", {}, true);
+					this.getRouter().navTo("ModuleSelect", {}, true);
 				}
 
 			},
@@ -216,7 +236,7 @@ sap.ui.define([
 
 			},
 			onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
+				this.getOwnerComponent().getTargets().display("ModuleSelect");
 
 			},
 			onProceed: function () {
@@ -265,12 +285,6 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-			},
-
-			onSearch: function () {
-
-				this.oRouter.navTo("LandingView");
-
 			}
 		})
 	})

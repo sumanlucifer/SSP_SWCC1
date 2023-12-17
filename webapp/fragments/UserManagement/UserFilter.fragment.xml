@@ -1,0 +1,48 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
+	<VBox class="ssp-user">
+		<Toolbar class="ssp-title">
+			<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+			<Title class="ssp-form-bg" text="{i18n>viewreq}"/>
+			<ToolbarSpacer/>
+		</Toolbar>
+	</VBox>
+	<fb:FilterBar id="filterbar" reset="onResetFilters" class="user-filter" search="onSearch" useToolbar="false" showGoOnFB="true"
+		showRestoreOnFB="true">
+		<fb:filterGroupItems>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="PONOs" label="{i18n>RequestID}" visibleInFilterBar="true" class="searchFieldLabelHidden">
+				<fb:control>
+					<Input id="idPono" liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
+						<suggestionItems>
+							<core:Item text="{MDCC/PONumber}"/>
+						</suggestionItems>
+					</Input>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="mdccNos" label="{i18n>Date}" visibleInFilterBar="true" class="searchFieldLabelHidden">
+				<fb:control>
+					<DateRangeSelection id="dateRangeSelectionId" displayFormat="" placeholder="" change="onDateRangeSelectionChange"/>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<!--	<fb:FilterGroupItem groupName="__$INTERNAL$" name="FirstName" label="{i18n>FirstName}" visibleInFilterBar="true"
+				class="searchFieldLabelHidden">
+				<fb:control>
+					<Input liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
+						<suggestionItems>
+							<core:Item text="{MDCC/MDCCNumber}"/>
+						</suggestionItems>
+					</Input>
+				</fb:control>
+			</fb:FilterGroupItem>
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="CreatedAt" label="{i18n>LastName}" visibleInFilterBar="true"
+				class="searchFieldLabelHidden">
+				<fb:control>
+					<Input liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
+						<suggestionItems>
+							<core:Item text="{MDCC/MDCCNumber}"/>
+						</suggestionItems>
+					</Input>
+				</fb:control>
+			</fb:FilterGroupItem>-->
+		</fb:filterGroupItems>
+	</fb:FilterBar>
+</core:FragmentDefinition>

@@ -9,9 +9,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>customername}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Company/}" type="Text" placeholder="Enter Customer Name" ariaLabelledBy="Inputcustomername"/>
+				<Input value="{/CustomerRegistrationData/Header/Company/}" type="text" placeholder="Enter Customer Name" ariaLabelledBy="Inputcustomername"/>
 				<Label text="{i18n>street}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Stras/}" type="Text" placeholder="Enter Street" ariaLabelledBy="Inputcustomerstreet"/>
+				<Input value="{/CustomerRegistrationData/Header/Stras/}" type="text" placeholder="Enter Street" ariaLabelledBy="Inputcustomerstreet"/>
 				<Label text="{i18n>postalcode}" required="true"/>
 				<Input value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"
 					ariaLabelledBy="Inputcustomerpostalcode"/>
