@@ -97,16 +97,16 @@ sap.ui.define([
 
 			onSearch: function () {
 
-				debugger;
-				if (!this.InputValidation()) {
-
-					return;
-				}
+				this.InputValidation() !== true ?
+					"" : this.onNavigation();
 
 				// this.getModel().setProperty("/VisibleManagePttyCash", true);
 				// this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
+
+			},
+
+			onNavigation: function () {
 				var sSubServiveType = this.getModel().getProperty("/ModuleSearch/Header/SUbServiceKey/");
-				//	var sServiceProduct = sSubServiveType.split("-")[1];
 				this.setDataLocalStaorage(sSubServiveType);
 				this.getModel().setProperty("/ServiceProduct/", sSubServiveType);
 				var sModuleType = this.byId("idService").getSelectedKey();
@@ -116,7 +116,6 @@ sap.ui.define([
 					"SCMCreateRequest" : "";
 
 				this.oRouter.navTo(sTargetRoute);
-
 			},
 			InputValidation: function () {
 				var bValid = true;
