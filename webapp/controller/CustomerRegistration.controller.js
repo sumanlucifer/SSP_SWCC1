@@ -136,7 +136,7 @@ sap.ui.define([
 			});
 		},
 		onPresshomepage: function () {
-			this.getOwnerComponent().getRouter().navTo("SlaCreation");
+			this.getOwnerComponent().getRouter().navTo("HomePage");
 		},
 		onback: function () {
 

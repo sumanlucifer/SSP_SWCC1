@@ -15,8 +15,6 @@ sap.ui.define([
 				debugger;
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
-				// this._createItemDataModel();
-				// this.PlantF4();
 
 			},
 			_onObjectMatched: function () {

@@ -17,8 +17,7 @@ sap.ui.define([
 			onInit: function () {
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("SlaCreation").attachPatternMatched(this._onObjectMatched, this);
-				// this._SLARegistrationModel();
-				// this.getSLADetails();
+
 			},
 			_onObjectMatched: function () {
 				this._SLARegistrationModel();

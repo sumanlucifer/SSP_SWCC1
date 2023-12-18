@@ -15,10 +15,10 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<!--.................................................................	Accounts Payable................................-->
-					<VBox visible="{/VisibleRecordProcessInvoice}">
+					<VBox visible="{= ${FinanceAppVisible} !== 'SSA-FIN-3001-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>
 					</VBox>
-					<VBox visible="{/VisibleRecordProcessInvoice}">
+					<VBox visible="{= ${FinanceAppVisible} !== 'SSA97-FIN-3001-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>
 					</VBox>
 					<!--...........................................................Financial Review and General Ledger Close...........................-->
