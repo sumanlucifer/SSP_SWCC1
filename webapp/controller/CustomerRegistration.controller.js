@@ -1,9 +1,10 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
+	"sap/m/MessageBox",
+	"sap/ui/core/routing/History"
 
-], function (BaseController, JSONModel, MessageBox) {
+], function (BaseController, JSONModel, MessageBox, History) {
 	"use strict";
 
 	return BaseController.extend("com.swcc.Template.controller.CustomerRegistration", {
@@ -97,7 +98,14 @@ sap.ui.define([
 			this.SubmitBPRegistration(oPayload);
 		},
 		onCancel: function () {
-			this.getOwnerComponent().getRouter().navTo("SlaCreation");
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getRouter().navTo("HomePage", {}, true);
+			}
 		},
 		SubmitBPRegistration: function (oPayload) {
 			this.getModel().setProperty("/busy", true);

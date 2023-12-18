@@ -31,8 +31,6 @@ sap.ui.define([
 				this.BPFlagCheckAPI();
 			},
 			BPFlagCheckAPI: function () {
-				debugger;
-
 				var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
 
 				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', sAPI)
@@ -70,11 +68,15 @@ sap.ui.define([
 			onPressSlaRequest: function () {
 				this.oRouter.navTo("SlaCreation");
 			},
+			onPressUserManagement: function () {
+					this.oRouter.navTo("UserManagementRequest");
+				}
+				/*,
 
-			onSearch: function () {
+							onSearch: function () {
 
-				this.oRouter.navTo("LandingView");
+								this.oRouter.navTo("LandingView");
 
-			}
+							}*/
 		})
 	})

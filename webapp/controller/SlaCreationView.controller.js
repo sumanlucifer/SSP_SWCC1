@@ -4,12 +4,13 @@ sap.ui.define([
 		"sap/ui/core/Fragment",
 		"sap/ui/Device",
 		"sap/m/MessageBox",
-		"sap/m/MessageToast"
+		"sap/m/MessageToast",
+		"sap/ui/core/routing/History"
 	],
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (BaseController, JSONModel, Fragment, Device, MessageBox, MessageToast) {
+	function (BaseController, JSONModel, Fragment, Device, MessageBox, MessageToast, History) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.SlaCreationView", {
 
@@ -55,7 +56,7 @@ sap.ui.define([
 				if (sPreviousHash !== undefined) {
 					window.history.go(-1);
 				} else {
-					this.getRouter().navTo("LandingView", {}, true);
+					this.getRouter().navTo("HomePage", {}, true);
 				}
 
 			},
@@ -115,7 +116,7 @@ sap.ui.define([
 				if (!this.oSearchResultDialog) {
 					Fragment.load({
 						id: oView.getId(),
-						name: "com.swcc.pm.SSP_PM.fragments.PDFViewer",
+						name: "com.swcc.Template.fragments.PDFViewer",
 						controller: this
 					}).then(function (oDialog) {
 						oDialog.setTitle("SLA Agreement Version");

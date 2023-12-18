@@ -1,4 +1,4 @@
-<mvc:View controllerName="com.swcc.Template.controller.UserProfile" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+<mvc:View controllerName="com.swcc.Template.controller.UserManagementRequest" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
 	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
 	<f:DynamicPage headerExpanded="true" showFooter="true" class="ssp-page">
 		<!-- DynamicPage Title -->
@@ -22,23 +22,18 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.UserProfileData" type="XML"/>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.UserFilter" type="XML"/>
 					</VBox>
-					<!--<IconTabBar id="idIconTabBar" select="" class="sapUiResponsiveContentPadding">
+					<IconTabBar id="idIconTabBar" select="" class="sapUiResponsiveContentPadding">
 						<items>
-							<IconTabFilter icon="sap-icon://visits" iconColor="Negative" text="Pending Users" count="{oIconTabCountModel>/issueCount}">-->
-					<!--	<VBox>
-						<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.Graphview" type="XML"/>
-					</VBox>-->
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.UserProfileRequest" type="XML"/>
-					</VBox>
-					<!--</IconTabFilter>
+							<IconTabFilter icon="sap-icon://visits" iconColor="Negative" text="Pending Users" count="{oIconTabCountModel>/issueCount}">
+								<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.OpenRequest" type="XML"/>
+							</IconTabFilter>
 							<IconTabFilter icon="sap-icon://employee-lookup" iconColor="Positive" text="Avaliable Users" count="{oIconTabCountModel>/issueCount}">
-								<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.UserManagement.ClosedRequest" type="XML"/>
+								<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.ClosedRequest" type="XML"/>
 							</IconTabFilter>
 						</items>
-					</IconTabBar>-->
+					</IconTabBar>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

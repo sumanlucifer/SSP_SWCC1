@@ -8,7 +8,7 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding ne-flexbox2">
-			<GenericTile visible="{/TileData/Header/BPExists}" class="sapUiSmallMargin tileLayout ssp-newservice ssp-active"
+			<GenericTile visible="{/TileData/Header/BPExists}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active"
 				press="onPressCreateRequest" header="{i18n>createservicerequest}">
 				<TileContent>
 					<ImageContent src="sap-icon://add-document"/>
@@ -31,7 +31,7 @@
 					<ImageContent src="sap-icon://create"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="" header="{i18n>User Management}">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>User Management}">
 				<TileContent>
 					<ImageContent src="sap-icon://role"/>
 				</TileContent>

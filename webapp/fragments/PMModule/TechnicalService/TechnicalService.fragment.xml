@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
-	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:fiori="sap.ui.webc.fiori" xmlns:core="sap.ui.core">
 	<VBox width="100%">
 		<fm:SimpleForm id="ssp-create-sr" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
@@ -64,7 +64,7 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<!--	<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
+		<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
 			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
 			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
 			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
@@ -77,9 +77,35 @@
 					<ToolbarSpacer/>
 				</OverflowToolbar>
 			</upload:toolbar>
-		</upload:UploadSet>-->
-		<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+		</upload:UploadSet>
+		<!--	<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
 			uploadComplete="handleUploadComplete"/>
-		<Button text="Upload File" press="handleUploadPress"/>
+		<Button text="Upload File" press="handleUploadPress"/>-->
+		<!--	<fiori:UploadCollection noDataText="No Data">
+			<fiori:UploadCollectionItem fileName="LaptopHT-1000.jpg" fileNameClickable="true" uploadState="Complete">
+				<Label text="Uploaded By: David Keane · Uploaded On: 2022-03-08 · File Size: 35 KB"/>
+				<fiori:thumbnail>
+					<Icon name="laptop"/>
+				</fiori:thumbnail>
+			</fiori:UploadCollectionItem>
+			<fiori:UploadCollectionItem fileName="Notes.txt" fileNameClickable="true" progress="42">
+				<Label text="Uploaded By: John Smith · Uploaded On: 2014-09-02 · File Size: 226.6 KB"/>
+				<fiori:thumbnail>
+					<Icon name="document-text"/>
+				</fiori:thumbnail>
+			</fiori:UploadCollectionItem>
+			<fiori:UploadCollectionItem fileName="latest.reports.pdf.txt" fileNameClickable="true" progress="59" uploadState="Error">
+				<Label text="uploadState=Error"/>
+				<fiori:thumbnail>
+					<Icon name="document-text"/>
+				</fiori:thumbnail>
+			</fiori:UploadCollectionItem>
+			<fiori:UploadCollectionItem fileName="Big File.pdf" fileNameClickable="true" progress="37" uploadState="Uploading">
+				<Label text="uploadState=Uploading"/>
+				<fiori:thumbnail>
+					<Icon name="document-text"/>
+				</fiori:thumbnail>
+			</fiori:UploadCollectionItem>
+		</fiori:UploadCollection>-->
 	</VBox>
 </core:FragmentDefinition>
