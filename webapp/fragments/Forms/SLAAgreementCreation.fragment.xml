@@ -39,7 +39,7 @@
 				<Label text="{i18n>street}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
 				<Label text="{i18n>Region}" required="false"/>
-				<Input value="{SLARegistrationData/Header/Regio}" enabled="false"/>
+				<Input value="{/SLARegistrationData/Header/Regio}" enabled="false"/>
 				<Label text="{i18n>POBOX}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
 				<Label text="{i18n>City}"/>
