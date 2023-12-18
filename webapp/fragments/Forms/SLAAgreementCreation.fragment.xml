@@ -39,7 +39,7 @@
 				<Label text="{i18n>street}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
 				<Label text="{i18n>Region}" required="false"/>
-				<Input value="{SLARegistrationData/Header/Regio}" enabled="false"/>
+				<Input value="{/SLARegistrationData/Header/Regio}" enabled="false"/>
 				<Label text="{i18n>POBOX}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
 				<Label text="{i18n>City}"/>
@@ -77,11 +77,11 @@
 				<Label text="{i18n>correspondancename}" required="true"/>
 				<Input placeholder="Enter Correspondance Name" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
 				<Label text="{i18n>correspondanceposisition}" required="true"/>
-				<Input placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
+				<Input placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
 				<Label text="{i18n>correspondanceemail}" required="true"/>
 				<Input placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
 				<Label text="{i18n>correspondanceext}" required="true"/>
-				<Input placeholder="Enter Correspondance Ext" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
+				<Input placeholder="Enter Correspondance Ext" value="{/SLARegistrationData/CustomData/P2_Ext/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -100,6 +100,16 @@
 				<CheckBox text="{i18n>SCM}" selected="{/SLARegistrationData/CustomData/Chk_SCM/}" valueState="Information"/>
 				<CheckBox text="{i18n>HR}" selected="{/SLARegistrationData/CustomData/Chk_HR/}" valueState="Information"/>
 				<CheckBox text="{i18n>IT}" selected="{/SLARegistrationData/CustomData/Chk_IT/}" valueState="Information"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/SLARegistrationData/CustomData/Remarks/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

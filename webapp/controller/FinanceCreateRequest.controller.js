@@ -11,14 +11,23 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
+				this.getRouter().getRoute("FinanceCreateRequest").attachPatternMatched(this._onObjectMatched, this);
+
+			},
+			_onObjectMatched: function () {
+				debugger;
 				this._createItemDataModel();
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
+					sServiceProductLocalVal = oStorage.get("sSubServiceType");
+				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
 
 			},
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
 					recognitionAlreadyStarted: false,
-
+					FinanceAppVisible: null,
 					MarineTransportation: {
 						itemData: []
 					}
