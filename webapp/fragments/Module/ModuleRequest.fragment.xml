@@ -20,13 +20,17 @@
 				</items>
 			</ComboBox>
 			<Label text="{i18n>SelectServiceType}" required="true"/>
-			<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectServiceTypeDD" valueState="None" placeholder="Select Service Type"
-				selectedKey="{/ModuleSearch/Header/ServiceTypeKey/}" items="{/ModuleSearch/SelectServiceType/}">
-				<core:Item key="{ProductGroup}" text="{MaterialGroupName}"/>
+			<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectServiceTypeDD" placeholder="Select Service Type"
+				selectedKey="{/ModuleSearch/Header/ServiceTypeKey/}" items="{/ModuleSearch/SelectServiceType/}"
+				valueState="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Error' : 'None' }"
+				valueStateText="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Select Service Type' : '' }">
+				<core:Item key="{ProductGroup}" text="{MaterialGroupText}"/>
 			</ComboBox>
 			<Label text="{i18n>SelectSubService}" required="true"/>
-			<ComboBox id="idsubservice" width="100%" valueState="None" selectionChange="onSelectSubServiceTypeDD" placeholder="Select SubService"
-				selectedKey="{/ModuleSearch/Header/SUbServiceKey/}" items="{/ModuleSearch/SelectSubServiceType/}">
+			<ComboBox enabled="{= ${/ModuleSearch/Header/ServiceTypeKey/} !== undefined ? true : false }" width="100%"
+				selectionChange="onSelectSubServiceTypeDD" placeholder="Select SubService" selectedKey="{/ModuleSearch/Header/SUbServiceKey/}"
+				items="{/ModuleSearch/SelectSubServiceType/}" valueState="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Error' : 'None' }"
+				valueStateText="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Select Sub Service Type' : '' }">
 				<core:ListItem key="{Product}_{ProductName}" text="{ProductName}"/>
 			</ComboBox>
 			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>

@@ -11,11 +11,11 @@ sap.ui.define([
 			onInit: function () {
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("ModuleSelect").attachPatternMatched(this._onObjectMatched, this);
-				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
-				var sModuleType = oStorage.get("sMouleType");
-				this._createHeaderModel();
-				this.byId("idService").setSelectedKey(sModuleType);
-				this.getServiceTypeDD();
+				// var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+				// var sModuleType = oStorage.get("sMouleType");
+				// this._createHeaderModel();
+				// this.byId("idService").setSelectedKey(sModuleType);
+				// this.getServiceTypeDD();
 				// this.testCPI_API();
 
 			},
@@ -96,15 +96,41 @@ sap.ui.define([
 			},*/
 
 			onSearch: function () {
-				debugger;
+
+				this.InputValidation() !== true ?
+					"" : this.onNavigation();
+
 				// this.getModel().setProperty("/VisibleManagePttyCash", true);
 				// this.getModel().setProperty("/VisibleRecordProcessInvoice", true);
+
+			},
+
+			onNavigation: function () {
 				var sSubServiveType = this.getModel().getProperty("/ModuleSearch/Header/SUbServiceKey/");
-				//	var sServiceProduct = sSubServiveType.split("-")[1];
 				this.setDataLocalStaorage(sSubServiveType);
 				this.getModel().setProperty("/ServiceProduct/", sSubServiveType);
-				this.oRouter.navTo("PMCreateServiceRequest");
+				var sModuleType = this.byId("idService").getSelectedKey();
+				var sTargetRoute = sModuleType === "ZSSM" ? "PMCreateServiceRequest" :
+					sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
+					"FinanceCreateRequest" : sModuleType === "ZSSS" ?
+					"SCMCreateRequest" : "";
 
+				this.oRouter.navTo(sTargetRoute);
+			},
+			InputValidation: function () {
+				var bValid = true;
+				if (!this.getModel().getProperty("/ModuleSearch/Header/ServiceTypeKey/")) {
+					this.getModel().setProperty("/ModuleSearch/Header/ServiceTypeKey/", "")
+
+					bValid = false;
+				}
+
+				if (!this.getModel().getProperty("/ModuleSearch/Header/SUbServiceKey/")) {
+					this.getModel().setProperty("/ModuleSearch/Header/SUbServiceKey/", "")
+
+					bValid = false;
+				}
+				return bValid;
 			},
 
 			setDataLocalStaorage: function (sVal) {

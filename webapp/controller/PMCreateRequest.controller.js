@@ -15,8 +15,8 @@ sap.ui.define([
 				debugger;
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
-				this._createItemDataModel();
-				this.PlantF4();
+				// this._createItemDataModel();
+				// this.PlantF4();
 
 			},
 			_onObjectMatched: function () {
@@ -41,44 +41,42 @@ sap.ui.define([
 					}
 				});
 			},
+
 			PlantF4: function () {
-
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/A_Plant/')
+				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {
-
+						this.getModel().setProperty("/busy", false);
 						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-						this.getModel().setProperty("/busy", false);
-
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
 					}.bind(this));
 
 			},
 
-			WorkCenterF4: function () {
-				var sPlantFilter = new sap.ui.model.Filter({
-					path: "Plant",
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
-				});
+			WorkCenterF4: function (sKey) {
 
-				var sServiceProduct = new sap.ui.model.Filter({
-					path: "ServiceProduct",
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
-				});
+				var filters = [{
+						path: "Plant",
+						value: sKey,
+						group: "WorkCntrFilter"
+					}, {
+						path: "ServiceProduct",
+						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
+						group: "WorkCntrFilter"
+					}
 
-				var Filter = [];
-				Filter.push(sPlantFilter);
+				];
+
+				var dynamicFilters = this.getFilters(filters);
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataReadAPICall(
 					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
 					'read',
 					'/ZCDSV_WORKCENTERVH',
 					null,
-					Filter,
+					dynamicFilters.WorkCntrFilter,
 					null
 				).then(function (oResponse) {
 
@@ -90,8 +88,9 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 			},
-			onSelectPlant: function () {
-				this.WorkCenterF4();
+			onSelectPlant: function (oEve) {
+				var sKey = oEve.getSource().getSelectedKey();
+				this.WorkCenterF4(sKey);
 
 			},
 			onCheckPlantVal: function (oEve) {
