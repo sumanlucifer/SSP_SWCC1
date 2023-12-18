@@ -18,7 +18,7 @@ sap.ui.define([
 					this.callDropDownAndModel();
 				}
 			}, this);
-			this.callDropDownAndModel();
+			//	this.callDropDownAndModel();
 		},
 
 		callDropDownAndModel: function () {
@@ -39,17 +39,18 @@ sap.ui.define([
 			});
 		},
 		CountryF4: function () {
-			var sLanguageFilter = new sap.ui.model.Filter({
-				path: "Language",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: "en"
-			});
 
-			var Filter = [];
-			Filter.push(sLanguageFilter);
+			var filters = [{
+					path: "Language",
+					value: "en",
+					group: "CountryFilter"
+				}
 
+			];
+
+			var dynamicFilters = this.getFilters(filters);
 			this.getModel().setProperty("/busy", true);
-			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/A_CountryText/', null, Filter)
+			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/A_CountryText/', null, dynamicFilters.CountryFilter)
 				.then(function (oResponse) {
 
 					this.getModel().setProperty("/CustomerRegistrationData/CountryF4/", oResponse.results);
@@ -61,12 +62,24 @@ sap.ui.define([
 
 		},
 		onCountryChange: function (oEve) {
-
 			var sKey = oEve.getSource().getSelectedKey();
-			var Filter = this.getFilters(sKey);
+			var filters = [{
+					path: "Country",
+					value: oEve.getSource().getSelectedKey(),
+					group: "CountryChangeFilter"
+				}, {
+					path: "Language",
+					value: "EN",
+					group: "CountryChangeFilter"
+				}
+
+			];
+
+			var dynamicFilters = this.getFilters(filters);
 			this.getModel().setProperty("/busy", true);
 
-			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/C_RegionTextVHTemp', null, Filter)
+			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/C_RegionTextVHTemp', null,
+					dynamicFilters.CountryChangeFilter)
 				.then(function (oResponse) {
 					oResponse.results.length === 0 ? this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", null) : this.getModel().setProperty(
 						"/CustomerRegistrationData/RegionF4/", oResponse.results);
@@ -78,25 +91,7 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 		},
-		getFilters: function (sUserName, sIsRequest) {
 
-			var sUserNameFilter = new sap.ui.model.Filter({
-				path: "Country",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: sUserName
-			});
-			var sLanguageFilter = new sap.ui.model.Filter({
-				path: "Language",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: "EN"
-			});
-
-			var aUserFilter = [];
-			aUserFilter.push(sUserNameFilter, sLanguageFilter);
-
-			return aUserFilter;
-
-		},
 		onSubmitBP: function () {
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 			this.SubmitBPRegistration(oPayload);

@@ -15,8 +15,8 @@ sap.ui.define([
 				debugger;
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
-				this._createItemDataModel();
-				this.PlantF4();
+				// this._createItemDataModel();
+				// this.PlantF4();
 
 			},
 			_onObjectMatched: function () {
@@ -41,7 +41,7 @@ sap.ui.define([
 					}
 				});
 			},
-			PlantF4: function () {
+			PlantF41: function () {
 
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/A_Plant/')
@@ -53,6 +53,18 @@ sap.ui.define([
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
+			PlantF4: function () {
+				this.getModel().setProperty("/busy", true);
+				this.CallValueHelpAPI('/A_Plant/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
 					}.bind(this));
 
 			},

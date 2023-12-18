@@ -14,6 +14,45 @@ sap.ui.define([
 
 		},
 
+		CallValueHelpAPI: function (entity) {
+
+			return new Promise(function (resolve, reject) {
+
+				// Use bracket notation to call the dynamic function
+				this.getOwnerComponent().getModel("ZSSP_COMMON_SRV")["read"](entity, {
+
+					success: function (oData) {
+
+						resolve(oData);
+					},
+					error: function (oResult) {
+
+						reject(oResult);
+					}
+				});
+			}.bind(this));
+		},
+		getFilters: function (filterParams) {
+
+			var dynamicFilters = {};
+
+			filterParams.forEach(function (filterParam) {
+				var filter = new sap.ui.model.Filter({
+					path: filterParam.path,
+					operator: sap.ui.model.FilterOperator.EQ,
+					value1: filterParam.value
+				});
+
+				if (!dynamicFilters[filterParam.group]) {
+					dynamicFilters[filterParam.group] = [];
+				}
+
+				dynamicFilters[filterParam.group].push(filter);
+			});
+
+			return dynamicFilters;
+		},
+
 		addContentDensityClass: function () {
 			return this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		},
