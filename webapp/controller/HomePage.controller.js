@@ -70,11 +70,15 @@ sap.ui.define([
 			onPressSlaRequest: function () {
 				this.oRouter.navTo("SlaCreation");
 			},
+			onPressUserManagement: function () {
+					this.oRouter.navTo("UserManagementRequest");
+				}
+				/*,
 
-			onSearch: function () {
+							onSearch: function () {
 
-				this.oRouter.navTo("LandingView");
+								this.oRouter.navTo("LandingView");
 
-			}
+							}*/
 		})
 	})

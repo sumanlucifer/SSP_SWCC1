@@ -31,7 +31,7 @@
 					<ImageContent src="sap-icon://create"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="" header="{i18n>User Management}">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>User Management}">
 				<TileContent>
 					<ImageContent src="sap-icon://role"/>
 				</TileContent>

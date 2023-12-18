@@ -3,6 +3,13 @@
 	<VBox width="100%" class="ssp-tile">
 		<fm:SimpleForm id="ssp-create-sr-3" title="{i18n>welcome}" layout="ColumnLayout" class="welcome-title" columnsM="2" columnsL="3"
 			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="home-page-title">
+					<Button icon="sap-icon://nav-back" press=".handleBackPress"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>welcome}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
 			<fm:content></fm:content>
 		</fm:SimpleForm>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"

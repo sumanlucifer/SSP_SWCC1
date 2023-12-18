@@ -235,6 +235,12 @@
 					"UserProfile"
 				]
 			}, {
+				"name": "UserManagementRequest",
+				"pattern": "UserManagementRequest",
+				"target": [
+					"UserManagementRequest"
+				]
+			}, {
 				"name": "SCMCreateRequest",
 				"pattern": "SCMCreateRequest",
 				"target": [
@@ -247,6 +253,12 @@
 					"transition": "slide",
 					"clearControlAggregation": false,
 					"viewName": "HomePage"
+				},
+				"UserManagementRequest": {
+					"viewType": "XML",
+					"transition": "slide",
+					"clearControlAggregation": false,
+					"viewName": "UserManagementRequest"
 				},
 				"ModuleSelect": {
 					"viewType": "XML",

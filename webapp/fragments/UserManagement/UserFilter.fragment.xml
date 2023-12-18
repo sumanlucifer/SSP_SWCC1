@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:fb="sap.ui.comp.filterbar">
 	<VBox class="ssp-user">
 		<Toolbar class="ssp-title">
-			<Button icon="sap-icon://nav-back" press="handleBackPress"/>
-			<Title class="ssp-form-bg" text="{i18n>viewreq}"/>
+			<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+			<Title class="ssp-form-bg" text="{i18n>UserRequest}"/>
 			<ToolbarSpacer/>
 		</Toolbar>
 	</VBox>
@@ -23,7 +23,7 @@
 					<DateRangeSelection id="dateRangeSelectionId" displayFormat="" placeholder="" change="onDateRangeSelectionChange"/>
 				</fb:control>
 			</fb:FilterGroupItem>
-			<!--	<fb:FilterGroupItem groupName="__$INTERNAL$" name="FirstName" label="{i18n>FirstName}" visibleInFilterBar="true"
+			<fb:FilterGroupItem groupName="__$INTERNAL$" name="FirstName" label="{i18n>FirstName}" visibleInFilterBar="true"
 				class="searchFieldLabelHidden">
 				<fb:control>
 					<Input liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
@@ -42,7 +42,7 @@
 						</suggestionItems>
 					</Input>
 				</fb:control>
-			</fb:FilterGroupItem>-->
+			</fb:FilterGroupItem>
 		</fb:filterGroupItems>
 	</fb:FilterBar>
 </core:FragmentDefinition>
