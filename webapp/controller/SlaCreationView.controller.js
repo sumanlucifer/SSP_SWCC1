@@ -117,7 +117,7 @@ sap.ui.define([
 				if (!this.oSearchResultDialog) {
 					Fragment.load({
 						id: oView.getId(),
-						name: "com.swcc.pm.SSP_PM.fragments.PDFViewer",
+						name: "com.swcc.Template.fragments.PDFViewer",
 						controller: this
 					}).then(function (oDialog) {
 						oDialog.setTitle("SLA Agreement Version");
