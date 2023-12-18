@@ -31,8 +31,6 @@ sap.ui.define([
 				this.BPFlagCheckAPI();
 			},
 			BPFlagCheckAPI: function () {
-				debugger;
-
 				var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
 
 				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', sAPI)

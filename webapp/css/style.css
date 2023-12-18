@@ -300,19 +300,18 @@
     font-weight: bold;
 }
 
-.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage),
-.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage) .sapMTextMaxLine,
-.ssp-newservice .sapMGTContent:hover {
+/*.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage),
+.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage) .sapMTextMaxLine {
     background: #004687 !important;
     color: #FFFFFF !important;
-}
+}*/
 
-.ssp-module .sapMImageContentImageIcon.sapUiIcon .ssp-newservice .sapMGTContent:hover,
+/*.ssp-module .sapMImageContentImageIcon.sapUiIcon .ssp-newservice .sapMGTContent:hover,
 .ssp-viewservice .sapMGTContent:hover {
     background: none;
-}
+}*/
 
-.ssp-open {
+.ssp .ssp-open {
     background: rgb(187, 249, 18);
     background: linear-gradient(180deg, rgba(187, 249, 18, 1) 0%, rgba(255, 255, 255, 1) 100%);
     border: 1px solid rgb(187, 249, 18);
@@ -348,12 +347,26 @@
     border: 1px solid rgb(150, 150, 150);
 }
 
-.ssp-newservice .sapMGTContent {
-    background: #4B84B3;
+.ssp-viewservice:hover .sapMGTContent,
+.ssp-viewservice .sapMGTContent:hover,
+.ssp-viewservice:hover .sapMGTHdrContent {
+    background: #004687 !important;
+
+}
+
+.ssp-viewservice:hover {
+    box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.ssp-viewservice:hover .sapMTextMaxLine,
+.ssp-viewservice .sapMGTContent:hover,
+.ssp-viewservice:hover .sapMTextMaxLine {
+    color: #FFFFFF;
 }
 
 .ssp-viewservice .sapMGTContent {
     background: #0066cc45;
+    transition: box-shadow 300ms ease-in;
 }
 
 .ssp-newservice .sapMImageContentImageIcon.sapUiIcon,
