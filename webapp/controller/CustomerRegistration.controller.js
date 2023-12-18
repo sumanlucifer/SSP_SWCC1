@@ -5,6 +5,7 @@ sap.ui.define([
 	"sap/ui/core/routing/History"
 
 ], function (BaseController, JSONModel, MessageBox, History) {
+
 	"use strict";
 
 	return BaseController.extend("com.swcc.Template.controller.CustomerRegistration", {
