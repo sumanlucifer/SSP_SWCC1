@@ -311,7 +311,7 @@
     background: none;
 }*/
 
-.ssp .ssp-open {
+.ssp-open {
     background: rgb(187, 249, 18);
     background: linear-gradient(180deg, rgba(187, 249, 18, 1) 0%, rgba(255, 255, 255, 1) 100%);
     border: 1px solid rgb(187, 249, 18);
