@@ -52,7 +52,7 @@ sap.ui.define([
 
 			var dynamicFilters = this.getFilters(filters);
 			this.getModel().setProperty("/busy", true);
-			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/A_CountryText/', null, dynamicFilters.CountryFilter)
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', '/A_CountryText/', null, dynamicFilters.CountryFilter)
 				.then(function (oResponse) {
 
 					this.getModel().setProperty("/CustomerRegistrationData/CountryF4/", oResponse.results);
@@ -80,7 +80,7 @@ sap.ui.define([
 			var dynamicFilters = this.getFilters(filters);
 			this.getModel().setProperty("/busy", true);
 
-			this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/C_RegionTextVHTemp', null,
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', '/C_RegionTextVHTemp', null,
 					dynamicFilters.CountryChangeFilter)
 				.then(function (oResponse) {
 					oResponse.results.length === 0 ? this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", null) : this.getModel().setProperty(
@@ -108,11 +108,13 @@ sap.ui.define([
 				this.getRouter().navTo("HomePage", {}, true);
 			}
 		},
+
 		SubmitBPRegistration: function (oPayload) {
 			this.getModel().setProperty("/busy", true);
-			this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'create', '/BPRequestSet',
-					oPayload)
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/BPRequestSet',
+					oPayload, null, null)
 				.then(function (oResponse) {
+					debugger;
 					this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.ReqID} `);
 					this.getModel().setProperty("/CustomerRegistrationData/Header/", null);
 					this.getModel().setProperty("/busy", false);

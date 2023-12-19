@@ -8,10 +8,10 @@
 				<OverflowToolbar>
 					<ToolbarSpacer/>
 				</OverflowToolbar>
-				<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>
-				<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>
-				<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>
-				<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>
+				<!--<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
+				<!--<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
+				<!--<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
+				<!--<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
 			</OverflowToolbar>
 		</headerToolbar>
 		<infoToolbar>
@@ -49,13 +49,13 @@
 			<ColumnListItem vAlign="Middle">
 				<cells>
 					<ObjectIdentifier text="{RequestID}"/>
-					<Text text="{Date}"/>
+					<Text text="{CreatedOn}"/>
 					<Text text="{FirstName}"/>
 					<Text text="{LastName}"/>
 					<Text text="{Email}"/>
 					<Text text="{Phone}"/>
 					<Button icon="sap-icon://employee-approvals" class="swcc-pmy-btn" type="Accept" press="onApprove"/>
-					<Button type="Reject" class="swcc-sec-btn" icon="sap-icon://employee-rejections" press="onPress"/>
+					<Button type="Reject" class="swcc-sec-btn" icon="sap-icon://employee-rejections" press="onReject"/>
 				</cells>
 			</ColumnListItem>
 		</items>

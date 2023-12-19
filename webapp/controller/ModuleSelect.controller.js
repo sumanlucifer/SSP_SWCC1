@@ -33,16 +33,19 @@ sap.ui.define([
 			},
 			getServiceTypeDD: function () {
 
-				var sProductTypeFilter = new sap.ui.model.Filter({
-					path: "ProductType",
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: this.byId("idService").getSelectedKey()
-				});
+				var filters = [{
+						path: "ProductType",
+						value: this.byId("idService").getSelectedKey(),
+						group: "ServiceTypeFilter"
+					}
 
-				var Filter = [];
-				Filter.push(sProductTypeFilter);
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/ZCDSV_PRODUCTTYPEVH/', null, Filter)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_PRODUCTTYPEVH/', null,
+						dynamicFilters.ServiceTypeFilter)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/ModuleSearch/SelectServiceType/", oResponse.results);
 						this.getModel().setProperty("/busy", false);
@@ -53,16 +56,20 @@ sap.ui.define([
 
 			},
 			onSelectServiceTypeDD: function () {
-				var sProductTypeFilter = new sap.ui.model.Filter({
-					path: "ProductGroup",
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: this.getModel().getProperty("/ModuleSearch/Header/ServiceTypeKey/")
-				});
 
-				var Filter = [];
-				Filter.push(sProductTypeFilter);
+				var filters = [{
+						path: "ProductGroup",
+						value: this.getModel().getProperty("/ModuleSearch/Header/ServiceTypeKey/"),
+						group: "ServiceTypeFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'read', '/ZCDSV_SUBSERVICEVH/', null, Filter)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_SUBSERVICEVH/', null,
+						dynamicFilters.ServiceTypeFilter)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/ModuleSearch/SelectSubServiceType/", oResponse.results);
 						this.getModel().setProperty("/busy", false);

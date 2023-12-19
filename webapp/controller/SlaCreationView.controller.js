@@ -37,7 +37,7 @@ sap.ui.define([
 
 				var sAPI = `/BPRequestSet(UserName='WT_POWER')`;
 
-				this.getAPI.oDataReadAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', sAPI)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/SLARegistrationData/Header/", oResponse);
 						this.getModel().setProperty("/busy", false);
@@ -66,12 +66,10 @@ sap.ui.define([
 			},
 			SubmitSLARegistration: function (oPayload) {
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'create', '/SLARequestSet',
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/SLARequestSet',
 						oPayload)
 					.then(function (oResponse) {
-
 						this._handleMessageBoxProceed(`SLA Request has been Created : ${oResponse.ReqID} `);
-						debugger;
 						this.getModel().setProperty("/CustomerRegistrationData/Header/", null);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
@@ -84,8 +82,6 @@ sap.ui.define([
 
 				var oPayload = this.getModel().getProperty("/SLARegistrationData/CustomData/");
 				this.SubmitSLARegistration(oPayload);
-
-				//this.getOwnerComponent().getRouter().navTo("AppHomePage");
 
 			},
 

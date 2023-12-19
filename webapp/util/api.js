@@ -18,57 +18,11 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 			});
 		},
 
-		//	call API below for REST
+		// 		This below dynamic oDataACRUDCall() Method accepts for all CRUD operation SAP ODATA !!!
 
-		// 		this.getAPI.crudOperations(oOptions)
-		// 				.then(function (oResponse) {
-		// 					var aData = oResponse.data;
-		// 					this.getModel().setProperty("/userRecommendation/getRecommendations", aData);
-		// 				}.bind(this));
-
-		//	call API below for REST
-
-		// 		Create call
-
-		oDataAPICall: function (oModel, apiCall, entity, oPayload, filter) {
+		oDataACRUDAPICall: function (oModel, httpMethod, entity, payload, filter, urlParams) {
 			return new Promise(function (resolve, reject) {
-
-				// Use bracket notation to call the dynamic function
-				oModel[apiCall](entity, oPayload, {
-					filters: [filter],
-					success: function (oData) {
-						resolve(oData);
-					},
-					error: function (oResult) {
-						reject(oResult);
-					}
-				});
-			}.bind(this));
-		},
-		oDataReadAPICall1: function (oModel, apiCall, entity, oPayload, filter, top, skip, ) {
-			return new Promise(function (resolve, reject) {
-
-				// Use bracket notation to call the dynamic function
-				oModel[apiCall](entity, {
-					urlParameters: {
-						"$top": top ? top : null
-					},
-					filters: [filter],
-					success: function (oData) {
-						resolve(oData);
-					},
-					error: function (oResult) {
-						reject(oResult);
-					}
-				});
-			}.bind(this));
-		},
-
-		oDataReadAPICall: function (oModel, apiCall, entity, oPayload, filter, urlParams) {
-			return new Promise(function (resolve, reject) {
-				// Prepare query options object
 				const queryOptions = {
-					filters: [filter],
 					success: function (oData) {
 						resolve(oData);
 					},
@@ -77,7 +31,9 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 					}
 				};
 
-				// Check if additional URL parameters are provided and append them
+				if (filter) {
+					queryOptions.filters = [filter];
+				}
 				if (urlParams) {
 					if (!queryOptions.urlParameters) {
 						queryOptions.urlParameters = {};
@@ -85,19 +41,26 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 					Object.assign(queryOptions.urlParameters, urlParams);
 				}
 
-				// Use bracket notation to call the dynamic function
-				oModel[apiCall](entity, queryOptions);
-			}.bind(this));
+				// Determine the HTTP method to be used for the request
+				switch (httpMethod.toUpperCase()) {
+				case 'GET':
+					oModel.read(entity, queryOptions);
+					break;
+				case 'POST':
+					oModel.create(entity, payload, queryOptions);
+					break;
+				case 'PUT':
+					oModel.update(entity, payload, queryOptions);
+					break;
+				case 'DELETE':
+					oModel.remove(entity, queryOptions);
+					break;
+				default:
+					reject('Invalid HTTP method');
+				}
+			});
 		},
 
-		//	call API below: 
-
-		// 		this.crudOperations_ODATA("YourEntitySet", oFilter, "read").then(function (result) {
-		// 			// Handle success
-		// 		}).catch(function (error) {
-		// 			// Handle error
-		// 		});
-		//	call API below: 
 		baseURL: function (oOptions) {
 			//return "../EIFA-NODE_api/" + oOptions.url;
 			return "/CPI/" + oOptions.url;

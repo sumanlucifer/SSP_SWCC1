@@ -9,15 +9,15 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>PhoneNumber}"/>
-				<Input enabled="false" maxLength="10" showClearIcon="true" value="{/SLARegistrationData/Header/PhoneNo/}"/>
+				<Text text="{/SLARegistrationData/Header/PhoneNo/}"/>
 				<Label text="{i18n>customerid}" required="true"/>
-				<Input value="{/SLARegistrationData/Header/UserName/}"/>
+				<Text text="{/SLARegistrationData/Header/Company/}"/>
 				<Label text="{i18n>crno}"/>
-				<Input enabled="false" value="{/SLARegistrationData/Header/Cr_No/}"/>
+				<Text text="{/SLARegistrationData/Header/Cr_No/}"/>
 				<Label text="{i18n>EmailID}"/>
-				<Input value="{/SLARegistrationData/Header/Email/}" enabled="false"/>
+				<Text text="{/SLARegistrationData/Header/Email/}"/>
 				<Label text="{i18n>customername}"/>
-				<Input value="{/SLARegistrationData/Header/Company/}" enabled="false"/>
+				<Text text="{/SLARegistrationData/Header/UserName/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -37,17 +37,17 @@
 					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
 				</Select>-->
 				<Label text="{i18n>street}"/>
-				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
+				<Text text="{/SLARegistrationData/Header/Stras/}"/>
 				<Label text="{i18n>Region}" required="false"/>
-				<Input value="{/SLARegistrationData/Header/Regio}" enabled="false"/>
+				<Text text="{/SLARegistrationData/Header/Regio/}"/>
 				<Label text="{i18n>POBOX}"/>
-				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
+				<Text text="{/SLARegistrationData/Header/PoBox/}"/>
 				<Label text="{i18n>City}"/>
-				<Input value="{/SLARegistrationData/Header/Ort01/}" enabled="false"/>
+				<Text text="{/SLARegistrationData/Header/Ort01/}"/>
 				<Label text="{i18n>country}"/>
-				<Input value="{/SLARegistrationData/Header/Land1/}" enabled="false"/>
+				<Text text="{/SLARegistrationData/Header/Land1/}"/>
 				<Label text="{i18n>postalcode}"/>
-				<Input enabled="false" value="{/SLARegistrationData/Header/Pstlz/}"/>
+				<Text text="{/SLARegistrationData/Header/Pstlz/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

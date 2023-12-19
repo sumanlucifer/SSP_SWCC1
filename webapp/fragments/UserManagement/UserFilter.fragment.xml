@@ -11,11 +11,7 @@
 		<fb:filterGroupItems>
 			<fb:FilterGroupItem groupName="__$INTERNAL$" name="PONOs" label="{i18n>RequestID}" visibleInFilterBar="true" class="searchFieldLabelHidden">
 				<fb:control>
-					<Input id="idPono" liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
-						<suggestionItems>
-							<core:Item text="{MDCC/PONumber}"/>
-						</suggestionItems>
-					</Input>
+					<Input id="idPono" liveChange="onFilterChange" placeholder="Enter Request ID" showSuggestion="true" showValueHelp="false"></Input>
 				</fb:control>
 			</fb:FilterGroupItem>
 			<fb:FilterGroupItem groupName="__$INTERNAL$" name="mdccNos" label="{i18n>Date}" visibleInFilterBar="true" class="searchFieldLabelHidden">
@@ -26,21 +22,13 @@
 			<fb:FilterGroupItem groupName="__$INTERNAL$" name="FirstName" label="{i18n>FirstName}" visibleInFilterBar="true"
 				class="searchFieldLabelHidden">
 				<fb:control>
-					<Input liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
-						<suggestionItems>
-							<core:Item text="{MDCC/MDCCNumber}"/>
-						</suggestionItems>
-					</Input>
+					<Input liveChange="onFilterChange" placeholder="Enter First Name" showSuggestion="true" showValueHelp="false"></Input>
 				</fb:control>
 			</fb:FilterGroupItem>
 			<fb:FilterGroupItem groupName="__$INTERNAL$" name="CreatedAt" label="{i18n>LastName}" visibleInFilterBar="true"
 				class="searchFieldLabelHidden">
 				<fb:control>
-					<Input liveChange="onFilterChange" placeholder="" showSuggestion="true" showValueHelp="false" suggestionItems="{/MDCCStatusSet}">
-						<suggestionItems>
-							<core:Item text="{MDCC/MDCCNumber}"/>
-						</suggestionItems>
-					</Input>
+					<Input liveChange="onFilterChange" placeholder="Enter Last Name" showSuggestion="true" showValueHelp="false"></Input>
 				</fb:control>
 			</fb:FilterGroupItem>
 		</fb:filterGroupItems>

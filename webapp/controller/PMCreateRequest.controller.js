@@ -71,7 +71,7 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataReadAPICall(
 					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
-					'read',
+					'GET',
 					'/ZCDSV_WORKCENTERVH',
 					null,
 					dynamicFilters.WorkCntrFilter,
@@ -125,9 +125,9 @@ sap.ui.define([
 						"$top": 10
 					};
 
-					const oResponse = await this.getAPI.oDataReadAPICall(
+					const oResponse = await this.getAPI.oDataACRUDAPICall(
 						this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
-						'read',
+						'GET',
 						'/ZCDSV_EQUIPMENTVH',
 						null,
 						Filter,
@@ -176,6 +176,7 @@ sap.ui.define([
 			},
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
+				oPayload.Username = "WT_POWER";
 				// var oPayload = {
 				// 	"Material": "ZT",
 				// 	"Equipment": "10000131",

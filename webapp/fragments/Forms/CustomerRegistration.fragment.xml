@@ -20,7 +20,7 @@
 					selectedKey="{/CustomerRegistrationData/Header/Land1/}" items="{/CustomerRegistrationData/CountryF4/}">
 					<core:Item key="{Country}" text="{CountryName}"/>
 				</ComboBox>
-				<Label text="{i18n>Region}" required="false"/>
+				<Label text="{i18n>City}" required="false"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Region" selectedKey="{/CustomerRegistrationData/Header/Regio/}"
 					items="{/CustomerRegistrationData/RegionF4/}">
 					<core:Item key="{Country}" text="{RegionName}"/>
@@ -29,8 +29,8 @@
 				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
 				<Label text="{i18n>POBOX}" required="true"/>
 				<Input value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>
-				<Label text="{i18n>City}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>
+				<!--<Label text="{i18n>City}" required="true"/>-->
+				<!--<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>-->
 				<Label text="{i18n>Email}" required="true" labelFor="inputEmail"/>
 				<Input id="inputEmail" value="{/CustomerRegistrationData/Header/Email/}" type="Email" placeholder="Enter Email"
 					ariaLabelledBy="InputEmailLabel"/>
