@@ -17,7 +17,7 @@
 			<GenericTile visible="{/TileData/Header/BPExists}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
 				press="onPressViewAllRequest" header="{i18n>viewservicerequest}">
 				<TileContent>
-					<ImageContent src="sap-icon://attachment-e-pub"/>
+					<ImageContent src="sap-icon://personnel-view"/>
 				</TileContent>
 			</GenericTile>
 			<GenericTile visible="{= !${/TileData/Header/BPExists}}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
@@ -28,7 +28,7 @@
 			</GenericTile>
 			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressSlaRequest" header="{i18n>createsla}">
 				<TileContent>
-					<ImageContent src="sap-icon://create"/>
+					<ImageContent src="sap-icon://request"/>
 				</TileContent>
 			</GenericTile>
 			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>usermanage}">

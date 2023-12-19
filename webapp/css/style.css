@@ -108,23 +108,6 @@
     display: block;
 }
 
-.ssp-module {
-    -webkit-box-shadow: 0 0 3px 0px #004687;
-    -moz-box-shadow: 0 0 3px 0px #004687;
-    box-shadow: 0 0 3px 0px #004687;
-    background: #ffffff;
-    border: 1px solid #004687;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -khtml-border-radius: 5px;
-    border-radius: 5px;
-    border: 1px solid #004687;
-}
-
-.ssp-module .sapMImageContentImageIcon.sapUiIcon {
-    font-size: 2.5rem;
-}
-
 /* Button css */
 .swcc-pmy-btn .sapMBtnDefault {
     Background-color: #004687;
@@ -158,13 +141,6 @@
     margin: 1rem 2rem 0rem 2rem;
 }
 
-.ssp-form-bg .sapUiForm {
-    /*background: #FFFFFF;
-    min-height: 35vh;*/
-    border-radius: 10px 10px 0 0;
-
-}
-
 
 .ssp-tlbr-title {
     display: block;
@@ -190,6 +166,29 @@
 
 /* Layout css ends here */
 /* form css */
+.ssp-form-bg .sapUiForm {
+    /*background: #FFFFFF;
+    min-height: 35vh;*/
+    border-radius: 10px 10px 0 0;
+}
+
+.ssp-home-bg,
+.ssp-home-bg .sapUiFormTitle {
+    background: #004687;
+    color: #fff;
+    /*border-radius: 10px 10px 5px 5px;*/
+    height: fit-content;
+    font-family: 'SWCC-4-Bold';
+}
+
+.ssp-home-bg .sapMTitle {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    width: 100%;
+    font-size: 1.8rem !important;
+}
+
 .ssp-form-bg .sapUiFormTitle,
 .sapMTBStandard.ssp-title {
     background: #004687;
@@ -197,6 +196,11 @@
     border-radius: 10px 10px 5px 5px;
     height: fit-content;
     font-family: 'SWCC-4-Bold';
+}
+
+.ssp-module {
+    border: 1px solid #004687;
+    background-color: #f1f5f9;
 }
 
 .ssp-title .sapMBtnIcon,
@@ -316,6 +320,7 @@
     background: none;
 }*/
 
+/* status tiles csss */
 .ssp-open {
     background: rgb(187, 249, 18);
     background: linear-gradient(180deg, rgba(187, 249, 18, 1) 0%, rgba(255, 255, 255, 1) 100%);
@@ -352,22 +357,44 @@
     border: 1px solid rgb(150, 150, 150);
 }
 
-.ssp-viewservice:hover .sapMGTContent,
-.ssp-viewservice .sapMGTContent:hover,
-.ssp-viewservice:hover .sapMGTHdrContent {
-    background: #004687 !important;
+/* status style css ends here */
+/* Tiles css here */
+/*.ssp-module {
+    -webkit-box-shadow: 0 0 3px 0px #004687;
+    -moz-box-shadow: 0 0 3px 0px #004687;
+    box-shadow: 0 0 3px 0px #004687;
+    background: #ffffff;
+    border: 1px solid #004687;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    border: 1px solid #004687;
+}*/
 
-
+.ssp-module .sapMImageContentImageIcon.sapUiIcon {
+    font-size: 2.5rem;
 }
 
-.ssp-viewservice:hover {
+.ssp-viewservice:hover,
+.ssp-module:hover {
     box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.3) !important;
+    background: #004687 !important;
 }
+
 
 .ssp-viewservice:hover .sapMTextMaxLine,
 .ssp-viewservice .sapMGTContent:hover,
-.ssp-viewservice:hover .sapMTextMaxLine {
+.ssp-viewservice:hover .sapMTextMaxLine,
+.ssp-module:hover .sapMTextMaxLine,
+.ssp-module .sapMGTContent:hover,
+.ssp-module:hover .sapMTextMaxLine,
+.ssp-module:hover .sapUiIcon {
     color: #FFFFFF;
+}
+
+.ssp-viewservice:hover .sapMGTContent {
+    background: none;
 }
 
 .ssp-viewservice .sapMGTContent {
@@ -375,7 +402,48 @@
     transition: box-shadow 300ms ease-in;
 }
 
-.ssp-newservice .sapMImageContentImageIcon.sapUiIcon,
+.ssp-viewservice {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    /* box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
+    position: relative;
+    background: #FFFFFF;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.ssp-viewservice:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFF;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.ssp-viewservice:hover:before,
+.ssp-viewservice:focus:before,
+.ssp-viewservice:active:before {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+}
+
 .ssp-viewservice .sapMImageContentImageIcon.sapUiIcon {
     color: #ffffff;
     font-size: 2.5rem;
@@ -398,24 +466,7 @@
     text-shadow: #FC0 1px 0 10px;
 }
 
-
-/*.ssp-vtl {
-    border: 1px solid #0066cc;
-    border-radius: 10px 10px 0px 0px;
-}*/
-
-/*.ssp-vtl .sapUiVltCell {
-    background: #FFFFFF;
-    padding: 1rem;
-
-}*/
-
-/*.ssp-tile {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px 10px 0px 0px;
-
-}*/
-
+/* Tile css ends here */
 /* common css ends here */
 .swcc-tabbar,
 .swcc-tabbar>.sapUiHLayoutChildWrapper {
