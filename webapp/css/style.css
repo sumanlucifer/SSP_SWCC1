@@ -20,6 +20,11 @@
 }
 
 /* custom font ends here */
+/* Default css to apply whole modules */
+.sapMLabel {
+    font-family: 'SWCC-3-Medium' !important;
+}
+
 /* user management */
 .sapMITBFilter .sapMITBText {
     width: 6.5rem;
@@ -352,6 +357,7 @@
 .ssp-viewservice:hover .sapMGTHdrContent {
     background: #004687 !important;
 
+
 }
 
 .ssp-viewservice:hover {
@@ -529,5 +535,48 @@
 
 .lbl-attach.sapMLabel {
     color: #0066cc;
+    /* upload css ends here */
     font-weight: bold;
 }
+
+/* upload css */
+.uploadBox form {
+    display: block;
+    float: right;
+    padding: 5px;
+    font-family: 'SWCC-3-Medium';
+}
+
+.upload-table .sapMTableTHead {
+
+    font-family: 'SWCC-3-Medium';
+    visibility: hidden;
+}
+
+.upload-table .sapMTableTBody .sapMListTblCell {
+    border: none;
+}
+
+.upload-table .sapMListTblCell {
+    color: #af0c0c;
+    font-size: 12px;
+}
+
+.upload-table .sapMIBar {
+    height: auto !important;
+    display: block;
+}
+
+.upload-table .sapMImg {
+    margin: 0 auto !important;
+    display: block;
+}
+
+.upload-table .sapMListTbl {
+    /*border: 1px solid #00468740;*/
+    min-height: 12rem !important;
+    margin: 5px;
+    width: 99%;
+}
+
+/* upload css ends here */
