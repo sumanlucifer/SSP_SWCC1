@@ -13,6 +13,7 @@ sap.ui.define([
 
 			},
 			handleBackPress: function () {
+
 				var oHistory, sPreviousHash;
 				oHistory = History.getInstance();
 				sPreviousHash = oHistory.getPreviousHash();
