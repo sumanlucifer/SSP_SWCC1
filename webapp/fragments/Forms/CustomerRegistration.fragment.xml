@@ -9,7 +9,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>customername}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Company/}" type="text" placeholder="Enter Customer Name" ariaLabelledBy="Inputcustomername"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Enter Customer Name' : '' }"
+					value="{/CustomerRegistrationData/Header/Company/}" type="text" placeholder="Enter Customer Name"/>
 				<Label text="{i18n>street}" required="true"/>
 				<Input value="{/CustomerRegistrationData/Header/Stras/}" type="text" placeholder="Enter Street" ariaLabelledBy="Inputcustomerstreet"/>
 				<Label text="{i18n>postalcode}" required="true"/>
@@ -20,7 +22,7 @@
 					selectedKey="{/CustomerRegistrationData/Header/Land1/}" items="{/CustomerRegistrationData/CountryF4/}">
 					<core:Item key="{Country}" text="{CountryName}"/>
 				</ComboBox>
-				<Label text="{i18n>City}" required="false"/>
+				<Label text="{i18n>City}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Region" selectedKey="{/CustomerRegistrationData/Header/Regio/}"
 					items="{/CustomerRegistrationData/RegionF4/}">
 					<core:Item key="{Country}" text="{RegionName}"/>
