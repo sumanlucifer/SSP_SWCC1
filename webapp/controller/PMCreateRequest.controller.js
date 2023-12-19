@@ -22,6 +22,7 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
+				debugger;
 				this._createItemDataModel();
 				this.PlantF4();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
@@ -45,6 +46,7 @@ sap.ui.define([
 			},
 
 			PlantF4: function () {
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {

@@ -80,8 +80,8 @@
 				<Input placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
 				<Label text="{i18n>correspondanceemail}" required="true"/>
 				<Input placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
-				<Label text="{i18n>correspondanceext}" required="true"/>
-				<Input placeholder="Enter Correspondance Ext" value="{/SLARegistrationData/CustomData/P2_Ext/}"/>
+				<Label text="{i18n>correspondanceext}" required="false"/>
+				<Input placeholder="Enter Correspondance Extension Number" value="{/SLARegistrationData/CustomData/P2_Ext/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
