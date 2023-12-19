@@ -64,48 +64,48 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
-			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
-			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
-			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
-			mediaTypes="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple="true"
-			afterItemAdded="onFileAdded">
-			<upload:toolbar>
-				<OverflowToolbar>
-					<Label text="{i18n>Attachments}" class="lbl-attach"/>
-					<core:Icon id="idInfoIconLeave" src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
-					<ToolbarSpacer/>
-				</OverflowToolbar>
-			</upload:toolbar>
-		</upload:UploadSet>
-		<!--	<u:FileUploader id="fileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
-			uploadComplete="handleUploadComplete"/>
-		<Button text="Upload File" press="handleUploadPress"/>-->
-		<!--	<fiori:UploadCollection noDataText="No Data">
-			<fiori:UploadCollectionItem fileName="LaptopHT-1000.jpg" fileNameClickable="true" uploadState="Complete">
-				<Label text="Uploaded By: David Keane · Uploaded On: 2022-03-08 · File Size: 35 KB"/>
-				<fiori:thumbnail>
-					<Icon name="laptop"/>
-				</fiori:thumbnail>
-			</fiori:UploadCollectionItem>
-			<fiori:UploadCollectionItem fileName="Notes.txt" fileNameClickable="true" progress="42">
-				<Label text="Uploaded By: John Smith · Uploaded On: 2014-09-02 · File Size: 226.6 KB"/>
-				<fiori:thumbnail>
-					<Icon name="document-text"/>
-				</fiori:thumbnail>
-			</fiori:UploadCollectionItem>
-			<fiori:UploadCollectionItem fileName="latest.reports.pdf.txt" fileNameClickable="true" progress="59" uploadState="Error">
-				<Label text="uploadState=Error"/>
-				<fiori:thumbnail>
-					<Icon name="document-text"/>
-				</fiori:thumbnail>
-			</fiori:UploadCollectionItem>
-			<fiori:UploadCollectionItem fileName="Big File.pdf" fileNameClickable="true" progress="37" uploadState="Uploading">
-				<Label text="uploadState=Uploading"/>
-				<fiori:thumbnail>
-					<Icon name="document-text"/>
-				</fiori:thumbnail>
-			</fiori:UploadCollectionItem>
-		</fiori:UploadCollection>-->
+		<Label text="{i18n>Attachments}" required="false"/>
+		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" id="__FILEUPLOAD" visible="true"
+			sameFilenameAllowed="false" buttonText="Upload file" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+			placeholder="Choose a file" style="Emphasized"
+			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+	</VBox>
+	<VBox>
+		<Table id="fileTable" class="upload-table" items="{/uploadedFiles}" mode="Delete" noDataText="{i18n>uploadtooltip}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<Image src="../webapp/util/Images/uploadfile.png" height="auto" width="auto">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Image>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{FileName}"/>
+						<Text text="{FileSize}"/>
+						<Text text="{Delete}"/>
+						<!-- Add more cells as needed -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 	</VBox>
 </core:FragmentDefinition>

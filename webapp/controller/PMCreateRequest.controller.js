@@ -12,9 +12,13 @@ sap.ui.define([
 		return BaseController.extend("com.swcc.Template.controller.PMCreateRequest", {
 
 			onInit: function () {
-				debugger;
+
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
+				var oModel = new JSONModel({
+					uploadedFiles: []
+				});
+				this.getView().setModel(oModel);
 
 			},
 			_onObjectMatched: function () {
@@ -282,6 +286,28 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
+			},
+			handleUploadComplete: function (oEvent) {
+				var sFileName = oEvent.getParameter("files")[0].name;
+				var sFileSize = oEvent.getParameter("files")[0].size;
+
+				// Get the existing data from the model
+				var oModel = this.getView().getModel();
+				var aUploadedFiles = oModel.getProperty("/uploadedFiles");
+
+				// Add the new file data to the array
+				aUploadedFiles.push({
+					FileName: sFileName,
+					FileSize: sFileSize
+				});
+
+				// Update the model with the new data
+				oModel.setProperty("/uploadedFiles", aUploadedFiles);
+			},
+
+			handleUploadPress: function () {
+				// Trigger the file upload process
+				this.byId("fileUploader").upload();
 			}
 		})
 	})
