@@ -33,7 +33,7 @@ sap.ui.define([
 			BPFlagCheckAPI: function () {
 				var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
 
-				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', sAPI)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/TileData/Header/", oResponse);
 						this.getModel().setProperty("/busy", false);
