@@ -376,21 +376,12 @@
     font-size: 2.5rem;
 }
 
-.ssp-viewservice:hover .sapMGTContent,
-.ssp-viewservice .sapMGTContent:hover,
-.ssp-viewservice:hover .sapMGTHdrContent,
-.ssp-module:hover .sapMGTContent,
-.ssp-module .sapMGTContent:hover,
-.ssp-module:hover .sapMGTHdrContent {
-    background: #004687 !important;
-
-
-}
-
 .ssp-viewservice:hover,
 .ssp-module:hover {
     box-shadow: 0px 0px 13px 5px rgba(0, 0, 0, 0.3) !important;
+    background: #004687 !important;
 }
+
 
 .ssp-viewservice:hover .sapMTextMaxLine,
 .ssp-viewservice .sapMGTContent:hover,
@@ -402,11 +393,56 @@
     color: #FFFFFF;
 }
 
+.ssp-viewservice:hover .sapMGTContent {
+    background: none;
+}
+
 .ssp-viewservice .sapMGTContent {
     background: #0066cc45;
     transition: box-shadow 300ms ease-in;
 }
 
+.ssp-viewservice {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    /* box-shadow: 0 0 1px rgba(0, 0, 0, 0);*/
+    position: relative;
+    background: #FFFFFF;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.ssp-viewservice:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #FFF;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.5s;
+    transition-duration: 0.5s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.ssp-viewservice:hover:before,
+.ssp-viewservice:focus:before,
+.ssp-viewservice:active:before {
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+}
 
 .ssp-viewservice .sapMImageContentImageIcon.sapUiIcon {
     color: #ffffff;
@@ -431,23 +467,6 @@
 }
 
 /* Tile css ends here */
-/*.ssp-vtl {
-    border: 1px solid #0066cc;
-    border-radius: 10px 10px 0px 0px;
-}*/
-
-/*.ssp-vtl .sapUiVltCell {
-    background: #FFFFFF;
-    padding: 1rem;
-
-}*/
-
-/*.ssp-tile {
-    border: 1px solid #e5e5e5;
-    border-radius: 10px 10px 0px 0px;
-
-}*/
-
 /* common css ends here */
 .swcc-tabbar,
 .swcc-tabbar>.sapUiHLayoutChildWrapper {
