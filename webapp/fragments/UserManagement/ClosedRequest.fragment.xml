@@ -35,7 +35,7 @@
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Roles"/>
 			</Column>
-			<Column minScreenWidth="Tablet" width="3.2em" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text=""/>
 			</Column>
 		</columns>

@@ -38,10 +38,10 @@
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Mobile No"/>
 			</Column>
-			<Column minScreenWidth="Tablet" width="3.2em" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text=""/>
 			</Column>
-			<Column minScreenWidth="Tablet" width="3.2em" demandPopin="true">
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text=""/>
 			</Column>
 		</columns>
