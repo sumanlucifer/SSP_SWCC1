@@ -325,7 +325,7 @@
 
 }
 
-.ssp-request-Table .sapMListTblCell .sapMText {
+.ssp-request-Table .sapMListTblHeaderCell .sapMText {
     color: #fff;
     font-weight: bold;
 }

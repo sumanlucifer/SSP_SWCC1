@@ -52,70 +52,41 @@ sap.ui.define([
 
 			return dynamicFilters;
 		},
-		onApprove2: function (oEve, apiFunction, apiArguments, beginStrtTxt) {
-			var sID = "";
-			var dialog = new sap.m.Dialog({
-				title: 'Confirm',
-				type: 'Message',
-				icon: 'sap-icon://warning2',
-				content: [
-					new sap.m.Text({
-						text: 'Are you sure you want to Approve the Request ' + sID,
-					}),
-				],
-				beginButton: new sap.m.Button({
-					text: beginStrtTxt,
-					press: function () {
-						apiFunction.apply(this, apiArguments); // Invoke the API function dynamically
-						dialog.close();
-					}.bind(this), // Binding 'this' to maintain context
-				}),
-				endButton: new sap.m.Button({
-					text: 'Cancel',
-					press: function () {
-						dialog.close();
-					},
-				}),
-				afterClose: function () {
-					dialog.destroy();
-				},
-			});
-			dialog.open();
-		},
+
 		// Utility file containing createOnApprove function
 		// utility.js
 
-		handleConfirmMessage: function (apiFunction, apiArguments) {
-			return function (oEve) {
+		// 		handleConfirmMessage: function (apiFunction, apiArguments) {
+		// 			return function (oEve) {
 
-				var dialog = new sap.m.Dialog({
-					title: 'Confirm',
-					type: 'Message',
-					content: [
-						new sap.m.Text({
-							text: 'Are you sure you want to Approve the Request ' + apiArguments,
-						}),
-					],
-					beginButton: new sap.m.Button({
-						text: 'Approve',
-						press: function () {
-							apiFunction.call(this, "123");
-							dialog.close();
-						}.bind(this),
-					}),
-					endButton: new sap.m.Button({
-						text: 'Cancel',
-						press: function () {
-							dialog.close();
-						},
-					}),
-					afterClose: function () {
-						dialog.destroy();
-					},
-				});
-				dialog.open();
-			};
-		},
+		// 				var dialog = new sap.m.Dialog({
+		// 					title: 'Confirm',
+		// 					type: 'Message',
+		// 					content: [
+		// 						new sap.m.Text({
+		// 							text: 'Are you sure you want to Approve the Request ' + apiArguments,
+		// 						}),
+		// 					],
+		// 					beginButton: new sap.m.Button({
+		// 						text: 'Approve',
+		// 						press: function () {
+		// 							apiFunction.call(this, "123");
+		// 							dialog.close();
+		// 						}.bind(this),
+		// 					}),
+		// 					endButton: new sap.m.Button({
+		// 						text: 'Cancel',
+		// 						press: function () {
+		// 							dialog.close();
+		// 						},
+		// 					}),
+		// 					afterClose: function () {
+		// 						dialog.destroy();
+		// 					},
+		// 				});
+		// 				dialog.open();
+		// 			};
+		// 		},
 
 		addContentDensityClass: function () {
 			return this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
