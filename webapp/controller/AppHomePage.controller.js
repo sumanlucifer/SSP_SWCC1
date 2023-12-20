@@ -16,6 +16,7 @@ sap.ui.define([
 
 				var oHistory, sPreviousHash;
 				oHistory = History.getInstance();
+
 				sPreviousHash = oHistory.getPreviousHash();
 				if (sPreviousHash !== undefined) {
 					window.history.go(-1);
