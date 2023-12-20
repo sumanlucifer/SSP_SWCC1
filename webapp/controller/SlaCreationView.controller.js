@@ -65,6 +65,7 @@ sap.ui.define([
 				this.SubmitBPRegistration(oPayload);
 			},
 			SubmitSLARegistration: function (oPayload) {
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/SLARequestSet',
 						oPayload)
@@ -81,8 +82,40 @@ sap.ui.define([
 			onProceed: function () {
 
 				var oPayload = this.getModel().getProperty("/SLARegistrationData/CustomData/");
-				this.SubmitSLARegistration(oPayload);
+				this.InputValidation() !== true ?
+					"" : this.SubmitSLARegistration(oPayload);
+				//	this.SubmitSLARegistration(oPayload);
 
+			},
+			InputValidation: function () {
+				var bValid = true;
+				if (!this.getModel().getProperty("/SLARegistrationData/CustomData/P2_Represen/")) {
+					this.getModel().setProperty("/SLARegistrationData/CustomData/P2_Represen/", "")
+
+					bValid = false;
+				}
+				if (!this.getModel().getProperty("/SLARegistrationData/CustomData/P2_Rep_Pos/")) {
+					this.getModel().setProperty("/SLARegistrationData/CustomData/P2_Rep_Pos/", "")
+
+					bValid = false;
+				}
+				if (!this.getModel().getProperty("/SLARegistrationData/CustomData/P2_CorName/")) {
+					this.getModel().setProperty("/SLARegistrationData/CustomData/P2_CorName/", "")
+
+					bValid = false;
+				}
+				if (!this.getModel().getProperty("/SLARegistrationData/CustomData/P2_CorPos/")) {
+					this.getModel().setProperty("/SLARegistrationData/CustomData/P2_CorPos/", "")
+
+					bValid = false;
+				}
+				if (!this.getModel().getProperty("/SLARegistrationData/CustomData/P2_CorEmail/")) {
+					this.getModel().setProperty("/SLARegistrationData/CustomData/P2_CorEmail/", "")
+
+					bValid = false;
+				}
+
+				return bValid;
 			},
 
 			onPresshomepage: function () {

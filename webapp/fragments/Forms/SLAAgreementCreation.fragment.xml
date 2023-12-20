@@ -10,7 +10,7 @@
 				</Toolbar>
 				<Label text="{i18n>PhoneNumber}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/PhoneNo/}"/>
-				<Label text="{i18n>customerid}" required="true"/>
+				<Label text="{i18n>customerid}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Company/}"/>
 				<Label text="{i18n>crno}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Cr_No/}"/>
@@ -37,17 +37,17 @@
 					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
 				</Select>-->
 				<Label text="{i18n>street}"/>
-				<Text text="{/SLARegistrationData/Header/Stras/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
 				<Label text="{i18n>Region}" required="false"/>
-				<Text text="{/SLARegistrationData/Header/Regio/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Regio/}"/>
 				<Label text="{i18n>POBOX}"/>
-				<Text text="{/SLARegistrationData/Header/PoBox/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
 				<Label text="{i18n>City}"/>
-				<Text text="{/SLARegistrationData/Header/Ort01/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Ort01/}"/>
 				<Label text="{i18n>country}"/>
-				<Text text="{/SLARegistrationData/Header/Land1/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Land1/}"/>
 				<Label text="{i18n>postalcode}"/>
-				<Text text="{/SLARegistrationData/Header/Pstlz/}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Pstlz/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -60,9 +60,13 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>reprenname}" required="true"/>
-				<Input placeholder="Enter Representative Name" value="{/SLARegistrationData/CustomData/P2_Represen/}"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Enter Representative Name' : '' }"
+					placeholder="Enter Representative Name" value="{/SLARegistrationData/CustomData/P2_Represen/}"/>
 				<Label text="{i18n>repreposisition}" required="false"/>
-				<Input placeholder="Enter Representative Position" value="{/SLARegistrationData/CustomData/P2_Rep_Pos/}"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Enter Representative Position' : '' }"
+					placeholder="Enter Representative Position" value="{/SLARegistrationData/CustomData/P2_Rep_Pos/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -75,11 +79,17 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>correspondancename}" required="true"/>
-				<Input placeholder="Enter Correspondance Name" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorName/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorName/} === '' ? 'Enter Correspondance Name' : '' }"
+					placeholder="Enter Correspondance Name" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
 				<Label text="{i18n>correspondanceposisition}" required="true"/>
-				<Input placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorPos/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorPos/} === '' ? 'Enter Correspondance Position' : '' }"
+					placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
 				<Label text="{i18n>correspondanceemail}" required="true"/>
-				<Input placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorEmail/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorEmail/} === '' ? 'Enter Correspondance Email' : '' }"
+					placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
 				<Label text="{i18n>correspondanceext}" required="false"/>
 				<Input placeholder="Enter Correspondance Extension Number" value="{/SLARegistrationData/CustomData/P2_Ext/}"/>
 			</fm:content>
