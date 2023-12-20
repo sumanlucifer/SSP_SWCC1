@@ -234,11 +234,19 @@
 .ssp-form-bg .sapMInputBase .sapMInputBaseInner,
 .ssp-form-bg .sapMInputBaseContentWrapper,
 .ssp-form-bg .sapMSltDefault {
-    background: #c6d2e9;
+    background: #b5c8eb;
     border: 0px;
     height: 2rem;
     font-family: 'SWCC-3-Medium';
 
+}
+
+.ssp-form-bg .sapMInputBaseDisabledWrapper.sapMInputBaseContentWrapper,
+.ssp-form-bg .sapMInputBase.sapMInputBaseDisabled .sapMInputBaseInner {
+    background: #d1d2d3 !important;
+    border: 0px;
+    height: 2rem;
+    font-family: 'SWCC-3-Medium';
 }
 
 .ssp-form-bg .sapMInputBaseContentWrapperState.sapMInputBaseContentWrapperError {
@@ -250,7 +258,7 @@
 }
 
 .ssp-form-txtarea .sapMInputBaseContentWrapper {
-    background: #EFF0F2;
+    background: #b5c8eb;
     border: 0px;
     height: auto;
 }
