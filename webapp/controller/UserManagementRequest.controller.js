@@ -82,18 +82,18 @@ sap.ui.define([
 
 			},
 
-			onApprove1: function (oEve) {
-				var APIFunc = this.onApproveAPICall;
+			onApprove: function (oEve) {
 
-				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
-				var sRequestID = [sRequestID];
-				var dynamicOnApprove = this.handleConfirmMessage(APIFunc, sRequestID);
+				//	var APIFunc = this.onTest1.bind(this);
+
+				var sRequestID = ["22", "66"];
+				var dynamicOnApprove = this.handleConfirmMessage(this.onApproveAPICall.bind(this), sRequestID);
 
 				dynamicOnApprove(oEve, sRequestID);
 
 			},
 
-			onApprove: function (oEve) {
+			onApproveAPICall: function (oEve) {
 				debugger;
 				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
 				var oPayload = {

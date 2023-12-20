@@ -98,9 +98,9 @@ sap.ui.define([
 		onSubmitBP: function () {
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 
-			this.InputValidation() !== true ?
-				"" : this.SubmitBPRegistration(oPayload);
-			// 			this.SubmitBPRegistration(oPayload);
+			// 			this.InputValidation() !== true ?
+			// 				"" : this.SubmitBPRegistration(oPayload);
+			this.SubmitBPRegistration(oPayload);
 		},
 		InputValidation: function () {
 			var bValid = true;
@@ -160,6 +160,7 @@ sap.ui.define([
 
 			return bValid;
 		},
+
 		onCancel: function () {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
@@ -186,19 +187,14 @@ sap.ui.define([
 				}.bind(this));
 		},
 		_handleMessageBoxProceed: function (sMessage) {
-			var that = this;
-			sap.m.MessageBox.success(sMessage, {
-				icon: MessageBox.Icon.SUCCESS,
-				title: "Success",
-				actions: [MessageBox.Action.OK],
-				emphasizedAction: MessageBox.Action.YES,
-				onClose: function (oAction) {
-					if (oAction == "OK") {
-						that.onPresshomepage();
-					}
-				},
-			});
+			var params = {
+				sMessage: sMessage
+			};
+
+			this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+
 		},
+
 		onPresshomepage: function () {
 			this.getOwnerComponent().getRouter().navTo("HomePage");
 		},
