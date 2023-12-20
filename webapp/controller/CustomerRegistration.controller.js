@@ -12,6 +12,7 @@ sap.ui.define([
 		onInit: function () {
 
 			this.oRouter = this.getRouter();
+
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.attachRouteMatched(function (oEvent) {
 				var sRouteName = oEvent.getParameter("name");
