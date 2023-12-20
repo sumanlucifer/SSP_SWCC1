@@ -650,3 +650,37 @@
 }
 
 /* upload css ends here */
+/* custom css for deploy verison */
+.ssp-open.sapMGT.OneByOne,
+.ssp-progress.sapMGT.OneByOne,
+.ssp-done.sapMGT.OneByOne {
+    width: 22.5rem;
+    height: 5.25rem;
+}
+
+.ssp-open .sapMGTHdrContent,
+.ssp-progress .sapMGTHdrContent,
+.ssp-done .sapMGTHdrContent {
+    height: 1rem;
+}
+
+.sapUiMedia-Std-Desktop .sapUShellApplicationContainer.sapUShellApplicationContainerLimitedWidth {
+    width: 100% !important;
+}
+
+#shell-header {
+    width: 100%;
+    display: block;
+}
+
+.sapUshellShellHeadContainer {
+    display: none !important;
+}
+
+.sapUshellShellIco {
+    float: right;
+    display: block;
+    width: auto;
+}
+
+/* custom css for deploy version ends here */
