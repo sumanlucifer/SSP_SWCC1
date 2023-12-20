@@ -21,7 +21,7 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>baseunit}" required="false"/>
-				<Input enabled="false" value="{/PMCreateRequest/Header/BaseUnit/}"/>
+				<Input enabled="false" value="{/PMCreateRequest/CustomDisplayData/BaseUnit/}"/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<Label text="{i18n>priority}" required="true"/>
@@ -41,8 +41,8 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>equipment}"/>
-				<Input enabled="{= ${/PMCreateRequest/Header/Plant/} !== null}" required="true" width="100%" placeholder="Enter Equipment"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}"/>
+				<Input enabled="{= ${/PMCreateRequest/Header/Plant/} !== null}" width="100%" placeholder="Enter Equipment" valueHelpOnly="true"
+					showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}"/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">

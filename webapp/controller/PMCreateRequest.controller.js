@@ -28,7 +28,7 @@ sap.ui.define([
 				var sBaseUnit = sServiceProductLocalVal.split("_")[3];
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
-				this.getModel().setProperty("/PMCreateRequest/Header/BaseUnit", sBaseUnit);
+				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
 
 			},
 			_createItemDataModel: function () {
@@ -36,6 +36,7 @@ sap.ui.define([
 					busy: false,
 					PMCreateRequest: {
 						Header: {},
+						CustomDisplayData: {},
 						Attachment: [],
 						PlantF4: [],
 						WorkCenterF4: []
