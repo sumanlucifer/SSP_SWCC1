@@ -15,22 +15,22 @@
 					<Title level="H3" text="{i18n>userdetails}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 				</Toolbar>
-				<Label text="{i18n>slanumber}"/>
+				<Label text="{i18n>customerid}"/>
 				<Text text="5432345" class="user-dtls"/>
+				<Label text="{i18n>slanumber}"/>
+				<Text text="175456" class="user-dtls"/>
 				<Label text="{i18n>FirstName}"/>
 				<Text text="Abdul" class="user-dtls"/>
 				<Label text="{i18n>PhoneNumber}"/>
-				<Text text="+96656743576" class="user-dtls"/>
-				<Label text="{i18n>Company}"/>
-				<Text text="Z876567" class="user-dtls"/>
-				<Label text="{i18n>bpnumber}"/>
-				<Text text="Z876567" class="user-dtls"/>
+				<Text text="+96650234567" class="user-dtls"/>
+				<Label text="{i18n>customername}"/>
+				<Text text="Abdul basha" class="user-dtls"/>
+				<Label text="{i18n>poweruser}"/>
+				<Text text="Abdul Saleem" class="user-dtls"/>
 				<Label text="{i18n>LastName}"/>
 				<Text text="Basha" class="user-dtls"/>
-				<Label text="{i18n>EmailID}"/>
-				<Text text="Abdulb@wittco.com" class="user-dtls"/>
-				<Label text="{i18n>poweruser}"/>
-				<Text text="Rahman" class="user-dtls"/>
+				<Label text="{i18n>EMailid}"/>
+				<Text text="Abdul@wittco.com" class="user-dtls"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

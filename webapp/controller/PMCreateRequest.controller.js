@@ -169,7 +169,7 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'create', '/ServNotificationSet',
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);

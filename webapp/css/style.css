@@ -73,6 +73,14 @@
     padding: 0px;
 }
 
+.ssp-apphomepage .sapFDynamicPageContent {
+    background: url("../util/Images/bg1.png") no-repeat center center fixed !important;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .module-tile {
     padding-top: 5rem !important;
 }
@@ -233,6 +241,10 @@
 
 }
 
+.ssp-form-bg .sapMInputBaseContentWrapperState.sapMInputBaseContentWrapperError {
+    border: 2.5px solid #cf0e0e;
+}
+
 .ssp-form-bg .sapMLabel {
     font-family: 'SWCC-3-Medium';
 }
@@ -311,7 +323,7 @@
 
 .viewall-tbl {
     border: 1px solid #004687;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 /* status tiles csss */
