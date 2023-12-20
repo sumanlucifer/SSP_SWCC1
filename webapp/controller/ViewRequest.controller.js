@@ -1,6 +1,7 @@
 sap.ui.define([
-	"./BaseController"
-], function (BaseController) {
+	"./BaseController",
+	"sap/ui/core/routing/History"
+], function (BaseController, History) {
 	"use strict";
 
 	return BaseController.extend("com.swcc.Template.controller.ViewRequest", {
