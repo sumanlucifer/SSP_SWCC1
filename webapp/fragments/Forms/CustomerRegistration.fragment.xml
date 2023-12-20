@@ -12,32 +12,44 @@
 				<Input valueState="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Enter Customer Name' : '' }"
 					value="{/CustomerRegistrationData/Header/Company/}" type="text" placeholder="Enter Customer Name"/>
-				<Label text="{i18n>street}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Stras/}" type="text" placeholder="Enter Street" ariaLabelledBy="Inputcustomerstreet"/>
-				<Label text="{i18n>postalcode}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"
-					ariaLabelledBy="Inputcustomerpostalcode"/>
 				<Label text="{i18n>country}" required="true"/>
-				<ComboBox width="100%" valueState="None" selectionChange="onCountryChange" placeholder="Select Country"
-					selectedKey="{/CustomerRegistrationData/Header/Land1/}" items="{/CustomerRegistrationData/CountryF4/}">
+				<ComboBox valueState="{= ${/CustomerRegistrationData/Header/Land1/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Land1/} === '' ? 'Select Country' : '' }" width="100%"
+					selectionChange="onCountryChange" placeholder="Select Country" selectedKey="{/CustomerRegistrationData/Header/Land1/}"
+					items="{/CustomerRegistrationData/CountryF4/}">
 					<core:Item key="{Country}" text="{CountryName}"/>
 				</ComboBox>
 				<Label text="{i18n>City}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Region" selectedKey="{/CustomerRegistrationData/Header/Regio/}"
-					items="{/CustomerRegistrationData/RegionF4/}">
+				<ComboBox enabled="{= ${/CustomerRegistrationData/Header/Land1/} !== undefined ? true : false }"
+					valueState="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Select City' : '' }" width="100%" placeholder="Select Region"
+					selectedKey="{/CustomerRegistrationData/Header/Regio/}" items="{/CustomerRegistrationData/RegionF4/}">
 					<core:Item key="{Country}" text="{RegionName}"/>
 				</ComboBox>
+				<Label text="{i18n>street}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Stras/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Stras/} === '' ? 'Enter Street' : '' }"
+					value="{/CustomerRegistrationData/Header/Stras/}" type="text" placeholder="Enter Street"/>
+				<Label text="{i18n>postalcode}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Pstlz/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Pstlz/} === '' ? 'Enter Postal Code' : '' }"
+					value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"/>
 				<Label text="{i18n>shortname}" required="false"/>
 				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
 				<Label text="{i18n>POBOX}" required="true"/>
-				<Input value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Enter PO Box' : '' }"
+					value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX"/>
 				<!--<Label text="{i18n>City}" required="true"/>-->
 				<!--<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>-->
-				<Label text="{i18n>Email}" required="true" labelFor="inputEmail"/>
-				<Input id="inputEmail" value="{/CustomerRegistrationData/Header/Email/}" type="Email" placeholder="Enter Email"
-					ariaLabelledBy="InputEmailLabel"/>
+				<Label text="{i18n>Email}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Email/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Email/} === '' ? 'Enter Email' : '' }"
+					value="{/CustomerRegistrationData/Header/Email/}" type="Email" placeholder="Enter Email" ariaLabelledBy="InputEmailLabel"/>
 				<Label text="{i18n>crno}" required="true"/>
-				<Input id="idcrno" value="{/CustomerRegistrationData/Header/Cr_No/}" enabled="true" type="Text" placeholder="Enter Customer Registration No"
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Cr_No/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Cr_No/} === '' ? 'Enter CR Number' : '' }"
+					value="{/CustomerRegistrationData/Header/Cr_No/}" enabled="true" type="Text" placeholder="Enter Customer Registration No"
 					ariaLabelledBy="Inputcrno"/>
 			</fm:content>
 		</fm:SimpleForm>

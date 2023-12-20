@@ -108,6 +108,54 @@ sap.ui.define([
 
 				bValid = false;
 			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Stras/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Stras/", "")
+
+				bValid = false;
+			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Pstlz/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Pstlz/", "")
+
+				bValid = false;
+			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Land1/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Land1/", "")
+
+				bValid = false;
+			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Land1/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Land1/", "")
+
+				bValid = false;
+			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Regio/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", "")
+
+				bValid = false;
+			}
+
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Regio/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", "")
+
+				bValid = false;
+			}
+
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
+
+				bValid = false;
+			}
+
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Email/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Email/", "")
+
+				bValid = false;
+			}
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Cr_No/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Cr_No/", "")
+
+				bValid = false;
+			}
 
 			return bValid;
 		},
