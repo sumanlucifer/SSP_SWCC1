@@ -25,8 +25,10 @@ sap.ui.define([
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
+				var sBaseUnit = sServiceProductLocalVal.split("_")[3];
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
+				this.getModel().setProperty("/PMCreateRequest/Header/BaseUnit", sBaseUnit);
 
 			},
 			_createItemDataModel: function () {

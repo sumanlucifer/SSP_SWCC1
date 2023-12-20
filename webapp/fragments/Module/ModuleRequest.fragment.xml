@@ -31,7 +31,7 @@
 				selectionChange="onSelectSubServiceTypeDD" placeholder="Select SubService" selectedKey="{/ModuleSearch/Header/SUbServiceKey/}"
 				items="{/ModuleSearch/SelectSubServiceType/}" valueState="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Error' : 'None' }"
 				valueStateText="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Select Sub Service Type' : '' }">
-				<core:ListItem key="{Product}_{ProductName}_{MaterialLongText}" text="{ProductName}"/>
+				<core:ListItem key="{Product}_{ProductName}_{MaterialLongText}_{BaseUnit}" text="{ProductName}"/>
 			</ComboBox>
 			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
