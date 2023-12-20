@@ -48,7 +48,7 @@
 		<items>
 			<ColumnListItem vAlign="Middle">
 				<cells>
-					<ObjectIdentifier text="{RequestID}"/>
+					<ObjectIdentifier text="{ID}"/>
 					<Text text="{CreatedOn}"/>
 					<Text text="{FirstName}"/>
 					<Text text="{LastName}"/>

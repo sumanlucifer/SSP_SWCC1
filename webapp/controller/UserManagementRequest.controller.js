@@ -36,7 +36,7 @@ sap.ui.define([
 
 			getPendingUserDetails: function () {
 				var filters = [{
-						path: "SapID",
+						path: "ID",
 						value: "WT_POWER",
 						group: "UserFilter"
 					}
@@ -81,9 +81,21 @@ sap.ui.define([
 					}.bind(this));
 
 			},
+
+			onApprove1: function (oEve) {
+				var APIFunc = this.onApproveAPICall;
+
+				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
+				var sRequestID = [sRequestID];
+				var dynamicOnApprove = this.handleConfirmMessage(APIFunc, sRequestID);
+
+				dynamicOnApprove(oEve, sRequestID);
+
+			},
+
 			onApprove: function (oEve) {
 				debugger;
-				var sRequestID = oEve.getSource().getBindingContext().getObject().RequestID;
+				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
 				var oPayload = {
 					"RequestID": sRequestID
 				};
@@ -93,24 +105,38 @@ sap.ui.define([
 						oPayload, null, null)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
-
+						this._handleMessageBoxProceed(`Request has been Approved Successfully `);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
 			},
+			_handleMessageBoxProceed: function (sMessage) {
+				var that = this;
+				sap.m.MessageBox.success(sMessage, {
+					icon: MessageBox.Icon.SUCCESS,
+					title: "Success",
+					actions: [MessageBox.Action.OK],
+					emphasizedAction: MessageBox.Action.YES,
+					onClose: function (oAction) {
+						if (oAction == "OK") {
+							that.getPendingUserDetails();
+							that.getApprovedUserDetails();
+						}
+					},
+				});
+			},
 			onReject: function (oEve) {
-				var sRequestID = oEve.getSource().getBindingContext().getObject().RequestID;
-				var oPayload = {
-					"RequestID": sRequestID
-				};
+				var sID = oEve.getSource().getBindingContext().getObject().ID;
+
+				var sAPI = `/UserRequestSet(ID='${sID}')`;
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'DELETE', '/UserRequestSet',
-						oPayload, null, null)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'DELETE', sAPI,
+						null, null, null)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
-
+						this._handleMessageBoxProceed(`Request has been Rejected Successfully `);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
