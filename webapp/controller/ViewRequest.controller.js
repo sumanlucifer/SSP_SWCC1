@@ -33,14 +33,15 @@ sap.ui.define([
 		},
 
 		BPFlagCheckAPI: function () {
+			var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
 
-			var Filter = this.getFilters("WT_POWER", true);
-
-			this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'read', '/UserSet',
-					Filter, null)
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 				.then(function (oResponse) {
-					this.getModel().setProperty("/OpenItemRequestData/itemData", oResponse.results);
-
+					this.getModel().setProperty("/TileData/Header/", oResponse);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
 		},

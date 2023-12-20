@@ -45,8 +45,7 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding">
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="Open" subheader="" press="onOpen"
-				frameType="TwoByHalf">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="Open" press="onOpen" frameType="TwoByHalf">
 				<TileContent>
 					<NumericContent value="20" icon="sap-icon://open-folder" withMargin="false"/>
 				</TileContent>

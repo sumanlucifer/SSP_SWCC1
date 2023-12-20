@@ -226,7 +226,7 @@
 .ssp-form-bg .sapMInputBase .sapMInputBaseInner,
 .ssp-form-bg .sapMInputBaseContentWrapper,
 .ssp-form-bg .sapMSltDefault {
-    background: #EFF0F2;
+    background: #c6d2e9;
     border: 0px;
     height: 2rem;
     font-family: 'SWCC-3-Medium';
@@ -270,7 +270,7 @@
 
 .ssp-form-bg .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
 .ssp-form-bg .sapMSltHoverable:not(.sapMSltState):not(.sapMSltIconOnly):hover {
-    background: #EFF0F2;
+    background: #EFF0F2 !important;
     border: 0px;
     height: 2rem;
     box-shadow: 2px 2px 5px 1px #729ac39e;
@@ -309,16 +309,10 @@
     font-weight: bold;
 }
 
-/*.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage),
-.ssp-tile .sapMGT:hover:not(.sapMGTPressActive):not(.sapMGTBackgroundImage) .sapMTextMaxLine {
-    background: #004687 !important;
-    color: #FFFFFF !important;
-}*/
-
-/*.ssp-module .sapMImageContentImageIcon.sapUiIcon .ssp-newservice .sapMGTContent:hover,
-.ssp-viewservice .sapMGTContent:hover {
-    background: none;
-}*/
+.viewall-tbl {
+    border: 1px solid #004687;
+    border-radius: 10px;
+}
 
 /* status tiles csss */
 .ssp-open {
@@ -402,7 +396,8 @@
     transition: box-shadow 300ms ease-in;
 }
 
-.ssp-viewservice {
+.ssp-viewservice,
+.ssp-module {
     display: inline-block;
     vertical-align: middle;
     -webkit-transform: perspective(1px) translateZ(0);
@@ -416,7 +411,8 @@
     transition-duration: 0.3s;
 }
 
-.ssp-viewservice:before {
+.ssp-viewservice:before,
+.ssp-module:before {
     content: "";
     position: absolute;
     z-index: -1;
@@ -439,7 +435,10 @@
 
 .ssp-viewservice:hover:before,
 .ssp-viewservice:focus:before,
-.ssp-viewservice:active:before {
+.ssp-viewservice:active:before,
+.ssp-module:hover:before,
+.ssp-module:focus:before,
+.ssp-module:active:before {
     -webkit-transform: scaleX(0);
     transform: scaleX(0);
 }

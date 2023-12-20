@@ -229,7 +229,16 @@ sap.ui.define([
 				} else {
 					this.getRouter().navTo("ModuleSelect", {}, true);
 				}
-
+			},
+			onCancel: function () {
+				var oHistory, sPreviousHash;
+				oHistory = History.getInstance();
+				sPreviousHash = oHistory.getPreviousHash();
+				if (sPreviousHash !== undefined) {
+					window.history.go(-1);
+				} else {
+					this.getRouter().navTo("ModuleSelect", {}, true);
+				}
 			},
 			onSaveRequest: function () {
 				debugger;
