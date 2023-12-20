@@ -6,7 +6,7 @@
 			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content></fm:content>
 		</fm:SimpleForm>
-		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding ne-flexbox2">
 			<GenericTile visible="{/TileData/Header/BPExists}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active"
 				press="onPressCreateRequest" header="{i18n>createservicerequest}">
@@ -43,7 +43,7 @@
 			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content></fm:content>
 		</fm:SimpleForm>
-		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" fitContainer="true" height="100%"
+		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding">
 			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="Open" press="onOpen" frameType="TwoByHalf">
 				<TileContent>

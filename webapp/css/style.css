@@ -78,7 +78,7 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover !important;
 }
 
 .module-tile {
@@ -316,6 +316,7 @@
     background: #004687;
     border: 1px solid #e5e5e5;
     vertical-align: middle;
+    color: #FFFFFF;
 }
 
 .ssp-request-Table .sapMListTblRow .sapMListTblCell {
@@ -324,7 +325,7 @@
 
 }
 
-.ssp-request-Table .sapMColumnHeader .sapMText {
+.ssp-request-Table .sapMListTblCell .sapMText {
     color: #fff;
     font-weight: bold;
 }
@@ -650,3 +651,46 @@
 }
 
 /* upload css ends here */
+/* custom css for deploy verison */
+.ssp-open.sapMGT.OneByOne,
+.ssp-progress.sapMGT.OneByOne,
+.ssp-done.sapMGT.OneByOne {
+    width: 22.5rem;
+    height: 5.25rem;
+}
+
+.ssp-open .sapMGTHdrContent,
+.ssp-progress .sapMGTHdrContent,
+.ssp-done .sapMGTHdrContent {
+    height: 1rem;
+}
+
+.sapUiMedia-Std-Desktop .sapUShellApplicationContainer.sapUShellApplicationContainerLimitedWidth {
+    width: 100% !important;
+}
+
+#shell-header {
+    width: 100%;
+    display: block;
+}
+
+.sapUshellShellHeadContainer {
+    display: none !important;
+}
+
+.sapUshellShellIco {
+    float: right;
+    display: block;
+    width: auto;
+    margin-right: 2rem;
+}
+
+#shellAppTitle {
+    display: none;
+}
+
+.sapUshellShellHeadBegin>.sapUshellShellIco>img {
+    max-width: 15rem;
+}
+
+/* custom css for deploy version ends here */

@@ -11,8 +11,8 @@
 				</Toolbar>
 			</fm:toolbar>
 		</fm:SimpleForm>
-		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Transparent" fitContainer="true" height="100%"
-			class="sapUiResponsiveContentPadding ne-flexbox2 module-tile">
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" wrap="Wrap" backgroundDesign="Transparent" fitContainer="true"
+			height="100%" class="sapUiResponsiveContentPadding ne-flexbox2 module-tile">
 			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" id="ZSSF" header="{i18n>FICO}">
 				<TileContent value="{ path: 'modelName>/value' }">
 					<ImageContent src="sap-icon://customer-financial-fact-sheet"/>
