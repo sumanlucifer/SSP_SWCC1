@@ -15,13 +15,10 @@ sap.ui.define([
 
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
-				var oModel = new JSONModel({
-					uploadedFiles: []
-				});
-				this.getView().setModel(oModel);
 
 			},
 			_onObjectMatched: function () {
+				debugger;
 				this._createItemDataModel();
 				this.PlantF4();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
@@ -45,6 +42,7 @@ sap.ui.define([
 			},
 
 			PlantF4: function () {
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {
@@ -73,7 +71,7 @@ sap.ui.define([
 
 				var dynamicFilters = this.getFilters(filters);
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataReadAPICall(
+				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
 					'GET',
 					'/ZCDSV_WORKCENTERVH',
@@ -102,27 +100,12 @@ sap.ui.define([
 			},
 
 			onValueHelpRequest: async function (oEvent) {
-				var sPlantFilter = new sap.ui.model.Filter({
-					path: "MaintenancePlanningPlant",
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
-				});
-
-				var Filter = [];
-				Filter.push(sPlantFilter);
 				try {
-					if (!this.VDialog) {
-						this.VDialog = this.loadFragment({
-							name: "com.swcc.Template.fragments.PMModule.EquipmentF4"
-						});
-					}
-
-					const oDialog = await this.VDialog;
-					if (Device.system.desktop) {
-						oDialog.addStyleClass("sapUiSizeCompact");
-					}
-					this._oVID = oDialog;
-					oDialog.open();
+					const sPlantFilter = new sap.ui.model.Filter({
+						path: "MaintenancePlanningPlant",
+						operator: sap.ui.model.FilterOperator.EQ,
+						value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
+					});
 
 					const urlParameters = {
 						"$skip": 1,
@@ -134,32 +117,36 @@ sap.ui.define([
 						'GET',
 						'/ZCDSV_EQUIPMENTVH',
 						null,
-						Filter,
+						sPlantFilter,
 						urlParameters
 					);
 
 					const model = this.getModel();
 					model.setProperty("/PMCreateRequest/EquipmentF4/", oResponse.results);
 					model.setProperty("/busy", false);
+
+					if (!this.VDialog) {
+						this.VDialog = await this.loadFragment({
+							name: "com.swcc.Template.fragments.PMModule.EquipmentF4"
+						});
+					}
+
+					if (Device.system.desktop) {
+						this.VDialog.addStyleClass("sapUiSizeCompact");
+					}
+					this._oVID = this.VDialog;
+					this._oVID.open();
 				} catch (error) {
 					MessageBox.error(error.responseText);
 					this.getModel().setProperty("/busy", false);
 				}
 			},
+
 			_handleSelectEquipment: function (oEvent) {
 				var selectedVendorDes = oEvent.getSource().getAggregation("attributes");
 				var sEqipmentNo = selectedVendorDes[0].getProperty('text');
 				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", sEqipmentNo);
-				// var oFilter = new sap.ui.model.Filter("LIFNR", sap.ui.model.FilterOperator.Contains, "");
-				// var oFilter1 = new sap.ui.model.Filter("NAME1", sap.ui.model.FilterOperator.Contains, "");
-				// var comFil = new sap.ui.model.Filter([oFilter, oFilter1]);
-				// var oList = this.getView().byId("idlistVendorID");
-				// this.getView().getModel("settingsModel").setProperty("/VendorLIFNR", VendorLIFNR);
-				// this.getView().getModel("settingsModel").setProperty("/VendorNAME1", VendorNAME1);
-				// this.getView().byId("idinputVendorID").setValue(VendorLIFNR);
-				// this.getView().byId("idinputVendorName").setValue(VendorNAME1);
-				// this.getView().byId("idsearchVendorID").setValue(null);
-				// oList.getBinding("items").filter(comFil, sap.ui.model.FilterType.Application);
+
 				this._oVID.close();
 			},
 
@@ -181,17 +168,8 @@ sap.ui.define([
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
-				// var oPayload = {
-				// 	"Material": "ZT",
-				// 	"Equipment": "10000131",
-				// 	"Customer": "300113",
-				// 	"Descript": "TEST STS NOTIFICATION FOR INSTRUMENT",
-				// 	"NotifText": {
-				// 		"Line": "Testing long text"
-				// 	}
-				// };
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'create', '/ServNotificationSet',
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'create', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
@@ -251,7 +229,7 @@ sap.ui.define([
 
 			},
 			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
+
 				this._handleMessageBoxProceed("Your Service Request has been generated : 1945676");
 			},
 			_handleMessageBoxProceed: function (sMessage) {

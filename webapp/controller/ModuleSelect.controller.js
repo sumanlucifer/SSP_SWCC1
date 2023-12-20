@@ -162,7 +162,14 @@ sap.ui.define([
 				// 	// Use the parsedData object as needed
 				// }
 			},
+			onSelectSubServiceTypeDD: function (oEve) {
+				debugger;
+				var sKey = oEve.getSource().getSelectedKey();
+				var sDesc = sKey.split("_")[2];
 
+				this.getModel().setProperty("/ModuleSearch/Header/Desc/", sDesc);
+
+			},
 			testCPI_API: function () {
 
 				var oOptions = {

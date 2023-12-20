@@ -96,7 +96,20 @@ sap.ui.define([
 
 		onSubmitBP: function () {
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
-			this.SubmitBPRegistration(oPayload);
+
+			this.InputValidation() !== true ?
+				"" : this.SubmitBPRegistration(oPayload);
+			// 			this.SubmitBPRegistration(oPayload);
+		},
+		InputValidation: function () {
+			var bValid = true;
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Company/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Company/", "")
+
+				bValid = false;
+			}
+
+			return bValid;
 		},
 		onCancel: function () {
 			var oHistory, sPreviousHash;

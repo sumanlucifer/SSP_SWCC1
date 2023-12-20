@@ -352,7 +352,7 @@
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "PMCreateServiceRequest"
+					"viewName": "PMCreateRequest"
 				},
 				"SCMCreateRequest": {
 					"viewType": "XML",
