@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/core/mvc/Controller",
 	'sap/ui/core/BusyIndicator',
 	'com/swcc/Template/util/api',
-	"sap/ui/model/json/JSONModel"
-], function (Controller, BusyIndicator, api, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/MessageBox"
+], function (Controller, BusyIndicator, api, JSONModel, MessageBox) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -56,34 +57,37 @@ sap.ui.define([
 		// 		handleConfirmMessage: function (apiFunction, apiArguments) {
 		// 			return function (oEve) {
 
-		// 				var dialog = new sap.m.Dialog({
-		// 					title: 'Confirm',
-		// 					type: 'Message',
-		// 					content: [
-		// 						new sap.m.Text({
-		// 							text: 'Are you sure you want to Approve the Request ' + apiArguments,
-		// 						}),
-		// 					],
-		// 					beginButton: new sap.m.Button({
-		// 						text: 'Approve',
-		// 						press: function () {
-		// 							apiFunction.call(this, "123");
-		// 							dialog.close();
-		// 						}.bind(this),
-		// 					}),
-		// 					endButton: new sap.m.Button({
-		// 						text: 'Cancel',
-		// 						press: function () {
-		// 							dialog.close();
-		// 						},
-		// 					}),
-		// 					afterClose: function () {
-		// 						dialog.destroy();
-		// 					},
-		// 				});
-		// 				dialog.open();
-		// 			};
-		// 		},
+		handleConfirmMessage: function (apiFunction, apiArguments) {
+			return function (oEve) {
+
+				var dialog = new sap.m.Dialog({
+					title: 'Confirm',
+					type: 'Message',
+					content: [
+						new sap.m.Text({
+							text: 'Are you sure you want to Approve the Request ' + apiArguments,
+						}),
+					],
+					beginButton: new sap.m.Button({
+						text: 'Approve',
+						press: function () {
+							apiFunction.call(this, "123");
+							dialog.close();
+						}.bind(this),
+					}),
+					endButton: new sap.m.Button({
+						text: 'Cancel',
+						press: function () {
+							dialog.close();
+						},
+					}),
+					afterClose: function () {
+						dialog.destroy();
+					},
+				});
+				dialog.open();
+			};
+		},
 
 		addContentDensityClass: function () {
 			return this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());

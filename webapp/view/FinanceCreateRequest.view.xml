@@ -68,30 +68,30 @@
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectCapitalization" type="XML"/>
 					</VBox>
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<!--<VBox>-->
-					<!--	<core:Fragment-->
-					<!--		fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.InsuranceResgistration.Create_InsuranceRegistration"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Property" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3006-1'}">
+						<core:Fragment
+							fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.InsuranceResgistration.Create_InsuranceRegistration"
+							type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3007-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.MarineTransportation" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3007-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.ShipHulls" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3007-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Vehicle" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3007-4'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.Property" type="XML"/>
+					</VBox>
 					<!--.........................................................................Account Receivable..........................................................			-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.Billing" type="XML"/>-->
-					<!--</VBox>-->
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3002-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3002-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.Billing" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
