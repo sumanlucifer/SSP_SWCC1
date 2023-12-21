@@ -53,9 +53,6 @@ sap.ui.define([
 			return dynamicFilters;
 		},
 
-		// Utility file containing createOnApprove function
-		// utility.js
-
 		// 		handleConfirmMessage: function (apiFunction, apiArguments) {
 		// 			return function (oEve) {
 
