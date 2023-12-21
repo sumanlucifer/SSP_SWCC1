@@ -17,9 +17,12 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="productInput" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="productInput" value="{/ManagePettyCashData/CompanyF4/0/CompanyCode}" placeholder=""/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<Input id="idPRN" required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalF4/CashJournalKey}"
+					items="{/ManagePettyCashData/CashJournalF4/}">
+					<core:Item key="{CashJournal}" text="{CashJournal_Text}"/>
+				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker id="DP11" displayFormat="yyyy"
 					value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }" change="handleChange"

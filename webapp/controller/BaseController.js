@@ -62,7 +62,6 @@ sap.ui.define([
 				var title = params && params.title ? params.title : "Success";
 				var actions = params && params.actions ? params.actions : [MessageBox.Action.OK];
 				var emphasizedAction = params && params.emphasizedAction ? params.emphasizedAction : MessageBox.Action.YES;
-
 				sap.m.MessageBox.success(sMessage, {
 					icon: icon,
 					title: title,

@@ -21,6 +21,7 @@ sap.ui.define([
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
+				this.callDropDownService();
 
 			},
 			_createItemDataModel: function () {
@@ -28,10 +29,72 @@ sap.ui.define([
 					busy: false,
 					recognitionAlreadyStarted: false,
 					FinanceAppVisible: null,
+					ManagePettyCashData: {
+						CashJournalF4: [],
+						CompanyF4: [],
+						itemData: []
+					},
 					MarineTransportation: {
 						itemData: []
 					}
 				});
+			},
+
+			callDropDownService: function () {
+				this.getModel().setProperty("/busy", true);
+				var filters = [{
+						path: "Country",
+						value: "SA",
+						group: "CompanyFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				Promise.allSettled([
+					//   Company Code F4 data
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
+						dynamicFilters.CompanyFilter),
+					//	Cash Journal F4 Data
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CashJournal/', null, null)
+
+				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
+
+			},
+			buildResponselist: function (values) {
+				debugger;
+				this.getModel().setProperty("/busy", false);
+				// 			Company F4 type response
+				var aCompanyF4Data = values[0].value.results;
+				this.getModel().setProperty("/ManagePettyCashData/CompanyF4/", aCompanyF4Data);
+				// 			Cash Journal F4 type response
+				var aCashJournalF4Data = values[1].value.results;
+				this.getModel().setProperty("/ManagePettyCashData/CashJournalF4/", aCashJournalF4Data);
+
+			},
+
+			callManagePettyCashAPI: function () {
+
+				var filters = [{
+						path: "Language",
+						value: "en",
+						group: "ManagePettyCashFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/PettyCashSet/', null, dynamicFilters.CountryFilter)
+					.then(function (oResponse) {
+
+						this.getModel().setProperty("/ManagePettyCashData/itemData/", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
 			},
 			handleBackPress: function () {
 				var oHistory, sPreviousHash;
