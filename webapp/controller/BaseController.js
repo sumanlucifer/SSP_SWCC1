@@ -55,7 +55,7 @@ sap.ui.define([
 		},
 
 		createMessageBoxHandler: function (onPressFunction) {
-			debugger;
+
 			return function (params) {
 				var sMessage = params && params.sMessage ? params.sMessage : '';
 				var icon = params && params.icon ? params.icon : MessageBox.Icon.SUCCESS;
