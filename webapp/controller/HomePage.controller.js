@@ -15,15 +15,10 @@ sap.ui.define([
 					if (sRouteName === "Routeapp" || sRouteName === "HomePage") {
 						this._createTileDataModel();
 						this.BPFlagCheckAPI();
-						// Restore the model to its initial state or any desired state
-						// 		var oModel = this.getModel(); // Replace 'YourModelName' with your model name
 
-						// 		// Restore your model here, for example:
-						// 		oModel.setProperty("/YourProperty", initialValue); // Replace 'YourProperty' and initialValue with your actual property and value
 					}
 				}, this);
-				this._createTileDataModel();
-				this.BPFlagCheckAPI();
+
 			},
 
 			_onObjectMatched: function () {
