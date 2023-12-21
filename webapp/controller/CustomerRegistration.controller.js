@@ -98,9 +98,8 @@ sap.ui.define([
 		onSubmitBP: function () {
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 
-			// 			this.InputValidation() !== true ?
-			// 				"" : this.SubmitBPRegistration(oPayload);
-			this.SubmitBPRegistration(oPayload);
+			this.InputValidation() !== true ?
+				"" : this.SubmitBPRegistration(oPayload);
 		},
 		InputValidation: function () {
 			var bValid = true;
@@ -177,7 +176,6 @@ sap.ui.define([
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/BPRequestSet',
 					oPayload, null, null)
 				.then(function (oResponse) {
-					debugger;
 					this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.ReqID} `);
 					this.getModel().setProperty("/CustomerRegistrationData/Header/", null);
 					this.getModel().setProperty("/busy", false);
