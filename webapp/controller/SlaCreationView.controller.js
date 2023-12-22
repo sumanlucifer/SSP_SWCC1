@@ -2,6 +2,7 @@ sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/Fragment",
+		"sap/m/PDFViewer",
 		"sap/ui/Device",
 		"sap/m/MessageBox",
 		"sap/m/MessageToast",
@@ -10,7 +11,7 @@ sap.ui.define([
 	/**
 	 * @param {typeof sap.ui.core.mvc.Controller} Controller
 	 */
-	function (BaseController, JSONModel, Fragment, Device, MessageBox, MessageToast, History) {
+	function (BaseController, JSONModel, Fragment, PDFViewer, Device, MessageBox, MessageToast, History) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.SlaCreationView", {
 
@@ -22,7 +23,9 @@ sap.ui.define([
 			_onObjectMatched: function () {
 				this._SLARegistrationModel();
 				this.getSLADetails();
+
 			},
+
 			_SLARegistrationModel: function () {
 				this.getModel().setData({
 					busy: false,
@@ -33,6 +36,7 @@ sap.ui.define([
 
 				});
 			},
+
 			getSLADetails: function () {
 
 				var sAPI = `/BPRequestSet(UserName='WT_POWER')`;
@@ -136,8 +140,28 @@ sap.ui.define([
 				});
 			},
 
+			onPressAgreement: function () {
+				this.getModel().setProperty("/busy", true);
+				var sServiceURL = this.getOwnerComponent().getModel("ZSSP_USER_SRV").sServiceUrl;
+
+				fetch(sServiceURL + "/SLAPreviewSet(Username='WT_POWER')/$value")
+					.then(response => response.blob())
+					.then(blob => {
+						const url = URL.createObjectURL(blob);
+						this.getModel().setProperty("/busy", false);
+						this.getModel().setProperty("/pdf", url);
+						this.oopenSLAAgreementDialog();
+
+					})
+					.catch(error => {
+						this.getModel().setProperty("/busy", false);
+						console.error('Error fetching the PDF:', error);
+					});
+
+			},
+
 			/***** Agreement Popup ************/
-			onPressAgreement: function (oEvent) {
+			oopenSLAAgreementDialog: function (oEvent) {
 
 				var oView = this.getView();
 
@@ -163,6 +187,8 @@ sap.ui.define([
 			},
 
 			loadPDFView: function () {
+				debugger;
+
 				var oScrollContainer = this.getView().byId("myScrollContainer");
 				oScrollContainer.$().off("scroll"); // Unbind any existing scroll event handlers
 				oScrollContainer.$().on("scroll", this.onScroll.bind(this)); // Bind the scroll event

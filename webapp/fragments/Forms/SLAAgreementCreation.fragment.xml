@@ -127,4 +127,7 @@
 		<CheckBox text="{i18n>clickheretoread}" class="sapUiTinyMarginBegin" id="accept_checkbox" tooltip="{i18n>clickheretoread}"
 			select="onPressAgreement" valueState="Information"/>
 	</VBox>
+	<!--<VBox class="pdf-container">-->
+	<!--	<core:HTML id="pdfContainer" content=""/>-->
+	<!--</VBox>-->
 </core:FragmentDefinition>

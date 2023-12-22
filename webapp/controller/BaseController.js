@@ -122,6 +122,19 @@ sap.ui.define([
 			return this.getOwnerComponent().getModel();
 		},
 
+		base64ToBlob: function (base64String, contentType) {
+			contentType = contentType || '';
+			const byteCharacters = atob(base64String);
+			const byteNumbers = new Array(byteCharacters.length);
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i);
+			}
+			const byteArray = new Uint8Array(byteNumbers);
+			return new Blob([byteArray], {
+				type: contentType
+			});
+		},
+
 		/**
 		 * Convenience method for setting the view model.
 		 * @public
