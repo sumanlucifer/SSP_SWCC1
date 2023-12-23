@@ -29,6 +29,7 @@ sap.ui.define([
 			_SLARegistrationModel: function () {
 				this.getModel().setData({
 					busy: false,
+					SLACheckFlag: false,
 					SLARegistrationData: {
 						Header: {},
 						CustomData: {}
@@ -69,7 +70,6 @@ sap.ui.define([
 				this.SubmitBPRegistration(oPayload);
 			},
 			SubmitSLARegistration: function (oPayload) {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/SLARequestSet',
 						oPayload)
@@ -118,8 +118,22 @@ sap.ui.define([
 
 					bValid = false;
 				}
+				if (!this.getView().byId("accept_checkbox").getSelected()) {
+					MessageToast.show("Please Accept SLA Version");
+					bValid = false;
+				}
 
 				return bValid;
+			},
+
+			onSelectCheckagreement: function (oEve) {
+
+				if (this.getModel().getProperty("/SLACheckFlag/")) {
+					this.getView().byId("accept_checkbox").setSelected(false);
+					MessageToast.show("Please click on SLA Version and Accept");
+
+				}
+
 			},
 
 			onPresshomepage: function () {
@@ -174,37 +188,60 @@ sap.ui.define([
 						oDialog.setTitle("SLA Agreement Version");
 						this.oSearchResultDialog = oDialog;
 						this.getView().addDependent(oDialog);
+
+						// Click handler
+
+						oDialog.attachAfterOpen(function () {
+							debugger;
+							var oScrollContainer = oView.byId("myScrollContainer");
+							var oScrollDomRef = oScrollContainer.getDomRef();
+							oScrollDomRef.addEventListener("click", this.onScroll.bind(this));
+							//
+						}.bind(this));
+
 						oDialog.open();
-						this.loadPDFView();
+						// 		this.loadPDFView();
 
 					}.bind(this));
 				} else {
 					this.oSearchResultDialog.open();
-					this.loadPDFView();
+					// 	this.loadPDFView();
 
 				}
 
 			},
 
 			loadPDFView: function () {
-				debugger;
+				// var oView = this.getView();
+				// var oScrollContainer = oView.byId("myHTMLControl");
+				// oScrollContainer.addEventDelegate({
+				// 	onAfterRendering: function () {
+				// 		var oScrollDomRef = oScrollContainer.getDomRef();
+				// 		oScrollDomRef.addEventListener("scroll", this.onScroll.bind(this));
+				// 	}.bind(this)
+				// });
 
-				var oScrollContainer = this.getView().byId("myScrollContainer");
+				var oScrollContainer = this.getView().byId("myHTMLControl");
 				oScrollContainer.$().off("scroll"); // Unbind any existing scroll event handlers
 				oScrollContainer.$().on("scroll", this.onScroll.bind(this)); // Bind the scroll event
 			},
 
-			onScroll: function (event) {
+			// 			onScroll: function (event) {
 
-				var oScrollContainer = this.getView().byId("myScrollContainer");
-				var scrollTop = oScrollContainer.$().scrollTop();
+			// 				var oScrollContainer = this.getView().byId("myScrollContainer");
+			// 				var scrollTop = oScrollContainer.$().scrollTop();
 
-				if (scrollTop > 400) {
-					this.getView().byId("idacceptpdf").setEnabled(true);
-					this.getView().byId("ideclinepdf").setEnabled(true);
-					// Implement your scroll-down functionality
-					console.log("Scrolled down!");
-				}
+			// 				if (scrollTop > 400) {
+			// 					this.getView().byId("idacceptpdf").setEnabled(true);
+			// 					this.getView().byId("ideclinepdf").setEnabled(true);
+			// 					// Implement your scroll-down functionality
+			// 					console.log("Scrolled down!");
+			// 				}
+			// 			},
+
+			onScroll: function (oEvent) {
+				// Handle scroll event logic here
+				console.log("Scrolled");
 			},
 
 			onCloseSlaAgreementDialog: function () {
@@ -212,16 +249,16 @@ sap.ui.define([
 
 			},
 			onacceptpdf: function (event) {
-				var demoToast = this.getView().byId("accept_checkbox");
+				this.getModel().setProperty("/SLACheckFlag/", true);
+				this.getView().byId("accept_checkbox").setSelected(true);
 				this.onCloseSlaAgreementDialog();
-				demoToast.setSelected(true);
-				//event.getSource().getParent().close();
+
 			},
 			onrejectpdf: function (event) {
-					var demoToast = this.getView().byId("accept_checkbox");
+					this.getModel().setProperty("/SLACheckFlag/", false);
+					this.getView().byId("accept_checkbox").setSelected(false);
 					this.oSearchResultDialog.close();
-					demoToast.setSelected(false);
-					//event.getSource().getParent().close();
+
 				}
 				/****** Agreeement popup code ends here ******************/
 
