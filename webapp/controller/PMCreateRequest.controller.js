@@ -170,6 +170,15 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
+				oPayload.Attachments = [{
+
+						Filename: this.fileName,
+						Mimetype: this.Filetype,
+						Value: this.fileContent
+					}
+
+				];
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -270,6 +279,46 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
+			},
+			onFileAdded: function (oEvent) {
+				debugger;
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+				var oUploadSet = this.byId("UploadSet");
+				oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+			_getImageData: function (url, callback, fileName) {
+				var reader = new FileReader();
+
+				reader.onloadend = function (evt) {
+					if (evt.target.readyState === FileReader.DONE) {
+
+						var binaryString = evt.target.result,
+							base64file = btoa(binaryString);
+
+						callback(base64file);
+					}
+				};
+				reader.readAsBinaryString(url);
+			},
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+				debugger;
+				this.fileContent = Filecontent;
+				this.fileName = Filename;
+				this.Filetype = Filetype;
+
 			},
 			handleUploadComplete: function (oEvent) {
 				var sFileName = oEvent.getParameter("files")[0].name;

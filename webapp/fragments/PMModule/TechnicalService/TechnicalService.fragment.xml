@@ -65,9 +65,9 @@
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
 		<Label text="{i18n>Attachments}" required="false"/>
-		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
-			sameFilenameAllowed="false" buttonText="Upload file" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
-			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+		<u:FileUploader id="idFile" class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileAdded" typeMissmatch="handleMissmatch"
 			placeholder="Choose a file" style="Emphasized"
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
