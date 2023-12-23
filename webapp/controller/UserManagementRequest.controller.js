@@ -218,6 +218,9 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 			},
+			onCancelUser: function () {
+				this._onObjectMatched();
+			},
 			onPressTile: function (oEvent) {
 				this.getOwnerComponent().getRouter().navTo("ModuleSelect");
 			}

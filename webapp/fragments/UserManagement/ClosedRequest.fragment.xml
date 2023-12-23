@@ -60,8 +60,11 @@
 						<CheckBox selected="{AccessSC}" enabled="{editFlag}" text="SCM"/>
 					</HBox>
 					<HBox>
-						<Button icon="sap-icon://edit" text="Edit Role" class="swcc-pmy-btn" type="Accept" press="onEditUSer"/>
-						<Button icon="sap-icon://save" text="Save" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Emphasized" press="onSaveUser"/>
+						<Button icon="sap-icon://edit" visible="{= !${editFlag} }" text="Edit Role" class="swcc-pmy-btn" type="Accept" press="onEditUSer"/>
+						<Button icon="sap-icon://save" visible="{editFlag}" text="Save" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Emphasized"
+							press="onSaveUser"/>
+						<Button icon="sap-icon://cancel" visible="{editFlag}" text="Cancel" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Reject"
+							press="onCancelUser"/>
 					</HBox>
 				</cells>
 			</ColumnListItem>
