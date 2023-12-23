@@ -45,7 +45,6 @@ sap.ui.define([
 			},
 
 			PlantF4: function () {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {
@@ -59,7 +58,6 @@ sap.ui.define([
 			},
 
 			WorkCenterF4: function (sKey) {
-
 				var filters = [{
 						path: "Plant",
 						value: sKey,
@@ -171,6 +169,7 @@ sap.ui.define([
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
+				oPayload.ServiceHeadertoItem = [];
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -185,18 +184,12 @@ sap.ui.define([
 
 			},
 			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-							that.onPresshomepage();
-						}
-					},
-				});
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+
 			},
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");

@@ -73,13 +73,24 @@ sap.ui.define([
 						null, dynamicFilters.UserFilter, null)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/ClosedItemRequestData/itemData", oResponse.results);
+						var aCustomItemData = this.insertcustomProperties(oResponse);
+						this.getModel().setProperty("/ClosedItemRequestData/itemData", aCustomItemData);
 
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
+			},
+
+			insertcustomProperties: function (oResponse) {
+
+				const aItemData = oResponse.results.map(obj => ({
+					...obj,
+					editFlag: false
+				}));
+
+				return aItemData;
 			},
 
 			onApprove: function (oEve) {
@@ -112,21 +123,30 @@ sap.ui.define([
 					}.bind(this));
 
 			},
+
 			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-							that.getPendingUserDetails();
-							that.getApprovedUserDetails();
-						}
-					},
-				});
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this._onObjectMatched.bind(this))(params);
+
 			},
+			// 			_handleMessageBoxProceed: function (sMessage) {
+			// 				var that = this;
+			// 				sap.m.MessageBox.success(sMessage, {
+			// 					icon: MessageBox.Icon.SUCCESS,
+			// 					title: "Success",
+			// 					actions: [MessageBox.Action.OK],
+			// 					emphasizedAction: MessageBox.Action.YES,
+			// 					onClose: function (oAction) {
+			// 						if (oAction == "OK") {
+			// 							that.getPendingUserDetails();
+			// 							that.getApprovedUserDetails();
+			// 						}
+			// 					},
+			// 				});
+			// 			},
 
 			onReject: function (oEve) {
 				var sID = oEve.getSource().getBindingContext().getObject().ID;
@@ -163,6 +183,40 @@ sap.ui.define([
 					this.getRouter().navTo("HomePage", {}, true);
 				}
 
+			},
+			onEditUSer: function (oEve) {
+				debugger;
+				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+				this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/editFlag/`, true);
+
+			},
+			onSaveUser: function (oEve) {
+				debugger;
+				var aData = oEve.getSource().getBindingContext().getObject();
+				// Create a new object without the editflag property
+				const {
+					editFlag,
+					...oPayload
+				} = aData;
+
+				this.callSaveUSerAPI(oPayload);
+				// var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
+				// this.SubmitBPRegistration(oPayload);
+			},
+
+			callSaveUSerAPI: function (oPayload) {
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'PUT', '/UserSet',
+						oPayload, null, null)
+					.then(function (oResponse) {
+						debugger;
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.ReqID} `);
+
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
 			},
 			onPressTile: function (oEvent) {
 				this.getOwnerComponent().getRouter().navTo("ModuleSelect");

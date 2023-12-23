@@ -32,7 +32,7 @@
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Email"/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true">
+			<Column width="18rem" minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Roles"/>
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true">
@@ -46,8 +46,23 @@
 					<Text text="{FirstName}"/>
 					<Text text="{LastName}"/>
 					<Text text="{Email}"/>
-					<Text text="{Email}"/>
-					<Button icon="sap-icon://employee-approvals" text="Approve" class="swcc-pmy-btn" type="Accept" press="onApprove"/>
+					<HBox>
+						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_HR}"/>-->
+						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_FI}"/>-->
+						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_IT}"/>-->
+						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_TECH}"/>-->
+						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_SCM}"/>-->
+						<!--...............................................................................-->
+						<CheckBox selected="{AccessHR}" enabled="{editFlag}" text="HR"/>
+						<CheckBox selected="{AccessFI}" enabled="{editFlag}" text="FI"/>
+						<CheckBox selected="{AccessIT}" enabled="{editFlag}" text="IT"/>
+						<CheckBox selected="{AccessPM}" enabled="{editFlag}" text="TECH"/>
+						<CheckBox selected="{AccessSC}" enabled="{editFlag}" text="SCM"/>
+					</HBox>
+					<HBox>
+						<Button icon="sap-icon://edit" text="Edit Role" class="swcc-pmy-btn" type="Accept" press="onEditUSer"/>
+						<Button icon="sap-icon://save" text="Save" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Emphasized" press="onSaveUser"/>
+					</HBox>
 				</cells>
 			</ColumnListItem>
 		</items>

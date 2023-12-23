@@ -3,8 +3,10 @@ sap.ui.define([
 	'sap/ui/core/BusyIndicator',
 	'com/swcc/Template/util/api',
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, BusyIndicator, api, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/core/routing/History",
+	"sap/ui/Device"
+], function (Controller, BusyIndicator, api, JSONModel, MessageBox, History, Device) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -32,6 +34,18 @@ sap.ui.define([
 					}
 				});
 			}.bind(this));
+		},
+		navigationBavk: function () {
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getRouter().navTo("LandingView", {}, true);
+
+			}
+
 		},
 		getFilters: function (filterParams) {
 
@@ -104,6 +118,9 @@ sap.ui.define([
 						dialog.destroy();
 					},
 				});
+				if (Device.system.desktop) {
+					dialog.addStyleClass("sapUiSizeCompact");
+				}
 				dialog.open();
 			};
 		},

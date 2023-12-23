@@ -73,11 +73,24 @@ sap.ui.define([
 
 			},
 
+			onSearchFinanceRequest: function () {
+
+				this.callManagePettyCashAPI();
+			},
+
 			callManagePettyCashAPI: function () {
 
 				var filters = [{
-						path: "Language",
-						value: "en",
+						path: "CompanyCode",
+						value: "1000",
+						group: "ManagePettyCashFilter"
+					}, {
+						path: "FiscalYear",
+						value: "2023",
+						group: "ManagePettyCashFilter"
+					}, {
+						path: "PostingNo",
+						value: "0100000118",
 						group: "ManagePettyCashFilter"
 					}
 
@@ -85,7 +98,7 @@ sap.ui.define([
 
 				var dynamicFilters = this.getFilters(filters);
 				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/PettyCashSet/', null, dynamicFilters.CountryFilter)
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/PettyCashSet/', null, dynamicFilters.ManagePettyCashFilter)
 					.then(function (oResponse) {
 
 						this.getModel().setProperty("/ManagePettyCashData/itemData/", oResponse.results);
@@ -97,15 +110,7 @@ sap.ui.define([
 
 			},
 			handleBackPress: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("LandingView", {}, true);
-
-				}
+				this.navigationBavk();
 
 			},
 			onback: function () {
@@ -113,25 +118,20 @@ sap.ui.define([
 
 			},
 			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
+
 				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
 			},
 
 			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
+				var params = {
+					sMessage: sMessage
+				};
 
-							that.getRouter().navTo("HomePage", {}, true);
-						}
-					},
-				});
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
 
+			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
