@@ -76,21 +76,21 @@ sap.ui.define([
 			};
 		},
 
-		handleConfirmMessage: function (apiFunction, apiArguments) {
-			return function (oEve) {
+		handleConfirmMessage: function (apiFunction) {
+			return function (params) {
 
 				var dialog = new sap.m.Dialog({
 					title: 'Confirm',
 					type: 'Message',
 					content: [
 						new sap.m.Text({
-							text: 'Are you sure you want to Approve the Request ' + apiArguments,
+							text: params.sMsgTxt,
 						}),
 					],
 					beginButton: new sap.m.Button({
-						text: 'Approve',
+						text: params.sBtnTxt,
 						press: function () {
-							apiFunction.call(this, "123");
+							apiFunction.call(this, params.sRequestID);
 							dialog.close();
 						}.bind(this),
 					}),

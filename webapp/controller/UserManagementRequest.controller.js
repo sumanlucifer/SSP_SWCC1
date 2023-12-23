@@ -83,21 +83,21 @@ sap.ui.define([
 			},
 
 			onApprove: function (oEve) {
+				var sID = oEve.getSource().getBindingContext().getObject().ID;
 
-				//	var APIFunc = this.onTest1.bind(this);
+				var params = {
+					sRequestID: sID,
+					sBtnTxt: "Approve",
+					sMsgTxt: `Are you sure you want to Approve the Request: ${sID} `
+				};
 
-				var sRequestID = ["22", "66"];
-				var dynamicOnApprove = this.handleConfirmMessage(this.onApproveAPICall.bind(this), sRequestID);
-
-				dynamicOnApprove(oEve, sRequestID);
+				this.handleConfirmMessage(this.onApproveAPICall.bind(this))(params);
 
 			},
 
-			onApproveAPICall: function (oEve) {
-				debugger;
-				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
+			onApproveAPICall: function (sID) {
 				var oPayload = {
-					"RequestID": sRequestID
+					"RequestID": sID
 				};
 
 				this.getModel().setProperty("/busy", true);
@@ -127,9 +127,20 @@ sap.ui.define([
 					},
 				});
 			},
+
 			onReject: function (oEve) {
 				var sID = oEve.getSource().getBindingContext().getObject().ID;
 
+				var params = {
+					sRequestID: sID,
+					sMsgTxt: `Are you sure you want to Reject the Request: ${sID} `,
+					sBtnTxt: "Reject"
+				};
+
+				this.handleConfirmMessage(this.onRejectAPICall.bind(this))(params);
+
+			},
+			onRejectAPICall: function (sID) {
 				var sAPI = `/UserRequestSet(ID='${sID}')`;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'DELETE', sAPI,
