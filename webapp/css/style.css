@@ -718,3 +718,14 @@
 }
 
 /* custom css for deploy version ends here */
+/* pdf vier css */
+#viewer {
+    position: absolute;
+    top: 0px;
+}
+
+:host {
+    position: absolute;
+}
+
+/*pdf viwer ends here */

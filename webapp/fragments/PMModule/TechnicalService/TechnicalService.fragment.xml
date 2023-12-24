@@ -66,13 +66,13 @@
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
 		<Label text="{i18n>Attachments}" required="false"/>
 		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
-			sameFilenameAllowed="false" buttonText="Upload file" change="onUploadPress" filenameLengthExceed="onFileNameLengthExceed"
-			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onComplete" typeMissmatch="handleMissmatch"
+			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
 			placeholder="Choose a file" style="Emphasized"
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table class="upload-table" items="{/uploadedFiles}" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/PMCreateRequest/UploadedData}" mode="Delete" noDataText="{i18n>uploadtooltip}">
 			<headerToolbar>
 				<Toolbar>
 					<content>
@@ -99,9 +99,9 @@
 			<items>
 				<ColumnListItem>
 					<cells>
-						<Text text="{FileName}"/>
-						<Text text="{FileSize}"/>
-						<Text text="{Delete}"/>
+						<Text text="{Filename}"/>
+						<Text text="{Filesize}"/>
+						<Text textAlign="Center" text="{Delete}"/>
 						<!-- Add more cells as needed -->
 					</cells>
 				</ColumnListItem>

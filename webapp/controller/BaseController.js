@@ -3,8 +3,10 @@ sap.ui.define([
 	'sap/ui/core/BusyIndicator',
 	'com/swcc/Template/util/api',
 	"sap/ui/model/json/JSONModel",
-	"sap/m/MessageBox"
-], function (Controller, BusyIndicator, api, JSONModel, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/core/routing/History",
+	"sap/ui/Device"
+], function (Controller, BusyIndicator, api, JSONModel, MessageBox, History, Device) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -32,6 +34,18 @@ sap.ui.define([
 					}
 				});
 			}.bind(this));
+		},
+		navigationBavk: function () {
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getRouter().navTo("LandingView", {}, true);
+
+			}
+
 		},
 		getFilters: function (filterParams) {
 
@@ -76,21 +90,21 @@ sap.ui.define([
 			};
 		},
 
-		handleConfirmMessage: function (apiFunction, apiArguments) {
-			return function (oEve) {
+		handleConfirmMessage: function (apiFunction) {
+			return function (params) {
 
 				var dialog = new sap.m.Dialog({
 					title: 'Confirm',
 					type: 'Message',
 					content: [
 						new sap.m.Text({
-							text: 'Are you sure you want to Approve the Request ' + apiArguments,
+							text: params.sMsgTxt,
 						}),
 					],
 					beginButton: new sap.m.Button({
-						text: 'Approve',
+						text: params.sBtnTxt,
 						press: function () {
-							apiFunction.call(this, "123");
+							apiFunction.call(this, params.sRequestID);
 							dialog.close();
 						}.bind(this),
 					}),
@@ -104,6 +118,9 @@ sap.ui.define([
 						dialog.destroy();
 					},
 				});
+				if (Device.system.desktop) {
+					dialog.addStyleClass("sapUiSizeCompact");
+				}
 				dialog.open();
 			};
 		},
@@ -120,6 +137,19 @@ sap.ui.define([
 
 		getModel: function () {
 			return this.getOwnerComponent().getModel();
+		},
+
+		base64ToBlob: function (base64String, contentType) {
+			contentType = contentType || '';
+			const byteCharacters = atob(base64String);
+			const byteNumbers = new Array(byteCharacters.length);
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i);
+			}
+			const byteArray = new Uint8Array(byteNumbers);
+			return new Blob([byteArray], {
+				type: contentType
+			});
 		},
 
 		/**

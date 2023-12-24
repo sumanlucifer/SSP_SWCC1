@@ -21,7 +21,7 @@ sap.ui.define([
 					this.callDropDownAndModel();
 				}
 			}, this);
-			//	this.callDropDownAndModel();
+
 		},
 
 		callDropDownAndModel: function () {

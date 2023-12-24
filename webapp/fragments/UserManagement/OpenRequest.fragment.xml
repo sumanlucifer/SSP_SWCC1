@@ -41,9 +41,6 @@
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text=""/>
 			</Column>
-			<Column minScreenWidth="Tablet" demandPopin="true">
-				<Text text=""/>
-			</Column>
 		</columns>
 		<items>
 			<ColumnListItem vAlign="Middle">
@@ -54,8 +51,10 @@
 					<Text text="{LastName}"/>
 					<Text text="{Email}"/>
 					<Text text="{Phone}"/>
-					<Button icon="sap-icon://employee-approvals" class="swcc-pmy-btn" type="Accept" press="onApprove"/>
-					<Button type="Reject" class="swcc-sec-btn" icon="sap-icon://employee-rejections" press="onReject"/>
+					<HBox>
+						<Button icon="sap-icon://employee-approvals" class="swcc-pmy-btn" type="Accept" press="onApprove"/>
+						<Button type="Reject" class="swcc-sec-btn sapUiTinyMarginBegin" icon="sap-icon://employee-rejections" press="onReject"/>
+					</HBox>
 				</cells>
 			</ColumnListItem>
 		</items>

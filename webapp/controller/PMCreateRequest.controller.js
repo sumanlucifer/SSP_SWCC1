@@ -35,6 +35,7 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					PMCreateRequest: {
+						UploadedData: [],
 						Header: {},
 						CustomDisplayData: {},
 						Attachment: [],
@@ -45,7 +46,6 @@ sap.ui.define([
 			},
 
 			PlantF4: function () {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {
@@ -59,7 +59,6 @@ sap.ui.define([
 			},
 
 			WorkCenterF4: function (sKey) {
-
 				var filters = [{
 						path: "Plant",
 						value: sKey,
@@ -171,6 +170,9 @@ sap.ui.define([
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
+				oPayload.ServiceHeadertoItem = [];
+				oPayload.Attachments = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -185,18 +187,12 @@ sap.ui.define([
 
 			},
 			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-							that.onPresshomepage();
-						}
-					},
-				});
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+
 			},
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
@@ -278,27 +274,65 @@ sap.ui.define([
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
 			},
-			handleUploadComplete: function (oEvent) {
-				var sFileName = oEvent.getParameter("files")[0].name;
-				var sFileSize = oEvent.getParameter("files")[0].size;
+			onFileAdded: function (oEvent) {
+				debugger;
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
 
-				// Get the existing data from the model
-				var oModel = this.getView().getModel();
-				var aUploadedFiles = oModel.getProperty("/uploadedFiles");
+				if (aFiles.length === 0)
+					return;
 
-				// Add the new file data to the array
-				aUploadedFiles.push({
-					FileName: sFileName,
-					FileSize: sFileSize
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
 				});
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
 
-				// Update the model with the new data
-				oModel.setProperty("/uploadedFiles", aUploadedFiles);
 			},
+			_getImageData: function (url, callback, fileName) {
+				var reader = new FileReader();
 
-			handleUploadPress: function () {
-				// Trigger the file upload process
-				this.byId("fileUploader").upload();
+				reader.onloadend = function (evt) {
+					if (evt.target.readyState === FileReader.DONE) {
+
+						var binaryString = evt.target.result,
+							base64file = btoa(binaryString);
+
+						callback(base64file);
+					}
+				};
+				reader.readAsBinaryString(url);
+			},
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);
+
+			},
+			handleMissmatch: function () {
+				MessageBox.error("Please upload only PDF and WORD document File.");
+			}
+			onFileSizeExceed: function () {
+				MessageBox.error("File size exceeded, Please upload file upto 2MB.");
 			}
 		})
 	})
