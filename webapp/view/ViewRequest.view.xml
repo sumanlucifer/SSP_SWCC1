@@ -2,45 +2,7 @@
 	xmlns="sap.m">
 	<f:DynamicPage id="dynamicPageId" toggleHeaderOnTitleClick="false" class="page">
 		<f:content>
-			<core:Fragment fragmentName="com.swcc.Template.fragments.Table.TableView" type="XML"/>
-			<!--<Table id="d" items="{/ProductCollection}">-->
-			<!--	<headerToolbar>-->
-			<!--		<OverflowToolbar>-->
-			<!--			<Title text="Requests" level="H2"/>-->
-			<!--			<ToolbarSpacer/>-->
-			<!--			<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
-			<!--			<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
-			<!--			<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
-			<!--			<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
-			<!--		</OverflowToolbar>-->
-			<!--	</headerToolbar>-->
-			<!--	<infoToolbar>-->
-			<!--		<OverflowToolbar id="vsdFilterBar" visible="false">-->
-			<!--			<Text id="vsdFilterLabel"/>-->
-			<!--		</OverflowToolbar>-->
-			<!--	</infoToolbar>-->
-			<!--	<columns>-->
-			<!--		<Column width="12em" headerMenu="columnHeaderMenu"><Text text="Request Details"/></Column>-->
-			<!--		<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Contact Person"/></Column>-->
-			<!--		<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Date"/></Column>-->
-			<!--		<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"><Text text="Price"/></Column>-->
-			<!--		<Column hAlign="End"><Text text="Price"/></Column>-->
-			<!--	</columns>-->
-			<!--	<items>-->
-			<!--		<ColumnListItem vAlign="Middle">-->
-			<!--			<cells>-->
-			<!--				<ObjectIdentifier title="{Name}" text="{ProductId}"/>-->
-			<!--				<Text text="{SupplierName}"/>-->
-			<!--				<Text text="{Width} x {Depth} x {Height} {DimUnit}"/>-->
-			<!--				<ObjectNumber number="{WeightMeasure}" unit="{WeightUnit}"-->
-			<!--					state="{ path: 'WeightMeasure', formatter: 'sap.m.sample.TableViewSettingsDialog.Formatter.weightState' }"/>-->
-			<!--				<ObjectNumber-->
-			<!--					number="{ parts:[{path:'Price'},{path:'CurrencyCode'}], type: 'sap.ui.model.type.Currency', formatOptions: {showMeasure: false} }"-->
-			<!--					unit="{CurrencyCode}"/>-->
-			<!--			</cells>-->
-			<!--		</ColumnListItem>-->
-			<!--	</items>-->
-			<!--</Table>-->
+			<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.AllRequest" type="XML"/>
 		</f:content>
 	</f:DynamicPage>
 </mvc:View>

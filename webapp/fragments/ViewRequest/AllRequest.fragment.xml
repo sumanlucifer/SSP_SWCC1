@@ -10,8 +10,8 @@
 				</Toolbar>
 			</fm:toolbar>
 		</fm:SimpleForm>
-		<Table id="idProductsTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="SingleSelect"
-			items="{ path: '/ProductCollection', sorter: { path: 'Name' } }" noDataText="No Open Requests Pending" class="ssp-request-Table">
+		<Table growing="true" growingScrollToLoad="false" growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar" inset="false"
+			items="{path : '/RequestDetails/itemData'}" noDataText="No Open Requests Pending" class="ssp-request-Table">
 			<headerToolbar>
 				<OverflowToolbar>
 					<ToolbarSpacer/>
@@ -43,9 +43,6 @@
 					<Text text="Created On"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
-					<Text text="Service Product"/>
-				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Sub Service Product"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
@@ -61,9 +58,13 @@
 			<items>
 				<ColumnListItem vAlign="Middle">
 					<cells>
-						<ObjectIdentifier title="{Name}" text="{ProductId}"/>
-						<Text text="{SupplierName}"/>
-						<Text text="{Width} x {Depth} x {Height} {DimUnit}"/>
+						<ObjectIdentifier title="{RequestID}"/>
+						<Text text="{RequestType}"/>
+						<Text text="{CreatedOn}"/>
+						<Text text="{Material}"/>
+						<Text text="{SLA}"/>
+						<Text text="{Price}"/>
+						<Text text="{Status}"/>
 					</cells>
 				</ColumnListItem>
 			</items>
