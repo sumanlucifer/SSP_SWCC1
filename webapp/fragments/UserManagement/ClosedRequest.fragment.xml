@@ -42,17 +42,11 @@
 		<items>
 			<ColumnListItem vAlign="Middle">
 				<cells>
-					<ObjectIdentifier text="{RequestID}"/>
+					<ObjectIdentifier text="{SapID}"/>
 					<Text text="{FirstName}"/>
 					<Text text="{LastName}"/>
 					<Text text="{Email}"/>
 					<HBox>
-						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_HR}"/>-->
-						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_FI}"/>-->
-						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_IT}"/>-->
-						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_TECH}"/>-->
-						<!--<Text class="sapUiTinyMarginBegin" text="{Chk_SCM}"/>-->
-						<!--...............................................................................-->
 						<CheckBox selected="{AccessHR}" enabled="{editFlag}" text="HR"/>
 						<CheckBox selected="{AccessFI}" enabled="{editFlag}" text="FI"/>
 						<CheckBox selected="{AccessIT}" enabled="{editFlag}" text="IT"/>

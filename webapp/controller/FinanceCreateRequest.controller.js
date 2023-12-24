@@ -27,7 +27,6 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
-					recognitionAlreadyStarted: false,
 					FinanceAppVisible: null,
 					CompanyF4: [],
 					CashJournalF4: [],
