@@ -3,18 +3,39 @@
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
 		<l:content>
 			<!--<m:Text text="Request Status"/>-->
-			<MicroProcessFlow class="ssp-processflow" renderType="Scrolling">
+			<MicroProcessFlow showIntermediary="true" class="ssp-processflow" renderType="Scrolling">
 				<content>
-					<MicroProcessFlowItem state="Error" title="Request Status" press="itemPress">
+					<MicroProcessFlowItem state="Neutral" priority="1" title="Request Status" press="itemPress">
 						<customData>
 							<core:CustomData key="title" value="Request ID : 5467364"/>
 							<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>
 							<core:CustomData key="subTitle" value="Service request 5467364"/>
 							<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>
 						</customData>
-						<!--	<customData>
-							<m:Text text="Basic"/>
-						</customData>-->
+					</MicroProcessFlowItem>
+					<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Request ID : 5467364"/>
+							<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>
+							<core:CustomData key="subTitle" value="Service request 5467364"/>
+							<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>
+						</customData>
+					</MicroProcessFlowItem>
+					<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Request ID : 5467364"/>
+							<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>
+							<core:CustomData key="subTitle" value="Service request 5467364"/>
+							<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>
+						</customData>
+					</MicroProcessFlowItem>
+					<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">
+						<customData>
+							<core:CustomData key="title" value="Request ID : 5467364"/>
+							<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>
+							<core:CustomData key="subTitle" value="Service request 5467364"/>
+							<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>
+						</customData>
 					</MicroProcessFlowItem>
 					<MicroProcessFlowItem state="Success" press="itemPress">
 						<customData>

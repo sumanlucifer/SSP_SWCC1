@@ -325,7 +325,7 @@ sap.ui.define([
 					Filename: Filename,
 					Mimetype: Filetype,
 					Value: Filecontent,
-					Filesize: Filesize
+					//Filesize: Filesize
 
 				});
 				this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);

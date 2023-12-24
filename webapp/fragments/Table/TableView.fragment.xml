@@ -46,10 +46,16 @@
 					<Text text="Service Product"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Sub Service Product"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Service Level"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Price"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Status"/>
 				</Column>
 			</columns>
 			<items>

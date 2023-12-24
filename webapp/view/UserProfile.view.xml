@@ -30,9 +30,9 @@
 					<!--	<VBox>
 						<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.Graphview" type="XML"/>
 					</VBox>-->
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.UserProfileRequest" type="XML"/>
-					</VBox>
+					<!--<VBox>-->
+					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.UserManagement.UserProfileRequest" type="XML"/>-->
+					<!--</VBox>-->
 					<!--</IconTabFilter>
 							<IconTabFilter icon="sap-icon://employee-lookup" iconColor="Positive" text="Avaliable Users" count="{oIconTabCountModel>/issueCount}">
 								<core:Fragment fragmentName="com.swcc.pm.SSP_PM.fragments.UserManagement.ClosedRequest" type="XML"/>
