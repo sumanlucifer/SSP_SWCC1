@@ -22,7 +22,8 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange"
 					class="sapUiSmallMarginBottom"/>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchRcrd" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="ssp-table-box">
@@ -34,8 +35,9 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table noDataText="No Data Found" growing="true" growingScrollToLoad="false" growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar"
-			items="{path : '/RecordandProcessInvoice/itemData'}" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table mode="MultiSelect" noDataText="No Data Found" growing="true" growingScrollToLoad="false" growingThreshold="10"
+			sticky="ColumnHeaders,HeaderToolbar" items="{path : '/RecordandProcessInvoice/itemData'}" inset="false"
+			class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column width="20em">
 					<Text text="Invoice Number"/>

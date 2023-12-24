@@ -83,13 +83,14 @@ sap.ui.define([
 			},
 
 			onSearchFinanceRequest: function () {
+				debugger;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callManageRecordInvoice() : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callManagePettyCashAPI() : null;
 
-				this.callManagePettyCashAPI();
-				this.callManageRecordInvoice();
 			},
 
 			callManagePettyCashAPI: function () {
-
+				debugger;
 				var filters = [{
 						path: "CompanyCode",
 						value: "1000",
@@ -100,7 +101,7 @@ sap.ui.define([
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "PostingNo",
-						value: this.getModel().getProperty("/ManagePettyCashData/CashJournalF4/CashJournalKey"),
+						value: this.getModel().getProperty("/ManagePettyCashData/CashJournalKey"),
 						group: "ManagePettyCashFilter"
 					}
 
