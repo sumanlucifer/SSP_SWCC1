@@ -35,6 +35,7 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					PMCreateRequest: {
+						UploadedData: [],
 						Header: {},
 						CustomDisplayData: {},
 						Attachment: [],
@@ -170,14 +171,7 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
-				oPayload.Attachments = [{
-
-						Filename: this.fileName,
-						Mimetype: this.Filetype,
-						Value: this.fileContent
-					}
-
-				];
+				oPayload.Attachments = this.getModel().getProperty("/PMCreateRequest/UploadedData");
 				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
@@ -286,6 +280,9 @@ sap.ui.define([
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
 
+				if (aFiles.length === 0)
+					return;
+
 				var Filename = aFiles[0].name,
 					Filetype = aFiles[0].type,
 					Filedata = aFiles[0],
@@ -295,8 +292,8 @@ sap.ui.define([
 				this._getImageData((Filedata), function (Filecontent) {
 					that._addData(Filecontent, Filename, Filetype, Filesize);
 				});
-				var oUploadSet = this.byId("UploadSet");
-				oUploadSet.getDefaultFileUploader().setEnabled(false);
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
 
 			},
 			_getImageData: function (url, callback, fileName) {
@@ -314,33 +311,25 @@ sap.ui.define([
 				reader.readAsBinaryString(url);
 			},
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
 				debugger;
-				this.fileContent = Filecontent;
-				this.fileName = Filename;
-				this.Filetype = Filetype;
-
-			},
-			handleUploadComplete: function (oEvent) {
-				var sFileName = oEvent.getParameter("files")[0].name;
-				var sFileSize = oEvent.getParameter("files")[0].size;
-
-				// Get the existing data from the model
-				var oModel = this.getView().getModel();
-				var aUploadedFiles = oModel.getProperty("/uploadedFiles");
-
-				// Add the new file data to the array
-				aUploadedFiles.push({
-					FileName: sFileName,
-					FileSize: sFileSize
+				var oModel = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
 				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					Filesize: Filesize
 
-				// Update the model with the new data
-				oModel.setProperty("/uploadedFiles", aUploadedFiles);
+				});
+				this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);
+
 			},
 
-			handleUploadPress: function () {
-				// Trigger the file upload process
-				this.byId("fileUploader").upload();
+			onFileSizeExceed: function () {
+				MessageBox.error("File size exceeded, Please upload file upto 2MB.");
 			}
 		})
 	})
