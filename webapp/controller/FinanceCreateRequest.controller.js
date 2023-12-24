@@ -108,16 +108,8 @@ sap.ui.define([
 				];
 
 				var dynamicFilters = this.getFilters(filters);
-				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/PettyCashSet/', null, dynamicFilters.ManagePettyCashFilter)
-					.then(function (oResponse) {
-
-						this.getModel().setProperty("/ManagePettyCashData/itemData/", oResponse.results);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this));
+				this.callCommonFinanceAPIRequest("/PettyCashSet/", "GET", dynamicFilters.ManagePettyCashFilter, null,
+					"/ManagePettyCashData/itemData/");
 
 			},
 			callManageRecordInvoice: function () {
