@@ -330,7 +330,7 @@ sap.ui.define([
 			},
 			handleMissmatch: function () {
 				MessageBox.error("Please upload only PDF and WORD document File.");
-			}
+			},
 			onFileSizeExceed: function () {
 				MessageBox.error("File size exceeded, Please upload file upto 2MB.");
 			}
