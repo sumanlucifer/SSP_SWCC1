@@ -171,7 +171,11 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
-				oPayload.Attachments = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				oPayload.Attachments = aUploadData;
 				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
@@ -318,7 +322,6 @@ sap.ui.define([
 					return Object.assign({}, oItem);
 				});
 				oItems.push({
-
 					Filename: Filename,
 					Mimetype: Filetype,
 					Value: Filecontent,
@@ -329,10 +332,11 @@ sap.ui.define([
 
 			},
 			handleMissmatch: function () {
-				MessageBox.error("Please upload only PDF and WORD document File.");
-			}
+				this.handleFileMissmatch();
+			},
 			onFileSizeExceed: function () {
-				MessageBox.error("File size exceeded, Please upload file upto 2MB.");
+
+				this.handleFileSizeExceed();
 			}
 		})
 	})

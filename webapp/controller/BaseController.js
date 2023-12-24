@@ -152,12 +152,12 @@ sap.ui.define([
 			});
 		},
 
-		/**
-		 * Convenience method for setting the view model.
-		 * @public
-		 * @param {sap.ui.model.Model} oModel the model instance
-		 * @param {string} sName the model name
-		 */
+		handleFileMissmatch: function () {
+			return MessageBox.error("Please upload only PDF and WORD document File.");
+		},
+		handleFileSizeExceed: function () {
+			return MessageBox.error("File size exceeded, Please upload file upto 2MB.");
+		},
 		setModel: function (oModel, sName) {
 			return this.getView().setModel(oModel, sName);
 		},
