@@ -116,13 +116,13 @@ sap.ui.define([
 
 			},
 			handleBackPress: function () {
-				this.navigationBavk();
+				this.navigationBack();
 
 			},
-			onback: function () {
+			/*onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
-			},
+			},*/
 			onProceed1: function () {
 
 				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");

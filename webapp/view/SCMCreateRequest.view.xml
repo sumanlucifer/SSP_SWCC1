@@ -13,62 +13,35 @@
 		</f:title>-->
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
-				<l:content >
-					<!--.........................................	Accounts Payable................................-->
-					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.ManagePettyCash" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox visible="{/VisibleRecordProcessInvoice}">-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountsPayable.RecordProcessInvoice" type="XML"/>-->
-					<!--</VBox>-->
-					<!--.................................Financial Review and General Ledger Close...........................-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.FinancialClose" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueFinancialStatement" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.MaintainChartOfAccount" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PeriodEndReconciliation" type="XML"/>-->
-					<!--</VBox>-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PrepareReviewTrailBalance"-->
-					<!--		type="XML"/>-->
-					<!--</VBox>-->
-					<!--...............................................Asset Lifecycle...........................................-->
-					<VBox>
+				<l:content>
+					<VBox
+						visible="{= ${/SCMAppVisible} === 'SSAPSCM20011-U' || ${/SCMAppVisible} === 'SSA-PSCM-2004-1' || ${/SCMAppVisible} === 'SSA-PSCM-2004-2' || ${/SCMAppVisible} === 'SSA-PSCM-2004-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementStrategic.RFCCareCenter" type="XML"/>
+					</VBox>
+					<VBox
+						visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2005-1' || ${/SCMAppVisible} === 'SSA-PSCM-2005-2' || ${/SCMAppVisible} === 'SSA-PSCM-2005-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Qualification.ProjectandGeneralQualification" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-2' || ${/SCMAppVisible} === 'SSA-PSCM-2010-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.MaterialIssue" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ChangeRequest" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.DuplicateResolution" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2012-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ProjectMaterial" type="XML"/>
 					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.Sto" type="XML"/>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-2-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.STO" type="XML"/>
 					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.DuplicateResolutionService" type="XML"/>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2001-1' || ${/SCMAppVisible} === 'SSA-PSCM-2001-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementADHOC.MaterialProcurement" type="XML"/>
 					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.IssueofMaterial" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.MaterialSpare" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ServiceProcurement" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.RFCCareCenter" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ProjectandGeneralQualification" type="XML"/>
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2002-1') || (${/SCMAppVisible} === 'SSA-PSCM-2002-2')}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementADHOC.ServiceProcurement" type="XML"/>
 					</VBox>
 				</l:content>
 			</l:VerticalLayout>

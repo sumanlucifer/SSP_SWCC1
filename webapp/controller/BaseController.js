@@ -35,14 +35,14 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
-		navigationBavk: function () {
+		navigationBack: function () {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.getRouter().navTo("LandingView", {}, true);
+				this.getRouter().navTo("HomePage", {}, true);
 
 			}
 
