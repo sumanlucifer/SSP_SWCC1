@@ -130,7 +130,7 @@ sap.ui.define([
 
 				if (this.getModel().getProperty("/SLACheckFlag/")) {
 					this.getView().byId("accept_checkbox").setSelected(false);
-					MessageToast.show("Please click on SLA Version and Accept");
+					MessageToast.show("Please Read SLA Version and Accept");
 
 				}
 

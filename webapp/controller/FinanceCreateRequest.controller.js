@@ -46,6 +46,12 @@ sap.ui.define([
 						path: "Country",
 						value: "SA",
 						group: "CompanyFilter"
+					},
+
+					{
+						path: "Language",
+						value: "E",
+						group: "CashJrnlFilter"
 					}
 
 				];
@@ -56,7 +62,7 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
 						dynamicFilters.CompanyFilter),
 					//	Cash Journal F4 Data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CashJournal/', null, null)
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CashJournal/', null, dynamicFilters.CashJrnlFilter)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -86,11 +92,11 @@ sap.ui.define([
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "FiscalYear",
-						value: "2023",
+						value: this.getModel().getProperty("/ManagePettyCashData/FiscalYear"),
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "PostingNo",
-						value: "0100000118",
+						value: this.getModel().getProperty("/ManagePettyCashData/CashJournalF4/CashJournalKey"),
 						group: "ManagePettyCashFilter"
 					}
 
@@ -117,7 +123,7 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("LandingView");
 
 			},
-			onProceed: function () {
+			onProceed1: function () {
 
 				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
 			},

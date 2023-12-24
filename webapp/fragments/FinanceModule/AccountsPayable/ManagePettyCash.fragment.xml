@@ -21,10 +21,11 @@
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalF4/CashJournalKey}"
 					items="{/ManagePettyCashData/CashJournalF4/}">
-					<core:Item key="{CashJournal}" text="{CashJournal_Text}"/>
+					<core:Item key="{CashJournal}" text="{CashJournal}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker id="DP11" displayFormat="yyyy" value="" change="handleChange" class="sapUiSmallMarginBottom"/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
@@ -65,7 +66,7 @@
 						<Text text="{PostingDate}"/>
 						<Text text="{NetAmount}"/>
 						<Text text="{Currency}"/>
-						<Text text="{PostingNo}"/>
+						<Text text=""/>
 					</cells>
 				</ColumnListItem>
 			</items>
