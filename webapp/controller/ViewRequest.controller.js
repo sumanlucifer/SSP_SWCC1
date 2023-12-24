@@ -8,7 +8,10 @@ sap.ui.define([
 		onInit: function () {
 
 			this.oRouter = this.getRouter();
+			this.getRouter().getRoute("ViewRequest").attachPatternMatched(this._onObjectMatched, this);
 
+		},
+		_onObjectMatched: function () {
 			this._createItemDataModel();
 			this.BPFlagCheckAPI();
 

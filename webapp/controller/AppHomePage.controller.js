@@ -15,7 +15,7 @@ sap.ui.define([
 			},
 			_onObjectMatched: function () {
 				this._createDataModel();
-				this.getTileDisplayData();
+				//	this.getTileDisplayData();
 
 			},
 			_createDataModel: function () {
