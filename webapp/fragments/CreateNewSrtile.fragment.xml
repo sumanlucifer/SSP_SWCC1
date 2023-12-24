@@ -15,7 +15,7 @@
 				</TileContent>
 			</GenericTile>
 			<GenericTile visible="{/TileData/Header/BPExists}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
-				press="onPressViewAllRequest" header="{i18n>viewservicerequest}">
+				press="onPressUserRequest" header="{i18n>viewservicerequest}">
 				<TileContent>
 					<ImageContent src="sap-icon://personnel-view"/>
 				</TileContent>
@@ -34,6 +34,11 @@
 			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>usermanage}">
 				<TileContent>
 					<ImageContent src="sap-icon://role"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserViewRequest" header="{i18n>viewallrequest}">
+				<TileContent>
+					<ImageContent src="sap-icon://user-edit"/>
 				</TileContent>
 			</GenericTile>
 		</FlexBox>

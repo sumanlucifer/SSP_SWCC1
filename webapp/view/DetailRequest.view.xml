@@ -102,13 +102,10 @@
 			</uxap:ObjectPageSection>
 			<!-- Location ends here -->
 			<!-- Comment Section -->
-			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Comment}">
+			<!--	<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Comment}">
 				<uxap:subSections>
 					<uxap:ObjectPageSubSection title="" titleLevel="H6" class="ssp-object-bg">
 						<uxap:blocks>
-							<!--	<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
-								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
-							</VBox>-->
 							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
 								<Toolbar>
 									<Title level="H3" text="{i18n>Comment}" class="ssp-dtl-title"/>
@@ -119,7 +116,7 @@
 						</uxap:blocks>
 					</uxap:ObjectPageSubSection>
 				</uxap:subSections>
-			</uxap:ObjectPageSection>
+			</uxap:ObjectPageSection>-->
 			<!-- comment sections ends here -->
 		</uxap:sections>
 	</uxap:ObjectPageLayout>

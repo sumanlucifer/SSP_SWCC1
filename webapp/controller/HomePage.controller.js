@@ -49,14 +49,9 @@ sap.ui.define([
 			onPressCreateRequest: function () {
 				this.oRouter.navTo("AppHomePage");
 			},
-
-			onPressViewAllRequest: function () {
+			onPressUserRequest: function () {
 				this.oRouter.navTo("UserProfile");
 			},
-			/*onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
-
-			},*/
 			onPressBpRequest: function () {
 				this.oRouter.navTo("CustomerRegistration");
 			},
@@ -65,6 +60,10 @@ sap.ui.define([
 			},
 			onPressUserManagement: function () {
 				this.oRouter.navTo("UserManagementRequest");
+			},
+			onPressUserViewRequest: function () {
+				this.oRouter.navTo("ViewRequest");
+
 			},
 
 			onOpen: function () {

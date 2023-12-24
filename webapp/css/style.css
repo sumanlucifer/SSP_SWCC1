@@ -544,6 +544,10 @@
     height: 100px;
 }
 
+.ssp-processflow .sapSuiteUiCommonsMicroProcessFlowItem.sapSuiteUiCommonsMicroProcessFlowItemundefined {
+    background: #CCCCCC;
+}
+
 .ssp-processflow .sapUiIcon.sapSuiteUiCommonsMicroProcessFlowItemIcon {
     font-size: 2rem !important;
 }
