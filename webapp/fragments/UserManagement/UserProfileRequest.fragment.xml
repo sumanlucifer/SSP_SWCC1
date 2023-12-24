@@ -26,10 +26,16 @@
 				<Text text="Service Product"/>
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Sub Service Product"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Service Level"/>
 			</Column>
 			<Column minScreenWidth="Tablet" demandPopin="true">
 				<Text text="Price"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Status"/>
 			</Column>
 		</columns>
 		<items>
@@ -39,8 +45,10 @@
 					<Text text="SLA"/>
 					<Text text="2023-11-20"/>
 					<Text text="Heavy Maintenance"/>
+					<Text text="Bolier"/>
 					<Text text="3 Days"/>
 					<Text text="125SAR"/>
+					<Text text="Open"/>
 				</cells>
 			</ColumnListItem>
 		</items>
