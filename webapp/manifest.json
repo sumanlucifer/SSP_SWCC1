@@ -175,10 +175,10 @@
 					]
 				},
 				{
-					"name": "DetailView",
-					"pattern": "",
+					"name": "DetailRequest",
+					"pattern": "DetailRequest",
 					"target": [
-						"DetailView"
+						"DetailRequest"
 					]
 				},
 				{
@@ -312,11 +312,11 @@
 					"clearControlAggregation": false,
 					"viewName": "ScmCreateRequest"
 				},
-				"DetailView": {
+				"DetailRequest": {
 					"viewType": "XML",
 					"transition": "slide",
 					"clearControlAggregation": false,
-					"viewName": "DetailView"
+					"viewName": "DetailRequest"
 				},
 				"ViewRequest": {
 					"viewType": "XML",

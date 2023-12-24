@@ -82,7 +82,7 @@ sap.ui.define([
 
 			},
 
-			onApprove: function (oEve) {
+			onApprovetest: function (oEve) {
 
 				//	var APIFunc = this.onTest1.bind(this);
 
@@ -93,7 +93,7 @@ sap.ui.define([
 
 			},
 
-			onApproveAPICall: function (oEve) {
+			onApprove: function (oEve) {
 				debugger;
 				var sRequestID = oEve.getSource().getBindingContext().getObject().ID;
 				var oPayload = {
