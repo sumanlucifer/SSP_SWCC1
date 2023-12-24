@@ -318,6 +318,7 @@ sap.ui.define([
 					return Object.assign({}, oItem);
 				});
 				oItems.push({
+
 					Filename: Filename,
 					Mimetype: Filetype,
 					Value: Filecontent,
