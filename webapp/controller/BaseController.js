@@ -35,7 +35,7 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
-		navigationBavk: function () {
+		navigationBack: function () {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
 			sPreviousHash = oHistory.getPreviousHash();

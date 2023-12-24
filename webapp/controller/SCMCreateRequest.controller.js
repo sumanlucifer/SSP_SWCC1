@@ -10,33 +10,38 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
+				this.getRouter().getRoute("SCMCreateRequest").attachPatternMatched(this._onObjectMatched, this);
 				this._createItemDataModel();
+
+			},
+			_onObjectMatched: function () {
+				debugger;
+				this._createItemDataModel();
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
+					sServiceProductLocalVal = oStorage.get("sSubServiceType");
+				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				this.getModel().setProperty("/SCMAppVisible/", sServiceProduct);
+				//this.callDropDownService();
 
 			},
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
 					recognitionAlreadyStarted: false,
+					SCMAppVisible: null,
 					MarineTransportation: {
 						itemData: []
 					}
 				});
 			},
 			handleBackPress: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("LandingView", {}, true);
-				}
+				this.navigationBack();
 
 			},
-			onback: function () {
+			/*onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
-			},
+			},*/
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
 				var oItems = oModel.map(function (oItem) {
@@ -59,16 +64,17 @@ sap.ui.define([
 
 			},
 			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
-				this.getModel().refresh();
-			},
+					var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+					var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+					aTableData.splice(iRowNumberToDelete, 1);
+					this.getModel().refresh();
+				}
+				/*,
 
-			onSearch: function () {
+							onSearch: function () {
 
-				this.oRouter.navTo("LandingView");
+								this.oRouter.navTo("LandingView");
 
-			}
+							}*/
 		})
 	})

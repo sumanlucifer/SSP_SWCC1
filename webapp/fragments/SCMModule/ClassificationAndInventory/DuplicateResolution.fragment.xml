@@ -1,47 +1,47 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-issueofmaterial" title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2"
-			columnsL="2" columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>issueofmaterial}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{i18n>duplicate}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input id="srproduct1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>basedate}" required="true"/>
-				<Input id="crtype5" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>purchaseorg}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>costcenter}" required="true"/>
-				<Input id="materialtype1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Label text="{i18n>supplyingplant}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>movementtype}" required="true"/>
-				<Input id="crdesc5" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>goodsrecipient}" required="true"/>
-				<Input id="industrysector4" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<Input id="srdesc3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>documenttype}" required="true"/>
+				<Input id="crdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-issueofmaterial1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm id="ssp-duplicate1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
@@ -58,7 +58,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table id="totalamount4" mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table id="totalamount3" mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -82,7 +82,7 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input id="tb-material1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+							<Input id="tb-material2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 								suggestionItems="{/ProductCollection}">
 								<suggestionItems>
 									<core:Item text="{Name}"/>
@@ -91,7 +91,7 @@
 							<Text text="Will shi"/>
 							<Input value="{BaseUnit}"/>
 							<Text text="{uom}"/>
-							<Input id="tb-purchasing6" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+							<Input id="tb-purchasing3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 								suggestionItems="{/ProductCollection}">
 								<suggestionItems>
 									<core:Item text="{Name}"/>
