@@ -17,10 +17,9 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="dd" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/CompanyF4/0/CompanyCode}" placeholder=""/>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker id="ss" displayFormat="yyyy"
-					value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }" change="handleChange"
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange"
 					class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchRcrd" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
@@ -35,11 +34,9 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table id="rfrr" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table noDataText="No Data Found" growing="true" growingScrollToLoad="false" growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar"
+			items="{path : '/RecordandProcessInvoice/itemData'}" inset="false" class="ssp-request-Table sapUiContentPadding">
 			<columns>
-				<Column>
-					<Text text="Sno"/>
-				</Column>
 				<Column width="20em">
 					<Text text="Invoice Number"/>
 				</Column>
@@ -68,15 +65,14 @@
 			<items>
 				<ColumnListItem vAlign="Middle">
 					<cells>
-						<Text text="1"/>
-						<Text text="Titanium"/>
-						<Text text="Will shi"/>
-						<Text text="SOM"/>
-						<Text text="2"/>
-						<Text text="699.00SAR"/>
-						<Text text="2"/>
-						<Text text="2"/>
-						<Text text="2"/>
+						<Text text="{InvoiceNo}"/>
+						<Text text="{PostingDate}"/>
+						<Text text="{DocumentRef}"/>
+						<Text text="{PoNo}"/>
+						<Text text="{PoItem}"/>
+						<Text text="{Amount}"/>
+						<Text text="{currency}"/>
+						<Text text="{VendorCode}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

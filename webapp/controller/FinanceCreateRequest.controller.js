@@ -29,9 +29,12 @@ sap.ui.define([
 					busy: false,
 					recognitionAlreadyStarted: false,
 					FinanceAppVisible: null,
+					CompanyF4: [],
+					CashJournalF4: [],
 					ManagePettyCashData: {
-						CashJournalF4: [],
-						CompanyF4: [],
+						itemData: []
+					},
+					RecordandProcessInvoice: {
 						itemData: []
 					},
 					MarineTransportation: {
@@ -72,16 +75,17 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", false);
 				// 			Company F4 type response
 				var aCompanyF4Data = values[0].value.results;
-				this.getModel().setProperty("/ManagePettyCashData/CompanyF4/", aCompanyF4Data);
+				this.getModel().setProperty("/CompanyF4/", aCompanyF4Data);
 				// 			Cash Journal F4 type response
 				var aCashJournalF4Data = values[1].value.results;
-				this.getModel().setProperty("/ManagePettyCashData/CashJournalF4/", aCashJournalF4Data);
+				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
 
 			},
 
 			onSearchFinanceRequest: function () {
 
 				this.callManagePettyCashAPI();
+				this.callManageRecordInvoice();
 			},
 
 			callManagePettyCashAPI: function () {
@@ -114,6 +118,39 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
+			},
+			callManageRecordInvoice: function () {
+
+				var filters = [{
+						path: "CompanyCode",
+						value: "1000",
+						group: "ManageRecordInvoiceFilter"
+					}, {
+						path: "FiscalYear",
+						value: this.getModel().getProperty("/RecordandProcessInvoice/FiscalYear"),
+						group: "ManageRecordInvoiceFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				this.callCommonFinanceAPIRequest("/PettyInvoicesSet/", "GET", dynamicFilters.ManageRecordInvoiceFilter, null,
+					"/RecordandProcessInvoice/itemData/");
+
+			},
+
+			callCommonFinanceAPIRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
+
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), operation, Entity, null, Filters)
+					.then(function (oResponse) {
+
+						this.getModel().setProperty(`${oModelSet}`, oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
 			},
 			handleBackPress: function () {
 				this.navigationBavk();
