@@ -636,6 +636,10 @@
     border: none;
 }
 
+.hide-data {
+    display: none;
+}
+
 .upload-table .sapMListTblCell {
     color: #af0c0c;
     font-size: 12px;
@@ -718,14 +722,3 @@
 }
 
 /* custom css for deploy version ends here */
-/* pdf vier css */
-#viewer {
-    position: absolute;
-    top: 0px;
-}
-
-:host {
-    position: absolute;
-}
-
-/*pdf viwer ends here */
