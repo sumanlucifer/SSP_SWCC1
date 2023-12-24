@@ -29,6 +29,7 @@ sap.ui.define([
 						itemData: []
 					},
 					ClosedItemRequestData: {
+
 						itemData: []
 					}
 				});
