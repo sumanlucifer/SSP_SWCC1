@@ -19,7 +19,6 @@ sap.ui.define([
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 
 			},
-
 			_onObjectMatched: function () {
 				debugger;
 				this._createItemDataModel();
@@ -104,19 +103,20 @@ sap.ui.define([
 
 			},
 
-			onValueHelpRequest: async function (oEvent) {
+			onValueHelpRequest: function () {
+				debugger;
 				this._oMultiInput = this.getView().byId("multiInput");
 				this.oColModel = new JSONModel({
 					cols: [{
-						label: "SAP Code",
-						template: "Id",
+						label: "Equipment",
+						template: "Equipment",
 						width: "10rem",
 					}, {
-						label: "Dealer Name",
-						template: "DealerName",
+						label: "Equipment Name",
+						template: "EquipmentName",
 					}, {
 						label: "Plant Code",
-						template: "PlantCode",
+						template: "MaintenancePlanningPlant",
 					}, ],
 				});
 
@@ -180,6 +180,9 @@ sap.ui.define([
 				});
 				//  this._oMultiInput.setTokens(aTokens);
 				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", oData[0].EquipmentName);
+				this._oValueHelpDialog.close();
+			},
+			onValueHelpCancelPress: function () {
 				this._oValueHelpDialog.close();
 			},
 
