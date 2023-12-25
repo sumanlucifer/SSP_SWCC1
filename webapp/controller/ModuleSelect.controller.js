@@ -164,10 +164,14 @@ sap.ui.define([
 			},
 			onSelectSubServiceTypeDD: function (oEve) {
 				debugger;
+
 				var sKey = oEve.getSource().getSelectedKey();
-				var sDesc = sKey.split("_")[2];
+				var sDesc = sKey.split("_")[2],
+					sDesc = sDesc === "" ? "" : sDesc;
 
 				this.getModel().setProperty("/ModuleSearch/Header/Desc/", sDesc);
+				this.getModel().setProperty("/ModuleSearch/Header/SLA/", sKey.split("_")[4]);
+				this.getModel().setProperty("/ModuleSearch/Header/Price/", sKey.split("_")[5]);
 
 			},
 			testCPI_API: function () {

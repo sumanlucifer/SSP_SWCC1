@@ -4,10 +4,12 @@ sap.ui.define([
 		"sap/ui/core/routing/History",
 		"sap/m/MessageBox",
 		"sap/ui/core/Fragment",
-		"sap/ui/Device"
+		"sap/ui/Device",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Fragment, Device) {
+	function (BaseController, JSONModel, History, MessageBox, Fragment, Device, Filter, FilterOperator) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.PMCreateRequest", {
 
@@ -101,63 +103,143 @@ sap.ui.define([
 
 			},
 
-			onValueHelpRequest: async function (oEvent) {
-				try {
-					const sPlantFilter = new sap.ui.model.Filter({
-						path: "MaintenancePlanningPlant",
-						operator: sap.ui.model.FilterOperator.EQ,
-						value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
-					});
+			onValueHelpRequest: function () {
+				debugger;
+				this._oMultiInput = this.getView().byId("multiInput");
+				this.oColModel = new JSONModel({
+					cols: [{
+						label: "Equipment",
+						template: "Equipment",
+						width: "10rem",
+					}, {
+						label: "Equipment Name",
+						template: "EquipmentName",
+					}, {
+						label: "Plant Code",
+						template: "MaintenancePlanningPlant",
+					}, ],
+				});
 
-					const urlParameters = {
-						"$skip": 1,
-						"$top": 10
-					};
+				var aCols = this.oColModel.getData().cols;
 
-					const oResponse = await this.getAPI.oDataACRUDAPICall(
-						this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
-						'GET',
-						'/ZCDSV_EQUIPMENTVH',
-						null,
-						sPlantFilter,
-						urlParameters
-					);
+				this._oValueHelpDialog = sap.ui.xmlfragment(
+					"com.swcc.Template.fragments.PMModule.EquipmentF4",
+					this
+				);
+				this.getView().addDependent(this._oValueHelpDialog);
 
-					const model = this.getModel();
-					model.setProperty("/PMCreateRequest/EquipmentF4/", oResponse.results);
-					model.setProperty("/busy", false);
+				this._oValueHelpDialog.getTableAsync().then(
+					function (oTable) {
+						//		oTable.setModel(this.oProductsModel);
+						oTable.setModel(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"));
+						oTable.setModel(this.oColModel, "columns");
 
-					if (!this.VDialog) {
-						this.VDialog = await this.loadFragment({
-							name: "com.swcc.Template.fragments.PMModule.EquipmentF4"
+						if (oTable.bindRows) {
+							oTable.bindAggregation("rows", {
+								path: "/ZCDSV_EQUIPMENTVH",
+								events: {
+									dataReceived: function () {
+										this._oValueHelpDialog.update();
+									}.bind(this)
+								}
+							})
+						}
+
+						if (oTable.bindItems) {
+							oTable.bindAggregation("items", "/ZCDSV_EQUIPMENTVH", function () {
+								return new sap.m.ColumnListItem({
+									cells: aCols.map(function (column) {
+										return new sap.m.Label({
+											text: "{" + column.template + "}",
+										});
+									}),
+								});
+							});
+						}
+						oTable.setSelectionMode("Single");
+						this._oValueHelpDialog.update();
+					}.bind(this)
+				);
+
+				//	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+				this._oValueHelpDialog.open();
+			},
+			onValueHelpOkPress: function (oEvent) {
+				var oData = [];
+				var xUnique = new Set();
+				var aTokens = oEvent.getParameter("tokens");
+
+				aTokens.forEach(function (ele) {
+					if (xUnique.has(ele.getKey()) == false) {
+						oData.push({
+							EquipmentName: ele.getText(),
+							Equipment: ele.getKey(),
 						});
+						xUnique.add(ele.getKey());
 					}
+				});
+				//  this._oMultiInput.setTokens(aTokens);
+				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", oData[0].EquipmentName);
+				this._oValueHelpDialog.close();
+			},
 
-					if (Device.system.desktop) {
-						this.VDialog.addStyleClass("sapUiSizeCompact");
-					}
-					this._oVID = this.VDialog;
-					this._oVID.open();
-				} catch (error) {
-					MessageBox.error(error.responseText);
-					this.getModel().setProperty("/busy", false);
+			onValueHelpAfterOpen: function () {
+
+				//   apply filter before value help open 
+				var aFilter = this._getfilterforControl();
+				this._filterTable(aFilter, "Control");
+			},
+			_getfilterforControl: function () {
+				debugger;
+				if (!this.getModel().getProperty("/PMCreateRequest/Header/Plant/")) {
+					return [];
+
 				}
+
+				var filters = [{
+						path: "MaintenancePlanningPlant",
+						value: this.getModel().getProperty("/PMCreateRequest/Header/Plant/"),
+						group: "PlantFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				if ((dynamicFilters.length == 0)) {
+					return [];
+				}
+				return new Filter({
+					filters: dynamicFilters.PlantFilter,
+					and: true,
+				});
+
+				//	return dynamicFilters.PlantFilter;
 			},
 
-			_handleSelectEquipment: function (oEvent) {
-				var selectedVendorDes = oEvent.getSource().getAggregation("attributes");
-				var sEqipmentNo = selectedVendorDes[0].getProperty('text');
-				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", sEqipmentNo);
+			_filterTable: function (oFilter, sType) {
+				var oValueHelpDialog = this._oValueHelpDialog;
 
-				this._oVID.close();
+				oValueHelpDialog.getTableAsync().then(function (oTable) {
+					if (oTable.bindRows) {
+						oTable.getBinding("rows").filter(oFilter, sType || "Application");
+					}
+
+					if (oTable.bindItems) {
+						oTable
+							.getBinding("items")
+							.filter(oFilter, sType || "Application");
+					}
+
+					oValueHelpDialog.update();
+				});
 			},
 
-			onValueHelpSearch: function (oEvent) {
+			onSearchEquipment: function (oEvent) {
 				var sValue = oEvent.getParameter("value");
-				var oFilter = new Filter(
+				var oFilter = new sap.ui.model.Filter(
 					[
-						new Filter({
-							path: "CustomerName",
+						new sap.ui.model.Filter({
+							path: "Equipment",
 							operator: "Contains",
 							value1: sValue.trim()
 						})

@@ -1,23 +1,43 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" enableScrolling="true"
-	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">
-	<Dialog title="Search Equipment" contentWidth="30%" contentHeight="80%">
-		<Input id="idsearchVendorID" placeholder="Search by Equipment" submit="onSearchVendorID"/>
-		<List id="idlistVendorID" items="{/PMCreateRequest/EquipmentF4/}" mode="None" growing="true" growingThreshold="30"
-			growingScrollToLoad="true">
-			<items>
-				<ObjectListItem type="Active" title="{EquipmentName} " press="_handleSelectEquipment">
-					<attributes>
-						<ObjectAttribute text="{Equipment}"/>
-						<ObjectAttribute text="{EquipmentWithZeros}"/>
-					</attributes>
-				</ObjectListItem>
-			</items>
-		</List>
-		<beginButton>
-			<Button icon="sap-icon://decline" text="Cancel" press="onCloseDialogVendorID" type="Reject"/>
-		</beginButton>
-		<endButton>
-			<Button text="Next" id="btn_next" icon="sap-icon://navigation-right-arrow" press="onNext" type="Accept"/>
-		</endButton>
-	</Dialog>
+<!--<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:html="http://www.w3.org/1999/xhtml" enableScrolling="true"-->
+<!--	xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form">-->
+<!--	<Dialog title="Search Equipment" contentWidth="30%" contentHeight="80%">-->
+<!--		<Input id="idsearchVendorID" placeholder="Search by Equipment" submit="onSearchEquipment"/>-->
+<!--		<List id="idlistVendorID" items="{/PMCreateRequest/EquipmentF4/}" mode="None" growing="true" growingThreshold="30"-->
+<!--			growingScrollToLoad="true">-->
+<!--			<items>-->
+<!--				<ObjectListItem type="Active" title="{EquipmentName} " press="_handleSelectEquipment">-->
+<!--					<attributes>-->
+<!--						<ObjectAttribute text="{Equipment}"/>-->
+<!--					</attributes>-->
+<!--				</ObjectListItem>-->
+<!--			</items>-->
+<!--		</List>-->
+<!--		<beginButton>-->
+<!--			<Button icon="sap-icon://decline" text="Cancel" press="onCloseDialogVendorID" type="Reject"/>-->
+<!--		</beginButton>-->
+<!--		<endButton>-->
+<!--			<Button text="Next" id="btn_next" icon="sap-icon://navigation-right-arrow" press="onNext" type="Accept"/>-->
+<!--		</endButton>-->
+<!--	</Dialog>-->
+<!--</core:FragmentDefinition>-->
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Equipment Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Id" descriptionKey="Equipment">
+		<filterBar>
+			<fb:FilterBar advancedMode="false" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Equipment" label="Equipment Code" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Equipment"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="EquipmentName" label="Equipment Name" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="EquipmentName"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
 </core:FragmentDefinition>
