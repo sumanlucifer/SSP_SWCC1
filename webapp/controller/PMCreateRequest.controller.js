@@ -106,7 +106,7 @@ sap.ui.define([
 					const sPlantFilter = new sap.ui.model.Filter({
 						path: "MaintenancePlanningPlant",
 						operator: sap.ui.model.FilterOperator.EQ,
-						value1: this.getModel().getProperty("/PMCreateRequest/Header/Planplant/")
+						value1: this.getModel().getProperty("/PMCreateRequest/Header/Plant/")
 					});
 
 					const urlParameters = {
