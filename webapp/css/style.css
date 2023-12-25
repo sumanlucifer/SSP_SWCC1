@@ -702,8 +702,8 @@
 }
 
 .sapUshellShellHeadBegin>.sapUshellShellIco>img {
-    max-width: 20rem;
-    max-height: 5.5rem;
+    max-width: 5rem;
+    max-height: 2.5rem;
 }
 
 .sapUiFormLblColon .sapUiFormElementLbl>.sapMLabel.sapMLabelRequired:after {
