@@ -213,19 +213,14 @@ sap.ui.define([
 
 			},
 			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
-				this.getModel().refresh();
-			},
-			/*	onProceed: function () {
-					this.getOwnerComponent().getTargets().display("FinanceCreateRequest");
-				},*/
+					var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+					var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+					aTableData.splice(iRowNumberToDelete, 1);
+					this.getModel().refresh();
+				}
+				/*	onProceed: function () {
+						this.getOwnerComponent().getTargets().display("FinanceCreateRequest");
+					},*/
 
-			onSearch: function () {
-
-				this.oRouter.navTo("LandingView");
-
-			}
 		})
 	})
