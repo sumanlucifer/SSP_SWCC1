@@ -1,15 +1,30 @@
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/routing/History"
+		"sap/ui/core/routing/History",
+		"sap/m/MessageBox"
 	],
 
-	function (BaseController, JSONModel, History) {
+	function (BaseController, JSONModel, History, MessageBox) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.AppHomePage", {
 			onInit: function () {
 				this.oRouter = this.getRouter();
+				this.getRouter().getRoute("AppHomePage").attachPatternMatched(this._onObjectMatched, this);
 
+			},
+			_onObjectMatched: function () {
+				this._createDataModel();
+				//	this.getTileDisplayData();
+
+			},
+			_createDataModel: function () {
+				this.getModel().setData({
+					busy: false,
+					AppHomeTileDisplay: {
+						Header: {}
+					}
+				});
 			},
 			handleBackPress: function () {
 
@@ -22,6 +37,22 @@ sap.ui.define([
 				} else {
 					this.getRouter().navTo("HomePage", {}, true);
 				}
+
+			},
+
+			getTileDisplayData: function () {
+
+				//	var sLoggedInUserName = "";
+				var sAPI = `/UserSet(RequestID='',SapID='WT_POWER')`;
+
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
+					.then(function (oResponse) {
+						this.getModel().setProperty("/AppHomeTileDisplay/Header/", oResponse);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
 
 			},
 

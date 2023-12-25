@@ -10,20 +10,20 @@
 				</Toolbar>
 			</fm:toolbar>
 		</fm:SimpleForm>
-		<Table id="idProductsTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="SingleSelect"
-			items="{ path: '/ProductCollection', sorter: { path: 'Name' } }" noDataText="No Open Requests Pending" class="ssp-request-Table">
+		<Table growing="true" growingScrollToLoad="false" growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar" inset="false"
+			items="{path : '/RequestDetails/itemData'}" noDataText="No Open Requests Pending" class="ssp-request-Table">
 			<headerToolbar>
 				<OverflowToolbar>
 					<ToolbarSpacer/>
 					<OverflowToolbar>
 						<ToolbarSpacer/>
-						<SearchField search="onSearch" width="17.5rem"/>
+						<SearchField placeholder="Enter Request ID" search="onSearch" width="17.5rem"/>
 					</OverflowToolbar>
 					<!--	<Button text="Approve" class="swcc-pmy-btn" press="onApprove"/>
 					<Button type="Reject" class="swcc-sec-btn" text="Reject" press="onPress"/>-->
-					<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>
-					<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>
-					<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>
+					<!--<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
+					<!--<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
+					<!--<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
 					<!--	<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
 				</OverflowToolbar>
 			</headerToolbar>
@@ -43,9 +43,6 @@
 					<Text text="Created On"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
-					<Text text="Service Product"/>
-				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Sub Service Product"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
@@ -61,9 +58,13 @@
 			<items>
 				<ColumnListItem vAlign="Middle">
 					<cells>
-						<ObjectIdentifier title="{Name}" text="{ProductId}"/>
-						<Text text="{SupplierName}"/>
-						<Text text="{Width} x {Depth} x {Height} {DimUnit}"/>
+						<ObjectIdentifier title="{RequestID}"/>
+						<Text text="{RequestType}"/>
+						<Text text="{path:'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
+						<Text text="{Material}"/>
+						<Text text="{SLA}"/>
+						<Text text="{Price}"/>
+						<Text text="{Status}"/>
 					</cells>
 				</ColumnListItem>
 			</items>

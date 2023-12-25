@@ -1,22 +1,26 @@
 sap.ui.define([
 	"./BaseController",
-	"sap/ui/core/routing/History"
-], function (BaseController, History) {
+	"sap/ui/core/routing/History",
+	"sap/m/MessageBox"
+], function (BaseController, History, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("com.swcc.Template.controller.ViewRequest", {
 		onInit: function () {
 
 			this.oRouter = this.getRouter();
+			this.getRouter().getRoute("ViewRequest").attachPatternMatched(this._onObjectMatched, this);
 
+		},
+		_onObjectMatched: function () {
 			this._createItemDataModel();
-			this.BPFlagCheckAPI();
+			this.getViewRequestDetails();
 
 		},
 		_createItemDataModel: function () {
 			this.getModel().setData({
 				busy: false,
-				OpenItemRequestData: {
+				RequestDetails: {
 					itemData: []
 				}
 			});
@@ -33,12 +37,23 @@ sap.ui.define([
 
 		},
 
-		BPFlagCheckAPI: function () {
-			var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
+		getViewRequestDetails: function () {
+			var filters = [{
+					path: "Username",
+					value: "WT_POWER",
+					group: "ViewRequestFilter"
+				}
 
-			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
+			];
+
+			var dynamicFilters = this.getFilters(filters);
+
+			var sAPI = `/ViewRequestSet`;
+			debugger;
+
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, dynamicFilters.ViewRequestFilter)
 				.then(function (oResponse) {
-					this.getModel().setProperty("/TileData/Header/", oResponse);
+					this.getModel().setProperty("/RequestDetails/itemData/", oResponse.results);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {
 					MessageBox.error(error.responseText);
@@ -47,25 +62,6 @@ sap.ui.define([
 
 		},
 
-		getFilters: function (sUserName, sIsRequest) {
-
-			var sUserNameFilter = new sap.ui.model.Filter({
-				path: "SapID",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: sUserName
-			});
-
-			var sIsRequestFilter = new sap.ui.model.Filter({
-				path: "IsRequest",
-				operator: sap.ui.model.FilterOperator.EQ,
-				value1: sIsRequest
-			});
-			var aUserFilter = [];
-			aUserFilter.push(sUserNameFilter, sIsRequestFilter);
-
-			return aUserFilter;
-
-		},
 		onPressTile: function (oEvent) {
 			this.getOwnerComponent().getRouter().navTo("ModuleSelect");
 		}

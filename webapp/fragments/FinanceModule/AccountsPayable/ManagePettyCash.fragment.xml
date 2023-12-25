@@ -17,10 +17,10 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="productInput" value="{/ManagePettyCashData/CompanyF4/0/CompanyCode}" placeholder=""/>
+				<Input id="productInput" value="{/CompanyF4/0/CompanyCode}" placeholder=""/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalF4/CashJournalKey}"
-					items="{/ManagePettyCashData/CashJournalF4/}">
+				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalKey}"
+					items="{/CashJournalF4/}">
 					<core:Item key="{CashJournal}" text="{CashJournal}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
