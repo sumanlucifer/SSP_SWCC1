@@ -48,12 +48,6 @@ sap.ui.define([
 						path: "Country",
 						value: "SA",
 						group: "CompanyFilter"
-					},
-
-					{
-						path: "Language",
-						value: "E",
-						group: "CashJrnlFilter"
 					}
 
 				];
@@ -64,7 +58,8 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
 						dynamicFilters.CompanyFilter),
 					//	Cash Journal F4 Data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CashJournal/', null, dynamicFilters.CashJrnlFilter)
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
+						null)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
