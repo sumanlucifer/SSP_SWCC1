@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
@@ -21,6 +19,7 @@ sap.ui.define([
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 
 			},
+
 			_onObjectMatched: function () {
 				debugger;
 				this._createItemDataModel();
@@ -106,12 +105,20 @@ sap.ui.define([
 			},
 
 			onValueHelpRequest: async function (oEvent) {
-				try {
-					const sPlantFilter = new sap.ui.model.Filter({
-						path: "MaintenancePlanningPlant",
-						operator: sap.ui.model.FilterOperator.EQ,
-						value1: this.getModel().getProperty("/PMCreateRequest/Header/Plant/")
-					});
+				this._oMultiInput = this.getView().byId("multiInput");
+				this.oColModel = new JSONModel({
+					cols: [{
+						label: "SAP Code",
+						template: "Id",
+						width: "10rem",
+					}, {
+						label: "Dealer Name",
+						template: "DealerName",
+					}, {
+						label: "Plant Code",
+						template: "PlantCode",
+					}, ],
+				});
 
 				var aCols = this.oColModel.getData().cols;
 
@@ -415,4 +422,3 @@ sap.ui.define([
 			}
 		})
 	})
->>>>>>> refs/remotes/origin/feature/srikanth
