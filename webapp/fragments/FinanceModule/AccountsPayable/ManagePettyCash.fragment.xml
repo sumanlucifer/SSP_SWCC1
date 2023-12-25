@@ -18,14 +18,14 @@
 				<!--</Toolbar>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input id="productInput" value="{/CompanyF4/0/CompanyCode}" placeholder=""/>
+				<Label text="{i18n>FiscalYear}" required="true"/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleManagePettyCashDateChange"
+					class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalKey}"
 					items="{/CashJournalF4/}">
 					<core:Item key="{CashJournalDocumentInternalID}" text="{CashJournalDocumentInternalID}"/>
 				</ComboBox>
-				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>

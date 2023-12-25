@@ -48,6 +48,10 @@ sap.ui.define([
 						path: "Country",
 						value: "SA",
 						group: "CompanyFilter"
+					}, {
+						path: "Country",
+						value: "SA",
+						group: "CompanyFilter"
 					}
 
 				];
@@ -63,6 +67,11 @@ sap.ui.define([
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
+			},
+
+			handleManagePettyCashDateChange: function (oEve) {
+				debugger;
+				var sYear = oEve.getSource().getValue();
 			},
 			buildResponselist: function (values) {
 				debugger;
