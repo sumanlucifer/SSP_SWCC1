@@ -105,7 +105,7 @@ sap.ui.define([
 			},
 
 			onValueHelpRequest: function () {
-				debugger;
+
 				this._oMultiInput = this.getView().byId("multiInput");
 				this.oColModel = new JSONModel({
 					cols: [{
@@ -185,6 +185,28 @@ sap.ui.define([
 			},
 			onValueHelpCancelPress: function () {
 				this._oValueHelpDialog.close();
+			},
+			onFilterBarSearch: function (oEvent) {
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: "Equipment",
+						value: afilterBar[0].getValue(),
+						group: "EquipmentF4SearchFilter"
+					}, {
+						path: "EquipmentName",
+						value: afilterBar[1].getValue(),
+						group: "EquipmentF4SearchFilter"
+					}
+
+				];
+				var dynamicFilters = this.getFilters(filters);
+
+				this._filterTable(
+					new Filter({
+						filters: dynamicFilters.EquipmentF4SearchFilter,
+						and: false,
+					})
+				);
 			},
 
 			onValueHelpAfterOpen: function () {

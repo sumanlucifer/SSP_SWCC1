@@ -139,6 +139,34 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 			},
+			onProceed: function () {
+				this.FinanceCreateaRequestAPI();
+			},
+			FinanceCreateaRequestAPI: function (oPayload) {
+				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
+				var oPayload = {};
+				oPayload.Username = "WT_POWER";
+				oPayload.ServiceHeadertoItem = [{
+					PostingNumber: "223333",
+					Budat: "",
+					Wrbtr: "tesrt",
+					Waers: ""
+				}];
+				oPayload.Attachments = [];
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
+						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
 			handleBackPress: function () {
 				this.navigationBack();
 
