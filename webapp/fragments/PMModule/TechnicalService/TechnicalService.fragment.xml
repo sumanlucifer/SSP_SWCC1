@@ -41,8 +41,8 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>equipment}"/>
-				<Input enabled="{= ${/PMCreateRequest/Header/Plant/} !== null}" width="100%" placeholder="Enter Equipment" valueHelpOnly="true"
-					showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}"/>
+				<Input enabled="{= ${/PMCreateRequest/Header/Plant/} !== undefined ? true : false }" width="100%" placeholder="Enter Equipment"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}"/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">

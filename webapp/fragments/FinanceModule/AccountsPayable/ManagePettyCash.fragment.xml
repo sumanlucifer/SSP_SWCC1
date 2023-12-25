@@ -21,7 +21,7 @@
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalKey}"
 					items="{/CashJournalF4/}">
-					<core:Item key="{CashJournal}" text="{CashJournal}"/>
+					<core:Item key="{CashJournalDocumentInternalID}" text="{CashJournalDocumentInternalID}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleChange"
@@ -52,11 +52,8 @@
 				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Amount"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Currency"/>
-				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
-					<Text text="Accounting Document Number"/>
 				</Column>
 			</columns>
 			<items>
@@ -66,7 +63,6 @@
 						<Text text="{PostingDate}"/>
 						<Text text="{NetAmount}"/>
 						<Text text="{Currency}"/>
-						<Text text=""/>
 					</cells>
 				</ColumnListItem>
 			</items>
