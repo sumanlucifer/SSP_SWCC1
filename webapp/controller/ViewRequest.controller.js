@@ -26,15 +26,10 @@ sap.ui.define([
 			});
 		},
 		handleBackPress: function () {
-			var oHistory, sPreviousHash;
-			oHistory = History.getInstance();
-			sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
-				window.history.go(-1);
-			} else {
-				this.getRouter().navTo("HomePage", {}, true);
-			}
-
+			this.navigationBack();
+		},
+		onPressRow: function () {
+			this.getOwnerComponent().getRouter().navTo("DetailRequest");
 		},
 
 		getViewRequestDetails: function () {
