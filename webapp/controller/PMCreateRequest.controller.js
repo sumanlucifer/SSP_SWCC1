@@ -16,6 +16,7 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
+
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 
 			},
