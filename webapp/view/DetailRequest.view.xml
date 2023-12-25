@@ -1,125 +1,40 @@
-<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:fm="sap.ui.layout.form" xmlns:layout="sap.ui.layout"
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:fm="sap.ui.layout.form" xmlns:l="sap.ui.layout"
 	xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.swcc.Template.controller.DetailRequest">
-	<!--	<f:DynamicPage id="dynamicPageId" headerExpanded="true" showFooter="true" class="ssp-page">
-		<f:content>-->
-	<uxap:ObjectPageLayout id="ObjectPageLayout1" showTitleInHeaderContent=" true" width="90%" upperCaseAnchorBar=" false"
-		headerContentPinnable="false" toggleHeaderOnTitleClick=" true" showFooter=" true" preserveHeaderStateOnScroll="true" showAnchorBar="true"
-		class="SSP-objectpage ssp-page sapUiLargeMarginBeginEnd sapUiMediumMarginTopBottom">
-		<!--<uxap:content>
-			<Button text="{i18n>iWantToNavigate}" class="sapUiTinyMarginEnd"/>
-		</uxap:content>-->
-		<uxap:headerTitle>
-			<uxap:ObjectPageDynamicHeaderTitle>
-				<uxap:expandedHeading>
-					<Title text="Request ID : 5467364" wrapping="false" level="H3" class="ssp-dtl-title"/>
-				</uxap:expandedHeading>
-				<uxap:expandedContent>
-					<Text text="PRICE : 10SAR" class="ssp-dtl-value"/>
-				</uxap:expandedContent>
-				<uxap:snappedHeading>
-					<FlexBox direction="Column" renderType="Bar">
-						<Title text="ID : 5467364" wrapping="false" titleStyle="H4" class="sapUiTinyMarginTopBottom"/>
-						<!-- <Text text="{i18n>VendorCode}: {VendorViewModel>/VendorCode}" wrapping="true"/> -->
-					</FlexBox>
-				</uxap:snappedHeading>
-				<uxap:snappedTitleOnMobile>
-					<Title text="{i18n>VendorDetails}: {VendorViewModel>/VendorCode}" wrapping="true" titleStyle="Auto"/>
-				</uxap:snappedTitleOnMobile>
-				<uxap:actions>
-					<Button text="{i18n>Approve}" type="Success" class="sapUiSizeCompact" press="onApprovePress"
-						visible="{= ${objectViewModel>/EditMode} === false ? true : false}" ariaHasPopup="Dialog"/>
-					<Button text="{i18n>Assign}" type="Neutral" press="onAssignPress" class="sapUiSizeCompact"
-						visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
-					<Button text="{i18n>Close}" type="Negative" press="onCancelPress" class="sapUiSizeCompact"
-						visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
-				</uxap:actions>
-			</uxap:ObjectPageDynamicHeaderTitle>
-		</uxap:headerTitle>
-		<uxap:headerContent>
-			<FlexBox wrap="NoWrap" width="100%" class="ssp-hdr-cnt">
-				<!--	<Avatar class="sapUiSmallMarginEnd" src="./test-resources/sap/uxap/images/imageID_275314.png" displaySize="L"/>-->
-				<layout:VerticalLayout class="sapUiSmallMarginEnd">
-					<Title text="Company Details" level="H4"/>
-					<Label text="Company Name : Wittco"/>
-					<Label text="Address : Riyadh"/>
-					<Label text="Phone : +966 55431234"/>
-				</layout:VerticalLayout>
-				<layout:VerticalLayout class="sapUiSmallMarginEnd">
-					<Title text="SLA Time" level="H2"/>
-					<VBox>
-						<NumericContent value="10" scale="Days" valueColor="Error" indicator="" icon="sap-icon://away" class="sapUiSmallMarginEnd" press="press"></NumericContent>
+	<f:DynamicPage headerExpanded="true" showFooter="true" busy="{/busy}" class="ssp-page">
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content>
+					<VBox width="100%">
+						<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+							labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+							<fm:toolbar>
+								<Toolbar class="ssp-title">
+									<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+									<Title class="ssp-form-bg" text="{i18n>viewreq}"/>
+									<ToolbarSpacer/>
+								</Toolbar>
+							</fm:toolbar>
+						</fm:SimpleForm>
 					</VBox>
-				</layout:VerticalLayout>
-				<layout:VerticalLayout class="sapUiSmallMarginBeginEnd">
-					<Title text="Status" level="H4" design="Bold"/>
-					<!--<tnt:InfoLabel id="il2" text="Open" class="sapUiContentPadding" renderMode="Loose" colorScheme="2"/>-->
-					<Button text="Open" type="Reject" press="" ariaDescribedBy=""/>
-				</layout:VerticalLayout>
-			</FlexBox>
-		</uxap:headerContent>
-		<uxap:sections>
-			<!-- Vendor Request Details Section -->
-			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>requestdetails}">
-				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="{i18n>requestdetails}" titleLevel="H6" class="ssp-object-bg">
-						<uxap:blocks>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? false : true}" width="100%">
-								<!-- Display Service request Overview Details -->
-								<Toolbar>
-									<Title level="H3" text="{i18n>requestdetails}" class="ssp-dtl-title"/>
-									<ToolbarSpacer/>
-								</Toolbar>
-								<Text class="sapUiSmallMarginTop"
-									text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"/>
-							</VBox>
-							<!--<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} === true ? true : false}">
-								Edit Vendor Basic Details 
-								<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditVendorDetails" type="XML"/>
-							</VBox>-->
-						</uxap:blocks>
-					</uxap:ObjectPageSubSection>
-				</uxap:subSections>
-			</uxap:ObjectPageSection>
-			<!-- Locations Section -->
-			<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Status}">
-				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="" titleLevel="H6" class="ssp-object-bg">
-						<uxap:blocks>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
-								<Toolbar>
-									<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
-									<ToolbarSpacer/>
-								</Toolbar>
-								<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
-							</VBox>
-							<!--<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
-								 Edit Locations Details 
-								<core:Fragment fragmentName="com.agel.mmts.newvendor.view.fragments.DisplayEditVendor.EditLocationDetails" type="XML"/>
-							</VBox>-->
-						</uxap:blocks>
-					</uxap:ObjectPageSubSection>
-				</uxap:subSections>
-			</uxap:ObjectPageSection>
-			<!-- Location ends here -->
-			<!-- Comment Section -->
-			<!--	<uxap:ObjectPageSection titleUppercase="true" title="{i18n>Comment}">
-				<uxap:subSections>
-					<uxap:ObjectPageSubSection title="" titleLevel="H6" class="ssp-object-bg">
-						<uxap:blocks>
-							<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? true : false}">
-								<Toolbar>
-									<Title level="H3" text="{i18n>Comment}" class="ssp-dtl-title"/>
-									<ToolbarSpacer/>
-								</Toolbar>
-								<core:Fragment fragmentName="com.swcc.Template.fragments.Comment" type="XML"/>
-							</VBox>
-						</uxap:blocks>
-					</uxap:ObjectPageSubSection>
-				</uxap:subSections>
-			</uxap:ObjectPageSection>-->
-			<!-- comment sections ends here -->
-		</uxap:sections>
-	</uxap:ObjectPageLayout>
-	<!--	</f:content>
-	</f:DynamicPage>-->
+					<FlexBox height="" alignItems="Start" justifyContent="End">
+						<Button text="{i18n>Approve}" type="Success" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
+							visible="{= ${objectViewModel>/EditMode} === false ? true : false}" ariaHasPopup="Dialog"/>
+						<Button text="{i18n>Assign}" type="Neutral" press="onAssignPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
+							visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
+						<Button text="{i18n>Close}" type="Negative" press="onCancelPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
+							visible="{= ${objectViewModel>/EditMode} === true ? true : false}" ariaHasPopup="Dialog"/>
+					</FlexBox>
+					<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.DetailRequest" type="XML"/>
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Submit}" type="Accept" class="btn-proceed" press="onSaveRequest"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
 </mvc:View>

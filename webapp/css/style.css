@@ -526,17 +526,34 @@
 }
 
 /* Detail page CSS */
+.ssp-dtl-title .sapMOHR .sapMITH {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.ssp-dtl-title .sapMOHR {
+    padding: 1rem;
+}
+
+.ssp-dtl-title .sapMOHRTitle h1,
+.ssp-dtl-title .sapMTextMaxLine {
+    font-family: 'SWCC-4-Bold';
+    color: #004687;
+    letter-spacing: 1px;
+}
+
+.ssp-dtl-title .sapMOHRAttr .sapMObjectAttributeText,
+.ssp-dtl-title .sapMObjStatus {
+    font-family: 'SWCC-3-Medium';
+}
+
+.ssp-dtl-title .sapMObjStatus.sapMObjStatusNone {
+    font-weight: normal;
+}
+
+.ssp-dtl-title .sapMObjStatus.sapMObjStatusSuccess,
 .ssp-dtl-title {
     font-weight: bold;
-    color: #004687;
-}
-
-.SSP-objectpage .sapUxAPObjectPageSectionHeader {
-    display: none;
-}
-
-.SSP-objectpage .sapMTB {
-    padding: 0px;
 }
 
 .ssp-processflow .sapSuiteUiCommonsMicroProcessFlowItem {
@@ -719,6 +736,10 @@
 
 .sapUshellShellHead>.sapUshellShellCntnt {
     height: 3.5rem;
+}
+
+.sapMLabelRequired:before {
+    display: none !important;
 }
 
 /* custom css for deploy version ends here */

@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:blockcolor="sap.uxap.sample.SharedBlocks">
+	<ObjectHeader responsive="true" fullScreenOptimized="true" binding="{/ProductCollection/0}" intro="Price: 10SAR"
+		title="Request ID - 56234564" number="54543" numberUnit="SAR" numberState="Success" backgroundDesign="Translucent" class="ssp-dtl-title">
+		<statuses>
+			<ObjectStatus text="Email ID: abc@email.com"/>
+			<ObjectStatus text="SLA Time" state="Error"/>
+			<ObjectStatus class="sapUiSmallMarginBottom" text="3 Days" icon="sap-icon://fob-watch" state="Success"/>
+			<ObjectStatus text="Status" state="Error"/>
+			<ObjectStatus class="sapUiSmallMarginBottom" text="Closed" icon="sap-icon://information" state="Success"/>
+		</statuses>
+		<ObjectAttribute text="Company Name : Wittco"/>
+		<ObjectAttribute text="Address : Riyadh"/>
+		<ObjectAttribute text="Phone no : +96655434234"/>
+		<ObjectAttribute text="" active="true" ariaHasPopup="Dialog" press="handleFeedbacklinkPressed"/>
+		<ObjectAttribute text="" active="true" press="handleSAPLinkPressed"/>
+		<headerContainer>
+			<IconTabBar id="itb1" selectedKey="key3" upperCase="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+				<items>
+					<IconTabFilter text="Info" count="{Quantity}" key="key1">
+						<l:VerticalLayout class="sapUiContentPadding" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Request Details}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<Text class="sapUiSmallMarginTop"
+										text="Lorem ipsum dolor st amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
+					<IconTabFilter text="Activities">
+						<l:VerticalLayout class="sapUiContentPadding" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
+					<!--	<IconTabFilter text="Comment" >
+						<l:VerticalLayout class="sapUiContentPadding" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.Comment" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>-->
+				</items>
+			</IconTabBar>
+		</headerContainer>
+	</ObjectHeader>
+</core:FragmentDefinition>
