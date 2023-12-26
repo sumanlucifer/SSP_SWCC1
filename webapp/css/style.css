@@ -558,6 +558,7 @@
 .ssp-dtl-title .sapMOHR .sapMITH {
     margin-left: 0px;
     margin-right: 0px;
+    padding: 10px 0px 10px 0px;
 }
 
 .ssp-dtl-title .sapMOHR {
@@ -577,6 +578,7 @@
 .ssp-dtl-title .sapMObjectAttributeColon,
 .ssp-dtl-title .sapMObjectAttributeText {
     line-height: 1.4rem;
+    white-space: pre-line !important
 }
 
 .ssp-dtl-title .sapMOHRStatesOneOrThree>.sapMOHRStates {
