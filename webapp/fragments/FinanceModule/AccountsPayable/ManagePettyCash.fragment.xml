@@ -60,7 +60,7 @@
 				<ColumnListItem vAlign="Middle">
 					<cells>
 						<Text text="{PostingNo}"/>
-						<Text text="{PostingDate}"/>
+						<Text text="{path:'PostingDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
 						<Text text="{NetAmount}"/>
 						<Text text="{Currency}"/>
 					</cells>

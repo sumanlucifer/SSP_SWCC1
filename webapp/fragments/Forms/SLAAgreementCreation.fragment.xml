@@ -63,7 +63,7 @@
 				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Enter Representative Name' : '' }"
 					placeholder="Enter Representative Name" value="{/SLARegistrationData/CustomData/P2_Represen/}"/>
-				<Label text="{i18n>repreposisition}" required="false"/>
+				<Label text="{i18n>repreposisition}" required="true"/>
 				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Enter Representative Position' : '' }"
 					placeholder="Enter Representative Position" value="{/SLARegistrationData/CustomData/P2_Rep_Pos/}"/>
