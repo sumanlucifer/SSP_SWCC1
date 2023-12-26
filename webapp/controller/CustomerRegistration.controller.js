@@ -33,6 +33,7 @@ sap.ui.define([
 		_customeRegistrationModel: function () {
 			this.getModel().setData({
 				busy: false,
+				ValidationFlag: false,
 				CustomerRegistrationData: {
 					Header: {},
 					CountryF4: [],
@@ -105,56 +106,75 @@ sap.ui.define([
 			var bValid = true;
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Company/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Company/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Stras/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Stras/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Pstlz/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Pstlz/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Land1/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Land1/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Land1/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Land1/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Regio/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Regio/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Email/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Email/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
 			}
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Cr_No/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Cr_No/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
+			}
+
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Phoneno/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/Phoneno/", "")
+				this.getModel().setProperty("/ValidationFlag/", true)
+
+				bValid = false;
+			} else {
+				this.getModel().setProperty("/ValidationFlag/", false)
 			}
 
 			return bValid;

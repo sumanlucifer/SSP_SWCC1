@@ -57,7 +57,7 @@
 			</columns>
 			<items>
 				<ColumnListItem vAlign="Middle" type="Active" navigated="{ parts: [ 'settings>/navigatedItem', 'ProductId' ], formatter: '.isNavigated' }"
-					press="onPressRow">
+					press="onRowPress">
 					<cells>
 						<ObjectIdentifier title="{RequestID}"/>
 						<Text text="{RequestType}"/>

@@ -19,6 +19,27 @@
     font-family: 'SWCC-4-Bold';
 }
 
+/* error css */
+.error-msg {
+    background-color: #e32020;
+    padding: 5px;
+    height: 20px;
+
+}
+
+.error-msg .sapUiIcon {
+    color: #ffffff;
+    padding-top: 3px;
+    padding-right: 3px;
+}
+
+.error-msg .sapMText {
+    color: #fff;
+    font-family: 'SWCC-3-Medium';
+    line-height: normal !important;
+}
+
+/* error css ends here */
 /* custom font ends here */
 /* Default css to apply whole modules */
 .sapMLabel {
@@ -37,6 +58,10 @@
     font-family: 'SWCC-3-Medium';
     font-size: 0.8rem;
 }
+
+/*.cmn-txtarea .sapMTextAreaInner {
+    font-family: 'SWCC-3-Medium';
+}*/
 
 .user-filter .sapMInputBaseInner,
 .user-filter .sapMInputBaseIcon {
@@ -259,18 +284,22 @@
     font-family: 'SWCC-3-Medium';
 }
 
-.ssp-form-txtarea .sapMInputBaseContentWrapper {
+.ssp-form-txtarea .sapMInputBaseContentWrapper,
+.ssp-form-txtarea .sapMTextAreaInner {
     background: #b5c8eb;
     border: 0px;
     height: auto;
+    font-family: 'SWCC-3-Medium';
+
 }
 
 .ssp-form-txtarea .sapMInputBase:not(.sapMFocus) .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):hover,
 .ssp-form-txtarea .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):active {
-    background: #EFF0F2;
+    background: #b5c8eb;
     border: 0px;
     height: auto;
     box-shadow: 2px 2px 5px 1px #729ac39e;
+    font-family: 'SWCC-3-Medium';
 }
 
 .ssp-form-txtarea .sapUiFormResGridCont {
@@ -535,24 +564,48 @@
     padding: 1rem;
 }
 
+.ssp-dtl-title .sapMOHR .sapMOHRAttr .sapMObjectAttributeTitle,
+.ssp-dtl-title .sapMObjStatusTitle {
+    font-weight: bold;
+    font-family: 'SWCC-4-Bold';
+    padding-right: 1rem !important;
+    line-height: 1.5rem !important;
+    color: #004687;
+    letter-spacing: 0.5px;
+}
+
+.ssp-dtl-title .sapMObjectAttributeColon,
+.ssp-dtl-title .sapMObjectAttributeText {
+    line-height: 1.4rem;
+}
+
+.ssp-dtl-title .sapMOHRStatesOneOrThree>.sapMOHRStates {
+    text-align: left !important;
+}
+
 .ssp-dtl-title .sapMOHRTitle h1,
 .ssp-dtl-title .sapMTextMaxLine {
     font-family: 'SWCC-4-Bold';
     color: #004687;
     letter-spacing: 1px;
+    line-height: 0px;
 }
 
-.ssp-dtl-title .sapMOHRAttr .sapMObjectAttributeText,
+.hidden-content {
+    visibility: hidden;
+}
+
 .ssp-dtl-title .sapMObjStatus {
     font-family: 'SWCC-3-Medium';
+    font-weight: bold;
+
 }
 
-.ssp-dtl-title .sapMObjStatus.sapMObjStatusNone {
+/*.ssp-dtl-title .sapMObjStatus.sapMObjStatusNone {
     font-weight: normal;
-}
+}*/
 
-.ssp-dtl-title .sapMObjStatus.sapMObjStatusSuccess,
-.ssp-dtl-title {
+.ssp-dtl-title .sapMObjStatus.sapMObjStatusSuccess {
     font-weight: bold;
 }
 

@@ -176,7 +176,7 @@
 				},
 				{
 					"name": "DetailRequest",
-					"pattern": "DetailRequest",
+				 "pattern": "DetailRequest/{RequestID}",
 					"target": [
 						"DetailRequest"
 					]

@@ -36,10 +36,14 @@
 					value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"/>
 				<Label text="{i18n>shortname}" required="false"/>
 				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
-				<Label text="{i18n>POBOX}" required="true"/>
+				<Label text="{i18n>PhoneNumber}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Phoneno/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Phoneno/} === '' ? 'Enter Phone' : '' }"
+					value="{/CustomerRegistrationData/Header/Phoneno/}" type="Number" placeholder="Enter Phone Number"/>
+				<!--	<Label text="{i18n>POBOX}" required="true"/>
 				<Input valueState="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Enter PO Box' : '' }"
-					value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX"/>
+					value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX"/>-->
 				<!--<Label text="{i18n>City}" required="true"/>-->
 				<!--<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>-->
 				<Label text="{i18n>Email}" required="true"/>
