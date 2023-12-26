@@ -2,13 +2,46 @@ sap.ui.define([
 	"./BaseController",
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
-	"sap/ui/core/library"
-], function (BaseController, History, JSONModel, coreLibrary) {
+	"sap/ui/core/library",
+	"sap/m/MessageBox"
+], function (BaseController, History, JSONModel, coreLibrary, MessageBox) {
 	"use strict";
-	return BaseController.extend("com.swcc.Template.controller.DetailView", {
+	return BaseController.extend("com.swcc.Template.controller.DetailRequest", {
 		onInit: function () {
 
-			this.oRouter = this.getOwnerComponent().getRouter();
+			this.oRouter = this.getRouter();
+			this.getRouter().getRoute("DetailRequest").attachPatternMatched(this._onObjectMatched, this);
+
+		},
+		_onObjectMatched: function (oEvent) {
+			this._createDataModel();
+			var sReqId = oEvent.getParameter("arguments").RequestID;
+			this.RequestDetailsAPI(sReqId);
+		},
+		_createDataModel: function () {
+			this.getModel().setData({
+				busy: false,
+				RequestDetails: {
+					Header: {}
+
+				}
+			});
+		},
+		RequestDetailsAPI: function (sReqId) {
+
+			var sAPI = `/ViewRequestSet('${sReqId}')`;
+			debugger;
+
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, null,
+					null)
+				.then(function (oResponse) {
+
+					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
 
 		},
 
@@ -23,6 +56,16 @@ sap.ui.define([
 				this.getRouter().navTo("LandingView", {}, true);
 			}
 
+		},
+		handleBackPress: function () {
+			var oHistory, sPreviousHash;
+			oHistory = History.getInstance();
+			sPreviousHash = oHistory.getPreviousHash();
+			if (sPreviousHash !== undefined) {
+				window.history.go(-1);
+			} else {
+				this.getRouter().navTo("ViewRequest", {}, true);
+			}
 		},
 
 		itemPress: function (oEvent) {

@@ -15,6 +15,9 @@ sap.ui.define([
 		_onObjectMatched: function () {
 			this._createItemDataModel();
 			this.getViewRequestDetails();
+			//this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
+			//this.getModel().setProperty("/ServiceDescription", sServiceDescription);
+			//this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
 
 		},
 		_createItemDataModel: function () {
@@ -28,8 +31,12 @@ sap.ui.define([
 		handleBackPress: function () {
 			this.navigationBack();
 		},
-		onPressRow: function () {
-			this.getOwnerComponent().getRouter().navTo("DetailRequest");
+		onRowPress: function (oEvent) {
+			debugger;
+			var oSelected = oEvent.getSource().getBindingContext().getObject();
+			this.getOwnerComponent().getRouter().navTo("DetailRequest", {
+				RequestID: oSelected.RequestID
+			});
 		},
 
 		getViewRequestDetails: function () {
@@ -42,11 +49,12 @@ sap.ui.define([
 			];
 
 			var dynamicFilters = this.getFilters(filters);
-
+			//var sortParams = [new sap.ui.model.Sorter("CreatedOn", true)];
 			var sAPI = `/ViewRequestSet`;
 			debugger;
 
-			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, dynamicFilters.ViewRequestFilter)
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, dynamicFilters.ViewRequestFilter,
+					null)
 				.then(function (oResponse) {
 					this.getModel().setProperty("/RequestDetails/itemData/", oResponse.results);
 					this.getModel().setProperty("/busy", false);

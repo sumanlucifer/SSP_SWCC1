@@ -15,16 +15,16 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<!--	<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1004-3' || ${/HRAppVisible} === 'SSA-HR-1004-2' || ${/HRAppVisible} === 'SSA-HR-1004-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Termination.TerminationService" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-1' || ${/HRAppVisible} === 'SSA-HR-1001-2'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Recruitment" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1010-1-B' || ${/HRAppVisible} === 'SSA-HR-1010-1-A' || ${/HRAppVisible} === 'SSA-HR-1010-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.MedicalInsurance" type="XML"/>
 					</VBox>
-					<VBox>
+					<!--<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.ClaimRequest" type="XML"/>
 					</VBox>
 					<VBox>
@@ -60,9 +60,9 @@
 					<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.PeoplecareCenter.Governmentbankloans" type="XML"/>
 					</VBox>-->
-					<VBox>
+					<!--	<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.PeoplecareCenter.Updatemasterdata" type="XML"/>
-					</VBox>
+					</VBox>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

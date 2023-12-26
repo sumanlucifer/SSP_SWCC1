@@ -14,7 +14,7 @@
 				<Input enabled="false" value="{/SLARegistrationData/Header/Company/}"/>
 				<Label text="{i18n>crno}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Cr_No/}"/>
-				<Label text="{i18n>EmailID}"/>
+				<Label text="{i18n>EMailid}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/Email/}"/>
 				<Label text="{i18n>customername}"/>
 				<Input enabled="false" value="{/SLARegistrationData/Header/UserName/}"/>
@@ -113,7 +113,7 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox width="100%">
+	<VBox width="100%" class="ssp-form-txtarea">
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
