@@ -47,7 +47,7 @@ sap.ui.define([
 				}
 
 			];
-
+			this.getModel().setProperty("/busy", true);
 			var dynamicFilters = this.getFilters(filters);
 			//var sortParams = [new sap.ui.model.Sorter("CreatedOn", true)];
 			var sAPI = `/ViewRequestSet`;
