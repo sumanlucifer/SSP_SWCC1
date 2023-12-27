@@ -11,7 +11,16 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
+				this.getRouter().getRoute("ITCreateRequest").attachPatternMatched(this._onObjectMatched, this);
+
+			},
+			_onObjectMatched: function () {
+				debugger;
 				this._createItemDataModel();
+				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
+					sServiceProductLocalVal = oStorage.get("sSubServiceType");
+				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				this.getModel().setProperty("/ITAppVisible/", sServiceProduct);
 
 			},
 			_createItemDataModel: function () {
