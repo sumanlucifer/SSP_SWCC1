@@ -18,15 +18,15 @@
 					</VBox>
 					<FlexBox height="" alignItems="Start" justifyContent="End">
 						<Button text="{i18n>Approve}" type="Success" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
-							visible="{= ${//RequestDetails/Header/Action} === false ? true : false}"/>
-						<Button text="{i18n>Reject}" visible="{= ${//RequestDetails/Header/Action} === false ? true : false}" type="Neutral" press="onAssignPress"
+							visible="{= ${/RequestDetails/Header/Action} === true ? true : false}"/>
+						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Neutral" press="onAssignPress"
 							class="sapUiSizeCompact sapUiTinyMarginEnd"/>
 						<Button text="{i18n>Close}" type="Negative" press="onCancelPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
 							visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
 					</FlexBox>
 					<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.DetailRequest" type="XML"/>
 				</l:content>
-			</l:VerticalLayout>
+				cus</l:VerticalLayout>
 		</f:content>
 		<!-- DynamicPage Footer -->
 		<f:footer>

@@ -16,10 +16,13 @@ sap.ui.define([
 			_onObjectMatched: function () {
 				debugger;
 				this._createItemDataModel();
-
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
+				var sBaseUnit = sServiceProductLocalVal.split("_")[3];
+				this.getModel().setProperty("/MaterialProcurement/Header/Material", sServiceProduct);
+				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/SCMAppVisible/", sServiceProduct);
 				this.callDropDownService();
 
@@ -31,6 +34,7 @@ sap.ui.define([
 					recognitionAlreadyStarted: false,
 					SCMAppVisible: null,
 					MaterialProcurement: {
+						Header: {},
 						itemData: []
 					}
 				});
@@ -52,11 +56,11 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
 					//   Company Code F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/PlantF4/', null,
-						null)
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/Plant/', null,
+						null),
 					//	Cash Journal F4 Data
-					//this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
-					//null)
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
+							dynamicFilters.WorkCntrFilter,)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -70,6 +74,27 @@ sap.ui.define([
 				// 			Cash Journal F4 type response
 				/*var aCashJournalF4Data = values[1].value.results;
 				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);*/
+
+			},
+
+			SCMCreateaRequestAPI: function (oPayload) {
+				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
+				var oPayload = {};
+				oPayload.Username = "WT_POWER";
+				oPayload.ServiceHeadertoItem = [];
+				oPayload.Attachments = [];
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
+						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
 
 			},
 

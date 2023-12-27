@@ -12,7 +12,7 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>serviceprocurement}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
@@ -34,40 +34,40 @@
 				</Input>
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>contractduration}" required="true"/>
+				<Label text="{i18n>contractduration}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>projecttype}" required="true"/>
+				<Label text="{i18n>projecttype}" required="false"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>costestimationtype}" required="true"/>
+				<Label text="{i18n>costestimationtype}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>technicalevaluationcriteria}" required="true"/>
+				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>suggestedcompany}" required="true"/>
+				<Label text="{i18n>suggestedcompany}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>extratermsconditions}" required="true"/>
+				<Label text="{i18n>extratermsconditions}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>description}" required="true"/>
+				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>requeststat}" required="true"/>
+				<Label text="{i18n>requeststat}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>confidentialproject}" required="true"/>
+				<Label text="{i18n>confidentialproject}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>sitevisitrequired}" required="true"/>
+				<Label text="{i18n>sitevisitrequired}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>economicfeasibilitystudy}" required="true"/>
+				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>securityprojectapproval}" required="true"/>
+				<Label text="{i18n>securityprojectapproval}" required="fasle"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>justification}" required="true"/>
+				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -95,6 +95,9 @@
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
+					<Column>
+						<Text text="{i18n>servicecode}"/>
+					</Column>
 					<Column>
 						<Text text="{i18n>serviceshort}"/>
 					</Column>
