@@ -48,6 +48,10 @@ sap.ui.define([
 						path: "Country",
 						value: "SA",
 						group: "CompanyFilter"
+					}, {
+						path: "Country",
+						value: "SA",
+						group: "CompanyFilter"
 					}
 
 				];
@@ -63,6 +67,11 @@ sap.ui.define([
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
+			},
+
+			handleManagePettyCashDateChange: function (oEve) {
+				debugger;
+				var sYear = oEve.getSource().getValue();
 			},
 			buildResponselist: function (values) {
 				debugger;
@@ -140,18 +149,15 @@ sap.ui.define([
 					}.bind(this));
 			},
 			onProceed: function () {
-				this.FinanceCreateaRequestAPI();
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateaRequestAPI() : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateaRequestAPI() : null;
+
 			},
 			FinanceCreateaRequestAPI: function (oPayload) {
 				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
 				var oPayload = {};
 				oPayload.Username = "WT_POWER";
-				oPayload.ServiceHeadertoItem = [{
-					PostingNumber: "223333",
-					Budat: "",
-					Wrbtr: "tesrt",
-					Waers: ""
-				}];
+				oPayload.ServiceHeadertoItem = [];
 				oPayload.Attachments = [];
 				debugger;
 				this.getModel().setProperty("/busy", true);

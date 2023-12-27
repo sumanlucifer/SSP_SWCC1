@@ -16,19 +16,47 @@
 				<!--	<ToolbarSpacer/>-->
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="true"/>
+				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Label text="{i18n>plant}" required="true"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>
+				<Label text="{i18n>workcenter}" required="true"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
+					items="{/PMCreateRequest/WorkCenterF4/}">
+					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
+				</ComboBox>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input id="productInput" value="{/CompanyF4/0/CompanyCode}" placeholder=""/>
+				<Label text="{i18n>FiscalYear}" required="true"/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleManagePettyCashDateChange"
+					class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalKey}"
 					items="{/CashJournalF4/}">
 					<core:Item key="{CashJournalDocumentInternalID}" text="{CashJournalDocumentInternalID}"/>
 				</ComboBox>
-				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+					width="100%"/>
+			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="ssp-table-box">
@@ -60,7 +88,7 @@
 				<ColumnListItem vAlign="Middle">
 					<cells>
 						<Text text="{PostingNo}"/>
-						<Text text="{PostingDate}"/>
+						<Text text="{path:'PostingDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
 						<Text text="{NetAmount}"/>
 						<Text text="{Currency}"/>
 					</cells>

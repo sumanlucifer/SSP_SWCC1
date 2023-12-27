@@ -15,10 +15,11 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<!--.................................................................	Accounts Payable................................-->
-					<VBox>
+					<VBox visible="{= ${/ITAppVisible} === 'SSA-IT-4001-1' || ${/ITAppVisible} === 'SSA-IT-4002-1' || ${/ITAppVisible} === 'SSA-IT-4002-2'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox
+						visible="{= ${/ITAppVisible} === 'SSA-IT-4001-2' || ${/ITAppVisible} === 'SSA-IT-4003-1' || ${/ITAppVisible} === 'SSA-IT-4003-2' || ${/ITAppVisible} === 'SSA-IT-4003-3'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Procurement_ITRequest" type="XML"/>
 					</VBox>
 					<!--.........................................................................Account Receivable..........................................................			-->

@@ -21,6 +21,7 @@ sap.ui.define([
 		_createDataModel: function () {
 			this.getModel().setData({
 				busy: false,
+				ProcessFlowData: [],
 				RequestDetails: {
 					Header: {}
 
@@ -29,20 +30,89 @@ sap.ui.define([
 		},
 		RequestDetailsAPI: function (sReqId) {
 
+			// 			test
+			this.getModel().setProperty("/busy", true);
 			var sAPI = `/ViewRequestSet('${sReqId}')`;
 			debugger;
-
+			var urlParameters = {
+				"$expand": "Statuses"
+			}
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, null,
-					null)
+					urlParameters)
 				.then(function (oResponse) {
 
-					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
 					this.getModel().setProperty("/busy", false);
+					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
+					var aProcessFlowData = this.customResponseData(oResponse.Statuses.results);
+					this.getModel().setProperty("/ProcessFlowData/", aProcessFlowData);
 				}.bind(this)).catch(function (error) {
 					MessageBox.error(error.responseText);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
+		},
+		onLanePress: function (oEvent) {
+			debugger;
+			const oPressedLane = oEvent.getSource(); // Get the pressed lane header
+			var oDate = oPressedLane.getBindingContext().getObject().Date;
+			var sParsedDate = this.handleDateFormat(oDate);
+			var sTime = this.handleTimeFormat(oDate);
+
+			// Create or retrieve popover
+			if (!this._popover) {
+				this._popover = new sap.m.Popover({
+					title: oPressedLane.getProperty("text"),
+					contentWidth: "200px", // Set the content width
+					contentHeight: "140px",
+					content: [
+						new sap.ui.layout.form.SimpleForm({
+							layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
+							content: [
+
+								new sap.m.Label({
+									text: "Date:"
+								}),
+								new sap.m.Text({
+									text: sParsedDate
+								}),
+
+								new sap.m.Label({
+									text: "Time:"
+								}),
+								new sap.m.Text({
+									text: sTime
+								}),
+
+								// Add more fields as needed
+							]
+						})
+					]
+				});
+			}
+
+			// Open popover
+			this._popover.openBy(oPressedLane);
+		},
+
+		customResponseData: function (aData) {
+			debugger;
+			let counter = 0;
+			let cnt = 0;
+			const filteredData = aData
+				.filter(item => item.Visible === true) // Filtering based on label condition
+				.map(item => ({
+					id: (counter++).toString(),
+					icon: item.Icon,
+					label: item.Description,
+					position: cnt++,
+					Date: item.Date,
+					state: [{
+						state: item.State,
+						value: 10
+					}]
+				}));
+
+			return filteredData;
 		},
 
 		onCancel: function () {
