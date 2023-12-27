@@ -106,85 +106,43 @@ sap.ui.define([
 
 			onValueHelpRequest: function () {
 
-				this._oMultiInput = this.getView().byId("multiInput");
-				this.oColModel = new JSONModel({
-					cols: [{
-						label: "Equipment",
-						template: "Equipment",
-						width: "10rem",
-					}, {
-						label: "Equipment Name",
-						template: "EquipmentName",
-					}, {
-						label: "Plant Code",
-						template: "MaintenancePlanningPlant",
-					}, ],
-				});
+				// this._oMultiInput = this.getView().byId("multiInput");
 
-				var aCols = this.oColModel.getData().cols;
+				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+				// this._oValueHelpDialog.open();
 
-				this._oValueHelpDialog = sap.ui.xmlfragment(
-					"com.swcc.Template.fragments.PMModule.EquipmentF4",
-					this
-				);
-				this.getView().addDependent(this._oValueHelpDialog);
+				// Example usage:
+				var oModel = this.getOwnerComponent().getModel("ZSSP_COMMON_SRV");
+				var aColumns = [{
+					label: "Equipment",
+					template: "Equipment",
+					width: "10rem",
+				}, {
+					label: "Equipment Name",
+					template: "EquipmentName",
+				}, {
+					label: "Plant Code",
+					template: "MaintenancePlanningPlant",
+				}];
 
-				this._oValueHelpDialog.getTableAsync().then(
-					function (oTable) {
-						//		oTable.setModel(this.oProductsModel);
-						oTable.setModel(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"));
-						oTable.setModel(this.oColModel, "columns");
+				var sPath = "/ZCDSV_EQUIPMENTVH";
 
-						if (oTable.bindRows) {
-							oTable.bindAggregation("rows", {
-								path: "/ZCDSV_EQUIPMENTVH",
-								events: {
-									dataReceived: function () {
-										this._oValueHelpDialog.update();
-									}.bind(this)
-								}
-							})
-						}
+				this.onHandleValueHelpRequest(oModel, aColumns, sPath);
 
-						if (oTable.bindItems) {
-							oTable.bindAggregation("items", "/ZCDSV_EQUIPMENTVH", function () {
-								return new sap.m.ColumnListItem({
-									cells: aCols.map(function (column) {
-										return new sap.m.Label({
-											text: "{" + column.template + "}",
-										});
-									}),
-								});
-							});
-						}
-						oTable.setSelectionMode("Single");
-						this._oValueHelpDialog.update();
-					}.bind(this)
-				);
-
-				//	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				this._oValueHelpDialog.open();
 			},
 			onValueHelpOkPress: function (oEvent) {
-				var oData = [];
-				var xUnique = new Set();
-				var aTokens = oEvent.getParameter("tokens");
 
-				aTokens.forEach(function (ele) {
-					if (xUnique.has(ele.getKey()) == false) {
-						oData.push({
-							EquipmentName: ele.getText(),
-							Equipment: ele.getKey(),
-						});
-						xUnique.add(ele.getKey());
-					}
-				});
-				//  this._oMultiInput.setTokens(aTokens);
-				this.getModel().setProperty("/PMCreateRequest/Header/Equipment/", oData[0].EquipmentName);
-				this._oValueHelpDialog.close();
+				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
+				var sKeyProperty = "Equipment"; // Property name to set in the model
+				var textProperty = "EquipmentName"; // Property name for the token text
+				var yourModel = this.getModel(); // Pass your model here
+				var sModelPath = "/PMCreateRequest/Header/Equipment/"
+
+				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+
 			},
 			onValueHelpCancelPress: function () {
-				this._oValueHelpDialog.close();
+				this.onHandleValueHelpCancelPress();
 			},
 			onFilterBarSearch: function (oEvent) {
 				var afilterBar = oEvent.getParameter("selectionSet");
@@ -243,21 +201,22 @@ sap.ui.define([
 			},
 
 			_filterTable: function (oFilter, sType) {
-				var oValueHelpDialog = this._oValueHelpDialog;
+				// var oValueHelpDialog = this._oValueHelpDialog;
 
-				oValueHelpDialog.getTableAsync().then(function (oTable) {
-					if (oTable.bindRows) {
-						oTable.getBinding("rows").filter(oFilter, sType || "Application");
-					}
+				// oValueHelpDialog.getTableAsync().then(function (oTable) {
+				// 	if (oTable.bindRows) {
+				// 		oTable.getBinding("rows").filter(oFilter, sType || "Application");
+				// 	}
 
-					if (oTable.bindItems) {
-						oTable
-							.getBinding("items")
-							.filter(oFilter, sType || "Application");
-					}
+				// 	if (oTable.bindItems) {
+				// 		oTable
+				// 			.getBinding("items")
+				// 			.filter(oFilter, sType || "Application");
+				// 	}
 
-					oValueHelpDialog.update();
-				});
+				// 	oValueHelpDialog.update();
+				// });
+				this.handleVHFilterTable(oFilter, sType);
 			},
 
 			onSearchEquipment: function (oEvent) {
@@ -310,24 +269,10 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			handleBackPress: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("ModuleSelect", {}, true);
-				}
+				this.navigationBack();
 			},
 			onCancel: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("ModuleSelect", {}, true);
-				}
+				this.navigationBack();
 			},
 			onSaveRequest: function () {
 				debugger;
@@ -335,30 +280,7 @@ sap.ui.define([
 				this.PMCreateaRequestAPI(oPayload);
 
 			},
-			onback: function () {
-				this.getOwnerComponent().getTargets().display("ModuleSelect");
 
-			},
-			onProceed: function () {
-
-				this._handleMessageBoxProceed("Your Service Request has been generated : 1945676");
-			},
-			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
-
-							that.getRouter().navTo("HomePage", {}, true);
-						}
-					},
-				});
-
-			},
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
 				var oItems = oModel.map(function (oItem) {
@@ -408,20 +330,7 @@ sap.ui.define([
 				// oUploadSet.getDefaultFileUploader().setEnabled(false);
 
 			},
-			_getImageData: function (url, callback, fileName) {
-				var reader = new FileReader();
 
-				reader.onloadend = function (evt) {
-					if (evt.target.readyState === FileReader.DONE) {
-
-						var binaryString = evt.target.result,
-							base64file = btoa(binaryString);
-
-						callback(base64file);
-					}
-				};
-				reader.readAsBinaryString(url);
-			},
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
 
 				debugger;

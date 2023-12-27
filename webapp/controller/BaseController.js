@@ -11,12 +11,100 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
 		getAPI: api,
+
+		// 	___________________________________________________Router Method_________________________________________________________
 		getRouter: function () {
 
 			return sap.ui.core.UIComponent.getRouterFor(this);
 
 		},
+		// 	___________________________________________________Dynamic Valuehelp Method_________________________________________________________
+		onHandleValueHelpRequest: function (oModel, aColumns, sPath) {
+			this._oMultiInput = this.getView().byId("multiInput");
+			this.oColModel = new JSONModel({
+				cols: aColumns,
+			});
 
+			var aCols = this.oColModel.getData().cols;
+
+			this._oValueHelpDialog = sap.ui.xmlfragment(
+				"com.swcc.Template.fragments.PMModule.EquipmentF4",
+				this
+			);
+			this.getView().addDependent(this._oValueHelpDialog);
+
+			this._oValueHelpDialog.getTableAsync().then(
+				function (oTable) {
+					oTable.setModel(oModel);
+					oTable.setModel(this.oColModel, "columns");
+
+					if (oTable.bindRows && sPath) {
+						oTable.bindAggregation("rows", {
+							path: sPath,
+							events: {
+								dataReceived: function () {
+									this._oValueHelpDialog.update();
+								}.bind(this),
+							},
+						});
+					}
+
+					if (oTable.bindItems && sPath) {
+						oTable.bindAggregation("items", sPath, function () {
+							return new sap.m.ColumnListItem({
+								cells: aCols.map(function (column) {
+									return new sap.m.Label({
+										text: "{" + column.template + "}",
+									});
+								}),
+							});
+						});
+					}
+					oTable.setSelectionMode("Single");
+					this._oValueHelpDialog.update();
+				}.bind(this)
+			);
+
+			this._oValueHelpDialog.open();
+		},
+		onHandleValueHelpOkPress: function (oModel, sModelPath, aTokens, sKeyProperty, sTextProperty) {
+			var oData = [];
+			var xUnique = new Set();
+
+			aTokens.forEach(function (ele) {
+				if (xUnique.has(ele.getKey()) == false) {
+					var dataObject = {};
+					dataObject[sTextProperty] = ele.getText();
+					dataObject[sKeyProperty] = ele.getKey();
+					oData.push(dataObject);
+					xUnique.add(ele.getKey());
+				}
+			});
+			debugger;
+			// Adjust the property path and model based on your use case
+			oModel.setProperty(sModelPath, oData.length === 0 ? "" : oData[0][sTextProperty]);
+			this._oValueHelpDialog.close();
+		},
+		onHandleValueHelpCancelPress: function () {
+			this._oValueHelpDialog.close();
+		},
+		handleVHFilterTable: function (oFilter, sType) {
+			var oValueHelpDialog = this._oValueHelpDialog;
+
+			oValueHelpDialog.getTableAsync().then(function (oTable) {
+				if (oTable.bindRows) {
+					oTable.getBinding("rows").filter(oFilter, sType || "Application");
+				}
+
+				if (oTable.bindItems) {
+					oTable
+						.getBinding("items")
+						.filter(oFilter, sType || "Application");
+				}
+
+				oValueHelpDialog.update();
+			});
+		},
 		CallValueHelpAPI: function (entity) {
 
 			return new Promise(function (resolve, reject) {
@@ -35,6 +123,7 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
+		// 			___________________________________________________Navigation Back Method_________________________________________________________
 		navigationBack: function () {
 			var oHistory, sPreviousHash;
 			oHistory = History.getInstance();
@@ -47,6 +136,7 @@ sap.ui.define([
 			}
 
 		},
+		// 			___________________________________________________Dynamic Filters for API Method_________________________________________________________
 		getFilters: function (filterParams) {
 
 			var dynamicFilters = {};
@@ -67,7 +157,7 @@ sap.ui.define([
 
 			return dynamicFilters;
 		},
-
+		// _________________________________Dynamic Suceess Message and ok Trigger function for API _________________________________________________________
 		createMessageBoxHandler: function (onPressFunction) {
 
 			return function (params) {
@@ -89,7 +179,7 @@ sap.ui.define([
 				});
 			};
 		},
-
+		// ________________________________________________________Dynamic Confirm(YES or NO) Message and ok Trigger function for API _________________________________________________________
 		handleConfirmMessage: function (apiFunction) {
 			return function (params) {
 
@@ -124,21 +214,18 @@ sap.ui.define([
 				dialog.open();
 			};
 		},
-
+		// 	___________________________________________________Adding glossy css to Application ___________________________________________________________
 		addContentDensityClass: function () {
 			return this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
 		},
-		/**
-		 * Convenience method for getting the view model by name.
-		 * @public
-		 * @param {string} [sName] the model name
-		 * @returns {sap.ui.model.Model} the model instance
-		 */
 
+		// 	___________________________________________________Get Component  Method_________________________________________________________
 		getModel: function () {
 			return this.getOwnerComponent().getModel();
 		},
 
+		// **********************************************************File Handling*********************************************************		
+		// ___________________________File to Binary format from Base 64 _______________________________
 		base64ToBlob: function (base64String, contentType) {
 			contentType = contentType || '';
 			const byteCharacters = atob(base64String);
@@ -151,10 +238,25 @@ sap.ui.define([
 				type: contentType
 			});
 		},
+		// ___________________________File to Base 64 format from filecontent _______________________________
+		_getImageData: function (url, callback, fileName) {
+			var reader = new FileReader();
+			reader.onloadend = function (evt) {
+				if (evt.target.readyState === FileReader.DONE) {
 
+					var binaryString = evt.target.result,
+						base64file = btoa(binaryString);
+
+					callback(base64file);
+				}
+			};
+			reader.readAsBinaryString(url);
+		},
+		// ___________________________File Error _______________________________
 		handleFileMissmatch: function () {
 			return MessageBox.error("Please upload only PDF and WORD document File.");
 		},
+		// ___________________________File Exceed Error _______________________________
 		handleFileSizeExceed: function () {
 			return MessageBox.error("File size exceeded, Please upload file upto 2MB.");
 		},
@@ -164,8 +266,7 @@ sap.ui.define([
 
 		/**
 		 * Getter for the resource bundle.
-		 * @public
-		 * @returns {sap.ui.model.resource.ResourceModel} the resourceModel of the component
+	
 		 */
 		getResourceBundle: function () {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
