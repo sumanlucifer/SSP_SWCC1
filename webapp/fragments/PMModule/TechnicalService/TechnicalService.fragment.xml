@@ -18,21 +18,25 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>baseunit}" required="false"/>
-				<Input enabled="false" value="{/PMCreateRequest/CustomDisplayData/BaseUnit/}"/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
-				<Label text="{i18n>priority}" required="true"/>
-				<ComboBox id="priority" width="100%" placeholder="Enter Priority" selectedKey="{/PMCreateRequest/Header/Priority/}" valueState="None">
-					<items>
-						<core:Item key="1" text="Very High"/>
-						<core:Item key="2" text="High"/>
-						<core:Item key="3" text="Medium"/>
-						<core:Item key="4" text="Low"/>
-					</items>
-				</ComboBox>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>RequiredStart}" required="true"/>
+				<DatePicker value="{ 'path': '/PMCreateRequest/Header/StDt/', 'type': 'sap.ui.model.type.Date'}" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
+				<Label text="{i18n>RequiredEnd}" required="true"/>
+				<DatePicker value="{ 'path': '/PMCreateRequest/Header/EndDt/', 'type': 'sap.ui.model.type.Date' }" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
+				<!--<Label text="{i18n>priority}" required="true"/>-->
+				<!--<ComboBox id="priority" width="100%" placeholder="Enter Priority" selectedKey="{/PMCreateRequest/Header/Priority/}" valueState="None">-->
+				<!--	<items>-->
+				<!--		<core:Item key="1" text="Very High"/>-->
+				<!--		<core:Item key="2" text="High"/>-->
+				<!--		<core:Item key="3" text="Medium"/>-->
+				<!--		<core:Item key="4" text="Low"/>-->
+				<!--	</items>-->
+				<!--</ComboBox>-->
 				<Label text="{i18n>maintenanceorder}" required="false"/>
 				<Input placeholder="Enter Maintenance Order" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
