@@ -15,6 +15,7 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
+				var sValue = jQuery.sap.getUriParameters().get("param");
 				debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
