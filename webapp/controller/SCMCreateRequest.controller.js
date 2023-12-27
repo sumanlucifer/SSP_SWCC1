@@ -52,11 +52,11 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
 					//   Company Code F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
-						dynamicFilters.CompanyFilter),
-					//	Cash Journal F4 Data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/PlantF4/', null,
 						null)
+					//	Cash Journal F4 Data
+					//this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
+					//null)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -65,11 +65,11 @@ sap.ui.define([
 				debugger;
 				this.getModel().setProperty("/busy", false);
 				// 			Company F4 type response
-				var aCompanyF4Data = values[0].value.results;
-				this.getModel().setProperty("/CompanyF4/", aCompanyF4Data);
+				var aPlantF4Data = values[0].value.results;
+				this.getModel().setProperty("/PlantF4/", aPlantF4F4Data);
 				// 			Cash Journal F4 type response
-				var aCashJournalF4Data = values[1].value.results;
-				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
+				/*var aCashJournalF4Data = values[1].value.results;
+				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);*/
 
 			},
 
