@@ -52,29 +52,35 @@ sap.ui.define([
 
 		},
 		onLanePress: function (oEvent) {
+			debugger;
 			const oPressedLane = oEvent.getSource(); // Get the pressed lane header
+			var oDate = oPressedLane.getBindingContext().getObject().Date;
+			var sParsedDate = this.handleDateFormat(oDate);
+			var sTime = this.handleTimeFormat(oDate);
 
 			// Create or retrieve popover
 			if (!this._popover) {
 				this._popover = new sap.m.Popover({
-					title: "Lane Details",
-					contentWidth: "300px", // Set the content width
+					title: oPressedLane.getProperty("text"),
+					contentWidth: "200px", // Set the content width
+					contentHeight: "140px",
 					content: [
 						new sap.ui.layout.form.SimpleForm({
 							layout: sap.ui.layout.form.SimpleFormLayout.ResponsiveGridLayout,
 							content: [
+
 								new sap.m.Label({
-									text: "Lane ID:"
+									text: "Date:"
 								}),
 								new sap.m.Text({
-									text: oPressedLane.getProperty("laneId")
+									text: sParsedDate
 								}),
 
 								new sap.m.Label({
-									text: "Label:"
+									text: "Time:"
 								}),
 								new sap.m.Text({
-									text: oPressedLane.getProperty("text")
+									text: sTime
 								}),
 
 								// Add more fields as needed
@@ -99,6 +105,7 @@ sap.ui.define([
 					icon: item.Icon,
 					label: item.Description,
 					position: cnt++,
+					Date: item.Date,
 					state: [{
 						state: item.State,
 						value: 10

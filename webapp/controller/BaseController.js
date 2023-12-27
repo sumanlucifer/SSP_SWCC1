@@ -263,7 +263,33 @@ sap.ui.define([
 		setModel: function (oModel, sName) {
 			return this.getView().setModel(oModel, sName);
 		},
+		handleDateFormat: function (date) {
+			const day = String(date.getDate()).padStart(2, '0');
+			const month = String(date.getMonth() + 1).padStart(2, '0'); // Month starts from 0
+			const year = date.getFullYear();
 
+			return `${day}-${month}-${year}`;
+		},
+
+		handleTimeFormat: function (date) {
+			// Assuming you have a SAPUI5 date object
+			var sapUIDate = date; // Replace this with your SAPUI5 date object
+
+			// Get hours, minutes, and seconds
+			var hours = sapUIDate.getHours();
+			var minutes = sapUIDate.getMinutes();
+			var seconds = sapUIDate.getSeconds();
+
+			// Format hours, minutes, and seconds to ensure they have two digits
+			var formattedHours = String(hours).padStart(2, '0');
+			var formattedMinutes = String(minutes).padStart(2, '0');
+			var formattedSeconds = String(seconds).padStart(2, '0');
+
+			// Create a string in HH:mm:ss format
+			var formattedTime = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
+			return formattedTime;
+
+		},
 		/**
 		 * Getter for the resource bundle.
 	

@@ -5,8 +5,6 @@
 		<statuses>
 			<ObjectStatus title="Created on"
 				text="{path:'/RequestDetails/Header/CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
-			<ObjectStatus title="Created date" text="{/RequestDetails/Header/SLA}"/>
-			<ObjectStatus title="Created By" text="{/RequestDetails/Header/Username}" class=""/>
 			<ObjectStatus title="SLA Time" text="{/RequestDetails/Header/SLA}"/>
 			<ObjectStatus title="Details Status" text="{/RequestDetails/Header/Status}" state="Error"/>
 			<ObjectStatus class="" text="{/RequestDetails/Header/Status}" icon="sap-icon://information" state="Success"/>
