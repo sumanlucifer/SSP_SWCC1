@@ -35,9 +35,6 @@
 					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3003-4'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.PeriodEndReconciliation" type="XML"/>
 					</VBox>
-					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3003-5'}">
-						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.MaintainChartOfAccount" type="XML"/>
-					</VBox>
 					<VBox visible="{= ${/FinanceAppVisible} === 'SSA-FIN-3004-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.FinancialReviewGeneralLedgerClose.IssueGovernmnentStatement"
 							type="XML"/>
