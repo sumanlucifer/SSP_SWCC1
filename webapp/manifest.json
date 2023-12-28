@@ -147,6 +147,15 @@
 				"dataSource": "ZSSP_SCM_SRV",
 				"preload": true
 			},
+			"plantModel":{
+				"type":	"sap.ui.model.json.JSONModel"
+			},
+			"workCenterModel":{
+				"type":	"sap.ui.model.json.JSONModel"
+			},
+			"f4HelpModel":{
+				"type":	"sap.ui.model.json.JSONModel"
+			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},

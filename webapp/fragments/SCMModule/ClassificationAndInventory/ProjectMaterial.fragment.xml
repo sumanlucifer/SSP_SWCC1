@@ -12,7 +12,7 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>projectmaterialservice}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
@@ -40,7 +40,7 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
 				<Input id="crdesc" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>equipmentno}" required="true"/>

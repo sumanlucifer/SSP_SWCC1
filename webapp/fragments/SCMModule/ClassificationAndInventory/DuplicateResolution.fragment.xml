@@ -12,7 +12,7 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>duplicate}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
@@ -40,7 +40,7 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">

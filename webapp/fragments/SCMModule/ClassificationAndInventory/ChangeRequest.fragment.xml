@@ -26,7 +26,7 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>crtype}" required="true"/>
-				<Input id="crtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
@@ -49,7 +49,7 @@
 				<Label text="{i18n>Materialdesc}" required="true"/>
 				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Industrysector}" required="true"/>

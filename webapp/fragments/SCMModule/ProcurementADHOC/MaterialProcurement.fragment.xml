@@ -14,15 +14,19 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>-->
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{plantModel>Plant}" items="{plantModel>/}">
+					<core:Item key="{plantModel>Plant}" text="{plantModel>Plant} - {plantModel>PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
+				<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{workCenterModel>/}">
 					<suggestionItems>
-						<core:Item text="{Name}"/>
+						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>justification}" required="false"/>
@@ -30,9 +34,13 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
+				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
+				</ComboBox>-->
+				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
+					items="{workCenterModel>/}">
+					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
 				</ComboBox>
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>

@@ -83,12 +83,7 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
-					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
-					'GET',
-					'/ZCDSV_WORKCENTERVH',
-					null,
-					dynamicFilters.WorkCntrFilter,
-					null
+					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH', null, dynamicFilters.WorkCntrFilter, null
 				).then(function (oResponse) {
 
 					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);

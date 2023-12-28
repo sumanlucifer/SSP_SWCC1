@@ -9,8 +9,31 @@ sap.ui.define([
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.ModuleSelect", {
 			onInit: function () {
+
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("ModuleSelect").attachPatternMatched(this._onObjectMatched, this);
+				var url = window.location.href;
+				//var currentURL = window.location.href;
+				//var sOrderID = 123;
+				// Get URL parameters
+				//var urlParameters = jQuery.sap.getUriParameters();
+
+				// Retrieve a specific parameter
+				//var sOrderID = urlParameters.get("sOrderID");
+
+				// Use sOrderID as needed
+				//console.log(sOrderID);
+				//var sOrderID = currentURL.match(/\/ModuleSelect\/([^/]+)/);
+
+				// Assuming you want to redirect to a new URL with the sOrderID parameter
+				// Modify the URL to include the parameter
+				//var newURL = currentURL + '?sOrderID=' + encodeURIComponent(sOrderID);
+				//sap.ui.getCore().urlparams = sOrderID;
+
+				// Redirect to the new URL
+				//window.location.href = newURL;
+
+				//console.log(value1);
 
 			},
 			_onObjectMatched: function () {
