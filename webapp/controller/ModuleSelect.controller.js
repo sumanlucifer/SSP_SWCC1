@@ -111,12 +111,15 @@ sap.ui.define([
 				this.setDataLocalStaorage(sSubServiveType);
 				this.getModel().setProperty("/ServiceProduct/", sSubServiveType);
 				var sModuleType = this.byId("idService").getSelectedKey();
-				var sTargetRoute = sModuleType === "ZSSM" ? "PMCreateServiceRequest" :
-					sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
+				var sTargetRoute = sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
 					"FinanceCreateRequest" : sModuleType === "ZSSS" ?
 					"SCMCreateRequest" : "";
+				var oParameters = {
+					param1: "0"
+				};
+				var sTargetRoutePM = sModuleType === "ZSSM" ? this.oRouter.navTo("PMCreateServiceRequest", oParameters) : "";
 
-				this.oRouter.navTo(sTargetRoute);
+				this.oRouter.navTo(sTargetRoute, oParameters);
 			},
 			InputValidation: function () {
 				var bValid = true;

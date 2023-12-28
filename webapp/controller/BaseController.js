@@ -290,6 +290,16 @@ sap.ui.define([
 			return formattedTime;
 
 		},
+
+		handleReturnDateonly: function (oDate) {
+			var sapUIDate = oDate; // Replace this with your SAPUI5 date object
+			var year = sapUIDate.getFullYear();
+			var month = sapUIDate.getMonth();
+			var day = sapUIDate.getDate() + 1;
+
+			var dateWithoutTime = new Date(year, month, day);
+			return dateWithoutTime;
+		},
 		/**
 		 * Getter for the resource bundle.
 	

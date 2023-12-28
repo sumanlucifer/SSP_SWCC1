@@ -21,6 +21,7 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
+
 				debugger;
 				this._createItemDataModel();
 				this.PlantF4();
@@ -32,6 +33,11 @@ sap.ui.define([
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
+				var currentURL = window.location.href;
+				// var sOrderID = currentURL.match(/\/PMCreateServiceRequest\/([^/]+)/)[1];
+				// // sOrderID = sOrderID ===  "0" ? this.getModel().setPropert("/")
+
+				// console.log(value1);
 
 			},
 			_createItemDataModel: function () {
@@ -236,6 +242,9 @@ sap.ui.define([
 			},
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
+				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
+				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
+				debugger;
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
@@ -252,6 +261,7 @@ sap.ui.define([
 						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
+
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));

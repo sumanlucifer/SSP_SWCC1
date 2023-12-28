@@ -14,6 +14,7 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
+
 				debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),

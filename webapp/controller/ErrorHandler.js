@@ -33,6 +33,7 @@ sap.ui.define([
 				// A request that cannot be sent to the server is a technical error that we have to handle though
 				if (oParams.response.statusCode !== "404" || (oParams.response.statusCode === 404 && oParams.response.responseText.indexOf(
 						"Cannot POST") === 0)) {
+					debugger;
 					this._showServiceError(oParams.response);
 				}
 			}, this);
