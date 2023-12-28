@@ -14,7 +14,6 @@
 		<f:content>
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
-					<!--.................................................................	Accounts Payable................................-->
 					<VBox visible="{= ${/ITAppVisible} === 'SSA-IT-4001-1' || ${/ITAppVisible} === 'SSA-IT-4002-1' || ${/ITAppVisible} === 'SSA-IT-4002-2'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
 					</VBox>
@@ -23,9 +22,9 @@
 						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Procurement_ITRequest" type="XML"/>
 					</VBox>
 					<!--.........................................................................Account Receivable..........................................................			-->
-					<!--<VBox>-->
-					<!--	<core:Fragment fragmentName="com.swcc.Template.fragments.FinanceModule.AccountReceivable.ManageProcessaccountCollections" type="XML"/>-->
-					<!--</VBox>-->
+					<!--<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
+					</VBox>-->
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

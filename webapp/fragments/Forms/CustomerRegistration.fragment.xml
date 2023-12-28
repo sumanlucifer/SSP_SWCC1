@@ -37,9 +37,9 @@
 				<Label text="{i18n>shortname}" required="false"/>
 				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
 				<Label text="{i18n>PhoneNumber}" required="true"/>
-				<Input valueState="{= ${/CustomerRegistrationData/Header/Phoneno/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/CustomerRegistrationData/Header/Phoneno/} === '' ? 'Enter Phone' : '' }"
-					value="{/CustomerRegistrationData/Header/Phoneno/}" type="Number" placeholder="Enter Phone Number"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/PhoneNo/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/PhoneNo/} === '' ? 'Enter Phone' : '' }"
+					value="{/CustomerRegistrationData/Header/PhoneNo/}" type="Number" placeholder="Enter Phone Number"/>
 				<!--	<Label text="{i18n>POBOX}" required="true"/>
 				<Input valueState="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Enter PO Box' : '' }"

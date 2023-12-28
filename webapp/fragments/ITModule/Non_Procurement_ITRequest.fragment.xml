@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
-	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<VBox width="100%">
 		<fm:SimpleForm title="{i18n>ITServiceRequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
@@ -40,19 +40,48 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<upload:UploadSet id="UploadSet" busyIndicatorDelay="0" mode="None" fileSizeExceeded="onFileSizeExceed" busyIndicatorSize="Medium"
-			noDataDescription="{i18n>uploadquotation}" sameFilenameAllowed="false" noDataIllustrationType="SimpleEmptyList" instantUpload="true"
-			showIcons="true" terminationEnabled="true" maxFileNameLength="100" maxFileSize="5" afterItemRemoved="onFileDeleted"
-			fileRenamed="onFileRenamed" fileTypes="pdf,doc,docx"
-			mediaTypes="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple="true"
-			afterItemAdded="onFileAdded">
-			<upload:toolbar>
-				<OverflowToolbar>
-					<Label text="{i18n>Attachments}" class="lbl-attach" required="true"/>
-					<core:Icon id="" src="sap-icon://message-information" size="1rem" height="3rem" tooltip="{i18n>uploadtooltip}"></core:Icon>
-					<ToolbarSpacer/>
-				</OverflowToolbar>
-			</upload:toolbar>
-		</upload:UploadSet>
+		<Label text="{i18n>Attachments}" required="false"/>
+		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+			placeholder="Choose a file" style="Emphasized"
+			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+	</VBox>
+	<VBox>
+		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+			<headerToolbar >
+				<Toolbar>
+					<content>
+						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Image>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{Filesize}"/>
+						<Text textAlign="Center" text="{Delete}"/>
+						<!-- Add more cells as needed -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 	</VBox>
 </core:FragmentDefinition>

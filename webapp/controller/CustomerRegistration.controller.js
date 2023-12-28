@@ -148,12 +148,12 @@ sap.ui.define([
 				bValid = false;
 			}
 
-			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
-				this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
-				this.getModel().setProperty("/ValidationFlag/", true)
+			/*	if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
+					this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
+					this.getModel().setProperty("/ValidationFlag/", true)
 
-				bValid = false;
-			}
+					bValid = false;
+				}*/
 
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Email/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Email/", "")
@@ -168,8 +168,8 @@ sap.ui.define([
 				bValid = false;
 			}
 
-			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Phoneno/")) {
-				this.getModel().setProperty("/CustomerRegistrationData/Header/Phoneno/", "")
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PhoneNo/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/PhoneNo/", "")
 				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
