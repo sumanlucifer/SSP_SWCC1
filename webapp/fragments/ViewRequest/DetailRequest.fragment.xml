@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
 	xmlns:blockcolor="sap.uxap.sample.SharedBlocks">
-	<ObjectHeader responsive="true" fullScreenOptimized="true" binding="" intro="" title="Request ID : {/RequestDetails/Header/RequestID}"
+	<ObjectHeader responsive="true" fullScreenOptimized="true" intro="" title="Request ID: {/RequestDetails/Header/RequestID}"
 		number="{/RequestDetails/Header/Price}" numberUnit="SAR" numberState="Success" backgroundDesign="Solid" class="ssp-dtl-title">
 		<statuses>
 			<ObjectStatus title="Created on"
@@ -8,7 +8,6 @@
 			<ObjectStatus title="SLA Time" text="{/RequestDetails/Header/SLA}"/>
 			<ObjectStatus title="Details Status" text="{/RequestDetails/Header/Status}" state="Error"/>
 			<ObjectStatus class="" text="{/RequestDetails/Header/Status}" icon="sap-icon://information" state="Success"/>
-			<!--	<ObjectStatus class="sapUiSmallMarginBottom" text="{/RequestDetails/Header/Price}" icon="sap-icon://fob-watch" state="Success"/>-->
 		</statuses>
 		<ObjectAttribute title="Module" text="{/RequestDetails/Header/MatType}"/>
 		<ObjectAttribute title="Service" text="{/RequestDetails/Header/MatGroup}"/>
@@ -31,6 +30,19 @@
 						</l:VerticalLayout>
 					</IconTabFilter>
 					<!--	<IconTabFilter text="Status">
+                        <l:VerticalLayout class="" width="100%">
+                            <l:content>
+                                <VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+                                    <Toolbar>
+                                        <Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
+                                        <ToolbarSpacer/>
+                                    </Toolbar>
+                                    <core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
+                                </VBox>
+                            </l:content>
+                        </l:VerticalLayout>
+                    </IconTabFilter> -->
+					<!--	<IconTabFilter text="Attachments">
 						<l:VerticalLayout class="" width="100%">
 							<l:content>
 								<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
@@ -43,19 +55,6 @@
 							</l:content>
 						</l:VerticalLayout>
 					</IconTabFilter>-->
-					<IconTabFilter text="Attachments">
-						<l:VerticalLayout class="" width="100%">
-							<l:content>
-								<!--<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
-									<Toolbar>
-										<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
-										<ToolbarSpacer/>
-									</Toolbar>
-									<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
-								</VBox>-->
-							</l:content>
-						</l:VerticalLayout>
-					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</headerContainer>
