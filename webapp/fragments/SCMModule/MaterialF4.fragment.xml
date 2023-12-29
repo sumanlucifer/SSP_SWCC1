@@ -1,0 +1,7 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<SelectDialog id="selectMatDialog" title="Materials" items="{materialf4Model>/}" search=".onMaterialValueHelpSearch"
+		confirm=".onMaterialValueHelpClose" cancel=".onMaterialValueHelpClose">
+		<StandardListItem icon="" iconDensityAware="false" iconInset="false" title="{materialf4Model>Product}"
+			description="{materialf4Model>Description}"/>
+	</SelectDialog>
+</core:FragmentDefinition>

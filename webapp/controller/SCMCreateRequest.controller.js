@@ -57,18 +57,55 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 
-				/*var f4HelpModel = this.getOwnerComponent().getModel("f4HelpModel");
-				this.CallValueHelpAPI('/ZCDSV_WORKCENTERVH/')
+				var materialf4Model = this.getOwnerComponent().getModel("materialf4Model");
+				this.CallValueHelpSCMSRVAPI('/ZCDSV_SCM_PRODUCTVH/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
-						f4HelpModel.setData(oResponse.results);
-						this.getView().setModel(f4HelpModel, "f4HelpModel");
+						this.getModel().setProperty("/PMCreateRequest/MaterialF4/", oResponse.results);
+						materialf4Model.setData(oResponse.results);
+						this.getView().setModel(materialf4Model, "materialf4Model");
 					}.bind(this)).catch(function (error) {
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
-					}.bind(this));*/
+					}.bind(this));
 
+				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
+					var f4HelpModel = new sap.ui.model.json.JSONModel();
+					this.CallValueHelpAPI('ZCDSV_SCM_PRODUCTVH')
+						.then(function (oResponse) {
+							
+							this.getModel().setProperty("/busy", false);
+							this.getModel().setProperty("/PMCreateRequest/Productf4/", oResponse.results);
+							f4HelpModel.setData(oResponse.results);
+							this.getView().setModel(Productf4, "Productf4"); // Use f4HelpModel instead of Productf4
+						}.bind(this))
+						.catch(function (error) {
+							this.getModel().setProperty("/busy", false);
+							MessageBox.error(error.responseText);
+						}.bind(this));*/
+
+			},
+
+			onMatValueHelpRequest: function (oEvent) {
+				var sInputValue = oEvent.getSource().getValue(),
+					oView = this.getView();
+
+				if (!this._matValueHelpDialog) {
+					this._matValueHelpDialog = Fragment.load({
+						id: oView.getId(),
+						name: "com.swcc.Template.fragments.SCMModule.MaterialF4",
+						controller: this
+					}).then(function (oDialog) {
+						oView.addDependent(oDialog);
+						return oDialog;
+					});
+				}
+				this._matValueHelpDialog.then(function (oDialog) {
+					// Create a filter for the binding
+					oDialog.getBinding("items").filter([new Filter("Product", FilterOperator.Contains, sInputValue)]);
+					// Open ValueHelpDialog filtered by the input's value
+					oDialog.open(sInputValue);
+				});
 			},
 
 			onValueHelpRequest: function (oEvent) {
@@ -111,6 +148,34 @@ sap.ui.define([
 				this.byId("productInput").setValue(oSelectedItem.getDescription());
 			},
 
+			onMaterialValueHelpSearch: function (oEvent) {
+				var sValue = oEvent.getParameter("value");
+				var oFilter = new Filter("Description", FilterOperator.Contains, sValue);
+
+				oEvent.getSource().getBinding("items").filter([oFilter]);
+			},
+
+			onMaterialValueHelpClose: function (oEvent) {
+				var oSelectedItem = oEvent.getParameter("selectedItem");
+				oEvent.getSource().getBinding("items").filter([]);
+
+				if (!oSelectedItem) {
+					return;
+				}
+
+				var selIndex = parseInt(oEvent.getParameter("selectedItem").getBindingContext("materialf4Model").sPath.split("/")[1]);
+				var getSelRecordData = this.getView().getModel("materialf4Model").getData()[selIndex];
+
+				this.getView().byId("materialF4Input").setValue(getSelRecordData.Product);
+				this.getView().byId("description").setValue(getSelRecordData.Description);
+				this.getView().byId("materialUom").setValue(getSelRecordData.BaseUnit);
+				this.getView().byId("materialPlant").setValue(getSelRecordData.Plant);
+				this.getView().byId("materialPurchasingGrp").setValue(getSelRecordData.PurchasingGroup);
+
+				this.getView().byId("materialFormPlant").setSelectedKey(getSelRecordData.Plant);
+
+			},
+
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
@@ -119,6 +184,9 @@ sap.ui.define([
 					SCMAppVisible: null,
 					MaterialProcurement: {
 						Header: {},
+						itemData: []
+					},
+					MarineTransportation: {
 						itemData: []
 					}
 				});
@@ -140,11 +208,11 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
 					//   Company Code F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/Plant/', null,
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_PRODUCTVH/', null,
 						null),
 					//	Cash Journal F4 Data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
-						dynamicFilters.WorkCntrFilter, )
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
+						dynamicFilters.WorkCntrFilter, )*/
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
