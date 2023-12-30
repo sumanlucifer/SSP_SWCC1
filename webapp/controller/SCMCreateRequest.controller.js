@@ -15,6 +15,14 @@ sap.ui.define([
 
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("SCMCreateRequest").attachPatternMatched(this._onObjectMatched, this);
+				/*	var oView = this.getView();
+					var oQtyInput = oView.byId("inputQty");
+					var oUnitPriceInput = oView.byId("inputUnitPrice");
+					oQtyInput.attachLiveChange(this.handleLiveChange.bind(this));
+					oUnitPriceInput.attachLiveChange(this.handleLiveChange.bind(this));
+
+					oQtyInput.attachValueHelpRequest(this.handleValueHelpRequest.bind(this));
+					oUnitPriceInput.attachValueHelpRequest(this.handleValueHelpRequest.bind(this));*/
 
 			},
 			_onObjectMatched: function () {
@@ -70,11 +78,45 @@ sap.ui.define([
 					}.bind(this));
 
 				var crModel = this.getOwnerComponent().getModel("crModel");
-				debugger;
+				// debugger;
 				this.CallValueHelpSCMSRVAPI('/CRTypeSet/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
-						crModel.setData(oResponse.results);
+						// crModel.setData(oResponse.results);
+						crModel.setProperty("/crType", oResponse.results);
+						this.getView().setModel(crModel, "crModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpSCMSRVAPI('/MaterialTypeSet/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						crModel.setProperty("/materialType", oResponse.results);
+						this.getView().setModel(crModel, "crModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpSCMSRVAPI('/IndustrySectorSet/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						crModel.setProperty("/industrySector", oResponse.results);
+						this.getView().setModel(crModel, "crModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpSCMSRVAPI('/I_ExtProdGrp/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						crModel.setProperty("/externalMaterialGroup", oResponse.results);
 						this.getView().setModel(crModel, "crModel");
 					}.bind(this))
 					.catch(function (error) {
@@ -141,6 +183,18 @@ sap.ui.define([
 					// Open ValueHelpDialog filtered by the input's value
 					oDialog.open(sInputValue);
 				});
+			},
+			handleLiveChange: function () {
+				// Perform multiplication and update the result input field
+				var oQtyInput = this.getView().byId("inputQty");
+				var oUnitPriceInput = this.getView().byId("inputUnitPrice");
+				var oResultInput = this.getView().byId("inputResult");
+
+				var nQty = parseFloat(oQtyInput.getValue()) || 0;
+				var nUnitPrice = parseFloat(oUnitPriceInput.getValue()) || 0;
+				var nResult = nQty * nUnitPrice;
+
+				oResultInput.setValue(nResult.toString());
 			},
 
 			onValueHelpSearch: function (oEvent) {

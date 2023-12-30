@@ -162,6 +162,9 @@
 			"crModel": {
 				"type": "sap.ui.model.json.JSONModel"
 			},
+			"fiModel":{
+				"type": "sap.ui.model.json.JSONModel"
+			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},

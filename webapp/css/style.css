@@ -565,6 +565,10 @@
     padding: 10px 0px 10px 0px;
 }
 
+.ssp-dtl-title .sapMOHRFourCols.sapMOHRStatesCont4 {
+    visibility: hidden;
+}
+
 .ssp-dtl-title .sapMOHR {
     padding: 1rem;
 }

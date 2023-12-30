@@ -16,13 +16,57 @@ sap.ui.define([
 			},
 			_onObjectMatched: function () {
 				var sValue = jQuery.sap.getUriParameters().get("param");
-				debugger;
+				// debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
+				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
+				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.callDropDownService();
+
+				var fiModel = this.getOwnerComponent().getModel("fiModel");
+				this.CallValueHelpFISRVAPI('/I_CompanyCodeStdVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/companyCode", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpAPI('/ZCDSV_WORKCENTERVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/workCenter", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpAPI('/A_Plant/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/plant", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+				this.CallValueHelpFISRVAPI('/F_Mmim_Customer_Vh/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Customer", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 
 			},
 			_createItemDataModel: function () {
@@ -31,6 +75,14 @@ sap.ui.define([
 					FinanceAppVisible: null,
 					CompanyF4: [],
 					CashJournalF4: [],
+					PMCreateRequest: {
+						UploadedData: [],
+						Header: {},
+						CustomDisplayData: {},
+						Attachment: [],
+						PlantF4: [],
+						WorkCenterF4: []
+					},
 					ManagePettyCashData: {
 						itemData: []
 					},
@@ -41,6 +93,43 @@ sap.ui.define([
 						itemData: []
 					}
 				});
+			},
+			WorkCenterF4: function (sKey) {
+				var filters = [{
+						path: "Plant",
+						value: sKey,
+						group: "WorkCntrFilter"
+					}, {
+						path: "ServiceProduct",
+						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
+						group: "WorkCntrFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(
+					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH', null, dynamicFilters.WorkCntrFilter, null
+				).then(function (oResponse) {
+
+					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
+					this.getModel().setProperty("/busy", false);
+
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
+			},
+			onSelectPlant: function (oEve) {
+				var sKey = oEve.getSource().getSelectedKey();
+				this.WorkCenterF4(sKey);
+
+			},
+			onCheckPlantVal: function (oEve) {
+
+				oEve.getSource().getSelectedKey() === "" ? oEve.getSource().setValue(null) : "";
+
 			},
 
 			callDropDownService: function () {
@@ -71,11 +160,11 @@ sap.ui.define([
 			},
 
 			handleManagePettyCashDateChange: function (oEve) {
-				debugger;
+				// debugger;
 				var sYear = oEve.getSource().getValue();
 			},
 			buildResponselist: function (values) {
-				debugger;
+				// debugger;
 				this.getModel().setProperty("/busy", false);
 				// 			Company F4 type response
 				var aCompanyF4Data = values[0].value.results;
@@ -87,14 +176,14 @@ sap.ui.define([
 			},
 
 			onSearchFinanceRequest: function () {
-				debugger;
+				// debugger;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callManageRecordInvoice() : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callManagePettyCashAPI() : null;
 
 			},
 
 			callManagePettyCashAPI: function () {
-				debugger;
+				// debugger;
 				var filters = [{
 						path: "CompanyCode",
 						value: "1000",
@@ -160,7 +249,7 @@ sap.ui.define([
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
 				oPayload.Attachments = [];
-				debugger;
+				// debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)

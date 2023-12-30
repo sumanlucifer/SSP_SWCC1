@@ -33,13 +33,14 @@ sap.ui.define([
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
-				var currentURL = window.location.href;
+				//var currentURL = window.location.href;
 				// var sOrderID = currentURL.match(/\/PMCreateServiceRequest\/([^/]+)/)[1];
 				// // sOrderID = sOrderID ===  "0" ? this.getModel().setPropert("/")
 
 				// console.log(value1);
 
 			},
+
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,

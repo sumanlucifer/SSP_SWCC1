@@ -24,17 +24,21 @@
 					<core:Item key="{plantModel>Plant}" text="{plantModel>Plant} - {plantModel>PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>crtype}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" id="crtype1" valueState="None" placeholder="Select Plant"
-					selectedKey="{crModel>CRTypeSet}" items="{crModel>/}">
-					<core:Item key="{crModel>crtype}" text="{crModel>crtype} - {crModel>crtypename}"/>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="crtype1" valueState="None" placeholder="Select Plant"
+					selectedKey="{crModel>CRTypeSet}" items="{crModel>/crType}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
 				</ComboBox>
 				<Label text="{i18n>Materialtype}" required="true"/>
-				<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="materialType" valueState="None" placeholder="Select Material"
+					selectedKey="{crModel>CRTypeSet}" items="{crModel>/materialType}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				</ComboBox>
+				<!--<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>Materialgroup}" required="false"/>
 				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -52,12 +56,16 @@
 					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
 				</ComboBox>
 				<Label text="{i18n>Industrysector}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
+					selectedKey="{crModel>Key}" items="{crModel>/industrySector}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				</ComboBox>
+				<!--<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
@@ -68,12 +76,10 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
-				<Input id="externalmaterial" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="externalMaterialGroup" valueState="None"
+					placeholder="External Material Group" selectedKey="{crModel>ExternalProductGroup}" items="{crModel>/externalMaterialGroup}">
+					<core:Item key="{crModel>ExternalProductGroup}" text="{crModel>ExternalProductGroup} - {crModel>ExternalProductGroup_Text}"/>
+				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

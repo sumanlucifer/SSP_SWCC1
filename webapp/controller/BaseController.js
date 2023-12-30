@@ -142,6 +142,26 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
+
+		CallValueHelpFISRVAPI: function (entity) {
+
+			return new Promise(function (resolve, reject) {
+
+				// Use bracket notation to call the dynamic function
+				this.getOwnerComponent().getModel("ZSSP_FI_SRV")["read"](entity, {
+
+					success: function (oData) {
+
+						resolve(oData);
+					},
+					error: function (oResult) {
+
+						reject(oResult);
+					}
+				});
+			}.bind(this));
+		},
+
 		// 			___________________________________________________Navigation Back Method_________________________________________________________
 		navigationBack: function () {
 			var oHistory, sPreviousHash;

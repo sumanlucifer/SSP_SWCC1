@@ -14,7 +14,6 @@
 				<Toolbar>
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
@@ -52,7 +51,7 @@
 					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
 				</ComboBox>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="inputResult" placeholder="Result" editable="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -70,13 +69,14 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>-->
 		<Toolbar>
-			<!-- <Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>-->
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="Single" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5"
-				growingScrollToLoad="true" growing="true" fixedLayout="true">
+			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="{i18n>material}"/>
@@ -102,7 +102,7 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>unitprice}"/>
 					</Column>
-					<!--<Column width="5%"></Column>-->
+					<Column width="5%"></Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
@@ -114,13 +114,13 @@
 								</suggestionItems>
 							</Input>
 							<Input placeholder="Enter Description" id="description" value="" enabled="false"/>
-							<Input placeholder="QTY" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Input id="inputQty" placeholder="QTY" showSuggestion="" value="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Input placeholder="Enter UOM" id="materialUom" value="" enabled="false"/>
 							<Input placeholder="" id="materialPlant"></Input>
 							<Input placeholder="Purchasing Group" id="materialPurchasingGrp" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 							<Input placeholder="Req" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Input placeholder="Unit Price" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<!--	<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>-->
+							<Input id="inputUnitPrice" placeholder="Unit Price" showSuggestion="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
 				</items>
