@@ -221,6 +221,54 @@ sap.ui.define([
 			//this.getOwnerComponent().getTargets().display("LandingView");
 
 		},
+		/* Uploaded data */
+		onFileAdded: function (oEvent) {
+			debugger;
+			var that = this;
+			var oFileUploader = oEvent.getSource();
+			var aFiles = oEvent.getParameter("files");
+
+			if (aFiles.length === 0)
+				return;
+
+			var Filename = aFiles[0].name,
+				Filetype = aFiles[0].type,
+				Filedata = aFiles[0],
+				Filesize = aFiles[0].size;
+
+			//code for base64/binary array 
+			this._getImageData((Filedata), function (Filecontent) {
+				that._addData(Filecontent, Filename, Filetype, Filesize);
+			});
+			// var oUploadSet = this.byId("UploadSet");
+			// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+		},
+		_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+			debugger;
+			var oModel = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+			var oItems = oModel.map(function (oItem) {
+				return Object.assign({}, oItem);
+			});
+			oItems.push({
+				Filename: Filename,
+				Mimetype: Filetype,
+				Value: Filecontent,
+				//Filesize: Filesize
+
+			});
+			this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);
+
+		},
+		handleMissmatch: function () {
+			this.handleFileMissmatch();
+		},
+		onFileSizeExceed: function () {
+
+			this.handleFileSizeExceed();
+		},
+		/* upload ends here */
 		onSubmit: function () {
 
 			this.getOwnerComponent().getRouter().navTo("SlaCreation");

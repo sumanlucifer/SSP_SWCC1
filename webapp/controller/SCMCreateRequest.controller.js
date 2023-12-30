@@ -69,6 +69,19 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 
+				var crModel = this.getOwnerComponent().getModel("crModel");
+				debugger;
+				this.CallValueHelpSCMSRVAPI('/CRTypeSet/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						crModel.setData(oResponse.results);
+						this.getView().setModel(crModel, "crModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
 				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
 					var f4HelpModel = new sap.ui.model.json.JSONModel();
 					this.CallValueHelpAPI('ZCDSV_SCM_PRODUCTVH')
@@ -173,6 +186,8 @@ sap.ui.define([
 				this.getView().byId("materialPurchasingGrp").setValue(getSelRecordData.PurchasingGroup);
 
 				this.getView().byId("materialFormPlant").setSelectedKey(getSelRecordData.Plant);
+				this.getView().byId("materialFormPlant1").setSelectedKey(getSelRecordData.Plant);
+				this.getView().byId("crtype1").setSelectedKey(getSelRecordData.CRTypeSet);
 
 			},
 
@@ -180,6 +195,7 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					PlantF4: [],
+					Crtype: [],
 					recognitionAlreadyStarted: false,
 					SCMAppVisible: null,
 					MaterialProcurement: {
@@ -210,6 +226,8 @@ sap.ui.define([
 					//   Company Code F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_PRODUCTVH/', null,
 						null),
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/CRTypeSet/', null,
+						null),
 					//	Cash Journal F4 Data
 					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
 						dynamicFilters.WorkCntrFilter, )*/
@@ -230,7 +248,8 @@ sap.ui.define([
 			},
 
 			SCMCreateaRequestAPI: function (oPayload) {
-				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
+				debugger;
+				var oPayload = this.getModel().getProperty("/MaterialProcurement/itemData/");
 				var oPayload = {};
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
@@ -241,12 +260,17 @@ sap.ui.define([
 						oPayload)
 					.then(function (oResponse) {
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this.getModel().setProperty("/MaterialProcurement/Header", oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
+
+			},
+			onSaveRequest: function () {
+				var oPayload = this.getModel().getProperty("/MaterialProcurement/Header/");
+				this.SCMCreateaRequestAPI(oPayload);
 
 			},
 

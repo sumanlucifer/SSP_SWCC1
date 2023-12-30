@@ -6,11 +6,16 @@
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{/ServiceDescription/}"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>

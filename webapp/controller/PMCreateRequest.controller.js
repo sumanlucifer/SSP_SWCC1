@@ -280,7 +280,6 @@ sap.ui.define([
 				this.navigationBack();
 			},
 			onSaveRequest: function () {
-				debugger;
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				this.PMCreateaRequestAPI(oPayload);
 

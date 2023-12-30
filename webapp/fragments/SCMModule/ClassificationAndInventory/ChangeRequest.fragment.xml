@@ -17,21 +17,17 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input placeholder=""/>
+				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" id="materialFormPlant1" valueState="None"
+					placeholder="Select Plant" selectedKey="{plantModel>Plant}" items="{plantModel>/}">
+					<core:Item key="{plantModel>Plant}" text="{plantModel>Plant} - {plantModel>PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>crtype}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" id="crtype1" valueState="None" placeholder="Select Plant"
+					selectedKey="{crModel>CRTypeSet}" items="{crModel>/}">
+					<core:Item key="{crModel>crtype}" text="{crModel>crtype} - {crModel>crtypename}"/>
+				</ComboBox>
 				<Label text="{i18n>Materialtype}" required="true"/>
 				<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -51,7 +47,10 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
+					items="{workCenterModel>/}">
+					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
+				</ComboBox>
 				<Label text="{i18n>Industrysector}" required="true"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
