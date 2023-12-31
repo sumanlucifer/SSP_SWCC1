@@ -15,8 +15,8 @@ sap.ui.define([
 				//var url = window.location.href;
 				//var currentURL = window.location.href;
 				//var sOrderID = 123;
-				// Get URL parameters
-				//var urlParameters = jQuery.sap.getUriParameters();
+				//Get URL parameters
+				var urlParameters = jQuery.sap.getUriParameters();
 
 				// Retrieve a specific parameter
 				//var sOrderID = urlParameters.get("sOrderID");
@@ -137,6 +137,7 @@ sap.ui.define([
 				var sTargetRoute = sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
 					"FinanceCreateRequest" : sModuleType === "ZSSS" ?
 					"SCMCreateRequest" : "";
+
 				var oParameters = {
 					param1: "0"
 				};

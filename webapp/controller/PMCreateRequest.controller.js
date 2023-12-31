@@ -20,7 +20,7 @@ sap.ui.define([
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 
 			},
-			_onObjectMatched: function () {
+			_onObjectMatched: function (oEvent) {
 
 				debugger;
 				this._createItemDataModel();
@@ -33,11 +33,14 @@ sap.ui.define([
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
-				//var currentURL = window.location.href;
-				// var sOrderID = currentURL.match(/\/PMCreateServiceRequest\/([^/]+)/)[1];
-				// // sOrderID = sOrderID ===  "0" ? this.getModel().setPropert("/")
+				// Retrieve the parameter from the route
+				var oParameters = oEvent.getParameter("arguments");
+				var sParam1Value = oParameters.param1;
 
-				// console.log(value1);
+				// Set the value to the model
+				var oViewModel = this.getView().getModel();
+				oViewModel.setProperty("/param1", sParam1Value);
+				console.log(sParam1Value);
 
 			},
 
