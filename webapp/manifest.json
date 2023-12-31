@@ -282,7 +282,7 @@
 				},
 				{
 					"name": "PMCreateServiceRequest",
-					"pattern": "PMCreateServiceRequest/",
+					"pattern": "PMCreateServiceRequest",
 					"target": [
 						"PMCreateServiceRequest"
 					]
