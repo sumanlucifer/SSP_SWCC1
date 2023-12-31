@@ -45,7 +45,7 @@
 					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
 				</ComboBox>
 				<Label text=""/>
-				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="sapUiMediumMarginBottom">
+				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="sapUiMediumMarginTop">
 					<RadioButton id="RB1-1" text="Open Item"/>
 					<RadioButton id="RB1-2" text="Clear Item"/>
 					<RadioButton id="RB1-3" text="All Item"/>

@@ -29,7 +29,10 @@
 					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>PostingPeriod}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>PostPerVariant}"
+					items="{fiModel>/PostPerVariant}">
+					<core:Item key="{fiModel>PostPerVariant}" text="{fiModel>PostPerVariant} - {fiModel>PostVarDesc}"/>
+				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -76,6 +76,42 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_POST_PERIOD_VARIANT/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/PostPerVariant", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_CurrencyTypeAndValuationView/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/CurrencyRole", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_LedgerStdVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Ledger", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_GeneralLedgerAccountVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/CompanyCode", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 
 			},
 			_createItemDataModel: function () {
