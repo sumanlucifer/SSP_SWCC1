@@ -27,6 +27,10 @@ sap.ui.define([
 			},
 			_onObjectMatched: function () {
 
+				this.getView().byId("materialFormPlant").setSelectedKey(null);
+				this.getView().byId("tenderPre").setSelectedKey(null);
+				this.getView().byId("workCenter").setSelectedKey(null);
+
 				// debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
@@ -42,6 +46,7 @@ sap.ui.define([
 
 				this.getModel().setProperty("/busy", true);
 				var plantModel = this.getOwnerComponent().getModel("plantModel");
+				// plantModel.setData(false);
 				this.CallValueHelpAPI('/A_Plant/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -54,6 +59,7 @@ sap.ui.define([
 					}.bind(this));
 
 				var workCenterModel = this.getOwnerComponent().getModel("workCenterModel");
+				// workCenterModel.setData(false);
 				this.CallValueHelpAPI('/ZCDSV_WORKCENTERVH/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -66,6 +72,7 @@ sap.ui.define([
 					}.bind(this));
 
 				var materialf4Model = this.getOwnerComponent().getModel("materialf4Model");
+				// materialf4Model.setData(false);
 				this.CallValueHelpSCMSRVAPI('/ZCDSV_SCM_PRODUCTVH/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -124,17 +131,18 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 
-				var pssModel = this.getOwnerComponent().getModel("pssModel");
-				this.CallValueHelpSCMSRVAPI('/ZPROJ_TYP/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						pssModel.setProperty("/projectType", oResponse.results);
-						this.getView().setModel(pssModel, "pssModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+				/*	var pssModel = this.getOwnerComponent().getModel("pssModel");
+					this.CallValueHelpSCMSRVAPI("/ZCDSV_DOMAINVH/Set?$filter=p_domain eq 'ZREQ_STAT'")
+						.then(function (oResponse) {
+							// Handle the response data
+							this.getModel().setProperty("/busy", false);
+							pssModel.setProperty("/projectType", oResponse.results);
+							this.getView().setModel(pssModel, "pssModel");
+						})
+						.catch(function (error) {
+							this.getModel().setProperty("/busy", false);
+							MessageBox.error(error.responseText);
+						}.bind(this));*/
 
 				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
 					var f4HelpModel = new sap.ui.model.json.JSONModel();

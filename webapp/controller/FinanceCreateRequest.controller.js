@@ -112,6 +112,15 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
+				this.CallValueHelpFISRVAPI('/C_FinancialStatementVersion/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/FinancialStatementVariant", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 
 			},
 			_createItemDataModel: function () {

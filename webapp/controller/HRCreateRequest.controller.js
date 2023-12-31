@@ -2,6 +2,7 @@ sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History"
+
 	],
 
 	function (BaseController, JSONModel, History) {
@@ -41,7 +42,7 @@ sap.ui.define([
 				if (sPreviousHash !== undefined) {
 					window.history.go(-1);
 				} else {
-					this.getRouter().navTo("LandingView", {}, true);
+					this.getRouter().navTo("HomePage", {}, true);
 				}
 
 			},

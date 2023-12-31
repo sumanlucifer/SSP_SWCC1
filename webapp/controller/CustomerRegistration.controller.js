@@ -35,6 +35,7 @@ sap.ui.define([
 				busy: false,
 				ValidationFlag: false,
 				CustomerRegistrationData: {
+					UploadedData: [],
 					Header: {},
 					CountryF4: [],
 					RegionF4: []
@@ -192,6 +193,13 @@ sap.ui.define([
 		},
 
 		SubmitBPRegistration: function (oPayload) {
+			debugger;
+			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
+			const aUploadData = this.getModel().getProperty("/CustomerRegistrationData/UploadedData").map(({
+				Filesize,
+				...rest
+			}) => rest);
+			oPayload.Attachments = aUploadData;
 			this.getModel().setProperty("/busy", true);
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/BPRequestSet',
 					oPayload, null, null)
@@ -222,6 +230,34 @@ sap.ui.define([
 
 		},
 		/* Uploaded data */
+		onAddItemsPress: function (oEvent) {
+			debugger;
+			var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+			var oItems = oModel.map(function (oItem) {
+				return Object.assign({}, oItem);
+			});
+			oItems.push({
+				Material: "",
+				Description: "",
+				StorageLocation: "",
+				Quantity: "",
+				BaseUnit: "",
+				Batch: "",
+				M: true,
+				// UnloadPoint: "",
+				AvailableQty: null,
+				PopupItems: null,
+				IsBOQApplicable: ""
+			});
+			this.getModel().setProperty("/MarineTransportation/itemData", oItems);
+
+		},
+		onDeleteItemPress: function (oEvent) {
+			var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+			var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+			aTableData.splice(iRowNumberToDelete, 1);
+			this.getModel().refresh();
+		},
 		onFileAdded: function (oEvent) {
 			debugger;
 			var that = this;
@@ -247,7 +283,7 @@ sap.ui.define([
 		_addData: function (Filecontent, Filename, Filetype, Filesize) {
 
 			debugger;
-			var oModel = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+			var oModel = this.getModel().getProperty("/CustomerRegistrationData/UploadedData");
 			var oItems = oModel.map(function (oItem) {
 				return Object.assign({}, oItem);
 			});
@@ -258,7 +294,7 @@ sap.ui.define([
 				//Filesize: Filesize
 
 			});
-			this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);
+			this.getModel().setProperty("/CustomerRegistrationData/UploadedData", oItems);
 
 		},
 		handleMissmatch: function () {
