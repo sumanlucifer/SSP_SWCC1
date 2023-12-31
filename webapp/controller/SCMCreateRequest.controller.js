@@ -124,6 +124,18 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 
+				var pssModel = this.getOwnerComponent().getModel("pssModel");
+				this.CallValueHelpSCMSRVAPI('/ZPROJ_TYP/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						pssModel.setProperty("/projectType", oResponse.results);
+						this.getView().setModel(pssModel, "pssModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
 				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
 					var f4HelpModel = new sap.ui.model.json.JSONModel();
 					this.CallValueHelpAPI('ZCDSV_SCM_PRODUCTVH')

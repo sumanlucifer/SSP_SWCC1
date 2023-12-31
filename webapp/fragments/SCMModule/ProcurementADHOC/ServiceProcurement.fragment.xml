@@ -37,12 +37,9 @@
 				<Label text="{i18n>contractduration}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" valueState="None" placeholder="Select Project Type" selectedKey="{projectType>Plant}" items="{projectType>/plant}">
+					<core:Item key="{projectType>Plant}" text="{projectType>Plant} - {projectType>PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>costestimationtype}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>

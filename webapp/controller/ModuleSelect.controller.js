@@ -12,7 +12,7 @@ sap.ui.define([
 
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("ModuleSelect").attachPatternMatched(this._onObjectMatched, this);
-				var url = window.location.href;
+				//var url = window.location.href;
 				//var currentURL = window.location.href;
 				//var sOrderID = 123;
 				// Get URL parameters
