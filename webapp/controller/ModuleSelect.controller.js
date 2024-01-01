@@ -137,7 +137,6 @@ sap.ui.define([
 				var sTargetRoute = sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
 					"FinanceCreateRequest" : sModuleType === "ZSSS" ?
 					"SCMCreateRequest" : "";
-
 				var oParameters = {
 					param1: "0"
 				};

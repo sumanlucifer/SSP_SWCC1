@@ -23,11 +23,9 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequiredStart}" required="true"/>
-				<DatePicker value="{ 'path': '/PMCreateRequest/Header/StartDate/', 'type': 'sap.ui.model.type.Date'}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker value="{path: '/PMCreateRequest/Header/StartDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>RequiredEnd}" required="true"/>
-				<DatePicker value="{ 'path': '/PMCreateRequest/Header/EndDate/', 'type': 'sap.ui.model.type.Date' }" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker value="{path: '/PMCreateRequest/Header/EndDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
 				<!--<Label text="{i18n>priority}" required="true"/>-->
 				<!--<ComboBox id="priority" width="100%" placeholder="Enter Priority" selectedKey="{/PMCreateRequest/Header/Priority/}" valueState="None">-->
 				<!--	<items>-->
