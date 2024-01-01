@@ -32,12 +32,15 @@
 					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>ChartofAccount}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>ChartofAccount}"
-					selectedKey="{fiModel>ChartOfAccounts}" items="{fiModel>/ChartOfAccounts}">
-					<core:Item key="{fiModel>ChartOfAccounts}" text="{fiModel>ChartOfAccounts} - {fiModel>ChartOfAccountsName}"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>GLAccount}"
+					items="{fiModel>/GLAccount}">
+					<core:Item key="{fiModel>GLAccount}" text="{fiModel>ChartOfAccounts}"/>
 				</ComboBox>
 				<Label text="{i18n>GLAccount}" required="true"/>
-				<Input required="true" width="100%"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>GLAccount}"
+					items="{fiModel>/GLAccount}">
+					<core:Item key="{fiModel>GLAccount}" text="{fiModel>GLAccount} - {fiModel>GLAccountName}"/>
+				</ComboBox>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CurrencyType}" required="true"/>

@@ -121,7 +121,115 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_FinMgmtAreaStdVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/FinancialManagementArea", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_AccountingPrincipleText/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AccountingPrinciple", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_CostCenterDetail/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/ControllingArea", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_CostCenter/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/CostCenter", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_DeprAreaForLedgerVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AssetDepreciationArea", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 
+				this.CallValueHelpFISRVAPI('/I_Group1AssetEvaluationKey/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Group1AssetEvaluationKey", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_Group2AssetEvaluationKey/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Group2AssetEvaluationKey", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_Group3AssetEvaluationKey/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Group3AssetEvaluationKey", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_ASSET_SUPER/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AssetSuperNum", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_NONTECH_ASSET/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AssetNonTech", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_AssetClassStdVH/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AssetClass", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_ASSET_MAIN/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/AssetClass", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 			},
 			_createItemDataModel: function () {
 				this.getModel().setData({
