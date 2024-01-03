@@ -12,7 +12,7 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>projectmaterialservice}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
@@ -32,7 +32,7 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>spirsubject}" required="false"/>
+				<Label text="{i18n>spirsubject}" required="true"/>
 				<Input id="materialgroup5" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -40,10 +40,10 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
 				<Input id="crdesc" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>equipmentno}" required="true"/>
+				<Label text="{i18n>equipmentno}" required="false"/>
 				<Input id="industrysector6" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -57,7 +57,7 @@
 		<fm:SimpleForm id="ssp-create" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>Description}" required="false"/>
+				<Label text="{i18n>Remarks}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>

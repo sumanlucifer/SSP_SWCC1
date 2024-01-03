@@ -6,38 +6,52 @@
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>materialspare}"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>-->
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" id="materialFormPlant" valueState="None"
+					placeholder="Select Plant" selectedKey="{plantModel>Plant}" items="{plantModel>/}">
+					<core:Item key="{plantModel>Plant}" text="{plantModel>Plant} - {plantModel>PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
+				<ComboBox items="" id="tenderPre">
+					<core:Item key="Y" text="Yes"/>
+					<core:Item key="N" text="No"/>
+				</ComboBox>
+				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{workCenterModel>/}">
 					<suggestionItems>
-						<core:Item text="{Name}"/>
+						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
 					</suggestionItems>
-				</Input>
-				<Label text="{i18n>justification}" required="true"/>
+				</Input>-->
+				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
+					items="{/PMCreateRequest/WorkCenterF4/}">
+					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
+				</ComboBox>-->
+				<ComboBox width="100%" id="workCenter" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
+					items="{workCenterModel>/}">
+					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
+				</ComboBox>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="inputResult" placeholder="Result" editable="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -67,6 +81,9 @@
 					<Column>
 						<Text text="{i18n>material}"/>
 					</Column>
+					<Column>
+						<Text text="{i18n>Description}"/>
+					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>quantity}"/>
 					</Column>
@@ -90,21 +107,19 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
+							<Input id="materialF4Input" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onMatValueHelpRequest"
+								suggestionItems="{materialf4Model>/}">
 								<suggestionItems>
-									<core:Item text="{Name}"/>
+									<core:Item text="{materialf4Model>Description}"/>
 								</suggestionItems>
 							</Input>
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="{uom}"/>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
+							<Input placeholder="Enter Description" id="description" value="" enabled="false"/>
+							<Input id="inputQty" placeholder="QTY" showSuggestion="" value="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Enter UOM" id="materialUom" value="" enabled="false"/>
+							<Input placeholder="" id="materialPlant"></Input>
+							<Input placeholder="Purchasing Group" id="materialPurchasingGrp" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Input placeholder="Req" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Input id="inputUnitPrice" placeholder="Unit Price" showSuggestion="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

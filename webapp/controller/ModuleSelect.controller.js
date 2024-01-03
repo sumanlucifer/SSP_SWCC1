@@ -9,12 +9,19 @@ sap.ui.define([
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.ModuleSelect", {
 			onInit: function () {
+
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("ModuleSelect").attachPatternMatched(this._onObjectMatched, this);
 
 			},
-			_onObjectMatched: function () {
+			_onObjectMatched: function (oEve) {
+				debugger;
 				this._createHeaderModel();
+
+				var sUrlOrderID = oEve.getParameter("arguments").orderId,
+					sUrlOrderID = sUrlOrderID ? sUrlOrderID : "";
+				this.handleSetLocalStaorage("OrderID", sUrlOrderID);
+
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sModuleType = oStorage.get("sMouleType");
 				this.byId("idService").setSelectedKey(sModuleType);
@@ -111,15 +118,13 @@ sap.ui.define([
 				this.setDataLocalStaorage(sSubServiveType);
 				this.getModel().setProperty("/ServiceProduct/", sSubServiveType);
 				var sModuleType = this.byId("idService").getSelectedKey();
-				var sTargetRoute = sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType === "ZSSF" ?
+				var sTargetRoute = sModuleType === "ZSSH" ? "HRCreateRequest" : sModuleType === "ZSSI" ? "ITCreateRequest" : sModuleType ===
+					"ZSSF" ?
 					"FinanceCreateRequest" : sModuleType === "ZSSS" ?
-					"SCMCreateRequest" : "";
-				var oParameters = {
-					param1: "0"
-				};
-				var sTargetRoutePM = sModuleType === "ZSSM" ? this.oRouter.navTo("PMCreateServiceRequest", oParameters) : "";
+					"SCMCreateRequest" :
+					sModuleType === "ZSSM" ? "PMCreateServiceRequest" : "";
 
-				this.oRouter.navTo(sTargetRoute, oParameters);
+				this.oRouter.navTo(sTargetRoute);
 			},
 			InputValidation: function () {
 				var bValid = true;

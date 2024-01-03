@@ -35,8 +35,10 @@ sap.ui.define([
 				busy: false,
 				ValidationFlag: false,
 				CustomerRegistrationData: {
+					UploadedData: [],
 					Header: {},
 					CountryF4: [],
+					Attachments: [],
 					RegionF4: []
 				}
 
@@ -148,12 +150,12 @@ sap.ui.define([
 				bValid = false;
 			}
 
-			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
-				this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
-				this.getModel().setProperty("/ValidationFlag/", true)
+			/*	if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PoBox/")) {
+					this.getModel().setProperty("/CustomerRegistrationData/Header/PoBox/", "")
+					this.getModel().setProperty("/ValidationFlag/", true)
 
-				bValid = false;
-			}
+					bValid = false;
+				}*/
 
 			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Email/")) {
 				this.getModel().setProperty("/CustomerRegistrationData/Header/Email/", "")
@@ -168,8 +170,8 @@ sap.ui.define([
 				bValid = false;
 			}
 
-			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/Phoneno/")) {
-				this.getModel().setProperty("/CustomerRegistrationData/Header/Phoneno/", "")
+			if (!this.getModel().getProperty("/CustomerRegistrationData/Header/PhoneNo/")) {
+				this.getModel().setProperty("/CustomerRegistrationData/Header/PhoneNo/", "")
 				this.getModel().setProperty("/ValidationFlag/", true)
 
 				bValid = false;
@@ -192,6 +194,13 @@ sap.ui.define([
 		},
 
 		SubmitBPRegistration: function (oPayload) {
+			debugger;
+			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
+			const aUploadData = this.getModel().getProperty("/CustomerRegistrationData/UploadedData").map(({
+				Filesize,
+				...rest
+			}) => rest);
+			oPayload.Attachments = aUploadData;
 			this.getModel().setProperty("/busy", true);
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/BPRequestSet',
 					oPayload, null, null)
@@ -221,6 +230,81 @@ sap.ui.define([
 			//this.getOwnerComponent().getTargets().display("LandingView");
 
 		},
+		/* Uploaded data */
+		onAddItemsPress: function (oEvent) {
+			debugger;
+			var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+			var oItems = oModel.map(function (oItem) {
+				return Object.assign({}, oItem);
+			});
+			oItems.push({
+				Material: "",
+				Description: "",
+				StorageLocation: "",
+				Quantity: "",
+				BaseUnit: "",
+				Batch: "",
+				M: true,
+				// UnloadPoint: "",
+				AvailableQty: null,
+				PopupItems: null,
+				IsBOQApplicable: ""
+			});
+			this.getModel().setProperty("/MarineTransportation/itemData", oItems);
+
+		},
+		onDeleteItemPress: function (oEvent) {
+			var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+			var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+			aTableData.splice(iRowNumberToDelete, 1);
+			this.getModel().refresh();
+		},
+		onFileAdded: function (oEvent) {
+			var that = this;
+			var oFileUploader = oEvent.getSource();
+			var aFiles = oEvent.getParameter("files");
+
+			if (aFiles.length === 0)
+				return;
+
+			var Filename = aFiles[0].name,
+				Filetype = aFiles[0].type,
+				Filedata = aFiles[0],
+				Filesize = aFiles[0].size;
+
+			//code for base64/binary array 
+			this._getImageData((Filedata), function (Filecontent) {
+				that._addData(Filecontent, Filename, Filetype, Filesize);
+			});
+			// var oUploadSet = this.byId("UploadSet");
+			// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+		},
+		_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+			debugger;
+			var oModel = this.getModel().getProperty("/CustomerRegistrationData/UploadedData");
+			var oItems = oModel.map(function (oItem) {
+				return Object.assign({}, oItem);
+			});
+			oItems.push({
+				Filename: Filename,
+				Mimetype: Filetype,
+				Value: Filecontent,
+				//Filesize: Filesize
+
+			});
+			this.getModel().setProperty("/CustomerRegistrationData/UploadedData", oItems);
+
+		},
+		handleMissmatch: function () {
+			this.handleFileMissmatch();
+		},
+		onFileSizeExceed: function () {
+
+			this.handleFileSizeExceed();
+		},
+		/* upload ends here */
 		onSubmit: function () {
 
 			this.getOwnerComponent().getRouter().navTo("SlaCreation");

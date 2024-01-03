@@ -19,6 +19,10 @@
     font-family: 'SWCC-4-Bold';
 }
 
+.sapUiForm:not(.sapUiFormEdit) .sapMText {
+    min-height: 2rem;
+}
+
 /* error css */
 .error-msg {
     background-color: #e32020;
@@ -561,6 +565,10 @@
     padding: 10px 0px 10px 0px;
 }
 
+.ssp-dtl-title .sapMOHRFourCols.sapMOHRStatesCont4 {
+    visibility: hidden;
+}
+
 .ssp-dtl-title .sapMOHR {
     padding: 1rem;
 }
@@ -590,7 +598,7 @@
     font-family: 'SWCC-4-Bold';
     color: #004687;
     letter-spacing: 1px;
-    line-height: 0px;
+    line-height: 30px;
 }
 
 .hidden-content {

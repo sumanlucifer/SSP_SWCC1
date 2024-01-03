@@ -12,35 +12,35 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>Changerequest}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input placeholder=""/>
-				<Label text="{i18n>crtype}" required="true"/>
-				<Input id="crtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
-				<Label text="{i18n>Materialtype}" required="true"/>
-				<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
-				<Label text="{i18n>Materialgroup1}" required="false"/>
-				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input id="plant" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" id="materialFormPlant1" valueState="None"
+					placeholder="Select Plant" selectedKey="{plantModel>Plant}" items="{plantModel>/}">
+					<core:Item key="{plantModel>Plant}" text="{plantModel>Plant} - {plantModel>PlantName}"/>
+				</ComboBox>
+				<Label text="{i18n>crtype}" required="true"/>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="crtype1" valueState="None" placeholder="Select Plant"
+					selectedKey="{crModel>CRTypeSet}" items="{crModel>/crType}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				</ComboBox>
+				<Label text="{i18n>Materialtype}" required="true"/>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="materialType" valueState="None" placeholder="Select Material"
+					selectedKey="{crModel>CRTypeSet}" items="{crModel>/materialType}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				</ComboBox>
+				<!--<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>-->
+				<Label text="{i18n>Materialgroup}" required="false"/>
+				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
@@ -49,16 +49,25 @@
 				<Label text="{i18n>Materialdesc}" required="true"/>
 				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc4" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input id="crdesc1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>workcenter}" required="true"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
+					items="{workCenterModel>/}">
+					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
+				</ComboBox>
 				<Label text="{i18n>Industrysector}" required="true"/>
-				<Input id="industrysector2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
+					selectedKey="{crModel>Key}" items="{crModel>/industrySector}">
+					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				</ComboBox>
+				<!--<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
-				</Input>
+				</Input>-->
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
 				<Input id="baseuom" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -67,12 +76,10 @@
 					</suggestionItems>
 				</Input>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
-				<Input id="externalmaterial" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="externalMaterialGroup" valueState="None"
+					placeholder="External Material Group" selectedKey="{crModel>ExternalProductGroup}" items="{crModel>/externalMaterialGroup}">
+					<core:Item key="{crModel>ExternalProductGroup}" text="{crModel>ExternalProductGroup} - {crModel>ExternalProductGroup_Text}"/>
+				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

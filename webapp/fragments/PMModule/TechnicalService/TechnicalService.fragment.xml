@@ -23,11 +23,9 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequiredStart}" required="true"/>
-				<DatePicker value="{ 'path': '/PMCreateRequest/Header/StartDate/', 'type': 'sap.ui.model.type.Date'}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker value="{path: '/PMCreateRequest/Header/StartDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>RequiredEnd}" required="true"/>
-				<DatePicker value="{ 'path': '/PMCreateRequest/Header/EndDate/', 'type': 'sap.ui.model.type.Date' }" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker value="{path: '/PMCreateRequest/Header/EndDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
 				<!--<Label text="{i18n>priority}" required="true"/>-->
 				<!--<ComboBox id="priority" width="100%" placeholder="Enter Priority" selectedKey="{/PMCreateRequest/Header/Priority/}" valueState="None">-->
 				<!--	<items>-->
@@ -38,7 +36,8 @@
 				<!--	</items>-->
 				<!--</ComboBox>-->
 				<Label text="{i18n>maintenanceorder}" required="false"/>
-				<Input placeholder="Enter Maintenance Order" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input id="manint_order" value="{/PMCreateRequest/Header/orderID/}" placeholder="Enter Maintenance Order" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
@@ -61,7 +60,7 @@
 		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>Remarks}" required="false"/>
+				<Label text="{i18n>RemarksPM}" required="true"/>
 				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>

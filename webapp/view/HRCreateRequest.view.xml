@@ -27,42 +27,30 @@
 					<!--<VBox>
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.ClaimRequest" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox >
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.SubmitComplaint" type="XML"/>
-					</VBox>
-					<VBox>
+					</VBox>-->
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1007-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Activatingaccesscards" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1007-2'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Manageemployeeshifts" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1002-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TrainingandDevelopment.Employeelearninganddevelopment" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1003-2' || ${/HRAppVisible} === 'SSA-HR-1003-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.CompensationandRewards.Rewards" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1006-1' || ${/HRAppVisible} === 'SSA-HR-1006-2' || ${/HRAppVisible} === 'SSA-HR-1006-3'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TransportationandComission.Employeetransportation" type="XML"/>
 					</VBox>
-					<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1008-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.Employeevacations" type="XML"/>
 					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.timecollection" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.payrolloperation" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.payrollsheets" type="XML"/>
-					</VBox>
-					<VBox>
-						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.PeoplecareCenter.Governmentbankloans" type="XML"/>
-					</VBox>-->
-					<!--	<VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1009-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.PeoplecareCenter.Updatemasterdata" type="XML"/>
-					</VBox>-->
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>

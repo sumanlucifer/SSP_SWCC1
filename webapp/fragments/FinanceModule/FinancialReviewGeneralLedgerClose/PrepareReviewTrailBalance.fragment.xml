@@ -1,55 +1,71 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>PrepareReviewTrailBalance}"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<!--<Toolbar>-->
-				<!--	<Title level="H3" text="{i18n>ManagePettyCash}" class="ssp-tlbr-title"/>-->
-				<!--	<ToolbarSpacer/>-->
-				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
-				<!--</Toolbar>-->
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
-				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/quantity/}"/>
+				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
+				</ComboBox>-->
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>ChartofAccount}"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
-				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input id="idPhRN" required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 				<Label text="{i18n>ChartofAccount}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>ChartofAccount}"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/ChartOfAccounts/}" items="{/ChartofAccountf4/}">
+					<core:Item key="{ChartOfAccounts}" text="{ChartOfAccounts} - {ChartOfAccounts_Text}"/>
+				</ComboBox>
+				<Label text="{i18n>GLAccount}" required="false"/>
 				<Label text="{i18n>GLAccount}" required="true"/>
-				<Input required="true" width="100%"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/GLAccount/}" items="{/GeneralLedgerf4/}">
+					<core:Item key="{CompanyCode}" text="{GLAccount}"/>
+				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
 					change="handleChange" class="sapUiSmallMarginBottom"/>
+				<Label text="{i18n>plant}" required="true"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant1" valueState="None" placeholder="Select Plant"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>CurrencyType}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Currency Type"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/CurrencyRole/}" items="{/CurrencyTypef4/}">
+					<core:Item key="{CurrencyRole}" text="{CurrencyRole} - {CurrencyRole_Text}"/>
+				</ComboBox>
 				<Label text="{i18n>Ledger}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Ledger Type"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Ledger/}" items="{/LedgerTypef4/}">
+					<core:Item key="{Ledger}" text="{Ledger} - {Ledger_Text}"/>
+				</ComboBox>
 				<Label text="{i18n>ReportingPeriod}" required="true"/>
 				<DateRangeSelection class="DRS1"
-					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
+					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'MM' }, 'parts': [ { 'type': 'sap.ui.model.type.DateInterval', 'path': '/start' }, { 'type': 'sap.ui.model.type.DateInterval', 'path': '/end' } ] }"
 					change="handleChange"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>

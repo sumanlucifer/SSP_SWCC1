@@ -12,12 +12,19 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>issueofmaterial}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input id="srproduct1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>
 				<Label text="{i18n>basedate}" required="true"/>
 				<Input id="crtype5" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -25,7 +32,7 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>costcenter}" required="true"/>
+				<Label text="{i18n>costcenter}" required="false"/>
 				<Input id="materialtype1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -34,9 +41,11 @@
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input id="srdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>workcenter}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>movementtype}" required="true"/>
 				<Input id="crdesc5" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>goodsrecipient}" required="true"/>
+				<Label text="{i18n>goodsrecipient}" required="false"/>
 				<Input id="industrysector4" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -73,16 +82,19 @@
 						<Text text="{i18n>material}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Description}"/>
+						<Text text="{i18n>Quantity}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>quantity}"/>
+						<Text text="{i18n>UOM}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>uom}"/>
+						<Text text="{i18n>Plant}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>purchasinggroup}"/>
+						<Text text="{i18n>Storagelocation}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Warehpuse No}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>
@@ -104,6 +116,7 @@
 									<core:Item text="{Name}"/>
 								</suggestionItems>
 							</Input>
+							<Text text="Will shi"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

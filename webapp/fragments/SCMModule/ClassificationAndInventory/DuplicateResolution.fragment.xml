@@ -12,13 +12,18 @@
 			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>duplicate}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>purchaseorg}" required="true"/>
+				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="true"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>
+				<!--	<Label text="{i18n>purchaseorg}" required="true"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -31,11 +36,16 @@
 					<suggestionItems>
 						<core:Item text="{Name}"/>
 					</suggestionItems>
-				</Input>
+				</Input>-->
+				<Label text="{i18n>quantity}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc3" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>documenttype}" required="true"/>
-				<Input id="crdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>workcenter}" required="true"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
+					items="{/PMCreateRequest/WorkCenterF4/}">
+					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
+				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -69,20 +79,14 @@
 						<Text text="{i18n>Description}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>quantity}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>uom}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>purchasinggroup}"/>
+						<Text text="{i18n>Plant}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input id="tb-material2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 								suggestionItems="{/ProductCollection}">
 								<suggestionItems>
 									<core:Item text="{Name}"/>

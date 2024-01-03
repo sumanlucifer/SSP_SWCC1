@@ -16,11 +16,10 @@ sap.ui.define([
 			onInit: function () {
 
 				this.oRouter = this.getRouter();
-
 				this.getRouter().getRoute("PMCreateServiceRequest").attachPatternMatched(this._onObjectMatched, this);
 
 			},
-			_onObjectMatched: function () {
+			_onObjectMatched: function (oEvent) {
 
 				debugger;
 				this._createItemDataModel();
@@ -33,13 +32,11 @@ sap.ui.define([
 				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
-				var currentURL = window.location.href;
-				// var sOrderID = currentURL.match(/\/PMCreateServiceRequest\/([^/]+)/)[1];
-				// // sOrderID = sOrderID ===  "0" ? this.getModel().setPropert("/")
-
-				// console.log(value1);
+				var sOrderID = this.handlegetlocalStorage("OrderID");
+				this.getModel().setProperty("/PMCreateRequest/Header/orderID", sOrderID);
 
 			},
+
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
@@ -83,12 +80,7 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
-					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"),
-					'GET',
-					'/ZCDSV_WORKCENTERVH',
-					null,
-					dynamicFilters.WorkCntrFilter,
-					null
+					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH', null, dynamicFilters.WorkCntrFilter, null
 				).then(function (oResponse) {
 
 					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
@@ -285,7 +277,6 @@ sap.ui.define([
 				this.navigationBack();
 			},
 			onSaveRequest: function () {
-				debugger;
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				this.PMCreateaRequestAPI(oPayload);
 
