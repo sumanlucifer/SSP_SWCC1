@@ -147,24 +147,6 @@
 				"dataSource": "ZSSP_SCM_SRV",
 				"preload": true
 			},
-			"plantModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"workCenterModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"Productf4": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"materialf4Model": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"crModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
-			"fiModel": {
-				"type": "sap.ui.model.json.JSONModel"
-			},
 			"": {
 				"type": "sap.ui.model.json.JSONModel",
 				"settings": {},
