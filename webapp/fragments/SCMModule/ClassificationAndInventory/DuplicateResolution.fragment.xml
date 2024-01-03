@@ -86,7 +86,7 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input id="tb-material2" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 								suggestionItems="{/ProductCollection}">
 								<suggestionItems>
 									<core:Item text="{Name}"/>

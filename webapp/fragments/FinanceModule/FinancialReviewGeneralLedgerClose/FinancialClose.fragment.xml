@@ -16,22 +16,23 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/MaterialProcurement/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input id="finQty" placeholder="Enter Quantity" value="1"/>
+				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Input id="finDescription" placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/FinancialReviewGeneralClose/FinancialClose/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>PostingPeriod}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>PostPerVariant}"
-					items="{fiModel>/PostPerVariant}">
-					<core:Item key="{fiModel>PostPerVariant}" text="{fiModel>PostPerVariant} - {fiModel>PostVarDesc}"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Plant"
+					selectedKey="{/FinancialReviewGeneralClose/FinancialClose/Header/PostPerVariant/}" items="{/PostingPeriodF4/}">
+					<core:Item key="{PostPerVariant}" text="{PostPerVariant} - {PostVarDesc}"/>
 				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>

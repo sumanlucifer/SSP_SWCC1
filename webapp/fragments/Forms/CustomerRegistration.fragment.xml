@@ -67,8 +67,8 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
-			<headerToolbar >
+		<Table items="{/CustomerRegistrationData/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+			<!--	<headerToolbar >
 				<Toolbar>
 					<content>
 						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
@@ -78,7 +78,7 @@
 						</Image>
 					</content>
 				</Toolbar>
-			</headerToolbar>
+			</headerToolbar>-->
 			<columns>
 				<Column>
 					<Text text="File Name"/>

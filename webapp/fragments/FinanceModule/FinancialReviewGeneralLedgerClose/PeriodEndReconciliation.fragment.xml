@@ -17,7 +17,7 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<!--<Label text="{i18n>workcenter}" required="true"/>
@@ -30,26 +30,20 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>GLAccount}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account" selectedKey="{fiModel>GLAccount}"
-					items="{fiModel>/GLAccount}">
-					<core:Item key="{fiModel>GLAccount}" text="{fiModel>GLAccount}"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"
+					selectedKey="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/GLAccount/}" items="{/GeneralLedgerf4/}">
+					<core:Item key="{CompanyCode}" text="{GLAccount}"/>
 				</ComboBox>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" id="" valueState="None" placeholder="Company Code" selectedKey="{fiModel>CompanyCode}"
-					items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
+					selectedKey="{/ManagePettyCashData/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>Plant}"
-					items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant1" valueState="None" placeholder="Select Plant"
+					selectedKey="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
-				<Label text=""/>
-				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="sapUiMediumMarginTop">
-					<RadioButton id="RB1-1" text="Open Item"/>
-					<RadioButton id="RB1-2" text="Clear Item"/>
-					<RadioButton id="RB1-3" text="All Item"/>
-				</RadioButtonGroup>
 			</fm:content>
 			<!--<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>-->
 		</fm:SimpleForm>
@@ -63,5 +57,76 @@
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>coderange}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--	<Button icon="sap-icon://add" press=".onAddItemsPress"/>-->
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<HBox>
+				<Label text=""/>
+				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="">
+					<RadioButton id="RB1-1" text="Open Item"/>
+				</RadioButtonGroup>
+				<Label text="{i18n>Opendate}" required="true" class="sapUiTinyMarginTop"/>
+				<DatePicker placeholder="Enter Date" change="handleChange" class="sapUiTinyMarginBegin"/>
+			</HBox>
+			<Table mode="None" items="" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false"
+				growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>ChartofAccount}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>glaccounttypecode}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>glaccounttype}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>From G/L Account}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TO G/L Account}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="X"/>
+							<Text text="Balance Sheet Account"/>
+							<Text text="31110001"/>
+							<Text text="32299999"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="N"/>
+							<Text text="Primary Cost or Revenue"/>
+							<Text text="11411001"/>
+							<Text text="42319999"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="P"/>
+							<Text text="Non Operative Expenses or Income"/>
+							<Text text="9000000000"/>
+							<Text text="9099999999"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
 	</VBox>
 </core:FragmentDefinition>

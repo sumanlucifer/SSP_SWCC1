@@ -18,23 +18,27 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
-				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
+				<Input value="{selectedItemsModel>/selectedRowCount}" placeholder="Enter Quantity"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input value="{/CompanyF4/0/CompanyCode}" placeholder=""/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code" selectedKey="1000"
+					items="{fiModel>/companyCode}">
+					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				</ComboBox>
+				<Label text="{i18n>plant}" required="true"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>plant}" selectedKey="{fiModel>Plant}"
+					items="{fiModel>/Plant}">
+					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange"
 					class="sapUiSmallMarginBottom"/>
@@ -64,7 +68,7 @@
 		</Toolbar>
 		<Table mode="MultiSelect" noDataText="No Data Found" growing="true" growingScrollToLoad="false" growingThreshold="10"
 			sticky="ColumnHeaders,HeaderToolbar" items="{path : '/RecordandProcessInvoice/itemData'}" inset="false"
-			class="ssp-request-Table sapUiContentPadding">
+			class="ssp-request-Table sapUiContentPadding" selectionChange="onTableSelectionChange">
 			<columns>
 				<Column width="20em">
 					<Text text="Invoice Number"/>

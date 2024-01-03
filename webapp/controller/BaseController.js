@@ -124,44 +124,6 @@ sap.ui.define([
 			}.bind(this));
 		},
 
-		CallValueHelpSCMSRVAPI: function (entity) {
-
-			return new Promise(function (resolve, reject) {
-
-				// Use bracket notation to call the dynamic function
-				this.getOwnerComponent().getModel("ZSSP_SCM_SRV")["read"](entity, {
-
-					success: function (oData) {
-
-						resolve(oData);
-					},
-					error: function (oResult) {
-
-						reject(oResult);
-					}
-				});
-			}.bind(this));
-		},
-
-		CallValueHelpFISRVAPI: function (entity) {
-
-			return new Promise(function (resolve, reject) {
-
-				// Use bracket notation to call the dynamic function
-				this.getOwnerComponent().getModel("ZSSP_FI_SRV")["read"](entity, {
-
-					success: function (oData) {
-
-						resolve(oData);
-					},
-					error: function (oResult) {
-
-						reject(oResult);
-					}
-				});
-			}.bind(this));
-		},
-
 		// 			___________________________________________________Navigation Back Method_________________________________________________________
 		navigationBack: function () {
 			var oHistory, sPreviousHash;
@@ -298,6 +260,39 @@ sap.ui.define([
 		// ___________________________File Exceed Error _______________________________
 		handleFileSizeExceed: function () {
 			return MessageBox.error("File size exceeded, Please upload file upto 2MB.");
+		},
+		// ____________________________________________________set local session storage___________________________________________________
+		handleSetLocalStaorage: function (sProperty, sVal) {
+			// Get access to local storage
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+
+			// Define your data object
+			// var payloadObject = {
+			// 	"UserName": "JohnDoe123",
+			// 	"P2_Represen": "JaneSmith456",
+			// 	"P2_Rep_Pos": "Representative",
+			// 	"P2_CorName": "CorporationX",
+			// 	// ... rest of your payload
+			// };
+
+			// Convert the object to string before storing
+			//		var jsonString = JSON.stringify(payloadObject);
+
+			// Store the data
+			oStorage.put(sProperty, sVal);
+
+			// Retrieve the data
+			//	var retrievedData = oStorage.get("myDataKey");
+
+			// If you want to parse the retrieved data back to an object
+			// if (retrievedData) {
+			// 	var parsedData = JSON.parse(retrievedData);
+			// 	// Use the parsedData object as needed
+			// }
+		},
+		handlegetlocalStorage: function (sProperty) {
+			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
+			return oStorage.get(sProperty);
 		},
 		setModel: function (oModel, sName) {
 			return this.getView().setModel(oModel, sName);

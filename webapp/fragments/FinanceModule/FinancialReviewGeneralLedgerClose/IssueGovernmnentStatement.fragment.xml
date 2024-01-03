@@ -18,7 +18,8 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="1"/>
+				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
@@ -27,7 +28,7 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange" class=""/>
 				<Label text="{i18n>FMAREA}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select FM Area"
-					selectedKey="{fiModel>FinancialManagementArea}" items="{fiModel>/FinancialManagementArea}">
+					selectedKey="{fiModel>DefaultPostPerVariant}" items="{fiModel>/FinancialManagementArea}">
 					<core:Item key="{fiModel>FinancialManagementArea}" text="{fiModel>FinancialManagementArea} - {fiModel>FinancialManagementArea_Text}"/>
 				</ComboBox>
 				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
@@ -41,13 +42,12 @@
 				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
+					selectedKey="{fiModel>Plant}" items="{fiModel>/Plant}">
 					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>Period}" required="true"/>
-				<DateRangeSelection class="DRS1"
-					value="{ 'type': 'sap.ui.model.type.DateInterval', 'formatOptions': { 'pattern': 'yyyy/MM/dd' }, 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/end' } ] }"
-					change="handleChange"/>
+				<DatePicker id="DP1" placeholder="Enter Date" change="handleChange"
+					value="{ 'path':'/valueDP2', 'type':'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'MM' } }" class="sapUiSmallMarginBottom"/>
 			</fm:content>
 		</fm:SimpleForm>
 		<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
@@ -59,7 +59,10 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>HeadoftheAccountingSection}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
+					placeholder="{i18n>HeadoftheAccountingSection}" selectedKey="{fiModel>Position_key}" items="{fiModel>/Position_key}">
+					<core:Item key="{fiModel>Position_key}" text="{fiModel>Position_key} - {fiModel>Name}"/>
+				</ComboBox>
 				<Label text="{i18n>DirectorofFinancialManagement}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 				<Label text="{i18n>FinancialAuditor}" required="true"/>

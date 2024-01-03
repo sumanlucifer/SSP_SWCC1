@@ -205,7 +205,7 @@
 				},
 				{
 					"name": "ModuleSelect",
-					"pattern": "ModuleSelect",
+					"pattern": "ModuleSelect/:orderId:",
 					"target": [
 						"ModuleSelect"
 					]

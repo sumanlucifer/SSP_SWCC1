@@ -131,19 +131,18 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 
-				/*	var pssModel = this.getOwnerComponent().getModel("pssModel");
-					this.CallValueHelpSCMSRVAPI("/ZCDSV_DOMAINVH/Set?$filter=p_domain eq 'ZREQ_STAT'")
-						.then(function (oResponse) {
-							// Handle the response data
-							this.getModel().setProperty("/busy", false);
-							pssModel.setProperty("/projectType", oResponse.results);
-							this.getView().setModel(pssModel, "pssModel");
-						})
-						.catch(function (error) {
-							this.getModel().setProperty("/busy", false);
-							MessageBox.error(error.responseText);
-						}.bind(this));*/
-
+				/*	this.CallValueHelpSCMSRVAPI("?$filter=p_domain eq 'ZREQ_STAT'")
+					.then(function (oResponse) {
+						// Handle the response data
+						this.getModel().setProperty("/busy", false);
+						pssModel.setProperty("/projectType", oResponse.results);
+						this.getView().setModel(pssModel, "pssModel");
+					}.bind(this))
+					.catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+*/
 				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
 					var f4HelpModel = new sap.ui.model.json.JSONModel();
 					this.CallValueHelpAPI('ZCDSV_SCM_PRODUCTVH')
@@ -160,7 +159,24 @@ sap.ui.define([
 						}.bind(this));*/
 
 			},
+			CallValueHelpSCMSRVAPI: function (entity) {
 
+				return new Promise(function (resolve, reject) {
+
+					// Use bracket notation to call the dynamic function
+					this.getOwnerComponent().getModel("ZSSP_SCM_SRV")["read"](entity, {
+
+						success: function (oData) {
+
+							resolve(oData);
+						},
+						error: function (oResult) {
+
+							reject(oResult);
+						}
+					});
+				}.bind(this));
+			},
 			onMatValueHelpRequest: function (oEvent) {
 				var sInputValue = oEvent.getSource().getValue(),
 					oView = this.getView();

@@ -15,103 +15,43 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
-				var sValue = jQuery.sap.getUriParameters().get("param");
-				// debugger;
+				//var sValue = jQuery.sap.getUriParameters().get("param");
+				//debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
-				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
+				// this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.callDropDownService();
 
 				var fiModel = this.getOwnerComponent().getModel("fiModel");
-				this.CallValueHelpFISRVAPI('/I_CompanyCodeStdVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/companyCode", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
 
-				this.CallValueHelpAPI('/ZCDSV_WORKCENTERVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/workCenter", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+				/*	this.CallValueHelpFISRVAPI('/A_GLAccountText/')
+						.then(function (oResponse) {
+							this.getModel().setProperty("/busy", false);
+							fiModel.setProperty("/GLAccount", oResponse.results);
+							this.getView().setModel(fiModel, "fiModel");
+						}.bind(this)).catch(function (error) {
+							this.getModel().setProperty("/busy", false);
+							MessageBox.error(error.responseText);
+						}.bind(this));*/
 
-				this.CallValueHelpAPI('/A_Plant/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/plant", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				this.CallValueHelpFISRVAPI('/F_Mmim_Customer_Vh/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Customer", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/A_GLAccountText/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/GLAccount", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_POST_PERIOD_VARIANT/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/PostPerVariant", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_CurrencyTypeAndValuationView/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/CurrencyRole", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+				var defaultLedgerType = "0L";
 				this.CallValueHelpFISRVAPI('/I_LedgerStdVH/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
 						fiModel.setProperty("/Ledger", oResponse.results);
+						// Set the default value
+						fiModel.setProperty("/DefaultPostPerVariant", defaultLedgerType);
 						this.getView().setModel(fiModel, "fiModel");
 					}.bind(this)).catch(function (error) {
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_GeneralLedgerAccountVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/CompanyCode", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+
 				this.CallValueHelpFISRVAPI('/C_FinancialStatementVersion/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -230,59 +170,98 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_HEAD_AS/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Position_key", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				var defaultFmType = 1000;
+				this.CallValueHelpFISRVAPI('/ZCDS_DRCTOR_FM/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Position_key", oResponse.results);
+						// Set the default value
+						fiModel.setProperty("/DefaultPostPerVariant", defaultFmType);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/ZCDS_Financial_Auditor/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/Position_key", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+				this.CallValueHelpFISRVAPI('/I_LanguageText/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						fiModel.setProperty("/LanguageCode", oResponse.results);
+						this.getView().setModel(fiModel, "fiModel");
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 			},
+
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
 					FinanceAppVisible: null,
 					CompanyF4: [],
+					PlantF4: [],
 					CashJournalF4: [],
-					PMCreateRequest: {
-						UploadedData: [],
-						Header: {},
-						CustomDisplayData: {},
-						Attachment: [],
-						PlantF4: [],
-						WorkCenterF4: []
-					},
 					ManagePettyCashData: {
+						Header: {
+							CompanyCode: "1000"
+						},
 						itemData: []
+					},
+					FinancialReviewGeneralClose: {
+
+						FinancialClose: {
+							Header: {
+								PostPerVariant: "1000"
+							},
+							ItemData: []
+						},
+						PeriodEndReconcilation: {
+							Header: {
+								GLAccount: "1000"
+							},
+							ItemData: []
+						},
+						PrepareReviewTrail: {
+							Header: {
+								quantity: 1,
+								ChartOfAccounts: "1000",
+								CurrencyRole: 10,
+								Ledger: "0L",
+								GLAccount: "1000",
+								CompanyCode: "1000"
+							},
+							ItemData: []
+						},
 					},
 					RecordandProcessInvoice: {
 						itemData: []
 					},
 					MarineTransportation: {
 						itemData: []
-					}
+					},
+					FinancialClose: {
+						itemData: []
+					},
 				});
 			},
-			WorkCenterF4: function (sKey) {
-				var filters = [{
-						path: "Plant",
-						value: sKey,
-						group: "WorkCntrFilter"
-					}, {
-						path: "ServiceProduct",
-						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
-						group: "WorkCntrFilter"
-					}
 
-				];
-
-				var dynamicFilters = this.getFilters(filters);
-				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(
-					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH', null, dynamicFilters.WorkCntrFilter, null
-				).then(function (oResponse) {
-
-					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
-					this.getModel().setProperty("/busy", false);
-
-				}.bind(this)).catch(function (error) {
-					MessageBox.error(error.responseText);
-					this.getModel().setProperty("/busy", false);
-				}.bind(this));
-			},
 			onSelectPlant: function (oEve) {
 				var sKey = oEve.getSource().getSelectedKey();
 				this.WorkCenterF4(sKey);
@@ -299,10 +278,10 @@ sap.ui.define([
 				var filters = [{
 						path: "Country",
 						value: "SA",
-						group: "CompanyFilter"
+						group: "CountryFilter"
 					}, {
-						path: "Country",
-						value: "SA",
+						path: "CompanyCode",
+						value: "1000",
 						group: "CompanyFilter"
 					}
 
@@ -312,11 +291,30 @@ sap.ui.define([
 				Promise.allSettled([
 					//   Company Code F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
-						dynamicFilters.CompanyFilter),
+						null),
 					//	Cash Journal F4 Data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
+						null),
+					// Plant F4
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
+						null),
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_POST_PERIOD_VARIANT/', null,
+						null),
+					//F_Min_customer
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/F_Mmim_Customer_Vh/', null,
+						null),
+					//General Leder
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_GeneralLedgerAccountVH/', null,
+						dynamicFilters.CompanyFilter),
+					//Chart of accounts
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ChartOfAccountsStdVH/', null,
+						null),
+					//currency type
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CurrencyTypeAndValuationView/', null,
+						null),
+					//Ledger type 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LedgerStdVH/', null,
 						null)
-
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
 			},
@@ -334,6 +332,27 @@ sap.ui.define([
 				// 			Cash Journal F4 type response
 				var aCashJournalF4Data = values[1].value.results;
 				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
+				//     Plant F4 Valuehelp
+				var aPlantF4Data = values[2].value.results;
+				this.getModel().setProperty("/PlantF4/", aPlantF4Data);
+				//posting period f4 
+				var aPostingPeriodF4Data = values[3].value.results;
+				this.getModel().setProperty("/PostingPeriodF4/", aPostingPeriodF4Data);
+				//max custoemr f4
+				var aMaxCustoF4Data = values[4].value.results;
+				this.getModel().setProperty("/Maxcustomerf4/", aMaxCustoF4Data);
+				//general ledger
+				var aGeneralLedgerF4Data = values[5].value.results;
+				this.getModel().setProperty("/GeneralLedgerf4/", aGeneralLedgerF4Data);
+				//chart of accounts
+				var aChartofAccountF4Data = values[6].value.results;
+				this.getModel().setProperty("/ChartofAccountf4/", aChartofAccountF4Data);
+				//currency type
+				var aCurrencyTypeF4Data = values[7].value.results;
+				this.getModel().setProperty("/CurrencyTypef4/", aCurrencyTypeF4Data);
+				//Ledger Type
+				var aLedgerTypeF4Data = values[8].value.results;
+				this.getModel().setProperty("/LedgerTypef4/", aLedgerTypeF4Data);
 
 			},
 
@@ -341,6 +360,7 @@ sap.ui.define([
 				// debugger;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callManageRecordInvoice() : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callManagePettyCashAPI() : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-3" ? this.callManagePettyCashAPI() : null;
 
 			},
 
@@ -371,7 +391,7 @@ sap.ui.define([
 
 				var filters = [{
 						path: "CompanyCode",
-						value: "1000",
+						/*value: "1000",*/
 						group: "ManageRecordInvoiceFilter"
 					}, {
 						path: "FiscalYear",
@@ -401,17 +421,29 @@ sap.ui.define([
 					}.bind(this));
 			},
 			onProceed: function () {
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateaRequestAPI() : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateaRequestAPI() : null;
+				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
+
+				this.FinanceCreateaRequestAPI(oPayload);
+				/*	this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateaRequestAPI() : null;
+					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateaRequestAPI() : null;
+					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateaRequestAPI() : null;*/
 
 			},
 			FinanceCreateaRequestAPI: function (oPayload) {
 				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
 				var oPayload = {};
+				oPayload.Material = this.getView().byId("finServiceProduct").getValue();
+				oPayload.ServiceDescription = this.getView().byId("finDescription").getValue();
+				oPayload.PostVarDesc = this.getView().byId("finPostingPeriod").getSelectedKey();
+				oPayload.qty = this.getView().byId("finQty").getValue();
 				oPayload.Username = "WT_POWER";
 				oPayload.ServiceHeadertoItem = [];
-				oPayload.Attachments = [];
-				// debugger;
+				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				oPayload.Attachments = aUploadData;
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -429,13 +461,9 @@ sap.ui.define([
 				this.navigationBack();
 
 			},
-			/*onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
-
-			},*/
 			onProceed1: function () {
 
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
+				/*this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");*/
 			},
 
 			_handleMessageBoxProceed: function (sMessage) {
@@ -444,7 +472,30 @@ sap.ui.define([
 				};
 
 				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+			},
+			onTableSelectionChange: function (oEvent) {
+				var oTable = oEvent.getSource();
+				var aSelectedItems = oTable.getSelectedItems();
 
+				// Access data from selected items
+				var aSelectedData = aSelectedItems.map(function (oItem) {
+					return oItem.getBindingContext().getObject();
+				});
+
+				// Update the count in the input field
+				this.updateSelectedRowCount(aSelectedData.length);
+			},
+			updateSelectedRowCount: function (iCount) {
+				// Assuming you have a model named 'selectedItemsModel'
+				var selectedItemsModel = this.getView().getModel("selectedItemsModel");
+
+				if (!selectedItemsModel) {
+					selectedItemsModel = new JSONModel();
+					this.getView().setModel(selectedItemsModel, "selectedItemsModel");
+				}
+
+				// Update the count property in the model
+				selectedItemsModel.setProperty("/selectedRowCount", iCount);
 			},
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");

@@ -34,8 +34,8 @@
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>documenttype}" required="true"/>
-				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<!--	<Label text="{i18n>documenttype}" required="true"/>
+				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>receivingplant}" required="true"/>
 				<Input id="industrysector1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -82,6 +82,12 @@
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Stock(Supplying Plant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Unit Price}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>purchasinggroup}"/>
 					</Column>
 					<Column width="5%"></Column>
@@ -104,6 +110,8 @@
 									<core:Item text="{Name}"/>
 								</suggestionItems>
 							</Input>
+							<Text text="Will shi"/>
+							<Input value="{BaseUnit}"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

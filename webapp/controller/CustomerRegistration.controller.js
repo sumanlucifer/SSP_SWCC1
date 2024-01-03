@@ -38,6 +38,7 @@ sap.ui.define([
 					UploadedData: [],
 					Header: {},
 					CountryF4: [],
+					Attachments: [],
 					RegionF4: []
 				}
 
@@ -259,7 +260,6 @@ sap.ui.define([
 			this.getModel().refresh();
 		},
 		onFileAdded: function (oEvent) {
-			debugger;
 			var that = this;
 			var oFileUploader = oEvent.getSource();
 			var aFiles = oEvent.getParameter("files");

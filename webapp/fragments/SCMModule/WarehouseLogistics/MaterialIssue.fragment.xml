@@ -93,6 +93,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>Storagelocation}"/>
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Warehpuse No}"/>
+					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -113,6 +116,7 @@
 									<core:Item text="{Name}"/>
 								</suggestionItems>
 							</Input>
+							<Text text="Will shi"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

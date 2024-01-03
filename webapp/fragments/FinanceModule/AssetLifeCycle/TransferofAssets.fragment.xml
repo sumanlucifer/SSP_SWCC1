@@ -33,7 +33,7 @@
 					items="{fiModel>/companyCode}">
 					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
 				</ComboBox>
-				<Label text="{i18n>Asset}" required="true"/>
+				<Label text="{i18n>AssetNumber}" required="true"/>
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
@@ -42,7 +42,7 @@
 				</ComboBox>
 				<Label text="{i18n>SubNumber}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>CostCenter}" required="true"/>
+				<Label text="{i18n>newcostcenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
 					selectedKey="{fiModel>ControllingArea}" items="{fiModel>/ControllingArea}">
 					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
