@@ -49,9 +49,9 @@
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
 					change="handleChange" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>Plant}"
-					items="{fiModel>/Plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant1" valueState="None" placeholder="Select Plant"
+					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>CurrencyType}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Currency Type"

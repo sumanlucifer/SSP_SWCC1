@@ -16,9 +16,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="1"/>
+				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/quantity/}"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
@@ -28,22 +28,13 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange" class=""/>
 				<Label text="{i18n>FMAREA}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select FM Area"
-					selectedKey="{fiModel>DefaultPostPerVariant}" items="{fiModel>/FinancialManagementArea}">
-					<core:Item key="{fiModel>FinancialManagementArea}" text="{fiModel>FinancialManagementArea} - {fiModel>FinancialManagementArea_Text}"/>
+					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/FinancialManagementArea}" items="{/Fmareaf4/}">
+					<core:Item key="{FinancialManagementArea}" text="{FinancialManagementArea} - {FinancialManagementArea_Text}"/>
 				</ComboBox>
-				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>-->
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/Plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant1" valueState="None" placeholder="Select Plant"
+					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>Period}" required="true"/>
 				<DatePicker id="DP1" placeholder="Enter Date" change="handleChange"
@@ -60,13 +51,21 @@
 				</Toolbar>
 				<Label text="{i18n>HeadoftheAccountingSection}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
-					placeholder="{i18n>HeadoftheAccountingSection}" selectedKey="{fiModel>Position_key}" items="{fiModel>/Position_key}">
-					<core:Item key="{fiModel>Position_key}" text="{fiModel>Position_key} - {fiModel>Name}"/>
+					placeholder="{i18n>HeadoftheAccountingSection}" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
+					items="{/HeadAccountf4/}">
+					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
 				</ComboBox>
 				<Label text="{i18n>DirectorofFinancialManagement}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
+					placeholder="DirectorofFinancialManagement" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
+					items="{/DirectorFinancef4/}">
+					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
+				</ComboBox>
 				<Label text="{i18n>FinancialAuditor}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>FinancialAuditor}"
+					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}" items="{/FinancialAuditorf4/}">
+					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
+				</ComboBox>
 				<Label text="{i18n>Authority}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 			</fm:content>

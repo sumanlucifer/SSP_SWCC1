@@ -38,38 +38,6 @@ sap.ui.define([
 							this.getModel().setProperty("/busy", false);
 							MessageBox.error(error.responseText);
 						}.bind(this));*/
-
-				var defaultLedgerType = "0L";
-				this.CallValueHelpFISRVAPI('/I_LedgerStdVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Ledger", oResponse.results);
-						// Set the default value
-						fiModel.setProperty("/DefaultPostPerVariant", defaultLedgerType);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				this.CallValueHelpFISRVAPI('/C_FinancialStatementVersion/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/FinancialStatementVariant", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_FinMgmtAreaStdVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/FinancialManagementArea", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
 				this.CallValueHelpFISRVAPI('/I_AccountingPrincipleText/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -170,45 +138,6 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						MessageBox.error(error.responseText);
 					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_HEAD_AS/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Position_key", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				var defaultFmType = 1000;
-				this.CallValueHelpFISRVAPI('/ZCDS_DRCTOR_FM/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Position_key", oResponse.results);
-						// Set the default value
-						fiModel.setProperty("/DefaultPostPerVariant", defaultFmType);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_Financial_Auditor/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Position_key", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_LanguageText/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/LanguageCode", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
 			},
 
 			_createItemDataModel: function () {
@@ -246,6 +175,32 @@ sap.ui.define([
 								Ledger: "0L",
 								GLAccount: "1000",
 								CompanyCode: "1000"
+							},
+							ItemData: []
+						},
+						IssueFinancialStatement: {
+							Header: {
+								quantity: 1,
+								ChartOfAccounts: "1000",
+								CurrencyRole: 10,
+								Ledger: "0L",
+								GLAccount: "1000",
+								CompanyCode: "1000"
+							},
+							ItemData: []
+						},
+						MaintainChart: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+							},
+							ItemData: []
+						},
+						IssueGovernment: {
+							Header: {
+								quantity: 1,
+								FinancialManagementArea: "1000"
+
 							},
 							ItemData: []
 						},
@@ -314,7 +269,26 @@ sap.ui.define([
 						null),
 					//Ledger type 
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LedgerStdVH/', null,
+						null),
+					//Language 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LanguageText/', null,
+						null),
+					//Financial statment version  
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/C_FinancialStatementVersion/', null,
+						null),
+					//FM Area 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_FinMgmtAreaStdVH/', null,
+						null),
+					// Head of accounting section 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_HEAD_AS/', null,
+						null),
+					// Director of Finance  
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_DRCTOR_FM/', null,
+						null),
+					// Financial Auditor 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_Financial_Auditor/', null,
 						null)
+
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
 			},
@@ -353,6 +327,24 @@ sap.ui.define([
 				//Ledger Type
 				var aLedgerTypeF4Data = values[8].value.results;
 				this.getModel().setProperty("/LedgerTypef4/", aLedgerTypeF4Data);
+				//Language Type
+				var aLanuguageF4Data = values[9].value.results;
+				this.getModel().setProperty("/Languagef4/", aLanuguageF4Data);
+				//Financial Statement version
+				var aFinancialStatementF4Data = values[10].value.results;
+				this.getModel().setProperty("/FinancialStatementf4/", aFinancialStatementF4Data);
+				//FM Area
+				var aFmareaF4Data = values[11].value.results;
+				this.getModel().setProperty("/Fmareaf4/", aFmareaF4Data);
+				//Head of accounting
+				var aHeadAccountF4Data = values[12].value.results;
+				this.getModel().setProperty("/HeadAccountf4/", aHeadAccountF4Data);
+				//Director of finance
+				var aDirectorFinanceF4Data = values[13].value.results;
+				this.getModel().setProperty("/DirectorFinancef4/", aDirectorFinanceF4Data);
+				//Financial Auditor
+				var aFinancialAuditorF4Data = values[14].value.results;
+				this.getModel().setProperty("/FinancialAuditorf4/", aFinancialAuditorF4Data);
 
 			},
 
