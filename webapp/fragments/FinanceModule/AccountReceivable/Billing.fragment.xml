@@ -17,29 +17,32 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Billing/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/AccountsReceivable/Billing/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" id="billingcompanyCode" valueState="None" placeholder="Company Code"
-					selectedKey="{fiModel>CompanyCode}" items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code"
+					selectedKey="{/AccountsReceivable/Billing/Header/CompanyCode}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>CustomerCode}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Customer Code"
+					selectedKey="{/AccountsReceivable/Billing/Header/Customer}" items="{/CustomerCodef4/}">
+					<core:Item key="{Customer}" text="{Customer} - {CustomerName}"/>
+				</ComboBox>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
 					value="{ 'type': 'sap.ui.model.type.DateInterval', 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3Start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3End' } ] }"/>
