@@ -173,6 +173,25 @@ sap.ui.define([
 						},
 
 					},
+					InsuranceandClaim: {
+						CreateInsurance: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						Billing: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+
+					},
 					RecordandProcessInvoice: {
 						itemData: []
 					},
