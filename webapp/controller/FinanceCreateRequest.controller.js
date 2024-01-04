@@ -27,99 +27,6 @@ sap.ui.define([
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.callDropDownService();
 
-				var fiModel = this.getOwnerComponent().getModel("fiModel");
-
-				/*	this.CallValueHelpFISRVAPI('/A_GLAccountText/')
-						.then(function (oResponse) {
-							this.getModel().setProperty("/busy", false);
-							fiModel.setProperty("/GLAccount", oResponse.results);
-							this.getView().setModel(fiModel, "fiModel");
-						}.bind(this)).catch(function (error) {
-							this.getModel().setProperty("/busy", false);
-							MessageBox.error(error.responseText);
-						}.bind(this));*/
-				this.CallValueHelpFISRVAPI('/I_CostCenter/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/CostCenter", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_DeprAreaForLedgerVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AssetDepreciationArea", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				this.CallValueHelpFISRVAPI('/I_Group1AssetEvaluationKey/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Group1AssetEvaluationKey", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_Group2AssetEvaluationKey/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Group2AssetEvaluationKey", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_Group3AssetEvaluationKey/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/Group3AssetEvaluationKey", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_ASSET_SUPER/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AssetSuperNum", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_NONTECH_ASSET/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AssetNonTech", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_AssetClassStdVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AssetClass", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/ZCDS_ASSET_MAIN/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AssetClass", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
 			},
 
 			_createItemDataModel: function () {
@@ -213,6 +120,50 @@ sap.ui.define([
 							},
 							ItemData: []
 						},
+						SaleofAssets: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						RetirementofAssets: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						TransferofAssets: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						ProjectCaptilization: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+
+					},
+					AccountsReceivable: {
+						Manageandprocess: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+
 					},
 					RecordandProcessInvoice: {
 						itemData: []
@@ -264,7 +215,7 @@ sap.ui.define([
 						null),
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_POST_PERIOD_VARIANT/', null,
 						null),
-					//F_Min_customer
+					//customer code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/F_Mmim_Customer_Vh/', null,
 						null),
 					//General Leder
@@ -305,6 +256,27 @@ sap.ui.define([
 						null),
 					//Deprication area
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_DeprAreaForLedgerVH/', null,
+						null),
+					//Area
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group1AssetEvaluationKey/', null,
+						null),
+					//Unit
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group2AssetEvaluationKey/', null,
+						null),
+					//System
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group3AssetEvaluationKey/', null,
+						null),
+					//Assest Class
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_AssetClassStdVH/', null,
+						null),
+					//Sub Number
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/Faa_Sil_Anla_Relevant/', null,
+						null),
+					//Super Number
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_SUPER/', null,
+						null),
+					//Non Technical Assest
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_NONTECH_ASSET/', null,
 						null)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
@@ -330,9 +302,9 @@ sap.ui.define([
 				//posting period f4 
 				var aPostingPeriodF4Data = values[3].value.results;
 				this.getModel().setProperty("/PostingPeriodF4/", aPostingPeriodF4Data);
-				//max custoemr f4
-				var aMaxCustoF4Data = values[4].value.results;
-				this.getModel().setProperty("/Maxcustomerf4/", aMaxCustoF4Data);
+				//customer code f4
+				var aCustomerCodeF4Data = values[4].value.results;
+				this.getModel().setProperty("/CustomerCodef4/", aCustomerCodeF4Data);
 				//general ledger
 				var aGeneralLedgerF4Data = values[5].value.results;
 				this.getModel().setProperty("/GeneralLedgerf4/", aGeneralLedgerF4Data);
@@ -372,6 +344,27 @@ sap.ui.define([
 				//Deprication Area
 				var aDepricationAreaF4Data = values[17].value.results;
 				this.getModel().setProperty("/DepricationAreaf4/", aDepricationAreaF4Data);
+				//Area
+				var aAreaF4Data = values[18].value.results;
+				this.getModel().setProperty("/Areaf4/", aAreaF4Data);
+				//Unit
+				var aUnitF4Data = values[19].value.results;
+				this.getModel().setProperty("/Unitf4/", aUnitF4Data);
+				//System
+				var aSystemF4Data = values[20].value.results;
+				this.getModel().setProperty("/Systemf4/", aSystemF4Data);
+				//assestclass
+				var aAssestClassF4Data = values[21].value.results;
+				this.getModel().setProperty("/AssestClassf4/", aAssestClassF4Data);
+				//assestsub
+				var aAssestSubF4Data = values[22].value.results;
+				this.getModel().setProperty("/AssestSubf4/", aAssestSubF4Data);
+				//assestsuper
+				var aAssestSuperF4Data = values[23].value.results;
+				this.getModel().setProperty("/AssestSuperf4/", aAssestSuperF4Data);
+				//Non technical assest
+				var aNontecnicalF4Data = values[24].value.results;
+				this.getModel().setProperty("/NonTechnicalf4/", aNontecnicalF4Data);
 
 			},
 

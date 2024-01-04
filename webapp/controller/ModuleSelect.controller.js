@@ -19,7 +19,7 @@ sap.ui.define([
 				this._createHeaderModel();
 
 				var sUrlOrderID = oEve.getParameter("arguments").orderId,
-					sUrlOrderID = sUrlOrderID ? this.handleRedirection(sUrlOrderID) : "";
+					sUrlOrderID = sUrlOrderID ? this.handleRedirection(sUrlOrderID) : this.handleSetLocalStaorage("OrderID", "");;
 
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sModuleType = oStorage.get("sMouleType");
