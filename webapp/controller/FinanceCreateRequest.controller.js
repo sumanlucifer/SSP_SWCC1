@@ -76,6 +76,7 @@ sap.ui.define([
 								CurrencyRole: 10,
 								Ledger: "0L",
 								GLAccount: "",
+								LanguageCode: "EN",
 								CompanyCode: "1000"
 							},
 							ItemData: []
@@ -245,6 +246,10 @@ sap.ui.define([
 						path: "CompanyCode",
 						value: "1000",
 						group: "CompanyFilter"
+					}, {
+						path: "LanguageCode",
+						value: "EN",
+						group: "LanguageFilter"
 					}
 
 				];
@@ -279,7 +284,7 @@ sap.ui.define([
 						null),
 					//Language 
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LanguageText/', null,
-						null),
+						dynamicFilters.LanguageFilter),
 					//Financial statment version  
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/C_FinancialStatementVersion/', null,
 						null),
