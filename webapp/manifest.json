@@ -187,7 +187,7 @@
 				},
 				{
 					"name": "ModuleSelect",
-					"pattern": "ModuleSelect/:orderId:",
+					"pattern": "ModuleSelect",
 					"target": [
 						"ModuleSelect"
 					]
@@ -264,7 +264,7 @@
 				},
 				{
 					"name": "PMCreateServiceRequest",
-					"pattern": "PMCreateServiceRequest",
+					"pattern": "PMCreateServiceRequest/{param1}",
 					"target": [
 						"PMCreateServiceRequest"
 					]

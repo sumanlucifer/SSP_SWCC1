@@ -19,13 +19,17 @@ sap.ui.define([
 				this._createHeaderModel();
 
 				var sUrlOrderID = oEve.getParameter("arguments").orderId,
-					sUrlOrderID = sUrlOrderID ? sUrlOrderID : "";
-				this.handleSetLocalStaorage("OrderID", sUrlOrderID);
+					sUrlOrderID = sUrlOrderID ? this.handleRedirection(sUrlOrderID) : "";
 
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sModuleType = oStorage.get("sMouleType");
 				this.byId("idService").setSelectedKey(sModuleType);
 				this.getServiceTypeDD();
+
+			},
+			handleRedirection: function (sVal) {
+				this.handleSetLocalStaorage("OrderID", sVal);
+				this.byId("idService").setSelectedKey("ZSSM");
 
 			},
 			_createHeaderModel: function () {

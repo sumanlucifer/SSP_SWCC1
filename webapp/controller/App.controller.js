@@ -6,9 +6,9 @@ sap.ui.define([
 
 	return Controller.extend("com.swcc.Template.controller.App", {
 		onInit: function () {
+			debugger;
 			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
-			//	var sLoginID = new sap.ushell.services.UserInfo().getId();
-			//	sLoginID === undefined ? 
+
 		}
 	});
 });
