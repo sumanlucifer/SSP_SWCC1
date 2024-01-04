@@ -195,6 +195,7 @@ sap.ui.define([
 
 		SubmitBPRegistration: function (oPayload) {
 			debugger;
+			// 	var sLoggedInUserName = this.getCurrentUserLoggedIn();
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 			const aUploadData = this.getModel().getProperty("/CustomerRegistrationData/UploadedData").map(({
 				Filesize,

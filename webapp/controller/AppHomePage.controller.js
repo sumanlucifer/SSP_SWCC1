@@ -15,7 +15,7 @@ sap.ui.define([
 			},
 			_onObjectMatched: function () {
 				this._createDataModel();
-				//	this.getTileDisplayData();
+				this.getTileDisplayData();
 
 			},
 			_createDataModel: function () {
@@ -25,6 +25,7 @@ sap.ui.define([
 						Header: {}
 					}
 				});
+
 			},
 			handleBackPress: function () {
 
@@ -42,8 +43,8 @@ sap.ui.define([
 
 			getTileDisplayData: function () {
 
-				//	var sLoggedInUserName = "";
-				var sAPI = `/UserSet(RequestID='',SapID='WT_POWER')`;
+				var sLoggedInUserName = this.getCurrentUserLoggedIn();
+				var sAPI = `/UserSet(RequestID='',SapID='${sLoggedInUserName}')`;
 
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
