@@ -33,7 +33,7 @@ sap.ui.define([
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
 				var sOrderID = this.handlegetlocalStorage("OrderID");
-				this.getModel().setProperty("/PMCreateRequest/Header/ZZAUFNR", sOrderID);
+				this.getModel().setProperty("/PMCreateRequest/Header/MaintOrder", sOrderID);
 
 			},
 

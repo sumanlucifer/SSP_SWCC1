@@ -36,8 +36,8 @@
 				<!--	</items>-->
 				<!--</ComboBox>-->
 				<Label text="{i18n>maintenanceorder}" required="false"/>
-				<Input id="manint_order" value="{/PMCreateRequest/Header/ZZAUFNR/}" placeholder="Enter Maintenance Order" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input id="manint_order" value="{/PMCreateRequest/Header/MaintOrder/}" placeholder="Enter Maintenance Order" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
