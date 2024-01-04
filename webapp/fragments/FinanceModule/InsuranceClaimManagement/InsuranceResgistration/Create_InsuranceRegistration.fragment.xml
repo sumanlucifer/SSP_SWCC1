@@ -1,28 +1,34 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:upload="sap.m.upload" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-create-sr" title="{i18n>InsuranceRegistration}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
 			<fm:content>
 				<Toolbar>
-					<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/InsuranceandClaim/CreateInsurance/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
+					selectedKey="{/InsuranceandClaim/CreateInsurance/Header/Plant/}" items="{/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
@@ -33,8 +39,8 @@
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
 				<Label text="{i18n>Vendor}" required="true"/>
 				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
-				<Label text="{i18n>Plant}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<!--	<Label text="{i18n>Plant}" required="true"/>
+				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>-->
 				<Label text="{i18n>PolicyStatus}" required="true"/>
 				<Input required="true" value="New" width="100%"/>
 				<Label text="{i18n>TotalPremiumAmount}" required="true"/>

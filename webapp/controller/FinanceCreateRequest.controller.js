@@ -18,6 +18,7 @@ sap.ui.define([
 				//var sValue = jQuery.sap.getUriParameters().get("param");
 				//debugger;
 				this._createItemDataModel();
+				this.getModel().setSizeLimit(1000);
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
@@ -53,7 +54,7 @@ sap.ui.define([
 						},
 						PeriodEndReconcilation: {
 							Header: {
-								GLAccount: "1000"
+								GLAccount: ""
 							},
 							ItemData: []
 						},
@@ -63,7 +64,7 @@ sap.ui.define([
 								ChartOfAccounts: "1000",
 								CurrencyRole: 10,
 								Ledger: "0L",
-								GLAccount: "1000",
+								GLAccount: "",
 								CompanyCode: "1000"
 							},
 							ItemData: []
@@ -74,7 +75,8 @@ sap.ui.define([
 								ChartOfAccounts: "1000",
 								CurrencyRole: 10,
 								Ledger: "0L",
-								GLAccount: "1000",
+								GLAccount: "",
+								LanguageCode: "EN",
 								CompanyCode: "1000"
 							},
 							ItemData: []
@@ -173,6 +175,44 @@ sap.ui.define([
 						},
 
 					},
+					InsuranceandClaim: {
+						CreateInsurance: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						Billing: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+
+					},
+					AccountPayable: {
+						RecordProcess: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						ManagePettyCash: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+
+					},
 					RecordandProcessInvoice: {
 						itemData: []
 					},
@@ -206,6 +246,10 @@ sap.ui.define([
 						path: "CompanyCode",
 						value: "1000",
 						group: "CompanyFilter"
+					}, {
+						path: "LanguageCode",
+						value: "EN",
+						group: "LanguageFilter"
 					}
 
 				];
@@ -240,7 +284,7 @@ sap.ui.define([
 						null),
 					//Language 
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LanguageText/', null,
-						null),
+						dynamicFilters.LanguageFilter),
 					//Financial statment version  
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/C_FinancialStatementVersion/', null,
 						null),

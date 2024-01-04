@@ -19,10 +19,10 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/AccountPayable/ManagePettyCash/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ManagePettyCashData/Header/Plant/}" items="{/PlantF4/}">
+					selectedKey="{/AccountPayable/ManagePettyCash/Header/Plant/}" items="{/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<!--<Label text="{i18n>workcenter}" required="true"/>-->
@@ -36,15 +36,15 @@
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
-					selectedKey="{/ManagePettyCashData/Header/CompanyCode/}" items="{/CompanyF4/}">
+					selectedKey="{/AccountPayable/ManagePettyCash/Header/CompanyCode/}" items="{/CompanyF4/}">
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleManagePettyCashDateChange"
 					class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal" selectedKey="{/ManagePettyCashData/CashJournalKey}"
-					items="{/CashJournalF4/}">
+				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal"
+					selectedKey="{/AccountPayable/ManagePettyCash/Header/CashJournalKey}" items="{/CashJournalF4/}">
 					<core:Item key="{CashJournalDocumentInternalID}" text="{CashJournalDocumentInternalID}"/>
 				</ComboBox>
 			</fm:content>
