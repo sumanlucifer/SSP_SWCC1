@@ -16,7 +16,7 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
@@ -55,8 +55,8 @@
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{fiModel>ControllingArea}" items="{fiModel>/ControllingArea}">
-					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/ControllingArea}" items="{/CostCenterf4/}">
+					<core:Item key="{ControllingArea}" text="{ControllingArea} - {CostCenter}"/>
 				</ComboBox>
 				<Label text="{i18n>ProfitCenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}" selectedKey="{fiModel>CostCenter}"

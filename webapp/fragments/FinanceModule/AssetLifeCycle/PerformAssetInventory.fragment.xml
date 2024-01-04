@@ -16,9 +16,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/PerfomAsset/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
@@ -29,27 +29,27 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code" selectedKey="{fiModel>CompanyCode}"
-					items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
+					selectedKey="{/AssetLifecycle/PerfomAsset/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>CostCenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{fiModel>ControllingArea}" items="{fiModel>/ControllingArea}">
-					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
+					selectedKey="{/AssetLifecycle/PerfomAsset/Header/ControllingArea}" items="{/CostCenterf4/}">
+					<core:Item key="{ControllingArea}" text="{ControllingArea} - {CostCenter}"/>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/AssetLifecycle/PerfomAsset/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>ReportingDate}" required="true"/>
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
 					change="handleChange" class=""/>
 				<Label text="{i18n>DepreciationArea}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>DepreciationArea}"
-					selectedKey="{fiModel>AssetDepreciationArea}" items="{fiModel>/AssetDepreciationArea}">
-					<core:Item key="{fiModel>AssetDepreciationArea}" text="{fiModel>AssetDepreciationArea} - {fiModel>AssetDepreciationArea_Text}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
+					selectedKey="{/AssetLifecycle/PerfomAsset/Header/AssetDepreciationArea/}" items="{/DepricationAreaf4/}">
+					<core:Item key="{AssetDepreciationArea}" text="{AssetDepreciationArea} - {AssetDepreciationArea_Text}"/>
 				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>

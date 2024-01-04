@@ -16,18 +16,18 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-				<Input placeholder="Enter Quantity" value="1"/>
+					<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code"
-					selectedKey="{fiModel>/DefaultPostPerVariant}" items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
+					selectedKey="{/AssetLifecycle/DepreciationProcess/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
@@ -35,14 +35,14 @@
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>AccountingPrinciple}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code" selectedKey="{fiModel>AccountingPrinciple}"
-					items="{fiModel>/AccountingPrinciple}">
-					<core:Item key="{fiModel>AccountingPrinciple}" text="{fiModel>AccountingPrinciple} - {fiModel>AccountingPrincipleName}"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Accounting Principal"
+					selectedKey="{/AssetLifecycle/DepreciationProcess/Header/AccountingPrinciple}" items="{/AccountingPrincipalf4/}">
+					<core:Item key="{AccountingPrinciple}" text="{AccountingPrinciple} - {AccountingPrincipleName}"/>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant" selectedKey="{fiModel>Plant}"
-					items="{fiModel>/Plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"

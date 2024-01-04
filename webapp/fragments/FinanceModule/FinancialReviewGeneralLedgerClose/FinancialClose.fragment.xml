@@ -18,7 +18,7 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input id="finQty" placeholder="Enter Quantity" value="1"/>
+				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/FinancialClose/Header/quantity/}"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input id="finDescription" placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

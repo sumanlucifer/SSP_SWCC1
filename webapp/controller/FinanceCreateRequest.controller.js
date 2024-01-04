@@ -38,24 +38,6 @@ sap.ui.define([
 							this.getModel().setProperty("/busy", false);
 							MessageBox.error(error.responseText);
 						}.bind(this));*/
-				this.CallValueHelpFISRVAPI('/I_AccountingPrincipleText/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/AccountingPrinciple", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-				this.CallValueHelpFISRVAPI('/I_CostCenterDetail/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						fiModel.setProperty("/ControllingArea", oResponse.results);
-						this.getView().setModel(fiModel, "fiModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
 				this.CallValueHelpFISRVAPI('/I_CostCenter/')
 					.then(function (oResponse) {
 						this.getModel().setProperty("/busy", false);
@@ -157,7 +139,8 @@ sap.ui.define([
 
 						FinancialClose: {
 							Header: {
-								PostPerVariant: "1000"
+								PostPerVariant: "1000",
+								quantity: 1
 							},
 							ItemData: []
 						},
@@ -200,6 +183,32 @@ sap.ui.define([
 							Header: {
 								quantity: 1,
 								FinancialManagementArea: "1000"
+
+							},
+							ItemData: []
+						},
+					},
+					AssetLifecycle: {
+						DepreciationProcess: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						PerfomAsset: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						RecordAsset: {
+							Header: {
+								quantity: 1,
+								CompanyCode: "1000"
 
 							},
 							ItemData: []
@@ -287,6 +296,15 @@ sap.ui.define([
 						null),
 					// Financial Auditor 
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_Financial_Auditor/', null,
+						null),
+					//Accounting Principal  	
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_AccountingPrincipleText/', null,
+						null),
+					//cost center 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CostCenterDetail/', null,
+						null),
+					//Deprication area
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_DeprAreaForLedgerVH/', null,
 						null)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
@@ -345,6 +363,15 @@ sap.ui.define([
 				//Financial Auditor
 				var aFinancialAuditorF4Data = values[14].value.results;
 				this.getModel().setProperty("/FinancialAuditorf4/", aFinancialAuditorF4Data);
+				//Accounting Principal
+				var aAccouningPrincipalF4Data = values[15].value.results;
+				this.getModel().setProperty("/AccountingPrincipalf4/", aAccouningPrincipalF4Data);
+				//Cost center
+				var aCostCenterF4Data = values[16].value.results;
+				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
+				//Deprication Area
+				var aDepricationAreaF4Data = values[17].value.results;
+				this.getModel().setProperty("/DepricationAreaf4/", aDepricationAreaF4Data);
 
 			},
 
