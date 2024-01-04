@@ -18,6 +18,17 @@ sap.ui.define([
 			return sap.ui.core.UIComponent.getRouterFor(this);
 
 		},
+
+		getCurrentUserLoggedIn: function () {
+			try {
+				var sLoginID = new sap.ushell.services.UserInfo().getId();
+				return sLoginID;
+			} catch (error) {
+				var sLoginID = "WT_POWER";
+				// Handle the error gracefully, such as using a default value or logging the error
+				return sLoginID;
+			}
+		},
 		// 	___________________________________________________Dynamic Valuehelp Method_________________________________________________________
 		onHandleValueHelpRequest: function (oModel, aColumns, sPath) {
 			this._oMultiInput = this.getView().byId("multiInput");

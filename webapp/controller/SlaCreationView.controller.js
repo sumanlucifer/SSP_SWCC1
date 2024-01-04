@@ -39,8 +39,8 @@ sap.ui.define([
 			},
 
 			getSLADetails: function () {
-
-				var sAPI = `/BPRequestSet(UserName='WT_POWER')`;
+				var sLoggedInUserName = this.getCurrentUserLoggedIn();
+				var sAPI = `/BPRequestSet(UserName='${sLoggedInUserName}')`;
 
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {

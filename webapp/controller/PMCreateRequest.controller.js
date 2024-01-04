@@ -236,8 +236,7 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
 				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
-				debugger;
-				oPayload.Username = "WT_POWER";
+				oPayload.Username = this.getCurrentUserLoggedIn();
 				oPayload.ServiceHeadertoItem = [];
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
 					Filesize,
