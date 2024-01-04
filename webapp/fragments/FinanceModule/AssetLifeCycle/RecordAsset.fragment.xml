@@ -27,19 +27,19 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CompanyCode}" selectedKey="{fiModel>CompanyCode}"
-					items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
+					selectedKey="{/AssetLifecycle/PerfomAsset/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetClass}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetClass}"
-					selectedKey="{fiModel>AssetClass}" items="{fiModel>/AssetClass}">
+					selectedKey="{/AssetLifecycle/PerfomAsset/AssetClass}" items="{fiModel>/AssetClass}">
 					<core:Item key="{fiModel>AssetClass}" text="{fiModel>AssetClass} - {fiModel>AssetClass_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>SubNumber}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetClass}"
-					selectedKey="{fiModel>AssetClass}" items="{fiModel>/AssetClass}">
-					<core:Item key="{fiModel>AssetClass}" text="{fiModel>AssetClass} - {fiModel>AssetClass_Text}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetClass}" items="{/AssestSubf4/}">
+					<core:Item key="{AssetClass}" text="{AssetClass} - {AssetClass_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input required="true" width="100%"/>
@@ -65,33 +65,33 @@
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>Area}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>Area}"
-					selectedKey="{fiModel>Group1AssetEvaluationKey}" items="{fiModel>/Group1AssetEvaluationKey}">
-					<core:Item key="{fiModel>Group1AssetEvaluationKey}" text="{fiModel>Group1AssetEvaluationKey} - {fiModel>Group1AssetEvaluationKey_Text}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Area"
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group1AssetEvaluationKey/}" items="{/Areaf4/}">
+					<core:Item key="{Group1AssetEvaluationKey}" text="{Group1AssetEvaluationKey} - {Group1AssetEvaluationKey_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>Unit}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>Unit}"
-					selectedKey="{fiModel>Group2AssetEvaluationKey}" items="{fiModel>/Group2AssetEvaluationKey}">
-					<core:Item key="{fiModel>Group2AssetEvaluationKey}" text="{fiModel>Group2AssetEvaluationKey} - {fiModel>Group2AssetEvaluationKey_Text}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Unit"
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group2AssetEvaluationKey/}" items="{/Unitf4/}">
+					<core:Item key="{Group2AssetEvaluationKey}" text="{Group2AssetEvaluationKey} - {Group2AssetEvaluationKey_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>System}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>System}"
-					selectedKey="{fiModel>Group3AssetEvaluationKey}" items="{fiModel>/Group3AssetEvaluationKey}">
-					<core:Item key="{fiModel>Group3AssetEvaluationKey}" text="{fiModel>Group3AssetEvaluationKey} - {fiModel>Group3AssetEvaluationKey_Text}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group3AssetEvaluationKey}" items="{/Systemf4/}">
+					<core:Item key="{Group3AssetEvaluationKey}" text="{Group3AssetEvaluationKey} - {Group3AssetEvaluationKey_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetSuperNumber}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetSuperNumber}"
-					selectedKey="{fiModel>AssetSuperNum}" items="{fiModel>/AssetSuperNum}">
-					<core:Item key="{fiModel>AssetSuperNum}" text="{fiModel>AssetSuperNum} - {fiModel>AssetSuperText}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetSuperNum}" items="{/AssestSuperf4/}">
+					<core:Item key="{AssetSuperNum}" text="{AssetSuperNum} - {AssetSuperText}"/>
 				</ComboBox>
 				<Label text="{i18n>NonTechnicalAsset}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>NonTechnicalAsset}"
-					selectedKey="{fiModel>AssetNonTech}" items="{fiModel>/AssetNonTech}">
-					<core:Item key="{fiModel>AssetNonTech}" text="{fiModel>AssetNonTech} - {fiModel>AssetNonTechText}"/>
+					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetNonTech}" items="{/NonTechnicalf4/}">
+					<core:Item key="{AssetNonTech}" text="{AssetNonTech} - {AssetNonTechText}"/>
 				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>

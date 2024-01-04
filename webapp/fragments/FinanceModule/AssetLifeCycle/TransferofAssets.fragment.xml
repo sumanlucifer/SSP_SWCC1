@@ -16,9 +16,9 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/TransferofAssets/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
@@ -29,23 +29,26 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code" selectedKey="{fiModel>CompanyCode}"
-					items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Company code"
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/CompanyCode/}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetNumber}" required="true"/>
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>SubNumber}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/ControllingArea}" items="{/AssestSubf4/}">
+					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
+				</ComboBox>
 				<Label text="{i18n>newcostcenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{fiModel>ControllingArea}" items="{fiModel>/ControllingArea}">
-					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/ControllingArea}" items="{/CostCenterf4/}">
+					<core:Item key="{ControllingArea}" text="{ControllingArea} - {CostCenter}"/>
 				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>

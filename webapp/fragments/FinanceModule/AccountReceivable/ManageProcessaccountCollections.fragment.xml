@@ -16,34 +16,37 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Manageandprocess/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{fiModel>Plant}" items="{fiModel>/plant}">
-					<core:Item key="{fiModel>Plant}" text="{fiModel>Plant} - {fiModel>PlantName}"/>
+					selectedKey="{/AccountsReceivable/Manageandprocess/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<!--<Input required="true" width="100%" value="1000"/>-->
-				<ComboBox width="100%" change="" selectionChange="" id="companyCode" valueState="None" placeholder="Company Code"
-					selectedKey="{fiModel>CompanyCode}" items="{fiModel>/companyCode}">
-					<core:Item key="{fiModel>CompanyCode}" text="{fiModel>CompanyCode} - {fiModel>CompanyCodeName}"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code"
+					selectedKey="{/AccountsReceivable/Manageandprocess/Header/CompanyCode}" items="{/CompanyF4/}">
+					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>BANKGL}" required="true"/>
-				<Input required="true" width="100%" value="1000" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"
+					selectedKey="{/AccountsReceivable/Manageandprocess/Header/GLAccount/}" items="{/GeneralLedgerf4/}">
+					<core:Item key="{CompanyCode}" text="{GLAccount} - {GLAccountName}"/>
+				</ComboBox>
 				<Label text="{i18n>CustomerCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" id="customercode" valueState="None" placeholder="Company Code"
-					selectedKey="{fiModel>Customer}" items="{fiModel>/Customer}">
-					<core:Item key="{fiModel>Customer}" text="{fiModel>Customer} - {fiModel>CustomerName}"/>
+				<ComboBox width="100%" change="" selectionChange="" id="customercode" valueState="None" placeholder="Customer Code"
+					selectedKey="{/AccountsReceivable/Manageandprocess/Header/Customer}" items="{/CustomerCodef4/}">
+					<core:Item key="{Customer}" text="{Customer} - {CustomerName}"/>
 				</ComboBox>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"

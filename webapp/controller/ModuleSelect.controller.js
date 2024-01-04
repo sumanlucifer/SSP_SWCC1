@@ -26,6 +26,7 @@ sap.ui.define([
 			handleNormalFlow: function () {
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sModuleType = oStorage.get("sMouleType");
+				this.handleSetLocalStaorage("OrderID", "");
 				this.byId("idService").setSelectedKey(sModuleType);
 				this.getServiceTypeDD();
 			},
