@@ -33,15 +33,16 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountPayable/ManagePettyCash/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
 					selectedKey="{/AccountPayable/ManagePettyCash/Header/CompanyCode/}" items="{/CompanyF4/}">
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/ManagePettyCashData/FiscalYear}" change="handleManagePettyCashDateChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}"
+					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Cash Journal"
 					selectedKey="{/AccountPayable/ManagePettyCash/Header/CashJournalKey}" items="{/CashJournalF4/}">
@@ -57,8 +58,8 @@
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/AccountPayable/ManagePettyCash/Header/NotifText/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -71,7 +72,7 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="MultiSelect" items="{path : '/ManagePettyCashData/itemData'}"
+		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="MultiSelect" items="{path : '/AccountPayable/ManagePettyCash/itemData'}"
 			class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column width="20em">

@@ -225,11 +225,6 @@ sap.ui.define([
 				});
 			},
 
-			onSelectPlant: function (oEve) {
-				var sKey = oEve.getSource().getSelectedKey();
-				this.WorkCenterF4(sKey);
-
-			},
 			onCheckPlantVal: function (oEve) {
 
 				oEve.getSource().getSelectedKey() === "" ? oEve.getSource().setValue(null) : "";
@@ -421,41 +416,21 @@ sap.ui.define([
 			},
 
 			onSearchFinanceRequest: function () {
-				// debugger;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callManageRecordInvoice() : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callManagePettyCashAPI() : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-3" ? this.callManagePettyCashAPI() : null;
-
-			},
-
-			callManagePettyCashAPI: function () {
-				// debugger;
 				var filters = [{
 						path: "CompanyCode",
 						value: "1000",
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "FiscalYear",
-						value: this.getModel().getProperty("/ManagePettyCashData/FiscalYear"),
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear"),
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "PostingNo",
-						value: this.getModel().getProperty("/ManagePettyCashData/CashJournalKey"),
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/CashJournalKey"),
 						group: "ManagePettyCashFilter"
-					}
-
-				];
-
-				var dynamicFilters = this.getFilters(filters);
-				this.callCommonFinanceAPIRequest("/PettyCashSet/", "GET", dynamicFilters.ManagePettyCashFilter, null,
-					"/ManagePettyCashData/itemData/");
-
-			},
-			callManageRecordInvoice: function () {
-
-				var filters = [{
+					}, {
 						path: "CompanyCode",
-						/*value: "1000",*/
+						value: "1000",
 						group: "ManageRecordInvoiceFilter"
 					}, {
 						path: "FiscalYear",
@@ -464,14 +439,19 @@ sap.ui.define([
 					}
 
 				];
-
 				var dynamicFilters = this.getFilters(filters);
-				this.callCommonFinanceAPIRequest("/PettyInvoicesSet/", "GET", dynamicFilters.ManageRecordInvoiceFilter, null,
-					"/RecordandProcessInvoice/itemData/");
+
+				debugger;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callCommonFinanceSearchRequest("/PettyInvoicesSet/",
+					"GET", dynamicFilters.ManageRecordInvoiceFilter, null,
+					"/AccountPayable/RecordandProcessInvoice/itemData/") : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callCommonFinanceSearchRequest("/PettyCashSet/",
+					"GET",
+					dynamicFilters.ManagePettyCashFilter, null, "/AccountPayable/ManagePettyCash/itemData/") : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-3" ? this.callCommonFinanceSearchRequest() : null;
 
 			},
-
-			callCommonFinanceAPIRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
+			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
 
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), operation, Entity, null, Filters)
@@ -484,29 +464,39 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 			},
-			onProceed: function () {
-				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 
-				this.FinanceCreateaRequestAPI(oPayload);
+			onProceed: function () {
+				debugger;
+				var oPayloadHeader = this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/");
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": oPayloadHeader.Plant,
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": oPayloadHeader.CompanyCode
+					},
+					"ServiceHeadertoItem": [{
+						"PostingNumber": "0100000118"
+
+					}, {
+						"PostingNumber": "0100000119"
+
+					}]
+				};
+
+				this.FinanceCreateRequestAPI(oPayload);
 				/*	this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateaRequestAPI() : null;
 					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateaRequestAPI() : null;
 					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateaRequestAPI() : null;*/
 
 			},
-			FinanceCreateaRequestAPI: function (oPayload) {
+			FinanceCreateRequestAPI: function (oPayload) {
 				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
-				var oPayload = {};
-				oPayload.Material = this.getView().byId("finServiceProduct").getValue();
-				oPayload.ServiceDescription = this.getView().byId("finDescription").getValue();
-				oPayload.PostVarDesc = this.getView().byId("finPostingPeriod").getSelectedKey();
-				oPayload.qty = this.getView().byId("finQty").getValue();
-				oPayload.Username = "WT_POWER";
-				oPayload.ServiceHeadertoItem = [];
-				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
-				oPayload.Attachments = aUploadData;
+
 				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
@@ -524,10 +514,6 @@ sap.ui.define([
 			handleBackPress: function () {
 				this.navigationBack();
 
-			},
-			onProceed1: function () {
-
-				/*this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");*/
 			},
 
 			_handleMessageBoxProceed: function (sMessage) {
