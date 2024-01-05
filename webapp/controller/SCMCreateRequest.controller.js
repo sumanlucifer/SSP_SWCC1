@@ -31,31 +31,8 @@ sap.ui.define([
 				this.callDropDownService();
 
 				this.getModel().setProperty("/busy", true);
-				/*	var plantModel = this.getOwnerComponent().getModel("plantModel");
-					 plantModel.setData(false);
-					this.CallValueHelpAPI('/A_Plant/')
-						.then(function (oResponse) {
-							this.getModel().setProperty("/busy", false);
-							this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-							plantModel.setData(oResponse.results);
-							this.getView().setModel(plantModel, "plantModel");
-						}.bind(this)).catch(function (error) {
-							this.getModel().setProperty("/busy", false);
-							MessageBox.error(error.responseText);
-						}.bind(this));*/
-
-				this.CallValueHelpSCMSRVAPI('/I_ExtProdGrp/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						crModel.setProperty("/externalMaterialGroup", oResponse.results);
-						this.getView().setModel(crModel, "crModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				/*	this.CallValueHelpSCMSRVAPI("?$filter=p_domain eq 'ZREQ_STAT'")
+			},
+			/*	this.CallValueHelpSCMSRVAPI("?$filter=p_domain eq 'ZREQ_STAT'")
 					.then(function (oResponse) {
 						// Handle the response data
 						this.getModel().setProperty("/busy", false);
@@ -67,40 +44,6 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 */
-				/*	var Productf4 = this.getOwnerComponent().getModel("Productf4");
-					var f4HelpModel = new sap.ui.model.json.JSONModel();
-					this.CallValueHelpAPI('ZCDSV_SCM_PRODUCTVH')
-						.then(function (oResponse) {
-							
-							this.getModel().setProperty("/busy", false);
-							this.getModel().setProperty("/PMCreateRequest/Productf4/", oResponse.results);
-							f4HelpModel.setData(oResponse.results);
-							this.getView().setModel(Productf4, "Productf4"); // Use f4HelpModel instead of Productf4
-						}.bind(this))
-						.catch(function (error) {
-							this.getModel().setProperty("/busy", false);
-							MessageBox.error(error.responseText);
-						}.bind(this));*/
-
-			},
-			/*	CallValueHelpSCMSRVAPI: function (entity) {
-
-					return new Promise(function (resolve, reject) {
-
-						// Use bracket notation to call the dynamic function
-						this.getOwnerComponent().getModel("ZSSP_SCM_SRV")["read"](entity, {
-
-							success: function (oData) {
-
-								resolve(oData);
-							},
-							error: function (oResult) {
-
-								reject(oResult);
-							}
-						});
-					}.bind(this));
-				},*/
 			onMatValueHelpRequest: function (oEvent) {
 				var sInputValue = oEvent.getSource().getValue(),
 					oView = this.getView();
@@ -221,8 +164,45 @@ sap.ui.define([
 						ServiceProcurement: {
 							Header: {},
 							itemData: []
+						},
+						PreapreofDirectpurchase: {
+							Header: {},
+							itemData: []
+						},
+						PrepareforTender: {
+							Header: {},
+							itemData: []
+						},
+						PrepareforFramework: {
+							Header: {},
+							itemData: []
+						},
+					},
+					ClasssificationandInventory: {
+						ChangeRequest: {
+							Header: {},
+							itemData: []
+						},
+						DuplicateResolution: {
+							Header: {},
+							itemData: []
+						},
+						SPIR: {
+							Header: {},
+							itemData: []
+						},
+						STO: {
+							Header: {},
+							itemData: []
 						}
-					}
+					},
+					WarehouseandLogistics: {
+						IssueofMaterial: {
+							Header: {},
+							itemData: []
+						}
+					},
+
 				});
 			},
 			handleBackPress: function () {
@@ -255,7 +235,7 @@ sap.ui.define([
 						null),
 					//Material Type	
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/MaterialTypeSet/', null,
-						null), IndustrySectorSet
+						null),
 					//Industrial sector
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/IndustrySectorSet/', null,
 						null),
@@ -282,7 +262,7 @@ sap.ui.define([
 						null),
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
-						null),
+						null)
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -290,40 +270,40 @@ sap.ui.define([
 			buildResponselist: function (values) {
 				// debugger;
 				this.getModel().setProperty("/busy", false);
-				//     Plant F4 Valuehelp
+				//Plant F4 Valuehelp
 				var aPlantF4Data = values[0].value.results;
 				this.getModel().setProperty("/PlantF4/", aPlantF4Data);
-				//     Material F4 Valuehelp
+				//Material F4 Valuehelp
 				var aMaterialF4Data = values[1].value.results;
 				this.getModel().setProperty("/Materialf4/", aMaterialF4Data);
-				//     CR type F4 Valuehelp
+				//CR type F4 Valuehelp
 				var acrF4Data = values[2].value.results;
 				this.getModel().setProperty("/CRf4/", acrF4Data);
-				//     Material type type F4 Valuehelp
+				//Material type type F4 Valuehelp
 				var aMaterialTypeF4Data = values[3].value.results;
 				this.getModel().setProperty("/MaterialTypef4/", aMaterialTypeF4Data);
-				//   Industrial Sector type F4 Valuehelp
+				//Industrial Sector type F4 Valuehelp
 				var aIndustrialSectorF4Data = values[4].value.results;
 				this.getModel().setProperty("/IndustrialSectorf4/", aIndustrialSectorF4Data);
-				//     Ex Material F4 Valuehelp
+				//Ex Material F4 Valuehelp
 				var aExMaterialF4Data = values[5].value.results;
 				this.getModel().setProperty("/ExMaterialf4/", aExMaterialF4Data);
-				// goods movement type
+				//goods movement type
 				var aGoodsMovementF4Data = values[6].value.results;
 				this.getModel().setProperty("/GoodsMovement/", aGoodsMovementF4Data);
-				// cost center
+				//cost center
 				var aCostCenterF4Data = values[7].value.results;
 				this.getModel().setProperty("/CostCenter/", aCostCenterF4Data);
-				// UOM
+				//UOM
 				var aUomF4Data = values[8].value.results;
 				this.getModel().setProperty("/UOM/", aUomF4Data);
-				// Product type
+				//Product type
 				var aProductTypeF4Data = values[9].value.results;
 				this.getModel().setProperty("/ProductType/", aProductTypeF4Data);
-				// Service Group 
+				//Service Group 
 				var aServiceGroupF4Data = values[10].value.results;
 				this.getModel().setProperty("/ServiceGroup/", aServiceGroupF4Data);
-				// purchasing Group 
+				//purchasing Group 
 				var aPurchasingGroupF4Data = values[11].value.results;
 				this.getModel().setProperty("/PurchasingGroup/", aPurchasingGroupF4Data);
 				// Service code 
