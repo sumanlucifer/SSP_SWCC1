@@ -141,7 +141,7 @@ sap.ui.define([
 						},
 						TransferofAssets: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000",
 								SubNumber: 0
 
@@ -150,7 +150,7 @@ sap.ui.define([
 						},
 						ProjectCaptilization: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -161,7 +161,7 @@ sap.ui.define([
 					AccountsReceivable: {
 						Manageandprocess: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -169,7 +169,7 @@ sap.ui.define([
 						},
 						Billing: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -180,7 +180,7 @@ sap.ui.define([
 					InsuranceandClaim: {
 						CreateInsurance: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -188,7 +188,7 @@ sap.ui.define([
 						},
 						Billing: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -199,19 +199,19 @@ sap.ui.define([
 					AccountPayable: {
 						RecordProcess: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
-							ItemData: []
+							itemData: []
 						},
 						ManagePettyCash: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
-							ItemData: []
+							itemData: []
 						},
 
 					},
@@ -470,7 +470,7 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), operation, Entity, null, Filters)
 					.then(function (oResponse) {
-
+						debugger;
 						this.getModel().setProperty(`${oModelSet}`, oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
@@ -480,8 +480,15 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRequestPayload() : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateRequestPayload(this.getModel().getProperty(
+					"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/itemData/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateRequestPayload() : null;
 				debugger;
-				var oPayloadHeader = this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/");
+
+			},
+
+			FinanceCreateRequestPayload: function (oPayloadHeader, aItem) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -493,23 +500,20 @@ sap.ui.define([
 						"Gjahr": oPayloadHeader.FiscalYear,
 						"Bukrs": oPayloadHeader.CompanyCode
 					},
-					"ServiceHeadertoItem": [{
-						"PostingNumber": "0100000118"
 
-					}, {
-						"PostingNumber": "0100000119"
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								PostingNumber: aItem.PostingNo,
 
-					}]
+							};
+						}
+					)
+
 				};
-
 				this.FinanceCreateRequestAPI(oPayload);
-				/*	this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateaRequestAPI() : null;
-					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateaRequestAPI() : null;
-					this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateaRequestAPI() : null;*/
-
 			},
 			FinanceCreateRequestAPI: function (oPayload) {
-				//	var oPayload = this.getModel().getProperty("/PMCreateRequest/itemData/");
 
 				debugger;
 				this.getModel().setProperty("/busy", true);
