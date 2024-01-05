@@ -17,12 +17,7 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Yes" text="Yes"/>
-						<core:Item key="No" text="No"/>
-					</items>
-				</ComboBox>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>userid}" required="false"/>
@@ -38,20 +33,15 @@
 				<Label text="{i18n>workschedule}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Yes" text="Yes"/>
-						<core:Item key="No" text="No"/>
-					</items>
-				</ComboBox>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None">
 					<items>
 						<core:Item key="Regular" text="Regular"/>
 						<core:Item key="Emergency" text="Emergency"/>
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>startdate}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>eventreason}" required="true"/>

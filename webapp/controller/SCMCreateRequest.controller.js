@@ -221,8 +221,45 @@ sap.ui.define([
 						ServiceProcurement: {
 							Header: {},
 							itemData: []
+						},
+						PreapreofDirectpurchase: {
+							Header: {},
+							itemData: []
+						},
+						PrepareforTender: {
+							Header: {},
+							itemData: []
+						},
+						PrepareforFramework: {
+							Header: {},
+							itemData: []
+						},
+					},
+					ClasssificationandInventory: {
+						ChangeRequest: {
+							Header: {},
+							itemData: []
+						},
+						DuplicateResolution: {
+							Header: {},
+							itemData: []
+						},
+						SPIR: {
+							Header: {},
+							itemData: []
+						},
+						STO: {
+							Header: {},
+							itemData: []
 						}
-					}
+					},
+					WarehouseandLogistics: {
+						IssueofMaterial: {
+							Header: {},
+							itemData: []
+						}
+					},
+
 				});
 			},
 			handleBackPress: function () {
