@@ -42,7 +42,7 @@ sap.ui.define([
 		getViewRequestDetails: function () {
 			var filters = [{
 					path: "Username",
-					value: "WT_POWER",
+					value: this.getCurrentUserLoggedIn(),
 					group: "ViewRequestFilter"
 				}
 
