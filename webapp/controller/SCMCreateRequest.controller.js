@@ -15,22 +15,9 @@ sap.ui.define([
 
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("SCMCreateRequest").attachPatternMatched(this._onObjectMatched, this);
-				/*	var oView = this.getView();
-					var oQtyInput = oView.byId("inputQty");
-					var oUnitPriceInput = oView.byId("inputUnitPrice");
-					oQtyInput.attachLiveChange(this.handleLiveChange.bind(this));
-					oUnitPriceInput.attachLiveChange(this.handleLiveChange.bind(this));
-
-					oQtyInput.attachValueHelpRequest(this.handleValueHelpRequest.bind(this));
-					oUnitPriceInput.attachValueHelpRequest(this.handleValueHelpRequest.bind(this));*/
 
 			},
 			_onObjectMatched: function () {
-
-				this.getView().byId("materialFormPlant").setSelectedKey(null);
-				this.getView().byId("tenderPre").setSelectedKey(null);
-				this.getView().byId("workCenter").setSelectedKey(null);
-
 				// debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
@@ -39,86 +26,23 @@ sap.ui.define([
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				var sBaseUnit = sServiceProductLocalVal.split("_")[3];
 				this.getModel().setProperty("/MaterialProcurement/Header/Material", sServiceProduct);
-				// this.getModel().setProperty("/PMCreateRequest/Plant", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/SCMAppVisible/", sServiceProduct);
 				this.callDropDownService();
 
 				this.getModel().setProperty("/busy", true);
-				var plantModel = this.getOwnerComponent().getModel("plantModel");
-				// plantModel.setData(false);
-				this.CallValueHelpAPI('/A_Plant/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-						plantModel.setData(oResponse.results);
-						this.getView().setModel(plantModel, "plantModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				var workCenterModel = this.getOwnerComponent().getModel("workCenterModel");
-				// workCenterModel.setData(false);
-				this.CallValueHelpAPI('/ZCDSV_WORKCENTERVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
-						workCenterModel.setData(oResponse.results);
-						this.getView().setModel(workCenterModel, "workCenterModel");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				var materialf4Model = this.getOwnerComponent().getModel("materialf4Model");
-				// materialf4Model.setData(false);
-				this.CallValueHelpSCMSRVAPI('/ZCDSV_SCM_PRODUCTVH/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/MaterialF4/", oResponse.results);
-						materialf4Model.setData(oResponse.results);
-						this.getView().setModel(materialf4Model, "materialf4Model");
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				var crModel = this.getOwnerComponent().getModel("crModel");
-				// debugger;
-				this.CallValueHelpSCMSRVAPI('/CRTypeSet/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						// crModel.setData(oResponse.results);
-						crModel.setProperty("/crType", oResponse.results);
-						this.getView().setModel(crModel, "crModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				this.CallValueHelpSCMSRVAPI('/MaterialTypeSet/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						crModel.setProperty("/materialType", oResponse.results);
-						this.getView().setModel(crModel, "crModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-				this.CallValueHelpSCMSRVAPI('/IndustrySectorSet/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						crModel.setProperty("/industrySector", oResponse.results);
-						this.getView().setModel(crModel, "crModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+				/*	var plantModel = this.getOwnerComponent().getModel("plantModel");
+					 plantModel.setData(false);
+					this.CallValueHelpAPI('/A_Plant/')
+						.then(function (oResponse) {
+							this.getModel().setProperty("/busy", false);
+							this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
+							plantModel.setData(oResponse.results);
+							this.getView().setModel(plantModel, "plantModel");
+						}.bind(this)).catch(function (error) {
+							this.getModel().setProperty("/busy", false);
+							MessageBox.error(error.responseText);
+						}.bind(this));*/
 
 				this.CallValueHelpSCMSRVAPI('/I_ExtProdGrp/')
 					.then(function (oResponse) {
@@ -159,24 +83,24 @@ sap.ui.define([
 						}.bind(this));*/
 
 			},
-			CallValueHelpSCMSRVAPI: function (entity) {
+			/*	CallValueHelpSCMSRVAPI: function (entity) {
 
-				return new Promise(function (resolve, reject) {
+					return new Promise(function (resolve, reject) {
 
-					// Use bracket notation to call the dynamic function
-					this.getOwnerComponent().getModel("ZSSP_SCM_SRV")["read"](entity, {
+						// Use bracket notation to call the dynamic function
+						this.getOwnerComponent().getModel("ZSSP_SCM_SRV")["read"](entity, {
 
-						success: function (oData) {
+							success: function (oData) {
 
-							resolve(oData);
-						},
-						error: function (oResult) {
+								resolve(oData);
+							},
+							error: function (oResult) {
 
-							reject(oResult);
-						}
-					});
-				}.bind(this));
-			},
+								reject(oResult);
+							}
+						});
+					}.bind(this));
+				},*/
 			onMatValueHelpRequest: function (oEvent) {
 				var sInputValue = oEvent.getSource().getValue(),
 					oView = this.getView();
@@ -220,18 +144,18 @@ sap.ui.define([
 					oDialog.open(sInputValue);
 				});
 			},
-			handleLiveChange: function () {
-				// Perform multiplication and update the result input field
-				var oQtyInput = this.getView().byId("inputQty");
-				var oUnitPriceInput = this.getView().byId("inputUnitPrice");
-				var oResultInput = this.getView().byId("inputResult");
+			/*	handleLiveChange: function () {
+					// Perform multiplication and update the result input field
+					var oQtyInput = this.getView().byId("inputQty");
+					var oUnitPriceInput = this.getView().byId("inputUnitPrice");
+					var oResultInput = this.getView().byId("inputResult");
 
-				var nQty = parseFloat(oQtyInput.getValue()) || 0;
-				var nUnitPrice = parseFloat(oUnitPriceInput.getValue()) || 0;
-				var nResult = nQty * nUnitPrice;
+					var nQty = parseFloat(oQtyInput.getValue()) || 0;
+					var nUnitPrice = parseFloat(oUnitPriceInput.getValue()) || 0;
+					var nResult = nQty * nUnitPrice;
 
-				oResultInput.setValue(nResult.toString());
-			},
+					oResultInput.setValue(nResult.toString());
+				},*/
 
 			onValueHelpSearch: function (oEvent) {
 				var sValue = oEvent.getParameter("value");
@@ -258,42 +182,46 @@ sap.ui.define([
 				oEvent.getSource().getBinding("items").filter([oFilter]);
 			},
 
-			onMaterialValueHelpClose: function (oEvent) {
-				var oSelectedItem = oEvent.getParameter("selectedItem");
-				oEvent.getSource().getBinding("items").filter([]);
+			/*	onMaterialValueHelpClose: function (oEvent) {
+					var oSelectedItem = oEvent.getParameter("selectedItem");
+					oEvent.getSource().getBinding("items").filter([]);
 
-				if (!oSelectedItem) {
-					return;
-				}
+					if (!oSelectedItem) {
+						return;
+					}
 
-				var selIndex = parseInt(oEvent.getParameter("selectedItem").getBindingContext("materialf4Model").sPath.split("/")[1]);
-				var getSelRecordData = this.getView().getModel("materialf4Model").getData()[selIndex];
+					var selIndex = parseInt(oEvent.getParameter("selectedItem").getBindingContext("materialf4Model").sPath.split("/")[1]);
+					var getSelRecordData = this.getView().getModel("materialf4Model").getData()[selIndex];
 
-				this.getView().byId("materialF4Input").setValue(getSelRecordData.Product);
-				this.getView().byId("description").setValue(getSelRecordData.Description);
-				this.getView().byId("materialUom").setValue(getSelRecordData.BaseUnit);
-				this.getView().byId("materialPlant").setValue(getSelRecordData.Plant);
-				this.getView().byId("materialPurchasingGrp").setValue(getSelRecordData.PurchasingGroup);
+					this.getView().byId("materialF4Input").setValue(getSelRecordData.Product);
+					this.getView().byId("description").setValue(getSelRecordData.Description);
+					this.getView().byId("materialUom").setValue(getSelRecordData.BaseUnit);
+					this.getView().byId("materialPlant").setValue(getSelRecordData.Plant);
+					this.getView().byId("materialPurchasingGrp").setValue(getSelRecordData.PurchasingGroup);
 
-				this.getView().byId("materialFormPlant").setSelectedKey(getSelRecordData.Plant);
-				this.getView().byId("materialFormPlant1").setSelectedKey(getSelRecordData.Plant);
-				this.getView().byId("crtype1").setSelectedKey(getSelRecordData.CRTypeSet);
+					this.getView().byId("materialFormPlant").setSelectedKey(getSelRecordData.Plant);
+					this.getView().byId("materialFormPlant1").setSelectedKey(getSelRecordData.Plant);
+					this.getView().byId("crtype1").setSelectedKey(getSelRecordData.CRTypeSet);
 
-			},
+				},*/
 
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
 					PlantF4: [],
-					Crtype: [],
+					WorkCenterF4: [],
+					//Crtype: [],
 					recognitionAlreadyStarted: false,
 					SCMAppVisible: null,
-					MaterialProcurement: {
-						Header: {},
-						itemData: []
-					},
-					MarineTransportation: {
-						itemData: []
+					ProcurementAdhoc: {
+						MaterialProcurement: {
+							Header: {},
+							itemData: []
+						},
+						ServiceProcurement: {
+							Header: {},
+							itemData: []
+						}
 					}
 				});
 			},
@@ -313,14 +241,48 @@ sap.ui.define([
 
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
-					//   Company Code F4 data
+					// Plant F4
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
+						null),
+					// Workcenter F4
+					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
+							null),*/
+					//   Material Code F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_PRODUCTVH/', null,
 						null),
+					// CR type	
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/CRTypeSet/', null,
 						null),
-					//	Cash Journal F4 Data
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
-						dynamicFilters.WorkCntrFilter, )*/
+					//Material Type	
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/MaterialTypeSet/', null,
+						null), IndustrySectorSet
+					//Industrial sector
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/IndustrySectorSet/', null,
+						null),
+					//external product sector
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ExtProdGrp/', null,
+						null),
+					//Goods Movement
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
+						null),
+					//Cost center
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
+						null),
+					//UOM
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
+						null),
+					//Product type
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
+						null),
+					//service group
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
+						null),
+					//PurchasingGroupSet
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/PurchasingGroupSet/', null,
+						null),
+					//Service code
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
+						null),
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -328,12 +290,45 @@ sap.ui.define([
 			buildResponselist: function (values) {
 				// debugger;
 				this.getModel().setProperty("/busy", false);
-				// 			Company F4 type response
+				//     Plant F4 Valuehelp
 				var aPlantF4Data = values[0].value.results;
-				this.getModel().setProperty("/PlantF4/", aPlantF4F4Data);
-				// 			Cash Journal F4 type response
-				/*var aCashJournalF4Data = values[1].value.results;
-				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);*/
+				this.getModel().setProperty("/PlantF4/", aPlantF4Data);
+				//     Material F4 Valuehelp
+				var aMaterialF4Data = values[1].value.results;
+				this.getModel().setProperty("/Materialf4/", aMaterialF4Data);
+				//     CR type F4 Valuehelp
+				var acrF4Data = values[2].value.results;
+				this.getModel().setProperty("/CRf4/", acrF4Data);
+				//     Material type type F4 Valuehelp
+				var aMaterialTypeF4Data = values[3].value.results;
+				this.getModel().setProperty("/MaterialTypef4/", aMaterialTypeF4Data);
+				//   Industrial Sector type F4 Valuehelp
+				var aIndustrialSectorF4Data = values[4].value.results;
+				this.getModel().setProperty("/IndustrialSectorf4/", aIndustrialSectorF4Data);
+				//     Ex Material F4 Valuehelp
+				var aExMaterialF4Data = values[5].value.results;
+				this.getModel().setProperty("/ExMaterialf4/", aExMaterialF4Data);
+				// goods movement type
+				var aGoodsMovementF4Data = values[6].value.results;
+				this.getModel().setProperty("/GoodsMovement/", aGoodsMovementF4Data);
+				// cost center
+				var aCostCenterF4Data = values[7].value.results;
+				this.getModel().setProperty("/CostCenter/", aCostCenterF4Data);
+				// UOM
+				var aUomF4Data = values[8].value.results;
+				this.getModel().setProperty("/UOM/", aUomF4Data);
+				// Product type
+				var aProductTypeF4Data = values[9].value.results;
+				this.getModel().setProperty("/ProductType/", aProductTypeF4Data);
+				// Service Group 
+				var aServiceGroupF4Data = values[10].value.results;
+				this.getModel().setProperty("/ServiceGroup/", aServiceGroupF4Data);
+				// purchasing Group 
+				var aPurchasingGroupF4Data = values[11].value.results;
+				this.getModel().setProperty("/PurchasingGroup/", aPurchasingGroupF4Data);
+				// Service code 
+				var aServiceCodeF4Data = values[12].value.results;
+				this.getModel().setProperty("/ServiceCode/", aServiceCodeF4Data);
 
 			},
 

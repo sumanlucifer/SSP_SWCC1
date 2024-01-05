@@ -34,7 +34,10 @@
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input required="true" width="100%"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/SubNumberf4/}">
+					<core:Item key="{SubNumber}" text="{MainAssetNum}"/>
+				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/PlantF4/}">
@@ -42,8 +45,8 @@
 				</ComboBox>
 				<Label text="{i18n>SubNumber}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{/AssetLifecycle/TransferofAssets/Header/ControllingArea}" items="{/AssestSubf4/}">
-					<core:Item key="{fiModel>ControllingArea}" text="{fiModel>ControllingArea} - {fiModel>CostCenter}"/>
+					selectedKey="{/AssetLifecycle/TransferofAssets/Header/SubNumber}" items="{/SubNumberf4/}">
+					<core:Item key="{SubNumber}" text="{SubNumber}"/>
 				</ComboBox>
 				<Label text="{i18n>newcostcenter}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
