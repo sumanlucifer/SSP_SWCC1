@@ -102,30 +102,42 @@ sap.ui.define([
 
 			},
 
-			onValueHelpRequest: function () {
+			onValueHelpRequest: function (oEve) {
 
 				// this._oMultiInput = this.getView().byId("multiInput");
 
 				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
 				// this._oValueHelpDialog.open();
+				var sFragName = oEve.getSource().getId().split("_")[3];
+				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
+				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+
+				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
+				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
+				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
+				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
 
 				// Example usage:
-				var oModel = this.getOwnerComponent().getModel("ZSSP_COMMON_SRV");
+				var oModel = this.getOwnerComponent().getModel(sEntity);
 				var aColumns = [{
-					label: "Equipment",
-					template: "Equipment",
-					width: "10rem",
-				}, {
-					label: "Equipment Name",
-					template: "EquipmentName",
-				}, {
-					label: "Plant Code",
-					template: "MaintenancePlanningPlant",
-				}];
+						label: sColumn1Label,
+						template: sColumn1Template,
+						width: "10rem",
+					}, {
+						label: sColumn2Label,
+						template: sColumn2Template,
+					},
 
-				var sPath = "/ZCDSV_EQUIPMENTVH";
+					// {
+					// 	label: "Plant Code",
+					// 	template: "MaintenancePlanningPlant",
+					// }
 
-				this.onHandleValueHelpRequest(oModel, aColumns, sPath);
+				];
+
+				// var sPath = "/ZCDSV_EQUIPMENTVH";
+
+				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
 			onValueHelpOkPress: function (oEvent) {

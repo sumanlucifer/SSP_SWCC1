@@ -44,29 +44,29 @@ sap.ui.define([
 						MessageBox.error(error.responseText);
 					}.bind(this));
 */
-			onMatValueHelpRequest: function (oEvent) {
-				var sInputValue = oEvent.getSource().getValue(),
-					oView = this.getView();
+			/*	onMatValueHelpRequest: function (oEvent) {
+					var sInputValue = oEvent.getSource().getValue(),
+						oView = this.getView();
 
-				if (!this._matValueHelpDialog) {
-					this._matValueHelpDialog = Fragment.load({
-						id: oView.getId(),
-						name: "com.swcc.Template.fragments.SCMModule.MaterialF4",
-						controller: this
-					}).then(function (oDialog) {
-						oView.addDependent(oDialog);
-						return oDialog;
+					if (!this._matValueHelpDialog) {
+						this._matValueHelpDialog = Fragment.load({
+							id: oView.getId(),
+							name: "com.swcc.Template.fragments.SCMModule.MaterialF4",
+							controller: this
+						}).then(function (oDialog) {
+							oView.addDependent(oDialog);
+							return oDialog;
+						});
+					}
+					this._matValueHelpDialog.then(function (oDialog) {
+						// Create a filter for the binding
+						oDialog.getBinding("items").filter([new Filter("Product", FilterOperator.Contains, sInputValue)]);
+						// Open ValueHelpDialog filtered by the input's value
+						oDialog.open(sInputValue);
 					});
-				}
-				this._matValueHelpDialog.then(function (oDialog) {
-					// Create a filter for the binding
-					oDialog.getBinding("items").filter([new Filter("Product", FilterOperator.Contains, sInputValue)]);
-					// Open ValueHelpDialog filtered by the input's value
-					oDialog.open(sInputValue);
-				});
-			},
+				},*/
 
-			onValueHelpRequest: function (oEvent) {
+			/*onValueHelpRequest: function (oEvent) {
 				var sInputValue = oEvent.getSource().getValue(),
 					oView = this.getView();
 
@@ -86,7 +86,7 @@ sap.ui.define([
 					// Open ValueHelpDialog filtered by the input's value
 					oDialog.open(sInputValue);
 				});
-			},
+			},*/
 			/*	handleLiveChange: function () {
 					// Perform multiplication and update the result input field
 					var oQtyInput = this.getView().byId("inputQty");
@@ -99,6 +99,44 @@ sap.ui.define([
 
 					oResultInput.setValue(nResult.toString());
 				},*/
+
+			onMatValueHelpRequest: function () {
+
+				// this._oMultiInput = this.getView().byId("multiInput");
+
+				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+				// this._oValueHelpDialog.open();
+
+				// Example usage:
+				var oModel = this.getOwnerComponent().getModel("ZSSP_SCM_SRV");
+				var aColumns = [{
+					label: "Material",
+					template: "Key",
+					width: "10rem",
+				}, {
+					label: "Material Name",
+					template: "Value",
+				}];
+
+				var sPath = "/MaterialTypeSet";
+
+				this.onHandleValueHelpRequest(oModel, aColumns, sPath);
+
+			},
+			onValueHelpOkPress: function (oEvent) {
+
+				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
+				var sKeyProperty = "Material"; // Property name to set in the model
+				var textProperty = "Material Name"; // Property name for the token text
+				var yourModel = this.getModel(); // Pass your model here
+				var sModelPath = "/ProcurementAdhoc/MaterialProcurement/itemData/Material/"
+
+				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+
+			},
+			onValueHelpCancelPress: function () {
+				this.onHandleValueHelpCancelPress();
+			},
 
 			onValueHelpSearch: function (oEvent) {
 				var sValue = oEvent.getParameter("value");
@@ -218,6 +256,14 @@ sap.ui.define([
 					}
 
 				];
+				var Req_status = `/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/`;
+				var Proj_Type = `/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/`;
+				var Estimate_Type = `/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/`;
+				var Technical_Type = `/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/`;
+				var Conf_Proj = `/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/`;
+				var Site_Visit = `/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/`;
+				var Ecomomic_Feasibility = `/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/`;
+				var Security_Approval = `/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/`;
 
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
@@ -242,24 +288,49 @@ sap.ui.define([
 					//external product sector
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ExtProdGrp/', null,
 						null),
-					//Goods Movement
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
-						null),
-					//Cost center
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
-						null),
-					//UOM
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
-						null),
-					//Product type
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
-						null),
-					//service group
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
-						null),
 					//PurchasingGroupSet
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/PurchasingGroupSet/', null,
 						null),
+					//Req status
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Req_status, null,
+						null),
+					//Proj_status 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Proj_Type, null,
+						null),
+					//Estimate_status 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Estimate_Type, null,
+						null),
+					//Technical_type 
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Technical_Type, null,
+						null),
+					//Confidential Project
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Conf_Proj, null,
+						null),
+					//Site visit
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Site_Visit, null,
+						null),
+					//Ecomomic_Feasibility
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Ecomomic_Feasibility, null,
+						null),
+					//Security_Approval
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Security_Approval, null,
+						null),
+					//Goods Movement
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
+						null),*/
+					//Cost center
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
+						null),*/
+					//UOM
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
+						null),*/
+					//Product type
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
+						null),*/
+					//service group
+					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
+							null),*/
+
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
 						null)
@@ -268,7 +339,7 @@ sap.ui.define([
 
 			},
 			buildResponselist: function (values) {
-				// debugger;
+				debugger;
 				this.getModel().setProperty("/busy", false);
 				//Plant F4 Valuehelp
 				var aPlantF4Data = values[0].value.results;
@@ -288,37 +359,61 @@ sap.ui.define([
 				//Ex Material F4 Valuehelp
 				var aExMaterialF4Data = values[5].value.results;
 				this.getModel().setProperty("/ExMaterialf4/", aExMaterialF4Data);
-				//goods movement type
-				var aGoodsMovementF4Data = values[6].value.results;
-				this.getModel().setProperty("/GoodsMovement/", aGoodsMovementF4Data);
-				//cost center
-				var aCostCenterF4Data = values[7].value.results;
-				this.getModel().setProperty("/CostCenter/", aCostCenterF4Data);
-				//UOM
-				var aUomF4Data = values[8].value.results;
-				this.getModel().setProperty("/UOM/", aUomF4Data);
-				//Product type
-				var aProductTypeF4Data = values[9].value.results;
-				this.getModel().setProperty("/ProductType/", aProductTypeF4Data);
-				//Service Group 
-				var aServiceGroupF4Data = values[10].value.results;
-				this.getModel().setProperty("/ServiceGroup/", aServiceGroupF4Data);
 				//purchasing Group 
-				var aPurchasingGroupF4Data = values[11].value.results;
-				this.getModel().setProperty("/PurchasingGroup/", aPurchasingGroupF4Data);
+				var aPurchasingGroupF4Data = values[6].value.results;
+				this.getModel().setProperty("/PurchasingGroupf4/", aPurchasingGroupF4Data);
+				//Request Status
+				var aRequestStatusF4Data = values[7].value.results;
+				this.getModel().setProperty("/RequestStatusf4/", aRequestStatusF4Data);
+				//proj type
+				var aProjectTypeF4Data = values[8].value.results;
+				this.getModel().setProperty("/ProjectTypef4/", aProjectTypeF4Data);
+				//Estimate type
+				var aEstimateTypeF4Data = values[9].value.results;
+				this.getModel().setProperty("/EstimateTypef4/", aEstimateTypeF4Data);
+				//Technical type
+				var aTechnicalTypeF4Data = values[10].value.results;
+				this.getModel().setProperty("/TechnicalTypef4/", aTechnicalTypeF4Data);
+				//Confidential Project
+				var aConfidentialProjF4Data = values[11].value.results;
+				this.getModel().setProperty("/ConfidentialProjectf4/", aConfidentialProjF4Data);
+				//Site Visit
+				var aSiteVisitF4Data = values[12].value.results;
+				this.getModel().setProperty("/SiteVisitf4/", aSiteVisitF4Data);
+				//Economic Feasibility
+				var aEconomicFeasF4Data = values[13].value.results;
+				this.getModel().setProperty("/EconomicFeasibilityf4/", aEconomicFeasF4Data);
+				//Security Approval
+				var aSecurityApprovalF4Data = values[14].value.results;
+				this.getModel().setProperty("/SecurityApprovalf4/", aSecurityApprovalF4Data);
+				//goods movement type
+				var aGoodsMovementF4Data = values[15].value.results;
+				this.getModel().setProperty("/GoodsMovementf4/", aGoodsMovementF4Data);
+				//cost center
+				var aCostCenterF4Data = values[16].value.results;
+				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
+				//UOM
+				var aUomF4Data = values[17].value.results;
+				this.getModel().setProperty("/UOMf4/", aUomF4Data);
+				//Product type
+				var aProductTypeF4Data = values[18].value.results;
+				this.getModel().setProperty("/ProductTypef4/", aProductTypeF4Data);
+				//Service Group 
+				var aServiceGroupF4Data = values[19].value.results;
+				this.getModel().setProperty("/ServiceGroupf4/", aServiceGroupF4Data);
 				// Service code 
-				var aServiceCodeF4Data = values[12].value.results;
-				this.getModel().setProperty("/ServiceCode/", aServiceCodeF4Data);
+				var aServiceCodeF4Data = values[20].value.results;
+				this.getModel().setProperty("/ServiceCodef4/", aServiceCodeF4Data);
 
 			},
 
 			SCMCreateaRequestAPI: function (oPayload) {
 				debugger;
-				var oPayload = this.getModel().getProperty("/MaterialProcurement/itemData/");
+				var oPayload = this.getModel().getProperty("/MaterialProcurement/Header/");
 				var oPayload = {};
-				oPayload.Username = "WT_POWER";
+				oPayload.Username = this.getCurrentUserLoggedIn();
 				oPayload.ServiceHeadertoItem = [];
-				oPayload.Attachments = [];
+				//oPayload.Attachments = [];
 				// debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
@@ -334,34 +429,55 @@ sap.ui.define([
 
 			},
 			onSaveRequest: function () {
-				var oPayload = this.getModel().getProperty("/MaterialProcurement/Header/");
-				this.SCMCreateaRequestAPI(oPayload);
+				debugger;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3001-1" ? this.SCMCreateRequestPayload() : null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.SCMCreateRequestPayload(this.getModel().getProperty(
+						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData/")) :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3003-3" ? this.SCMCreateRequestPayload() : null;
+				debugger;
 
 			},
+			SCMCreateRequestPayload: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": oPayloadHeader.Plant,
+					"Descript": oPayloadHeader.Descript,
+					"ZHeaderExtra": {
+						"Justification": oPayloadHeader.PR_JUST,
+						"TenderQualification": oPayloadHeader.TEN_PRE,
+						"TotalValue": oPayloadHeader.TOT_EST_VAL
+					},
 
-			/*onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Material: aItem.MATNR
 
-			},*/
+							};
+						}
+					)
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
 			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+				var oModel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
 				});
 				oItems.push({
-					Material: "",
+					MATNR: "",
 					Description: "",
-					StorageLocation: "",
-					Quantity: "",
+					MENGE: "",
 					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
+					WERKS: "",
+					Ekgrp: "",
+					AFNAM: "",
+					UNIT_PRICE: ""
 				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/itemData", oItems);
 
 			},
 			onDeleteItemPress: function (oEvent) {

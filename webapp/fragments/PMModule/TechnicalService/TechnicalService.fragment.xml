@@ -44,8 +44,14 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>equipment}"/>
-				<Input enabled="{= ${/PMCreateRequest/Header/Plant/} !== undefined ? true : false }" width="100%" placeholder="Enter Equipment"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}"/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_EQUIPMENTVH" id="_com.swcc.Template.fragments.PMModule.EquipmentF4_"
+					enabled="{= ${/PMCreateRequest/Header/Plant/} !== undefined ? true : false }" width="100%" placeholder="Enter Equipment"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}">
+					<customData>
+						<core:CustomData key="Equipment" value="Equipment"/>
+						<core:CustomData key="EquipmentName" value="Equipment Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">

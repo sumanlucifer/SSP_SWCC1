@@ -27,7 +27,7 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<ComboBox items="" id="tenderPre">
+				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TEN_PRE/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
@@ -47,7 +47,7 @@
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input id="inputResult" placeholder="Result" editable="false"/>
+				<Input placeholder="Total Estimated Value" editable="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -56,7 +56,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" text="/ProcurementAdhoc/MaterialProcurement/Header/Descript/" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -70,7 +71,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="Multiselect" items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -103,19 +104,24 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onMatValueHelpRequest"
-								suggestionItems="{materialf4Model>/}">
-								<suggestionItems>
-									<core:Item text="{materialf4Model>Description}"/>
-								</suggestionItems>
-							</Input>
-							<Input placeholder="Enter Description" id="description" value="" enabled="false"/>
-							<Input id="inputQty" placeholder="QTY" showSuggestion="" value="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Enter UOM" id="materialUom" value="" enabled="false"/>
-							<Input placeholder="" id="materialPlant"></Input>
-							<Input placeholder="Purchasing Group" id="materialPurchasingGrp" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Input placeholder="Req" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Input id="inputUnitPrice" placeholder="Unit Price" showSuggestion="" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
+								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>
+							<Input placeholder="Enter Description" id="description" value="{/ProcurementAdhoc/MaterialProcurement/itemData/Description}" enabled="false"/>
+							<Input placeholder="QTY" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/MENGE}" showValueHelp=""
+								valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Enter UOM" id="materialUom" value="{/ProcurementAdhoc/MaterialProcurement/itemData/BaseUnit}" enabled="false"/>
+							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+								selectedKey="{/ProcurementAdhoc/MaterialProcurement/itemData/WERKS/}" items="{/PlantF4/}">
+								<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+							</ComboBox>
+							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Purchasing Group"
+								selectedKey="{/ProcurementAdhoc/MaterialProcurement/itemData/Ekgrp/}" items="{/PurchasingGroupf4/}">
+								<core:Item key="{Ekgrp}" text="{Ekgrp} - {Eknam}"/>
+							</ComboBox>
+							<Input placeholder="Req" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/AFNAM}" showValueHelp=""
+								valueHelpRequest=""/>
+							<Input placeholder="Unit Price" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/UNIT_PRICE}" showValueHelp=""
+								valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
