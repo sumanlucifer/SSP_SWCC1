@@ -20,7 +20,9 @@ sap.ui.define([
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
+				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/ITAppVisible/", sServiceProduct);
+				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 
 			},
 			_createItemDataModel: function () {
@@ -28,23 +30,17 @@ sap.ui.define([
 					busy: false,
 					recognitionAlreadyStarted: false,
 
-					MarineTransportation: {
+					ITProcurement: {
+						Header: {},
 						itemData: []
 					}
 				});
 			},
 			handleBackPress: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("LandingView", {}, true);
-
-				}
+				this.navigationBack();
 
 			},
+
 			onback: function () {
 				this.getOwnerComponent().getTargets().display("LandingView");
 
@@ -71,7 +67,7 @@ sap.ui.define([
 
 			},
 			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+				var oModel = this.getModel().getProperty("/ITProcurement/itemData");
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
 				});
@@ -88,12 +84,12 @@ sap.ui.define([
 					PopupItems: null,
 					IsBOQApplicable: ""
 				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
+				this.getModel().setProperty("/ITProcurement/itemData", oItems);
 
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				var aTableData = this.getModel().getProperty("/ITProcurement/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
 			},

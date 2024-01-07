@@ -3,21 +3,28 @@
 	<VBox width="100%">
 		<fm:SimpleForm title="{i18n>ITServiceRequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>
-				<Toolbar>
-					<Title level="H3" text="{i18n>ITProcurementService}" class="ssp-tlbr-title"/>
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>ITProcurementService}"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<!--<Toolbar>-->
+				<!--	<Title level="H3" text="{i18n>ITProcurementService}" class="ssp-tlbr-title"/>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}" required="true"/>
-				<Text text="Product"/>
+				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/AccountPayable/ManagePettyCash/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>WorkCenter}" required="false"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -32,9 +39,64 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>Description}" required="true"/>
-				<Text text="Product"/>
 			</fm:content>
 		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table mode="Multiselect" items="{path : '/ITProcurement/itemData/'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>material}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Description}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>StockAvailability}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TotalPrice}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
+								value="{MATNR}"/>
+							<Input placeholder="Enter Description" id="description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" showSuggestion="" value="{MENGE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Enter UOM" id="materialUom" value="{BaseUnit}" enabled="false"/>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
+							<Input placeholder="Unit Price" showSuggestion="" value="{UNIT_PRICE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Text text="{UNIT_PRICE}"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
 	</VBox>
 </core:FragmentDefinition>
