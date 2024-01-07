@@ -216,6 +216,20 @@ sap.ui.define([
 							itemData: []
 						},
 					},
+					Quality: {
+						SpecalizedWorkQualification: {
+							Header: {},
+							itemData: []
+						},
+						ManfactureQualification: {
+							Header: {},
+							itemData: []
+						},
+						ConsultantQualification: {
+							Header: {},
+							itemData: []
+						}
+					},
 					ClasssificationandInventory: {
 						ChangeRequest: {
 							Header: {},
@@ -264,6 +278,7 @@ sap.ui.define([
 				var Site_Visit = `/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/`;
 				var Ecomomic_Feasibility = `/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/`;
 				var Security_Approval = `/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/`;
+				var Vendor_Type = `/ZCDSV_DOMAINVH(p_domain='ZVEN_TYP')/Set/`;
 
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
@@ -315,11 +330,17 @@ sap.ui.define([
 					//Security_Approval
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Security_Approval, null,
 						null),
+					//Vendor_Type
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Vendor_Type, null,
+						null),
+					//Movement Type
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/MovementTypeSet/', null,
+						null),
+					//Cost center
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
+						null),
 					//Goods Movement
 					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
-						null),*/
-					//Cost center
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
 						null),*/
 					//UOM
 					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
@@ -386,24 +407,15 @@ sap.ui.define([
 				//Security Approval
 				var aSecurityApprovalF4Data = values[14].value.results;
 				this.getModel().setProperty("/SecurityApprovalf4/", aSecurityApprovalF4Data);
-				//goods movement type
-				var aGoodsMovementF4Data = values[15].value.results;
-				this.getModel().setProperty("/GoodsMovementf4/", aGoodsMovementF4Data);
+				//Vendor type
+				var aVendorTypeF4Data = values[15].value.results;
+				this.getModel().setProperty("/VendorTypef4/", aVendorTypeF4Data);
+				//Movement type
+				var aMovementTypeF4Data = values[16].value.results;
+				this.getModel().setProperty("/MovementTypef4/", aMovementTypeF4Data);
 				//cost center
-				var aCostCenterF4Data = values[16].value.results;
+				var aCostCenterF4Data = values[17].value.results;
 				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
-				//UOM
-				var aUomF4Data = values[17].value.results;
-				this.getModel().setProperty("/UOMf4/", aUomF4Data);
-				//Product type
-				var aProductTypeF4Data = values[18].value.results;
-				this.getModel().setProperty("/ProductTypef4/", aProductTypeF4Data);
-				//Service Group 
-				var aServiceGroupF4Data = values[19].value.results;
-				this.getModel().setProperty("/ServiceGroupf4/", aServiceGroupF4Data);
-				// Service code 
-				var aServiceCodeF4Data = values[20].value.results;
-				this.getModel().setProperty("/ServiceCodef4/", aServiceCodeF4Data);
 
 			},
 

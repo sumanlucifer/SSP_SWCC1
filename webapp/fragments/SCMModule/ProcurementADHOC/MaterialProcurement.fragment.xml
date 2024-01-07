@@ -18,10 +18,6 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>-->
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Plant/}" items="{/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
@@ -40,14 +36,14 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>justification}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center"
 					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Workcenter/}" items="{/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="Total Estimated Value" editable="false"/>
+				<Input placeholder="Total Estimated Value" editable=" false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -56,8 +52,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" text="/ProcurementAdhoc/MaterialProcurement/Header/Descript/" growingMaxLines="7"
-					height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -111,7 +107,7 @@
 								valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Input placeholder="Enter UOM" id="materialUom" value="{/ProcurementAdhoc/MaterialProcurement/itemData/BaseUnit}" enabled="false"/>
 							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-								selectedKey="{/ProcurementAdhoc/MaterialProcurement/itemData/WERKS/}" items="{/PlantF4/}">
+								selectedKey="{WERKS}" items="{/PlantF4/}">
 								<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 							</ComboBox>
 							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Purchasing Group"

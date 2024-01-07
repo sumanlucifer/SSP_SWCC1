@@ -17,41 +17,28 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
-				<Input id="srproduct1" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/Plant/}" items="{/PlantF4/}">
+					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
+				</ComboBox>
 				<Label text="{i18n>basedate}" required="true"/>
-				<Input id="crtype5" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<DatePicker value=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
-				<Input id="materialtype1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/CostCenter/}" items="{/CostCenterf4/}">
+					<core:Item key="{CostCenter}" text="{CostCenter} - {CostCenter_Text}"/>
+				</ComboBox>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input id="srdesc2" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>movementtype}" required="true"/>
-				<Input id="crdesc5" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Movement Type"
+					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/Key/}" items="{/MovementTypef4/}">
+					<core:Item key="{Key}" text="{Key} - {Value}"/>
+				</ComboBox>
 				<Label text="{i18n>goodsrecipient}" required="false"/>
-				<Input id="industrysector4" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<Input placeholder="Enter Goods Recipient" value=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
