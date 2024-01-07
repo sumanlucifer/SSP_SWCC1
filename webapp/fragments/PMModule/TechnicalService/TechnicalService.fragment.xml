@@ -50,6 +50,7 @@
 					<customData>
 						<core:CustomData key="Equipment" value="Equipment"/>
 						<core:CustomData key="EquipmentName" value="Equipment Name"/>
+						<core:CustomData key="TechnicalObjectType" value="Object Type"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>workcenter}" required="true"/>

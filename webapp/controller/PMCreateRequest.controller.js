@@ -24,6 +24,7 @@ sap.ui.define([
 				debugger;
 				this._createItemDataModel();
 				this.PlantF4();
+				this.objectType();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
@@ -63,7 +64,18 @@ sap.ui.define([
 					}.bind(this));
 
 			},
+			objectType: function () {
+				this.getModel().setProperty("/busy", true);
+				this.CallValueHelpAPI('/C_TechnicalObjectType /')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						this.getModel().setProperty("/PMCreateRequest/ObjectType/", oResponse.results);
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
 
+			},
 			WorkCenterF4: function (sKey) {
 				var filters = [{
 						path: "Plant",
@@ -116,8 +128,10 @@ sap.ui.define([
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
 				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				var sColumn3Template = oEve.getSource().getCustomData()[2].getKey();
 				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
 				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
+				this.getModel().setProperty("/valueHelpKey3", sColumn3Template);
 				// Example usage:
 				var oModel = this.getOwnerComponent().getModel(sEntity);
 				var aColumns = [{
@@ -166,6 +180,10 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey3"),
+						value: afilterBar[2].getValue(),
 						group: "DynamicF4SearchFilter"
 					}
 

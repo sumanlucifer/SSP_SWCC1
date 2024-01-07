@@ -15,9 +15,13 @@
 							<m:Input name="EquipmentName"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Object" label="Object Type" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="ObjectType" label="Object Type" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Object"/>
+							<m:ComboBox name="Object" items="{/PMCreateRequest/ObjectType/}">
+								<m:items>
+									<core:Item key="{TechnicalObjectType}" text="{TechnicalObjectTypeDesc}"/>
+								</m:items>
+							</m:ComboBox>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
