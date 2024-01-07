@@ -291,7 +291,7 @@ sap.ui.define([
 					//   Material Code F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_PRODUCTVH/', null,
 						null),
-					// CR type	
+					//CR type	
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/CRTypeSet/', null,
 						null),
 					//Material Type	
@@ -340,18 +340,20 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
 						null),
 					//Goods Movement
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
-						null),*/
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
+						null),
 					//UOM
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
-						null),*/
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
+						null),
 					//Product type
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
-						null),*/
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
+						null),
 					//service group
-					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
-							null),*/
-
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
+						null),
+					// used in table material 	
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductDescriptionType/', null,
+						null),
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
 						null)
@@ -416,6 +418,24 @@ sap.ui.define([
 				//cost center
 				var aCostCenterF4Data = values[17].value.results;
 				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
+				//goods movement type
+				var aGoodsMovementF4Data = values[18].value.results;
+				this.getModel().setProperty("/GoodsMovementf4/", aGoodsMovementF4Data);
+				//UOM
+				var aUomF4Data = values[19].value.results;
+				this.getModel().setProperty("/UOMf4/", aUomF4Data);
+				//Product type
+				var aProductTypeF4Data = values[20].value.results;
+				this.getModel().setProperty("/ProductTypef4/", aProductTypeF4Data);
+				//Service Group 
+				var aServiceGroupF4Data = values[21].value.results;
+				this.getModel().setProperty("/ServiceGroupf4/", aServiceGroupF4Data);
+				// Service code 
+				var aServiceCodeF4Data = values[22].value.results;
+				this.getModel().setProperty("/ServiceCodef4/", aServiceCodeF4Data);
+				// used in table material
+				var aMaterialtypeF4Data = values[23].value.results;
+				this.getModel().setProperty("/MaterialTypef4/", aMaterialtypeF4Data);
 
 			},
 
