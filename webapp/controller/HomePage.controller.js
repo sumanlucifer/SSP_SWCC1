@@ -26,9 +26,17 @@ sap.ui.define([
 				this._createTileDataModel();
 				this.BPFlagCheckAPI();
 			},
+			_createTileDataModel: function () {
+				this.getModel().setData({
+					busy: false,
+					TileData: {
+						Header: {}
+					}
+				});
+			},
 			BPFlagCheckAPI: function () {
+				this.getModel().setProperty("/busy", true);
 				var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
-
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/TileData/Header/", oResponse);
@@ -39,14 +47,7 @@ sap.ui.define([
 					}.bind(this));
 
 			},
-			_createTileDataModel: function () {
-				this.getModel().setData({
-					busy: false,
-					TileData: {
-						Header: {}
-					}
-				});
-			},
+
 			onPressCreateRequest: function () {
 				this.oRouter.navTo("AppHomePage");
 			},

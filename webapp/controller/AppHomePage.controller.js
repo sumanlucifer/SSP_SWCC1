@@ -42,7 +42,7 @@ sap.ui.define([
 			},
 
 			getTileDisplayData: function () {
-
+				this.getModel().setProperty("/busy", true);
 				var sLoggedInUserName = this.getCurrentUserLoggedIn();
 				var sAPI = `/UserSet(RequestID='',SapID='${sLoggedInUserName}')`;
 
