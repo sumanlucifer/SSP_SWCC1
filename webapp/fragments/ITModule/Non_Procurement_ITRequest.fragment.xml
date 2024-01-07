@@ -27,13 +27,6 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>WorkCenter}" required="false"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
