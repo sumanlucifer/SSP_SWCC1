@@ -24,12 +24,7 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
 				<Label text="{i18n>totalestimatedvalue}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox items="">
 					<core:Item key="Y" text="Yes"/>
@@ -38,13 +33,20 @@
 				<Label text="{i18n>contractduration}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Project Type" selectedKey="{projectType>Plant}" items="{projectType>/plant}">
-					<core:Item key="{projectType>Plant}" text="{projectType>Plant} - {projectType>PlantName}"/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Project Type"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/ProjectTypef4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
 				</ComboBox>
 				<Label text="{i18n>costestimationtype}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Cost Estimate Type"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/EstimateTypef4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" valueState="None" placeholder="Select Technical Evaluation Criteria"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/TechnicalTypef4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>suggestedcompany}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
@@ -56,15 +58,30 @@
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Status"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/RequestStatusf4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>confidentialproject}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Confidential Project"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/ConfidentialProjectf4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>sitevisitrequired}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Site Visit Required"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/SiteVisitf4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Economic Feasibility"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/EconomicFeasibilityf4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>securityprojectapproval}" required="fasle"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Security Approval"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/SecurityApprovalf4/}">
+					<core:Item key="{Status}" text="{Status} - {Text}"/>
+				</ComboBox>
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>

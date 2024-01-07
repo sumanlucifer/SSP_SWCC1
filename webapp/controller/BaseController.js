@@ -30,7 +30,7 @@ sap.ui.define([
 			}
 		},
 		// 	___________________________________________________Dynamic Valuehelp Method_________________________________________________________
-		onHandleValueHelpRequest: function (oModel, aColumns, sPath) {
+		onHandleValueHelpRequest: function (oModel, aColumns, sPath, sFragName) {
 			this._oMultiInput = this.getView().byId("multiInput");
 			this.oColModel = new JSONModel({
 				cols: aColumns,
@@ -39,7 +39,7 @@ sap.ui.define([
 			var aCols = this.oColModel.getData().cols;
 
 			this._oValueHelpDialog = sap.ui.xmlfragment(
-				"com.swcc.Template.fragments.PMModule.EquipmentF4",
+				sFragName,
 				this
 			);
 			this.getView().addDependent(this._oValueHelpDialog);
