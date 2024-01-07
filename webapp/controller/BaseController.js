@@ -46,6 +46,9 @@ sap.ui.define([
 
 			this._oValueHelpDialog.getTableAsync().then(
 				function (oTable) {
+					if (Device.system.desktop) {
+						this._oValueHelpDialog.addStyleClass("sapUiSizeCompact");
+					}
 					oTable.setModel(oModel);
 					oTable.setModel(this.oColModel, "columns");
 
