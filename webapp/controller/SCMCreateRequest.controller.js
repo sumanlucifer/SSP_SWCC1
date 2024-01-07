@@ -351,6 +351,9 @@ sap.ui.define([
 					//service group
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
 						null),
+					// used in table material 	
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductDescriptionType/', null,
+						null),
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
 						null)
@@ -430,6 +433,9 @@ sap.ui.define([
 				// Service code 
 				var aServiceCodeF4Data = values[22].value.results;
 				this.getModel().setProperty("/ServiceCodef4/", aServiceCodeF4Data);
+				// used in table material
+				var aMaterialtypeF4Data = values[23].value.results;
+				this.getModel().setProperty("/MaterialTypef4/", aMaterialtypeF4Data);
 
 			},
 
