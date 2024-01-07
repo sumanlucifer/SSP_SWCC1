@@ -14,14 +14,13 @@
 					<ImageContent src="sap-icon://add-document"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile visible="{/TileData/Header/BP}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserRequest"
-				header="{i18n>viewservicerequest}">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserRequest" header="{i18n>viewservicerequest}">
 				<TileContent>
 					<ImageContent src="sap-icon://personnel-view"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile visible="{= !${/TileData/Header/BPExists}}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
-				press="onPressBpRequest" header="{i18n>createbp}">
+			<GenericTile visible="{/TileData/Header/BP}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressBpRequest"
+				header="{i18n>createbp}">
 				<TileContent>
 					<ImageContent src="sap-icon://create-session"/>
 				</TileContent>
