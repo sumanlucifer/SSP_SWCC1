@@ -3,14 +3,23 @@
 	<VBox width="100%">
 		<fm:SimpleForm title="{i18n>ITServiceRequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>
-				<Toolbar>
-					<Title level="H3" text="{i18n>ITNonProcurementService}" class="ssp-tlbr-title"/>
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>ITNonProcurementService}"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<!--<Toolbar>-->
+				<!--	<Title level="H3" text="{i18n>ITNonProcurementService}" class="ssp-tlbr-title"/>-->
+				<!--	<ToolbarSpacer/>-->
+				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}" required="true"/>
-				<Text text="Product"/>
+				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Plant}" required="true"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
@@ -18,8 +27,6 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>
-				<Label text="{i18n>Description}" required="true"/>
-				<Text text="Product"/>
 				<Label text="{i18n>WorkCenter}" required="false"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
