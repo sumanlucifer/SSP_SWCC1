@@ -20,45 +20,39 @@
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Plant/}" items="{/PlantF4/}">
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/Header/Plant/}" items="{/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>
+				<Label text="{i18n>quantity}" required="true"/>
+				<Input placeholder="Enter Quantity" value=""/>
 				<Label text="{i18n>crtype}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="crtype1" valueState="None" placeholder="Select Plant"
-					selectedKey="{crModel>CRTypeSet}" items="{crModel>/crType}">
-					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/CRf4/}">
+					<core:Item key="{Key}" text="{Key} - {Value}"/>
 				</ComboBox>
 				<Label text="{i18n>Materialtype}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="materialType" valueState="None" placeholder="Select Material"
-					selectedKey="{crModel>CRTypeSet}" items="{crModel>/materialType}">
-					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/MaterialTypef4/}">
+					<core:Item key="{Key}" text="{Key} - {Value}"/>
 				</ComboBox>
-				<!--<Input id="materialtype3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>-->
 				<Label text="{i18n>Materialgroup}" required="false"/>
-				<Input id="materialgroup" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Material Group"
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/ExternalProductGroup}" items="{/ExMaterialf4/}">
+					<core:Item key="{ExternalProductGroup}" text="{ExternalProductGroup} - {ExternalProductGroup_Text}"/>
+				</ComboBox>
 				<Label text="{i18n>Materialdesc}" required="true"/>
 				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
 					items="{workCenterModel>/}">
 					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Industrysector}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
-					selectedKey="{crModel>Key}" items="{crModel>/industrySector}">
-					<core:Item key="{crModel>Key}" text="{crModel>Key} - {crModel>Value}"/>
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/IndustrialSectorf4/}">
+					<core:Item key="{Key}" text="{Key} - {Value}"/>
 				</ComboBox>
 				<!--<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
