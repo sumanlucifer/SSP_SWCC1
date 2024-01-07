@@ -116,7 +116,8 @@ sap.ui.define([
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
 				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
-
+				this.getModel().setProperty("/PMCreateRequest/valueHelpKey1", sColumn1Template);
+				this.getModel().setProperty("/PMCreateRequest/valueHelpKey2", sColumn2Template);
 				// Example usage:
 				var oModel = this.getOwnerComponent().getModel(sEntity);
 				var aColumns = [{
@@ -141,12 +142,14 @@ sap.ui.define([
 
 			},
 			onValueHelpOkPress: function (oEvent) {
+				debugger;
 
+				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
-				var sKeyProperty = "Equipment"; // Property name to set in the model
-				var textProperty = "EquipmentName"; // Property name for the token text
+				var sKeyProperty = this.getModel().getProperty("/PMCreateRequest/valueHelpKey1"); // Property name to set in the model
+				var textProperty = this.getModel().getProperty("/PMCreateRequest/valueHelpKey2"); // Property name for the token text
 				var yourModel = this.getModel(); // Pass your model here
-				var sModelPath = "/PMCreateRequest/Header/Equipment/"
+				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
 
