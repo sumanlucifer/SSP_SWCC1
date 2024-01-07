@@ -15,7 +15,8 @@
 			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
 				<l:content >
 					<!--.........................................................Insurance and Claim Management.....................................................-->
-					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1004-3' || ${/HRAppVisible} === 'SSA-HR-1004-2' || ${/HRAppVisible} === 'SSA-HR-1004-1'}">
+					<VBox
+						visible="{= ${/HRAppVisible} === 'SSA-HR-1004-3' || ${/HRAppVisible} === 'SSA-HR-1004-2' || ${/HRAppVisible} === 'SSA-HR-1005-1' || ${/HRAppVisible} === 'SSA-HR-1004-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Termination.TerminationService" type="XML"/>
 					</VBox>
 					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-1' || ${/HRAppVisible} === 'SSA-HR-1001-2'}">
