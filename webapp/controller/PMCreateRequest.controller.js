@@ -159,11 +159,11 @@ sap.ui.define([
 				var filters = [{
 						path: "Equipment",
 						value: afilterBar[0].getValue(),
-						group: "EquipmentF4SearchFilter"
+						group: "DynamicF4SearchFilter"
 					}, {
 						path: "EquipmentName",
 						value: afilterBar[1].getValue(),
-						group: "EquipmentF4SearchFilter"
+						group: "DynamicF4SearchFilter"
 					}
 
 				];
@@ -171,7 +171,7 @@ sap.ui.define([
 
 				this._filterTable(
 					new Filter({
-						filters: dynamicFilters.EquipmentF4SearchFilter,
+						filters: dynamicFilters.DynamicF4SearchFilter,
 						and: false,
 					})
 				);

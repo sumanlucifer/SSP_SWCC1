@@ -458,7 +458,7 @@ sap.ui.define([
 				debugger;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callCommonFinanceSearchRequest("/PettyInvoicesSet/",
 					"GET", dynamicFilters.ManageRecordInvoiceFilter, null,
-					"/AccountPayable/RecordandProcessInvoice/itemData/") : null;
+					"/AccountPayable/RecordProcess/itemData/") : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callCommonFinanceSearchRequest("/PettyCashSet/",
 					"GET",
 					dynamicFilters.ManagePettyCashFilter, null, "/AccountPayable/ManagePettyCash/itemData/") : null;
@@ -480,15 +480,17 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRequestPayload() : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateRequestPayload(this.getModel().getProperty(
-					"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/itemData/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRecordInvoiceRequest(this.getModel().getProperty(
+					"/AccountPayable/RecordProcess/Header/"), this.getModel().getProperty("/AccountPayable/RecordProcess/itemData/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
+					.getProperty(
+						"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/itemData/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateRequestPayload() : null;
 				debugger;
 
 			},
 
-			FinanceCreateRequestPayload: function (oPayloadHeader, aItem) {
+			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -505,6 +507,31 @@ sap.ui.define([
 						function (items) {
 							return {
 								PostingNumber: aItem.PostingNo,
+
+							};
+						}
+					)
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+			FinanceCreateRecordInvoiceRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": oPayloadHeader.Plant,
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": oPayloadHeader.CompanyCode
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								PostingNumber: aItem.PoNo,
 
 							};
 						}
