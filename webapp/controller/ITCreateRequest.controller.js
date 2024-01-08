@@ -119,7 +119,7 @@ sap.ui.define([
 			},
 
 			onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
+				this.getOwnerComponent().getTargets().display("HomePage");
 
 			},
 			onProceed: function () {

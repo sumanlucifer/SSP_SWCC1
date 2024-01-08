@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog ariaDescribedBy="/SubNumberf4/" title="Assest Main Number" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="SubNumber" descriptionKey="MainAssetNum"
+		class="value-header">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Material" label="Sub Number" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="SubNumber"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="PlantName" label="Main Assest Number" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="MainAssetNum"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

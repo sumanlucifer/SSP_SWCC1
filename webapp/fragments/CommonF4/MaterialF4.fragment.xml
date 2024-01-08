@@ -1,7 +1,22 @@
-<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
-	<SelectDialog id="selectMatDialog" title="Materials" items="{materialf4Model>/}" search=".onMaterialValueHelpSearch"
-		confirm=".onMaterialValueHelpClose" cancel=".onMaterialValueHelpClose">
-		<StandardListItem icon="" iconDensityAware="false" iconInset="false" title="{materialf4Model>Product}"
-			description="{materialf4Model>Description}"/>
-	</SelectDialog>
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog ariaDescribedBy="/MATNR/" title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Product" descriptionKey="Description"
+		class="value-header">
+		<filterBar>
+			<fb:FilterBar advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Material" label="Material Code" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Material"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="MaterialName" label="Material Name" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="MaterialName"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
 </core:FragmentDefinition>

@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog ariaDescribedBy="/ITProcurement/Header/Plant/" title="Plant Details" ok=".onValueHelpOkPress"
-		cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant"
-		descriptionKey="PlantName">
+	<ValueHelpDialog ariaDescribedBy="/Plant/" title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant" descriptionKey="PlantName"
+		class="value-header">
 		<filterBar>
 			<fb:FilterBar advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>

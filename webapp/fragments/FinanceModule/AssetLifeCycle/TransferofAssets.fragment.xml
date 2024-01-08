@@ -34,10 +34,17 @@
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN" id="_com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4_" width="100%"
+					placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SubNumberf4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/SubNumberf4/}">
 					<core:Item key="{SubNumber}" text="{MainAssetNum}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/PlantF4/}">
