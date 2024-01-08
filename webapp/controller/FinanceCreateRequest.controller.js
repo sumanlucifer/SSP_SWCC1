@@ -37,9 +37,10 @@ sap.ui.define([
 
 				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
 				// this._oValueHelpDialog.open();
-				var sFragName = oEve.getSource().getId().split("_")[3];
+
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
 
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
@@ -113,6 +114,7 @@ sap.ui.define([
 					CompanyF4: [],
 					PlantF4: [],
 					CashJournalF4: [],
+					GLAccount: "",
 					ManagePettyCashData: {
 						Header: {
 							CompanyCode: "1000"

@@ -277,7 +277,10 @@ sap.ui.define([
 						null),
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
-						null)
+						null),
+					//Service code
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNotificationSet/ ', null,
+						null)*/
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
