@@ -3,7 +3,7 @@
 		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant" descriptionKey="PlantName"
 		class="value-header">
 		<filterBar>
-			<fb:FilterBar advancedMode="true" search="onFilterBarSearch">
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Plant" label="Plant Code" visibleInFilterBar="true">
 						<fb:control>
