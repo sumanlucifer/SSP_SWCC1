@@ -432,7 +432,7 @@ sap.ui.define([
 				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
 				//     Plant F4 Valuehelp
 				var aPlantF4Data = values[2].value.results;
-				this.getModel().setProperty("/PlantF4/", aPlantF4Data);
+				this.getModel().setProperty("/PlantF4ytt/", null);
 				//posting period f4 
 				var aPostingPeriodF4Data = values[3].value.results;
 				this.getModel().setProperty("/PostingPeriodF4/", aPostingPeriodF4Data);
@@ -574,7 +574,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": oPayloadHeader.Plant,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -599,7 +599,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": oPayloadHeader.Plant,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {

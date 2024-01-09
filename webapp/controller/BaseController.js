@@ -96,7 +96,7 @@ sap.ui.define([
 			});
 			debugger;
 			// Adjust the property path and model based on your use case
-			oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]} - ${oData[0][sTextProperty]}`);
+			oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}- ${oData[0][sTextProperty]}`);
 			this._oValueHelpDialog.close();
 		},
 		onHandleValueHelpCancelPress: function () {
