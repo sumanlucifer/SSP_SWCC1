@@ -39,10 +39,17 @@
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>BANKGL}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"
-					selectedKey="{/AccountsReceivable/Manageandprocess/Header/GLAccount/}" items="{/GeneralLedgerf4/}">
-					<core:Item key="{CompanyCode}" text="{GLAccount} - {GLAccountName}"/>
-				</ComboBox>
+				<!--<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"-->
+				<!--	selectedKey="{/AccountsReceivable/Manageandprocess/Header/GLAccount/}" items="{/GeneralLedgerf4/}">-->
+				<!--	<core:Item key="{CompanyCode}" text="{GLAccount} - {GLAccountName}"/>-->
+				<!--</ComboBox>-->
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4" width="100%"
+					placeholder="Enter GL Account" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/GLAccount}">
+					<customData>
+						<core:CustomData key="GLAccount" value="GLAccount"/>
+						<core:CustomData key="GLAccountName" value="GLAccountName"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>CustomerCode}" required="true"/>
 				<ComboBox width="100%" change="" selectionChange="" id="customercode" valueState="None" placeholder="Customer Code"
 					selectedKey="{/AccountsReceivable/Manageandprocess/Header/Customer}" items="{/CustomerCodef4/}">

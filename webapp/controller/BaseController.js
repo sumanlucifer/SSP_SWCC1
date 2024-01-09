@@ -157,17 +157,19 @@ sap.ui.define([
 			var dynamicFilters = {};
 
 			filterParams.forEach(function (filterParam) {
-				var filter = new sap.ui.model.Filter({
-					path: filterParam.path,
-					operator: sap.ui.model.FilterOperator.EQ,
-					value1: filterParam.value
-				});
+				if (filterParam.value !== undefined && filterParam.value !== "") {
+					var filter = new sap.ui.model.Filter({
+						path: filterParam.path,
+						operator: filterParam.operator ? filterParam.operator : sap.ui.model.FilterOperator.EQ,
+						value1: filterParam.value
+					});
 
-				if (!dynamicFilters[filterParam.group]) {
-					dynamicFilters[filterParam.group] = [];
+					if (!dynamicFilters[filterParam.group]) {
+						dynamicFilters[filterParam.group] = [];
+					}
+
+					dynamicFilters[filterParam.group].push(filter);
 				}
-
-				dynamicFilters[filterParam.group].push(filter);
 			});
 
 			return dynamicFilters;

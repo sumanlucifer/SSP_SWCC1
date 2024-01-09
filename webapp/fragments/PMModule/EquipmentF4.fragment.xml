@@ -24,6 +24,11 @@
 							</m:ComboBox>
 						</fb:control>
 					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Sort" label="Sort" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Sort"/>
+						</fb:control>
+					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
 			</fb:FilterBar>
 		</filterBar>

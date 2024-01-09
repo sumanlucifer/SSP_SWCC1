@@ -128,10 +128,14 @@ sap.ui.define([
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
 				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				var sColumn3Label = oEve.getSource().getCustomData()[2].getValue();
 				var sColumn3Template = oEve.getSource().getCustomData()[2].getKey();
+				var sColumn4Label = oEve.getSource().getCustomData()[3].getValue();
+				var sColumn4Template = oEve.getSource().getCustomData()[3].getKey();
 				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
 				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
 				this.getModel().setProperty("/valueHelpKey3", sColumn3Template);
+				this.getModel().setProperty("/valueHelpKey4", sColumn4Template);
 				// Example usage:
 				var oModel = this.getOwnerComponent().getModel(sEntity);
 				var aColumns = [{
@@ -141,7 +145,13 @@ sap.ui.define([
 					}, {
 						label: sColumn2Label,
 						template: sColumn2Template,
-					},
+					}, {
+						label: sColumn3Label,
+						template: sColumn3Template,
+					}, {
+						label: sColumn4Label,
+						template: sColumn4Template,
+					}
 
 					// {
 					// 	label: "Plant Code",
@@ -180,10 +190,16 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey3"),
 						value: afilterBar[2].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey4"),
+						operator: sap.ui.model.FilterOperator.Contains,
+						value: afilterBar[3].getValue(),
 						group: "DynamicF4SearchFilter"
 					}
 
