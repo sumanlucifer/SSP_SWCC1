@@ -19,7 +19,7 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-					<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/quantity/}"/>
+				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
@@ -40,10 +40,13 @@
 					<core:Item key="{AccountingPrinciple}" text="{AccountingPrinciple} - {AccountingPrincipleName}"/>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
 					change="handleChange" class=""/>

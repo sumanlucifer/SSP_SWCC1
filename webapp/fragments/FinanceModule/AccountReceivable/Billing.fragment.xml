@@ -21,10 +21,7 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Billing/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/AccountsReceivable/Billing/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+			
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>

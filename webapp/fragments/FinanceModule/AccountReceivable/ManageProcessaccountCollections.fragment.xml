@@ -20,10 +20,13 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Manageandprocess/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/AccountsReceivable/Manageandprocess/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>

@@ -32,10 +32,13 @@
 					<core:Item key="{FinancialManagementArea}" text="{FinancialManagementArea} - {FinancialManagementArea_Text}"/>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant1" valueState="None" placeholder="Select Plant"
-					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Period}" required="true"/>
 				<DatePicker id="DP1" placeholder="Enter Date" change="handleChange"
 					value="{ 'path':'/valueDP2', 'type':'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'MM' } }" class="sapUiSmallMarginBottom"/>

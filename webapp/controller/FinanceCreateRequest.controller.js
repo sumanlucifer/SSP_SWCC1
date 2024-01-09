@@ -111,10 +111,10 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					FinanceAppVisible: null,
-					CompanyF4: [],
-					PlantF4: [],
-					CashJournalF4: [],
-					GLAccount: "",
+					CompanyF4: "1000 - SWCC",
+					PlantF4: "",
+					CashJournalF4: "",
+					GLAccountf4: "",
 					ManagePettyCashData: {
 						Header: {
 							CompanyCode: "1000"
