@@ -73,7 +73,6 @@ sap.ui.define([
 			},
 			onValueHelpOkPress: function (oEvent) {
 				debugger;
-
 				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
