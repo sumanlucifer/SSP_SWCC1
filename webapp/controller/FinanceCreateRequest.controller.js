@@ -403,11 +403,11 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_SUPER/', null,
 						null),
 					//Non Technical Assest
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_NONTECH_ASSET/', null,
-						null),
+					// 	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_NONTECH_ASSET/', null,
+					// 		null),
 					//Project captilization
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ProjectNtwkValueHelp/', null,
-						null),
+					// 	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ProjectNtwkValueHelp/', null,
+					// 		null),
 					//Assest Sub number
 					// this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_MAIN/', null,
 					// 	null),
@@ -497,11 +497,11 @@ sap.ui.define([
 				var aAssestSuperF4Data = values[23].value.results;
 				this.getModel().setProperty("/AssestSuperf4/", aAssestSuperF4Data);
 				//Non technical assest
-				var aNontecnicalF4Data = values[24].value.results;
-				this.getModel().setProperty("/NonTechnicalf4/", aNontecnicalF4Data);
+				// var aNontecnicalF4Data = values[24].value.results;
+				// this.getModel().setProperty("/NonTechnicalf4/", aNontecnicalF4Data);
 				//Project captilization
-				var aProjectCaptialF4Data = values[25].value.results;
-				this.getModel().setProperty("/ProjectCaptialf4/", aProjectCaptialF4Data);
+				// var aProjectCaptialF4Data = values[25].value.results;
+				// this.getModel().setProperty("/ProjectCaptialf4/", aProjectCaptialF4Data);
 				//Assest sub number
 				// var aSubNumberF4Data = values[26].value.results;
 				// this.getModel().setProperty("/SubNumberf4/", aSubNumberF4Data);

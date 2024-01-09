@@ -89,10 +89,14 @@
 					<core:Item key="{AssetSuperNum}" text="{AssetSuperNum} - {AssetSuperText}"/>
 				</ComboBox>
 				<Label text="{i18n>NonTechnicalAsset}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>NonTechnicalAsset}"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetNonTech}" items="{/NonTechnicalf4/}">
-					<core:Item key="{AssetNonTech}" text="{AssetNonTech} - {AssetNonTechText}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4"
+					width="100%" placeholder="Enter Non Technical Asset" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/NonAssetTechF4}">
+					<customData>
+						<core:CustomData key="AssetNonTech" value="Asset NonTech"/>
+						<core:CustomData key="AssetNonTechText" value="Description"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
