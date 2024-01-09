@@ -743,6 +743,16 @@
 }
 
 /* upload css ends here */
+/* Value help cs start here */
+.value-header.compValueHelpDialog.sapMDialog.sapMPopup-CTX>header .sapMHeader-CTX {
+    background-color: #004687;
+}
+
+.value-header .sapMBarPH span {
+    color: #fff;
+}
+
+/* value help ends here */
 /* custom css for deploy verison */
 .ssp-open.sapMGT.OneByOne,
 .ssp-progress.sapMGT.OneByOne,

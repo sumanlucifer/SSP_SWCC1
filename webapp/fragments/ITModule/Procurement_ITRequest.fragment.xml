@@ -1,28 +1,28 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>ITServiceRequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
-					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>ITProcurementService}"/>
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<!--<Toolbar>-->
-				<!--	<Title level="H3" text="{i18n>ITProcurementService}" class="ssp-tlbr-title"/>-->
-				<!--	<ToolbarSpacer/>-->
-				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
-				<!--</Toolbar>-->
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant" id="_com.swcc.Template.fragments.CommonF4.PlantF4_" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ITProcurement/Header/Plant}">
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -83,8 +83,15 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
-								value="{MATNR}"/>
+							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant" id="_com.swcc.Template.fragments.CommonF4.PlantF4_" width="100%" placeholder="Enter Plant"
+								valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+								<customData>
+									<core:CustomData key="Plant" value="Plant"/>
+									<core:CustomData key="PlantName" value="Plant Name"/>
+								</customData>
+							</Input>
+							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
+								value="{MATNR}"/>-->
 							<Input placeholder="Enter Description" id="description" value="{Description}" enabled="false"/>
 							<Input placeholder="QTY" showSuggestion="" value="{MENGE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Input placeholder="Enter UOM" id="materialUom" value="{BaseUnit}" enabled="false"/>

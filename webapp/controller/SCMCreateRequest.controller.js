@@ -32,104 +32,48 @@ sap.ui.define([
 
 				this.getModel().setProperty("/busy", true);
 			},
-			/*	this.CallValueHelpSCMSRVAPI("?$filter=p_domain eq 'ZREQ_STAT'")
-					.then(function (oResponse) {
-						// Handle the response data
-						this.getModel().setProperty("/busy", false);
-						pssModel.setProperty("/projectType", oResponse.results);
-						this.getView().setModel(pssModel, "pssModel");
-					}.bind(this))
-					.catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-*/
-			/*	onMatValueHelpRequest: function (oEvent) {
-					var sInputValue = oEvent.getSource().getValue(),
-						oView = this.getView();
-
-					if (!this._matValueHelpDialog) {
-						this._matValueHelpDialog = Fragment.load({
-							id: oView.getId(),
-							name: "com.swcc.Template.fragments.SCMModule.MaterialF4",
-							controller: this
-						}).then(function (oDialog) {
-							oView.addDependent(oDialog);
-							return oDialog;
-						});
-					}
-					this._matValueHelpDialog.then(function (oDialog) {
-						// Create a filter for the binding
-						oDialog.getBinding("items").filter([new Filter("Product", FilterOperator.Contains, sInputValue)]);
-						// Open ValueHelpDialog filtered by the input's value
-						oDialog.open(sInputValue);
-					});
-				},*/
-
-			/*onValueHelpRequest: function (oEvent) {
-				var sInputValue = oEvent.getSource().getValue(),
-					oView = this.getView();
-
-				if (!this._pValueHelpDialog) {
-					this._pValueHelpDialog = Fragment.load({
-						id: oView.getId(),
-						name: "com.swcc.Template.fragments.SCMModule.EquipmentF4",
-						controller: this
-					}).then(function (oDialog) {
-						oView.addDependent(oDialog);
-						return oDialog;
-					});
-				}
-				this._pValueHelpDialog.then(function (oDialog) {
-					// Create a filter for the binding
-					oDialog.getBinding("items").filter([new Filter("Workcenter", FilterOperator.Contains, sInputValue)]);
-					// Open ValueHelpDialog filtered by the input's value
-					oDialog.open(sInputValue);
-				});
-			},*/
-			/*	handleLiveChange: function () {
-					// Perform multiplication and update the result input field
-					var oQtyInput = this.getView().byId("inputQty");
-					var oUnitPriceInput = this.getView().byId("inputUnitPrice");
-					var oResultInput = this.getView().byId("inputResult");
-
-					var nQty = parseFloat(oQtyInput.getValue()) || 0;
-					var nUnitPrice = parseFloat(oUnitPriceInput.getValue()) || 0;
-					var nResult = nQty * nUnitPrice;
-
-					oResultInput.setValue(nResult.toString());
-				},*/
-
-			onMatValueHelpRequest: function () {
-
+			onValueHelpRequest: function (oEve) {
+				debugger;
 				// this._oMultiInput = this.getView().byId("multiInput");
 
 				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
 				// this._oValueHelpDialog.open();
 
+				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
+				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+
+				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
+				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
+				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
+				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
+				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
 				// Example usage:
-				var oModel = this.getOwnerComponent().getModel("ZSSP_SCM_SRV");
+				var oModel = this.getOwnerComponent().getModel(sEntity);
 				var aColumns = [{
-					label: "Material",
-					template: "Key",
+					label: sColumn1Label,
+					template: sColumn1Template,
 					width: "10rem",
 				}, {
-					label: "Material Name",
-					template: "Value",
+					label: sColumn2Label,
+					template: sColumn2Template,
 				}];
 
-				var sPath = "/MaterialTypeSet";
+				// var sPath = "/ZCDSV_EQUIPMENTVH";
 
-				this.onHandleValueHelpRequest(oModel, aColumns, sPath);
+				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
 			onValueHelpOkPress: function (oEvent) {
+				debugger;
 
+				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
-				var sKeyProperty = "Material"; // Property name to set in the model
-				var textProperty = "Material Name"; // Property name for the token text
+				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
+				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
 				var yourModel = this.getModel(); // Pass your model here
-				var sModelPath = "/ProcurementAdhoc/MaterialProcurement/itemData/Material/"
+				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
 
@@ -137,55 +81,32 @@ sap.ui.define([
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
 			},
-
-			onValueHelpSearch: function (oEvent) {
-				var sValue = oEvent.getParameter("value");
-				var oFilter = new Filter("WorkcenterDesc", FilterOperator.Contains, sValue);
-
-				oEvent.getSource().getBinding("items").filter([oFilter]);
-			},
-
-			onValueHelpClose: function (oEvent) {
-				var oSelectedItem = oEvent.getParameter("selectedItem");
-				oEvent.getSource().getBinding("items").filter([]);
-
-				if (!oSelectedItem) {
-					return;
-				}
-
-				this.byId("productInput").setValue(oSelectedItem.getDescription());
-			},
-
-			onMaterialValueHelpSearch: function (oEvent) {
-				var sValue = oEvent.getParameter("value");
-				var oFilter = new Filter("Description", FilterOperator.Contains, sValue);
-
-				oEvent.getSource().getBinding("items").filter([oFilter]);
-			},
-
-			/*	onMaterialValueHelpClose: function (oEvent) {
-					var oSelectedItem = oEvent.getParameter("selectedItem");
-					oEvent.getSource().getBinding("items").filter([]);
-
-					if (!oSelectedItem) {
-						return;
+			onFilterBarSearch: function (oEvent) {
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: this.getModel().getProperty("/valueHelpKey1"),
+						value: afilterBar[0].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey2"),
+						value: afilterBar[1].getValue(),
+						group: "DynamicF4SearchFilter"
 					}
 
-					var selIndex = parseInt(oEvent.getParameter("selectedItem").getBindingContext("materialf4Model").sPath.split("/")[1]);
-					var getSelRecordData = this.getView().getModel("materialf4Model").getData()[selIndex];
+				];
+				var dynamicFilters = this.getFilters(filters);
 
-					this.getView().byId("materialF4Input").setValue(getSelRecordData.Product);
-					this.getView().byId("description").setValue(getSelRecordData.Description);
-					this.getView().byId("materialUom").setValue(getSelRecordData.BaseUnit);
-					this.getView().byId("materialPlant").setValue(getSelRecordData.Plant);
-					this.getView().byId("materialPurchasingGrp").setValue(getSelRecordData.PurchasingGroup);
+				this._filterTable(
+					new Filter({
+						filters: dynamicFilters.DynamicF4SearchFilter,
+						and: false,
+					})
+				);
+			},
+			_filterTable: function (oFilter, sType) {
 
-					this.getView().byId("materialFormPlant").setSelectedKey(getSelRecordData.Plant);
-					this.getView().byId("materialFormPlant1").setSelectedKey(getSelRecordData.Plant);
-					this.getView().byId("crtype1").setSelectedKey(getSelRecordData.CRTypeSet);
-
-				},*/
-
+				this.handleVHFilterTable(oFilter, sType);
+			},
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
@@ -356,7 +277,10 @@ sap.ui.define([
 						null),
 					//Service code
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
-						null)
+						null),
+					//Service code
+					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNotificationSet/ ', null,
+						null)*/
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 

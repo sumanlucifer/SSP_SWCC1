@@ -19,12 +19,15 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ClasssificationandInventory/SPIR/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value=""/>
+				<Input placeholder="Enter Quantity" value="{/ClasssificationandInventory/SPIR/Header/MaterialQty/}"/>
 				<Label text="{i18n>spirno}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/ClasssificationandInventory/SPIR/Header/Plant/}" items="{/PlantF4/}">
@@ -35,16 +38,11 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequestDescription}" required="true"/>
-				<Input placeholder="Enter Description" value="" enabled="true"/>
+				<Input placeholder="Enter Description" value="{/ClasssificationandInventory/SPIR/Header/Descript/}" enabled="true"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
-				<Input id="crdesc" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>equipmentno}" required="false"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>
+				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

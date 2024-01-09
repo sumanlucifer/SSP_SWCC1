@@ -2,10 +2,12 @@ sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
 		"sap/ui/core/routing/History",
-		"sap/m/MessageBox"
+		"sap/m/MessageBox",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
 			onInit: function () {
@@ -29,6 +31,81 @@ sap.ui.define([
 				this.callDropDownService();
 
 			},
+			onValueHelpRequest: function (oEve) {
+
+				// this._oMultiInput = this.getView().byId("multiInput");
+
+				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+				// this._oValueHelpDialog.open();
+
+				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
+				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+
+				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
+				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
+				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
+				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
+				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
+				// Example usage:
+				var oModel = this.getOwnerComponent().getModel(sEntity);
+				var aColumns = [{
+					label: sColumn1Label,
+					template: sColumn1Template,
+					width: "10rem",
+				}, {
+					label: sColumn2Label,
+					template: sColumn2Template,
+				}];
+
+				// var sPath = "/ZCDSV_EQUIPMENTVH";
+
+				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
+
+			},
+			onValueHelpOkPress: function (oEvent) {
+				debugger;
+
+				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
+				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
+				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
+				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
+				var yourModel = this.getModel(); // Pass your model here
+				var sModelPath = sModelPath;
+
+				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+
+			},
+			onValueHelpCancelPress: function () {
+				this.onHandleValueHelpCancelPress();
+			},
+			onFilterBarSearch: function (oEvent) {
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: this.getModel().getProperty("/valueHelpKey1"),
+						value: afilterBar[0].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey2"),
+						value: afilterBar[1].getValue(),
+						group: "DynamicF4SearchFilter"
+					}
+
+				];
+				var dynamicFilters = this.getFilters(filters);
+
+				this._filterTable(
+					new Filter({
+						filters: dynamicFilters.DynamicF4SearchFilter,
+						and: false,
+					})
+				);
+			},
+			_filterTable: function (oFilter, sType) {
+
+				this.handleVHFilterTable(oFilter, sType);
+			},
 
 			_createItemDataModel: function () {
 				this.getModel().setData({
@@ -37,6 +114,7 @@ sap.ui.define([
 					CompanyF4: [],
 					PlantF4: [],
 					CashJournalF4: [],
+					GLAccount: "",
 					ManagePettyCashData: {
 						Header: {
 							CompanyCode: "1000"
@@ -331,8 +409,8 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ProjectNtwkValueHelp/', null,
 						null),
 					//Assest Sub number
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_MAIN/', null,
-						null),
+					// this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_MAIN/', null,
+					// 	null),
 
 				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
 
@@ -343,13 +421,14 @@ sap.ui.define([
 				var sYear = oEve.getSource().getValue();
 			},
 			buildResponselist: function (values) {
-				// debugger;
+				debugger;
 				this.getModel().setProperty("/busy", false);
 				// 			Company F4 type response
 				var aCompanyF4Data = values[0].value.results;
 				this.getModel().setProperty("/CompanyF4/", aCompanyF4Data);
 				// 			Cash Journal F4 type response
-				var aCashJournalF4Data = values[1].value.results;
+				//var aCashJournalF4Data = values[1].value.results;
+				var aCashJournalF4Data = values[1].status === "rejected" ? null : values[1].value.results;
 				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
 				//     Plant F4 Valuehelp
 				var aPlantF4Data = values[2].value.results;
@@ -424,8 +503,8 @@ sap.ui.define([
 				var aProjectCaptialF4Data = values[25].value.results;
 				this.getModel().setProperty("/ProjectCaptialf4/", aProjectCaptialF4Data);
 				//Assest sub number
-				var aSubNumberF4Data = values[26].value.results;
-				this.getModel().setProperty("/SubNumberf4/", aSubNumberF4Data);
+				// var aSubNumberF4Data = values[26].value.results;
+				// this.getModel().setProperty("/SubNumberf4/", aSubNumberF4Data);
 
 			},
 

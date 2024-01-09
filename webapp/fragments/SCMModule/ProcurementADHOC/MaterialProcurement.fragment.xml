@@ -18,10 +18,17 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
+					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Plant/}" items="{/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TEN_PRE/}">
 					<core:Item key="Y" text="Yes"/>
@@ -100,8 +107,15 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
-								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH" id="_com.swcc.Template.fragments.CommonF4.MaterialF4_" width="100%"
+								placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{MATNR}">
+								<customData>
+									<core:CustomData key="Product" value="Material"/>
+									<core:CustomData key="Description" value="Material Name"/>
+								</customData>
+							</Input>
+							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
+								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>-->
 							<Input placeholder="Enter Description" id="description" value="{/ProcurementAdhoc/MaterialProcurement/itemData/Description}" enabled="false"/>
 							<Input placeholder="QTY" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/MENGE}" showValueHelp=""
 								valueHelpRequest="" liveChange="handleLiveChange"/>
