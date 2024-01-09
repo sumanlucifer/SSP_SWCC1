@@ -23,6 +23,7 @@ sap.ui.define([
 			},
 
 			_onObjectMatched: function () {
+				debugger;
 				this._createTileDataModel();
 				this.BPFlagCheckAPI();
 			},
@@ -35,6 +36,8 @@ sap.ui.define([
 				});
 			},
 			BPFlagCheckAPI: function () {
+				var sLoginUser = this.getCurrentUserLoggedIn();
+				this.getModel().setProperty("/LoginUser", sLoginUser);
 				this.getModel().setProperty("/busy", true);
 				var sAPI = `/CheckUserSet(UserName='WT_POWER')`;
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
