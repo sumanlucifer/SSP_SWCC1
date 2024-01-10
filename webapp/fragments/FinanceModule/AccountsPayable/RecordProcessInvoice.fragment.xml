@@ -31,13 +31,17 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Select Company"
-					selectedKey="{/AccountPayable/RecordProcess/Header/CompanyCode/}" items="{/CompanyF4/}">
-					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>

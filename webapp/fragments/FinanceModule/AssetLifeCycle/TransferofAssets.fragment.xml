@@ -29,13 +29,18 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectCompany" valueState="None" placeholder="Company code"
-					selectedKey="{/AssetLifecycle/TransferofAssets/Header/CompanyCode/}" items="{/CompanyF4/}">
-					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN" id="_com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4_" width="100%"
-					placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SubNumberf4}">
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
 					<customData>
 						<core:CustomData key="SubNumber" value="SubNumber"/>
 						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
@@ -46,20 +51,29 @@
 					<core:Item key="{SubNumber}" text="{MainAssetNum}"/>
 				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/AssetLifecycle/TransferofAssets/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>SubNumber}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{/AssetLifecycle/TransferofAssets/Header/SubNumber}" items="{/SubNumberf4/}">
-					<core:Item key="{SubNumber}" text="{SubNumber}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>newcostcenter}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{/AssetLifecycle/TransferofAssets/Header/ControllingArea}" items="{/CostCenterf4/}">
-					<core:Item key="{ControllingArea}" text="{ControllingArea} - {CostCenter}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					<customData>
+						<core:CustomData key="ControllingArea" value="Cost Center"/>
+						<core:CustomData key="CostCenter" value="Cost Text"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

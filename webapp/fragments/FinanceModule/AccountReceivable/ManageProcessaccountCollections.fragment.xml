@@ -20,8 +20,8 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Manageandprocess/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -37,27 +37,36 @@
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<!--<Input required="true" width="100%" value="1000"/>-->
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code"
-					selectedKey="{/AccountsReceivable/Manageandprocess/Header/CompanyCode}" items="{/CompanyF4/}">
-					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>BANKGL}" required="true"/>
 				<!--<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"-->
 				<!--	selectedKey="{/AccountsReceivable/Manageandprocess/Header/GLAccount/}" items="{/GeneralLedgerf4/}">-->
 				<!--	<core:Item key="{CompanyCode}" text="{GLAccount} - {GLAccountName}"/>-->
 				<!--</ComboBox>-->
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4" width="100%"
-					placeholder="Enter GL Account" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/GLAccount}">
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
+					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/GlaccountF4/}">
 					<customData>
-						<core:CustomData key="GLAccount" value="GLAccount"/>
-						<core:CustomData key="GLAccountName" value="GLAccountName"/>
+						<core:CustomData key="GLAccount" value="GL Account Code"/>
+						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>CustomerCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" id="customercode" valueState="None" placeholder="Customer Code"
-					selectedKey="{/AccountsReceivable/Manageandprocess/Header/Customer}" items="{/CustomerCodef4/}">
-					<core:Item key="{Customer}" text="{Customer} - {CustomerName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/F_Mmim_Customer_Vh-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/"
+					width="100%" placeholder="Enter customer code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/customercodeF4/}">
+					<customData>
+						<core:CustomData key="Customer" value="Customer"/>
+						<core:CustomData key="CustomerName" value="Customer Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
 					value="{ 'type': 'sap.ui.model.type.DateInterval', 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3Start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3End' } ] }"/>

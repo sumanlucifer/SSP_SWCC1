@@ -21,7 +21,13 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Billing/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-			
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
@@ -31,15 +37,23 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Company Code"
-					selectedKey="{/AccountsReceivable/Billing/Header/CompanyCode}" items="{/CompanyF4/}">
-					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>CustomerCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Customer Code"
-					selectedKey="{/AccountsReceivable/Billing/Header/Customer}" items="{/CustomerCodef4/}">
-					<core:Item key="{Customer}" text="{Customer} - {CustomerName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/F_Mmim_Customer_Vh-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/"
+					width="100%" placeholder="Enter customer code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/customercodeF4/}">
+					<customData>
+						<core:CustomData key="Customer" value="Customer"/>
+						<core:CustomData key="CustomerName" value="Customer Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
 					value="{ 'type': 'sap.ui.model.type.DateInterval', 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3Start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3End' } ] }"/>

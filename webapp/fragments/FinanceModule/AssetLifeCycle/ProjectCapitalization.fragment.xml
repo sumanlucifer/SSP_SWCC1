@@ -27,18 +27,20 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>Project}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4"
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4-/ProjectNtwrkF4/"
 					width="100%" placeholder="Enter Project" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectF4}">
+					value="{/ProjectNtwrkF4}">
 					<customData>
 						<core:CustomData key="Project" value="Project"/>
 						<core:CustomData key="ProjectDescription" value="Project Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>WBSElement}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4"
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4-/ProjectNtwrkF4/"
 					width="100%" placeholder="Enter WBS Element" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/WBSElementF4}">
+					value="{/ProjectNtwrkF4}">
 					<customData>
 						<core:CustomData key="WBSElement" value="WBS Element"/>
 						<core:CustomData key="WBSDescription" value="WBS Description"/>
@@ -47,9 +49,10 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Network}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4"
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4-/ProjectNtwrkF4/"
 					width="100%" placeholder="Enter Project Network" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectNetworkF4}">
+					value="{/ProjectNtwrkF4}">
 					<customData>
 						<core:CustomData key="ProjectNetwork" value="Project Network"/>
 						<core:CustomData key="ProjectNetworkDescription" value="Project Network Description"/>
@@ -70,8 +73,8 @@
 					</items>
 				</ComboBox>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
