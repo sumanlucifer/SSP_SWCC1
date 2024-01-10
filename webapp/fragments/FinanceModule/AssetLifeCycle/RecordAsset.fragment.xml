@@ -32,10 +32,13 @@
 					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
 				</ComboBox>
 				<Label text="{i18n>AssetClass}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetClass}"
-					selectedKey="{/AssetLifecycle/PerfomAsset/AssetClass}" items="{fiModel>/AssetClass}">
-					<core:Item key="{fiModel>AssetClass}" text="{fiModel>AssetClass} - {fiModel>AssetClass_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_AssetClassStdVH-com.swcc.Template.fragments.FinanceModule.Assestclass-/AssestclassF4/" width="100%"
+					placeholder="Enter Assest Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestclassF4/}">
+					<customData>
+						<core:CustomData key="AssetClass" value="Asset Class"/>
+						<core:CustomData key="AssetClass_Text" value="Asset Class Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>SubNumber}" required="true"/>
 				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetClass}"
 					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetClass}" items="{/AssestSubf4/}">
@@ -54,47 +57,74 @@
 				<Label text="{i18n>CaptitalizedOn}" required="true"/>
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/ControllingArea}" items="{/CostCenterf4/}">
-					<core:Item key="{ControllingArea}" text="{ControllingArea} - {CostCenter}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					<customData>
+						<core:CustomData key="ControllingArea" value="Cost Center"/>
+						<core:CustomData key="CostCenter" value="Cost Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>ProfitCenter}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>CostCenter}" selectedKey="{fiModel>CostCenter}"
-					items="{fiModel>/CostCenter}">
-					<core:Item key="{fiModel>CostCenter}" text="{fiModel>CostCenter} - {fiModel>ProfitCenter}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					<customData>
+						<core:CustomData key="ControllingArea" value="Cost Center"/>
+						<core:CustomData key="CostCenter" value="Cost Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Area}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Area"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group1AssetEvaluationKey/}" items="{/Areaf4/}">
-					<core:Item key="{Group1AssetEvaluationKey}" text="{Group1AssetEvaluationKey} - {Group1AssetEvaluationKey_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group1AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.AreaF4-/AreaF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AreaF4/}">
+					<customData>
+						<core:CustomData key="Group1AssetEvaluationKey" value="Area"/>
+						<core:CustomData key="Group1AssetEvaluationKey_Text" value="Area Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Unit}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Unit"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group2AssetEvaluationKey/}" items="{/Unitf4/}">
-					<core:Item key="{Group2AssetEvaluationKey}" text="{Group2AssetEvaluationKey} - {Group2AssetEvaluationKey_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group2AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.UnitF4-/UnitF4/" width="100%"
+					placeholder="Enter Unit" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UnitF4/}">
+					<customData>
+						<core:CustomData key="Group2AssetEvaluationKey" value="Unit"/>
+						<core:CustomData key="Group2AssetEvaluationKey_Text" value="Unit Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>System}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>System}"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/Group3AssetEvaluationKey}" items="{/Systemf4/}">
-					<core:Item key="{Group3AssetEvaluationKey}" text="{Group3AssetEvaluationKey} - {Group3AssetEvaluationKey_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group3AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.SystemF4-/SystemF4/" width="100%"
+					placeholder="Enter System" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SystemF4/}">
+					<customData>
+						<core:CustomData key="Group3AssetEvaluationKey" value="System"/>
+						<core:CustomData key="Group3AssetEvaluationKey_Text" value="System Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>AssetSuperNumber}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetSuperNumber}"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_SUPER-com.swcc.Template.fragments.FinanceModule.Assestsupernumber-/AssestsupernumberF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestsupernumberF4/}">
+					<customData>
+						<core:CustomData key="AssetSuperNum" value="Asset Super Num"/>
+						<core:CustomData key="AssetSuperText" value="Asset Super Text"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetSuperNumber}"
 					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetSuperNum}" items="{/AssestSuperf4/}">
 					<core:Item key="{AssetSuperNum}" text="{AssetSuperNum} - {AssetSuperText}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>NonTechnicalAsset}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4"
-					width="100%" placeholder="Enter Non Technical Asset" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/NonAssetTechF4}">
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4-/AssestnontechF4/"
+					width="100%" placeholder="Enter Non Technical Asset" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestnontechF4/}">
 					<customData>
-						<core:CustomData key="AssetNonTech" value="Asset NonTech"/>
-						<core:CustomData key="AssetNonTechText" value="Description"/>
+						<core:CustomData key="AssetNonTech" value="Asset Non Tech"/>
+						<core:CustomData key="AssetNonTechText" value="Asset Non Tech Text"/>
 					</customData>
 				</Input>
 			</fm:content>
