@@ -23,10 +23,11 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input id="finDescription" placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/FinancialReviewGeneralClose/FinancialClose/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -53,8 +54,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" value="{/FinancialReviewGeneralClose/FinancialClose/Header/NotifText/}" rows="5" cols="20" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

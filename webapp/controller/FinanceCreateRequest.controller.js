@@ -129,13 +129,13 @@ sap.ui.define([
 						FinancialClose: {
 							Header: {
 								PostPerVariant: "1000",
-								quantity: 1
+								quantity: "1"
 							},
 							ItemData: []
 						},
 						PeriodEndReconcilation: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								GLAccount: ""
 							},
 							ItemData: []
@@ -301,10 +301,7 @@ sap.ui.define([
 					},
 					MarineTransportation: {
 						itemData: []
-					},
-					FinancialClose: {
-						itemData: []
-					},
+					}
 				});
 			},
 
@@ -589,6 +586,11 @@ sap.ui.define([
 					"/AccountsReceivable/Billing/Header/"), this.getModel().getProperty(
 					"/AccountsReceivable/Billing/customItemData/")) : null;
 
+				// Financial Review & General Ledger Close
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateFinancialCLoseRequest(this.getModel().getProperty(
+					"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
+
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
@@ -693,6 +695,25 @@ sap.ui.define([
 				};
 				this.FinanceCreateRequestAPI(oPayload);
 			},
+
+			FinanceCreateFinancialCLoseRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"BUKRS_PP": this.getModel().getProperty("/PostingF4/").split("-")[0]
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
 			FinanceCreateRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
