@@ -213,7 +213,47 @@ sap.ui.define([
 					})
 				);
 			},
+			onFilterValChanged: function (oEvent) {
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: this.getModel().getProperty("/valueHelpKey1"),
+						value: afilterBar[0].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey2"),
+						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey3"),
+						value: afilterBar[2].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey4"),
+						operator: sap.ui.model.FilterOperator.Contains,
+						value: afilterBar[3].getValue(),
+						group: "DynamicF4SearchFilter"
+					}
 
+				];
+				var dynamicFilters = this.getFilters(filters);
+
+				this._filterTable(
+					new Filter({
+						filters: dynamicFilters.DynamicF4SearchFilter,
+						and: false,
+					})
+				);
+			},
+			onClearFilter: function () {
+
+				this._filterTable(
+					new Filter({
+						filters: [],
+						and: false,
+					})
+				);
+			},
 			onValueHelpAfterOpen: function () {
 
 				//   apply filter before value help open 
@@ -266,25 +306,11 @@ sap.ui.define([
 				this.handleVHFilterTable(oFilter, sType);
 			},
 
-			onSearchEquipment: function (oEvent) {
-				var sValue = oEvent.getParameter("value");
-				var oFilter = new sap.ui.model.Filter(
-					[
-						new sap.ui.model.Filter({
-							path: "Equipment",
-							operator: "Contains",
-							value1: sValue.trim()
-						})
-					],
-					false
-				);
-
-				oEvent.getSource().getBinding("items").filter([oFilter]);
-			},
 			PMCreateaRequestAPI: function (oPayload) {
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
 				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
+				oPayload.Equipment = oPayload.Equipment.split("-")[0];
 				oPayload.Username = this.getCurrentUserLoggedIn();
 				oPayload.ServiceHeadertoItem = [];
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
