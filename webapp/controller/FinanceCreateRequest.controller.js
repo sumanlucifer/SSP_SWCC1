@@ -41,6 +41,8 @@ sap.ui.define([
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				this.getModel().setProperty("/FragModel", sFragModel);
 
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
@@ -67,7 +69,8 @@ sap.ui.define([
 			onValueHelpOkPress: function (oEvent) {
 				debugger;
 
-				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
+				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0] ? oEvent.getSource().getAriaDescribedBy()[0] : this.getModel().getProperty(
+					"/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
 				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
