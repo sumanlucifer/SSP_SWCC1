@@ -345,7 +345,7 @@ sap.ui.define([
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_POST_PERIOD_VARIANT/', null,
 						null),
 					//customer code
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/F_Mmim_Customer_Vh/', null,
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Customer_VH/', null,
 						null),
 					//General Leder
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_GeneralLedgerAccountVH/', null,
@@ -423,7 +423,7 @@ sap.ui.define([
 				var sYear = oEve.getSource().getValue();
 			},
 			buildResponselist: function (values) {
-				debugger;
+
 				this.getModel().setProperty("/busy", false);
 				// 			Company F4 type response
 				var aCompanyF4Data = values[0].value.results;
@@ -536,7 +536,6 @@ sap.ui.define([
 				];
 				var dynamicFilters = this.getFilters(filters);
 
-				debugger;
 				// Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callCommonFinanceSearchRequest("/PettyInvoicesSet/",
 					"GET", dynamicFilters.ManageRecordInvoiceFilter, null,
@@ -562,7 +561,7 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), operation, Entity, null, Filters)
 					.then(function (oResponse) {
-						debugger;
+
 						this.getModel().setProperty(`${oModelSet}`, oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
@@ -607,7 +606,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								PostingNumber: aItem.PostingNo,
+								PostingNumber: items.PostingNo,
 
 							};
 						}
@@ -632,7 +631,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								PostingNumber: aItem.PoNo,
+								PostingNumber: items.PoNo,
 
 							};
 						}
@@ -658,7 +657,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								PostingNumber: aItem.PoNo,
+								PostingNumber: items.PoNo,
 
 							};
 						}
@@ -683,7 +682,8 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								VBELN: aItem.InvoiceNo,
+								BUDAT: items.PostingDate,
+								VBELN: items.InvoiceNo
 
 							};
 						}

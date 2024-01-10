@@ -85,9 +85,9 @@
 			<ToolbarSpacer/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/AccountsReceivable/Manageandprocess/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
+			<Table mode="MultiSelect" selectionChange="onTableSelectionChange" items="{path : '/AccountsReceivable/Manageandprocess/itemData'}"
+				sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5"
+				growingScrollToLoad="true" growing="true" fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="Invoice Number"/>
