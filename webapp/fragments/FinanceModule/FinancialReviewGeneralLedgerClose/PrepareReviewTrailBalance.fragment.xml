@@ -28,43 +28,62 @@
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>ChartofAccount}"
-					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/CompanyCode/}" items="{/CompanyF4/}">
-					<core:Item key="{CompanyCode}" text="{CompanyCode} - {CompanyCodeName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>ChartofAccount}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="{i18n>ChartofAccount}"
-					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/ChartOfAccounts/}" items="{/ChartofAccountf4/}">
-					<core:Item key="{ChartOfAccounts}" text="{ChartOfAccounts} - {ChartOfAccounts_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ChartOfAccountsStdVH-com.swcc.Template.fragments.FinanceModule.ChartofaccountF4-/ChartofaccountF4/"
+					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ChartofaccountF4/}">
+					<customData>
+						<core:CustomData key="ChartOfAccounts" value="Chart of Account"/>
+						<core:CustomData key="ChartOfAccounts_Text" value="Chart of Account Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>GLAccount}" required="false"/>
-				<Label text="{i18n>GLAccount}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"
-					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/GLAccount/}" items="{/GeneralLedgerf4/}">
-					<core:Item key="{CompanyCode}" text="{GLAccount}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
+					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/GlaccountF4/}">
+					<customData>
+						<core:CustomData key="GLAccount" value="GL Account Code"/>
+						<core:CustomData key="GLAccountName" value="GL Account Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="" change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>CurrencyType}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Currency Type"
-					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/CurrencyRole/}" items="{/CurrencyTypef4/}">
-					<core:Item key="{CurrencyRole}" text="{CurrencyRole} - {CurrencyRole_Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_CurrencyTypeAndValuationView-com.swcc.Template.fragments.FinanceModule.CurrencytypeF4-/CurrencytypeF4/"
+					width="100%" placeholder="Enter Currency type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CurrencytypeF4/}">
+					<customData>
+						<core:CustomData key="CurrencyRole" value="Currency role"/>
+						<core:CustomData key="CurrencyRole_Text" value="Currency type"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Ledger}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select Ledger Type"
-					selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Ledger/}" items="{/LedgerTypef4/}">
-					<core:Item key="{Ledger}" text="{Ledger} - {Ledger_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_LedgerStdVH-com.swcc.Template.fragments.FinanceModule.LedgerF4-/LedgerF4/" width="100%"
+					placeholder="Enter Ledger" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/LedgerF4/}">
+					<customData>
+						<core:CustomData key="Ledger" value="Ledger code"/>
+						<core:CustomData key="Ledger_Text" value="Ledger Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>ReportingPeriod}" required="true"/>
 				<ComboBox id="Report1" width="100%" enabled="true" valueState="None" placeholder="From">
 					<items>
