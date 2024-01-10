@@ -46,7 +46,7 @@
 				<Label text="{i18n>equipment}"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_EQUIPMENTVH" id="_com.swcc.Template.fragments.PMModule.EquipmentF4_"
 					enabled="{= ${/PMCreateRequest/Header/Plant/} !== undefined ? true : false }" width="100%" placeholder="Enter Equipment"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}">
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}">
 					<customData>
 						<core:CustomData key="Equipment" value="Equipment"/>
 						<core:CustomData key="EquipmentName" value="Equipment Name"/>
