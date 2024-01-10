@@ -19,9 +19,8 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Billing/Header/quantity/}"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AccountsReceivable/Billing/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-			
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
@@ -41,10 +40,10 @@
 					<core:Item key="{Customer}" text="{Customer} - {CustomerName}"/>
 				</ComboBox>
 				<Label text="{i18n>Postingdt}" required="true"/>
-				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
-					value="{ 'type': 'sap.ui.model.type.DateInterval', 'parts': [ { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3Start' }, { 'type': 'sap.ui.model.type.Date', 'path': '/oDRS3End' } ] }"/>
+				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange" value=""/>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
@@ -64,12 +63,12 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<!--<Button icon="sap-icon://add" press=".onAddItemsPress"/>-->
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
+			<Table mode="MultiSelect" selectionChange="onTableSelectionChange" items="{path : '/AccountsReceivable/Billing/itemData'}"
+				sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5"
+				growingScrollToLoad="true" growing="true" fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="Invoice Number"/>
@@ -105,16 +104,16 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Text text="Will shi"/>
-							<Text text="2"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Text text="2"/>
+							<Text text="{InvoiceNo}"/>
+							<Text text="{path:'PostingDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+							<Text text="{Reference}"/>
+							<Text text="{SalesOrderNo}"/>
+							<Text text="{ItemNo}"/>
+							<Text text="{Amount}"/>
+							<Text text="{Currency}"/>
+							<Text text="{Customer}"/>
+							<Text text="{MaterialCode}"/>
+							<Text text="{Quintity}"/>
 						</cells>
 					</ColumnListItem>
 				</items>

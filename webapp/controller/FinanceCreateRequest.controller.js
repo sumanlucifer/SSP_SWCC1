@@ -245,7 +245,7 @@ sap.ui.define([
 								CompanyCode: "1000"
 
 							},
-							ItemData: []
+							itemData: []
 						},
 						Billing: {
 							Header: {
@@ -253,7 +253,7 @@ sap.ui.define([
 								CompanyCode: "1000"
 
 							},
-							ItemData: []
+							itemData: []
 						},
 
 					},
@@ -537,13 +537,24 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 
 				debugger;
+				// Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.callCommonFinanceSearchRequest("/PettyInvoicesSet/",
 					"GET", dynamicFilters.ManageRecordInvoiceFilter, null,
 					"/AccountPayable/RecordProcess/itemData/") : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.callCommonFinanceSearchRequest("/PettyCashSet/",
 					"GET",
 					dynamicFilters.ManagePettyCashFilter, null, "/AccountPayable/ManagePettyCash/itemData/") : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-3" ? this.callCommonFinanceSearchRequest() : null;
+
+				// Accounts Recievable
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.callCommonFinanceSearchRequest(
+					"/AccReceivableBillingSet/",
+					"GET",
+					dynamicFilters.ManagePettyCashFilter, null, "/AccountsReceivable/Billing/itemData/") : null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.callCommonFinanceSearchRequest(
+					"/ArCollectionProcessSet/",
+					"GET",
+					dynamicFilters.ManagePettyCashFilter, null, "/AccountsReceivable/Manageandprocess/itemData/") : null;
 
 			},
 			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
@@ -561,13 +572,22 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
+
+				//   Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRecordInvoiceRequest(this.getModel().getProperty(
 					"/AccountPayable/RecordProcess/Header/"), this.getModel().getProperty("/AccountPayable/RecordProcess/itemData/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
 					.getProperty(
 						"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/itemData/")) : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateRequestPayload() : null;
-				debugger;
+
+				// 	Accounts Recievable	
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.FinanceCreateManageProcessRequest(this.getModel().getProperty(
+					"/AccountsReceivable/Manageandprocess/Header/"), this.getModel().getProperty(
+					"/AccountsReceivable/Manageandprocess/customItemData/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.FinanceCreateBillingRequest(this.getModel().getProperty(
+					"/AccountsReceivable/Billing/Header/"), this.getModel().getProperty(
+					"/AccountsReceivable/Billing/customItemData/")) : null;
 
 			},
 
@@ -621,6 +641,57 @@ sap.ui.define([
 				};
 				this.FinanceCreateRequestAPI(oPayload);
 			},
+
+			FinanceCreateManageProcessRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": oPayloadHeader.CompanyCode
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								PostingNumber: aItem.PoNo,
+
+							};
+						}
+					)
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+			FinanceCreateBillingRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": oPayloadHeader.CompanyCode
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								VBELN: aItem.InvoiceNo,
+
+							};
+						}
+					)
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
 			FinanceCreateRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
@@ -656,22 +727,35 @@ sap.ui.define([
 				var aSelectedData = aSelectedItems.map(function (oItem) {
 					return oItem.getBindingContext().getObject();
 				});
+				if (aSelectedData.length >= 10) {
+					this.onDeselectItems(oTable);
+					MessageBox.error("Please Select only 10 items");
+					return false;
+				}
+				this.setSelectedItemData(aSelectedData);
 
 				// Update the count in the input field
 				this.updateSelectedRowCount(aSelectedData.length);
 			},
+			setSelectedItemData: function (aSelectedData) {
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.getModel().setProperty(
+					"/AccountsReceivable/Manageandprocess/customItemData", aSelectedData) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.getModel().setProperty(
+					"/AccountsReceivable/Billing/customItemData", aSelectedData) : null;
+			},
 			updateSelectedRowCount: function (iCount) {
 				// Assuming you have a model named 'selectedItemsModel'
-				var selectedItemsModel = this.getView().getModel("selectedItemsModel");
+				var selectedItemsModel = this.getModel().setProperty("/itemCount", iCount);
 
-				if (!selectedItemsModel) {
-					selectedItemsModel = new JSONModel();
-					this.getView().setModel(selectedItemsModel, "selectedItemsModel");
-				}
-
-				// Update the count property in the model
-				selectedItemsModel.setProperty("/selectedRowCount", iCount);
 			},
+			onDeselectItems: function (oTable) {
+				var aSelectedItems = oTable.getSelectedItems();
+
+				aSelectedItems.forEach(function (oSelectedItem) {
+					oSelectedItem.setSelected(false); // Deselect each selected item
+				});
+			},
+
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
