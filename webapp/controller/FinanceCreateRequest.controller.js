@@ -337,7 +337,7 @@ sap.ui.define([
 					//   Company Code F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
 						null),
-					//	Cash Journal F4 Data
+					//	Cash Journal F4 data
 					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
 						null),
 					// Plant F4
