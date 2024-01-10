@@ -1,18 +1,18 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
 	<ValueHelpDialog ariaDescribedBy="/PlantF4/" title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
-		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant" descriptionKey="PlantName"
-		class="value-header">
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="AssetNonTech"
+		descriptionKey="AssetNonTechText" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Plant" label="Plant Code" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="AssetNonTech" label="AssetNonTech" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Plant"/>
+							<m:Input name="AssetNonTech"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="PlantName" label="Plant Name" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="AssetNonTechText" label="AssetNonTechText" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="PlantName"/>
+							<m:Input name="AssetNonTechText"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>

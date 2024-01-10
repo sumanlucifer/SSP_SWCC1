@@ -37,10 +37,14 @@
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
 				</ComboBox>-->
 				<Label text="{i18n>PostingPeriod}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Plant"
-					selectedKey="{/FinancialReviewGeneralClose/FinancialClose/Header/PostPerVariant/}" items="{/PostingPeriodF4/}">
-					<core:Item key="{PostPerVariant}" text="{PostPerVariant} - {PostVarDesc}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_POST_PERIOD_VARIANT-com.swcc.Template.fragments.FinanceModule.PostingvariantF4-/PostingF4/"
+					width="100%" placeholder="Enter Posting Period" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PostingF4/}">
+					<customData>
+						<core:CustomData key="PostPerVariant" value="Posting Variant"/>
+						<core:CustomData key="PostVarDesc" value="Posting variant Description"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

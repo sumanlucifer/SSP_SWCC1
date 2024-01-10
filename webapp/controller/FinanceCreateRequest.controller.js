@@ -115,6 +115,7 @@ sap.ui.define([
 					FinanceAppVisible: null,
 					CompanyF4: "1000 - SWCC",
 					PlantF4: "",
+					Assestsupernumber: "",
 					CashJournalF4: "",
 					GLAccountf4: "",
 					ManagePettyCashData: {
