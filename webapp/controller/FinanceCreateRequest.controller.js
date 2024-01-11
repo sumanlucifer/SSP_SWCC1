@@ -113,15 +113,22 @@ sap.ui.define([
 					}
 
 				];
+
 				var dynamicFilters = this.getFilters(filters);
-				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
-					dynamicFilters.GLF4Filter) : [];
-				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
-					dynamicFilters.GLF4Filter) : [];
-				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
-					dynamicFilters.GLF4Filter) : [];
-				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
-					dynamicFilters.GLF4Filter) : [];
+				var aFilter;
+
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
 
 				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
 
@@ -184,7 +191,7 @@ sap.ui.define([
 						},
 						PrepareReviewTrail: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								ChartOfAccounts: "1000",
 								CurrencyRole: 10,
 								Ledger: "0L",
@@ -195,7 +202,7 @@ sap.ui.define([
 						},
 						IssueFinancialStatement: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								ChartOfAccounts: "1000",
 								CurrencyRole: 10,
 								Ledger: "0L",
@@ -207,14 +214,14 @@ sap.ui.define([
 						},
 						MaintainChart: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 							},
 							ItemData: []
 						},
 						IssueGovernment: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								FinancialManagementArea: "1000"
 
 							},
@@ -224,7 +231,7 @@ sap.ui.define([
 					AssetLifecycle: {
 						DepreciationProcess: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -232,7 +239,7 @@ sap.ui.define([
 						},
 						PerfomAsset: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -240,7 +247,7 @@ sap.ui.define([
 						},
 						RecordAsset: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -248,7 +255,7 @@ sap.ui.define([
 						},
 						SaleofAssets: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -256,7 +263,7 @@ sap.ui.define([
 						},
 						RetirementofAssets: {
 							Header: {
-								quantity: 1,
+								quantity: "1",
 								CompanyCode: "1000"
 
 							},
@@ -561,7 +568,7 @@ sap.ui.define([
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "PostingNo",
-						value: this.getModel().getProperty("/CashJornalF4").split("-")[0],
+						value: this.getModel().getProperty("/CashJornalF4") ? this.getModel().getProperty("/CashJornalF4").split("-")[0] : "",
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "CompanyCode",
@@ -636,10 +643,16 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" ? this.FinanceCreatePeriodEndReconclRequest(this.getModel()
 					.getProperty(
-						"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
+						"/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" ? this.FinanceCreatePrepareReviewBalanceRequest(this.getModel()
 					.getProperty(
-						"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
+						"/FinancialReviewGeneralClose/PrepareReviewTrail/Header/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" ? this.FinanceCreateIssueFinancialStmntsRequest(this.getModel()
+					.getProperty(
+						"/FinancialReviewGeneralClose/IssueFinancialStatement/Header/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-5" ? this.FinanceCreateMaintainChartofAccRequest(this.getModel()
+					.getProperty(
+						"/FinancialReviewGeneralClose/MaintainChart/Header/")) : null;
 
 			},
 
@@ -778,7 +791,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
-						"ALLGSTID": oPayloadHeader.Opendate
+						"Allgstid": oPayloadHeader.OpenDate
 					},
 
 					"ServiceHeadertoItem": []
@@ -798,11 +811,10 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
-						"ALLGSTID": oPayloadHeader.Opendate,
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"CURTP": oPayloadHeader.FiscalYear,
-						"KTOPL": oPayloadHeader.FiscalYear,
-						"RLDNR": oPayloadHeader.FiscalYear,
+						"Curtp": this.getModel().getProperty("/CurrencytypeF4/").split("-")[0],
+						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/").split("-")[0],
+						"Rldnr": this.getModel().getProperty("/LedgerF4/").split("-")[0],
 						"BILABMON_FROM": "",
 						"BILABMON_TO": ""
 
@@ -814,6 +826,53 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 
+			FinanceCreateIssueFinancialStmntsRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Curtp": this.getModel().getProperty("/CurrencytypeF4/").split("-")[0],
+						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/").split("-")[0],
+						"Rldnr": this.getModel().getProperty("/LedgerF4/").split("-")[0],
+						"BILABMON_FROM": "",
+						"BILABMON_TO": "",
+						"BILAVMON_FROM": "",
+						"BILAVMON_TO": "",
+						"Dspra": ""
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+			FinanceCreateMaintainChartofAccRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
 			FinanceCreateRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
