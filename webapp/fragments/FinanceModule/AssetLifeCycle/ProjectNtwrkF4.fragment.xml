@@ -1,18 +1,18 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog ariaDescribedBy="/PlantF4/" title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+	<ValueHelpDialog ariaDescribedBy="/PlantF4/" title="Project Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
 		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant" descriptionKey="PlantName"
 		class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Plant" label="Plant Code" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Project" label="Project Code" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Plant"/>
+							<m:Input name="Project"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="PlantName" label="Plant Name" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Project Name" label="Project Name" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="PlantName"/>
+							<m:Input name="Project Name"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
