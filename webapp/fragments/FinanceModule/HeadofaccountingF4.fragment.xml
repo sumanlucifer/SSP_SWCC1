@@ -1,6 +1,7 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Area Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Position_key" descriptionKey="Name" class="value-header">
+	<ValueHelpDialog title="Head of the Accounting Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Position_key" descriptionKey="Name"
+		class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
