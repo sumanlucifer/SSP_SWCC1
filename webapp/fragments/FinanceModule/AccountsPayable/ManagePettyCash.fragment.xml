@@ -51,7 +51,7 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}"
 					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_CASHJOURNALVH-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
 					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CashJornalF4/}">
 					<customData>
