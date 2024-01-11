@@ -43,7 +43,7 @@ sap.ui.define([
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
 				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
 				this.getModel().setProperty("/FragModel", sFragModel);
-
+				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
@@ -104,6 +104,43 @@ sap.ui.define([
 					})
 				);
 			},
+			handleFiltersForValueHelp: function (F4) {
+				debugger;
+				var filters = [{
+						path: "CompanyCode",
+						value: "1000",
+						group: "GLF4Filter"
+					}
+
+				];
+				var dynamicFilters = this.getFilters(filters);
+				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
+					dynamicFilters.GLF4Filter) : [];
+
+				// var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" ? this._getfilterforControl(dynamicFilters.GLF4Filter) : [];
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+
+			},
+			onValueHelpAfterOpen: function () {
+				debugger;
+				//   apply filter before value help open 
+				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
+
+				this._filterTable(aFilter, "Control");
+			},
+			_getfilterforControl: function (aFilter) {
+
+				if ((aFilter.length == 0)) {
+					return [];
+				}
+				return new Filter({
+					filters: aFilter,
+					and: true,
+				});
+
+				//	return dynamicFilters.PlantFilter;
+			},
+
 			_filterTable: function (oFilter, sType) {
 
 				this.handleVHFilterTable(oFilter, sType);
@@ -591,6 +628,10 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-3" ? this.FinanceCreateFinancialCLoseRequest(this.getModel().getProperty(
 					"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
 
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" ? this.FinanceCreatePeriodEndReconclRequest(this.getModel()
+					.getProperty(
+						"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
+
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
@@ -603,7 +644,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": oPayloadHeader.CompanyCode
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -628,7 +669,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": oPayloadHeader.CompanyCode
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -654,7 +695,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": oPayloadHeader.CompanyCode
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -679,14 +720,14 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": oPayloadHeader.CompanyCode
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
 					},
 
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								BUDAT: items.PostingDate,
-								VBELN: items.InvoiceNo
+								budat: items.PostingDate,
+								vbeln: items.InvoiceNo
 
 							};
 						}
@@ -705,7 +746,27 @@ sap.ui.define([
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"BUKRS_PP": this.getModel().getProperty("/PostingF4/").split("-")[0]
+						"BukrsPp": this.getModel().getProperty("/PostingF4/").split("-")[0]
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
+			FinanceCreatePeriodEndReconclRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"ALLGSTID": oPayloadHeader.Opendate
 					},
 
 					"ServiceHeadertoItem": []
