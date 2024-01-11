@@ -36,8 +36,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN" id="_com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4_" width="100%"
-					placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SubNumberf4}">
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
 					<customData>
 						<core:CustomData key="SubNumber" value="SubNumber"/>
 						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>

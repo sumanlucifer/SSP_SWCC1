@@ -44,10 +44,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>SubNumber}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetClass}"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetClass}" items="{/AssestSubf4/}">
-					<core:Item key="{AssetClass}" text="{AssetClass} - {AssetClass_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>Description}" required="false"/>

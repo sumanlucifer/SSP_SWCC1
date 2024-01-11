@@ -27,10 +27,17 @@
 				<Label text="{i18n>FinancialYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange" class=""/>
 				<Label text="{i18n>FMAREA}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select FM Area"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_FinMgmtAreaStdVH-com.swcc.Template.fragments.FinanceModule.FmareaF4-/FmareaF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/FmareaF4}">
+					<customData>
+						<core:CustomData key="FinancialManagementArea" value="FM Area"/>
+						<core:CustomData key="FinancialManagementArea_Text" value="FM Area Name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select FM Area"
 					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/FinancialManagementArea}" items="{/Fmareaf4/}">
 					<core:Item key="{FinancialManagementArea}" text="{FinancialManagementArea} - {FinancialManagementArea_Text}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
 					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
@@ -53,24 +60,55 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>HeadoftheAccountingSection}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_HEAD_AS-com.swcc.Template.fragments.FinanceModule.HeadofaccountingF4-/HeadofaccountingF4/"
+					width="100%" placeholder="Enter Head of Accounting" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/HeadofaccountingF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Head of the Accounting Section"/>
+						<core:CustomData key="Name" value="Head of the Accounting Section"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
 					placeholder="{i18n>HeadoftheAccountingSection}" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
 					items="{/HeadAccountf4/}">
 					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>DirectorofFinancialManagement}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_DRCTOR_FM-com.swcc.Template.fragments.FinanceModule.DirectorfmF4-/DirectorfmF4/" width="100%"
+					placeholder="Enter Director of Financial Management" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/DirectorfmF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Director of FM"/>
+						<core:CustomData key="Name" value="Director of FM Name"/>
+					</customData>
+				</Input>
+				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
 					placeholder="DirectorofFinancialManagement" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
 					items="{/DirectorFinancef4/}">
 					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>FinancialAuditor}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>FinancialAuditor}"
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Financial_Auditor-com.swcc.Template.fragments.FinanceModule.FinancialauditorF4-/FinancialauditorF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/FinancialauditorF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Financial Auditor"/>
+						<core:CustomData key="Name" value="Financial Auditor Name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>FinancialAuditor}"
 					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}" items="{/FinancialAuditorf4/}">
 					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Authority}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Authority-com.swcc.Template.fragments.FinanceModule.AuthorityF4-/AuthorityF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AuthorityF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Authority"/>
+						<core:CustomData key="Name" value="Authority Name"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
