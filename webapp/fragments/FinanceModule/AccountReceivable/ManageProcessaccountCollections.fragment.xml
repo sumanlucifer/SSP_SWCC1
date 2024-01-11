@@ -34,7 +34,8 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountsReceivable/Manageandprocess/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<!--<Input required="true" width="100%" value="1000"/>-->
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
@@ -69,7 +70,7 @@
 				</Input>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
-					value=""/>
+					value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
@@ -80,8 +81,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/AccountsReceivable/Manageandprocess/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

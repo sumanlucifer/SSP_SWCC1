@@ -28,7 +28,7 @@ sap.ui.define([
 				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
 				// this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
-				this.callDropDownService();
+				//	this.callDropDownService();
 
 			},
 			onValueHelpRequest: function (oEve) {
@@ -116,8 +116,13 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
 					dynamicFilters.GLF4Filter) : [];
+				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
+					dynamicFilters.GLF4Filter) : [];
+				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
+					dynamicFilters.GLF4Filter) : [];
+				var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/" ? this._getfilterforControl(
+					dynamicFilters.GLF4Filter) : [];
 
-				// var aFilter = this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" ? this._getfilterforControl(dynamicFilters.GLF4Filter) : [];
 				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
 
 			},
@@ -150,7 +155,7 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					FinanceAppVisible: null,
-					CompanyF4: "1000 - SWCC",
+					CompanycodeF4: "1000- SWCC",
 					PlantF4: "",
 					Assestsupernumber: "",
 					CashJournalF4: "",
@@ -556,7 +561,7 @@ sap.ui.define([
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "PostingNo",
-						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/CashJournalKey"),
+						value: this.getModel().getProperty("/CashJornalF4").split("-")[0],
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "CompanyCode",
@@ -609,10 +614,11 @@ sap.ui.define([
 
 				//   Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRecordInvoiceRequest(this.getModel().getProperty(
-					"/AccountPayable/RecordProcess/Header/"), this.getModel().getProperty("/AccountPayable/RecordProcess/itemData/")) : null;
+					"/AccountPayable/RecordProcess/Header/"), this.getModel().getProperty("/AccountPayable/RecordProcess/customItemData/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
-					.getProperty(
-						"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/itemData/")) : null;
+						.getProperty(
+							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
+					null;
 
 				// 	Accounts Recievable	
 
@@ -629,6 +635,9 @@ sap.ui.define([
 					"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" ? this.FinanceCreatePeriodEndReconclRequest(this.getModel()
+					.getProperty(
+						"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" ? this.FinanceCreatePrepareReviewBalanceRequest(this.getModel()
 					.getProperty(
 						"/FinancialReviewGeneralClose/FinancialClose/Header/")) : null;
 
@@ -651,6 +660,7 @@ sap.ui.define([
 						function (items) {
 							return {
 								PostingNumber: items.PostingNo,
+								Budat: items.PostingDate,
 
 							};
 						}
@@ -675,7 +685,8 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								PostingNumber: items.PoNo,
+								Belnr: items.InvoiceNo,
+								Budat: items.PostingDate,
 
 							};
 						}
@@ -701,7 +712,8 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								PostingNumber: items.PoNo,
+								Vbeln: items.InvoiceNo,
+								Budat: items.PostingDate,
 
 							};
 						}
@@ -726,8 +738,8 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								budat: items.PostingDate,
-								vbeln: items.InvoiceNo
+								Vbeln: items.InvoiceNo,
+								Budat: items.PostingDate,
 
 							};
 						}
@@ -767,6 +779,33 @@ sap.ui.define([
 						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
 						"ALLGSTID": oPayloadHeader.Opendate
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
+			FinanceCreatePrepareReviewBalanceRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"ALLGSTID": oPayloadHeader.Opendate,
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"CURTP": oPayloadHeader.FiscalYear,
+						"KTOPL": oPayloadHeader.FiscalYear,
+						"RLDNR": oPayloadHeader.FiscalYear,
+						"BILABMON_FROM": "",
+						"BILABMON_TO": ""
+
 					},
 
 					"ServiceHeadertoItem": []
@@ -821,10 +860,17 @@ sap.ui.define([
 				this.updateSelectedRowCount(aSelectedData.length);
 			},
 			setSelectedItemData: function (aSelectedData) {
+				// Accounts Payable
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
+					"/AccountPayable/RecordProcess/customItemData", aSelectedData) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
+					"/AccountPayable/ManagePettyCash/customItemData", aSelectedData) : null;
+				// Accounts Recievable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.getModel().setProperty(
 					"/AccountsReceivable/Manageandprocess/customItemData", aSelectedData) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.getModel().setProperty(
 					"/AccountsReceivable/Billing/customItemData", aSelectedData) : null;
+
 			},
 			updateSelectedRowCount: function (iCount) {
 				// Assuming you have a model named 'selectedItemsModel'
