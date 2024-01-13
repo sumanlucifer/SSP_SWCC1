@@ -28,7 +28,7 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange" class=""/>
 				<Label text="{i18n>FMAREA}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_FinMgmtAreaStdVH-com.swcc.Template.fragments.FinanceModule.FmareaF4-/FmareaF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/FmareaF4}">
+					placeholder="Enter FM Area" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/FmareaF4}">
 					<customData>
 						<core:CustomData key="FinancialManagementArea" value="FM Area"/>
 						<core:CustomData key="FinancialManagementArea_Text" value="FM Area Name"/>
@@ -39,8 +39,8 @@
 					<core:Item key="{FinancialManagementArea}" text="{FinancialManagementArea} - {FinancialManagementArea_Text}"/>
 				</ComboBox>-->
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -90,7 +90,7 @@
 				<Label text="{i18n>FinancialAuditor}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Financial_Auditor-com.swcc.Template.fragments.FinanceModule.FinancialauditorF4-/FinancialauditorF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Enter Financial Auditor" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/FinancialauditorF4}">
 					<customData>
 						<core:CustomData key="Position_key" value="Financial Auditor"/>
@@ -103,7 +103,7 @@
 				</ComboBox>-->
 				<Label text="{i18n>Authority}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Authority-com.swcc.Template.fragments.FinanceModule.AuthorityF4-/AuthorityF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AuthorityF4}">
+					placeholder="Enter Authority" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AuthorityF4}">
 					<customData>
 						<core:CustomData key="Position_key" value="Authority"/>
 						<core:CustomData key="Name" value="Authority Name"/>

@@ -51,12 +51,12 @@
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}"
 					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_CASHJOURNALVH-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_CASHJOURNALVH1-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
+					width="100%" placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CashJornalF4/}">
 					<customData>
-						<core:CustomData key="CompanyCode" value="Company Code"/>
-						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+						<core:CustomData key="FiscalYear" value="Fiscal Year"/>
+						<core:CustomData key="CashJournalDocumentInternalID" value="Cash Journal Document Internal ID"/>
 					</customData>
 				</Input>
 			</fm:content>

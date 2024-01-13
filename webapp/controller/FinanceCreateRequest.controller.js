@@ -28,7 +28,6 @@ sap.ui.define([
 				this.getModel().setProperty("/FinanceAppVisible/", sServiceProduct);
 				// this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
-				//	this.callDropDownService();
 
 			},
 			onValueHelpRequest: function (oEve) {
@@ -110,6 +109,11 @@ sap.ui.define([
 						path: "CompanyCode",
 						value: "1000",
 						group: "GLF4Filter"
+					}, {
+						path: "FiscalYear",
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
+							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						group: "CashJrnlF4Filter"
 					}
 
 				];
@@ -125,6 +129,8 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -142,7 +148,7 @@ sap.ui.define([
 			},
 			_getfilterforControl: function (aFilter) {
 
-				if ((aFilter.length == 0)) {
+				if (!aFilter) {
 					return [];
 				}
 				return new Filter({
@@ -360,201 +366,9 @@ sap.ui.define([
 
 			},
 
-			callDropDownService: function () {
-				this.getModel().setProperty("/busy", true);
-				var filters = [{
-						path: "Country",
-						value: "SA",
-						group: "CountryFilter"
-					}, {
-						path: "CompanyCode",
-						value: "1000",
-						group: "CompanyFilter"
-					}, {
-						path: "LanguageCode",
-						value: "EN",
-						group: "LanguageFilter"
-					}
-
-				];
-
-				var dynamicFilters = this.getFilters(filters);
-				Promise.allSettled([
-					//   Company Code F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/C_CompanyCodeVHTemp/', null,
-						null),
-					//	Cash Journal F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDSV_CASHJOURNALVH/', null,
-						null),
-					// Plant F4
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
-						null),
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_POST_PERIOD_VARIANT/', null,
-						null),
-					//customer code
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Customer_VH/', null,
-						null),
-					//General Leder
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_GeneralLedgerAccountVH/', null,
-						dynamicFilters.CompanyFilter),
-					//Chart of accounts
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ChartOfAccountsStdVH/', null,
-						null),
-					//currency type
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CurrencyTypeAndValuationView/', null,
-						null),
-					//Ledger type 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LedgerStdVH/', null,
-						null),
-					//Language 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_LanguageText/', null,
-						dynamicFilters.LanguageFilter),
-					//Financial statment version  
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/C_FinancialStatementVersion/', null,
-						null),
-					//FM Area 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_FinMgmtAreaStdVH/', null,
-						null),
-					// Head of accounting section 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_HEAD_AS/', null,
-						null),
-					// Director of Finance  
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_DRCTOR_FM/', null,
-						null),
-					// Financial Auditor 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_Financial_Auditor/', null,
-						null),
-					//Accounting Principal  	
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_AccountingPrincipleText/', null,
-						null),
-					//cost center 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_CostCenterDetail/', null,
-						null),
-					//Deprication area
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_DeprAreaForLedgerVH/', null,
-						null),
-					//Area
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group1AssetEvaluationKey/', null,
-						null),
-					//Unit
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group2AssetEvaluationKey/', null,
-						null),
-					//System
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_Group3AssetEvaluationKey/', null,
-						null),
-					//Assest Class
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_AssetClassStdVH/', null,
-						null),
-					//Sub Number
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/Faa_Sil_Anla_Relevant/', null,
-						null),
-					//Super Number
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_SUPER/', null,
-						null),
-					//Non Technical Assest
-					// 	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_NONTECH_ASSET/', null,
-					// 		null),
-					//Project captilization
-					// 	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/I_ProjectNtwkValueHelp/', null,
-					// 		null),
-					//Assest Sub number
-					// this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), 'GET', '/ZCDS_ASSET_MAIN/', null,
-					// 	null),
-
-				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
-
-			},
-
 			handleManagePettyCashDateChange: function (oEve) {
 				// debugger;
 				var sYear = oEve.getSource().getValue();
-			},
-			buildResponselist: function (values) {
-
-				this.getModel().setProperty("/busy", false);
-				// 			Company F4 type response
-				var aCompanyF4Data = values[0].value.results;
-				this.getModel().setProperty("/CompanyF4/", aCompanyF4Data);
-				// 			Cash Journal F4 type response
-				//var aCashJournalF4Data = values[1].value.results;
-				var aCashJournalF4Data = values[1].status === "rejected" ? null : values[1].value.results;
-				this.getModel().setProperty("/CashJournalF4/", aCashJournalF4Data);
-				//     Plant F4 Valuehelp
-				var aPlantF4Data = values[2].value.results;
-				this.getModel().setProperty("/PlantF4ytt/", null);
-				//posting period f4 
-				var aPostingPeriodF4Data = values[3].value.results;
-				this.getModel().setProperty("/PostingPeriodF4/", aPostingPeriodF4Data);
-				//customer code f4
-				var aCustomerCodeF4Data = values[4].value.results;
-				this.getModel().setProperty("/CustomerCodef4/", aCustomerCodeF4Data);
-				//general ledger
-				var aGeneralLedgerF4Data = values[5].value.results;
-				this.getModel().setProperty("/GeneralLedgerf4/", aGeneralLedgerF4Data);
-				//chart of accounts
-				var aChartofAccountF4Data = values[6].value.results;
-				this.getModel().setProperty("/ChartofAccountf4/", aChartofAccountF4Data);
-				//currency type
-				var aCurrencyTypeF4Data = values[7].value.results;
-				this.getModel().setProperty("/CurrencyTypef4/", aCurrencyTypeF4Data);
-				//Ledger Type
-				var aLedgerTypeF4Data = values[8].value.results;
-				this.getModel().setProperty("/LedgerTypef4/", aLedgerTypeF4Data);
-				//Language Type
-				var aLanuguageF4Data = values[9].value.results;
-				this.getModel().setProperty("/Languagef4/", aLanuguageF4Data);
-				//Financial Statement version
-				var aFinancialStatementF4Data = values[10].value.results;
-				this.getModel().setProperty("/FinancialStatementf4/", aFinancialStatementF4Data);
-				//FM Area
-				var aFmareaF4Data = values[11].value.results;
-				this.getModel().setProperty("/Fmareaf4/", aFmareaF4Data);
-				//Head of accounting
-				var aHeadAccountF4Data = values[12].value.results;
-				this.getModel().setProperty("/HeadAccountf4/", aHeadAccountF4Data);
-				//Director of finance
-				var aDirectorFinanceF4Data = values[13].value.results;
-				this.getModel().setProperty("/DirectorFinancef4/", aDirectorFinanceF4Data);
-				//Financial Auditor
-				var aFinancialAuditorF4Data = values[14].value.results;
-				this.getModel().setProperty("/FinancialAuditorf4/", aFinancialAuditorF4Data);
-				//Accounting Principal
-				var aAccouningPrincipalF4Data = values[15].value.results;
-				this.getModel().setProperty("/AccountingPrincipalf4/", aAccouningPrincipalF4Data);
-				//Cost center
-				var aCostCenterF4Data = values[16].value.results;
-				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
-				//Deprication Area
-				var aDepricationAreaF4Data = values[17].value.results;
-				this.getModel().setProperty("/DepricationAreaf4/", aDepricationAreaF4Data);
-				//Area
-				var aAreaF4Data = values[18].value.results;
-				this.getModel().setProperty("/Areaf4/", aAreaF4Data);
-				//Unit
-				var aUnitF4Data = values[19].value.results;
-				this.getModel().setProperty("/Unitf4/", aUnitF4Data);
-				//System
-				var aSystemF4Data = values[20].value.results;
-				this.getModel().setProperty("/Systemf4/", aSystemF4Data);
-				//assestclass
-				var aAssestClassF4Data = values[21].value.results;
-				this.getModel().setProperty("/AssestClassf4/", aAssestClassF4Data);
-				//assestsub
-				var aAssestSubF4Data = values[22].value.results;
-				this.getModel().setProperty("/AssestSubf4/", aAssestSubF4Data);
-				//assestsuper
-				var aAssestSuperF4Data = values[23].value.results;
-				this.getModel().setProperty("/AssestSuperf4/", aAssestSuperF4Data);
-				//Non technical assest
-				// var aNontecnicalF4Data = values[24].value.results;
-				// this.getModel().setProperty("/NonTechnicalf4/", aNontecnicalF4Data);
-				//Project captilization
-				// var aProjectCaptialF4Data = values[25].value.results;
-				// this.getModel().setProperty("/ProjectCaptialf4/", aProjectCaptialF4Data);
-				//Assest sub number
-				// var aSubNumberF4Data = values[26].value.results;
-				// this.getModel().setProperty("/SubNumberf4/", aSubNumberF4Data);
-
 			},
 
 			onSearchFinanceRequest: function () {
@@ -841,11 +655,12 @@ sap.ui.define([
 						"Curtp": this.getModel().getProperty("/CurrencytypeF4/").split("-")[0],
 						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/").split("-")[0],
 						"Rldnr": this.getModel().getProperty("/LedgerF4/").split("-")[0],
-						"BILABMON_FROM": "",
-						"BILABMON_TO": "",
-						"BILAVMON_FROM": "",
-						"BILAVMON_TO": "",
-						"Dspra": ""
+						"BilabmonFrom": oPayloadHeader.BilabmonFrom,
+						"BilabmonTo": oPayloadHeader.BilabmonTo,
+						"BilavmonFrom": oPayloadHeader.BilavmonFrom,
+						"BilavmonTo": oPayloadHeader.BilavmonTo,
+						"Versn": this.getModel().getProperty("/FinancialstatmentF4/").split("-")[0],
+						"Dspra": this.getModel().getProperty("/LanguageF4/").split("-")[0]
 
 					},
 
