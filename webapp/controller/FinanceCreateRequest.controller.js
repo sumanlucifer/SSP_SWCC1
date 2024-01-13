@@ -467,6 +467,9 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-5" ? this.FinanceCreateMaintainChartofAccRequest(this.getModel()
 					.getProperty(
 						"/FinancialReviewGeneralClose/MaintainChart/Header/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3004-1" ? this.FinanceCreateIssueGovStatmntRequest(this.getModel()
+					.getProperty(
+						"/FinancialReviewGeneralClose/MaintainChart/Header/")) : null;
 
 			},
 
@@ -680,6 +683,27 @@ sap.ui.define([
 					"ZHeaderExtra": {
 
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+			FinanceCreateIssueGovStatmntRequest: function (oPayloadHeader) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Fikrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"Gjhar": "",
+						"POPER": ""
 
 					},
 
