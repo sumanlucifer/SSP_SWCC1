@@ -21,8 +21,8 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant" id="_com.swcc.Template.fragments.CommonF4.PlantF4_" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -83,8 +83,8 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant" id="_com.swcc.Template.fragments.CommonF4.PlantF4_" width="100%" placeholder="Enter Plant"
-								valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+								placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
 								<customData>
 									<core:CustomData key="Plant" value="Plant"/>
 									<core:CustomData key="PlantName" value="Plant Name"/>
