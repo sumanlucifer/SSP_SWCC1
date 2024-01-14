@@ -19,10 +19,13 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ClasssificationandInventory/DuplicateResolution/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>quantity}" required="true"/>
@@ -55,7 +58,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="Multiselect" items="{path : '/ClasssificationandInventory/DuplicateResolution/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="Multiselect" items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -73,20 +76,21 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+								placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{/MaterialgroupF4/}">
+								<customData>
+									<core:CustomData key="ExternalProductGroup" value="Material group"/>
+									<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+								</customData>
 							</Input>
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="{uom}"/>
-							<Input id="tb-purchasing3" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input value="{Material group name}" enabled="false"/>
+							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+								placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+								<customData>
+									<core:CustomData key="Plant" value="Plant"/>
+									<core:CustomData key="PlantName" value="Plant Name"/>
+								</customData>
 							</Input>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>

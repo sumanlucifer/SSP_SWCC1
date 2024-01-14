@@ -33,7 +33,7 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 			},
 			onValueHelpRequest: function (oEve) {
-				debugger;
+
 				// this._oMultiInput = this.getView().byId("multiInput");
 
 				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
@@ -42,7 +42,9 @@ sap.ui.define([
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
-
+				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				this.getModel().setProperty("/FragModel", sFragModel);
+				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
@@ -68,7 +70,7 @@ sap.ui.define([
 			onValueHelpOkPress: function (oEvent) {
 				debugger;
 
-				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
+				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
 				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
@@ -103,6 +105,62 @@ sap.ui.define([
 					})
 				);
 			},
+			handleFiltersForValueHelp: function (F4) {
+				debugger;
+				var filters = [{
+						path: "CompanyCode",
+						value: "1000",
+						group: "GLF4Filter"
+					}, {
+						path: "FiscalYear",
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
+							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						group: "CashJrnlF4Filter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				var aFilter;
+
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
+
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+
+			},
+			onValueHelpAfterOpen: function () {
+				debugger;
+				//   apply filter before value help open 
+				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
+
+				this._filterTable(aFilter, "Control");
+			},
+			_getfilterforControl: function (aFilter) {
+
+				if (!aFilter) {
+					return [];
+				}
+				return new Filter({
+					filters: aFilter,
+					and: true,
+				});
+
+				//	return dynamicFilters.PlantFilter;
+			},
+
 			_filterTable: function (oFilter, sType) {
 
 				this.handleVHFilterTable(oFilter, sType);

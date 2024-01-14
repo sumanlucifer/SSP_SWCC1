@@ -18,8 +18,8 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4" width="100%" placeholder="Enter Plant"
-					valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -107,27 +107,34 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH" id="_com.swcc.Template.fragments.CommonF4.MaterialF4_" width="100%"
-								placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{MATNR}">
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
 								<customData>
-									<core:CustomData key="Product" value="Material"/>
-									<core:CustomData key="Description" value="Material Name"/>
+									<core:CustomData key="Plant" value="Plant"/>
+									<core:CustomData key="Product" value="Product"/>
 								</customData>
 							</Input>
 							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
 								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>-->
-							<Input placeholder="Enter Description" id="description" value="{/ProcurementAdhoc/MaterialProcurement/itemData/Description}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{/ProcurementAdhoc/MaterialProcurement/itemData/Description}" enabled="false"/>
 							<Input placeholder="QTY" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/MENGE}" showValueHelp=""
 								valueHelpRequest="" liveChange="handleLiveChange"/>
 							<Input placeholder="Enter UOM" id="materialUom" value="{/ProcurementAdhoc/MaterialProcurement/itemData/BaseUnit}" enabled="false"/>
-							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-								selectedKey="{WERKS}" items="{/PlantF4/}">
-								<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-							</ComboBox>
-							<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Purchasing Group"
-								selectedKey="{/ProcurementAdhoc/MaterialProcurement/itemData/Ekgrp/}" items="{/PurchasingGroupf4/}">
-								<core:Item key="{Ekgrp}" text="{Ekgrp} - {Eknam}"/>
-							</ComboBox>
+							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+								placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+								<customData>
+									<core:CustomData key="Plant" value="Plant"/>
+									<core:CustomData key="PlantName" value="Plant Name"/>
+								</customData>
+							</Input>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+								width="100%" placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{/PurchasinggroupF4/}">
+								<customData>
+									<core:CustomData key="Ekgrp" value="Purchasing group"/>
+									<core:CustomData key="Eknam" value="Purchasing group name"/>
+								</customData>
+							</Input>
 							<Input placeholder="Req" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/AFNAM}" showValueHelp=""
 								valueHelpRequest=""/>
 							<Input placeholder="Unit Price" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/UNIT_PRICE}" showValueHelp=""

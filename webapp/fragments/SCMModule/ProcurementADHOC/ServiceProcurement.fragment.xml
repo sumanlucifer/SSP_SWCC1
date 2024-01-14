@@ -19,10 +19,13 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>totalestimatedvalue}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>tenderpre}" required="true"/>
@@ -33,20 +36,39 @@
 				<Label text="{i18n>contractduration}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Project Type"
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" valueState="None" placeholder="Select Project Type"
 					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/ProjectTypef4/}">
 					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>costestimationtype}" required="false"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Cost Estimate Type"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/EstimateTypef4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Technical Evaluation Criteria"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/TechnicalTypef4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>suggestedcompany}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
@@ -58,30 +80,55 @@
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Status"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/RequestStatusf4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>confidentialproject}" required="false"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Confidential Project"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/ConfidentialProjectf4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>sitevisitrequired}" required="false"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Site Visit Required"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/SiteVisitf4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Economic Feasibility"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/EconomicFeasibilityf4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>securityprojectapproval}" required="fasle"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Security Approval"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status/}" items="{/SecurityApprovalf4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>

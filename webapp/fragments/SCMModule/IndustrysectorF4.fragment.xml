@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Key" descriptionKey="Value" class="value-header">
+		<filterBar>
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Industry Sector" label="Industry Sector" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Indsutry Group"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Industry Sector Name" label="Industry Sector Name" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Industry Group Name"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>
