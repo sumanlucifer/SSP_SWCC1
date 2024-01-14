@@ -19,27 +19,45 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ClasssificationandInventory/ChangeRequest/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value=""/>
 				<Label text="{i18n>crtype}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/CRTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
+					placeholder="Enter CR Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CrtypeF4/}">
+					<customData>
+						<core:CustomData key="Key" value="CR Type"/>
+						<core:CustomData key="Value" value="CR Name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/CRf4/}">
 					<core:Item key="{Key}" text="{Key} - {Value}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>Materialtype}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="materialType" valueState="None" placeholder="Select Material"
-					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/MaterialTypef4/}">
-					<core:Item key="{Key}" text="{Key} - {Value}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/MaterialTypeSet-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
+					placeholder="Enter Material Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MaterialtypeF4/}">
+					<customData>
+						<core:CustomData key="Key" value="Material Type"/>
+						<core:CustomData key="Value" value="Material Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Material Group"
-					selectedKey="{/ClasssificationandInventory/ChangeRequest/ExternalProductGroup}" items="{/ExMaterialf4/}">
-					<core:Item key="{ExternalProductGroup}" text="{ExternalProductGroup} - {ExternalProductGroup_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+					placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MaterialgroupF4/}">
+					<customData>
+						<core:CustomData key="ExternalProductGroup" value="Material group"/>
+						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Materialdesc}" required="true"/>
 				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
@@ -50,10 +68,18 @@
 					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>Industrysector}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/IndustrySectorSet-com.swcc.Template.fragments.SCMModule.IndustrysectorF4-/IndustrysectorF4/"
+					width="100%" placeholder="Enter Industry Sector" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/IndustrysectorF4/}">
+					<customData>
+						<core:CustomData key="Key" value="Industry Sector"/>
+						<core:CustomData key="Value" value="Industry Sector Name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
 					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/IndustrialSectorf4/}">
 					<core:Item key="{Key}" text="{Key} - {Value}"/>
-				</ComboBox>
+				</ComboBox>-->
 				<!--<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{/ProductCollection}">
 					<suggestionItems>
@@ -63,23 +89,32 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
-				<Input id="baseuom" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.BaseunitF4-/BaseunitF4/" width="100%"
+					placeholder="Enter Industry Sector" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/BaseunitF4/}">
+					<customData>
+						<core:CustomData key="Product" value="Product"/>
+						<core:CustomData key="BaseUnit" value="Base Unit"/>
+					</customData>
 				</Input>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
-				<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="externalMaterialGroup" valueState="None"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+					placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MaterialgroupF4/}">
+					<customData>
+						<core:CustomData key="ExternalProductGroup" value="Material group"/>
+						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="externalMaterialGroup" valueState="None"
 					placeholder="External Material Group" selectedKey="{crModel>ExternalProductGroup}" items="{crModel>/externalMaterialGroup}">
 					<core:Item key="{crModel>ExternalProductGroup}" text="{crModel>ExternalProductGroup} - {crModel>ExternalProductGroup_Text}"/>
-				</ComboBox>
+				</ComboBox>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
@@ -92,17 +127,18 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<fm:SimpleForm id="ssp-changerequest2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>class}" required="true"/>
-				<Input id="classval" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_CLASS-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
+					placeholder="Enter Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClassF4/}">
+					<customData>
+						<core:CustomData key="Class" value="Class"/>
+						<core:CustomData key="conv_char" value="Text"/>
+					</customData>
 				</Input>
-				<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<!--<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 			</fm:content>
 		</fm:SimpleForm>
 		<Table id="totalamount2" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
