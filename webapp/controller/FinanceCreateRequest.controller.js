@@ -477,7 +477,7 @@ sap.ui.define([
 						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-2" ? this.FinancePerformAsstInventoryRequest(this.getModel()
 					.getProperty(
-						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
+						"/AssetLifecycle/PerfomAsset/Header/")) : null;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" ? this.FinanceRecordAssetRequest(this.getModel()
 					.getProperty(
 						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
@@ -504,7 +504,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -610,7 +610,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -648,7 +648,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -678,18 +678,19 @@ sap.ui.define([
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Saknr": this.getModel().getProperty("/GlaccountF4/").split("-")[0],
-						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"Saknr": this.getModel().getProperty("/GlaccountF4/") ? this.getModel().getProperty("/GlaccountF4/").split("-")[0] : "",
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"Gjahr": oPayloadHeader.FiscalYear,
-						"Curtp": this.getModel().getProperty("/CurrencytypeF4/").split("-")[0],
-						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/").split("-")[0],
-						"Rldnr": this.getModel().getProperty("/LedgerF4/").split("-")[0],
+						"Curtp": this.getModel().getProperty("/CurrencytypeF4/") ? this.getModel().getProperty("/CurrencytypeF4/").split("-")[0] : "",
+						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/") ? this.getModel().getProperty("/ChartofaccountF4/").split("-")[0] : "",
+						"Rldnr": this.getModel().getProperty("/LedgerF4/") ? this.getModel().getProperty("/LedgerF4/").split("-")[0] : "",
 						"BilabmonFrom": oPayloadHeader.BilabmonFrom,
 						"BilabmonTo": oPayloadHeader.BilabmonTo,
 						"BilavmonFrom": oPayloadHeader.BilavmonFrom,
 						"BilavmonTo": oPayloadHeader.BilavmonTo,
-						"Versn": this.getModel().getProperty("/FinancialstatmentF4/").split("-")[0],
-						"Dspra": this.getModel().getProperty("/LanguageF4/").split("-")[0]
+						"Versn": this.getModel().getProperty("/FinancialstatmentF4/") ? this.getModel().getProperty("/FinancialstatmentF4/").split("-")[
+							0] : "",
+						"Dspra": this.getModel().getProperty("/LanguageF4/") ? this.getModel().getProperty("/LanguageF4/").split("-")[0] : ""
 
 					},
 
@@ -703,12 +704,12 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Bukrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0]
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : ""
 
 					},
 
@@ -722,12 +723,12 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Fikrs": this.getModel().getProperty("/CompanycodeF4/").split("-")[0],
+						"Fikrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"Gjhar": "",
 						"POPER": ""
 
@@ -752,8 +753,8 @@ sap.ui.define([
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
 							"-")[0] : "",
-						"Gjhar": oPayloadHeader.FiscalYear,
-						"Poper": ""
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Poper": oPayloadHeader.Poper
 
 					},
 
@@ -774,10 +775,10 @@ sap.ui.define([
 					"ZHeaderExtra": {
 
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
-						"Kostl": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
+						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split(
 							"-")[0] : "",
-						"Brdatu": oPayloadHeader.FiscalYear,
-						"Afabe1": ""
+						"Brdatu": this.handleOdataDateFormat(oPayloadHeader.Brdatu),
+						"Afabe1": this.getModel().getProperty("/DepreciationF4/") ? this.getModel().getProperty("/DepreciationF4/").split("-")[0] : "",
 
 					},
 
@@ -902,7 +903,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
 					"MaterialQty": oPayloadHeader.quantity,
-					"Plant": this.getModel().getProperty("/PlantF4/").split("-")[0],
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {

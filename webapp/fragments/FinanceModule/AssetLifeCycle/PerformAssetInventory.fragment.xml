@@ -20,7 +20,8 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/PerfomAsset/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/PerfomAsset/Header/Descript/}"
+					valueHelpRequest=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
@@ -54,8 +55,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>ReportingDate}" required="true"/>
-				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
-					change="handleChange" class=""/>
+				<DatePicker value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="Enter Date" change="handleChange" class="sapUiTinyMarginBegin"/>
 				<Label text="{i18n>DepreciationArea}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/"
 					width="100%" placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"

@@ -19,9 +19,10 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/quantity/}"/>
+				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/DepreciationProcess/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/DepreciationProcess/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
@@ -57,9 +58,10 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>Postingprd}" required="true"/>
-				<ComboBox width="100%" enabled="true" valueState="None" placeholder="From">
+				<ComboBox selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Poper/}" width="100%" enabled="true" valueState="None" placeholder="From">
 					<items>
 						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
