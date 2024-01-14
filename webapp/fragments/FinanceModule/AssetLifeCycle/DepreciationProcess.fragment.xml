@@ -57,30 +57,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date', 'formatOptions': { 'pattern': 'yyyy' } }"
-					change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange" class=""/>
 				<Label text="{i18n>Postingprd}" required="true"/>
 				<ComboBox width="100%" enabled="true" valueState="None" placeholder="From">
-					<items>
-						<core:Item key="choose" text="Choose Period"/>
-						<core:Item key="01" text="01"/>
-						<core:Item key="02" text="02"/>
-						<core:Item key="03" text="03"/>
-						<core:Item key="04" text="04"/>
-						<core:Item key="05" text="05"/>
-						<core:Item key="06" text="06"/>
-						<core:Item key="07" text="07"/>
-						<core:Item key="08" text="08"/>
-						<core:Item key="09" text="09"/>
-						<core:Item key="10" text="10"/>
-						<core:Item key="11" text="11"/>
-						<core:Item key="12" text="12"/>
-						<core:Item key="13" text="13"/>
-						<core:Item key="14" text="14"/>
-						<core:Item key="15" text="15"/>
-					</items>
-				</ComboBox>
-				<ComboBox width="100%" enabled="true" valueState="None" placeholder="To">
 					<items>
 						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
