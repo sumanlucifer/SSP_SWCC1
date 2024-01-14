@@ -487,7 +487,7 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-4" ? this.FinanceTransferofAssetRequest(this.getModel()
 					.getProperty(
-						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
+						"/AssetLifecycle/TransferofAssets/Header/")) : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-5" ? this.FinanceProjectCapitalizationRequest(this.getModel()
 					.getProperty(
@@ -840,7 +840,7 @@ sap.ui.define([
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Erlbt": oPayloadHeader.Erlbt,
 						"Anln1": oPayloadHeader.Anln1,
-						"bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
 							"-")[0] : "",
 						"Afabe1": this.getModel().getProperty("/DepreciationF4/") ? this.getModel().getProperty("/DepreciationF4/").split(
@@ -867,7 +867,7 @@ sap.ui.define([
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Anln1": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split("-")[0] : "",
-						"bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"Afabe1": this.getModel().getProperty("/DepreciationF4/") ? this.getModel().getProperty("/DepreciationF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
 							"-")[0] : "",
@@ -890,10 +890,10 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"bukrs": "",
-						"Kostl": "",
-						"Anln1": "",
-						"Anln2": ""
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Anln1": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split("-")[0] : "",
+						"Anln2": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split("-")[0] : ""
 
 					},
 
