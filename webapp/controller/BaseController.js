@@ -29,6 +29,17 @@ sap.ui.define([
 				return sLoginID;
 			}
 		},
+		getCurrentLogInUserName: function () {
+			debugger;
+			try {
+				var sUserName = new sap.ushell.services.UserInfo().getUser().getFirstName();;
+				return sUserName;
+			} catch (error) {
+				var sUserName = "User";
+				// Handle the error gracefully, such as using a default value or logging the error
+				return sUserName;
+			}
+		},
 		// 	___________________________________________________Dynamic Valuehelp Method_________________________________________________________
 		onHandleValueHelpRequest: function (oModel, aColumns, sPath, sFragName) {
 			this._oMultiInput = this.getView().byId("multiInput");
@@ -338,6 +349,27 @@ sap.ui.define([
 			// Create a string in HH:mm:ss format
 			var formattedTime = formattedHours + ':' + formattedMinutes + ':' + formattedSeconds;
 			return formattedTime;
+
+		},
+
+		handleOdataDateFormat: function (sDate) {
+			// Parse the date string
+			var dateString = sDate;
+			var parts = dateString.split('/');
+			var day = parseInt(parts[0], 10);
+			var month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+			var year = parseInt(parts[2], 10);
+
+			// Create a Date object with the parsed date
+			var myDate = new Date(year, month, day);
+
+			// Get the current time
+			var currentTime = new Date();
+
+			// Set the time part of myDate to the current time
+			myDate.setHours(currentTime.getHours(), currentTime.getMinutes(), currentTime.getSeconds());
+
+			return myDate;
 
 		},
 

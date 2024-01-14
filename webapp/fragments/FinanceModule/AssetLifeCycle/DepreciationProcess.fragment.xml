@@ -79,8 +79,6 @@
 						<core:Item key="15" text="15"/>
 					</items>
 				</ComboBox>
-				<CheckBox valueState="Information" text="{i18n>DetailedLog}" selected="true"/>
-				<CheckBox valueState="Information" text="{i18n>TestRun}" selected="true"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

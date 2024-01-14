@@ -80,10 +80,6 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>TestRun}" required="true"/>
-				<CheckBox valueState="Information" selected="true"/>
-				<Label text="{i18n>DetailList}"/>
-				<CheckBox valueState="Information" selected="true"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
