@@ -16,21 +16,21 @@
 					<ToolbarSpacer/>
 				</Toolbar>
 				<Label text="{i18n>customerid}"/>
-				<Text text="5432345" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/SapID/}" class="user-dtls"/>
 				<Label text="{i18n>slanumber}"/>
-				<Text text="175456" class="user-dtls"/>
+				<Text text="" class="user-dtls"/>
 				<Label text="{i18n>FirstName}"/>
-				<Text text="Abdul" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/FirstName/}" class="user-dtls"/>
 				<Label text="{i18n>PhoneNumber}"/>
-				<Text text="+96650234567" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/Phone/}" class="user-dtls"/>
 				<Label text="{i18n>customername}"/>
-				<Text text="Abdul basha" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/Company/}" class="user-dtls"/>
 				<Label text="{i18n>poweruser}"/>
-				<Text text="Abdul Saleem" class="user-dtls"/>
+				<Text text="" class="user-dtls"/>
 				<Label text="{i18n>LastName}"/>
-				<Text text="Basha" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/LastName/}" class="user-dtls"/>
 				<Label text="{i18n>EMailid}"/>
-				<Text text="Abdul@wittco.com" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/Email/}" class="user-dtls"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -173,6 +173,7 @@ sap.ui.define([
 					Assestsupernumber: "",
 					CashJournalF4: "",
 					GLAccountf4: "",
+					UploadedData: [],
 					ManagePettyCashData: {
 						Header: {
 							CompanyCode: "1000"
@@ -788,6 +789,10 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceRecordAssetRequest: function (oPayloadHeader) {
+				const aUploadData = this.getModel().getProperty("/FinanceCreateRequest/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -800,22 +805,25 @@ sap.ui.define([
 						"Anlkl": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"Anln2": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
 							"-")[0] : "",
-						"Txt50": oPayloadHeader.FiscalYear,
-						"Anlhtxt": "",
-						"Invnr": "",
-						"Invzu": "",
-						"Aktiv": "",
-						"Werks": "",
-						"Prctr": "",
-						"Ord41": "",
-						"Ord42": "",
-						"Ord43": "",
-						"Anlue": "",
-						"Gdlgrp": ""
+						"Txt50": oPayloadHeader.Txt50,
+						"Anlhtxt": oPayloadHeader.Anlhtxt,
+						"Invnr": oPayloadHeader.Invnr,
+						"Invzu": oPayloadHeader.Invzu,
+						"Aktiv": oPayloadHeader.Aktiv,
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						"Prctr": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Ord41": this.getModel().getProperty("/AreaF4/") ? this.getModel().getProperty("/AreaF4/").split("-")[0] : "",
+						"Ord42": this.getModel().getProperty("/UnitF4/") ? this.getModel().getProperty("/UnitF4/").split("-")[0] : "",
+						"Ord43": this.getModel().getProperty("/SystemF4/") ? this.getModel().getProperty("/SystemF4/").split("-")[0] : "",
+						"Anlue": this.getModel().getProperty("/AssestsupernumberF4/") ? this.getModel().getProperty("/AssestsupernumberF4/").split("-")[
+							0] : "",
+						"Gdlgrp": this.getModel().getProperty("/AssestnontechF4/") ? this.getModel().getProperty("/AssestnontechF4/").split("-")[
+							0] : "",
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
@@ -1017,10 +1025,57 @@ sap.ui.define([
 
 			},
 			onDeleteItemPress: function (oEvent) {
-					var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-					var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-					aTableData.splice(iRowNumberToDelete, 1);
-					this.getModel().refresh();
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
+			},
+			onFileAdded: function (oEvent) {
+				debugger;
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+
+				if (aFiles.length === 0)
+					return;
+
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					//Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+			handleMissmatch: function () {
+				this.handleFileMissmatch();
+			},
+			onFileSizeExceed: function () {
+
+					this.handleFileSizeExceed();
 				}
 				/*	onProceed: function () {
 						this.getOwnerComponent().getTargets().display("FinanceCreateRequest");

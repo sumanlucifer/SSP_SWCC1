@@ -25,7 +25,8 @@
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/RecordAsset/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
 					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -53,19 +54,19 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input required="true" value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" width="100%"/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>AssetMainNoText}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Asset Main No." value="{/AssetLifecycle/RecordAsset/Header/Anlhtxt/}" required="true" width="100%"/>
 				<Label text="{i18n>InventoryNumber}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Inventory No." value="{/AssetLifecycle/RecordAsset/Header/Invnr/}" required="true" width="100%"/>
 				<Label text="{i18n>InventoryNote}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Inventory Note" value="{/AssetLifecycle/RecordAsset/Header/Invzu/}" required="true" width="100%"/>
 				<Label text="{i18n>CaptitalizedOn}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Capitalized On." required="true" value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/P_CostCenter-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
 					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="ControllingArea" value="Cost Center"/>
@@ -74,7 +75,7 @@
 				</Input>
 				<Label text="{i18n>ProfitCenter}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					placeholder="Enter Profit Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="ControllingArea" value="Cost Center"/>
 						<core:CustomData key="CostCenter" value="Cost Text"/>
@@ -114,7 +115,7 @@
 				</Input>
 				<Label text="{i18n>AssetSuperNumber}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_SUPER-com.swcc.Template.fragments.FinanceModule.Assestsupernumber-/AssestsupernumberF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Enter Asset Super Number" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/AssestsupernumberF4/}">
 					<customData>
 						<core:CustomData key="AssetSuperNum" value="Asset Super Num"/>
@@ -143,8 +144,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/AssetLifecycle/RecordAsset/Header/NotifText/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -157,7 +158,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
 			<headerToolbar >
 				<Toolbar>
 					<content>

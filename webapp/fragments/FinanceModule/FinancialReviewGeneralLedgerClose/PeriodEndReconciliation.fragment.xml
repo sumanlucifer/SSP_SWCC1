@@ -94,8 +94,8 @@
 					<RadioButton id="RB1-1" text="Open Item"/>
 				</RadioButtonGroup>
 				<Label text="{i18n>Opendate}" required="true" class="sapUiTinyMarginTop"/>
-				<DatePicker value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}" placeholder="Enter Date" change="handleChange"
-					class="sapUiTinyMarginBegin"/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}" placeholder="Enter Date"
+					change="handleChange" class="sapUiTinyMarginBegin"/>
 			</HBox>
 			<Table mode="None" items="" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false"
 				growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
