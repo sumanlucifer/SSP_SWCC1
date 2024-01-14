@@ -32,11 +32,6 @@ sap.ui.define([
 			},
 			onValueHelpRequest: function (oEve) {
 
-				// this._oMultiInput = this.getView().byId("multiInput");
-
-				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				// this._oValueHelpDialog.open();
-
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -659,8 +654,8 @@ sap.ui.define([
 						"Curtp": this.getModel().getProperty("/CurrencytypeF4/") ? this.getModel().getProperty("/CurrencytypeF4/").split("-")[0] : "",
 						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/") ? this.getModel().getProperty("/ChartofaccountF4/").split("-")[0] : "",
 						"Rldnr": this.getModel().getProperty("/LedgerF4/") ? this.getModel().getProperty("/LedgerF4/").split("-")[0] : "",
-						"BILABMON_FROM": "",
-						"BILABMON_TO": ""
+						"BilabmonFrom": oPayloadHeader.BilabmonFrom,
+						"BilabmonTo": oPayloadHeader.BilabmonTo,
 
 					},
 
@@ -811,6 +806,7 @@ sap.ui.define([
 						"Invzu": oPayloadHeader.Invzu,
 						"Aktiv": oPayloadHeader.Aktiv,
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
 						"Prctr": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
 						"Ord41": this.getModel().getProperty("/AreaF4/") ? this.getModel().getProperty("/AreaF4/").split("-")[0] : "",
 						"Ord42": this.getModel().getProperty("/UnitF4/") ? this.getModel().getProperty("/UnitF4/").split("-")[0] : "",

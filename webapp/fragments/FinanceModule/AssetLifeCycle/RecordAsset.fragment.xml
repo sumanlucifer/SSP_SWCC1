@@ -66,21 +66,15 @@
 				<Label text="{i18n>CaptitalizedOn}" required="true"/>
 				<Input placeholder="Enter Capitalized On." required="true" value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/P_CostCenter-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
 					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
-						<core:CustomData key="ControllingArea" value="Cost Center"/>
-						<core:CustomData key="CostCenter" value="Cost Text"/>
+						<core:CustomData key="CostCenter" value="Cost Center"/>
+						<core:CustomData key="CostCenterName" value="Cost Center Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>ProfitCenter}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Profit Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
-					<customData>
-						<core:CustomData key="ControllingArea" value="Cost Center"/>
-						<core:CustomData key="CostCenter" value="Cost Text"/>
-					</customData>
-				</Input>
+				<Input enabled="false" width="100%" placeholder="Enter Profit Center" valueHelpOnly="false" value="{/costF4/}"></Input>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
