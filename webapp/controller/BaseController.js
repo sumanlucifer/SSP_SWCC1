@@ -357,7 +357,7 @@ sap.ui.define([
 			var dateString = sDate;
 			var parts = dateString.split('/');
 			var day = parseInt(parts[0], 10);
-			var month = parseInt(parts[1], 10) - 1; // Months are zero-based in JavaScript
+			var month = parseInt(parts[1], 10); // Months are zero-based in JavaScript
 			var year = parseInt(parts[2], 10);
 
 			// Create a Date object with the parsed date

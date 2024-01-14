@@ -34,9 +34,10 @@
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/SaleofAssets/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Asset Number" value="{/AssetLifecycle/SaleofAssets/Header/Anln1/}" required="true" width="100%"/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>AccountingPrinciple}" required="true"/>
@@ -59,9 +60,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>DocumentDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/FiscalYear/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PostingDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/FiscalYear/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -71,9 +72,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetValueDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/FiscalYear/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bzdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>Revenue}" required="true"/>
-				<Input placeholder="Enter Revenue" required="true" width="100%"/>
+				<Input value="{/AssetLifecycle/SaleofAssets/Header/Erlbt/}" placeholder="Enter Revenue" required="true" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -82,7 +83,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/AssetLifecycle/SaleofAssets/Header/NotifText/}" growing="true" growingMaxLines="7"
+				<TextArea placeholder="" rows="5" cols="20" value="{/AssetLifecycle/SaleofAssets/Header/NotifText/}" growing="true" growingMaxLines="7"
 					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -96,7 +97,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
 			<headerToolbar >
 				<Toolbar>
 					<content>

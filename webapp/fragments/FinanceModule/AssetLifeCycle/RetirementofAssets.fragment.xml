@@ -66,9 +66,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>DocumentDate}" required="true"/>
-				<Input required="true" width="100%"/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/RetirementofAssets/Header/Bldat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PostingDate}" required="true"/>
-				<Input required="true" width="100%"/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/RetirementofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -78,11 +78,11 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetValueDate}" required="true"/>
-				<Input required="true" width="100%"/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/RetirementofAssets/Header/Bzdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PartialRetirement}" required="true"/>
 				<CheckBox required="true" width="100%"/>
 				<Label text="{i18n>Amount}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input placeholder="Enter Amount" type="Number" value="{/AssetLifecycle/RetirementofAssets/Header/Anbtr/}" required="true" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -91,8 +91,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/AssetLifecycle/RetirementofAssets/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
