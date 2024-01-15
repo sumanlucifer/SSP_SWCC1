@@ -975,7 +975,7 @@ sap.ui.define([
 				// Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
 					"/AccountPayable/RecordProcess/customItemData", aSelectedData) : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.getModel().setProperty(
 					"/AccountPayable/ManagePettyCash/customItemData", aSelectedData) : null;
 				// Accounts Recievable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.getModel().setProperty(

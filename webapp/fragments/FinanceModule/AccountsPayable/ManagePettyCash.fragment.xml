@@ -55,8 +55,8 @@
 					width="100%" placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CashJornalF4/}">
 					<customData>
-						<core:CustomData key="FiscalYear" value="Fiscal Year"/>
 						<core:CustomData key="CashJournalDocumentInternalID" value="Cash Journal Document Internal ID"/>
+						<core:CustomData key="FiscalYear" value="Fiscal Year"/>
 					</customData>
 				</Input>
 			</fm:content>
@@ -83,8 +83,8 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="MultiSelect" items="{path : '/AccountPayable/ManagePettyCash/itemData'}"
-			class="ssp-request-Table sapUiContentPadding">
+		<Table selectionChange="onTableSelectionChange" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="MultiSelect"
+			items="{path : '/AccountPayable/ManagePettyCash/itemData'}" class="ssp-request-Table sapUiContentPadding">
 			<columns>
 				<Column width="20em">
 					<Text text="Cash Journal Number"/>

@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
 	<ValueHelpDialog title="Cash Journal Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="CashJournal" descriptionKey="CashJournalDocumentInternalID"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="CashJournalDocumentInternalID" descriptionKey="CashJournal"
 		class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
