@@ -838,7 +838,7 @@ sap.ui.define([
 						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
-						"Erlbt": oPayloadHeader.Erlbt,
+						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
 						"Anln1": oPayloadHeader.Anln1,
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
@@ -913,11 +913,11 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Posid": "",
-						"Nplnr": "",
-						"Poper": "",
-						"Gjahr": "",
-						"Pspid": ""
+						"Posid": this.getModel().getProperty("/WBSElementF4/") ? this.getModel().getProperty("/WBSElementF4/").split("-")[0] : "",
+						"Nplnr": this.getModel().getProperty("/NetworkF4/") ? this.getModel().getProperty("/NetworkF4/").split("-")[0] : "",
+						"Poper": oPayloadHeader.Poper,
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Pspid": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : ""
 
 					},
 
@@ -932,8 +932,7 @@ sap.ui.define([
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);

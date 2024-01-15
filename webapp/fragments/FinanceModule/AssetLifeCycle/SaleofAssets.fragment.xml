@@ -60,9 +60,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>DocumentDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PostingDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -72,9 +72,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetValueDate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bzdat/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bzdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>Revenue}" required="true"/>
-				<Input value="{/AssetLifecycle/SaleofAssets/Header/Erlbt/}" placeholder="Enter Revenue" required="true" width="100%"/>
+				<Input type="Number" value="{/AssetLifecycle/SaleofAssets/Header/Erlbt/}" placeholder="Enter Revenue" required="true" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

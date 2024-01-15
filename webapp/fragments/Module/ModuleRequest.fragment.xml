@@ -33,7 +33,7 @@
 				valueStateText="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Select Sub Service Type' : '' }">
 				<core:ListItem key="{Product}_{ProductName}_{MaterialLongText}_{BaseUnit}_{SLA}_{Price}" text="{ProductName}"/>
 			</ComboBox>
-			<Button text="Search" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Proceed" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</HBox>
 	<VBox class="serv-desc">
