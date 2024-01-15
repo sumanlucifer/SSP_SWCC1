@@ -17,7 +17,7 @@
 				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}"/>
-				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<Label text="{i18n>plant}" required="true"/>
@@ -35,9 +35,23 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>PurchaseOrderNo}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.POF4-/POF4/"
+					width="100%" placeholder="Select PO" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/POF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="PO"/>
+						<core:CustomData key="Supplier" value="Vendor Code"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
-				<Input required="true" width="100%" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
+					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/InsuranceF4/}">
+					<customData>
+						<core:CustomData key="Zzinspono" value="Insurance Policy No."/>
+						<core:CustomData key="Zzpolicytype" value="Policy Type"/>
+					</customData>
+				</Input>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
@@ -107,8 +121,8 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
+							<DatePicker value="" change="handleChange" class="sapUiSmallMarginBottom"/>
+							<DatePicker value="" change="handleChange" class="sapUiSmallMarginBottom"/>
 							<Text text="Will shi"/>
 							<Text text="2"/>
 							<Input value="{BaseUnit}"/>
