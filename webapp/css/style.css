@@ -194,13 +194,13 @@
     letter-spacing: 0.5px;
 }
 
-.ssp-tlbr-title span:after {
+/*.ssp-tlbr-title span:after {
     color: #0066CC;
     content: '';
     flex: 1;
     border-bottom: 2px solid #0066cc;
     margin: 0.7rem;
-}
+}*/
 
 
 /* Layout css ends here */
@@ -228,8 +228,8 @@
     font-size: 1.8rem !important;
 }
 
-.ssp-form-bg .sapUiFormTitle,
-.sapMTBStandard.ssp-title {
+
+.sapUiFormResGrid.sapUiFormToolbar>div:first-child {
     background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
@@ -286,6 +286,7 @@
 
 .ssp-form-bg .sapMLabel {
     font-family: 'SWCC-3-Medium';
+    padding-top: 5px;
 }
 
 .ssp-form-txtarea .sapMInputBaseContentWrapper,
