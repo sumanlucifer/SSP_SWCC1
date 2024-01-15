@@ -491,7 +491,7 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-5" ? this.FinanceProjectCapitalizationRequest(this.getModel()
 					.getProperty(
-						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
+						"/AssetLifecycle/ProjectCaptilization/Header/")) : null;
 
 			},
 
