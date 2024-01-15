@@ -194,13 +194,13 @@
     letter-spacing: 0.5px;
 }
 
-/*.ssp-tlbr-title span:after {
+.ssp-tlbr-title span:after {
     color: #0066CC;
     content: '';
     flex: 1;
     border-bottom: 2px solid #0066cc;
     margin: 0.7rem;
-}*/
+}
 
 
 /* Layout css ends here */
@@ -229,12 +229,18 @@
 }
 
 
-.sapUiFormResGrid.sapUiFormToolbar>div:first-child {
+.sapUiFormResGrid.sapUiFormToolbar>div:first-child,
+.ssp-form-bg .sapUiFormTitle,
+.sapMTBStandard.ssp-title {
     background: #004687;
     color: #fff;
     border-radius: 10px 10px 5px 5px;
     height: fit-content;
     font-family: 'SWCC-4-Bold';
+}
+
+.sapUiFormTitleH5 {
+    background: none !important;
 }
 
 .ssp-module {
