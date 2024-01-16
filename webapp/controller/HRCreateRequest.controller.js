@@ -28,6 +28,143 @@ sap.ui.define([
 				//this.callDropDownService();
 
 			},
+
+			/* Value help request */
+			onValueHelpRequest: function (oEve) {
+				debugger;
+				// this._oMultiInput = this.getView().byId("multiInput");
+
+				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
+				// this._oValueHelpDialog.open();
+
+				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
+				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				this.getModel().setProperty("/FragModel", sFragModel);
+				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
+				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
+				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
+				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
+				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
+				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
+				// Example usage:
+				var oModel = this.getOwnerComponent().getModel(sEntity);
+				var aColumns = [{
+					label: sColumn1Label,
+					template: sColumn1Template,
+					width: "10rem",
+				}, {
+					label: sColumn2Label,
+					template: sColumn2Template,
+				}];
+
+				// var sPath = "/ZCDSV_EQUIPMENTVH";
+
+				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
+
+			},
+			onValueHelpOkPress: function (oEvent) {
+				debugger;
+
+				var sModelPath = this.getModel().getProperty("/FragModel");
+				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
+				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
+				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
+				var yourModel = this.getModel(); // Pass your model here
+				var sModelPath = sModelPath;
+
+				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+
+			},
+			onValueHelpCancelPress: function () {
+				this.onHandleValueHelpCancelPress();
+			},
+			onFilterBarSearch: function (oEvent) {
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: this.getModel().getProperty("/valueHelpKey1"),
+						value: afilterBar[0].getValue(),
+						group: "DynamicF4SearchFilter"
+					}, {
+						path: this.getModel().getProperty("/valueHelpKey2"),
+						value: afilterBar[1].getValue(),
+						group: "DynamicF4SearchFilter"
+					}
+
+				];
+				var dynamicFilters = this.getFilters(filters);
+
+				this._filterTable(
+					new Filter({
+						filters: dynamicFilters.DynamicF4SearchFilter,
+						and: false,
+					})
+				);
+			},
+			handleFiltersForValueHelp: function (F4) {
+				debugger;
+				var filters = [{
+						path: "CompanyCode",
+						value: "1000",
+						group: "GLF4Filter"
+					}, {
+						path: "FiscalYear",
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
+							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						group: "CashJrnlF4Filter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				var aFilter;
+
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
+
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+
+			},
+			onValueHelpAfterOpen: function () {
+				debugger;
+				//   apply filter before value help open 
+				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
+
+				this._filterTable(aFilter, "Control");
+			},
+			_getfilterforControl: function (aFilter) {
+
+				if (!aFilter) {
+					return [];
+				}
+				return new Filter({
+					filters: aFilter,
+					and: true,
+				});
+
+				//	return dynamicFilters.PlantFilter;
+			},
+
+			_filterTable: function (oFilter, sType) {
+
+				this.handleVHFilterTable(oFilter, sType);
+			},
+
+			/* value help request ends here */
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
