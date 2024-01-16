@@ -35,7 +35,8 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
+					valueHelpRequest=""/>
 				<Label text="{i18n>PolicyNo}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
@@ -69,11 +70,12 @@
 				<Label text="{i18n>PolicyStatus}" required="true"/>
 				<Input required="true" value="New" width="100%"/>
 				<Label text="{i18n>TotalPremiumAmount}" required="true"/>
-				<Input required="true" width="100%"/>
+				<Input type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/}" required="true" width="100%"/>
 				<Label text="{i18n>DepeciationRate}" required="true"/>
 				<Input required="true" width="100%"/>
 				<Label text="{i18n>WarRiskPercetage}" required="true"/>
-				<Input id="productInput6" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter War Risk Percentage" type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/}"
+					showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>PolicyType}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPOLICY_TYP_CODE')/Set/-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.PolicyTypeF4-/PolicyTypeF4/"
@@ -85,9 +87,11 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>InsuranceStartDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="" change="handleChange" class="sapUiSmallMarginBottom"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>InsuranceEndDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="" change="handleChange" class="sapUiSmallMarginBottom"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"
+					class="sapUiSmallMarginBottom"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -96,8 +100,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/InsuranceandClaim/CreateInsurance/Header/NotifText/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

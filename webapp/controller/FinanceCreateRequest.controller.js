@@ -359,7 +359,15 @@ sap.ui.define([
 							},
 							ItemData: []
 						},
-						Billing: {
+						MarineTransportation: {
+							Header: {
+								quantity: "1",
+								CompanyCode: "1000"
+
+							},
+							itemData: []
+						},
+						Property: {
 							Header: {
 								quantity: "1",
 								CompanyCode: "1000"
@@ -367,6 +375,22 @@ sap.ui.define([
 							},
 							ItemData: []
 						},
+						ShipHulls: {
+							Header: {
+								quantity: "1",
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						},
+						Vehicle: {
+							Header: {
+								quantity: "1",
+								CompanyCode: "1000"
+
+							},
+							ItemData: []
+						}
 
 					},
 					AccountPayable: {
@@ -389,9 +413,6 @@ sap.ui.define([
 
 					},
 					RecordandProcessInvoice: {
-						itemData: []
-					},
-					MarineTransportation: {
 						itemData: []
 					}
 				});
@@ -537,7 +558,7 @@ sap.ui.define([
 				//   -----------------------------------Insurance Claim Management --------------------------------------------------------------------
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" ? this.FinanceInsuranceRegistrationRequest(this.getModel()
 					.getProperty(
-						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
+						"/InsuranceandClaim/CreateInsurance/Header/")) : null;
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
@@ -972,7 +993,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 
-			FinanceInsuranceRegistrationRequest: function () {
+			FinanceInsuranceRegistrationRequest: function (oPayloadHeader) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -982,11 +1003,16 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Posid": this.getModel().getProperty("/WBSElementF4/") ? this.getModel().getProperty("/WBSElementF4/").split("-")[0] : "",
-						"Nplnr": this.getModel().getProperty("/NetworkF4/") ? this.getModel().getProperty("/NetworkF4/").split("-")[0] : "",
-						"Poper": oPayloadHeader.Poper,
-						"Gjahr": oPayloadHeader.FiscalYear,
-						"Pspid": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : ""
+						"Zzinspono": this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						"Zzvendor": this.getModel().getProperty("/VendorF4/") ? this.getModel().getProperty("/VendorF4/").split("-")[0] : "",
+						"Zzinsurper": oPayloadHeader.Poper,
+						"Zzpolicytype": this.getModel().getProperty("/PolicyTypeF4/") ? this.getModel().getProperty("/PolicyTypeF4/").split("-")[0] : "",
+						"ZzinsurAmount": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : "",
+						"Ebeln": this.getModel().getProperty("/POF4/") ? this.getModel().getProperty("/POF4/").split("-")[0] : "",
+						"Zzdeprate": "",
+						"ZzpolicyStatus": "",
+						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat),
+						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat)
 
 					},
 
