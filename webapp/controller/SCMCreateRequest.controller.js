@@ -423,18 +423,12 @@ sap.ui.define([
 
 			SCMCreateaRequestAPI: function (oPayload) {
 				debugger;
-				var oPayload = this.getModel().getProperty("/MaterialProcurement/Header/");
-				var oPayload = {};
-				oPayload.Username = this.getCurrentUserLoggedIn();
-				oPayload.ServiceHeadertoItem = [];
-				//oPayload.Attachments = [];
-				// debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-						this.getModel().setProperty("/MaterialProcurement/Header", oResponse.results);
+
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
@@ -442,17 +436,81 @@ sap.ui.define([
 					}.bind(this));
 
 			},
-			onSaveRequest: function () {
+			onProceed: function () {
 				debugger;
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3001-1" ? this.SCMCreateRequestPayload() : null;
+				//-----------------Procurement-ADHOC-----------------------------------------------------
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.ScmCreateServiceProcurementRequest(this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/Header/"), this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/customItemData/")) : null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
+						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
+						"/ProcurementAdhoc/MaterialProcurement/customItemData/")) :
+					null;
+				//--------------------------Qualification-----------------------------------------------------	
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
+						"/Qualification/SpecializedWork/Header/"), this.getModel().getProperty(
+						"/Qualification/SpecializedWork/customItemData/")) :
+					null;
+
+				/*this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.SCMCreateRequestPayload() : null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.SCMCreateRequestPayload(this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData/")) :
 					null;
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3003-3" ? this.SCMCreateRequestPayload() : null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3003-3" ? this.SCMCreateRequestPayload() : null;*/
 				debugger;
 
 			},
-			SCMCreateRequestPayload: function (oPayloadHeader, aItem) {
+			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : ""
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Belnr: items.InvoiceNo,
+								Budat: items.PostingDate,
+
+							};
+						}
+					)
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+			ScmCreateMaterialProcurementRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Justification": oPayloadHeader.PR_JUST,
+						"TenderQualification": oPayloadHeader.TEN_PRE,
+						"TotalValue": oPayloadHeader.TOT_EST_VAL
+					},
+
+					/*	"ServiceHeadertoItem": aItem.map(
+							function (items) {
+								return {
+									Material: aItem.MATNR
+								};
+							}
+						)*/
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			/*SCMCreateRequestPayload: function (oPayloadHeader, aItem) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -475,7 +533,7 @@ sap.ui.define([
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
-			},
+			},*/
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
 				var oItems = oModel.map(function (oItem) {

@@ -19,10 +19,13 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/Quality/SpecalizedWorkQualification/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>typeofqualification}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>suppliername}" required="true"/>
@@ -34,10 +37,15 @@
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>typeofvendor}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/Quality/SpecalizedWorkQualification/Header/Plant/}" items="{/VendorTypef4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZVEN_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectstatusF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>suppliercrno}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projectname}" required="true"/>

@@ -37,7 +37,7 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
 					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjectstatusF4/}">
 					<customData>
@@ -51,9 +51,9 @@
 				</ComboBox>-->
 				<Label text="{i18n>costestimationtype}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjecttypeF4/"
 					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					value="{/ProjecttypeF4/}">
 					<customData>
 						<core:CustomData key="Status" value="Status"/>
 						<core:CustomData key="Text" value="Text"/>

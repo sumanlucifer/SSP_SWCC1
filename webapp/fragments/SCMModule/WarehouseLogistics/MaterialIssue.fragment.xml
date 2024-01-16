@@ -19,24 +19,34 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>basedate}" required="true"/>
 				<DatePicker value=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/CostCenter/}" items="{/CostCenterf4/}">
-					<core:Item key="{CostCenter}" text="{CostCenter} - {CostCenter_Text}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					<customData>
+						<core:CustomData key="ControllingArea" value="Cost Center"/>
+						<core:CustomData key="CostCenter" value="Cost Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>movementtype}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Movement Type"
-					selectedKey="{/WarehouseandLogistics/IssueofMaterial/Header/Key/}" items="{/MovementTypef4/}">
-					<core:Item key="{Key}" text="{Key} - {Value}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/MovementTypeSet-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/" width="100%"
+					placeholder="Enter Movement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MovementtypeF4/}">
+					<customData>
+						<core:CustomData key="Key" value="Movement Code"/>
+						<core:CustomData key="Value" value="Movement Text"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>goodsrecipient}" required="false"/>
 				<Input placeholder="Enter Goods Recipient" value=""/>
 			</fm:content>
