@@ -14,6 +14,7 @@ sap.ui.define([
 
 		},
 		_onObjectMatched: function (oEvent) {
+
 			this._createDataModel();
 			var sReqId = oEvent.getParameter("arguments").RequestID;
 			this.RequestDetailsAPI(sReqId);
