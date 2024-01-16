@@ -69,8 +69,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Postingdt}" required="true"/>
-				<DateRangeSelection showCurrentDateButton="true" showFooter="true" change="handleChange"
-					value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"
+					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>

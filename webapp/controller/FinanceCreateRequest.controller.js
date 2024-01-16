@@ -31,7 +31,7 @@ sap.ui.define([
 
 			},
 			onValueHelpRequest: function (oEve) {
-
+				debugger;
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -40,8 +40,8 @@ sap.ui.define([
 				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
-				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
-				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
+				var sColumn2Template = oEve.getSource().getCustomData()[1] ? oEve.getSource().getCustomData()[1].getKey() : "";
+				var sColumn2Label = oEve.getSource().getCustomData()[1] ? oEve.getSource().getCustomData()[1].getValue() : "";
 				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
 				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
 				// Example usage:
@@ -71,7 +71,41 @@ sap.ui.define([
 				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+				this.setDependentFilterData();
 
+			},
+			setDependentFilterData: function () {
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && this.getModel().getProperty("/FragModel") ===
+					"/InsuranceF4/") {
+					var filters = [{
+							path: "Zzinspono",
+							value: this.getModel().getProperty("/InsuranceF4") ? this.getModel().getProperty(
+								"/InsuranceF4").split("-")[0] : "",
+							group: "InsuranceFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
+						dynamicFilters.InsuranceFilter)
+				}
+			},
+
+			callDependentFilteAPI: function (entity, path, filter) {
+
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(
+					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
+				).then(function (oResponse) {
+
+					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
+					this.getModel().setProperty("/busy", false);
+
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -109,6 +143,11 @@ sap.ui.define([
 						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
 							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
 						group: "CashJrnlF4Filter"
+					}, {
+						path: "Supplier",
+						value: this.getModel().getProperty("/VendorF4") ? this.getModel().getProperty(
+							"/VendorF4").split("-")[0] : "",
+						group: "POF4Filter"
 					}
 
 				];
@@ -126,6 +165,8 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && F4 === "/POF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.POF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -491,8 +532,12 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-5" ? this.FinanceProjectCapitalizationRequest(this.getModel()
 					.getProperty(
-						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
+						"/AssetLifecycle/ProjectCaptilization/Header/")) : null;
 
+				//   -----------------------------------Insurance Claim Management --------------------------------------------------------------------
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" ? this.FinanceInsuranceRegistrationRequest(this.getModel()
+					.getProperty(
+						"/AssetLifecycle/DepreciationProcess/Header/")) : null;
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
@@ -838,7 +883,7 @@ sap.ui.define([
 						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
-						"Erlbt": oPayloadHeader.Erlbt,
+						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
 						"Anln1": oPayloadHeader.Anln1,
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
@@ -913,11 +958,35 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Posid": "",
-						"Nplnr": "",
-						"Poper": "",
-						"Gjahr": "",
-						"Pspid": ""
+						"Posid": this.getModel().getProperty("/WBSElementF4/") ? this.getModel().getProperty("/WBSElementF4/").split("-")[0] : "",
+						"Nplnr": this.getModel().getProperty("/NetworkF4/") ? this.getModel().getProperty("/NetworkF4/").split("-")[0] : "",
+						"Poper": oPayloadHeader.Poper,
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Pspid": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : ""
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
+			FinanceInsuranceRegistrationRequest: function () {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Posid": this.getModel().getProperty("/WBSElementF4/") ? this.getModel().getProperty("/WBSElementF4/").split("-")[0] : "",
+						"Nplnr": this.getModel().getProperty("/NetworkF4/") ? this.getModel().getProperty("/NetworkF4/").split("-")[0] : "",
+						"Poper": oPayloadHeader.Poper,
+						"Gjahr": oPayloadHeader.FiscalYear,
+						"Pspid": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : ""
 
 					},
 
@@ -932,8 +1001,7 @@ sap.ui.define([
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
@@ -975,7 +1043,7 @@ sap.ui.define([
 				// Accounts Payable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
 					"/AccountPayable/RecordProcess/customItemData", aSelectedData) : null;
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.getModel().setProperty(
 					"/AccountPayable/ManagePettyCash/customItemData", aSelectedData) : null;
 				// Accounts Recievable
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.getModel().setProperty(
