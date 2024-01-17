@@ -88,18 +88,32 @@ sap.ui.define([
 
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
-						dynamicFilters.InsuranceFilter)
+						dynamicFilters.InsuranceFilter, "/PMCreateRequest/WorkCenterF4/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/FragModel") ===
+					"/costF4/") {
+					var filters = [{
+							path: "CostCenter",
+							value: this.getModel().getProperty("/costF4") ? this.getModel().getProperty(
+								"/costF4").split("-")[0] : "",
+							group: "RecordAssetFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
+						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
 				}
 			},
 
-			callDependentFilteAPI: function (entity, path, filter) {
-
+			callDependentFilteAPI: function (entity, path, filter, model) {
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
 				).then(function (oResponse) {
 
-					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
+					this.getModel().setProperty(`${model}`, oResponse.results);
 					this.getModel().setProperty("/busy", false);
 
 				}.bind(this)).catch(function (error) {
@@ -206,6 +220,13 @@ sap.ui.define([
 					FinanceAppVisible: null,
 					CompanycodeF4: "1000- SWCC",
 					PlantF4: "",
+					DepreciationF4: "01- Book Depreciation IFRS - Local (01)",
+					PostingF4: "1000- SWCC posting Period (1000)",
+					CurrencytypeF4: "10- Company code currency (10)",
+					LedgerF4: "0L- Leading Ledger (0L)",
+					ChartofaccountF4: "1000 - SWCC Chart of Account(1000)",
+					LanguageF4: "EN- English (EN)",
+					FmareaF4: "1000- SWCC (1000)",
 					Assestsupernumber: "",
 					CashJournalF4: "",
 					GLAccountf4: "",
@@ -450,6 +471,10 @@ sap.ui.define([
 						path: "FiscalYear",
 						value: this.getModel().getProperty("/RecordandProcessInvoice/FiscalYear"),
 						group: "ManageRecordInvoiceFilter"
+					}, {
+						path: "CustomerCode",
+						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
+						group: "ManageProcessCollectionFilter"
 					}
 
 				];
@@ -472,7 +497,7 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.callCommonFinanceSearchRequest(
 					"/ArCollectionProcessSet/",
 					"GET",
-					dynamicFilters.ManagePettyCashFilter, null, "/AccountsReceivable/Manageandprocess/itemData/") : null;
+					dynamicFilters.ManageProcessCollectionFilter, null, "/AccountsReceivable/Manageandprocess/itemData/") : null;
 
 			},
 			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
@@ -1079,8 +1104,13 @@ sap.ui.define([
 
 			},
 			updateSelectedRowCount: function (iCount) {
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.getModel().setProperty(
+					"/AccountPayable/RecordProcess/Header/quantity/", iCount) : "";
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.getModel().setProperty(
+					"/AccountsReceivable/Billing/Header/quantity/", iCount) : "";
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.getModel().setProperty(
+					"/AccountsReceivable/Manageandprocess/Header/quantity/", iCount) : "";
 				// Assuming you have a model named 'selectedItemsModel'
-				var selectedItemsModel = this.getModel().setProperty("/itemCount", iCount);
 
 			},
 			onDeselectItems: function (oTable) {

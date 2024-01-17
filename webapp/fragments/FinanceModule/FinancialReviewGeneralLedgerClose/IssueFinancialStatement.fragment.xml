@@ -45,7 +45,7 @@
 						<core:CustomData key="ChartOfAccounts_Text" value="Chart of Account Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>GLAccount}" required="true"/>
+				<Label text="{i18n>GLAccount}"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
 					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/GlaccountF4/}">

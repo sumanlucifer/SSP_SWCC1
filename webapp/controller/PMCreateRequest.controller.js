@@ -310,7 +310,7 @@ sap.ui.define([
 				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
 				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
 				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
-				oPayload.Equipment = oPayload.Equipment.split("-")[0];
+				oPayload.Equipment = oPayload.Equipment ? oPayload.Equipment.split("-")[0] : "";
 				oPayload.Username = this.getCurrentUserLoggedIn();
 				oPayload.ServiceHeadertoItem = [];
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({

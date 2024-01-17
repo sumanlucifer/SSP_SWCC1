@@ -40,7 +40,7 @@
 				<Input placeholder="Enter Asset Number" value="{/AssetLifecycle/SaleofAssets/Header/Anln1/}" required="true" width="100%"/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>AccountingPrinciple}" required="true"/>
+				<Label text="{i18n>AccountingPrinciple}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_AccountingPrincipleText-com.swcc.Template.fragments.FinanceModule.AccountingprincipalF4-/AccountingprincipalF4/"
 					width="100%" placeholder="Enter Accounting Principal" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -59,7 +59,7 @@
 						<core:CustomData key="AssetDepreciationArea_Text" value="Asset Depreciation Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>DocumentDate}" required="true"/>
+				<Label text="{i18n>DocumentDate}" required="false"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PostingDate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
