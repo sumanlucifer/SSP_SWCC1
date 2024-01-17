@@ -23,13 +23,7 @@
 				<Label text="{i18n>userid}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>name}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>type}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
@@ -42,6 +36,7 @@
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
 				</ComboBox>-->
+				<core:Title text=""/>
 				<Label text="{i18n>whenshould}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
