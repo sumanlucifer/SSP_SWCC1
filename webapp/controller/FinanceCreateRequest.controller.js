@@ -927,7 +927,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 
 						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
-						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
+						"Budat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
 						"Anln1": oPayloadHeader.Anln1,
@@ -954,7 +954,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
+						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Anln1": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split("-")[0] : "",

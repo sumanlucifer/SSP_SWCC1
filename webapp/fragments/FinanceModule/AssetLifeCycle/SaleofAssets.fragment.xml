@@ -59,9 +59,9 @@
 						<core:CustomData key="AssetDepreciationArea_Text" value="Asset Depreciation Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>DocumentDate}" required="false"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
 				<Label text="{i18n>PostingDate}" required="true"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
+				<Label text="{i18n>DocumentDate}" required="false"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
