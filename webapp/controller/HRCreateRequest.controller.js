@@ -1,11 +1,14 @@
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
-		"sap/ui/core/routing/History"
+		"sap/ui/core/routing/History",
+		"sap/m/MessageBox",
+		"sap/ui/model/Filter",
+		"sap/ui/model/FilterOperator"
 
 	],
 
-	function (BaseController, JSONModel, History) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
@@ -18,6 +21,7 @@ sap.ui.define([
 			_onObjectMatched: function () {
 				debugger;
 				this._createItemDataModel();
+				this.getModel().setSizeLimit(1000);
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
@@ -168,13 +172,29 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
+					HRAppVisible: null,
 					HRCreateRequest: {
 						UploadedData: [],
 						Header: {},
 						CustomDisplayData: {},
 						Attachment: [],
 						PlantF4: [],
-						WorkCenterF4: []
+						WorkCenterF4: [],
+						RetirementandResignations: {
+							Resignation: {
+								Header: {
+
+								},
+								itemData: []
+							},
+							Retirement: {
+								Header: {
+
+								},
+								itemData: []
+							},
+
+						},
 					}
 				});
 			},
@@ -201,27 +221,14 @@ sap.ui.define([
 
 			},
 			HRCreateaRequestAPI: function (oPayload) {
-				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
-				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
-				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
-				debugger;
-				oPayload.Username = "WT_POWER";
-				oPayload.ServiceHeadertoItem = [];
-				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
-				oPayload.Attachments = aUploadData;
 				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
-
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
@@ -270,7 +277,40 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
+				//-------------------------------------------Retriement----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/customItemData/")) :
+					null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
+						.getProperty(
+							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
+					null;
+
+			},
+			HRCreateResignationRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						/*"Gjahr": oPayloadHeader.FiscalYear,
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : ""*/
+					}
+
+					/*	"ServiceHeadertoItem": aItem.map(
+							function (items) {
+								return {
+									Belnr: items.InvoiceNo,
+									Budat: items.PostingDate,
+
+								};
+							}
+						)*/
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
 			},
 
 			onSearch: function () {

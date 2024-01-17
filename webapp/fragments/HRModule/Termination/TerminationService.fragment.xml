@@ -26,7 +26,7 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>userid}" required="false"/>
+				<Label text="{i18n>userid}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=UserId-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
 					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
 					<customData>
@@ -38,12 +38,18 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>resigndate}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/RecordProcess/Header/FiscalYear}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}" placeholder="Enter Date"
+					change="handleChange" class="sapUiTinyMarginBegin"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
 				<Label text="{i18n>eventreason}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=${'UserId'}-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
+					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="User ID"/>
+						<core:CustomData key="Value1" value="User Name"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -51,8 +57,9 @@
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
