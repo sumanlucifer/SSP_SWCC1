@@ -27,8 +27,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=JobTitle-com.swcc.Template.fragments.HRModule.UseridtF4-/UseridtF4/" width="100%"
-					placeholder="Select Job Title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=UserId-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
+					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
 					<customData>
 						<core:CustomData key="Keyfield" value="User ID"/>
 						<core:CustomData key="Value1" value="User Name"/>

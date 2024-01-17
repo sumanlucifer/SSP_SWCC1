@@ -28,6 +28,15 @@
 				</Input>
 				<Label text="{i18n>jobtitle}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=JobTitle-com.swcc.Template.fragments.HRModule.RecuritmentF4-/RecuritmentF4/"
+					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/RecuritmentF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Job Code"/>
+						<core:CustomData key="Keyfield" value="Job Desc"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>jobgrade}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=JobTitle-com.swcc.Template.fragments.HRModule.RecuritmentF4-/RecuritmentF4/"
 					width="100%" placeholder="Select Job Title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/RecuritmentF4/}">
 					<customData>
@@ -35,8 +44,6 @@
 						<core:CustomData key="Value1" value="Job Desc"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>jobgrade}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>jobnumber}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>joblocation}" required="true"/>

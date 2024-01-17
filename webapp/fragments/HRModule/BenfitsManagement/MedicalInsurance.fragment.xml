@@ -23,13 +23,7 @@
 				<Label text="{i18n>userid}" required="false"/>
 				<Input id="mi-baseunit" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
-				<ComboBox id="mi-priority" width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>mobileNumber}" required="true"/>
 				<Input id="mi-mobile" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>insurancestdt}" required="true"/>
@@ -40,22 +34,31 @@
 				<Input id="mi-nationality" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>middlename}" required="true"/>
 				<Input id="mi-middlename" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>depedentnational}" required="true"/>
-				<Input id="mi-depedentnational" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<Label text="{i18n>depedentnational}" required="true"/>
+				<Input id="mi-depedentnational" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox id="plant" width="100%" valueState="None">
 					<items>
 						<core:Item key="Regular" text="Regular"/>
 						<core:Item key="Emergency" text="Emergency"/>
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>whenshould}" required="true"/>
-				<Input id="mi-when" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requesttype}" required="true"/>
-				<Input id="mi-rqtype" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=JobTitle-com.swcc.Template.fragments.HRModule.InsurancerequestypeF4-/InsurancerequestypeF4/"
+					width="100%" placeholder="Select Request Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/InsurancerequestypeF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Job Title"/>
+						<core:CustomData key="Value1" value="Job Desc"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>National}" required="true"/>
 				<Input id="mi-national" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>policyno}" required="true"/>
