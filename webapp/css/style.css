@@ -104,13 +104,13 @@
     padding: 0px;
 }
 
-.ssp-apphomepage .sapFDynamicPageContent {
+/*.ssp-apphomepage .sapFDynamicPageContent {
     background: url("../util/Images/bg1.png") no-repeat center center fixed !important;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover !important;
-}
+}*/
 
 .module-tile {
     padding-top: 5rem !important;

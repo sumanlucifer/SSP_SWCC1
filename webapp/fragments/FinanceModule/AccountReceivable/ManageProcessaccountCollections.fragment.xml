@@ -19,14 +19,25 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountsReceivable/Manageandprocess/Header/quantity/}"/>
-				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+				<Label text="{i18n>BANKGL}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
+					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/GlaccountF4/}">
 					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
+						<core:CustomData key="GLAccount" value="GL Account Code"/>
+						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>CustomerCode}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Customer_VH-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/" width="100%"
+					placeholder="Enter customer code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/customercodeF4/}">
+					<customData>
+						<core:CustomData key="Customer" value="Customer"/>
+						<core:CustomData key="CustomerName" value="Customer Name"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
 					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
@@ -46,6 +57,15 @@
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
 					</customData>
 				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>BANKGL}" required="true"/>
 				<!--<ComboBox width="100%" change="" selectionChange="" valueState="None" placeholder="Select GL Account"-->
 				<!--	selectedKey="{/AccountsReceivable/Manageandprocess/Header/GLAccount/}" items="{/GeneralLedgerf4/}">-->
@@ -59,21 +79,12 @@
 						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>CustomerCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Customer_VH-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/" width="100%"
-					placeholder="Enter customer code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/customercodeF4/}">
-					<customData>
-						<core:CustomData key="Customer" value="Customer"/>
-						<core:CustomData key="CustomerName" value="Customer Name"/>
-					</customData>
-				</Input>
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"
-					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
+					change="handleManagePettyCashDateChange" class=""/>
+				<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
+					class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
-				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
