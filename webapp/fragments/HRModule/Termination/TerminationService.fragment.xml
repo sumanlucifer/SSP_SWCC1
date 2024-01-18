@@ -1,5 +1,5 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
-	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:fiori="sap.ui.webc.fiori" xmlns:core="sap.ui.core">
 	<VBox width="100%">
 		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
@@ -38,8 +38,11 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>resigndate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/RetirementandResignations/Resignation/Header/Begda/}" placeholder="Enter Date"
-					change="handleChange" class="sapUiTinyMarginBegin"/>
+				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date" value="" change="handleChange" class=""/>
+				<!--	<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/RetirementandResignations/Resignation/Header/OpenDate/}"
+					placeholder="Enter Date" change="handleChange" class=""/>-->
+				<!--<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" value="{}" placeholder="Enter Date" change="handleChange"
+					class="sapUiTinyMarginBegin"/>-->
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
 				<Label text="{i18n>eventreason}" required="true"/>

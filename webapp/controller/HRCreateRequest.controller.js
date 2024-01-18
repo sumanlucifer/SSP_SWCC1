@@ -293,10 +293,9 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-					"Descript": oPayloadHeader.Zcomment,
+					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						/*"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : ""*/
+						"Begda": oPayloadHeader.Resigndate
 					}
 
 					/*	"ServiceHeadertoItem": aItem.map(
