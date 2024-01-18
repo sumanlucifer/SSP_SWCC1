@@ -20,7 +20,7 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 
 		// 		This below dynamic oDataACRUDCall() Method accepts for all CRUD operation SAP ODATA !!!
 
-		oDataACRUDAPICall: function (oModel, httpMethod, entity, payload, filter, urlParams, sortParams) {
+		oDataACRUDAPICall: function (oModel, httpMethod, entity, payload, filter, urlParams, sortParams, searchString) {
 			return new Promise(function (resolve, reject) {
 				const queryOptions = {
 					success: function (oData) {
@@ -47,6 +47,12 @@ sap.ui.define(["sap/m/MessageBox"], function (MessageBox) {
 						queryOptions.urlParameters = {};
 					}
 					Object.assign(queryOptions.urlParameters, urlParams);
+				}
+				if (searchString) {
+					if (!queryOptions.urlParameters) {
+						queryOptions.urlParameters = {};
+					}
+					queryOptions.urlParameters["search"] = searchString;
 				}
 
 				// Determine the HTTP method to be used for the request
