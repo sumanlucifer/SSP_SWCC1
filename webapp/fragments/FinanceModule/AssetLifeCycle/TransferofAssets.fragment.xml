@@ -40,7 +40,7 @@
 				</Input>
 				<Label text="{i18n>AssetNumber}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
-					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Enter Asset Number" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/AssestF4}">
 					<customData>
 						<core:CustomData key="SubNumber" value="SubNumber"/>
@@ -59,7 +59,7 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>SubNumber}" required="true"/>
+				<Label text="{i18n>SubNumber}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
 					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/AssestF4}">

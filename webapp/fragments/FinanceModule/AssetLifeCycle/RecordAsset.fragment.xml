@@ -44,7 +44,7 @@
 						<core:CustomData key="AssetClass_Text" value="Asset Class Text"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>SubNumber}" required="true"/>
+				<Label text="{i18n>SubNumber}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
 					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/AssestF4}">
@@ -57,24 +57,25 @@
 				<Input required="true" value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" width="100%"/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>AssetMainNoText}" required="true"/>
-				<Input placeholder="Enter Asset Main No." value="{/AssetLifecycle/RecordAsset/Header/Anlhtxt/}" required="true" width="100%"/>
-				<Label text="{i18n>InventoryNumber}" required="true"/>
-				<Input placeholder="Enter Inventory No." value="{/AssetLifecycle/RecordAsset/Header/Invnr/}" required="true" width="100%"/>
-				<Label text="{i18n>InventoryNote}" required="true"/>
-				<Input placeholder="Enter Inventory Note" value="{/AssetLifecycle/RecordAsset/Header/Invzu/}" required="true" width="100%"/>
-				<Label text="{i18n>CaptitalizedOn}" required="true"/>
-				<Input placeholder="Enter Capitalized On." required="true" value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
+				<Label text="{i18n>AssetMainNoText}" required="false"/>
+				<Input enabled="false" placeholder="Enter Asset Main No." value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" required="true" width="100%"/>
+				<Label text="{i18n>InventoryNumber}" required="false"/>
+				<Input placeholder="Enter Inventory No." value="{/AssetLifecycle/RecordAsset/Header/Invnr/}" width="100%"/>
+				<Label text="{i18n>InventoryNote}" required="false"/>
+				<Input placeholder="Enter Inventory Note" value="{/AssetLifecycle/RecordAsset/Header/Invzu/}" width="100%"/>
+				<Label text="{i18n>CaptitalizedOn}" required="false"/>
+				<Input placeholder="Enter Capitalized On." value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="CostCenter" value="Cost Center"/>
 						<core:CustomData key="CostCenterName" value="Cost Center Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>ProfitCenter}" required="true"/>
-				<Input enabled="false" width="100%" placeholder="Enter Profit Center" valueHelpOnly="false" value="{/costF4/}"></Input>
+				<Label text="{i18n>ProfitCenter}" required="false"/>
+				<Input enabled="false" width="100%" placeholder="Enter Profit Center" valueHelpOnly="false"
+					value="{/AssetLifecycle/RecordAsset/Header/ProfitCentr/0/ProfitCenter/}"></Input>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -83,7 +84,7 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Area}" required="true"/>
+				<Label text="{i18n>Area}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group1AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.AreaF4-/AreaF4/" width="100%"
 					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AreaF4/}">
 					<customData>
@@ -91,7 +92,7 @@
 						<core:CustomData key="Group1AssetEvaluationKey_Text" value="Area Text"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Unit}" required="true"/>
+				<Label text="{i18n>Unit}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group2AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.UnitF4-/UnitF4/" width="100%"
 					placeholder="Enter Unit" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UnitF4/}">
 					<customData>
@@ -99,7 +100,7 @@
 						<core:CustomData key="Group2AssetEvaluationKey_Text" value="Unit Text"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>System}" required="true"/>
+				<Label text="{i18n>System}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group3AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.SystemF4-/SystemF4/" width="100%"
 					placeholder="Enter System" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SystemF4/}">
 					<customData>
@@ -107,7 +108,7 @@
 						<core:CustomData key="Group3AssetEvaluationKey_Text" value="System Text"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>AssetSuperNumber}" required="true"/>
+				<Label text="{i18n>AssetSuperNumber}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_SUPER-com.swcc.Template.fragments.FinanceModule.Assestsupernumber-/AssestsupernumberF4/"
 					width="100%" placeholder="Enter Asset Super Number" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/AssestsupernumberF4/}">
@@ -120,7 +121,7 @@
 					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetSuperNum}" items="{/AssestSuperf4/}">
 					<core:Item key="{AssetSuperNum}" text="{AssetSuperNum} - {AssetSuperText}"/>
 				</ComboBox>-->
-				<Label text="{i18n>NonTechnicalAsset}" required="true"/>
+				<Label text="{i18n>NonTechnicalAsset}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4-/AssestnontechF4/"
 					width="100%" placeholder="Enter Non Technical Asset" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"

@@ -39,7 +39,7 @@
 					items="{/PMCreateRequest/WorkCenterF4/}">
 					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
 				</ComboBox>-->
-				<Label text="{i18n>AccountingPrinciple}" required="true"/>
+				<Label text="{i18n>AccountingPrinciple}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_AccountingPrincipleText-com.swcc.Template.fragments.FinanceModule.AccountingprincipalF4-/AccountingprincipalF4/"
 					width="100%" placeholder="Enter Accounting Principal" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"

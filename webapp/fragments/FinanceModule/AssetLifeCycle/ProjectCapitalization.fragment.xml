@@ -27,7 +27,7 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/ProjectCaptilization/Header/Descript/}"
 					valueHelpRequest=""/>
-				<Label text="{i18n>Project}" required="true"/>
+				<Label text="{i18n>Project}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4-/ProjectNtwrkF4/"
 					width="100%" placeholder="Enter Project" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -37,7 +37,7 @@
 						<core:CustomData key="ProjectDescription" value="Project Description"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>WBSElement}" required="true"/>
+				<Label text="{i18n>WBSElement}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.WBSElementF4-/WBSElementF4/"
 					width="100%" placeholder="Enter WBS Element" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -49,7 +49,7 @@
 				</Input>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>Network}" required="true"/>
+				<Label text="{i18n>Network}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NetworkF4-/NetworkF4/"
 					width="100%" placeholder="Enter Project Network" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/NetworkF4}">
@@ -75,9 +75,6 @@
 						<core:Item key="10" text="10"/>
 						<core:Item key="11" text="11"/>
 						<core:Item key="12" text="12"/>
-						<core:Item key="13" text="13"/>
-						<core:Item key="14" text="14"/>
-						<core:Item key="15" text="15"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
