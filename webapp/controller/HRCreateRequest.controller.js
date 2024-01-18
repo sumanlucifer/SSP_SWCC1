@@ -27,7 +27,7 @@ sap.ui.define([
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/HRAppVisible/", sServiceProduct);
-				this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
+				//this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				//this.callDropDownService();
 
@@ -180,21 +180,22 @@ sap.ui.define([
 						Attachment: [],
 						PlantF4: [],
 						WorkCenterF4: [],
-						RetirementandResignations: {
-							Resignation: {
-								Header: {
 
-								},
-								itemData: []
+					},
+					RetirementandResignations: {
+						Resignation: {
+							Header: {
+
 							},
-							Retirement: {
-								Header: {
-
-								},
-								itemData: []
-							},
-
+							itemData: []
 						},
+						Retirement: {
+							Header: {
+
+							},
+							itemData: []
+						},
+
 					}
 				});
 			},
@@ -295,7 +296,9 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Begda": oPayloadHeader.Resigndate
+						"Begda": oPayloadHeader.Resigndate,
+						"Userid":oPayloadHeader.Persno,
+						
 					}
 
 					/*	"ServiceHeadertoItem": aItem.map(
