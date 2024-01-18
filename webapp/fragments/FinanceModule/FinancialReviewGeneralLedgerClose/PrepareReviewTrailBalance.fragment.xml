@@ -58,7 +58,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="" change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/}"
+					change="handleChange" class=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
