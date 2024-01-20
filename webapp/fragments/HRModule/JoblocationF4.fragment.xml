@@ -1,17 +1,17 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Job Grade" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+	<ValueHelpDialog title="Job Location" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="keyfield" descriptionKey="value_1" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Job" label="Job Code" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Job"/>
+							<m:Input name="Job code"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Job Title" label="Job Title" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Job Location" label="Job Location" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Job Title"/>
+							<m:Input name="Job Location"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>

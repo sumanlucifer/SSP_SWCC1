@@ -27,13 +27,21 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
-					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet/$filter=IdentifiereqUser&#32;Id'-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/"
+					width="100%" placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/UseridtF4/}">
 					<customData>
 						<core:CustomData key="Keyfield" value="User ID"/>
 						<core:CustomData key="Value1" value="User Name"/>
 					</customData>
 				</Input>
+				<!--	<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
+					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="User ID"/>
+						<core:CustomData key="Value1" value="User Name"/>
+					</customData>
+				</Input>-->
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -47,13 +55,20 @@
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
 				<Label text="{i18n>eventreason}" required="true"/>
-				<ComboBox width="100%" valueState="None">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event code"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" valueState="None">
 					<items>
 						<core:Item key="Resignation" text="Resignation"/>
 						<core:Item key="Early" text="Early Retirement"/>
 						<core:Item key="Compulsary" text="Compulsary Retirement"/>
 					</items>
-				</ComboBox>
+				</ComboBox>-->
 				<!--<Input placeholder="Enter Event Reason" showSuggestion="" showValueHelp="" value="{/RetirementandResignations/Resignation/Header/Massn/}"
 					valueHelpRequest=""/>-->
 			</fm:content>
