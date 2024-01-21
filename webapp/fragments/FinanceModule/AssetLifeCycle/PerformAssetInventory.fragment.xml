@@ -55,7 +55,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>ReportingDate}" required="true"/>
-				<DatePicker value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="Enter Date" change="handleChange" class="sapUiTinyMarginBegin"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="Enter Date" change="handleChange"
+					class="sapUiTinyMarginBegin"/>
 				<Label text="{i18n>DepreciationArea}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/"
 					width="100%" placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
