@@ -29,12 +29,12 @@
 				<Label text="{i18n>userid}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet/$filter=IdentifiereqUser&#32;Id'-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/"
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPTYPE-com.swcc.Template.fragments.HRModule.TypeofemployeementF4-/TypeofemployeementF4/"
 					width="100%" placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/UseridtF4/}">
+					value="{/TypeofemployeementF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="User ID"/>
-						<core:CustomData key="Value1" value="User Name"/>
+						<core:CustomData key="Keyfield" value="Employee Type"/>
+						<core:CustomData key="Value1" value="Employee Group"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>mobileNumber}" required="true"/>
@@ -73,13 +73,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>National}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_REQTYPE-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
-					placeholder="Enter Request Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Request"/>
-						<core:CustomData key="value_1" value="Request Type"/>
-					</customData>
-				</Input>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>policyno}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>gender}" required="true"/>

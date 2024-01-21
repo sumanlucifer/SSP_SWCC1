@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Insurance Policy" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="keyfield" descriptionKey="value_1" class="value-header">
+		<filterBar>
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Insurance policy" label="Insurance policy" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Insurance policy"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Insurance policy type" label="Insurance policy type" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Insurance policy type"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>
