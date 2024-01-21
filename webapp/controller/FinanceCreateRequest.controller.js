@@ -934,7 +934,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 
 						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
-						"Budat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
+						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
 						"Anln1": oPayloadHeader.Anln1,
