@@ -21,11 +21,13 @@
 				<Input placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/quantity/}"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>FinancialYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/RecordandProcessInvoice/FiscalYear}" change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear}"
+					change="handleChange" class=""/>
 				<Label text="{i18n>FMAREA}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_FinMgmtAreaStdVH-com.swcc.Template.fragments.FinanceModule.FmareaF4-/FmareaF4/" width="100%"
 					placeholder="Enter FM Area" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/FmareaF4}">
@@ -47,7 +49,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Period}" required="true"/>
-				<ComboBox selectedKey="" width="100%" enabled="true" valueState="None" placeholder="Select Period">
+				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Poper}" width="100%" enabled="true" valueState="None"
+					placeholder="Select Period">
 					<items>
 						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>

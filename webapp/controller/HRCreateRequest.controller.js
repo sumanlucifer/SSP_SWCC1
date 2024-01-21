@@ -112,9 +112,9 @@ sap.ui.define([
 			handleFiltersForValueHelp: function (F4) {
 				debugger;
 				var filters = [{
-						path: "CompanyCode",
-						value: "1000",
-						group: "GLF4Filter"
+						path: "Identifier",
+						value: "Employee Location",
+						group: "EventFilter"
 					}, {
 						path: "FiscalYear",
 						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
@@ -127,16 +127,10 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				var aFilter;
 
-				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" && F4 === "/UserijdtF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.EventFilter);
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];

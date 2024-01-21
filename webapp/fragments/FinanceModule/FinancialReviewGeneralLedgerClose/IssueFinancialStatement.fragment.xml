@@ -57,9 +57,11 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>ComparisionYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="" change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/}"
+					change="handleChange" class=""/>
 				<Label text="{i18n>ReportingYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="" change="handleChange" class=""/>
+				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/}"
+					change="handleChange" class=""/>
 				<Label text="{i18n>CurrencyType}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_CurrencyTypeAndValuationView-com.swcc.Template.fragments.FinanceModule.CurrencytypeF4-/CurrencytypeF4/"

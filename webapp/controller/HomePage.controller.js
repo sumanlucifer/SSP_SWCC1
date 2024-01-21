@@ -36,20 +36,20 @@ sap.ui.define([
 				});
 			},
 			BPFlagCheckAPI: function () {
-				debugger;
-				var sLoginUser = this.getCurrentUserLoggedIn();
-				var sLoginUserName = this.getCurrentLogInUserName();
-				this.getModel().setProperty("/LoginUser", sLoginUserName);
-				this.getModel().setProperty("/busy", true);
-				var sAPI = `/CheckUserSet(UserName='${sLoginUser}')`;
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
-					.then(function (oResponse) {
-						this.getModel().setProperty("/TileData/Header/", oResponse);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this));
+				/*	debugger;
+					var sLoginUser = this.getCurrentUserLoggedIn();
+					var sLoginUserName = this.getCurrentLogInUserName();
+					this.getModel().setProperty("/LoginUser", sLoginUserName);
+					this.getModel().setProperty("/busy", true);
+					var sAPI = `/CheckUserSet(UserName='${sLoginUser}')`;
+					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
+						.then(function (oResponse) {
+							this.getModel().setProperty("/TileData/Header/", oResponse);
+							this.getModel().setProperty("/busy", false);
+						}.bind(this)).catch(function (error) {
+							MessageBox.error(error.responseText);
+							this.getModel().setProperty("/busy", false);
+						}.bind(this));*/
 
 			},
 
