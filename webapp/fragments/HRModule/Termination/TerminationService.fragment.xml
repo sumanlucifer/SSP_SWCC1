@@ -27,14 +27,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
-				<Input placeholder="" value="" enabled="false"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
-					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
-					<customData>
-						<core:CustomData key="Keyfield" value="User ID"/>
-						<core:CustomData key="Value1" value="User Name"/>
-					</customData>
-				</Input>-->
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -47,9 +40,9 @@
 					class="sapUiTinyMarginBegin"/>-->
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
-				<Label text="{i18n>TerminationReason}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
-					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
+				<Label text="{i18n>eventreason}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="Enter Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
 					<customData>
 						<core:CustomData key="Keyfield" value="Event Code"/>
 						<core:CustomData key="Value1" value="Name"/>
