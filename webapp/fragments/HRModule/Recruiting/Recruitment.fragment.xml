@@ -27,26 +27,41 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>jobtitle}" required="false"/>
+<<<<<<< HEAD
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_VALUEHELP-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
 					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+=======
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+>>>>>>> refs/remotes/origin/feature/srikanth
 					<customData>
+<<<<<<< HEAD
 						<core:CustomData key="keyfield" value="User ID"/>
 						<core:CustomData key="value_1" value="User Name"/>
+=======
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
+>>>>>>> refs/remotes/origin/feature/srikanth
 					</customData>
 				</Input>
 				<Label text="{i18n>jobgrade}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet?search=JobTitle-com.swcc.Template.fragments.HRModule.RecuritmentF4-/RecuritmentF4/"
-					width="100%" placeholder="Select Job Title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/RecuritmentF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
+					placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Job Title"/>
-						<core:CustomData key="Value1" value="Job Desc"/>
+						<core:CustomData key="keyfield" value="Job Grade"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>jobnumber}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>joblocation}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
+					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Location"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>doyouhave}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>jobdesc}" required="true"/>

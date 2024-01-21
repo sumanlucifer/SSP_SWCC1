@@ -40,6 +40,8 @@ sap.ui.define([
 
 				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
 				// this._oValueHelpDialog.open();
+				/*var sFilter = "$filter=Identifier eq 'JobTitle' and Keyfield ne ''";
+				var sUrl = "/ZSSP_HR_SRV/ZSSP_HRSet?" + sFilter;*/
 
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];

@@ -1,4 +1,5 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+<<<<<<< HEAD
 	<ValueHelpDialog title="Job Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Keyfield" descriptionKey="Value1" class="value-header">
 		<!--<filterBar>-->
@@ -17,5 +18,25 @@
 		<!--		</fb:filterGroupItems>-->
 		<!--	</fb:FilterBar>-->
 		<!--</filterBar>-->
+=======
+	<ValueHelpDialog title="Event" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="keyfield" descriptionKey="value_1" class="value-header">
+		<filterBar>
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Event" label="Event" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Event"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Event Reason" label="Event Reason" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Event Reason"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+>>>>>>> refs/remotes/origin/feature/srikanth
 	</ValueHelpDialog>
 </core:FragmentDefinition>

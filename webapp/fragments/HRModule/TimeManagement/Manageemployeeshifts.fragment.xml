@@ -19,21 +19,34 @@
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>event}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>
-				<Label text="{i18n>workschedule}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
+					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Event"/>
+						<core:CustomData key="Value1" value="Event Description"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>workschedule}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_WORKSCHEDULE-com.swcc.Template.fragments.HRModule.WorkscheduleF4-/WorkscheduleF4/"
+					width="100%" placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/WorkscheduleF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Work Schedule"/>
+						<core:CustomData key="Value1" value="Work Schedule Group"/>
+					</customData>
+				</Input>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None">
 					<items>
@@ -43,9 +56,16 @@
 					</items>
 				</ComboBox>-->
 				<Label text="{i18n>startdate}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Event"/>
+						<core:CustomData key="Value1" value="Event Reason"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -19,7 +19,13 @@
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>name}" required="true"/>
@@ -27,7 +33,14 @@
 				<Label text="{i18n>mobileNumber}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>insurancepolicy}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_INSPOLICY-com.swcc.Template.fragments.HRModule.InsurancepolicyF4-/InsurancepolicyF4/"
+					width="100%" placeholder="Select Insurance Policy" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/InsurancepolicyF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Insurance policy"/>
+						<core:CustomData key="Value1" value="Insurance policy type"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>amount}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>bankname}" required="true"/>
@@ -38,14 +51,14 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>workcenter}" required="true"/>
+				<!--<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None">
 					<items>
 						<core:Item key="Regular" text="Regular"/>
 						<core:Item key="Emergency" text="Emergency"/>
 						<core:Item key="Urgent" text="Urgent"/>
 					</items>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>whenshould}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>membershipnumber}" required="true"/>
@@ -55,13 +68,25 @@
 				<Label text="{i18n>iban}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>gender}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<ComboBox width="100%" valueState="None">
+					<items>
+						<core:Item key="Male" text="Male"/>
+						<core:Item key="Female" text="Female"/>
+					</items>
+				</ComboBox>
 				<Label text="{i18n>city}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>visitdate}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
 				<Label text="{i18n>claimtype}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLAIMTYPE-com.swcc.Template.fragments.HRModule.ClaimtypeF4-/ClaimtypeF4/" width="100%"
+					placeholder="Select Claim type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClaimtypeF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Claim"/>
+						<core:CustomData key="Value1" value="Claim type"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -19,15 +19,40 @@
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>userid}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>event}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
+					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Event"/>
+						<core:CustomData key="Value1" value="Event Description"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>payscale}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Postion}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/"
+					width="100%" placeholder="Select Payscale Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalegroupF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Payscale "/>
+						<core:CustomData key="Value1" value="Payscale group"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Position}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POSITION-com.swcc.Template.fragments.HRModule.PositionF4-/PositionF4/" width="100%"
+					placeholder="Select Position" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PositionF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Position "/>
+						<core:CustomData key="Value1" value="Position group"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>employeelocation}" required="true"/>
@@ -41,11 +66,25 @@
 					</items>
 				</ComboBox>-->
 				<Label text="{i18n>startdate}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Event"/>
+						<core:CustomData key="Value1" value="Event Reason"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>payscalelevel}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/"
+					width="100%" placeholder="Select Payscale level" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="Payscale "/>
+						<core:CustomData key="Value1" value="Payscale Level "/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

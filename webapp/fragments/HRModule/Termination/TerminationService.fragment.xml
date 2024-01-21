@@ -34,6 +34,13 @@
 						<core:CustomData key="value_1" value="User Name"/>
 					</customData>
 				</Input>
+				<!--	<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
+					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
+					<customData>
+						<core:CustomData key="Keyfield" value="User ID"/>
+						<core:CustomData key="Value1" value="User Name"/>
+					</customData>
+				</Input>-->
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
