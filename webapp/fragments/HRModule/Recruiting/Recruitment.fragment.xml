@@ -66,11 +66,11 @@
 					<Label text="{i18n>Description}" required="true"/>
 					<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 					<Label text="{i18n>requirementsandconditions}" required="true"/>
-					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Input placeholder="" showSuggestion=""/>
 					<Label text="{i18n>scope}" required="true"/>
 					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 					<Label text="{i18n>department}" required="true"/>
-					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Input placeholder="" showSuggestion="" valueHelpRequest=""/>
 					<Label text="{i18n>tasksrequired}" required="true"/>
 					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 					<Label text="{i18n>yearsofexp}" required="true"/>
