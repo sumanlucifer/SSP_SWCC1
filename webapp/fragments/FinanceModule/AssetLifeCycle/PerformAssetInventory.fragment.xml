@@ -39,11 +39,11 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>CostCenter}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
-						<core:CustomData key="ControllingArea" value="Cost Center"/>
-						<core:CustomData key="CostCenter" value="Cost Text"/>
+						<core:CustomData key="CostCenter" value="Cost Center"/>
+						<core:CustomData key="CostCenterName" value="Cost Center Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>plant}" required="true"/>
