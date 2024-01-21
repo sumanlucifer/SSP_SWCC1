@@ -27,13 +27,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
-					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
-					<customData>
-						<core:CustomData key="Keyfield" value="User ID"/>
-						<core:CustomData key="Value1" value="User Name"/>
-					</customData>
-				</Input>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>event}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
 					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">

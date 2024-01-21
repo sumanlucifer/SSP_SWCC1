@@ -27,14 +27,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet/$filter=IdentifiereqUser&#32;Id'-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/"
-					width="100%" placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/UseridtF4/}">
-					<customData>
-						<core:CustomData key="Keyfield" value="User ID"/>
-						<core:CustomData key="Value1" value="User Name"/>
-					</customData>
-				</Input>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<!--	<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZSSP_HRSet-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
 					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
 					<customData>
@@ -56,7 +49,7 @@
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
 				<Label text="{i18n>eventreason}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
-					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					placeholder="Enter Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Event code"/>
 						<core:CustomData key="value_1" value="Event Reason"/>
