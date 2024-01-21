@@ -27,119 +27,113 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>jobtitle}" required="false"/>
-<<<<<<< HEAD
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_VALUEHELP-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
 					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}">
-=======
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
-					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
->>>>>>> refs/remotes/origin/feature/srikanth
-					<customData>
-<<<<<<< HEAD
-						<core:CustomData key="keyfield" value="User ID"/>
-						<core:CustomData key="value_1" value="User Name"/>
-=======
-						<core:CustomData key="keyfield" value="Job Code"/>
-						<core:CustomData key="value_1" value="Job Desc"/>
->>>>>>> refs/remotes/origin/feature/srikanth
-					</customData>
-				</Input>
-				<Label text="{i18n>jobgrade}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
-					placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Job Grade"/>
-						<core:CustomData key="value_1" value="Job Desc"/>
-					</customData>
-				</Input>
-				<Label text="{i18n>jobnumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>joblocation}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
-					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Job Code"/>
-						<core:CustomData key="value_1" value="Job Location"/>
-					</customData>
-				</Input>
-				<Label text="{i18n>doyouhave}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>jobdesc}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
+					<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+						placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+						<customData>
+							<core:CustomData key="keyfield" value="User ID"/>
+							<core:CustomData key="value_1" value="User Name"/>
+							<core:CustomData key="keyfield" value="Job Code"/>
+							<core:CustomData key="value_1" value="Job Desc"/>
+						</customData>
+					</Input>
+					<Label text="{i18n>jobgrade}" required="true"/>
+					<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
+						placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
+						<customData>
+							<core:CustomData key="keyfield" value="Job Grade"/>
+							<core:CustomData key="value_1" value="Job Desc"/>
+						</customData>
+					</Input>
+					<Label text="{i18n>jobnumber}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>joblocation}" required="true"/>
+					<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
+						placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
+						<customData>
+							<core:CustomData key="keyfield" value="Job Code"/>
+							<core:CustomData key="value_1" value="Job Location"/>
+						</customData>
+					</Input>
+					<Label text="{i18n>doyouhave}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>jobdesc}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
-				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>requirementsandconditions}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>scope}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>department}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>tasksrequired}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>yearsofexp}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>thewebsite}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>qualificationreq}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-			</fm:content>
-		</fm:SimpleForm>
-	</VBox>
-	<VBox width="100%">
-		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>
-				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
-			</fm:content>
-		</fm:SimpleForm>
-	</VBox>
-	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<Label text="{i18n>Attachments}" required="false"/>
-		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
-			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
-			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
-			placeholder="Choose a file" style="Emphasized"
-			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
-	</VBox>
-	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
-			<headerToolbar >
-				<Toolbar>
-					<content>
-						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
-							<layoutData>
-								<FlexItemData growFactor="1"/>
-							</layoutData>
-						</Image>
-					</content>
-				</Toolbar>
-			</headerToolbar>
-			<columns>
-				<Column>
-					<Text text="File Name"/>
-				</Column>
-				<Column>
-					<Text text="File Size"/>
-				</Column>
-				<Column>
-					<Text text="Delete"/>
-				</Column>
-				<!-- Add more columns as needed -->
-			</columns>
-			<items>
-				<ColumnListItem>
-					<cells>
-						<Text text="{Filename}"/>
-						<Text text="{Filesize}"/>
-						<Text textAlign="Center" text="{Delete}"/>
-						<!-- Add more cells as needed -->
-					</cells>
-				</ColumnListItem>
-			</items>
-		</Table>
-	</VBox>
-</core:FragmentDefinition>
+					<core:Title text=""/>
+					<Label text="{i18n>Description}" required="true"/>
+					<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+					<Label text="{i18n>requirementsandconditions}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>scope}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>department}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>tasksrequired}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>yearsofexp}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>thewebsite}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+					<Label text="{i18n>qualificationreq}" required="true"/>
+					<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				</fm:content>
+			</fm:SimpleForm>
+		</VBox>
+		<VBox width="100%">
+			<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+				singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+				<fm:content>
+					<Label text="{i18n>comments}" required="false"/>
+					<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				</fm:content>
+			</fm:SimpleForm>
+		</VBox>
+		<VBox class="uploadBox sapUiSmallMarginBeginEnd">
+			<Label text="{i18n>Attachments}" required="false"/>
+			<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+				sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+				fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+				placeholder="Choose a file" style="Emphasized"
+				mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+		</VBox>
+		<VBox>
+			<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+				<headerToolbar >
+					<Toolbar>
+						<content>
+							<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Image>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="File Name"/>
+					</Column>
+					<Column>
+						<Text text="File Size"/>
+					</Column>
+					<Column>
+						<Text text="Delete"/>
+					</Column>
+					<!-- Add more columns as needed -->
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{Filename}"/>
+							<Text text="{Filesize}"/>
+							<Text textAlign="Center" text="{Delete}"/>
+							<!-- Add more cells as needed -->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</VBox>
+	</core:FragmentDefinition>
