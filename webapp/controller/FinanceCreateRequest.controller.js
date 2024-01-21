@@ -767,8 +767,8 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Saknr": this.getModel().getProperty("/GlaccountF4/") ? this.getModel().getProperty("/GlaccountF4/").split("-")[0] : "",
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
-						"Gjahr": oPayloadHeader.FiscalYear,
-						"Zzyearofmanf": oPayloadHeader.FiscalYear,
+						"Gjahr": oPayloadHeader.Gjahr,
+						"Zzyearofmanf": oPayloadHeader.Zzyearofmanf,
 						"Curtp": this.getModel().getProperty("/CurrencytypeF4/") ? this.getModel().getProperty("/CurrencytypeF4/").split("-")[0] : "",
 						"Ktopl": this.getModel().getProperty("/ChartofaccountF4/") ? this.getModel().getProperty("/ChartofaccountF4/").split("-")[0] : "",
 						"Rldnr": this.getModel().getProperty("/LedgerF4/") ? this.getModel().getProperty("/LedgerF4/").split("-")[0] : "",
