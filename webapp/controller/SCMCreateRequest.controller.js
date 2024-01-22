@@ -28,7 +28,7 @@ sap.ui.define([
 				this.getModel().setProperty("/MaterialProcurement/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/SCMAppVisible/", sServiceProduct);
-				this.callDropDownService();
+				//this.callDropDownService();
 
 				this.getModel().setProperty("/busy", true);
 			},
@@ -168,8 +168,9 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
-					PlantF4: [],
-					WorkCenterF4: [],
+					PlantF4: "",
+					TypeofcompetitionF4: "",
+					//WorkCenterF4: [],
 					//Crtype: [],
 					recognitionAlreadyStarted: false,
 					SCMAppVisible: null,
@@ -432,21 +433,6 @@ sap.ui.define([
 
 			},
 
-			SCMCreateaRequestAPI: function (oPayload) {
-				debugger;
-				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
-						oPayload)
-					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-
-						this.getModel().setProperty("/busy", false);
-					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this));
-
-			},
 			onProceed: function () {
 				debugger;
 				//-----------------Procurement-ADHOC-----------------------------------------------------
@@ -472,9 +458,8 @@ sap.ui.define([
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData/")) :
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3003-3" ? this.SCMCreateRequestPayload() : null;*/
-				debugger;
-
 			},
+
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
@@ -531,29 +516,47 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-					"Descript": oPayloadHeader.Descript,
+					//"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Nameofsector": oPayloadHeader.SEC_NAME,
-						"Requestingparty": oPayloadHeader.REQ_PARTY,
-						"COMP_TYP": this.getModel().getProperty("/TypeofcompetitionF4/") ? this.getModel().getProperty("/TypeofcompetitionF4/")
+						"SecName": oPayloadHeader.SEC_NAME,
+						"ReqParty": oPayloadHeader.REQ_PARTY,
+						"CompTyp": this.getModel().getProperty("/TypeofcompetitionF4/ ") ? this.getModel().getProperty("/TypeofcompetitionF4/")
 							.split("-")[0] : "",
-						"Estimationcostofcompetition": oPayloadHeader.EST_COST,
-						"Implementationperiod": oPayloadHeader.IMP_PERIOD,
-						"Projectdescription": oPayloadHeader.PROJ_NAME
+						"EstCost": oPayloadHeader.EST_COST,
+						"ImpPeriod": oPayloadHeader.IMP_PERIOD,
+						"ProjName": oPayloadHeader.PROJ_NAME
 					},
 
-					"ServiceHeadertoItem": aItem.map(
-						function (items) {
-							return {
-								Shorttext: aItem.MATNR,
-								quantity: aItem.MENGE
-							};
-						}
-					)
+					"ServiceHeadertoItem": []
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
+			},
+			SCMCreateaRequestAPI: function (oPayload) {
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
+
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
+			_handleMessageBoxProceed: function (sMessage) {
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			/*SCMCreateRequestPayload: function (oPayloadHeader, aItem) {
 				var oPayload = {
@@ -579,6 +582,7 @@ sap.ui.define([
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},*/
+
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
 				var oItems = oModel.map(function (oItem) {
@@ -648,14 +652,15 @@ sap.ui.define([
 			},
 			onFileSizeExceed: function () {
 
-					this.handleFileSizeExceed();
-				}
-				/*,
+				this.handleFileSizeExceed();
+			}
 
-							onSearch: function () {
+			/*,
 
-								this.oRouter.navTo("LandingView");
+						onSearch: function () {
 
-							}*/
+							this.oRouter.navTo("LandingView");
+
+						}*/
 		})
 	})
