@@ -182,7 +182,7 @@ sap.ui.define([
 							Header: {},
 							itemData: []
 						},
-						PreapreofDirectpurchase: {
+						PrepareofDirectpurchase: {
 							Header: {},
 							itemData: []
 						},
@@ -236,6 +236,18 @@ sap.ui.define([
 
 				});
 			},
+			PlantF4: function () {
+				this.getModel().setProperty("/busy", true);
+				this.CallValueHelpAPI('/A_Plant/')
+					.then(function (oResponse) {
+						this.getModel().setProperty("/busy", false);
+						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
+					}.bind(this)).catch(function (error) {
+						this.getModel().setProperty("/busy", false);
+						MessageBox.error(error.responseText);
+					}.bind(this));
+
+			},
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -262,8 +274,8 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				Promise.allSettled([
 					// Plant F4
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
-						null),
+					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
+							null),*/
 					// Workcenter F4
 					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
 							null),*/
@@ -344,11 +356,10 @@ sap.ui.define([
 
 			},
 			buildResponselist: function (values) {
-				debugger;
 				this.getModel().setProperty("/busy", false);
 				//Plant F4 Valuehelp
-				var aPlantF4Data = values[0].value.results;
-				this.getModel().setProperty("/PlantF4/", aPlantF4Data);
+				/*	var aPlantF4Data = values[0].value.results;
+					this.getModel().setProperty("/PlantF4/", aPlantF4Data);*/
 				//Material F4 Valuehelp
 				var aMaterialF4Data = values[1].value.results;
 				this.getModel().setProperty("/Materialf4/", aMaterialF4Data);
@@ -446,6 +457,10 @@ sap.ui.define([
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/customItemData/")) :
 					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.ScmCreateRfcRequest(this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/customItemData/")) :
+					null;
 				//--------------------------Qualification-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
 						"/Qualification/SpecializedWork/Header/"), this.getModel().getProperty(
@@ -483,7 +498,7 @@ sap.ui.define([
 					)
 
 				};
-				this.FinanceCreateRequestAPI(oPayload);
+				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateMaterialProcurementRequest: function (oPayloadHeader, aItem) {
 				debugger;
@@ -506,6 +521,36 @@ sap.ui.define([
 								};
 							}
 						)*/
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreateRfcRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Nameofsector": oPayloadHeader.SEC_NAME,
+						"Requestingparty": oPayloadHeader.REQ_PARTY,
+						"COMP_TYP": this.getModel().getProperty("/TypeofcompetitionF4/") ? this.getModel().getProperty("/TypeofcompetitionF4/")
+							.split("-")[0] : "",
+						"Estimationcostofcompetition": oPayloadHeader.EST_COST,
+						"Implementationperiod": oPayloadHeader.IMP_PERIOD,
+						"Projectdescription": oPayloadHeader.PROJ_NAME
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Shorttext: aItem.MATNR,
+								quantity: aItem.MENGE
+							};
+						}
+					)
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -553,10 +598,57 @@ sap.ui.define([
 
 			},
 			onDeleteItemPress: function (oEvent) {
-					var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-					var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-					aTableData.splice(iRowNumberToDelete, 1);
-					this.getModel().refresh();
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
+			},
+			/* File uplaod 	*/
+			onFileAdded: function (oEvent) {
+				debugger;
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+
+				if (aFiles.length === 0)
+					return;
+
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					//Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+			handleMissmatch: function () {
+				this.handleFileMissmatch();
+			},
+			onFileSizeExceed: function () {
+
+					this.handleFileSizeExceed();
 				}
 				/*,
 
