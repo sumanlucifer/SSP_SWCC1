@@ -448,16 +448,15 @@ sap.ui.define([
 						"/ProcurementAdhoc/PrepareofDirectpurchase/customItemData/")) :
 					null;
 				//--------------------------Qualification-----------------------------------------------------	
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
-						"/Qualification/SpecializedWork/Header/"), this.getModel().getProperty(
-						"/Qualification/SpecializedWork/customItemData/")) :
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
+						.getProperty(
+							"/Quality/SpecalizedWorkQualification/Header/"), "") :
 					null;
-
-				/*this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.SCMCreateRequestPayload() : null;
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.SCMCreateRequestPayload(this.getModel().getProperty(
-						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData/")) :
+				//--------------------------Warehouseand logistics-----------------------------------------------------	
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.ScmCreateissueofmaterialRequest(this.getModel()
+						.getProperty(
+							"/WarehouseandLogistics/IssueofMaterial/Header/"), "") :
 					null;
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-FIN-3003-3" ? this.SCMCreateRequestPayload() : null;*/
 			},
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
@@ -533,6 +532,48 @@ sap.ui.define([
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},
+			ScmCreatespecializedworkqualificationRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"QualTyp": oPayloadHeader.QUAL_TYP,
+						"SuppName": oPayloadHeader.SUPP_NAME,
+						"VenTyp": this.getModel().getProperty("/ProjectstatusF4/ ") ? this.getModel().getProperty("/ProjectstatusF4/").split("-")[0] : "",
+						"SuppCon": oPayloadHeader.SUPP_CON,
+						"SuppCr": oPayloadHeader.SUPP_CR,
+						"ProjName": oPayloadHeader.PROJ_NAME
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreateissueofmaterialRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
+						//"Bwart": oPayloadHeader.BWART,
+						"Bwart": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"Kostl": this.getModel().getProperty("/costF4/ ") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Wempf": oPayloadHeader.WEMPF,
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+
 			SCMCreateaRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);

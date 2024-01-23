@@ -27,10 +27,11 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>basedate}" required="true"/>
-				<DatePicker value=""/>
+				<DatePicker valueFormat="dd/mm/yyyy" value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="Enter Date"
+					change="handleChange" class=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_CostCenterDetail-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="ControllingArea" value="Cost Center"/>
 						<core:CustomData key="CostCenter" value="Cost Text"/>
@@ -48,16 +49,17 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>goodsrecipient}" required="false"/>
-				<Input placeholder="Enter Goods Recipient" value=""/>
+				<Input placeholder="Enter Goods Recipient" value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-issueofmaterial1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
-			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/WarehouseandLogistics/IssueofMaterial/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

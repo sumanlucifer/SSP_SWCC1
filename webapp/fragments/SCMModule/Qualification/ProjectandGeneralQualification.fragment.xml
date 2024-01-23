@@ -27,11 +27,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>typeofqualification}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Qualification type" showSuggestion="" value="{/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/}"
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>suppliername}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Supplier Name" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>suppliercontactno}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Supplier Contact no" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CON/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
@@ -42,14 +45,16 @@
 					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjectstatusF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Status" value="Vendor code"/>
+						<core:CustomData key="Text" value="vendor text"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>suppliercrno}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Supplier No" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CR/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>projectname}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Project Name" value="{/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -58,7 +63,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/Quality/SpecalizedWorkQualification/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

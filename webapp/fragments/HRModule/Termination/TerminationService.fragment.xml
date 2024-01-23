@@ -44,8 +44,8 @@
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
 					placeholder="Enter Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Event Code"/>
-						<core:CustomData key="Value1" value="Name"/>
+						<core:CustomData key="keyfield" value="Event Code"/>
+						<core:CustomData key="value_1" value="Name"/>
 					</customData>
 				</Input>
 				<!--<Input placeholder="Enter Event Reason" showSuggestion="" showValueHelp="" value="{/RetirementandResignations/Resignation/Header/Massn/}"
