@@ -1,5 +1,5 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Time Recording Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+	<ValueHelpDialog title="Time Recording Admissibility Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
 		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="keyfield" descriptionKey="value_1"
 		class="value-header">
 		<filterBar>

@@ -56,7 +56,14 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>employeelocation}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPLOC-com.swcc.Template.fragments.HRModule.EmployeeLocF4-/EmployeeLocF4/" width="100%"
+					placeholder="Select Employee Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/EmployeeLocF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Position group"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>startdate}" required="true"/>
 				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
 					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>

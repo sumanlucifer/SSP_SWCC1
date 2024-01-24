@@ -68,23 +68,37 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Timeprofile}" required="true"/>
-				<Input placeholder=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMEPROFILE-com.swcc.Template.fragments.HRModule.TimeProfileF4-/TimeProfileF4/" width="100%"
+					placeholder="Select Time Profile" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TimeProfileF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Timerecordingadmin}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGADMISS-com.swcc.Template.fragments.HRModule.TimeRecoringAdmisF4-/TimeRecoringAdmisF4/"
+					width="100%" placeholder="Select Time Recording Admissibility" valueHelpOnly="false" showValueHelp="true"
+					valueHelpRequest="onValueHelpRequest" value="{/TimeRecoringAdmisF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Clockinclockout}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLOCKINOUTGROUP-com.swcc.Template.fragments.HRModule.ClockInOutF4-/PlantF4/" width="100%"
 					placeholder="Select ClockIn/ClockOut" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description "/>
 					</customData>
 				</Input>
 				<Label text="{i18n>paygroup}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYGROUP-com.swcc.Template.fragments.HRModule.PayGroupF4-/PayGroupF4/" width="100%"
 					placeholder="Select Pay Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayGroupF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Event"/>
-						<core:CustomData key="value_1" value="Event Reason"/>
+						<core:CustomData key="keyfield" value="Pay Group Code"/>
+						<core:CustomData key="value_1" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
@@ -136,8 +150,8 @@
 					width="100%" placeholder="Select Time Recording" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/TimeRecoringF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Payscale "/>
-						<core:CustomData key="value_1" value="Payscale group"/>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>timerecordingvariant}" required="true"/>

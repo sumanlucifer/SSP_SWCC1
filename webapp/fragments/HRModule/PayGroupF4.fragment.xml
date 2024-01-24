@@ -2,16 +2,16 @@
 	<ValueHelpDialog title="Pay Group Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="keyfield" descriptionKey="value_1" class="value-header">
 		<filterBar>
-			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+			<fb:FilterBar clear="onClearFilter"  showClearButton="true" showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Job" label="Job Code" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Pay Group Code" label="Pay Group Code" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Job"/>
+							<m:Input name="Pay Group Code"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Job Title" label="Job Title" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Description" label="Description" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Job Title"/>
+							<m:Input name="Description"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>

@@ -173,6 +173,7 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}
 
@@ -181,7 +182,7 @@ sap.ui.define([
 
 				this._filterTable(
 					new Filter({
-						filters: dynamicFilters.DynamicF4SearchFilter,
+						filters: Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter,
 						and: false,
 					})
 				);
@@ -221,6 +222,17 @@ sap.ui.define([
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
 
 				this._filterTable(aFilter, "Control");
+			},
+			onClearFilter: function (oEve) {
+				var afilterBar = oEve.getParameter("selectionSet");
+				afilterBar[0].setValue(null);
+				afilterBar[1].setValue(null);
+				this._filterTable(
+					new Filter({
+						filters: [],
+						and: false,
+					})
+				);
 			},
 			_getfilterforControl: function (aFilter) {
 
