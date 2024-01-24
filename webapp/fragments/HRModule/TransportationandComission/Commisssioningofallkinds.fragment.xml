@@ -105,8 +105,8 @@
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POSITION-com.swcc.Template.fragments.HRModule.PositionF4-/PositionF4/" width="100%"
 					placeholder="Select Position" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PositionF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Event"/>
-						<core:CustomData key="value_1" value="Event Reason"/>
+						<core:CustomData key="keyfield" value="Position "/>
+						<core:CustomData key="value_1" value="Position group"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>timezone}" required="true"/>
@@ -141,9 +141,17 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>timerecordingvariant}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGVARIANT-com.swcc.Template.fragments.HRModule.TimeRecoringVariantF4-/TimeRecoringVariantF4/"
+					width="100%" placeholder="Select Time Recording Variant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TimeRecoringVariantF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>payrollid}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Payroll ID" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
