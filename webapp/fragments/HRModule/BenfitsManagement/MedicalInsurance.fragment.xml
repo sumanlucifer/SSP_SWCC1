@@ -27,43 +27,18 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
+				<Label text="{i18n>whenshould}" required="true"/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPTYPE-com.swcc.Template.fragments.HRModule.TypeofemployeementF4-/TypeofemployeementF4/"
-					width="100%" placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Select Employement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/TypeofemployeementF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Employee Type"/>
-						<core:CustomData key="Value1" value="Employee Group"/>
+						<core:CustomData key="keyfield" value="Employee Type"/>
+						<core:CustomData key="value_1" value="Employee Group"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>mobileNumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>insurancestdt}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
-				<Label text="{i18n>dateofBirth}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
-				<Label text="{i18n>nationality}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>middlename}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>depedentnational}" required="true"/>
-				<Input id="mi-depedentnational" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox id="plant" width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
-				<Label text="{i18n>whenshould}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requesttype}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_REQTYPE-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
 					placeholder="Enter Request Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
@@ -72,21 +47,48 @@
 						<core:CustomData key="value_1" value="Request Type"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>mobileNumber}" required="true"/>
+				<Input placeholder="Enter Mobile Number" type="Number" value="{/BenefitsManagement/MedicalInsurance/Header/Zmobile/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Natsl/}" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>insurancestdt}" required="true"/>
+				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Zibegda/}" change="handleChange" class=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>policyno}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Policy No." showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>dateofBirth}" required="true"/>
+				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Gbdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>gender}" required="true"/>
-				<ComboBox width="100%" valueState="None">
+				<ComboBox placeholder="Select Gender" width="100%" valueState="None">
 					<items>
 						<core:Item key="Male" text="Male"/>
 						<core:Item key="Female" text="Female"/>
 					</items>
 				</ComboBox>
+				<Label text="{i18n>nationality}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
+					placeholder="Select Country" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
+					<customData>
+						<core:CustomData key="Country" value="Country"/>
+						<core:CustomData key="CountryName" value="CountryName"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>FirstName}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter First Name" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>middlename}" required="true"/>
+				<Input placeholder="Enter Middle Name" value="{/BenefitsManagement/MedicalInsurance/Header/AdNach2/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>LastName}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Last Name" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>depedentnational}" required="true"/>
+				<Input id="mi-depedentnational" placeholder="Enter Dependent National ID" value="{/BenefitsManagement/MedicalInsurance/Header/Zdepid/}"
+					showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -95,12 +97,13 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/SubmitComplaint/Header/Zcomment/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<Label text="{i18n>Attachments}" required="false"/>
+		<Label text="{i18n>Attachments}" required="true"/>
 		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
 			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
