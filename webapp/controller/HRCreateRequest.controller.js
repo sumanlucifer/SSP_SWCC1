@@ -18,7 +18,12 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
+				debugger;
 				this._createItemDataModel();
+				var oTimezonesModel = this.getOwnerComponent().getModel("timezonesData");
+				oTimezonesModel.setSizeLimit(500);
+				var aTimeZoneData = oTimezonesModel.getProperty("/");
+				this.getModel().setProperty("/TimeZoneData", aTimeZoneData);
 				var sLoginUser = this.getCurrentUserLoggedIn();
 				this.getModel().setProperty("/LoginUserID", sLoginUser);
 				this.getModel().setSizeLimit(1000);
@@ -35,6 +40,7 @@ sap.ui.define([
 					busy: false,
 					LoginUserID: "",
 					HRAppVisible: null,
+					TimeZoneData: "",
 					TypeF4: "",
 					HRCreateRequest: {
 						UploadedData: [],
