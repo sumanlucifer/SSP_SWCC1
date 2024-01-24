@@ -18,7 +18,6 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
-				debugger;
 				this._createItemDataModel();
 				var oTimezonesModel = this.getOwnerComponent().getModel("timezonesData");
 				oTimezonesModel.setSizeLimit(500);
@@ -188,7 +187,6 @@ sap.ui.define([
 				);
 			},
 			handleFiltersForValueHelp: function (F4) {
-				debugger;
 				var filters = [{
 						path: "Identifier",
 						value: "Employee Location",
@@ -218,7 +216,7 @@ sap.ui.define([
 
 			},
 			onValueHelpAfterOpen: function () {
-				debugger;
+
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
 

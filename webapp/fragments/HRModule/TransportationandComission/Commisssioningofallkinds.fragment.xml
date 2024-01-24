@@ -41,9 +41,23 @@
 				<Label text="{i18n>Servicedate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/TransportationCommision/Commisioning/Header/Zservdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>Employeelocation}" required="true"/>
-				<Input placeholder=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPLOC-com.swcc.Template.fragments.HRModule.EmployeeLocF4-/PayscalelevelF4/" width="100%"
+					placeholder="Select Employee Loction" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Contracttype}" required="true"/>
-				<Input placeholder=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CONTRACTTYPE-com.swcc.Template.fragments.HRModule.EmployeeLocF4-/PayscalelevelF4/"
+					width="100%" placeholder="Select Contract Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>
 				<Label text="{i18n>payscalelevel}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/"
 					width="100%" placeholder="Select Payscale level" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -82,9 +96,15 @@
 				<Label text="{i18n>senioritystartdate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/TransportationCommision/Commisioning/Header/Zseniordat/}" change="handleChange" class=""/>
 				<Label text="{i18n>Position}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Timezone}" required="true"/>
-				<ComboBox items="{/TimeZoneData}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POSITION-com.swcc.Template.fragments.HRModule.PositionF4-/PositionF4/" width="100%"
+					placeholder="Select Position" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PositionF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>timezone}" required="true"/>
+				<ComboBox placeholder="Select Time Zone" items="{/TimeZoneData}">
 					<core:Item key="{value}" text="{label}"/>
 				</ComboBox>
 				<Label text="{i18n>payscale}" required="true"/>
@@ -97,9 +117,23 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>workschedule}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_WORKSCHEDULE-com.swcc.Template.fragments.HRModule.WorkscheduleF4-/WorkscheduleF4/"
+					width="100%" placeholder="Select Work Schedule" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/WorkscheduleF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>timerecordingprofile}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGPROFILE-com.swcc.Template.fragments.HRModule.TimeRecoringF4-/TimeRecoringF4/"
+					width="100%" placeholder="Select Time Recording" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TimeRecoringF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>timerecordingvariant}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>payrollid}" required="true"/>
