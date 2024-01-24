@@ -80,7 +80,13 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>paygroup}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYGROUP-com.swcc.Template.fragments.HRModule.PayGroupF4-/PayGroupF4/" width="100%"
+					placeholder="Select Pay Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayGroupF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Hiredate}" required="true"/>
