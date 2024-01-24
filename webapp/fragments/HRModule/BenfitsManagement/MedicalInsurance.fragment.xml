@@ -65,15 +65,15 @@
 				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
 					value="{/BenefitsManagement/MedicalInsurance/Header/Gbdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>gender}" required="true"/>
-				<ComboBox placeholder="Select Gender" width="100%" valueState="None">
+				<ComboBox selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
 					<items>
 						<core:Item key="Male" text="Male"/>
 						<core:Item key="Female" text="Female"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>nationality}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
-					placeholder="Select Country" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
+				<Input ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
+					placeholder="Select Country" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
 					<customData>
 						<core:CustomData key="Country" value="Country"/>
 						<core:CustomData key="CountryName" value="CountryName"/>

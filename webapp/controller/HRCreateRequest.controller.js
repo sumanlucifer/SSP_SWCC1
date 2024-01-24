@@ -18,7 +18,6 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
-				debugger;
 				this._createItemDataModel();
 				var sLoginUser = this.getCurrentUserLoggedIn();
 				this.getModel().setProperty("/LoginUserID", sLoginUser);
@@ -57,6 +56,10 @@ sap.ui.define([
 							Header: {},
 							itemData: []
 						},
+						ClaimRequest: {
+							Header: {},
+							itemData: []
+						}
 
 					},
 
@@ -79,8 +82,6 @@ sap.ui.define([
 			},
 			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-				debugger;
-
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -274,12 +275,11 @@ sap.ui.define([
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/customItemData/")) :
 					null;
-					this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/customItemData/")) :
-					null;	
-					
-					
+					null;
+
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
 						.getProperty(
 							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
