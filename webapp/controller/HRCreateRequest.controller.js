@@ -62,18 +62,53 @@ sap.ui.define([
 						}
 
 					},
+					PeopleCareCenter: {
+
+						UpdateMasterData: {
+							Header: {},
+							itemData: []
+						}
+
+					},
+					Payroll: {
+						EmployeeVacation: {
+							Header: {},
+							itemData: []
+						}
+					},
+					TimeManagement: {
+						ActivatingAccessCard: {
+							Header: {},
+							itemData: []
+						},
+						ManageEmpShifts: {
+							Header: {},
+							itemData: []
+						}
+					},
+
+					TransportationCommision: {
+						Transfer: {
+							Header: {},
+							itemData: []
+						},
+						EmpTransporation: {
+							Header: {},
+							itemData: []
+						},
+						Commisioning: {
+							Header: {},
+							itemData: []
+						}
+					},
 
 					RetirementandResignations: {
 						Resignation: {
-							Header: {
-
-							},
+							Header: {},
 							itemData: []
 						},
 						Retirement: {
-							Header: {
-
-							},
+							Header: {},
 							itemData: []
 						},
 

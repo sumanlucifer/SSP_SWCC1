@@ -17,7 +17,7 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
-				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/HRAppVisible/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -27,31 +27,23 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
+				<DatePicker placeholder="Enter Start Date" valueFormat="dd/MM/yyyy" value="{/Payroll/EmployeeVacation/Header/Begda/}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
 				<Label text="{i18n>timetype}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMETYPE-com.swcc.Template.fragments.HRModule.TimetypeF4-/TimetypeF4/" width="100%"
 					placeholder="Select Time Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TimetypeF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Time type"/>
-						<core:CustomData key="Value1" value="Time type group"/>
+						<core:CustomData key="keyfield" value="Time type"/>
+						<core:CustomData key="value_1" value="Time type group"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>enddate}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
+				<DatePicker placeholder="Enter End Date" valueFormat="dd/MM/yyyy" value="{/Payroll/EmployeeVacation/Header/Zendate/}" change="handleChange"
+					class=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
