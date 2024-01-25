@@ -58,8 +58,6 @@
 						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Materialdesc}" required="true"/>
-				<Input id="materialdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
@@ -105,6 +103,8 @@
 						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Materialdesc}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="externalMaterialGroup" valueState="None"
 					placeholder="External Material Group" selectedKey="{crModel>ExternalProductGroup}" items="{crModel>/externalMaterialGroup}">
 					<core:Item key="{crModel>ExternalProductGroup}" text="{crModel>ExternalProductGroup} - {crModel>ExternalProductGroup_Text}"/>
