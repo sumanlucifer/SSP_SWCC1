@@ -58,6 +58,7 @@
 				<Label text="{i18n>providername}" required="true"/>
 				<Input value="{/BenefitsManagement/ClaimRequest/Header/Zproname/}" placeholder="Enter Provider Name" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>whenshould}" required="true"/>

@@ -1,3 +1,4 @@
+/**/
 sap.ui.define([
 		"./BaseController",
 		"sap/ui/model/json/JSONModel",
@@ -12,7 +13,7 @@ sap.ui.define([
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
-
+				/**/
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("HRCreateRequest").attachPatternMatched(this._onObjectMatched, this);
 
@@ -274,19 +275,7 @@ sap.ui.define([
 				oEve.getSource().getSelectedKey() === "" ? oEve.getSource().setValue(null) : "";
 
 			},
-			HRCreateaRequestAPI: function (oPayload) {
-				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
-						oPayload)
-					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
-						this.getModel().setProperty("/busy", false);
-					}.bind(this));
 
-			},
 			handleBackPress: function () {
 				var oHistory, sPreviousHash;
 				oHistory = History.getInstance();
@@ -298,9 +287,151 @@ sap.ui.define([
 				}
 
 			},
-			onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
+			/*	onback: function () {
+					this.getOwnerComponent().getTargets().display("LandingView");
 
+				},*/
+
+			onProceed: function () {
+				//-------------------------------------------Medical Care Benefits----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1-B" ? this.HRCreatemedicalcaresubmitcomplaintRequest(this.getModel()
+					.getProperty("/BenefitsManagement/SubmitComplaint/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1-A" ? this.HRCreatemedicalcareclaimRequest(this.getModel().getProperty(
+					"/BenefitsManagement/ClaimRequest/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreatemedicalcareinsuranceRequest(this.getModel()
+					.getProperty("/BenefitsManagement/MedicalInsurance/Header/"), "") : null;
+				//-------------------------------------------Retriement----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/customItemData/")) :
+					null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/customItemData/")) :
+					null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
+						.getProperty(
+							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
+					null;
+
+			},
+			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						//"Userid": oPayloadHeader.Persno,
+						"PadCname": oPayloadHeader.PadCname,
+						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Ztype": this.getModel().getProperty("/TypeF4/") ? this.getModel().getProperty("/TypeF4/").split("-")[0] : "",
+						"Zaprnum": oPayloadHeader.Zaprnum,
+						"Zcomment": oPayloadHeader.Zcomment
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreatemedicalcareclaimRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						//"Userid": oPayloadHeader.Persno,
+						"PadCname": oPayloadHeader.PadCname,
+						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Gesch": oPayloadHeader.Gesch,
+						"Zmobile": oPayloadHeader.Zmobile,
+						"Zmemnum": oPayloadHeader.Zmemnum,
+						"Iban": oPayloadHeader.Iban,
+						"Zinspol": this.getModel().getProperty("/InsurancepolicyF4/") ? this.getModel().getProperty("/InsurancepolicyF4/").split("-")[0] : "",
+						"Zcltype": this.getModel().getProperty("/ClaimtypeF4/") ? this.getModel().getProperty("/ClaimtypeF4/").split("-")[0] : "",
+						"Zamount": oPayloadHeader.Zamount,
+						"Bankk": oPayloadHeader.Bankk,
+						"PadOrt01": oPayloadHeader.PadOrt01,
+						"Land1": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split("-")[0] : "",
+						"Zvisdat": oPayloadHeader.Zvisdat,
+						"Zproname": oPayloadHeader.Zproname,
+						"Zcomment": oPayloadHeader.Zcomment
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreatemedicalcareinsuranceRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Zemplt": this.getModel().getProperty("/TypeofemployeementF4/") ? this.getModel().getProperty("/TypeofemployeementF4/").split(
+							"-")[0] : "",
+						"Zreqt": this.getModel().getProperty("/RequesttypeF4/") ? this.getModel().getProperty("/RequesttypeF4/").split("-")[0] : "",
+						//"Userid": oPayloadHeader.Persno,
+						"Zmobile": oPayloadHeader.Zmobile,
+						"Zcomment": oPayloadHeader.Zcomment,
+						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
+						"Zpolnum": this.getModel().getProperty("/PolicyNoF4/") ? this.getModel().getProperty("/PolicyNoF4/").split(
+							"-")[0] : "",
+						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
+						"Gesch": oPayloadHeader.Gesch,
+						"Natsl": oPayloadHeader.Natsl,
+						"PadVorna": oPayloadHeader.PadVorna,
+						"AdNach2": oPayloadHeader.AdNach2,
+						"PadNachn": oPayloadHeader.PadNachn,
+						"Zdepid": oPayloadHeader.Zdepid
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			/*	HRCreateResignationRequest: function (oPayloadHeader, aItem) {
+					var oPayload = {
+						"Username": this.getCurrentUserLoggedIn(),
+						"Material": this.getModel().getProperty("/HRAppVisible/"),
+						"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						"NotifText": oPayloadHeader.NotifText,
+						"ZHeaderExtra": {
+							"Begda": oPayloadHeader.Resigndate,
+							"Userid": oPayloadHeader.Persno,
+						},
+						"ServiceHeadertoItem": []
+					};
+					this.HRCreateaRequestAPI(oPayload);
+				},*/
+			HRCreateaRequestAPI: function (oPayload) {
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
+
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
+			_handleMessageBoxProceed: function (sMessage) {
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
 			},
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
@@ -328,65 +459,6 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-			},
-			onProceed: function () {
-				//-------------------------------------------Medical Care Benefits----------------------------------------------------------------------
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1-B" ? this.HRCreatemedicalcaresubmitcomplaintRequest(this.getModel()
-					.getProperty(
-						"/BenefitsManagement/SubmitComplaint/Header/"), "") : null;
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/customItemData/")) :
-					null;
-
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
-						.getProperty(
-							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
-					null;
-				//-------------------------------------------Retriement----------------------------------------------------------------------
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/customItemData/")) :
-					null;
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
-						"/RetirementandResignations/Resignation/customItemData/")) :
-					null;
-
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
-						.getProperty(
-							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
-					null;
-
-			},
-			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
-				var oPayload = {
-					"Username": this.getCurrentUserLoggedIn(),
-					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-					"NotifText": oPayloadHeader.NotifText,
-					"ZHeaderExtra": {
-						"Persno": oPayloadHeader.PERSNO,
-						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Userid": oPayloadHeader.Persno,
-					},
-					"ServiceHeadertoItem": []
-				};
-				this.FinanceCreateRequestAPI(oPayload);
-			},
-			HRCreateResignationRequest: function (oPayloadHeader, aItem) {
-				var oPayload = {
-					"Username": this.getCurrentUserLoggedIn(),
-					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-					"NotifText": oPayloadHeader.NotifText,
-					"ZHeaderExtra": {
-						"Begda": oPayloadHeader.Resigndate,
-						"Userid": oPayloadHeader.Persno,
-					},
-					"ServiceHeadertoItem": []
-				};
-				this.FinanceCreateRequestAPI(oPayload);
 			},
 
 			onSearch: function () {
