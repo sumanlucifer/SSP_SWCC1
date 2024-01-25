@@ -321,6 +321,19 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onProceed: function () {
+				//-------------------------------------------Medical Care Benefits----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1-B" ? this.HRCreatemedicalcaresubmitcomplaintRequest(this.getModel()
+					.getProperty(
+						"/BenefitsManagement/SubmitComplaint/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/customItemData/")) :
+					null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
+						.getProperty(
+							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :
+					null;
 				//-------------------------------------------Retriement----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
@@ -337,6 +350,21 @@ sap.ui.define([
 					null;
 
 			},
+			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Persno": oPayloadHeader.PERSNO,
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Userid": oPayloadHeader.Persno,
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
 			HRCreateResignationRequest: function (oPayloadHeader, aItem) {
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
@@ -346,19 +374,8 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Begda": oPayloadHeader.Resigndate,
 						"Userid": oPayloadHeader.Persno,
-
-					}
-
-					/*	"ServiceHeadertoItem": aItem.map(
-							function (items) {
-								return {
-									Belnr: items.InvoiceNo,
-									Budat: items.PostingDate,
-
-								};
-							}
-						)*/
-
+					},
+					"ServiceHeadertoItem": []
 				};
 				this.FinanceCreateRequestAPI(oPayload);
 			},

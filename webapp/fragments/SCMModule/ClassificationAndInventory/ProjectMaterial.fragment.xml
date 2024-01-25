@@ -26,20 +26,22 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/ClasssificationandInventory/SPIR/Header/MaterialQty/}"/>
+				<!--	<Label text="{i18n>quantity}" required="true"/>
+				<Input placeholder="Enter Quantity" value="{/ClasssificationandInventory/SPIR/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>spirno}" required="true"/>
 				<Input placeholder="Enter SPIR No" value="{/ClasssificationandInventory/SPIR/Header/Spirno/}"/>
 				<Label text="{i18n>spirsubject}" required="true"/>
-				<Input placeholder="Enter Quantity" value=""/>
+				<Input placeholder="Enter SPIR Subject" value=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequestDescription}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ClasssificationandInventory/SPIR/Header/Descript/}" enabled="true"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
-				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="Enter Equipment Type" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>equipmentno}" required="false"/>
-				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="Enter Equipment No" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -48,7 +50,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ClasssificationandInventory/SPIR/Header/NotifText/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
