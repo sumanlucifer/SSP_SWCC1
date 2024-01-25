@@ -23,7 +23,6 @@ sap.ui.define([
 			},
 
 			_onObjectMatched: function () {
-				debugger;
 				this._createTileDataModel();
 				this.BPFlagCheckAPI();
 			},
@@ -36,7 +35,6 @@ sap.ui.define([
 				});
 			},
 			BPFlagCheckAPI: function () {
-				debugger;
 				var sLoginUser = this.getCurrentUserLoggedIn();
 				var sLoginUserName = this.getCurrentLogInUserName();
 				this.getModel().setProperty("/LoginUser", sLoginUserName);

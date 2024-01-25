@@ -195,7 +195,6 @@ sap.ui.define([
 						// Click handler
 
 						oDialog.attachAfterOpen(function () {
-							debugger;
 							var oScrollContainer = oView.byId("myScrollContainer");
 							var oScrollDomRef = oScrollContainer.getDomRef();
 							oScrollDomRef.addEventListener("click", this.onScroll.bind(this));
