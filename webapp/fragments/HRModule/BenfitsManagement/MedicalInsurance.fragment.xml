@@ -26,8 +26,14 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>userid}" required="false"/>
-				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>policyno}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
+					placeholder="Select Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Policy"/>
+						<core:CustomData key="value_1" value="Policy No."/>
+					</customData>
+				</Input>
 				<Label text="{i18n>whenshould}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
@@ -59,14 +65,8 @@
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>policyno}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
-					placeholder="Select Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Policy"/>
-						<core:CustomData key="value_1" value="Policy No."/>
-					</customData>
-				</Input>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>dateofBirth}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
 					value="{/BenefitsManagement/MedicalInsurance/Header/Gbdat/}" change="handleChange" class=""/>
