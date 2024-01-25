@@ -20,12 +20,13 @@
 				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>Plant}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
 				</Input>
 			</fm:content>
 		</fm:SimpleForm>

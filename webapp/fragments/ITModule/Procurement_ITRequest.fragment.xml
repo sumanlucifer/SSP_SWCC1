@@ -20,9 +20,9 @@
 				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>Plant}" required="true"/>
+				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
@@ -53,9 +53,8 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="Multiselect" items="{path : '/ITProcurement/itemData/'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
+			<Table items="{path : '/ITProcurement/itemData/'}" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding"
+				inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="{i18n>material}"/>
@@ -83,20 +82,18 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-								placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/Plant}">
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_ITMATERIALVH-com.swcc.Template.fragments.ITModule.MaterialF4-/MaterialF4/" width="100%"
+								placeholder="Select Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{MaterialF4}">
 								<customData>
-									<core:CustomData key="Plant" value="Plant"/>
-									<core:CustomData key="PlantName" value="Plant Name"/>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="ProductName" value="Description"/>
 								</customData>
 							</Input>
-							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
-								value="{MATNR}"/>-->
-							<Input placeholder="Enter Description" id="description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" showSuggestion="" value="{MENGE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{MENGE}" liveChange="handleLiveChange"/>
 							<Input placeholder="Enter UOM" id="materialUom" value="{BaseUnit}" enabled="false"/>
-							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
-							<Input placeholder="Unit Price" showSuggestion="" value="{UNIT_PRICE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Req" value="{AFNAM}" enabled="false"/>
+							<Input placeholder="Unit Price" enabled="false" value="{UNIT_PRICE}"/>
 							<Text text="{UNIT_PRICE}"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>

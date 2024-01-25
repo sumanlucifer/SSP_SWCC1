@@ -30,8 +30,7 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
-					recognitionAlreadyStarted: false,
-
+					PlantF4: "",
 					ITProcurement: {
 						Header: {},
 						itemData: []
@@ -39,16 +38,17 @@ sap.ui.define([
 				});
 			},
 
+			/* Value help request */
 			onValueHelpRequest: function (oEve) {
 
-				// this._oMultiInput = this.getView().byId("multiInput");
-
-				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				// this._oValueHelpDialog.open();
-				var sFragName = oEve.getSource().getId().split("_")[3];
+				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]) : "";
+				var sValuehelpCheck = this.handleItemValuehelps(iIndex);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
-
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+				var sFragModel = sValuehelpCheck === "" ? oEve.getSource().getAriaLabelledBy()[0].split("-")[6] : sValuehelpCheck;
+				this.getModel().setProperty("/FragModel", sFragModel);
+				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
 				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
@@ -71,9 +71,18 @@ sap.ui.define([
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
+
+			handleItemValuehelps: function (iIndex) {
+				if (iIndex === "") {
+					return "";
+				}
+
+				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}/MaterialF4/` : "";
+				return sModelPath;
+			},
 			onValueHelpOkPress: function (oEvent) {
-				debugger;
-				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
+				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
 				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
@@ -81,7 +90,53 @@ sap.ui.define([
 				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+				this.setDependentFilterData();
 
+			},
+			setDependentFilterData: function () {
+				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty("/FragModel") ===
+					"/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ComputerDeviceFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ComputerDeviceFilter, "/PMCreateRequest/WorkCenterF4/")
+				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/FragModel") ===
+					"/costF4/") {
+					var filters = [{
+							path: "CostCenter",
+							value: this.getModel().getProperty("/costF4") ? this.getModel().getProperty(
+								"/costF4").split("-")[0] : "",
+							group: "RecordAssetFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
+						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
+				}
+			},
+			callDependentFilterAPI: function (entity, path, filter, model) {
+
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(
+					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
+				).then(function (oResponse) {
+
+					this.getModel().setProperty(`${model}`, oResponse.results);
+					this.getModel().setProperty("/busy", false);
+
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -95,6 +150,7 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}
 
@@ -103,15 +159,77 @@ sap.ui.define([
 
 				this._filterTable(
 					new Filter({
-						filters: dynamicFilters.DynamicF4SearchFilter,
+						filters: Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter,
 						and: false,
 					})
 				);
 			},
+			handleFiltersForValueHelp: function (F4) {
+				var filters = [{
+						path: "Identifier",
+						value: "Employee Location",
+						group: "EventFilter"
+					}, {
+						path: "FiscalYear",
+						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
+							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						group: "CashJrnlF4Filter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				var aFilter;
+
+				if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" && F4 === "/UserijdtF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.EventFilter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
+
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+
+			},
+			onValueHelpAfterOpen: function () {
+
+				//   apply filter before value help open 
+				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
+
+				this._filterTable(aFilter, "Control");
+			},
+			onClearFilter: function (oEve) {
+				var afilterBar = oEve.getParameter("selectionSet");
+				afilterBar[0].setValue(null);
+				afilterBar[1].setValue(null);
+				this._filterTable(
+					new Filter({
+						filters: [],
+						and: false,
+					})
+				);
+			},
+			_getfilterforControl: function (aFilter) {
+
+				if (!aFilter) {
+					return [];
+				}
+				return new Filter({
+					filters: aFilter,
+					and: true,
+				});
+
+				//	return dynamicFilters.PlantFilter;
+			},
+
 			_filterTable: function (oFilter, sType) {
 
 				this.handleVHFilterTable(oFilter, sType);
 			},
+
+			/* value help request ends here */
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -148,7 +266,7 @@ sap.ui.define([
 					return Object.assign({}, oItem);
 				});
 				oItems.push({
-					Material: "",
+					MaterialF4: "",
 					Description: "",
 					StorageLocation: "",
 					Quantity: "",
