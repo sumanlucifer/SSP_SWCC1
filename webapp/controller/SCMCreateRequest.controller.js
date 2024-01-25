@@ -123,22 +123,22 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				var aFilter;
 
-				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
-				} else {
-					// Default case if none of the conditions are met
-					aFilter = [];
-				}
+				/*	if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
+						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
+						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
+						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
+						aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+					} else {*/
+				// Default case if none of the conditions are met
+				/*		aFilter = [];
+					}*/
 
-				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+				//this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
 
 			},
 			onValueHelpAfterOpen: function () {
@@ -253,185 +253,6 @@ sap.ui.define([
 				this.navigationBack();
 
 			},
-			callDropDownService: function () {
-				this.getModel().setProperty("/busy", true);
-				var filters = [{
-						path: "Country",
-						value: "SA",
-						group: "CompanyFilter"
-					}
-
-				];
-				var Req_status = `/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/`;
-				var Proj_Type = `/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/`;
-				var Estimate_Type = `/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/`;
-				var Technical_Type = `/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/`;
-				var Conf_Proj = `/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/`;
-				var Site_Visit = `/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/`;
-				var Ecomomic_Feasibility = `/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/`;
-				var Security_Approval = `/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/`;
-				var Vendor_Type = `/ZCDSV_DOMAINVH(p_domain='ZVEN_TYP')/Set/`;
-
-				var dynamicFilters = this.getFilters(filters);
-				Promise.allSettled([
-					// Plant F4
-					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/A_Plant/', null,
-							null),*/
-					// Workcenter F4
-					/*	this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH/', null,
-							null),*/
-					//   Material Code F4 data
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_PRODUCTVH/', null,
-						null),
-					//CR type	
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/CRTypeSet/', null,
-						null),
-					//Material Type	
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/MaterialTypeSet/', null,
-						null),
-					//Industrial sector
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/IndustrySectorSet/', null,
-						null),
-					//external product sector
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ExtProdGrp/', null,
-						null),
-					//PurchasingGroupSet
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/PurchasingGroupSet/', null,
-						null),
-					//Req status
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Req_status, null,
-						null),
-					//Proj_status 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Proj_Type, null,
-						null),
-					//Estimate_status 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Estimate_Type, null,
-						null),
-					//Technical_type 
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Technical_Type, null,
-						null),
-					//Confidential Project
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Conf_Proj, null,
-						null),
-					//Site visit
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Site_Visit, null,
-						null),
-					//Ecomomic_Feasibility
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Ecomomic_Feasibility, null,
-						null),
-					//Security_Approval
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Security_Approval, null,
-						null),
-					//Vendor_Type
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', Vendor_Type, null,
-						null),
-					//Movement Type
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/MovementTypeSet/', null,
-						null),
-					//Cost center
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_CostCenterVH/', null,
-						null),
-					//Goods Movement
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_GoodsMovementType/', null,
-						null),
-					//UOM
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ZCDSV_SCM_UOMVH/', null,
-						null),
-					//Product type
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductPlantVHType/', null,
-						null),
-					//service group
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceGroupSet/', null,
-						null),
-					// used in table material 	
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/I_ProductDescriptionType/', null,
-						null),
-					//Service code
-					this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNoSet/', null,
-						null),
-					//Service code
-					/*this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', '/ServiceNotificationSet/ ', null,
-						null)*/
-
-				]).then(this.buildResponselist.bind(this)).catch(function (error) {}.bind(this));
-
-			},
-			buildResponselist: function (values) {
-				this.getModel().setProperty("/busy", false);
-				//Plant F4 Valuehelp
-				/*	var aPlantF4Data = values[0].value.results;
-					this.getModel().setProperty("/PlantF4/", aPlantF4Data);*/
-				//Material F4 Valuehelp
-				var aMaterialF4Data = values[1].value.results;
-				this.getModel().setProperty("/Materialf4/", aMaterialF4Data);
-				//CR type F4 Valuehelp
-				var acrF4Data = values[2].value.results;
-				this.getModel().setProperty("/CRf4/", acrF4Data);
-				//Material type type F4 Valuehelp
-				var aMaterialTypeF4Data = values[3].value.results;
-				this.getModel().setProperty("/MaterialTypef4/", aMaterialTypeF4Data);
-				//Industrial Sector type F4 Valuehelp
-				var aIndustrialSectorF4Data = values[4].value.results;
-				this.getModel().setProperty("/IndustrialSectorf4/", aIndustrialSectorF4Data);
-				//Ex Material F4 Valuehelp
-				var aExMaterialF4Data = values[5].value.results;
-				this.getModel().setProperty("/ExMaterialf4/", aExMaterialF4Data);
-				//purchasing Group 
-				var aPurchasingGroupF4Data = values[6].value.results;
-				this.getModel().setProperty("/PurchasingGroupf4/", aPurchasingGroupF4Data);
-				//Request Status
-				var aRequestStatusF4Data = values[7].value.results;
-				this.getModel().setProperty("/RequestStatusf4/", aRequestStatusF4Data);
-				//proj type
-				var aProjectTypeF4Data = values[8].value.results;
-				this.getModel().setProperty("/ProjectTypef4/", aProjectTypeF4Data);
-				//Estimate type
-				var aEstimateTypeF4Data = values[9].value.results;
-				this.getModel().setProperty("/EstimateTypef4/", aEstimateTypeF4Data);
-				//Technical type
-				var aTechnicalTypeF4Data = values[10].value.results;
-				this.getModel().setProperty("/TechnicalTypef4/", aTechnicalTypeF4Data);
-				//Confidential Project
-				var aConfidentialProjF4Data = values[11].value.results;
-				this.getModel().setProperty("/ConfidentialProjectf4/", aConfidentialProjF4Data);
-				//Site Visit
-				var aSiteVisitF4Data = values[12].value.results;
-				this.getModel().setProperty("/SiteVisitf4/", aSiteVisitF4Data);
-				//Economic Feasibility
-				var aEconomicFeasF4Data = values[13].value.results;
-				this.getModel().setProperty("/EconomicFeasibilityf4/", aEconomicFeasF4Data);
-				//Security Approval
-				var aSecurityApprovalF4Data = values[14].value.results;
-				this.getModel().setProperty("/SecurityApprovalf4/", aSecurityApprovalF4Data);
-				//Vendor type
-				var aVendorTypeF4Data = values[15].value.results;
-				this.getModel().setProperty("/VendorTypef4/", aVendorTypeF4Data);
-				//Movement type
-				var aMovementTypeF4Data = values[16].value.results;
-				this.getModel().setProperty("/MovementTypef4/", aMovementTypeF4Data);
-				//cost center
-				var aCostCenterF4Data = values[17].value.results;
-				this.getModel().setProperty("/CostCenterf4/", aCostCenterF4Data);
-				//goods movement type
-				var aGoodsMovementF4Data = values[18].value.results;
-				this.getModel().setProperty("/GoodsMovementf4/", aGoodsMovementF4Data);
-				//UOM
-				var aUomF4Data = values[19].value.results;
-				this.getModel().setProperty("/UOMf4/", aUomF4Data);
-				//Product type
-				var aProductTypeF4Data = values[20].value.results;
-				this.getModel().setProperty("/ProductTypef4/", aProductTypeF4Data);
-				//Service Group 
-				var aServiceGroupF4Data = values[21].value.results;
-				this.getModel().setProperty("/ServiceGroupf4/", aServiceGroupF4Data);
-				// Service code 
-				var aServiceCodeF4Data = values[22].value.results;
-				this.getModel().setProperty("/ServiceCodef4/", aServiceCodeF4Data);
-				// used in table material
-				var aMaterialtypeF4Data = values[23].value.results;
-				this.getModel().setProperty("/MaterialTypef4/", aMaterialtypeF4Data);
-
-			},
 
 			onProceed: function () {
 				debugger;
@@ -456,6 +277,19 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.ScmCreateissueofmaterialRequest(this.getModel()
 						.getProperty(
 							"/WarehouseandLogistics/IssueofMaterial/Header/"), "") :
+					null;
+				//-------------------------Classification and Inventory-----------------------------------------------------	
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" ? this.ScmCreatechangeRequest(this.getModel()
+						.getProperty(
+							"/ClasssificationandInventory/ChangeRequest/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.ScmCreateduplicateresolutionRequest(this.getModel()
+						.getProperty(
+							"/ClasssificationandInventory/DuplicateResolution/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2012-1" ? this.ScmCreatespirRequest(this.getModel()
+						.getProperty(
+							"/ClasssificationandInventory/SPIR/Header/"), "") :
 					null;
 			},
 
@@ -566,6 +400,61 @@ sap.ui.define([
 						"Bwart": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
 						"Kostl": this.getModel().getProperty("/costF4/ ") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
 						"Wempf": oPayloadHeader.WEMPF,
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreatechangeRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
+						//"Bwart": oPayloadHeader.BWART,
+						"Bwart": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"Kostl": this.getModel().getProperty("/costF4/ ") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Wempf": oPayloadHeader.WEMPF,
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreateduplicateresolutionRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Menge": oPayloadHeader.MENGE,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreatespirRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"SpirNo": this.handleOdataDateFormat(oPayloadHeader.SPIR_NO),
+						//"Bwart": oPayloadHeader.BWART,
+						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"EquiTyp": oPayloadHeader.EQUI_TYP,
+						"SpirSub": oPayloadHeader.SPIR_SUB,
 					},
 
 					"ServiceHeadertoItem": []

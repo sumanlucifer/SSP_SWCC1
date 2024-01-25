@@ -31,6 +31,7 @@
 				<Text text="{/UserDetails/Header/LastName/}" class="user-dtls"/>
 				<Label text="{i18n>EMailid}"/>
 				<Text text="{/UserDetails/Header/Email/}" class="user-dtls"/>
+				<CheckBox text="Enable Arabic Language"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

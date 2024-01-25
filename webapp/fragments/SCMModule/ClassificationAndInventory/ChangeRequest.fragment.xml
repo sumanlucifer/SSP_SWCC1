@@ -87,7 +87,7 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.BaseunitF4-/BaseunitF4/" width="100%"
-					placeholder="Enter Industry Sector" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/BaseunitF4/}">
+					placeholder="Enter Base UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/BaseunitF4/}">
 					<customData>
 						<core:CustomData key="Product" value="Product"/>
 						<core:CustomData key="BaseUnit" value="Base Unit"/>
@@ -95,7 +95,7 @@
 				</Input>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
-					placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					placeholder="Enter External Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialgroupF4/}">
 					<customData>
 						<core:CustomData key="ExternalProductGroup" value="Material group"/>
@@ -115,7 +115,7 @@
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>Description}" required="false"/>
+				<Label text="{i18n>Remarks}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
