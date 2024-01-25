@@ -106,16 +106,26 @@ sap.ui.define([
 							itemData: []
 						}
 					},
+					Termination: {
+						Termination: {
+							Header: {},
+							itemData: []
+						}
 
-					RetirementandResignations: {
-						Resignation: {
+						// 		same model re-use for retirement resignation sub seevice screens
+					},
+					CompensationRewards: {
+						RegularRewards: {
 							Header: {},
 							itemData: []
-						},
-						Retirement: {
+						}
+						// 		same model re-use for both screens 
+					},
+					TrainingDevelopment: {
+						EmployeeLearningDevelopment: {
 							Header: {},
 							itemData: []
-						},
+						}
 
 					}
 				});
@@ -265,7 +275,6 @@ sap.ui.define([
 
 			},
 			HRCreateaRequestAPI: function (oPayload) {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)

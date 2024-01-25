@@ -18,7 +18,7 @@ sap.ui.define([
 			},
 			_onObjectMatched: function () {
 				//var sValue = jQuery.sap.getUriParameters().get("param");
-				//debugger;
+
 				this._createItemDataModel();
 				this.getModel().setSizeLimit(1000);
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
@@ -31,7 +31,7 @@ sap.ui.define([
 
 			},
 			onValueHelpRequest: function (oEve) {
-				debugger;
+
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -61,7 +61,6 @@ sap.ui.define([
 
 			},
 			onValueHelpOkPress: function (oEvent) {
-				debugger;
 
 				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
@@ -107,7 +106,7 @@ sap.ui.define([
 			},
 
 			callDependentFilteAPI: function (entity, path, filter, model) {
-				debugger;
+
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
@@ -147,7 +146,7 @@ sap.ui.define([
 				);
 			},
 			handleFiltersForValueHelp: function (F4) {
-				debugger;
+
 				var filters = [{
 						path: "CompanyCode",
 						value: "1000",
@@ -190,7 +189,7 @@ sap.ui.define([
 
 			},
 			onValueHelpAfterOpen: function () {
-				debugger;
+
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
 
@@ -446,7 +445,7 @@ sap.ui.define([
 			},
 
 			handleManagePettyCashDateChange: function (oEve) {
-				// debugger;
+
 				var sYear = oEve.getSource().getValue();
 			},
 
@@ -1160,7 +1159,7 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onFileAdded: function (oEvent) {
-				debugger;
+
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");

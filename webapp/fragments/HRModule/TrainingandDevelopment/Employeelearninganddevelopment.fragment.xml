@@ -26,30 +26,23 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>userid}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>itemdetails}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
+				<Label text="{i18n>userid}" required="true"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>itemdetails}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>userjob}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
-					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_USERJOBLOCATION-com.swcc.Template.fragments.HRModule.UserJoblocationF4-/UserJoblocationF4/"
+					width="100%" placeholder="Enter User Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/UserJoblocationF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Code"/>
 						<core:CustomData key="value_1" value="Job Location"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>requireddate}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Begda/}" change="handleChange" class=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

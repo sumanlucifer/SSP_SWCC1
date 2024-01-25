@@ -89,7 +89,6 @@ sap.ui.define([
 				.then(function (oResponse) {
 					oResponse.results.length === 0 ? this.getModel().setProperty("/CustomerRegistrationData/Header/Regio/", null) : this.getModel().setProperty(
 						"/CustomerRegistrationData/RegionF4/", oResponse.results);
-					debugger;
 					this.getModel().setProperty("/CustomerRegistrationData/RegionF4/", oResponse.results);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {
@@ -194,7 +193,6 @@ sap.ui.define([
 		},
 
 		SubmitBPRegistration: function (oPayload) {
-			debugger;
 			// 	var sLoggedInUserName = this.getCurrentUserLoggedIn();
 			var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
 			oPayload.UserName = this.getCurrentUserLoggedIn();
@@ -234,7 +232,6 @@ sap.ui.define([
 		},
 		/* Uploaded data */
 		onAddItemsPress: function (oEvent) {
-			debugger;
 			var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
 			var oItems = oModel.map(function (oItem) {
 				return Object.assign({}, oItem);
@@ -284,7 +281,6 @@ sap.ui.define([
 		},
 		_addData: function (Filecontent, Filename, Filetype, Filesize) {
 
-			debugger;
 			var oModel = this.getModel().getProperty("/CustomerRegistrationData/UploadedData");
 			var oItems = oModel.map(function (oItem) {
 				return Object.assign({}, oItem);

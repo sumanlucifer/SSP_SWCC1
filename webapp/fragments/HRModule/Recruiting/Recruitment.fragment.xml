@@ -14,7 +14,6 @@
 				<Toolbar>
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
@@ -26,14 +25,12 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>jobtitle}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_VALUEHELP-com.swcc.Template.fragments.HRModule.UseridF4-/UseridtF4/" width="100%"
-					placeholder="Select UserID" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UseridtF4/}"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
 					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="User ID"/>
-						<core:CustomData key="value_1" value="User Name"/>
 						<core:CustomData key="keyfield" value="Job Code"/>
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
@@ -46,8 +43,10 @@
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>jobnumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Job Number"/>
 				<Label text="{i18n>joblocation}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
 					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
@@ -57,24 +56,20 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>doyouhave}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Requirements for Position" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>jobdesc}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
+				<Input placeholder="Enter Job Description" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>requirementsandconditions}" required="true"/>
-				<Input placeholder="" showSuggestion=""/>
+				<Input placeholder="Enter Requirements and Conditions" showSuggestion=""/>
 				<Label text="{i18n>scope}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>department}" required="true"/>
-				<Input placeholder="" showSuggestion="" valueHelpRequest=""/>
+				<Input placeholder="Enter Department" showSuggestion="" valueHelpRequest=""/>
 				<Label text="{i18n>tasksrequired}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Task" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>yearsofexp}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Year of Experience" type="Number"/>
 				<Label text="{i18n>thewebsite}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>qualificationreq}" required="true"/>
