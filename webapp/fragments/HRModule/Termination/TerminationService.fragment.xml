@@ -34,12 +34,6 @@
 				<Label text="{i18n>resigndate}" required="true"/>
 				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
 					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
-				<!--	<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/RetirementandResignations/Resignation/Header/OpenDate/}"
-					placeholder="Enter Date" change="handleChange" class=""/>-->
-				<!--<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" value="{}" placeholder="Enter Date" change="handleChange"
-					class="sapUiTinyMarginBegin"/>-->
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>-->
 				<Label text="{i18n>eventreason}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
 					placeholder="Enter Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">

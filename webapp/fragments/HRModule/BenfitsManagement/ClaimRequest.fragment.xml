@@ -27,64 +27,64 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
 				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Name" value="{/BenefitsManagement/ClaimRequest/Header/PadCname/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>mobileNumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Mobile Number" type="Number" value="{/BenefitsManagement/ClaimRequest/Header/Zmobile/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>insurancepolicy}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_INSPOLICY-com.swcc.Template.fragments.HRModule.InsurancepolicyF4-/InsurancepolicyF4/"
 					width="100%" placeholder="Select Insurance Policy" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsurancepolicyF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Insurance policy"/>
-						<core:CustomData key="Value1" value="Insurance policy type"/>
+						<core:CustomData key="keyfield" value="Insurance policy"/>
+						<core:CustomData key="value_1" value="Insurance policy type"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>amount}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Amount" value="{/BenefitsManagement/ClaimRequest/Header/Zamount/}"/>
 				<Label text="{i18n>bankname}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Bank Name" value="{/BenefitsManagement/ClaimRequest/Header/Bankk/}"/>
 				<Label text="{i18n>country}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
+					placeholder="Select Country" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
+					<customData>
+						<core:CustomData key="Country" value="Country"/>
+						<core:CustomData key="CountryName" value="CountryName"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>providername}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/BenefitsManagement/ClaimRequest/Header/Zproname/}" placeholder="Enter Provider Name" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
 				<Label text="{i18n>whenshould}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/ClaimRequest/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>membershipnumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Membership Number" value="{/BenefitsManagement/ClaimRequest/Header/Zmemnum/}" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/BenefitsManagement/ClaimRequest/Header/P25Idcot/}" placeholder="Enter National-ID" valueHelpRequest=""/>
 				<Label text="{i18n>iban}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input value="{/BenefitsManagement/ClaimRequest/Header/Iban/}" placeholder="Enter IBAN" valueHelpRequest=""/>
 				<Label text="{i18n>gender}" required="true"/>
-				<ComboBox width="100%" valueState="None">
+				<ComboBox selectedKey="{/BenefitsManagement/ClaimRequest/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
 					<items>
 						<core:Item key="Male" text="Male"/>
 						<core:Item key="Female" text="Female"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>city}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>City}" required="true"/>
+				<Input placeholder="Enter City" value="{/BenefitsManagement/ClaimRequest/Header/PadOrt01/}"/>
 				<Label text="{i18n>visitdate}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/ClaimRequest/Header/Zvisdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>claimtype}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLAIMTYPE-com.swcc.Template.fragments.HRModule.ClaimtypeF4-/ClaimtypeF4/" width="100%"
 					placeholder="Select Claim type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClaimtypeF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Claim"/>
-						<core:CustomData key="Value1" value="Claim type"/>
+						<core:CustomData key="keyfield" value="Claim"/>
+						<core:CustomData key="value_1" value="Claim type"/>
 					</customData>
 				</Input>
 			</fm:content>
@@ -95,7 +95,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/ClaimRequest/Header/Zcomment/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

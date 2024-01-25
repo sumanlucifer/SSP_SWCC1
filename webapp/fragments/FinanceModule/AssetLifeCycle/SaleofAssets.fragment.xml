@@ -37,7 +37,15 @@
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/SaleofAssets/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input placeholder="Enter Asset Number" value="{/AssetLifecycle/SaleofAssets/Header/Anln1/}" required="true" width="100%"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Asset Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
+					</customData>
+				</Input>
+			
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>AccountingPrinciple}" required="false"/>

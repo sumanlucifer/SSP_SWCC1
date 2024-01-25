@@ -15,34 +15,113 @@ sap.ui.define([
 
 				this.oRouter = this.getRouter();
 				this.getRouter().getRoute("HRCreateRequest").attachPatternMatched(this._onObjectMatched, this);
-				//this._createItemDataModel();
 
 			},
 			_onObjectMatched: function () {
-				debugger;
 				this._createItemDataModel();
+				var oTimezonesModel = this.getOwnerComponent().getModel("timezonesData");
+				oTimezonesModel.setSizeLimit(500);
+				var aTimeZoneData = oTimezonesModel.getProperty("/");
+				this.getModel().setProperty("/TimeZoneData", aTimeZoneData);
+				var sLoginUser = this.getCurrentUserLoggedIn();
+				this.getModel().setProperty("/LoginUserID", sLoginUser);
 				this.getModel().setSizeLimit(1000);
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/HRAppVisible/", sServiceProduct);
-				//this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
-				//this.callDropDownService();
 
 			},
+			_createItemDataModel: function () {
+				this.getModel().setData({
+					busy: false,
+					LoginUserID: "",
+					HRAppVisible: null,
+					TimeZoneData: "",
+					TypeF4: "",
+					HRCreateRequest: {
+						UploadedData: [],
+						Header: {},
+						CustomDisplayData: {},
+						Attachment: [],
+						PlantF4: [],
+						WorkCenterF4: [],
 
+					},
+					BenefitsManagement: {
+
+						SubmitComplaint: {
+							Header: {},
+							itemData: []
+						},
+
+						MedicalInsurance: {
+							Header: {},
+							itemData: []
+						},
+						ClaimRequest: {
+							Header: {},
+							itemData: []
+						}
+
+					},
+					PeopleCareCenter: {
+
+						UpdateMasterData: {
+							Header: {},
+							itemData: []
+						}
+
+					},
+					Payroll: {
+						EmployeeVacation: {
+							Header: {},
+							itemData: []
+						}
+					},
+					TimeManagement: {
+						ActivatingAccessCard: {
+							Header: {},
+							itemData: []
+						},
+						ManageEmpShifts: {
+							Header: {},
+							itemData: []
+						}
+					},
+
+					TransportationCommision: {
+						Transfer: {
+							Header: {},
+							itemData: []
+						},
+						EmpTransporation: {
+							Header: {},
+							itemData: []
+						},
+						Commisioning: {
+							Header: {},
+							itemData: []
+						}
+					},
+
+					RetirementandResignations: {
+						Resignation: {
+							Header: {},
+							itemData: []
+						},
+						Retirement: {
+							Header: {},
+							itemData: []
+						},
+
+					}
+				});
+			},
 			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-				debugger;
-				// this._oMultiInput = this.getView().byId("multiInput");
-
-				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				// this._oValueHelpDialog.open();
-				/*var sFilter = "$filter=Identifier eq 'JobTitle' and Keyfield ne ''";
-				var sUrl = "/ZSSP_HR_SRV/ZSSP_HRSet?" + sFilter;*/
-
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -72,8 +151,6 @@ sap.ui.define([
 
 			},
 			onValueHelpOkPress: function (oEvent) {
-				debugger;
-
 				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
@@ -96,6 +173,7 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}
 
@@ -104,13 +182,12 @@ sap.ui.define([
 
 				this._filterTable(
 					new Filter({
-						filters: dynamicFilters.DynamicF4SearchFilter,
+						filters: Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter,
 						and: false,
 					})
 				);
 			},
 			handleFiltersForValueHelp: function (F4) {
-				debugger;
 				var filters = [{
 						path: "Identifier",
 						value: "Employee Location",
@@ -140,11 +217,22 @@ sap.ui.define([
 
 			},
 			onValueHelpAfterOpen: function () {
-				debugger;
+
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
 
 				this._filterTable(aFilter, "Control");
+			},
+			onClearFilter: function (oEve) {
+				var afilterBar = oEve.getParameter("selectionSet");
+				afilterBar[0].setValue(null);
+				afilterBar[1].setValue(null);
+				this._filterTable(
+					new Filter({
+						filters: [],
+						and: false,
+					})
+				);
 			},
 			_getfilterforControl: function (aFilter) {
 
@@ -165,48 +253,7 @@ sap.ui.define([
 			},
 
 			/* value help request ends here */
-			_createItemDataModel: function () {
-				this.getModel().setData({
-					busy: false,
-					HRAppVisible: null,
-					HRCreateRequest: {
-						UploadedData: [],
-						Header: {},
-						CustomDisplayData: {},
-						Attachment: [],
-						PlantF4: [],
-						WorkCenterF4: [],
 
-					},
-					RetirementandResignations: {
-						Resignation: {
-							Header: {
-
-							},
-							itemData: []
-						},
-						Retirement: {
-							Header: {
-
-							},
-							itemData: []
-						},
-
-					}
-				});
-			},
-			PlantF4: function () {
-				this.getModel().setProperty("/busy", true);
-				this.CallValueHelpAPI('/A_Plant/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-			},
 			onSelectPlant: function (oEve) {
 				var sKey = oEve.getSource().getSelectedKey();
 				this.WorkCenterF4(sKey);
@@ -279,6 +326,11 @@ sap.ui.define([
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/customItemData/")) :
 					null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreateResignationRequest(this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
+						"/RetirementandResignations/Resignation/customItemData/")) :
+					null;
+
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" ? this.FinanceCreateManangePettyCashRequest(this.getModel()
 						.getProperty(
 							"/AccountPayable/ManagePettyCash/Header/"), this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/")) :

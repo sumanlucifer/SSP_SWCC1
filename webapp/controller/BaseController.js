@@ -30,7 +30,7 @@ sap.ui.define([
 			}
 		},
 		getCurrentLogInUserName: function () {
-			debugger;
+
 			try {
 				var sUserName = new sap.ushell.services.UserInfo().getUser().getFirstName();;
 				return sUserName;
@@ -106,7 +106,7 @@ sap.ui.define([
 					xUnique.add(ele.getKey());
 				}
 			});
-			debugger;
+
 			// Adjust the property path and model based on your use case
 			oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}- ${oData[0][sTextProperty]}`);
 			this._oValueHelpDialog.close();

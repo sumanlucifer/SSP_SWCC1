@@ -27,43 +27,34 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>userid}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>event}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
 					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Event"/>
-						<core:CustomData key="Value1" value="Event Description"/>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Type"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>workschedule}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_WORKSCHEDULE-com.swcc.Template.fragments.HRModule.WorkscheduleF4-/WorkscheduleF4/"
-					width="100%" placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Select Work Schedule" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/WorkscheduleF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Work Schedule"/>
-						<core:CustomData key="Value1" value="Work Schedule Group"/>
+						<core:CustomData key="keyfield" value="Work Schedule"/>
+						<core:CustomData key="value_1" value="Work Schedule Group"/>
 					</customData>
 				</Input>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker valueFormat="yyyy-MM-dd" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
-					value="{/RetirementandResignations/Resignation/Header/OpenDate/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/TimeManagement/ManageEmpShifts/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
-					placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					placeholder="Select Event Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
 					<customData>
-						<core:CustomData key="Keyfield" value="Event"/>
-						<core:CustomData key="Value1" value="Event Reason"/>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
 					</customData>
 				</Input>
 			</fm:content>
@@ -74,7 +65,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/TimeManagement/ManageEmpShifts/Header/Zcomment/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -18,33 +18,38 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>userid}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>type}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None">
-					<items>
-						<core:Item key="Regular" text="Regular"/>
-						<core:Item key="Emergency" text="Emergency"/>
-						<core:Item key="Urgent" text="Urgent"/>
-					</items>
-				</ComboBox>-->
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
+				<Label text="{i18n>name}" required="true"/>
+				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/PadCname/}" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<core:Title text=""/>
 				<Label text="{i18n>whenshould}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/P25Idcot/}" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>approvalnumber}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>approvaldate}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Approval Number" value="{/BenefitsManagement/SubmitComplaint/Header/Zaprnum/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>type}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%"
+					placeholder="Enter Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event Code"/>
+						<core:CustomData key="value_1" value="Name"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -53,7 +58,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/SubmitComplaint/Header/Zcomment/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

@@ -882,10 +882,11 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceRecordAssetRequest: function (oPayloadHeader) {
-				const aUploadData = this.getModel().getProperty("/FinanceCreateRequest/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -894,18 +895,18 @@ sap.ui.define([
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-
-						"Anlkl": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
-						"Anln2": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
+						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						"Anlkl": this.getModel().getProperty("/AssestclassF4/") ? this.getModel().getProperty("/AssestclassF4/").split("-")[0] : "",
+						"Anln2": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split(
 							"-")[0] : "",
 						"Txt50": oPayloadHeader.Txt50,
-						"Anlhtxt": oPayloadHeader.Anlhtxt,
+						"Anlhtxt": oPayloadHeader.Txt50,
 						"Invnr": oPayloadHeader.Invnr,
 						"Invzu": oPayloadHeader.Invzu,
 						"Aktiv": oPayloadHeader.Aktiv,
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
-						"Prctr": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Prctr": oPayloadHeader.ProfitCentr ? oPayloadHeader.ProfitCentr[0].ProfitCenter : "",
 						"Ord41": this.getModel().getProperty("/AreaF4/") ? this.getModel().getProperty("/AreaF4/").split("-")[0] : "",
 						"Ord42": this.getModel().getProperty("/UnitF4/") ? this.getModel().getProperty("/UnitF4/").split("-")[0] : "",
 						"Ord43": this.getModel().getProperty("/SystemF4/") ? this.getModel().getProperty("/SystemF4/").split("-")[0] : "",
@@ -937,7 +938,7 @@ sap.ui.define([
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
-						"Anln1": oPayloadHeader.Anln1,
+						"Anln1": this.getModel().getProperty("/AssestF4/") ? this.getModel().getProperty("/AssestF4/").split("-")[0] : "",
 						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						"AccPrinciple": this.getModel().getProperty("/AccountingprincipalF4/") ? this.getModel().getProperty("/AccountingprincipalF4/").split(
 							"-")[0] : "",
