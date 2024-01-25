@@ -40,9 +40,10 @@ sap.ui.define([
 
 			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-
+				debugger;
 				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]) : "";
-				var sValuehelpCheck = this.handleItemValuehelps(iIndex);
+				this.getModel().setProperty("/itemIndex", iIndex);
+				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -72,13 +73,15 @@ sap.ui.define([
 
 			},
 
-			handleItemValuehelps: function (iIndex) {
+			handleItemValuehelps: function (iIndex, valuehelpModel) {
 				if (iIndex === "") {
+					this.getModel().setProperty("/HeaderValueHelp", true);
 					return "";
 				}
+				this.getModel().setProperty("/HeaderValueHelp", false)
 
 				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}/MaterialF4/` : "";
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				return sModelPath;
 			},
 			onValueHelpOkPress: function (oEvent) {
@@ -94,8 +97,7 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
-				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty("/FragModel") ===
-					"/MaterialF4/") {
+				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && !this.getModel().getProperty("/HeaderValueHelp")) {
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
@@ -106,21 +108,7 @@ sap.ui.define([
 
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
-						dynamicFilters.ComputerDeviceFilter, "/PMCreateRequest/WorkCenterF4/")
-				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/FragModel") ===
-					"/costF4/") {
-					var filters = [{
-							path: "CostCenter",
-							value: this.getModel().getProperty("/costF4") ? this.getModel().getProperty(
-								"/costF4").split("-")[0] : "",
-							group: "RecordAssetFilter"
-						}
-
-					];
-
-					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
-						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
+						dynamicFilters.ComputerDeviceFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -129,14 +117,18 @@ sap.ui.define([
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
 				).then(function (oResponse) {
-
-					this.getModel().setProperty(`${model}`, oResponse.results);
+					this.handleDependentFilterResponse(oResponse.results[0], `${model}`);
 					this.getModel().setProperty("/busy", false);
 
 				}.bind(this)).catch(function (error) {
 					MessageBox.error(error.responseText);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
+			},
+
+			handleDependentFilterResponse: function (aData, oModel) {
+				this.getModel().setProperty(`${oModel}/Description/`, aData.ProductName);
+				this.getModel().setProperty(`${oModel}/BaseUnit/`, aData.BaseUnit);
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
