@@ -46,7 +46,7 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>jobnumber}" required="true"/>
-				<Input placeholder="Enter Job Number"/>
+				<Input placeholder="Enter Job Number" type="Number"/>
 				<Label text="{i18n>joblocation}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
 					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
@@ -63,7 +63,7 @@
 				<Label text="{i18n>requirementsandconditions}" required="true"/>
 				<Input placeholder="Enter Requirements and Conditions" showSuggestion=""/>
 				<Label text="{i18n>scope}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Scope of Advertising" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>department}" required="true"/>
 				<Input placeholder="Enter Department" showSuggestion="" valueHelpRequest=""/>
 				<Label text="{i18n>tasksrequired}" required="true"/>
@@ -71,9 +71,9 @@
 				<Label text="{i18n>yearsofexp}" required="true"/>
 				<Input placeholder="Enter Year of Experience" type="Number"/>
 				<Label text="{i18n>thewebsite}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Website" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>qualificationreq}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Qualification Requirement" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -95,7 +95,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
 			<headerToolbar >
 				<Toolbar>
 					<content>
