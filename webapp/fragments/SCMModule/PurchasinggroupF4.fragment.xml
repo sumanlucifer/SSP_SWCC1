@@ -1,6 +1,7 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Ekgrp" descriptionKey="Eknam" class="value-header">
+	<ValueHelpDialog title="Purchasing Group Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Ekgrp" descriptionKey="Eknam"
+		class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
@@ -9,9 +10,9 @@
 							<m:Input name="Purchasing Group"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Name" label="Name" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Group Name" label="Group Name" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Name"/>
+							<m:Input name="Group Name"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>

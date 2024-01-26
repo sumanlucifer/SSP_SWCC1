@@ -533,7 +533,7 @@ sap.ui.define([
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				var aTableData = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
 			},
