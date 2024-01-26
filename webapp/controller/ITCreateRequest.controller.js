@@ -44,6 +44,7 @@ sap.ui.define([
 				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]) : "";
 				this.getModel().setProperty("/itemIndex", iIndex);
 				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
+				this.getModel().setProperty("/valueHelpName", oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
@@ -67,8 +68,6 @@ sap.ui.define([
 					template: sColumn2Template,
 				}];
 
-				// var sPath = "/ZCDSV_EQUIPMENTVH";
-
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
@@ -78,9 +77,12 @@ sap.ui.define([
 					this.getModel().setProperty("/HeaderValueHelp", true);
 					return "";
 				}
+
 				this.getModel().setProperty("/HeaderValueHelp", false)
 
 				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
+				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				return sModelPath;
 			},
@@ -97,7 +99,8 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
-				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && !this.getModel().getProperty("/HeaderValueHelp")) {
+				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && !this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
@@ -109,6 +112,21 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
 						dynamicFilters.ComputerDeviceFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ComputerDeviceFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ComputerDeviceFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -253,11 +271,9 @@ sap.ui.define([
 
 			},
 			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/ITProcurement/itemData");
-				var oItems = oModel.map(function (oItem) {
-					return Object.assign({}, oItem);
-				});
-				oItems.push({
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
 					MaterialF4: null,
 					Description: "",
 					Menge: "",
@@ -265,9 +281,31 @@ sap.ui.define([
 					StockAvailable: "",
 					UnitPrice: "",
 					TotalPrice: ""
-				});
-				this.getModel().setProperty("/ITProcurement/itemData", oItems);
+				}, "/ITProcurement/itemData") : "";
+				// var oModel = this.getModel().getProperty("/ITProcurement/itemData");
+				// var oItems = oModel.map(function (oItem) {
+				// 	return Object.assign({}, oItem);
+				// });
+				// oItems.push({
+				// 	MaterialF4: null,
+				// 	Description: "",
+				// 	Menge: "",
+				// 	BaseUnit: "",
+				// 	StockAvailable: "",
+				// 	UnitPrice: "",
+				// 	TotalPrice: ""
+				// });
+				// this.getModel().setProperty("/ITProcurement/itemData", oItems);
 
+			},
+
+			updateItemAddModel: function (oModel, obj, path) {
+
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push(obj);
+				this.getModel().setProperty(`${path}`, oItems);
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
