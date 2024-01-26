@@ -40,8 +40,8 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>movementtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/MovementTypeSet-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/" width="100%"
-					placeholder="Enter Movement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_GoodsMovementType-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/"
+					width="100%" placeholder="Enter Movement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MovementtypeF4/}">
 					<customData>
 						<core:CustomData key="Key" value="Movement Code"/>
@@ -93,7 +93,10 @@
 						<Text text="{i18n>Storagelocation}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Warehouse No}"/>
+						<Text text="{i18n>Warehouseno}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Storagebin}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>

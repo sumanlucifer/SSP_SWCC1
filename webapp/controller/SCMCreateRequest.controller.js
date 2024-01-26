@@ -108,14 +108,9 @@ sap.ui.define([
 			handleFiltersForValueHelp: function (F4) {
 				debugger;
 				var filters = [{
-						path: "CompanyCode",
-						value: "1000",
-						group: "GLF4Filter"
-					}, {
-						path: "FiscalYear",
-						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
-							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
-						group: "CashJrnlF4Filter"
+						path: "shkzg",
+						value: "H",
+						group: "MovementtypeF4Filter"
 					}
 
 				];
@@ -123,22 +118,22 @@ sap.ui.define([
 				var dynamicFilters = this.getFilters(filters);
 				var aFilter;
 
-				/*	if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-4" && F4 === "/GlaccountF4/") {
-						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
-						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
-						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
-						aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-					} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
-						aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
-					} else {*/
-				// Default case if none of the conditions are met
-				/*		aFilter = [];
-					}*/
+				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 === "/MovementtypeF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.MovementtypeF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
 
-				//this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
 
 			},
 			onValueHelpAfterOpen: function () {
@@ -533,7 +528,7 @@ sap.ui.define([
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
+				var aTableData = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
 			},

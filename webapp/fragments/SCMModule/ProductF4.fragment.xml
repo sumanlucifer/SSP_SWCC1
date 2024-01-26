@@ -1,17 +1,17 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Plant Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Plant" descriptionKey="Product" class="value-header">
+	<ValueHelpDialog title="Product Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Product" descriptionKey="Description" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Plant" label="Plant" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Product code" label="Product code" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Plant"/>
+							<m:Input name="Product code"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Product" label="Product" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Product Name" label="Product Name" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Product"/>
+							<m:Input name="Product Name"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
