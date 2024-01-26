@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Project type" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+	<ValueHelpDialog title="Confidential Status" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Status" descriptionKey="Text" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Project Type" label="Project Type" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Confidential Type" label="Confidential Type" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Project Type"/>
+							<m:Input name="Confidential Type"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Description" label="Description" visibleInFilterBar="true">

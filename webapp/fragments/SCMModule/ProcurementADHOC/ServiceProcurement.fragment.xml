@@ -37,12 +37,12 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjecttypeF4-/ProjecttypeF4/"
 					width="100%" placeholder="Enter Project" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					value="{/ProjecttypeF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Status" value="Project type"/>
+						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
 				<!--	<ComboBox width="100%" valueState="None" placeholder="Select Project Type"
@@ -50,23 +50,22 @@
 					<core:Item key="{Status}" text="{Status} - {Text}"/>
 				</ComboBox>-->
 				<Label text="{i18n>costestimationtype}" required="false"/>
-				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjecttypeF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjecttypeF4/}">
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.CostestF4-/CostestF4/"
+					width="100%" placeholder="Enter Cost Estimation Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CostestF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Status" value="Estimation Type"/>
+						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/-com.swcc.Template.fragments.SCMModule.TechnicalevalF4-/TechnicalevalF4/"
+					width="100%" placeholder="Enter Technical Evaluation Criteria" valueHelpOnly="false" showValueHelp="true"
+					valueHelpRequest="onValueHelpRequest" value="{/TechnicalevalF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Status" value="Evaluation Type"/>
+						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>suggestedcompany}" required="false"/>
@@ -81,9 +80,9 @@
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.RequeststatF4-/RequiredstatF4/"
+					width="100%" placeholder="Enter Request Status" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/RequiredstatF4/}">
 					<customData>
 						<core:CustomData key="Status" value="Status"/>
 						<core:CustomData key="Text" value="Text"/>
@@ -91,22 +90,22 @@
 				</Input>
 				<Label text="{i18n>confidentialproject}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ConfidentialF4-/ConfidentialF4/"
+					width="100%" placeholder="Enter Confidential Project" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ConfidentialF4/}">
 					<customData>
 						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>sitevisitrequired}" required="false"/>
 				<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/-com.swcc.Template.fragments.SCMModule.SitevisitF4-/SitevisitF4/"
+					width="100%" placeholder="Enter Required Site Visit" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/SitevisitF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
+						<core:CustomData key="Status" value="Required Site Visit"/>
+						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
