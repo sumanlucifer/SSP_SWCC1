@@ -258,17 +258,13 @@ sap.ui.define([
 					return Object.assign({}, oItem);
 				});
 				oItems.push({
-					MaterialF4: "",
+					MaterialF4: null,
 					Description: "",
-					StorageLocation: "",
-					Quantity: "",
+					Menge: "",
 					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
 				});
 				this.getModel().setProperty("/ITProcurement/itemData", oItems);
 
@@ -281,20 +277,29 @@ sap.ui.define([
 			},
 
 			handleLiveChangeQty: function (oEve) {
+				var iItemIndex = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
 				var sQty = parseInt(oEve.getSource().getValue());
-				var sEntityPath = `/MaterialAvailabilitySet(Material='${sQty}',Qty='${sQty}')`;
+				var sMtrl = oEve.getSource().getBindingContext().getObject().MaterialF4 ? oEve.getSource().getBindingContext().getObject().MaterialF4
+					.split("-")[0] : "";
+				var sEntityPath = `/MaterialAvailabilitySet(Material='${sMtrl}',Qty='${sQty}')`;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', sEntityPath,
 						null)
 					.then(function (oResponse) {
+						this.handleQtyChangeResponse(oResponse, iItemIndex);
 
-						//	this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
+			},
+			handleQtyChangeResponse: function (aData, index) {
+
+				this.getModel().setProperty(`/ITProcurement/itemData/${index}/StockAvailable/`, aData.StockAvailable);
+				this.getModel().setProperty(`/ITProcurement/itemData/${index}/TotalPrice/`, aData.TotalPrice);
+				this.getModel().setProperty(`/ITProcurement/itemData/${index}/UnitPrice/`, aData.UnitPrice);
 			},
 			onProceed: function () {
 				this.getOwnerComponent().getTargets().display("HRRequest");

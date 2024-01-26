@@ -90,11 +90,11 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" value="{MENGE}" liveChange="handleLiveChangeQty"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange="handleLiveChangeQty"/>
 							<Input value="{BaseUnit}" enabled="false"/>
-							<Input placeholder="Req" value="{AFNAM}" enabled="false"/>
-							<Input placeholder="Unit Price" enabled="false" value="{UNIT_PRICE}"/>
-							<Text text="{UNIT_PRICE}"/>
+							<Input placeholder="Req" value="{StockAvailable}" enabled="false"/>
+							<Input enabled="false" value="{UnitPrice}"/>
+							<Input enabled="false" value="{TotalPrice}"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
