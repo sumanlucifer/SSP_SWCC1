@@ -90,7 +90,7 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" value="{MENGE}" liveChange="handleLiveChange"/>
+							<Input placeholder="QTY" type="Number" value="{MENGE}" liveChange="handleLiveChangeQty"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input placeholder="Req" value="{AFNAM}" enabled="false"/>
 							<Input placeholder="Unit Price" enabled="false" value="{UNIT_PRICE}"/>

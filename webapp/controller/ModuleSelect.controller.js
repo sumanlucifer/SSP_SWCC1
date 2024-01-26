@@ -15,7 +15,6 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function (oEve) {
-				debugger;
 				this._createHeaderModel();
 
 				var sUrlOrderID = oEve.getParameter("arguments").orderId,
@@ -179,8 +178,6 @@ sap.ui.define([
 				// }
 			},
 			onSelectSubServiceTypeDD: function (oEve) {
-				debugger;
-
 				var sKey = oEve.getSource().getSelectedKey();
 				var sDesc = sKey.split("_")[2],
 					sDesc = sDesc === "" ? "" : sDesc;

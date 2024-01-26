@@ -60,7 +60,6 @@ sap.ui.define([
 			},
 
 			onPressTile: function (oEvent) {
-				debugger;
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sVal = oEvent.getSource().getId().split("--")[1];
 				oStorage.put("sMouleType", sVal);

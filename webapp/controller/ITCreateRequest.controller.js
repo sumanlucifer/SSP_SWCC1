@@ -17,7 +17,7 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
-				debugger;
+
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
@@ -278,6 +278,23 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/ITProcurement/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
+			},
+
+			handleLiveChangeQty: function (oEve) {
+				var sQty = parseInt(oEve.getSource().getValue());
+				var sEntityPath = `/MaterialAvailabilitySet(Material='${sQty}',Qty='${sQty}')`;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_SCM_SRV"), 'GET', sEntityPath,
+						null)
+					.then(function (oResponse) {
+
+						//	this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
 			},
 			onProceed: function () {
 				this.getOwnerComponent().getTargets().display("HRRequest");
