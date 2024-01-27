@@ -30,11 +30,16 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
+					UploadedData: [],
 					PlantF4: "",
 					ITProcurement: {
 						Header: {},
 						itemData: []
-					}
+					},
+					NonITProcurement: {
+						Header: {}
+					},
+
 				});
 			},
 
@@ -79,11 +84,19 @@ sap.ui.define([
 				}
 
 				this.getModel().setProperty("/HeaderValueHelp", false)
+				var sModelPath;
+				// Procurement: Computer devices and accessories Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: Conferencing Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: IP telephone Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
 
-				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
-				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				return sModelPath;
 			},
 			onValueHelpOkPress: function (oEvent) {
@@ -99,12 +112,20 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
+				// Procurement: Computer devices and accessories Screen
 				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && !this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 					.getProperty("/valueHelpName") === "/MaterialF4/") {
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
+							group: "ComputerDeviceFilter",
+							useOR: true
+						}, {
+							path: "Product",
+							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
+								"-")[0],
 							group: "ComputerDeviceFilter"
+
 						}
 
 					];
@@ -118,16 +139,50 @@ sap.ui.define([
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
-							group: "ComputerDeviceFilter"
+							group: "HomeworkingFilter"
 						}
 
 					];
 
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
-						dynamicFilters.ComputerDeviceFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+						dynamicFilters.HomeworkingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
 
 				}
+
+				// Procurement: Conferencing Screen
+				else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ConferencingFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ConferencingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+
+				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ITTelephonicFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ITTelephonicFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+
+				}
+
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
 
@@ -145,8 +200,10 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
+
 				this.getModel().setProperty(`${oModel}/Description/`, aData.ProductName);
 				this.getModel().setProperty(`${oModel}/BaseUnit/`, aData.BaseUnit);
+
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -249,26 +306,103 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("HomePage");
 
 			},
+
 			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
+
+				//-------------------------------------------Support IT Services----------------------------------------------------------------------
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4002-1" ? this.ITCreateNonProcuremenRequest(this.getModel().getProperty(
+					"/NonITProcurement/Header/"), null) : null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4002-2" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/NonITProcurement/Header/"), null) :
+					null;
+				//-------------------------------------------Communication  Services----------------------------------------------------------------------
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.ITCreateProcuremenRequest(this.getModel().getProperty(
+					"/ITProcurement/Header/"), this.getModel().getProperty(
+					"/ITProcurement/itemData/")) : null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.ITCreateProcuremenRequest(this.getModel()
+						.getProperty(
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
+					null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.ITCreateProcuremenRequest(this.getModel()
+						.getProperty(
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
+					null;
+
+				// Non-Procurement: Applications Access and e-mail accounts 
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-1" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/NonITProcurement/Header/"), null) :
+					null;
+
 			},
 
-			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
+			ITCreateNonProcuremenRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/ITAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {},
 
-							that.getRouter().navTo("FinanceRequestView", {}, true);
-						}
+					"ServiceHeadertoItem": []
+
+				};
+				this.ITCreateRequestAPI(oPayload);
+			},
+
+			ITCreateProcuremenRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/ITAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"TotalPrice": oPayloadHeader.estimatedVal
 					},
-				});
 
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.MaterialF4.split("-")[0],
+								Menge: items.Menge,
+								UnitPrice: items.UnitPrice,
+
+							};
+						}
+					)
+
+				};
+				this.ITCreateRequestAPI(oPayload);
+			},
+			ITCreateRequestAPI: function (oPayload) {
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
+			_handleMessageBoxProceed: function (sMessage) {
+				var params = {
+					sMessage: sMessage
+				};
+
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
 
@@ -282,20 +416,42 @@ sap.ui.define([
 					UnitPrice: "",
 					TotalPrice: ""
 				}, "/ITProcurement/itemData") : "";
-				// var oModel = this.getModel().getProperty("/ITProcurement/itemData");
-				// var oItems = oModel.map(function (oItem) {
-				// 	return Object.assign({}, oItem);
-				// });
-				// oItems.push({
-				// 	MaterialF4: null,
-				// 	Description: "",
-				// 	Menge: "",
-				// 	BaseUnit: "",
-				// 	StockAvailable: "",
-				// 	UnitPrice: "",
-				// 	TotalPrice: ""
-				// });
-				// this.getModel().setProperty("/ITProcurement/itemData", oItems);
+
+				// Procurement: Conferencing Screen
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
+				// Procurement: Computer devices and accessories Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
+
+				// Procurement: IP telephone Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
 
 			},
 
@@ -307,13 +463,31 @@ sap.ui.define([
 				oItems.push(obj);
 				this.getModel().setProperty(`${path}`, oItems);
 			},
+
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/ITProcurement/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+				// Procurement: Conferencing Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+				// Procurement: Computer devices and accessories Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+
+				// Procurement: IP telephone Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+
+			},
+			updateItemDeleteModel: function (index, oModel) {
+				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
-
 			handleLiveChangeQty: function (oEve) {
 				var iItemIndex = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
 				var sQty = parseInt(oEve.getSource().getValue());
@@ -334,19 +508,71 @@ sap.ui.define([
 					}.bind(this));
 			},
 			handleQtyChangeResponse: function (aData, index) {
-
+				debugger;
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/StockAvailable/`, aData.StockAvailable);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/TotalPrice/`, aData.TotalPrice);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/UnitPrice/`, aData.UnitPrice);
-			},
-			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
+				const totalSum = this.getModel().getProperty("/ITProcurement/itemData/").reduce((acc, currentItem) => acc + parseInt(currentItem.TotalPrice),
+					0);
+
+				var iEstimated = (totalSum) + 0.15 * totalSum;
+
+				this.getModel().setProperty("/ITProcurement/Header/estimatedVal/", iEstimated);
 			},
 
 			onSearch: function () {
 
 				this.oRouter.navTo("LandingView");
 
+			},
+			onFileAdded: function (oEvent) {
+				var oButton = oEvent.getSource();
+
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+
+				if (aFiles.length === 0)
+					return;
+				oButton.addStyleClass("upload-table");
+				oButton.removeStyleClass("hide-data");
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					//Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+			handleMissmatch: function () {
+				this.handleFileMissmatch();
+			},
+			onFileSizeExceed: function () {
+
+				this.handleFileSizeExceed();
 			}
 		})
 	})

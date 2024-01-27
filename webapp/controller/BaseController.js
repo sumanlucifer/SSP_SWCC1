@@ -164,8 +164,29 @@ sap.ui.define([
 
 		},
 		// 			___________________________________________________Dynamic Filters for API Method_________________________________________________________
-		getFilters: function (filterParams) {
+		// 		getFilters: function (filterParams) {
 
+		// 			var dynamicFilters = {};
+
+		// 			filterParams.forEach(function (filterParam) {
+		// 				if (filterParam.value !== undefined && filterParam.value !== "") {
+		// 					var filter = new sap.ui.model.Filter({
+		// 						path: filterParam.path,
+		// 						operator: filterParam.operator ? filterParam.operator : sap.ui.model.FilterOperator.EQ,
+		// 						value1: filterParam.value
+		// 					});
+
+		// 					if (!dynamicFilters[filterParam.group]) {
+		// 						dynamicFilters[filterParam.group] = [];
+		// 					}
+
+		// 					dynamicFilters[filterParam.group].push(filter);
+		// 				}
+		// 			});
+
+		// 			return dynamicFilters;
+		// 		},
+		getFilters: function (filterParams) {
 			var dynamicFilters = {};
 
 			filterParams.forEach(function (filterParam) {
@@ -177,15 +198,27 @@ sap.ui.define([
 					});
 
 					if (!dynamicFilters[filterParam.group]) {
-						dynamicFilters[filterParam.group] = [];
+						dynamicFilters[filterParam.group] = {
+							filters: [],
+							useOR: filterParam.useOR || false // Default to AND if not specified
+						};
 					}
 
-					dynamicFilters[filterParam.group].push(filter);
+					dynamicFilters[filterParam.group].filters.push(filter);
 				}
 			});
 
-			return dynamicFilters;
+			// Transform dynamicFilters into an object with group names as properties
+			var finalFilters = {};
+			Object.keys(dynamicFilters).forEach(function (group) {
+				var groupFilters = dynamicFilters[group].filters;
+				var useOR = dynamicFilters[group].useOR;
+				finalFilters[group] = new sap.ui.model.Filter(groupFilters, useOR); // useOR controls AND (false) or OR (true)
+			});
+
+			return finalFilters;
 		},
+
 		// _________________________________Dynamic Suceess Message and ok Trigger function for API _________________________________________________________
 		createMessageBoxHandler: function (onPressFunction) {
 
