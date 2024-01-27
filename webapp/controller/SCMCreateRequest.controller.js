@@ -483,31 +483,6 @@ sap.ui.define([
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
-			/*SCMCreateRequestPayload: function (oPayloadHeader, aItem) {
-				var oPayload = {
-					"Username": this.getCurrentUserLoggedIn(),
-					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": oPayloadHeader.Plant,
-					"Descript": oPayloadHeader.Descript,
-					"ZHeaderExtra": {
-						"Justification": oPayloadHeader.PR_JUST,
-						"TenderQualification": oPayloadHeader.TEN_PRE,
-						"TotalValue": oPayloadHeader.TOT_EST_VAL
-					},
-
-					"ServiceHeadertoItem": aItem.map(
-						function (items) {
-							return {
-								Material: aItem.MATNR
-
-							};
-						}
-					)
-
-				};
-				this.SCMCreateaRequestAPI(oPayload);
-			},*/
-
 			onAddItemsPress: function (oEvent) {
 
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemAddModel(this.getModel().getProperty(

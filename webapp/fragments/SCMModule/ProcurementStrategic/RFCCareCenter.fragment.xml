@@ -30,12 +30,13 @@
 				<Input placeholder="Enter Name of Sector" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}" valueHelpRequest=""/>
 				<Label text="{i18n>typeOfcompetition}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCOMP_TYP-com.swcc.Template.fragments.SCMModule.TypeofcompetitionF4-/TypeofcompetitionF4/"
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCOMP_TYPE')/Set/-com.swcc.Template.fragments.SCMModule.TypeofcompetitionF4-/TypeofcompetitionF4/"
 					width="100%" placeholder="Select Type of Competiton" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/TypeofcompetitionF4/}">
 					<customData>
-						<core:CustomData key="Status" value="Type of Competiton"/>
-						<core:CustomData key="Text" value="Type of comp text"/>
+						<core:CustomData key="Status" value="Competiton Code"/>
+						<core:CustomData key="Text" value="Competiton Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>implementationperiod}" required="true"/>

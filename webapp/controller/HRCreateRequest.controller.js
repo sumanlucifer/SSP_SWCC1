@@ -300,6 +300,15 @@ sap.ui.define([
 					"/BenefitsManagement/ClaimRequest/Header/"), "") : null;
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreatemedicalcareinsuranceRequest(this.getModel()
 					.getProperty("/BenefitsManagement/MedicalInsurance/Header/"), "") : null;
+				//-------------------------------------------Compensation Rewards----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1003-1" ? this.HRCreaterewardsRequest(this.getModel().getProperty(
+					"/CompensationRewards/RegularRewards/Header/"), "") : null;
+				//-------------------------------------------Payroll----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1008-1" ? this.HRCreateemployeevacationsRequest(this.getModel().getProperty(
+					"/Payroll/EmployeeVacation/Header/"), "") : null;
+				//-------------------------------------------People care center----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1009-1" ? this.HRCreateupdatemasterdataRequest(this.getModel().getProperty(
+					"/PeopleCareCenter/UpdateMasterData/Header/"), "") : null;
 				//-------------------------------------------Retriement----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
@@ -397,20 +406,54 @@ sap.ui.define([
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
-			/*	HRCreateResignationRequest: function (oPayloadHeader, aItem) {
-					var oPayload = {
-						"Username": this.getCurrentUserLoggedIn(),
-						"Material": this.getModel().getProperty("/HRAppVisible/"),
-						"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-						"NotifText": oPayloadHeader.NotifText,
-						"ZHeaderExtra": {
-							"Begda": oPayloadHeader.Resigndate,
-							"Userid": oPayloadHeader.Persno,
-						},
-						"ServiceHeadertoItem": []
-					};
-					this.HRCreateaRequestAPI(oPayload);
-				},*/
+			HRCreaterewardsRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
+						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
+						"Zpayscgrp": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
+						"Zpaysclvl": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : ""
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreateemployeevacationsRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Zendate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
+						"Ztimetype": this.getModel().getProperty("/TimetypeF4/") ? this.getModel().getProperty("/TimetypeF4/").split("-")[0] : ""
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreateupdatemasterdataRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Zdetailupdat": oPayloadHeader.Zdetailupdat
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
 			HRCreateaRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
