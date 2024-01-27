@@ -35,7 +35,11 @@ sap.ui.define([
 					ITProcurement: {
 						Header: {},
 						itemData: []
-					}
+					},
+					NonITProcurement: {
+						Header: {}
+					},
+
 				});
 			},
 
@@ -84,6 +88,8 @@ sap.ui.define([
 				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
+				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				return sModelPath;
 			},
@@ -266,26 +272,56 @@ sap.ui.define([
 				this.getOwnerComponent().getTargets().display("HomePage");
 
 			},
+
 			onProceed: function () {
-				//	this.getOwnerComponent().getTargets().display("DetailView");
-				this._handleMessageBoxProceed("Your Service Request has been generated : 12111099");
+
+				//-------------------------------------------Support IT Services----------------------------------------------------------------------
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4002-1" ? this.ITCreateNonProcuremenRequest(this.getModel().getProperty(
+					"/NonITProcurement/Header/"), null) : null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4002-2" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/NonITProcurement/Header/"), null) :
+					null;
+
 			},
 
+			ITCreateNonProcuremenRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/ITAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.ITCreateRequestAPI(oPayload);
+			},
+			ITCreateRequestAPI: function (oPayload) {
+				debugger;
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
+						oPayload)
+					.then(function (oResponse) {
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this)).catch(function (error) {
+						MessageBox.error(error.responseText);
+						this.getModel().setProperty("/busy", false);
+					}.bind(this));
+
+			},
 			_handleMessageBoxProceed: function (sMessage) {
-				var that = this;
-				sap.m.MessageBox.success(sMessage, {
-					icon: MessageBox.Icon.SUCCESS,
-					title: "Success",
-					actions: [MessageBox.Action.OK],
-					emphasizedAction: MessageBox.Action.YES,
-					onClose: function (oAction) {
-						if (oAction == "OK") {
+				var params = {
+					sMessage: sMessage
+				};
 
-							that.getRouter().navTo("FinanceRequestView", {}, true);
-						}
-					},
-				});
-
+				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
 
@@ -327,6 +363,11 @@ sap.ui.define([
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ITProcurement/itemData")) : "";
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+
 			},
 			updateItemDeleteModel: function (index, oModel) {
 				oModel.splice(index, 1);
@@ -356,9 +397,6 @@ sap.ui.define([
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/StockAvailable/`, aData.StockAvailable);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/TotalPrice/`, aData.TotalPrice);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/UnitPrice/`, aData.UnitPrice);
-			},
-			onProceed: function () {
-				this.getOwnerComponent().getTargets().display("HRRequest");
 			},
 
 			onSearch: function () {
