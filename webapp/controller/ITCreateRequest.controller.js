@@ -84,13 +84,20 @@ sap.ui.define([
 				}
 
 				this.getModel().setProperty("/HeaderValueHelp", false)
+				var sModelPath;
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: Conferencing Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: IP telephone Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
 
-				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
-				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
-				var sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : "";
 				return sModelPath;
 			},
 			onValueHelpOkPress: function (oEvent) {
@@ -134,7 +141,10 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
 						dynamicFilters.HomeworkingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
 
-				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && !this.getModel().getProperty("/HeaderValueHelp") &&
+				}
+
+				// Procurement: Conferencing Screen
+				else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && !this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/MaterialF4/") {
 					var filters = [{
@@ -148,6 +158,21 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
 						dynamicFilters.ConferencingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+
+				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ITTelephonicFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ITTelephonicFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
 
 				}
 
@@ -336,7 +361,32 @@ sap.ui.define([
 					TotalPrice: ""
 				}, "/ITProcurement/itemData") : "";
 
+				// Procurement: Conferencing Screen
+
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
+
+				// Procurement: IP telephone Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ITProcurement/itemData"), {
 					MaterialF4: null,
 					Description: "",
@@ -363,8 +413,17 @@ sap.ui.define([
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ITProcurement/itemData")) : "";
-
+				// Procurement: Conferencing Screen
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+
+				// Procurement: IP telephone Screen
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ITProcurement/itemData")) : "";
 
