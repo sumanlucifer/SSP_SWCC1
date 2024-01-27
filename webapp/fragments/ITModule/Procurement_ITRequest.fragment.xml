@@ -29,9 +29,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>IssueDescription}" required="false"/>
-				<Input placeholder="Enter Description" value=""/>
+				<Input placeholder="Enter Description" value="{/ITProcurement/Header/Descript/}"/>
 				<Label text="{i18n>TotalEstimatedValue}" required="true"/>
-				<Input enabled="false" placeholder=""></Input>
+				<Input enabled="false" value="{/ITProcurement/Header/estimatedVal/}" placeholder=""></Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -40,7 +40,7 @@
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="true"/>
-				<TextArea placeholder="" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+				<TextArea placeholder="" rows="5" cols="20" value="{/ITProcurement/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>

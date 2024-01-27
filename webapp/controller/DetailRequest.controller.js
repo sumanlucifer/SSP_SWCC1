@@ -36,7 +36,7 @@ sap.ui.define([
 			var sAPI = `/ViewRequestSet('${sReqId}')`;
 			debugger;
 			var urlParameters = {
-				"$expand": "Statuses"
+				"$expand": "Statuses,getAttachments"
 			}
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, null,
 					urlParameters)

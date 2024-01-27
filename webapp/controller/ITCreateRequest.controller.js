@@ -118,7 +118,14 @@ sap.ui.define([
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
+							group: "ComputerDeviceFilter",
+							useOR: true
+						}, {
+							path: "Product",
+							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
+								"-")[0],
 							group: "ComputerDeviceFilter"
+
 						}
 
 					];
@@ -193,8 +200,10 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
+
 				this.getModel().setProperty(`${oModel}/Description/`, aData.ProductName);
 				this.getModel().setProperty(`${oModel}/BaseUnit/`, aData.BaseUnit);
+
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -308,15 +317,18 @@ sap.ui.define([
 							"/NonITProcurement/Header/"), null) :
 					null;
 				//-------------------------------------------Communication  Services----------------------------------------------------------------------
-				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.ITCreateNonProcuremenRequest(this.getModel().getProperty(
-					"/Procurement/Header/"), null) : null;
-				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.ITCreateNonProcuremenRequest(this.getModel()
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.ITCreateProcuremenRequest(this.getModel().getProperty(
+					"/ITProcurement/Header/"), this.getModel().getProperty(
+					"/ITProcurement/itemData/")) : null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.ITCreateProcuremenRequest(this.getModel()
 						.getProperty(
-							"/Procurement/Header/"), null) :
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
 					null;
-				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.ITCreateNonProcuremenRequest(this.getModel()
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.ITCreateProcuremenRequest(this.getModel()
 						.getProperty(
-							"/Procurement/Header/"), null) :
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
 					null;
 
 				// Non-Procurement: Applications Access and e-mail accounts 
@@ -337,6 +349,33 @@ sap.ui.define([
 					"ZHeaderExtra": {},
 
 					"ServiceHeadertoItem": []
+
+				};
+				this.ITCreateRequestAPI(oPayload);
+			},
+
+			ITCreateProcuremenRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/ITAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"TotalPrice": oPayloadHeader.estimatedVal
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.MaterialF4.split("-")[0],
+								Menge: items.Menge,
+								UnitPrice: items.UnitPrice,
+
+							};
+						}
+					)
 
 				};
 				this.ITCreateRequestAPI(oPayload);
@@ -469,10 +508,16 @@ sap.ui.define([
 					}.bind(this));
 			},
 			handleQtyChangeResponse: function (aData, index) {
-
+				debugger;
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/StockAvailable/`, aData.StockAvailable);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/TotalPrice/`, aData.TotalPrice);
 				this.getModel().setProperty(`/ITProcurement/itemData/${index}/UnitPrice/`, aData.UnitPrice);
+				const totalSum = this.getModel().getProperty("/ITProcurement/itemData/").reduce((acc, currentItem) => acc + parseInt(currentItem.TotalPrice),
+					0);
+
+				var iEstimated = (totalSum) + 0.15 * totalSum;
+
+				this.getModel().setProperty("/ITProcurement/Header/estimatedVal/", iEstimated);
 			},
 
 			onSearch: function () {
