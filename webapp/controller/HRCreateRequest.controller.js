@@ -300,6 +300,9 @@ sap.ui.define([
 					"/BenefitsManagement/ClaimRequest/Header/"), "") : null;
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.HRCreatemedicalcareinsuranceRequest(this.getModel()
 					.getProperty("/BenefitsManagement/MedicalInsurance/Header/"), "") : null;
+				//-------------------------------------------Compensation Rewards----------------------------------------------------------------------
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1003-1" ? this.HRCreaterewardsRequest(this.getModel().getProperty(
+					"/CompensationRewards/RegularRewards/Header/"), "") : null;
 				//-------------------------------------------Retriement----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.HRCreateResignationRequest(this.getModel().getProperty(
 						"/RetirementandResignations/Resignation/Header/"), this.getModel().getProperty(
@@ -397,20 +400,37 @@ sap.ui.define([
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
-			/*	HRCreateResignationRequest: function (oPayloadHeader, aItem) {
-					var oPayload = {
-						"Username": this.getCurrentUserLoggedIn(),
-						"Material": this.getModel().getProperty("/HRAppVisible/"),
-						"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-						"NotifText": oPayloadHeader.NotifText,
-						"ZHeaderExtra": {
-							"Begda": oPayloadHeader.Resigndate,
-							"Userid": oPayloadHeader.Persno,
-						},
-						"ServiceHeadertoItem": []
-					};
-					this.HRCreateaRequestAPI(oPayload);
-				},*/
+			HRCreaterewardsRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Zemplt": this.getModel().getProperty("/TypeofemployeementF4/") ? this.getModel().getProperty("/TypeofemployeementF4/").split(
+							"-")[0] : "",
+						"Zreqt": this.getModel().getProperty("/RequesttypeF4/") ? this.getModel().getProperty("/RequesttypeF4/").split("-")[0] : "",
+						//"Userid": oPayloadHeader.Persno,
+						"Zmobile": oPayloadHeader.Zmobile,
+						"Zcomment": oPayloadHeader.Zcomment,
+						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
+						"Zpolnum": this.getModel().getProperty("/PolicyNoF4/") ? this.getModel().getProperty("/PolicyNoF4/").split(
+							"-")[0] : "",
+						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
+						"Gesch": oPayloadHeader.Gesch,
+						"Natsl": oPayloadHeader.Natsl,
+						"PadVorna": oPayloadHeader.PadVorna,
+						"AdNach2": oPayloadHeader.AdNach2,
+						"PadNachn": oPayloadHeader.PadNachn,
+						"Zdepid": oPayloadHeader.Zdepid
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
 			HRCreateaRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);

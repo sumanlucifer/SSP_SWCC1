@@ -49,7 +49,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ServiceGroupSet-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
 					placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialgroupF4/}">
 					<customData>

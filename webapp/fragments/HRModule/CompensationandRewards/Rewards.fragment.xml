@@ -28,8 +28,6 @@
 				</Input>
 				<Label text="{i18n>userid}" required="true"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>event}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
 					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
@@ -47,6 +45,8 @@
 						<core:CustomData key="value_1" value="Payscale group"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>startdate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
