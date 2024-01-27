@@ -261,7 +261,7 @@ sap.ui.define([
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.ScmCreateRfcRequest(this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
-						"/ProcurementAdhoc/PrepareofDirectpurchase/customItemData/")) :
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
 					null;
 				//--------------------------Qualification-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
@@ -356,7 +356,7 @@ sap.ui.define([
 						"ProjName": oPayloadHeader.PROJ_NAME
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": aItem
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -509,29 +509,38 @@ sap.ui.define([
 			},*/
 
 			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
+
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
+					Matnr: "",
+					Menge: ""
+				}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+
+			},
+
+			updateItemAddModel: function (oModel, obj, path) {
+
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
 				});
-				oItems.push({
-					MATNR: "",
-					Description: "",
-					MENGE: "",
-					BaseUnit: "",
-					WERKS: "",
-					Ekgrp: "",
-					AFNAM: "",
-					UNIT_PRICE: ""
-				});
-				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/itemData", oItems);
-
+				oItems.push(obj);
+				this.getModel().setProperty(`${path}`, oItems);
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+			},
+			updateItemDeleteModel: function (index, oModel) {
+				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
+
+			/*	var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/ProcurementAdhoc/PrepareofDirectpurchase/itemData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();*/
 			/* File uplaod 	*/
 			onFileAdded: function (oEvent) {
 				debugger;

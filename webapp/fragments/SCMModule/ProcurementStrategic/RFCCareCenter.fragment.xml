@@ -27,8 +27,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>nameOfsector}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}"
-					valueHelpRequest=""/>
+				<Input placeholder="Enter Name of Sector" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}" valueHelpRequest=""/>
 				<Label text="{i18n>typeOfcompetition}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCOMP_TYP-com.swcc.Template.fragments.SCMModule.TypeofcompetitionF4-/TypeofcompetitionF4/"
 					width="100%" placeholder="Select Type of Competiton" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -39,21 +39,21 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>implementationperiod}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/}"
-					valueHelpRequest=""/>
+				<Input placeholder="Enter Implemenatation Period" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/}" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>requestingparty}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}"
-					valueHelpRequest=""/>
+				<Input placeholder="Enter Requesting Party" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}" valueHelpRequest=""/>
 				<Label text="{i18n>estimatedcost}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}"
-					valueHelpRequest=""/>
+				<Input placeholder="Enter Estimated cost" type="Number" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}" valueHelpRequest=""/>
 				<Label text="{i18n>projectdescription}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/}"
-					valueHelpRequest=""/>
+				<Input placeholder="Enter Project Description" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/}" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -89,10 +89,8 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/itemData/MATNR/}"
-								valueHelpRequest=""/>
-							<Input placeholder="" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/itemData/MENGE/}"
-								valueHelpRequest=""/>
+							<Input placeholder="" showSuggestion="" showValueHelp="" value="{Matnr}" valueHelpRequest=""/>
+							<Input placeholder="" showSuggestion="" type="Number" showValueHelp="" value="{Menge}" valueHelpRequest=""/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
@@ -113,7 +111,7 @@
 			<headerToolbar >
 				<Toolbar>
 					<content>
-						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
+						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-attach-img" width="auto">
 							<layoutData>
 								<FlexItemData growFactor="1"/>
 							</layoutData>
