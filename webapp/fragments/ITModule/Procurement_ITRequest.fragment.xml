@@ -28,6 +28,8 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>IssueDescription}" required="false"/>
+				<Input placeholder="Enter Description" value=""/>
 				<Label text="{i18n>TotalEstimatedValue}" required="true"/>
 				<Input enabled="false" placeholder=""></Input>
 			</fm:content>
@@ -37,8 +39,8 @@
 		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>IssueDescription}" required="true"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+				<Label text="{i18n>Remarks}" required="true"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -50,7 +52,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button  icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
 			<Table items="{path : '/ITProcurement/itemData/'}" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding"

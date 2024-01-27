@@ -30,6 +30,7 @@ sap.ui.define([
 			_createItemDataModel: function () {
 				this.getModel().setData({
 					busy: false,
+					UploadedData: [],
 					PlantF4: "",
 					ITProcurement: {
 						Header: {},
@@ -118,16 +119,32 @@ sap.ui.define([
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
-							group: "ComputerDeviceFilter"
+							group: "HomeworkingFilter"
 						}
 
 					];
 
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
-						dynamicFilters.ComputerDeviceFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+						dynamicFilters.HomeworkingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
+
+				} else if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/MaterialF4/") {
+					var filters = [{
+							path: "ProductGroup",
+							value: "IT001",
+							group: "ConferencingFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_ITMATERIALVH",
+						dynamicFilters.ConferencingFilter, `/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}`)
 
 				}
+
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
 
@@ -282,20 +299,17 @@ sap.ui.define([
 					UnitPrice: "",
 					TotalPrice: ""
 				}, "/ITProcurement/itemData") : "";
-				// var oModel = this.getModel().getProperty("/ITProcurement/itemData");
-				// var oItems = oModel.map(function (oItem) {
-				// 	return Object.assign({}, oItem);
-				// });
-				// oItems.push({
-				// 	MaterialF4: null,
-				// 	Description: "",
-				// 	Menge: "",
-				// 	BaseUnit: "",
-				// 	StockAvailable: "",
-				// 	UnitPrice: "",
-				// 	TotalPrice: ""
-				// });
-				// this.getModel().setProperty("/ITProcurement/itemData", oItems);
+
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ITProcurement/itemData"), {
+					MaterialF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ITProcurement/itemData") : "";
 
 			},
 
@@ -307,13 +321,17 @@ sap.ui.define([
 				oItems.push(obj);
 				this.getModel().setProperty(`${path}`, oItems);
 			},
+
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/ITProcurement/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ITProcurement/itemData")) : "";
+			},
+			updateItemDeleteModel: function (index, oModel) {
+				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
-
 			handleLiveChangeQty: function (oEve) {
 				var iItemIndex = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
 				var sQty = parseInt(oEve.getSource().getValue());
@@ -347,6 +365,55 @@ sap.ui.define([
 
 				this.oRouter.navTo("LandingView");
 
+			},
+			onFileAdded: function (oEvent) {
+				var oButton = oEvent.getSource();
+
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+
+				if (aFiles.length === 0)
+					return;
+				oButton.addStyleClass("upload-table");
+				oButton.removeStyleClass("hide-data");
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+				// var oUploadSet = this.byId("UploadSet");
+				// oUploadSet.getDefaultFileUploader().setEnabled(false);
+
+			},
+
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/UploadedData");
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					//Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+			handleMissmatch: function () {
+				this.handleFileMissmatch();
+			},
+			onFileSizeExceed: function () {
+
+				this.handleFileSizeExceed();
 			}
 		})
 	})
