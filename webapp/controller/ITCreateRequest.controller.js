@@ -85,14 +85,13 @@ sap.ui.define([
 
 				this.getModel().setProperty("/HeaderValueHelp", false)
 				var sModelPath;
+				// Procurement: Computer devices and accessories Screen
 				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
 				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
 				// Procurement: Conferencing Screen
 				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
-					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
-				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
 					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
 				// Procurement: IP telephone Screen
 				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && this.getModel().getProperty(
@@ -113,6 +112,7 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
+				// Procurement: Computer devices and accessories Screen
 				if (this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && !this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 					.getProperty("/valueHelpName") === "/MaterialF4/") {
 					var filters = [{
@@ -307,6 +307,23 @@ sap.ui.define([
 						.getProperty(
 							"/NonITProcurement/Header/"), null) :
 					null;
+				//-------------------------------------------Communication  Services----------------------------------------------------------------------
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.ITCreateNonProcuremenRequest(this.getModel().getProperty(
+					"/Procurement/Header/"), null) : null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/Procurement/Header/"), null) :
+					null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/Procurement/Header/"), null) :
+					null;
+
+				// Non-Procurement: Applications Access and e-mail accounts 
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-1" ? this.ITCreateNonProcuremenRequest(this.getModel()
+						.getProperty(
+							"/NonITProcurement/Header/"), null) :
+					null;
 
 			},
 
@@ -373,7 +390,7 @@ sap.ui.define([
 					UnitPrice: "",
 					TotalPrice: ""
 				}, "/ITProcurement/itemData") : "";
-
+				// Procurement: Computer devices and accessories Screen
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ITProcurement/itemData"), {
 					MaterialF4: null,
@@ -417,7 +434,7 @@ sap.ui.define([
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ITProcurement/itemData")) : "";
-
+				// Procurement: Computer devices and accessories Screen
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ITProcurement/itemData")) : "";
