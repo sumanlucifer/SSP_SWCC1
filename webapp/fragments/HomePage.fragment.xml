@@ -8,8 +8,8 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding ne-flexbox2">
-			<GenericTile visible="{/TileData/Header/Create}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active" press="onPressCreateRequest"
-				header="{i18n>createservicerequest}">
+			<GenericTile visible="{= ${/TileData/Header/Create} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active"
+				press="onPressCreateRequest" header="{i18n>createservicerequest}">
 				<TileContent>
 					<ImageContent src="sap-icon://add-document"/>
 				</TileContent>
@@ -19,20 +19,20 @@
 					<ImageContent src="sap-icon://personnel-view"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile visible="{/TileData/Header/BP}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressBpRequest"
-				header="{i18n>createbp}">
+			<GenericTile visible="{= ${/TileData/Header/BP} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
+				press="onPressBpRequest" header="{i18n>createbp}">
 				<TileContent>
 					<ImageContent src="sap-icon://create-session"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile visible="{/TileData/Header/SLA}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressSlaRequest"
-				header="{i18n>createsla}">
+			<GenericTile visible="{= ${/TileData/Header/SLA} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
+				press="onPressSlaRequest" header="{i18n>createsla}">
 				<TileContent>
 					<ImageContent src="sap-icon://request"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile visible="{/TileData/Header/UserMgmt}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
-				press="onPressUserManagement" header="{i18n>usermanage}">
+			<GenericTile visible="{= ${/TileData/Header/UserMgmt} === true ? true : false}"
+				class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>usermanage}">
 				<TileContent>
 					<ImageContent src="sap-icon://role"/>
 				</TileContent>

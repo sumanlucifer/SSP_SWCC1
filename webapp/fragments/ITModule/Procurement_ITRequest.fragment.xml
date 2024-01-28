@@ -31,7 +31,7 @@
 				<Label text="{i18n>IssueDescription}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ITProcurement/Header/Descript/}"/>
 				<Label text="{i18n>TotalEstimatedValue}" required="true"/>
-				<Input enabled="false" value="{/ITProcurement/Header/estimatedVal/}" placeholder=""></Input>
+				<Input enabled="false" value="{/ITProcurement/Header/EstPrice/}" placeholder=""></Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
