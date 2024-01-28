@@ -80,7 +80,8 @@ sap.ui.define([
 				var filters = [{
 						path: "Plant",
 						value: sKey,
-						group: "WorkCntrFilter"
+						group: "WorkCntrFilter",
+						useOR: true
 					}, {
 						path: "ServiceProduct",
 						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
@@ -186,31 +187,32 @@ sap.ui.define([
 				var filters = [{
 						path: this.getModel().getProperty("/valueHelpKey1"),
 						value: afilterBar[0].getValue(),
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
 						operator: sap.ui.model.FilterOperator.Contains,
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey3"),
 						value: afilterBar[2].getValue(),
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey4"),
 						operator: sap.ui.model.FilterOperator.Contains,
 						value: afilterBar[3].getValue(),
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}
 
 				];
-				var dynamicFilters = this.getFilters(filters);
+				var dynamicFilters = this.getFilters(filters, false);
 
 				this._filterTable(
-					new Filter({
-						filters: dynamicFilters.DynamicF4SearchFilter,
-						and: false,
-					})
+					dynamicFilters.DynamicF4SearchFilter
 				);
 			},
 			onFilterValChanged: function (oEvent) {
@@ -245,8 +247,12 @@ sap.ui.define([
 					})
 				);
 			},
-			onClearFilter: function () {
-
+			onClearFilter: function (oEve) {
+				var afilterBar = oEve.getParameter("selectionSet");
+				afilterBar[0].setValue(null);
+				afilterBar[1].setValue(null);
+				afilterBar[2].setValue(null);
+				afilterBar[3].setValue(null);
 				this._filterTable(
 					new Filter({
 						filters: [],
@@ -279,30 +285,13 @@ sap.ui.define([
 				if ((dynamicFilters.length == 0)) {
 					return [];
 				}
-				return new Filter({
-					filters: dynamicFilters.PlantFilter,
-					and: true,
-				});
+				return dynamicFilters.PlantFilter;
 
 				//	return dynamicFilters.PlantFilter;
 			},
 
 			_filterTable: function (oFilter, sType) {
-				// var oValueHelpDialog = this._oValueHelpDialog;
 
-				// oValueHelpDialog.getTableAsync().then(function (oTable) {
-				// 	if (oTable.bindRows) {
-				// 		oTable.getBinding("rows").filter(oFilter, sType || "Application");
-				// 	}
-
-				// 	if (oTable.bindItems) {
-				// 		oTable
-				// 			.getBinding("items")
-				// 			.filter(oFilter, sType || "Application");
-				// 	}
-
-				// 	oValueHelpDialog.update();
-				// });
 				this.handleVHFilterTable(oFilter, sType);
 			},
 

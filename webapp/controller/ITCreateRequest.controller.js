@@ -363,7 +363,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"TotalPrice": oPayloadHeader.estimatedVal
+						"EstPrice": `${oPayloadHeader.EstPrice}`
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -371,7 +371,8 @@ sap.ui.define([
 							return {
 								Matnr: items.MaterialF4.split("-")[0],
 								Menge: items.Menge,
-								UnitPrice: items.UnitPrice,
+								UnitPrice: parseInt(items.UnitPrice),
+								TotalPrice: parseInt(items.TotalPrice)
 
 							};
 						}
@@ -490,7 +491,7 @@ sap.ui.define([
 			},
 			handleLiveChangeQty: function (oEve) {
 				var iItemIndex = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
-				var sQty = parseInt(oEve.getSource().getValue());
+				var sQty = oEve.getSource().getValue() === "" ? "" : parseInt(oEve.getSource().getValue());
 				var sMtrl = oEve.getSource().getBindingContext().getObject().MaterialF4 ? oEve.getSource().getBindingContext().getObject().MaterialF4
 					.split("-")[0] : "";
 				var sEntityPath = `/MaterialAvailabilitySet(Material='${sMtrl}',Qty='${sQty}')`;
@@ -517,7 +518,7 @@ sap.ui.define([
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
-				this.getModel().setProperty("/ITProcurement/Header/estimatedVal/", iEstimated);
+				this.getModel().setProperty("/ITProcurement/Header/EstPrice/", iEstimated);
 			},
 
 			onSearch: function () {
