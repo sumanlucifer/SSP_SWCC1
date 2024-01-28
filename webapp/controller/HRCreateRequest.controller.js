@@ -302,6 +302,8 @@ sap.ui.define([
 				//-------------------------------------------Compensation Rewards----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1003-1" ? this.HRCreaterewardsRequest(this.getModel().getProperty(
 					"/CompensationRewards/RegularRewards/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1003-2" ? this.HRCreaterewardsRequest(this.getModel().getProperty(
+					"/CompensationRewards/RegularRewards/Header/"), "") : null;
 				//-------------------------------------------Payroll----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1008-1" ? this.HRCreateemployeevacationsRequest(this.getModel().getProperty(
 					"/Payroll/EmployeeVacation/Header/"), "") : null;
@@ -343,8 +345,8 @@ sap.ui.define([
 						"Persno": this.getModel().getProperty("/LoginUserID"),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						//"Userid": oPayloadHeader.Persno,
-						"Padname": oPayloadHeader.Cname,
-						"Idcot": parseInt(oPayloadHeader.Idcot),
+						"Cname": oPayloadHeader.Cname,
+						//"Idcot": "9hgcgdc",
 						"Type": this.getModel().getProperty("/TypeF4/") ? this.getModel().getProperty("/TypeF4/").split("-")[0] : "",
 						"Aprnum": oPayloadHeader.Zaprnum,
 						"Zcomment": oPayloadHeader.Zcomment
@@ -456,7 +458,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
-						"Zdetailupdat": oPayloadHeader.Zdetailupdat
+						"Detailupdat": oPayloadHeader.Zdetailupdat
 					},
 					"ServiceHeadertoItem": []
 				};
@@ -507,10 +509,14 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
-						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Massg": this.getModel().getProperty("/EventF4/ ") ? this.getModel().getProperty(" / EventF4 / ").split(" - ")[0] : "",
-						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
-						"Schkn": this.getModel().getProperty("/WorkscheduleF4/") ? this.getModel().getProperty("/WorkscheduleF4/").split("-")[0] : ""
+						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
+						"Orgeh": oPayloadHeader.Orgeh,
+						"Vorna": oPayloadHeader.Vorna,
+						"Nachn": oPayloadHeader.Nachn,
+						"Area": oPayloadHeader.Zarea,
+						"Idcot": oPayloadHeader.Idcot,
+						"Dasetting": oPayloadHeader.Zdasetting,
+						"Cardno": oPayloadHeader.Zcardno
 					},
 					"ServiceHeadertoItem": []
 				};
@@ -524,14 +530,10 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
-						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
-						"Orgeh": oPayloadHeader.Orgeh,
-						"Vorna": oPayloadHeader.Vorna,
-						"Nachn": oPayloadHeader.Nachn,
-						"Area": oPayloadHeader.Area,
-						"Idcot": oPayloadHeader.Idcot,
-						"Dasetting": oPayloadHeader.Dasetting,
-						"Cardno": oPayloadHeader.Cardno
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
+						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
+						"Schkz": this.getModel().getProperty("/WorkscheduleF4/") ? this.getModel().getProperty("/WorkscheduleF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": []
 				};
@@ -545,10 +547,10 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
-						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Reqdat),
+						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Itemdet": oPayloadHeader.Itemdet,
-						"Userjobloc": this.getModel().getProperty("/UserJoblocationF4/ ") ? this.getModel().getProperty("/UserJoblocationF4/").split(
-							" - ")[0] : ""
+						"Userjobloc": this.getModel().getProperty("/UserJoblocationF4/") ? this.getModel().getProperty("/UserJoblocationF4/").split(
+							"-")[0] : ""
 					},
 					"ServiceHeadertoItem": []
 				};
@@ -563,7 +565,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Massg": this.getModel().getProperty("/EventF4/ ") ? this.getModel().getProperty(" / EventF4 / ").split(" - ")[0] : "",
+						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
 						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate)
 					},
@@ -592,6 +594,9 @@ sap.ui.define([
 				};
 
 				this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+			},
+			onPresshomepage: function () {
+				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
