@@ -43,12 +43,12 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/PadCname/}" showValueHelp=""
+				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Padname/}" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>whenshould}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/P25Idcot/}" showValueHelp=""
+				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>

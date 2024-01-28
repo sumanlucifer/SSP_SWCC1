@@ -43,8 +43,6 @@
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>jobnumber}" required="true"/>
 				<Input placeholder="Enter Job Number" type="Number"/>
 				<Label text="{i18n>joblocation}" required="true"/>
@@ -56,24 +54,22 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>doyouhave}" required="true"/>
-				<Input placeholder="Enter Requirements for Position" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>jobdesc}" required="true"/>
-				<Input placeholder="Enter Job Description" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Requirements for Position" value="{/Recruitment/InternalRecruitment/Header/Zoreq/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>jobdesc}" required="true"/>
+				<Input placeholder="Enter Job Description" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjdescr/}" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>requirementsandconditions}" required="true"/>
-				<Input placeholder="Enter Requirements and Conditions" showSuggestion=""/>
+				<Input placeholder="Enter Requirements and Conditions" value="{/Recruitment/InternalRecruitment/Header/Zjfreq/}" showSuggestion=""/>
 				<Label text="{i18n>scope}" required="true"/>
-				<Input placeholder="Enter Scope of Advertising" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>department}" required="true"/>
-				<Input placeholder="Enter Department" showSuggestion="" valueHelpRequest=""/>
+				<Input placeholder="Enter Scope of Advertising" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zscopelevel/}"
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>tasksrequired}" required="true"/>
-				<Input placeholder="Enter Task" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>yearsofexp}" required="true"/>
-				<Input placeholder="Enter Year of Experience" type="Number"/>
-				<Label text="{i18n>thewebsite}" required="true"/>
-				<Input placeholder="Enter Website" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>qualificationreq}" required="true"/>
-				<Input placeholder="Enter Qualification Requirement" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Task" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -82,7 +78,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/Recruitment/InternalRecruitment/Header/Zcomment/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
