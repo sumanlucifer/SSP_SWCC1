@@ -101,7 +101,7 @@
 /* App homepage */
 .ssp-apphomepage .sapFDynamicPageContent,
 .ssp-apphomepage .sapFDynamicPageContentFitContainer {
-    padding: 0px;
+    padding: 0px !important;
 }
 
 /*.ssp-apphomepage .sapFDynamicPageContent {
