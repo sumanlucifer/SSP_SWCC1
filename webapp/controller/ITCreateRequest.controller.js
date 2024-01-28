@@ -224,12 +224,7 @@ sap.ui.define([
 				];
 				var dynamicFilters = this.getFilters(filters);
 
-				this._filterTable(
-					new Filter({
-						filters: Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter,
-						and: false,
-					})
-				);
+				this._filterTable(Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter);
 			},
 			handleFiltersForValueHelp: function (F4) {
 				var filters = [{
@@ -283,10 +278,7 @@ sap.ui.define([
 				if (!aFilter) {
 					return [];
 				}
-				return new Filter({
-					filters: aFilter,
-					and: true,
-				});
+				return new Filter(aFilter);
 
 				//	return dynamicFilters.PlantFilter;
 			},
