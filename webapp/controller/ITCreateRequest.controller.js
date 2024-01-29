@@ -529,16 +529,16 @@ sap.ui.define([
 
 			},
 			onFileAdded: function (oEvent) {
+				debugger;
 				var oButton = oEvent.getSource();
-
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
-
+				var oParent = oButton.getParent();
 				if (aFiles.length === 0)
 					return;
-				oButton.addStyleClass("upload-table");
-				oButton.removeStyleClass("hide-data");
+				oParent.addStyleClass("upload-table");
+				oParent.removeStyleClass("hide-data");
 				var Filename = aFiles[0].name,
 					Filetype = aFiles[0].type,
 					Filedata = aFiles[0],

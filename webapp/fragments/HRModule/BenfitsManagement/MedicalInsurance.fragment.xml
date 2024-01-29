@@ -57,7 +57,7 @@
 				<Input placeholder="Enter Mobile Number" type="Number" value="{/BenefitsManagement/MedicalInsurance/Header/Zmobile/}" showSuggestion=""
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Natsl/}" showValueHelp=""
+				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Idcot/}" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>insurancestdt}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
@@ -73,8 +73,8 @@
 				<Label text="{i18n>gender}" required="true"/>
 				<ComboBox selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
 					<items>
-						<core:Item key="Male" text="Male"/>
-						<core:Item key="Female" text="Female"/>
+						<core:Item key="M" text="Male"/>
+						<core:Item key="F" text="Female"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>nationality}" required="true"/>

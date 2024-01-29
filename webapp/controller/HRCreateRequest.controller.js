@@ -126,6 +126,10 @@ sap.ui.define([
 						InternalRecruitment: {
 							Header: {},
 							itemData: []
+						},
+						ExternalRecruitment: {
+							Header: {},
+							itemData: []
 						}
 						// 		same model re-use for both screens 
 					},
@@ -313,6 +317,8 @@ sap.ui.define([
 				//-------------------------------------------Recruitment----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1001-1" ? this.HRCreaterecruitmentRequest(this.getModel().getProperty(
 					"/Recruitment/InternalRecruitment/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1001-2" ? this.HRCreateexternalrecruitmentRequest(this.getModel().getProperty(
+					"/Recruitment/ExternalRecruitment/Header/"), "") : null;
 				//-------------------------------------------Termination,Retriement and Resignation----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1005-1" ? this.HRCreateterminationRequest(this.getModel().getProperty(
 					"/Termination/Termination/Header/"), "") : null;
@@ -365,20 +371,20 @@ sap.ui.define([
 						"Persno": this.getModel().getProperty("/LoginUserID"),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						//"Userid": oPayloadHeader.Persno,
-						"PadCname": oPayloadHeader.PadCname,
-						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Cname": oPayloadHeader.PadCname,
+						"Idcot": oPayloadHeader.P25Idcot,
 						"Gesch": oPayloadHeader.Gesch,
-						"Zmobile": oPayloadHeader.Zmobile,
-						"Zmemnum": oPayloadHeader.Zmemnum,
+						"Mobile": oPayloadHeader.Zmobile,
+						"Memnum": oPayloadHeader.Zmemnum,
 						"Iban": oPayloadHeader.Iban,
-						"Zinspol": this.getModel().getProperty("/InsurancepolicyF4/") ? this.getModel().getProperty("/InsurancepolicyF4/").split("-")[0] : "",
-						"Zcltype": this.getModel().getProperty("/ClaimtypeF4/") ? this.getModel().getProperty("/ClaimtypeF4/").split("-")[0] : "",
-						"Zamount": oPayloadHeader.Zamount,
+						"Inspol": this.getModel().getProperty("/InsurancepolicyF4/") ? this.getModel().getProperty("/InsurancepolicyF4/").split("-")[0] : "",
+						"Cltype": this.getModel().getProperty("/ClaimtypeF4/") ? this.getModel().getProperty("/ClaimtypeF4/").split("-")[0] : "",
+						"Amount": oPayloadHeader.Zamount,
 						"Bankk": oPayloadHeader.Bankk,
 						"PadOrt01": oPayloadHeader.PadOrt01,
 						"Land1": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split("-")[0] : "",
-						"Zvisdat": oPayloadHeader.Zvisdat,
-						"Zproname": oPayloadHeader.Zproname,
+						"Visdat": oPayloadHeader.Zvisdat,
+						"Proname": oPayloadHeader.Zproname,
 						"Zcomment": oPayloadHeader.Zcomment
 					},
 					"ServiceHeadertoItem": []
@@ -394,15 +400,15 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID"),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Zemplt": this.getModel().getProperty("/TypeofemployeementF4/") ? this.getModel().getProperty("/TypeofemployeementF4/").split(
+						"Emplt": this.getModel().getProperty("/TypeofemployeementF4/") ? this.getModel().getProperty("/TypeofemployeementF4/").split(
 							"-")[0] : "",
-						"Zreqt": this.getModel().getProperty("/RequesttypeF4/") ? this.getModel().getProperty("/RequesttypeF4/").split("-")[0] : "",
+						"Reqt": this.getModel().getProperty("/RequesttypeF4/") ? this.getModel().getProperty("/RequesttypeF4/").split("-")[0] : "",
 						//"Userid": oPayloadHeader.Persno,
-						"Zmobile": oPayloadHeader.Zmobile,
+						"Mobile": oPayloadHeader.Zmobile,
 						"Zcomment": oPayloadHeader.Zcomment,
-						"P25Idcot": oPayloadHeader.P25Idcot,
+						"Idcot": oPayloadHeader.Idcot,
 						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
-						"Zpolnum": this.getModel().getProperty("/PolicyNoF4/") ? this.getModel().getProperty("/PolicyNoF4/").split(
+						"Polnum": this.getModel().getProperty("/PolicyNoF4/") ? this.getModel().getProperty("/PolicyNoF4/").split(
 							"-")[0] : "",
 						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
 						"Gesch": oPayloadHeader.Gesch,
@@ -410,7 +416,7 @@ sap.ui.define([
 						"PadVorna": oPayloadHeader.PadVorna,
 						"AdNach2": oPayloadHeader.AdNach2,
 						"PadNachn": oPayloadHeader.PadNachn,
-						"Zdepid": oPayloadHeader.Zdepid
+						"Depid": oPayloadHeader.Zdepid
 					},
 					"ServiceHeadertoItem": []
 				};
@@ -481,6 +487,23 @@ sap.ui.define([
 						"Jobtitle": this.getModel().getProperty("/JobtitleF4/") ? this.getModel().getProperty("/JobtitleF4/").split("-")[0] : "",
 						"Jgrade": this.getModel().getProperty("/JobgradeF4/") ? this.getModel().getProperty("/JobgradeF4/").split("-")[0] : "",
 						"Jlocation": this.getModel().getProperty("/JoblocationF4/") ? this.getModel().getProperty("/JoblocationF4/").split("-")[0] : ""
+					},
+					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreateexternalrecruitmentRequest: function (oPayloadHeader, aItem) {
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Jdept": oPayloadHeader.Zjdept,
+						"Exp": oPayloadHeader.Zexp,
+						"Jtasks": oPayloadHeader.Zjtasks,
+						"Jqreq": oPayloadHeader.Zjqreq,
+						"Jobtitle": this.getModel().getProperty("/JobtitleF4/") ? this.getModel().getProperty("/JobtitleF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": []
 				};
