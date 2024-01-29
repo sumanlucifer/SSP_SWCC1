@@ -25,7 +25,8 @@ sap.ui.define([
 				var aTimeZoneData = oTimezonesModel.getProperty("/");
 				this.getModel().setProperty("/TimeZoneData", aTimeZoneData);
 				var sLoginUser = this.getCurrentUserLoggedIn();
-				this.getModel().setProperty("/LoginUserID", sLoginUser);
+				var truncatedLoginUser = sLoginUser.substring(0, 8);
+				this.getModel().setProperty("/LoginUserID", truncatedLoginUser);
 				this.getModel().setSizeLimit(1000);
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");

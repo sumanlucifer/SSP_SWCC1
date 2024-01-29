@@ -44,8 +44,8 @@
 					width="100%" placeholder="Enter Movement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MovementtypeF4/}">
 					<customData>
-						<core:CustomData key="Key" value="Movement Code"/>
-						<core:CustomData key="Value" value="Movement Text"/>
+						<core:CustomData key="GoodsMovementType" value="Movement Type"/>
+						<core:CustomData key="GoodsMovementTypeName" value="Movement Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>goodsrecipient}" required="false"/>
@@ -73,7 +73,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table id="totalamount4" mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/WarehouseandLogistics/IssueofMaterial/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -103,24 +103,20 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input id="tb-material1" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
+								</customData>
 							</Input>
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="{uom}"/>
-							<Input id="tb-purchasing6" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Text text="Will shi"/>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
-						</cells>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/></cells>
 					</ColumnListItem>
 				</items>
 			</Table>

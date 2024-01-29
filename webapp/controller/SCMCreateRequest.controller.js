@@ -148,10 +148,7 @@ sap.ui.define([
 				if (!aFilter) {
 					return [];
 				}
-				return new Filter({
-					filters: aFilter,
-					and: true,
-				});
+				return aFilter;
 
 				//	return dynamicFilters.PlantFilter;
 			},
@@ -490,6 +487,21 @@ sap.ui.define([
 					Matnr: "",
 					Menge: ""
 				}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ClasssificationandInventory/STO/itemData"), {
+					ProductF4: null,
+					Description: "",
+					Menge: "",
+					BaseUnit: "",
+					StockAvailable: "",
+					UnitPrice: "",
+					TotalPrice: ""
+				}, "/ClasssificationandInventory/STO/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/WarehouseandLogistics/IssueofMaterial/itemData"), {
+					Matnr: "",
+					Menge: ""
+				}, "/WarehouseandLogistics/IssueofMaterial/itemData") : "";
 
 			},
 
@@ -506,6 +518,12 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ClasssificationandInventory/STO/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/WarehouseandLogistics/IssueofMaterial/itemData")) : "";
 			},
 			updateItemDeleteModel: function (index, oModel) {
 				oModel.splice(index, 1);

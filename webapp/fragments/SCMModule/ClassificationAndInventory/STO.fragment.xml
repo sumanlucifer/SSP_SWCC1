@@ -45,6 +45,15 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>purchasinggroup}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+					width="100%" placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PurchasinggroupF4/}">
+					<customData>
+						<core:CustomData key="Ekgrp" value="Purchasing group"/>
+						<core:CustomData key="Eknam" value="Purchasing group name"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -67,7 +76,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/ClasssificationandInventory/STO/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -84,7 +93,7 @@
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>purchasinggroup}"/>
+						<Text text="{i18n>Storage Location}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>Stock(Supplying Plant)}"/>
@@ -97,27 +106,19 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
-								placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{/MaterialgroupF4/}">
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
 								<customData>
-									<core:CustomData key="ExternalProductGroup" value="Material group"/>
-									<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
 								</customData>
 							</Input>
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="{uom}"/>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
-								width="100%" placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{/PurchasinggroupF4/}">
-								<customData>
-									<core:CustomData key="Ekgrp" value="Purchasing group"/>
-									<core:CustomData key="Eknam" value="Purchasing group name"/>
-								</customData>
-							</Input>
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

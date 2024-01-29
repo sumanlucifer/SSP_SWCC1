@@ -1,17 +1,17 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
 	<ValueHelpDialog title="Type of Movement" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Key" descriptionKey="Value" class="value-header">
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="GoodsMovementType" descriptionKey="GoodsMovementTypeName" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Movement code" label="Movement code" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Movement Type" label="Movement Type" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Movement code"/>
+							<m:Input name="Movement Type"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Movement Text" label="Movement Text" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Movement Name" label="Movement Name" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Movement Text"/>
+							<m:Input name="Movement Name"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
