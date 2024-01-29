@@ -197,7 +197,7 @@ sap.ui.define([
 						useOR: true
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey3"),
-						value: afilterBar[2].getValue(),
+						value: afilterBar[2].getValue() === "" ? "" : afilterBar[2].getValue().split("-")[0],
 						group: "DynamicF4SearchFilter",
 						useOR: true
 					}, {

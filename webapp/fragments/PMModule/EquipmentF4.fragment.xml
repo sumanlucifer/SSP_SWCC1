@@ -20,7 +20,7 @@
 						<fb:control>
 							<m:ComboBox name="Object" items="{/PMCreateRequest/ObjectType/}">
 								<m:items>
-									<core:Item key="{TechnicalObjectType}" text="{TechnicalObjectTypeDesc}"/>
+									<core:Item key="{TechnicalObjectType}" text="{TechnicalObjectType}-{TechnicalObjectTypeDesc}"/>
 								</m:items>
 							</m:ComboBox>
 						</fb:control>
