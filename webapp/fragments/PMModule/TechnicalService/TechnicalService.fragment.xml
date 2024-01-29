@@ -19,34 +19,28 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/PMCreateRequest/Header/Material/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input type="Number" placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequiredStart}" required="true"/>
 				<DatePicker value="{path: '/PMCreateRequest/Header/StartDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
 				<Label text="{i18n>RequiredEnd}" required="true"/>
 				<DatePicker value="{path: '/PMCreateRequest/Header/EndDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
-				<!--<Label text="{i18n>priority}" required="true"/>-->
-				<!--<ComboBox id="priority" width="100%" placeholder="Enter Priority" selectedKey="{/PMCreateRequest/Header/Priority/}" valueState="None">-->
-				<!--	<items>-->
-				<!--		<core:Item key="1" text="Very High"/>-->
-				<!--		<core:Item key="2" text="High"/>-->
-				<!--		<core:Item key="3" text="Medium"/>-->
-				<!--		<core:Item key="4" text="Low"/>-->
-				<!--	</items>-->
-				<!--</ComboBox>-->
 				<Label text="{i18n>maintenanceorder}" required="false"/>
 				<Input id="manint_order" value="{/PMCreateRequest/Header/MaintOrder/}" placeholder="Enter Maintenance Order" showSuggestion=""
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Select Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>equipment}"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_EQUIPMENTVH" id="_com.swcc.Template.fragments.PMModule.EquipmentF4_"
-					enabled="{= ${/PMCreateRequest/Header/Plant/} !== undefined ? true : false }" width="100%" placeholder="Enter Equipment"
-					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PMCreateRequest/Header/Equipment}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_EQUIPMENTVH-com.swcc.Template.fragments.PMModule.EquipmentF4-/EquipmentF4/"
+					enabled="{= ${/PlantF4/} !== undefined ? true : false }" width="100%" placeholder="Select Equipment" valueHelpOnly="false"
+					showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EquipmentF4/}">
 					<customData>
 						<core:CustomData key="Equipment" value="Equipment"/>
 						<core:CustomData key="EquipmentName" value="Equipment Name"/>
@@ -55,10 +49,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>
+				<Input enabled="{= ${/PlantF4/} !== undefined ? true : false }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_WORKCENTERVH-com.swcc.Template.fragments.CommonF4.WorkCenterF4-/WorkCenterF4/" width="100%"
+					placeholder="Select Work Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/WorkCenterF4/}">
+					<customData>
+						<core:CustomData key="Workcenter" value="Work Center"/>
+						<core:CustomData key="WorkcenterDesc" value="Work Center Desc"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 			</fm:content>
@@ -69,7 +67,7 @@
 			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>RemarksPM}" required="true"/>
-				<TextArea placeholder="" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+				<TextArea placeholder="Enter Remarks" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>

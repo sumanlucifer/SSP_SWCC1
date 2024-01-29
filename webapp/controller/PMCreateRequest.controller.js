@@ -23,10 +23,8 @@ sap.ui.define([
 
 				debugger;
 				this._createItemDataModel();
-				this.PlantF4();
 				this.objectType();
-				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
-					sServiceProductLocalVal = oStorage.get("sSubServiceType");
+				var sServiceProductLocalVal = this.handlegetlocalStorage("sSubServiceType");
 				var sServiceProduct = sServiceProductLocalVal.split("_")[0];
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				var sBaseUnit = sServiceProductLocalVal.split("_")[3];
@@ -52,18 +50,6 @@ sap.ui.define([
 				});
 			},
 
-			PlantF4: function () {
-				this.getModel().setProperty("/busy", true);
-				this.CallValueHelpAPI('/A_Plant/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
-
-			},
 			objectType: function () {
 				this.getModel().setProperty("/busy", true);
 				this.CallValueHelpAPI('/C_TechnicalObjectType /')
@@ -76,39 +62,7 @@ sap.ui.define([
 					}.bind(this));
 
 			},
-			WorkCenterF4: function (sKey) {
-				var filters = [{
-						path: "Plant",
-						value: sKey,
-						group: "WorkCntrFilter",
-						useOR: true
-					}, {
-						path: "ServiceProduct",
-						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
-						group: "WorkCntrFilter"
-					}
 
-				];
-
-				var dynamicFilters = this.getFilters(filters);
-				this.getModel().setProperty("/busy", true);
-				this.getAPI.oDataACRUDAPICall(
-					this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_WORKCENTERVH', null, dynamicFilters.WorkCntrFilter, null
-				).then(function (oResponse) {
-
-					this.getModel().setProperty("/PMCreateRequest/WorkCenterF4/", oResponse.results);
-					this.getModel().setProperty("/busy", false);
-
-				}.bind(this)).catch(function (error) {
-					MessageBox.error(error.responseText);
-					this.getModel().setProperty("/busy", false);
-				}.bind(this));
-			},
-			onSelectPlant: function (oEve) {
-				var sKey = oEve.getSource().getSelectedKey();
-				this.WorkCenterF4(sKey);
-
-			},
 			onCheckPlantVal: function (oEve) {
 
 				oEve.getSource().getSelectedKey() === "" ? oEve.getSource().setValue(null) : "";
@@ -117,93 +71,125 @@ sap.ui.define([
 
 			onValueHelpRequest: function (oEve) {
 
-				// this._oMultiInput = this.getView().byId("multiInput");
-
-				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				// this._oValueHelpDialog.open();
 				var sFragName = oEve.getSource().getId().split("_")[3];
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
+				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
+				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				this.getModel().setProperty("/FragModel", sFragModel);
+				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
+				var customData = oEve.getSource().getCustomData();
+				var aColumns = [];
 
-				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
-				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
-				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
-				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
-				var sColumn3Label = oEve.getSource().getCustomData()[2].getValue();
-				var sColumn3Template = oEve.getSource().getCustomData()[2].getKey();
-				var sColumn4Label = oEve.getSource().getCustomData()[3].getValue();
-				var sColumn4Template = oEve.getSource().getCustomData()[3].getKey();
-				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
-				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
-				this.getModel().setProperty("/valueHelpKey3", sColumn3Template);
-				this.getModel().setProperty("/valueHelpKey4", sColumn4Template);
-				// Example usage:
-				var oModel = this.getOwnerComponent().getModel(sEntity);
-				var aColumns = [{
-						label: sColumn1Label,
-						template: sColumn1Template,
-						width: "10rem",
-					}, {
-						label: sColumn2Label,
-						template: sColumn2Template,
-					}, {
-						label: sColumn3Label,
-						template: sColumn3Template,
-					}, {
-						label: sColumn4Label,
-						template: sColumn4Template,
+				// Iterate through custom data and dynamically add columns
+				for (var i = 0; i < customData.length; i++) {
+					var columnLabel = customData[i].getValue();
+					var columnTemplate = customData[i].getKey();
+
+					// Add column only if label and template are available
+					if (columnLabel && columnTemplate) {
+						aColumns.push({
+							label: columnLabel,
+							template: columnTemplate,
+							// You can add other properties as needed
+						});
 					}
-
-					// {
-					// 	label: "Plant Code",
-					// 	template: "MaintenancePlanningPlant",
-					// }
-
-				];
-
-				// var sPath = "/ZCDSV_EQUIPMENTVH";
+				}
+				this.getModel().setProperty("/dynamicColumns", aColumns);
+				var aColumns = aColumns;
+				var oModel = this.getOwnerComponent().getModel(sEntity);
 
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
 			onValueHelpOkPress: function (oEvent) {
 				debugger;
-
-				var sModelPath = oEvent.getSource().getAriaDescribedBy()[0];
+				var dynamicColumns = this.getModel().getProperty("/dynamicColumns");
+				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
-				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
-				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
+				var sKeyProperty = dynamicColumns[0].template; // Property name to set in the model
+				var textProperty = dynamicColumns[1].template; // Property name for the token text
 				var yourModel = this.getModel(); // Pass your model here
 				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+				//	this.setDependentFilterData();
 
+			},
+			setDependentFilterData: function () {
+				if (this.getModel().getProperty("/FragModel") ===
+					"/InsuranceF4/") {
+					var filters = [{
+							path: "Zzinspono",
+							value: this.getModel().getProperty("/InsuranceF4") ? this.getModel().getProperty(
+								"/InsuranceF4").split("-")[0] : "",
+							group: "InsuranceFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
+						dynamicFilters.InsuranceFilter, "/PMCreateRequest/WorkCenterF4/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/FragModel") ===
+					"/costF4/") {
+					var filters = [{
+							path: "CostCenter",
+							value: this.getModel().getProperty("/costF4") ? this.getModel().getProperty(
+								"/costF4").split("-")[0] : "",
+							group: "RecordAssetFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
+						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
+				}
+			},
+
+			callDependentFilteAPI: function (entity, path, filter, model) {
+
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(
+					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
+				).then(function (oResponse) {
+
+					this.getModel().setProperty(`${model}`, oResponse.results);
+					this.getModel().setProperty("/busy", false);
+
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
 			},
 			onFilterBarSearch: function (oEvent) {
+
+				var dynamicColumns = this.getModel().getProperty("/dynamicColumns");
 				var afilterBar = oEvent.getParameter("selectionSet");
 				var filters = [{
-						path: this.getModel().getProperty("/valueHelpKey1"),
+						path: dynamicColumns[0].template,
 						value: afilterBar[0].getValue(),
 						group: "DynamicF4SearchFilter",
 						useOR: true
 					}, {
-						path: this.getModel().getProperty("/valueHelpKey2"),
+						path: dynamicColumns[1].template,
 						value: afilterBar[1].getValue(),
 						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter",
 						useOR: true
 					}, {
-						path: this.getModel().getProperty("/valueHelpKey3"),
-						value: afilterBar[2].getValue(),
+						path: dynamicColumns[2] && dynamicColumns[2].template ? dynamicColumns[2].template : "",
+						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue().split("-")[0] : "",
 						group: "DynamicF4SearchFilter",
 						useOR: true
 					}, {
-						path: this.getModel().getProperty("/valueHelpKey4"),
+						path: dynamicColumns[3] && dynamicColumns[3].template ? dynamicColumns[3].template : "",
 						operator: sap.ui.model.FilterOperator.Contains,
-						value: afilterBar[3].getValue(),
+						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue() : "",
 						group: "DynamicF4SearchFilter",
 						useOR: true
 					}
@@ -214,6 +200,41 @@ sap.ui.define([
 				this._filterTable(
 					dynamicFilters.DynamicF4SearchFilter
 				);
+			},
+
+			handleFiltersForValueHelp: function (F4) {
+
+				var filters = [{
+						path: "Plant",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						group: "WorrkCenterF4Filter",
+						useOR: true
+					}, {
+						path: "ServiceProduct",
+						value: this.getModel().getProperty("/PMCreateRequest/Header/Material"),
+						group: "WorrkCenterF4Filter"
+					}, {
+						path: "MaintenancePlanningPlant",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						group: "EquipmentF4Filter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				var aFilter;
+
+				if (F4 === "/WorkCenterF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.WorrkCenterF4Filter);
+				} else if (F4 === "/EquipmentF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.EquipmentF4Filter);
+				} else {
+					// Default case if none of the conditions are met
+					aFilter = [];
+				}
+
+				this.getModel().setProperty("/DynamicValuehelpFilter", aFilter.length == 0 ? [] : aFilter);
+
 			},
 			onFilterValChanged: function (oEvent) {
 				var afilterBar = oEvent.getParameter("selectionSet");
@@ -251,8 +272,8 @@ sap.ui.define([
 				var afilterBar = oEve.getParameter("selectionSet");
 				afilterBar[0].setValue(null);
 				afilterBar[1].setValue(null);
-				afilterBar[2].setValue(null);
-				afilterBar[3].setValue(null);
+				afilterBar[2] ? afilterBar[2].setValue(null) : "";
+				afilterBar[3] ? afilterBar[3].setValue(null) : "";
 				this._filterTable(
 					new Filter({
 						filters: [],
@@ -263,29 +284,16 @@ sap.ui.define([
 			onValueHelpAfterOpen: function () {
 
 				//   apply filter before value help open 
-				var aFilter = this._getfilterforControl();
+				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
+
 				this._filterTable(aFilter, "Control");
 			},
-			_getfilterforControl: function () {
-				debugger;
-				if (!this.getModel().getProperty("/PMCreateRequest/Header/Plant/")) {
-					return [];
+			_getfilterforControl: function (aFilter) {
 
-				}
-
-				var filters = [{
-						path: "MaintenancePlanningPlant",
-						value: this.getModel().getProperty("/PMCreateRequest/Header/Plant/"),
-						group: "PlantFilter"
-					}
-
-				];
-
-				var dynamicFilters = this.getFilters(filters);
-				if ((dynamicFilters.length == 0)) {
+				if (!aFilter) {
 					return [];
 				}
-				return dynamicFilters.PlantFilter;
+				return aFilter;
 
 				//	return dynamicFilters.PlantFilter;
 			},
@@ -294,34 +302,48 @@ sap.ui.define([
 
 				this.handleVHFilterTable(oFilter, sType);
 			},
+			onProceed: function () {
 
-			PMCreateaRequestAPI: function (oPayload) {
-				var oPayload = this.getModel().getProperty("/PMCreateRequest/Header/");
-				oPayload.StartDate = this.handleReturnDateonly(oPayload.StartDate);
-				oPayload.EndDate = this.handleReturnDateonly(oPayload.EndDate);
-				oPayload.Equipment = oPayload.Equipment ? oPayload.Equipment.split("-")[0] : "";
-				oPayload.Username = this.getCurrentUserLoggedIn();
-				oPayload.ServiceHeadertoItem = [];
+				this.CreateFinaceRequestPayload(this.getModel().getProperty("/PMCreateRequest/Header/"));
+
+			},
+			CreateFinaceRequestPayload: function (oPayloadHeader) {
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
 					Filesize,
 					...rest
 				}) => rest);
-				oPayload.Attachments = aUploadData;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": oPayloadHeader.Material,
+					"MaterialQty": oPayloadHeader.MaterialQty.toString(),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"StartDate": this.handleReturnDateonly(oPayloadHeader.StartDate),
+					"EndDate": this.handleReturnDateonly(oPayloadHeader.EndDate),
+					"Equipment": this.getModel().getProperty("/EquipmentF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"MaintOrder": oPayloadHeader.MaintOrder,
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
+
+				};
+				this.PMCreateRequestAPI(oPayload);
+			},
+			PMCreateRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
 					.then(function (oResponse) {
-						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat} `);
-						this.getModel().setProperty("/PMCreateRequest/Header", oResponse.results);
+						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
-
 						MessageBox.error(error.responseText);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
 			},
+
 			_handleMessageBoxProceed: function (sMessage) {
 				var params = {
 					sMessage: sMessage
@@ -345,33 +367,6 @@ sap.ui.define([
 
 			},
 
-			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
-				var oItems = oModel.map(function (oItem) {
-					return Object.assign({}, oItem);
-				});
-				oItems.push({
-					Material: "",
-					Description: "",
-					StorageLocation: "",
-					Quantity: "",
-					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
-				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
-
-			},
-			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
-				this.getModel().refresh();
-			},
 			onFileAdded: function (oEvent) {
 				debugger;
 				var that = this;

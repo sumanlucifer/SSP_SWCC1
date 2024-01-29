@@ -322,6 +322,16 @@ sap.ui.define([
 							"/ITProcurement/Header/"), this.getModel().getProperty(
 							"/ITProcurement/itemData/")) :
 					null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" ? this.ITCreateProcuremenRequest(this.getModel()
+						.getProperty(
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
+					null;
+				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.ITCreateProcuremenRequest(this.getModel()
+						.getProperty(
+							"/ITProcurement/Header/"), this.getModel().getProperty(
+							"/ITProcurement/itemData/")) :
+					null;
 
 				// Non-Procurement: Applications Access and e-mail accounts 
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-1" ? this.ITCreateNonProcuremenRequest(this.getModel()
@@ -363,8 +373,8 @@ sap.ui.define([
 							return {
 								Matnr: items.MaterialF4.split("-")[0],
 								Menge: items.Menge,
-								UnitPrice: parseInt(items.UnitPrice),
-								TotalPrice: parseInt(items.TotalPrice)
+								UnitPrice: parseFloat(items.UnitPrice).toFixed(2),
+								TotalPrice: parseFloat(items.TotalPrice).toFixed(2)
 
 							};
 						}
