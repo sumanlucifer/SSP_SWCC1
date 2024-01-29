@@ -6,10 +6,11 @@ sap.ui.define([
 		"sap/ui/core/Fragment",
 		"sap/ui/Device",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Fragment, Device, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Fragment, Device, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.PMCreateRequest", {
 
@@ -33,6 +34,9 @@ sap.ui.define([
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
 				var sOrderID = this.handlegetlocalStorage("OrderID");
 				this.getModel().setProperty("/PMCreateRequest/Header/MaintOrder", sOrderID);
+				var sOrderID = this.handlegetlocalStorage("userType");
+
+				sOrderID === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : false;
 
 			},
 
@@ -303,11 +307,55 @@ sap.ui.define([
 				this.handleVHFilterTable(oFilter, sType);
 			},
 			onProceed: function () {
-
-				this.CreateFinaceRequestPayload(this.getModel().getProperty("/PMCreateRequest/Header/"));
+				this.InputValidation() !== true ?
+					"" : this.CreateFinaceRequestPayload(this.getModel().getProperty("/PMCreateRequest/Header/"));
 
 			},
+
+			InputValidation: function () {
+				var validationProperties = [{
+						path: "/PMCreateRequest/Header/StartDate/",
+						label: "Start Date",
+						condition: true
+					}, {
+						path: "/PMCreateRequest/Header/EndDate/",
+						label: "End Date",
+						condition: true
+					}, {
+						path: "/PMCreateRequest/Header/MaterialQty/",
+						label: "Quantity",
+						condition: true
+					},
+
+					{
+						path: "/PMCreateRequest/Header/NotifText/",
+						label: "Remarks",
+						condition: this.getModel().getProperty("/RemarksVisibility/")
+					}
+				];
+
+				var bValid = true;
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						bValid = false;
+						MessageToast.show("Please Enter " + property.label);
+					}
+				});
+
+				if (bValid) {
+					this.getModel().setProperty("/ValidationFlag/", false);
+				}
+
+				return bValid;
+			},
+
 			CreateFinaceRequestPayload: function (oPayloadHeader) {
+
 				const aUploadData = this.getModel().getProperty("/PMCreateRequest/UploadedData").map(({
 					Filesize,
 					...rest
