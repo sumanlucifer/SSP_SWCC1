@@ -11,11 +11,11 @@
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<!--<Toolbar>-->
-				<!--	<Title level="H3" text="{i18n>ITNonProcurementService}" class="ssp-tlbr-title"/>-->
-				<!--	<ToolbarSpacer/>-->
-				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
-				<!--</Toolbar>-->
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
@@ -52,7 +52,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/UploadedData}" class="upload-data" mode="Delete" noDataText="">
 			<headerToolbar >
 				<Toolbar>
 					<content>
@@ -61,6 +61,7 @@
 								<FlexItemData growFactor="1"/>
 							</layoutData>
 						</Image>
+						<Text text="{i18n>uploadtooltip}" class="hide-cnt"/>
 					</content>
 				</Toolbar>
 			</headerToolbar>
