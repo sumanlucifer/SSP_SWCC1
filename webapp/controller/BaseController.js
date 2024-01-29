@@ -100,7 +100,7 @@ sap.ui.define([
 			aTokens.forEach(function (ele) {
 				if (xUnique.has(ele.getKey()) == false) {
 					var dataObject = {};
-					var sKeyText = ele.getText().split("(")[0].split(' ').join('');
+					var sKeyText = ele.getText().split("(")[0].trim();;
 					// ele.getText();
 					dataObject[sTextProperty] = sKeyText;
 					dataObject[sKeyProperty] = ele.getKey();

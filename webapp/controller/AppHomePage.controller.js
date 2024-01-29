@@ -51,6 +51,7 @@ sap.ui.define([
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/AppHomeTileDisplay/Header/", oResponse);
+						this.handleSetLocalStaorage("userType", oResponse.UserType);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
