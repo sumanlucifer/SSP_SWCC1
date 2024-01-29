@@ -57,7 +57,7 @@
 				<Input placeholder="Enter Mobile Number" type="Number" value="{/BenefitsManagement/MedicalInsurance/Header/Zmobile/}" showSuggestion=""
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Natsl/}" showValueHelp=""
+				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Idcot/}" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>insurancestdt}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"

@@ -19,8 +19,11 @@
 						visible="{= ${/HRAppVisible} === 'SSA-HR-1004-3' || ${/HRAppVisible} === 'SSA-HR-1004-2' || ${/HRAppVisible} === 'SSA-HR-1005-1' || ${/HRAppVisible} === 'SSA-HR-1004-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Termination.TerminationService" type="XML"/>
 					</VBox>
-					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-1' || ${/HRAppVisible} === 'SSA-HR-1001-2'}">
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Recruitment" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Externalrecruitment" type="XML"/>
 					</VBox>
 					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1010-1'}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.MedicalInsurance" type="XML"/>
