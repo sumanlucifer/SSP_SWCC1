@@ -159,16 +159,10 @@ sap.ui.define([
 					var filters = [
 
 						{
-							path: "Material",
+							path: "Product",
 							value: this.getModel().getProperty(
 								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
 								"-")[0],
-							group: "Sto_ProductFilter",
-							useOR: true
-
-						}, {
-							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 							group: "Sto_ProductFilter",
 							useOR: true
 
@@ -177,8 +171,72 @@ sap.ui.define([
 					];
 
 					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/C_StorageLocationVH",
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
 						dynamicFilters.Sto_ProductFilter,
+						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}`)
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && !this.getModel().getProperty(
+						"/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ProductF4/") {
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Product",
+							value: this.getModel().getProperty(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								"-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/C_StorageLocationVH",
+						dynamicFilters.Item_ProductFilter,
+						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}`)
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && !this.getModel().getProperty(
+						"/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/StoragelocationF4/") {
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Material",
+							value: this.getModel().getProperty(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								"-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "StorageLoc",
+							value: this.getModel().getProperty(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`).split(
+								"-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/SCMStockCheckSet",
+						dynamicFilters.Item_ProductFilter,
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}`)
 				}
 			},
@@ -206,8 +264,14 @@ sap.ui.define([
 					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
 					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
 					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
-				} else(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
 					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+					debugger;
+					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
+					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
+					debugger;
 					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
 					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
 				}
@@ -291,19 +355,56 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.WarehouseFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && F4 ===
-					'/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/') {
+					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+
+					var filters = [{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && F4 ===
+					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
 
 					var filters = [{
 							path: "Material",
 							value: this.getModel().getProperty(
-								'/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/').split(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
 								"-")[0],
-							group: "StoragelocFilter",
+							group: "StorageFilter",
 							useOR: true
 						}, {
-							path: "Werks",
+							path: "Plant",
 							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-							group: "StoragelocFilter"
+							group: "StorageFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && F4 ===
+					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
+
+					var filters = [{
+							path: "Material",
+							value: this.getModel().getProperty(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								"-")[0],
+							group: "StorageFilter",
+							useOR: true
+						}, {
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "StorageFilter"
+						}, {
+							path: "StorageLoc",
+							value: this.getModel().getProperty(
+								`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`).split(
+								"-")[0],
+							group: "StorageFilter"
 						}
 
 					];
