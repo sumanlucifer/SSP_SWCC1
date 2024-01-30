@@ -32,7 +32,7 @@ sap.ui.define([
 			this.navigationBack();
 		},
 		onRowPress: function (oEvent) {
-			debugger;
+
 			var oSelected = oEvent.getSource().getBindingContext().getObject();
 			this.getOwnerComponent().getRouter().navTo("DetailRequest", {
 				RequestID: oSelected.RequestID
@@ -51,8 +51,6 @@ sap.ui.define([
 			var dynamicFilters = this.getFilters(filters);
 			//var sortParams = [new sap.ui.model.Sorter("CreatedOn", true)];
 			var sAPI = `/ViewRequestSet`;
-			debugger;
-
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, dynamicFilters.ViewRequestFilter,
 					null)
 				.then(function (oResponse) {

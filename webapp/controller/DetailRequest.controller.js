@@ -17,6 +17,7 @@ sap.ui.define([
 
 			this._createDataModel();
 			var sReqId = oEvent.getParameter("arguments").RequestID;
+			this.getModel().setProperty("/sRequestid", sReqId);
 			this.RequestDetailsAPI(sReqId);
 		},
 		_createDataModel: function () {
@@ -201,6 +202,36 @@ sap.ui.define([
 			case "Success":
 				return coreLibrary.IconColor.Positive;
 			}
+		},
+
+		onApprovePress: function () {
+
+			this.AssignRequestAPI({
+				"Status": "APPROVE"
+			}, "Approved");
+		},
+		onRejectPress: function () {
+
+			this.AssignRequestAPI({
+				"Status": "REJECT"
+			}, "Rejected");
+		},
+
+		AssignRequestAPI: function (oPayload, sText) {
+			debugger;
+			var sApi = `ViewRequestSet(RequestID='${this.getModel().getProperty("/sRequestid")}')`;
+			this.getModel().setProperty("/busy", true);
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', sApi,
+					oPayload)
+				.then(function (oResponse) {
+					this._handleMessageBoxProceed(`Request has been successfully ${sText}`);
+					this.RequestDetailsAPI(sReqId);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
+
 		}
 	})
 })
