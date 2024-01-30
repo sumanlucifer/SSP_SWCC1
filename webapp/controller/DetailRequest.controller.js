@@ -225,6 +225,7 @@ sap.ui.define([
 					oPayload)
 				.then(function (oResponse) {
 					this._handleMessageBoxProceed(`Request has been successfully ${sText}`);
+					this.RequestDetailsAPI(sReqId);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {
 					MessageBox.error(error.responseText);
