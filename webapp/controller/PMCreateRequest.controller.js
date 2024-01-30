@@ -446,11 +446,19 @@ sap.ui.define([
 					Filename: Filename,
 					Mimetype: Filetype,
 					Value: Filecontent,
-					//Filesize: Filesize
+					Filesize: Filesize
 
 				});
 				this.getModel().setProperty("/PMCreateRequest/UploadedData", oItems);
 
+			},
+
+			onDeleteAttachment: function (oEvent) {
+				debugger;
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/PMCreateRequest/UploadedData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
 			},
 			handleMissmatch: function () {
 				this.handleFileMissmatch();

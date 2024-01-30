@@ -88,7 +88,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/PMCreateRequest/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+		<Table items="{/PMCreateRequest/UploadedData}" class="upload-data" noDataText="">
 			<headerToolbar >
 				<Toolbar>
 					<content>
@@ -97,6 +97,7 @@
 								<FlexItemData growFactor="1"/>
 							</layoutData>
 						</Image>
+						<Text text="{i18n>uploadtooltip}" class="hide-cnt"/>
 					</content>
 				</Toolbar>
 			</headerToolbar>
@@ -117,7 +118,7 @@
 					<cells>
 						<Text text="{Filename}"/>
 						<Text text="{Filesize}"/>
-						<Text textAlign="Center" text="{Delete}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
 						<!-- Add more cells as needed -->
 					</cells>
 				</ColumnListItem>
