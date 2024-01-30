@@ -540,7 +540,7 @@ sap.ui.define([
 								Werks: items.Plant,
 								Menge: items.Menge,
 								Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
-								Lglpa: items.Lgpla,
+								/*Lglpa: items.Lgpla,*/
 								Sgtxt: items.Sgtxt,
 
 							};
