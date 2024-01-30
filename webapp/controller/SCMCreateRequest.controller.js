@@ -99,8 +99,16 @@ sap.ui.define([
 				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/ProductF4/") {
-					var filters = [{
-							path: "Material",
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Product",
 							value: this.getModel().getProperty(
 								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
 								"-")[0],
@@ -112,8 +120,34 @@ sap.ui.define([
 					];
 
 					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/C_StorageLocationVH",
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
 						dynamicFilters.Item_ProductFilter,
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}`)
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/WarehouseF4/") {
+					var filters = [
+
+						{
+							path: "Material",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "WareHouseFilter",
+							useOR: true
+
+						}, {
+							path: "Warehouse",
+							value: this.getModel().getProperty(
+								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`).split(
+								"-")[0],
+							group: "WareHouseFilter"
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SC_STORAGEBIN",
+						dynamicFilters.WareHouseFilter,
 						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}`)
 				}
 			},
@@ -133,9 +167,15 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
+				if (!aData[0]) {
+					return;
+				}
 
-				this.getModel().setProperty(`${oModel}/Description/`, aData[0].ProductName);
-				this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
+					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+				}
 
 			},
 			onValueHelpCancelPress: function () {
@@ -366,7 +406,8 @@ sap.ui.define([
 				//--------------------------Warehouseand logistics-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.ScmCreateissueofmaterialRequest(this.getModel()
 						.getProperty(
-							"/WarehouseandLogistics/IssueofMaterial/Header/"), "") :
+							"/WarehouseandLogistics/IssueofMaterial/Header/"), this.getModel().getProperty(
+							"/WarehouseandLogistics/IssueofMaterial/itemData/")) :
 					null;
 				//-------------------------Classification and Inventory-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" ? this.ScmCreatechangeRequest(this.getModel()
@@ -492,7 +533,19 @@ sap.ui.define([
 						"Wempf": oPayloadHeader.WEMPF,
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
+								Werks: items.Plant,
+								Menge: items.Menge,
+								Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
+								Lglpa: items.Lgpla,
+								Sgtxt: items.Sgtxt,
+
+							};
+						}
+					)
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
