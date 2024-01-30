@@ -315,21 +315,17 @@ sap.ui.define([
 			InputValidation: function () {
 				var validationProperties = [{
 						path: "/PMCreateRequest/Header/StartDate/",
-						label: "Start Date",
 						condition: true
 					}, {
 						path: "/PMCreateRequest/Header/EndDate/",
-						label: "End Date",
 						condition: true
 					}, {
 						path: "/PMCreateRequest/Header/MaterialQty/",
-						label: "Quantity",
 						condition: true
 					},
 
 					{
 						path: "/PMCreateRequest/Header/NotifText/",
-						label: "Remarks",
 						condition: this.getModel().getProperty("/RemarksVisibility/")
 					}
 				];
@@ -343,12 +339,12 @@ sap.ui.define([
 						this.getModel().setProperty(property.path, "");
 						this.getModel().setProperty("/ValidationFlag/", true);
 						bValid = false;
-						MessageToast.show("Please Enter " + property.label);
+
 					}
 				});
 
-				if (bValid) {
-					this.getModel().setProperty("/ValidationFlag/", false);
+				if (!bValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
 				}
 
 				return bValid;
@@ -369,7 +365,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"StartDate": this.handleReturnDateonly(oPayloadHeader.StartDate),
 					"EndDate": this.handleReturnDateonly(oPayloadHeader.EndDate),
-					"Equipment": this.getModel().getProperty("/EquipmentF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Equipment": this.getModel().getProperty("/EquipmentF4/") ? this.getModel().getProperty("/EquipmentF4/").split("-")[0] : "",
 					"MaintOrder": oPayloadHeader.MaintOrder,
 					"ServiceHeadertoItem": [],
 					"Attachments": aUploadData

@@ -230,6 +230,17 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
+		},
+		_handleMessageBoxProceed: function (sMessage) {
+			var params = {
+				sMessage: sMessage
+			};
+
+			this.createMessageBoxHandler(this.onPresshomepage.bind(this))(params);
+
+		},
+		onPresshomepage: function () {
+			this.getOwnerComponent().getRouter().navTo("HomePage");
 		}
 	})
 })

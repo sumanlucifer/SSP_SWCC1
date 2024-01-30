@@ -25,8 +25,6 @@
 				<Label text="{i18n>maintenanceorder}" required="false"/>
 				<Input value="{/PMCreateRequest/Header/MaintOrder/}" placeholder="Enter Maintenance Order" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
-				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequiredStart}" required="true"/>
 				<DatePicker valueState="{= ${/PMCreateRequest/Header/StartDate/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PMCreateRequest/Header/StartDate/} === '' ? 'Enter Remarks' : '' }"
@@ -35,6 +33,8 @@
 				<DatePicker valueState="{= ${/PMCreateRequest/Header/EndDate/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PMCreateRequest/Header/EndDate/} === '' ? 'Enter Remarks' : '' }"
 					value="{path: '/PMCreateRequest/Header/EndDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Select Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
