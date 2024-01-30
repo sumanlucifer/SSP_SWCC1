@@ -348,7 +348,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						//"Userid": oPayloadHeader.Persno,
 						"Cname": oPayloadHeader.Cname,
@@ -368,7 +368,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						//"Userid": oPayloadHeader.Persno,
 						"Cname": oPayloadHeader.PadCname,
@@ -398,7 +398,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Emplt": this.getModel().getProperty("/TypeofemployeementF4/") ? this.getModel().getProperty("/TypeofemployeementF4/").split(
 							"-")[0] : "",
@@ -429,7 +429,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
@@ -447,7 +447,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
 						"Timetype": this.getModel().getProperty("/TimetypeF4/") ? this.getModel().getProperty("/TimetypeF4/").split("-")[0] : ""
@@ -463,7 +463,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Detailupdat": oPayloadHeader.Zdetailupdat
 					},
 					"ServiceHeadertoItem": []
@@ -477,7 +477,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Jdescr": oPayloadHeader.Zjdescr,
 						"Jfreq": oPayloadHeader.Zjfreq,
 						"Jnum": oPayloadHeader.Zjnum,
@@ -517,7 +517,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": []
@@ -531,7 +531,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
 						"Orgeh": oPayloadHeader.Orgeh,
 						"Vorna": oPayloadHeader.Vorna,
@@ -552,7 +552,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
@@ -569,7 +569,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Itemdet": oPayloadHeader.Itemdet,
 						"Userjobloc": this.getModel().getProperty("/UserJoblocationF4/") ? this.getModel().getProperty("/UserJoblocationF4/").split(
@@ -586,7 +586,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
-						"Persno": this.getModel().getProperty("/LoginUserID"),
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",

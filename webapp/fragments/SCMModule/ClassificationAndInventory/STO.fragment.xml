@@ -46,12 +46,13 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>purchasinggroup}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
-					width="100%" placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+					width="100%" placeholder="Enter Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/PurchasinggroupF4/}">
 					<customData>
-						<core:CustomData key="Ekgrp" value="Purchasing group"/>
-						<core:CustomData key="Eknam" value="Purchasing group name"/>
+						<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
+						<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
 					</customData>
 				</Input>
 			</fm:content>
@@ -107,7 +108,7 @@
 					<ColumnListItem vAlign="Middle">
 						<cells>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
-								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
 								<customData>
 									<core:CustomData key="Product" value="Product Code"/>
 									<core:CustomData key="Description" value="Product Name"/>
