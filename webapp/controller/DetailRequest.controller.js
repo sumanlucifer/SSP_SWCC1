@@ -35,7 +35,6 @@ sap.ui.define([
 			// 			test
 			this.getModel().setProperty("/busy", true);
 			var sAPI = `/ViewRequestSet('${sReqId}')`;
-			debugger;
 			var urlParameters = {
 				"$expand": "Statuses,getAttachments"
 			}
@@ -54,7 +53,6 @@ sap.ui.define([
 
 		},
 		onLanePress: function (oEvent) {
-			debugger;
 			const oPressedLane = oEvent.getSource(); // Get the pressed lane header
 			var oDate = oPressedLane.getBindingContext().getObject().Date;
 			var sParsedDate = this.handleDateFormat(oDate);
@@ -221,7 +219,7 @@ sap.ui.define([
 			debugger;
 			var sApi = `/ViewRequestSet(RequestID='${this.getModel().getProperty("/sRequestid")}')`;
 			this.getModel().setProperty("/busy", true);
-			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', sApi,
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'PUT', sApi,
 					oPayload)
 				.then(function (oResponse) {
 					this._handleMessageBoxProceed(`Request has been successfully ${sText}`);
