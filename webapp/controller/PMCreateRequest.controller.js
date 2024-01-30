@@ -326,7 +326,8 @@ sap.ui.define([
 
 					{
 						path: "/PMCreateRequest/Header/NotifText/",
-						condition: this.getModel().getProperty("/RemarksVisibility/")
+						condition: this.getModel().getProperty("/RemarksVisibility/") && this.getModel().getProperty(
+							"/PMCreateRequest/Header/NotifText/")
 					}
 				];
 
