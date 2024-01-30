@@ -422,6 +422,12 @@ sap.ui.define([
 						.getProperty(
 							"/ClasssificationandInventory/SPIR/Header/"), "") :
 					null;
+				//--------------------------Digital Catalogue-----------------------------------------------------	
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.ScmCreatestoRequest(this.getModel()
+						.getProperty(
+							"/ClasssificationandInventory/STO/Header/"), this.getModel().getProperty(
+							"/ClasssificationandInventory/STO/itemData/")) :
+					null;
 			},
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
@@ -540,7 +546,7 @@ sap.ui.define([
 								Werks: items.Plant,
 								Menge: items.Menge,
 								Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
-								Lglpa: items.Lgpla,
+								/*Lglpa: items.Lgpla,*/
 								Sgtxt: items.Sgtxt,
 
 							};
@@ -601,6 +607,34 @@ sap.ui.define([
 					},
 
 					"ServiceHeadertoItem": []
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreatestoRequest: function (oPayloadHeader, aItem) {
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"SupplPlant": this.handleOdataDateFormat(oPayloadHeader.SupplPlant),
+						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/ ") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : ""
+					},
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
+								Werks: items.Plant,
+								Menge: items.Menge,
+								Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
+								/*Lglpa: items.Lgpla,*/
+								Sgtxt: items.Sgtxt,
+
+							};
+						}
+					)
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
