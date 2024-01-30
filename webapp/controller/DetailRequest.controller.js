@@ -219,7 +219,7 @@ sap.ui.define([
 
 		AssignRequestAPI: function (oPayload, sText) {
 			debugger;
-			var sApi = `ViewRequestSet(RequestID='${this.getModel().getProperty("/sRequestid")}')`;
+			var sApi = `/ViewRequestSet(RequestID='${this.getModel().getProperty("/sRequestid")}')`;
 			this.getModel().setProperty("/busy", true);
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', sApi,
 					oPayload)
