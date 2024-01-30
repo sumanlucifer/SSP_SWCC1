@@ -156,8 +156,8 @@
 				<ColumnListItem vAlign="Middle">
 					<cells>
 						<Text text="1"/>
-						<Text text="Titanium"/>
-						<Text text="Will shi"/>
+						<Text text=""/>
+						<Text text=""/>
 					</cells>
 				</ColumnListItem>
 			</items>

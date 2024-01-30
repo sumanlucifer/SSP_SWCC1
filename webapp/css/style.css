@@ -710,7 +710,6 @@
 
 .lbl-attach.sapMLabel {
     color: #0066cc;
-    /* upload css ends here */
     font-weight: bold;
 }
 
@@ -732,30 +731,52 @@
     border: none;
 }
 
-.hide-data {
-    display: none;
+.upload-table+.sapMVBox .hide-data,
+.upload-table+.sapMVBox .hide-cnt {
+    display: none !important;
 }
 
-.upload-table .sapMListTblCell {
-    color: #af0c0c;
-    font-size: 12px;
-}
+/*.upload-table+.sapMVBox .sapMListTbl {
+    background-color: #ff0000;
+}*/
 
-.upload-table .sapMIBar {
-    height: auto !important;
+.upload-data .hide-cnt {
+    text-align: center !important;
+    color: #F00;
     display: block;
 }
 
-.upload-table .sapMImg {
+.upload-table+.sapMVBox .sapMListTbl {
+    /*display: block !important;*/
+}
+
+.upload-data .sapMTB.sapMTBHeader-CTX {
     margin: 0 auto !important;
     display: block;
+    height: auto;
 }
 
-.upload-table .sapMListTbl {
+.upload-data .sapMTB.sapMTBHeader-CTX img {
+    display: block;
+    margin: 0 auto !important;
+}
+
+.upload-data .sapMTableTH {
+    background-color: #004687;
+
+}
+
+.upload-data .sapMColumnHeader .sapMText {
+    color: #fff;
+}
+
+
+.upload-table+.sapMVBox .sapMListTbl {
     /*border: 1px solid #00468740;*/
-    min-height: 12rem !important;
+    /* min-height: 12rem !important;*/
     margin: 5px;
     width: 99%;
+    display: none;
 }
 
 /* upload css ends here */
