@@ -32,17 +32,17 @@ sap.ui.define([
 
 				this.getModel().setProperty("/busy", true);
 			},
+			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-
-				// this._oMultiInput = this.getView().byId("multiInput");
-
-				// //	this._oValueHelpDialog.setTokens(this._oMultiInput.getTokens());
-				// this._oValueHelpDialog.open();
-
+				debugger;
+				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[4]) : "";
+				this.getModel().setProperty("/itemIndex", iIndex);
+				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
+				this.getModel().setProperty("/valueHelpName", oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
-				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				var sFragModel = sValuehelpCheck === "" ? oEve.getSource().getAriaLabelledBy()[0].split("-")[6] : sValuehelpCheck;
 				this.getModel().setProperty("/FragModel", sFragModel);
 				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
@@ -62,14 +62,27 @@ sap.ui.define([
 					template: sColumn2Template,
 				}];
 
-				// var sPath = "/ZCDSV_EQUIPMENTVH";
-
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
 			},
-			onValueHelpOkPress: function (oEvent) {
-				debugger;
 
+			handleItemValuehelps: function (iIndex, valuehelpModel) {
+				if (iIndex === "") {
+					this.getModel().setProperty("/HeaderValueHelp", true);
+					return "";
+				}
+
+				this.getModel().setProperty("/HeaderValueHelp", false)
+				var sModelPath;
+				// Procurement: Computer devices and accessories Screen
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty(
+						"/WarehouseandLogistics/IssueofMaterial/itemData").length !== 0 ?
+					`/WarehouseandLogistics/IssueofMaterial/itemData/${iIndex}${valuehelpModel}` :
+					sModelPath;
+
+				return sModelPath;
+			},
+			onValueHelpOkPress: function (oEvent) {
 				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
 				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
@@ -78,6 +91,51 @@ sap.ui.define([
 				var sModelPath = sModelPath;
 
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+				this.setDependentFilterData();
+
+			},
+			setDependentFilterData: function () {
+				// Procurement: Computer devices and accessories Screen
+				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ProductF4/") {
+					var filters = [{
+							path: "Material",
+							value: this.getModel().getProperty(
+								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								"-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/C_StorageLocationVH",
+						dynamicFilters.Item_ProductFilter,
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}`)
+				}
+			},
+			callDependentFilterAPI: function (entity, path, filter, model) {
+
+				this.getModel().setProperty("/busy", true);
+				this.getAPI.oDataACRUDAPICall(
+					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
+				).then(function (oResponse) {
+					this.handleDependentFilterResponse(oResponse.results, `${model}`);
+					this.getModel().setProperty("/busy", false);
+
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
+				}.bind(this));
+			},
+
+			handleDependentFilterResponse: function (aData, oModel) {
+
+				this.getModel().setProperty(`${oModel}/Description/`, aData[0].ProductName);
+				this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
 
 			},
 			onValueHelpCancelPress: function () {
@@ -92,42 +150,71 @@ sap.ui.define([
 					}, {
 						path: this.getModel().getProperty("/valueHelpKey2"),
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}
 
 				];
 				var dynamicFilters = this.getFilters(filters);
 
-				this._filterTable(
-					new Filter({
-						filters: dynamicFilters.DynamicF4SearchFilter,
-						and: false,
-					})
-				);
+				this._filterTable(Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter);
 			},
 			handleFiltersForValueHelp: function (F4) {
-				debugger;
-				var filters = [{
-						path: "shkzg",
-						value: "H",
-						group: "MovementtypeF4Filter"
-					}
 
-				];
-
-				var dynamicFilters = this.getFilters(filters);
 				var aFilter;
 
-				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 === "/MovementtypeF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.MovementtypeF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-2" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
+				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+
+					var filters = [{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Material4Filter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+
+					aFilter = this._getfilterforControl(dynamicFilters.Material4Filter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
+
+					var filters = [{
+							path: "Material",
+							value: this.getModel().getProperty(
+								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								"-")[0],
+							group: "StorageFilter",
+							useOR: true
+						}, {
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "StorageFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`) {
+
+					var filters = [{
+							path: "Lgort",
+							value: this.getModel().getProperty(
+								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`).split(
+								"-")[0],
+							group: "WarehouseFilter",
+							useOR: true
+						}, {
+							path: "Werks",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "WarehouseFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.WarehouseFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -137,18 +224,29 @@ sap.ui.define([
 
 			},
 			onValueHelpAfterOpen: function () {
-				debugger;
+
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
 
 				this._filterTable(aFilter, "Control");
+			},
+			onClearFilter: function (oEve) {
+				var afilterBar = oEve.getParameter("selectionSet");
+				afilterBar[0].setValue(null);
+				afilterBar[1].setValue(null);
+				this._filterTable(
+					new Filter({
+						filters: [],
+						and: false,
+					})
+				);
 			},
 			_getfilterforControl: function (aFilter) {
 
 				if (!aFilter) {
 					return [];
 				}
-				return aFilter;
+				return new Filter(aFilter);
 
 				//	return dynamicFilters.PlantFilter;
 			},
@@ -500,7 +598,14 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/WarehouseandLogistics/IssueofMaterial/itemData"), {
 					Matnr: "",
-					Menge: ""
+					Wercks: "",
+					Menge: "",
+					Plant: "",
+					BaseUnit: "",
+					Lgort: "",
+					Lgpla: "",
+					Sgtxt: ""
+
 				}, "/WarehouseandLogistics/IssueofMaterial/itemData") : "";
 
 			},

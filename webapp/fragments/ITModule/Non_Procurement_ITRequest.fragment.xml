@@ -52,7 +52,7 @@
 			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
-		<Table items="{/UploadedData}" class="upload-data" mode="Delete" noDataText="">
+		<Table items="{/UploadedData}" class="upload-data" noDataText="">
 			<headerToolbar >
 				<Toolbar>
 					<content>
@@ -82,7 +82,7 @@
 					<cells>
 						<Text text="{Filename}"/>
 						<Text text="{Filesize}"/>
-						<Text textAlign="Center" text="{Delete}"/>
+						<Button type="Reject" text="Delete" press="onPress"/>
 						<!-- Add more cells as needed -->
 					</cells>
 				</ColumnListItem>
