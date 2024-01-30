@@ -26,15 +26,13 @@
 					</suggestionItems>
 				</Input>-->
 				<Label text="{i18n>supplyingplant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/SuppPlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SuppPlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>documenttype}" required="true"/>
 				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>receivingplant}" required="true"/>
@@ -45,6 +43,8 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>purchasinggroup}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
@@ -91,6 +91,9 @@
 						<Text text="{i18n>quantity}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Plant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
@@ -116,6 +119,7 @@
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
 							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
+							<Input placeholder="Enter Plant" value="{Plant}" enabled="false"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
