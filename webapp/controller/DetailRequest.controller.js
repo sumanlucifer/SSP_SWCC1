@@ -222,12 +222,10 @@ sap.ui.define([
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'PUT', sApi,
 					oPayload)
 				.then(function (oResponse) {
+					this.getModel().setProperty("/busy", false);
 					this._handleMessageBoxProceed(`Request has been successfully ${sText}`);
 					this.RequestDetailsAPI(sReqId);
-					this.getModel().setProperty("/busy", false);
-				}.bind(this)).catch(function (error) {
-					MessageBox.error(error.responseText);
-					this.getModel().setProperty("/busy", false);
+
 				}.bind(this));
 
 		},
