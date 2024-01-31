@@ -42,6 +42,7 @@ sap.ui.define([
 					HRAppVisible: null,
 					TimeZoneData: "",
 					TypeF4: "",
+					UploadedData: [],
 					HRCreateRequest: {
 						UploadedData: [],
 						Header: {},
@@ -653,6 +654,64 @@ sap.ui.define([
 
 				this.oRouter.navTo("LandingView");
 
+			},
+			onFileAdded: function (oEvent) {
+				debugger;
+				var that = this;
+				var oFileUploader = oEvent.getSource();
+				var aFiles = oEvent.getParameter("files");
+				if (aFiles.length === 0)
+					return;
+
+				var Filename = aFiles[0].name,
+					Filetype = aFiles[0].type,
+					Filedata = aFiles[0],
+					Filesize = aFiles[0].size;
+
+				//code for base64/binary array 
+				this._getImageData((Filedata), function (Filecontent) {
+					that._addData(Filecontent, Filename, Filetype, Filesize);
+				});
+
+			},
+
+			_addData: function (Filecontent, Filename, Filetype, Filesize) {
+
+				debugger;
+				var oModel = this.getModel().getProperty("/UploadedData");
+
+				if (oModel.length >= 5) {
+					MessageToast.show("Upto 5 Documents are allowed to upload");
+					return false;
+				}
+				var oItems = oModel.map(function (oItem) {
+					return Object.assign({}, oItem);
+				});
+				oItems.push({
+					Filename: Filename,
+					Mimetype: Filetype,
+					Value: Filecontent,
+					Filesize: Filesize
+
+				});
+				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+
+			onDeleteAttachment: function (oEvent) {
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/UploadedData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
+				currentElement.removeStyleClass("remove-table");
+
+			},
+			handleMissmatch: function () {
+				this.handleFileMissmatch();
+			},
+			onFileSizeExceed: function () {
+
+				this.handleFileSizeExceed();
 			}
 		})
 	})

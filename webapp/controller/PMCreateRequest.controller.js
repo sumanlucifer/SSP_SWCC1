@@ -415,11 +415,9 @@ sap.ui.define([
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
-				var oParent = oFileUploader.getParent().toggleStyleClass("upload-table");
 				if (aFiles.length === 0)
 					return;
-				/*	oParent.addStyleClass("upload-table");
-					oParent.removeStyleClass("hide-data");*/
+
 				var Filename = aFiles[0].name,
 					Filetype = aFiles[0].type,
 					Filedata = aFiles[0],
@@ -429,8 +427,6 @@ sap.ui.define([
 				this._getImageData((Filedata), function (Filecontent) {
 					that._addData(Filecontent, Filename, Filetype, Filesize);
 				});
-				// var oUploadSet = this.byId("UploadSet");
-				// oUploadSet.getDefaultFileUploader().setEnabled(false);
 
 			},
 

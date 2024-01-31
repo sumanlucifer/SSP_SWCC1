@@ -1151,11 +1151,10 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onFileAdded: function (oEvent) {
-
+				debugger;
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
-
 				if (aFiles.length === 0)
 					return;
 
@@ -1168,8 +1167,6 @@ sap.ui.define([
 				this._getImageData((Filedata), function (Filecontent) {
 					that._addData(Filecontent, Filename, Filetype, Filesize);
 				});
-				// var oUploadSet = this.byId("UploadSet");
-				// oUploadSet.getDefaultFileUploader().setEnabled(false);
 
 			},
 
@@ -1177,6 +1174,11 @@ sap.ui.define([
 
 				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
+
+				if (oModel.length >= 5) {
+					MessageToast.show("Upto 5 Documents are allowed to upload");
+					return false;
+				}
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
 				});
@@ -1184,10 +1186,19 @@ sap.ui.define([
 					Filename: Filename,
 					Mimetype: Filetype,
 					Value: Filecontent,
-					//Filesize: Filesize
+					Filesize: Filesize
 
 				});
 				this.getModel().setProperty("/UploadedData", oItems);
+
+			},
+
+			onDeleteAttachment: function (oEvent) {
+				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var aTableData = this.getModel().getProperty("/UploadedData");
+				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().refresh();
+				currentElement.removeStyleClass("remove-table");
 
 			},
 			handleMissmatch: function () {
@@ -1195,11 +1206,8 @@ sap.ui.define([
 			},
 			onFileSizeExceed: function () {
 
-					this.handleFileSizeExceed();
-				}
-				/*	onProceed: function () {
-						this.getOwnerComponent().getTargets().display("FinanceCreateRequest");
-					},*/
+				this.handleFileSizeExceed();
+			}
 
 		})
 	})
