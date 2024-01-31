@@ -287,7 +287,8 @@
     font-family: 'SWCC-3-Medium';
 }
 
-.ssp-form-bg .sapMInputBaseContentWrapperState.sapMInputBaseContentWrapperError {
+.ssp-form-bg .sapMInputBaseContentWrapperState.sapMInputBaseContentWrapperError,
+.ssp-form-bg .sapMInputBaseContentWrapperError {
     border: 2.5px solid #cf0e0e;
 }
 
@@ -299,8 +300,8 @@
 .ssp-form-txtarea .sapMInputBaseContentWrapper,
 .ssp-form-txtarea .sapMTextAreaInner {
     background: #b5c8eb;
-    border: 0px;
-    height: auto;
+    /* border: 0px;
+    height: auto;*/
     font-family: 'SWCC-3-Medium';
 
 }
@@ -721,45 +722,36 @@
     font-family: 'SWCC-3-Medium';
 }
 
-.upload-table .sapMTableTHead {
+/*.upload-table .sapMTableTHead {
 
     font-family: 'SWCC-3-Medium';
     visibility: hidden;
-}
+}*/
 
 .upload-table .sapMTableTBody .sapMListTblCell {
     border: none;
 }
 
-.upload-table+.sapMVBox .hide-data,
-.upload-table+.sapMVBox .hide-cnt {
-    display: none !important;
+.upload-info.sapMText {
+    color: #ff0000;
+    font-weight: bold;
+    font-size: 12px;
 }
 
-/*.upload-table+.sapMVBox .sapMListTbl {
-    background-color: #ff0000;
+
+.upload-table+.sapMVBox .upload-data {
+    display: block;
+}
+
+
+
+/*.upload-data {
+    display: none;
 }*/
 
-.upload-data .hide-cnt {
-    text-align: center !important;
-    color: #F00;
-    display: block;
-}
-
-.upload-table+.sapMVBox .sapMListTbl {
-    /*display: block !important;*/
-}
-
-.upload-data .sapMTB.sapMTBHeader-CTX {
-    margin: 0 auto !important;
-    display: block;
-    height: auto;
-}
-
-.upload-data .sapMTB.sapMTBHeader-CTX img {
-    display: block;
-    margin: 0 auto !important;
-}
+/*.upload-table+.sapMVBox .upload-data.remove-table {
+    display: none;
+}*/
 
 .upload-data .sapMTableTH {
     background-color: #004687;
@@ -774,9 +766,9 @@
 .upload-table+.sapMVBox .sapMListTbl {
     /*border: 1px solid #00468740;*/
     /* min-height: 12rem !important;*/
-    margin: 5px;
+    /* margin: 5px;
     width: 99%;
-    display: none;
+    display: none;*/
 }
 
 /* upload css ends here */

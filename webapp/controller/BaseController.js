@@ -441,6 +441,11 @@ sap.ui.define([
 			var dateWithoutTime = new Date(year, month, day);
 			return dateWithoutTime;
 		},
+
+		formatBytesToMB: function (bytes) {
+			var megabytes = bytes / (1024 * 1024);
+			return megabytes.toFixed(2) + ' MB';
+		},
 		/**
 		 * Getter for the resource bundle.
 	
