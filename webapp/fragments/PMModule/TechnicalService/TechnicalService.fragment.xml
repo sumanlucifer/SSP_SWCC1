@@ -92,11 +92,11 @@
 			<headerToolbar >
 				<Toolbar>
 					<content>
-						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
+						<!--<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
 							<layoutData>
 								<FlexItemData growFactor="1"/>
 							</layoutData>
-						</Image>
+						</Image>!-->
 						<Text text="{i18n>uploadtooltip}" class="hide-cnt"/>
 					</content>
 				</Toolbar>

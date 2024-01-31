@@ -190,7 +190,7 @@ sap.ui.define([
 					}, {
 						path: dynamicColumns[3] && dynamicColumns[3].template ? dynamicColumns[3].template : "",
 						operator: sap.ui.model.FilterOperator.Contains,
-						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue() : "",
+						value: afilterBar[3] && afilterBar[3].getValue() ? afilterBar[3].getValue() : "",
 						group: "DynamicF4SearchFilter"
 					}
 
