@@ -727,6 +727,11 @@
     font-family: 'SWCC-3-Medium';
     visibility: hidden;
 }*/
+.upload-data .sapMIBar {
+    width: 100%;
+    height: 3.5rem;
+    display: block;
+}
 
 .upload-table .sapMTableTBody .sapMListTblCell {
     border: none;

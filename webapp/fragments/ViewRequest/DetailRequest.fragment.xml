@@ -19,7 +19,7 @@
 					<IconTabFilter text="Request Details" count="" key="key1">
 						<l:VerticalLayout class="" width="100%">
 							<l:content>
-								<VBox class="" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+								<VBox >
 									<Toolbar>
 										<Title level="H3" text="{i18n>Request Details}" class="ssp-dtl-title"/>
 										<ToolbarSpacer/>
@@ -30,32 +30,19 @@
 							</l:content>
 						</l:VerticalLayout>
 					</IconTabFilter>
-					<!--	<IconTabFilter text="Status">
-                        <l:VerticalLayout class="" width="100%">
-                            <l:content>
-                                <VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
-                                    <Toolbar>
-                                        <Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
-                                        <ToolbarSpacer/>
-                                    </Toolbar>
-                                    <core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
-                                </VBox>
-                            </l:content>
-                        </l:VerticalLayout>
-                    </IconTabFilter> -->
-					<!--	<IconTabFilter text="Attachments">
+					<IconTabFilter text="Attachments">
 						<l:VerticalLayout class="" width="100%">
 							<l:content>
-								<VBox class="sapUiSmallMargin" visible="{= ${objectViewModel>/EditMode} ? false : true}">
+								<VBox class="sapUiSmallMargin">
 									<Toolbar>
-										<Title level="H3" text="{i18n>Status}" class="ssp-dtl-title"/>
+										<Title level="H3" text="{i18n>Attachments}" class="ssp-dtl-title"/>
 										<ToolbarSpacer/>
 									</Toolbar>
-									<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.Attachments" type="XML"/>
 								</VBox>
 							</l:content>
 						</l:VerticalLayout>
-					</IconTabFilter>-->
+					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</headerContainer>

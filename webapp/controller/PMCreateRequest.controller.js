@@ -321,10 +321,11 @@ sap.ui.define([
 					},
 
 					{
-						path: "/PMCreateRequest/Header/NotifText/",
-						condition: this.getModel().getProperty("/RemarksVisibility/") && this.getModel().getProperty(
+						path: this.getModel().getProperty("/RemarksVisibility/") === true ? "/PMCreateRequest/Header/NotifText/" : "/RemarksVisibility/",
+						condition: this.getModel().getProperty("/RemarksVisibility/") || !!this.getModel().getProperty(
 							"/PMCreateRequest/Header/NotifText/")
 					}
+
 				];
 
 				var bValid = true;
@@ -456,11 +457,7 @@ sap.ui.define([
 
 			},
 
-
 			onDeleteAttachment: function (oEvent) {
-				debugger;
-				var currentElement = oEvent.getSource().getParent().getParent();
-				currentElement.toggleStyleClass("remove-table");
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
 				var aTableData = this.getModel().getProperty("/PMCreateRequest/UploadedData");
 				aTableData.splice(iRowNumberToDelete, 1);

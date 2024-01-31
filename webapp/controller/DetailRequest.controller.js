@@ -3,8 +3,10 @@ sap.ui.define([
 	"sap/ui/core/routing/History",
 	"sap/ui/model/json/JSONModel",
 	"sap/ui/core/library",
-	"sap/m/MessageBox"
-], function (BaseController, History, JSONModel, coreLibrary, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/core/Fragment",
+	"sap/ui/Device"
+], function (BaseController, History, JSONModel, coreLibrary, MessageBox, Fragment, Device) {
 	"use strict";
 	return BaseController.extend("com.swcc.Template.controller.DetailRequest", {
 		onInit: function () {
@@ -25,7 +27,8 @@ sap.ui.define([
 				busy: false,
 				ProcessFlowData: [],
 				RequestDetails: {
-					Header: {}
+					Header: {},
+					Attachments: []
 
 				}
 			});
@@ -44,6 +47,7 @@ sap.ui.define([
 
 					this.getModel().setProperty("/busy", false);
 					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
+					this.getModel().setProperty("/RequestDetails/Attachments/", oResponse.getAttachments.results);
 					var aProcessFlowData = this.customResponseData(oResponse.Statuses.results);
 					this.getModel().setProperty("/ProcessFlowData/", aProcessFlowData);
 				}.bind(this)).catch(function (error) {
@@ -95,7 +99,7 @@ sap.ui.define([
 		},
 
 		customResponseData: function (aData) {
-			debugger;
+
 			let counter = 0;
 			let cnt = 0;
 			const filteredData = aData
@@ -202,6 +206,33 @@ sap.ui.define([
 			}
 		},
 
+		onViewDoc: function (oEvent) {
+			var sBase64 = oEvent.getSource().getBindingContext().getObject().Value;
+			this.getModel().setProperty("/pdf", "data:application/pdf;base64," + sBase64);
+			var oView = this.getView();
+
+			if (!this.oSearchResultDialog) {
+				Fragment.load({
+					id: oView.getId(),
+					name: "com.swcc.Template.fragments.ViewRequest.OpenAttachmentDialog",
+					controller: this
+				}).then(function (oDialog) {
+					oDialog.setTitle("Attachments Details");
+					this.oSearchResultDialog = oDialog;
+					this.getView().addDependent(oDialog);
+					oDialog.open();
+
+				}.bind(this));
+			} else {
+				this.oSearchResultDialog.open();
+
+			}
+
+		},
+		onCloseAttachment: function () {
+			this.oSearchResultDialog.close();
+
+		},
 		onApprovePress: function () {
 
 			this.AssignRequestAPI({
