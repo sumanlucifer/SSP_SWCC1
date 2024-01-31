@@ -177,29 +177,25 @@ sap.ui.define([
 				var filters = [{
 						path: dynamicColumns[0].template,
 						value: afilterBar[0].getValue(),
-						group: "DynamicF4SearchFilter",
-						useOR: true
+						group: "DynamicF4SearchFilter"
 					}, {
 						path: dynamicColumns[1].template,
 						value: afilterBar[1].getValue(),
 						operator: sap.ui.model.FilterOperator.Contains,
-						group: "DynamicF4SearchFilter",
-						useOR: true
+						group: "DynamicF4SearchFilter"
 					}, {
 						path: dynamicColumns[2] && dynamicColumns[2].template ? dynamicColumns[2].template : "",
 						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue().split("-")[0] : "",
-						group: "DynamicF4SearchFilter",
-						useOR: true
+						group: "DynamicF4SearchFilter"
 					}, {
 						path: dynamicColumns[3] && dynamicColumns[3].template ? dynamicColumns[3].template : "",
 						operator: sap.ui.model.FilterOperator.Contains,
-						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue() : "",
-						group: "DynamicF4SearchFilter",
-						useOR: true
+						value: afilterBar[3] && afilterBar[3].getValue() ? afilterBar[3].getValue() : "",
+						group: "DynamicF4SearchFilter"
 					}
 
 				];
-				var dynamicFilters = this.getFilters(filters, false);
+				var dynamicFilters = this.getFilters(filters);
 
 				this._filterTable(
 					dynamicFilters.DynamicF4SearchFilter
@@ -367,6 +363,7 @@ sap.ui.define([
 					"StartDate": this.handleReturnDateonly(oPayloadHeader.StartDate),
 					"EndDate": this.handleReturnDateonly(oPayloadHeader.EndDate),
 					"Equipment": this.getModel().getProperty("/EquipmentF4/") ? this.getModel().getProperty("/EquipmentF4/").split("-")[0] : "",
+					"PmWkctr": this.getModel().getProperty("/WorkCenterF4/") ? this.getModel().getProperty("/WorkCenterF4/").split("-")[0] : "",
 					"MaintOrder": oPayloadHeader.MaintOrder,
 					"ServiceHeadertoItem": [],
 					"Attachments": aUploadData
