@@ -37,7 +37,7 @@ sap.ui.define([
 				debugger;
 				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[4]) : "";
 				this.getModel().setProperty("/itemIndex", iIndex);
-				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
+				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6], oEve.getSource().getBindingContext());
 				this.getModel().setProperty("/valueHelpName", oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
@@ -66,7 +66,7 @@ sap.ui.define([
 
 			},
 
-			handleItemValuehelps: function (iIndex, valuehelpModel) {
+			handleItemValuehelps: function (iIndex, valuehelpModel, oEveBinding) {
 				if (iIndex === "") {
 					this.getModel().setProperty("/HeaderValueHelp", true);
 					return "";
@@ -74,15 +74,29 @@ sap.ui.define([
 
 				this.getModel().setProperty("/HeaderValueHelp", false)
 				var sModelPath;
+
+				var sTableBindingPath = oEveBinding.getPath();
+				var sTabelModel = sTableBindingPath.replace(/\/\d+$/, '');
 				// Procurement: Computer devices and accessories Screen
 				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty(
-						"/WarehouseandLogistics/IssueofMaterial/itemData").length !== 0 ?
-					`/WarehouseandLogistics/IssueofMaterial/itemData/${iIndex}${valuehelpModel}` :
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
 				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty(
-						"/ClasssificationandInventory/STO/itemData").length !== 0 ?
-					`/ClasssificationandInventory/STO/itemData/${iIndex}${valuehelpModel}` :
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
+
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
+
 				return sModelPath;
 			},
 			onValueHelpOkPress: function (oEvent) {
@@ -99,9 +113,19 @@ sap.ui.define([
 			},
 			setDependentFilterData: function () {
 				// Procurement: Computer devices and accessories Screen
-				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel()
-					.getProperty("/valueHelpName") === "/ProductF4/") {
+				// if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+				// 	this.getModel()
+				// 	.getProperty("/valueHelpName") === "/ProductF4/") {
+
+				if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" &&
+						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/ProductF4/") ||
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" &&
+						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/ProductF4/")
+				) {
+
 					var filters = [
 
 						{
@@ -113,7 +137,7 @@ sap.ui.define([
 						}, {
 							path: "Product",
 							value: this.getModel().getProperty(
-								`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+								`${this.getModel().getProperty("/FragModel")}`).split(
 								"-")[0],
 							group: "Item_ProductFilter",
 							useOR: true
@@ -125,7 +149,7 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
 						dynamicFilters.Item_ProductFilter,
-						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}`)
+						`${this.getModel().getProperty("/FragModel")}`)
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/WarehouseF4/") {
@@ -260,20 +284,29 @@ sap.ui.define([
 					return;
 				}
 
+				var spath = oModel.replace(/\/[^/]+\/$/, '/');
+
 				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
-					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
-					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
-					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+					`${oModel}`) {
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
-					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+					`${oModel}`) {
 					debugger;
-					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
-					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
-					`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
+					`${oModel}`) {
 					debugger;
-					this.getModel().setProperty(`${oModel}/Plant/`, aData[0].Plant);
-					this.getModel().setProperty(`${oModel}/BaseUnit/`, aData[0].BaseUnit);
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" && this.getModel().getProperty("/FragModel") ===
+					`${oModel}`) {
+					debugger;
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
+					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+
 				}
 
 			},
@@ -302,8 +335,15 @@ sap.ui.define([
 
 				var aFilter;
 
-				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
-					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+				// if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+				// 	`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+
+				if ((
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" &&
+							F4 === `/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" &&
+							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+					)) {
 
 					var filters = [{
 							path: "Plant",
@@ -857,6 +897,17 @@ sap.ui.define([
 					Wercks: "",
 					Lgort: ""
 				}, "/ClasssificationandInventory/STO/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ProcurementAdhoc/MaterialProcurement/itemData"), {
+					Matnr: "",
+					Wercks: "",
+					Menge: "",
+					Plant: "",
+					BaseUnit: "",
+					Lgort: "",
+					Lgpla: "",
+					Sgtxt: ""
+				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
 
 			},
 

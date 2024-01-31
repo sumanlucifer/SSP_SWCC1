@@ -75,7 +75,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="MultiSelect" items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -89,6 +89,9 @@
 						<Text text="{i18n>quantity}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
@@ -100,16 +103,13 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>requisitioner}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>unitprice}"/>
-					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
-								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
 								<customData>
 									<core:CustomData key="Product" value="Product Code"/>
 									<core:CustomData key="Description" value="Product Name"/>
@@ -117,29 +117,20 @@
 							</Input>
 							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
 								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>-->
-							<Input placeholder="Enter Description" value="{/ProcurementAdhoc/MaterialProcurement/itemData/Description}" enabled="false"/>
-							<Input placeholder="QTY" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/MENGE}" showValueHelp=""
-								valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Enter UOM" id="materialUom" value="{/ProcurementAdhoc/MaterialProcurement/itemData/BaseUnit}" enabled="false"/>
-							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-								placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-								<customData>
-									<core:CustomData key="Plant" value="Plant"/>
-									<core:CustomData key="PlantName" value="Plant Name"/>
-								</customData>
-							</Input>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" showSuggestion="" value="{MENGE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Unit Price" value="{UNIT_PRICE}" liveChange="handleLiveChange"/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input value="{Plant}" enabled="false"/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
 								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{/PurchasinggroupF4/}">
+								value="{PurchasinggroupF4}">
 								<customData>
 									<core:CustomData key="Ekgrp" value="Purchasing group"/>
 									<core:CustomData key="Eknam" value="Purchasing group name"/>
 								</customData>
 							</Input>
-							<Input placeholder="Req" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/AFNAM}" showValueHelp=""
-								valueHelpRequest=""/>
-							<Input placeholder="Unit Price" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/itemData/UNIT_PRICE}" showValueHelp=""
-								valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
