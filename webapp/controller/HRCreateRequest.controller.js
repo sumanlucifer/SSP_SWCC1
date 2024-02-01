@@ -382,9 +382,9 @@ sap.ui.define([
 						"Cltype": this.getModel().getProperty("/ClaimtypeF4/") ? this.getModel().getProperty("/ClaimtypeF4/").split("-")[0] : "",
 						"Amount": oPayloadHeader.Zamount,
 						"Bankk": oPayloadHeader.Bankk,
-						"PadOrt01": oPayloadHeader.PadOrt01,
+						"Ort01": oPayloadHeader.PadOrt01,
 						"Land1": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split("-")[0] : "",
-						"Visdat": oPayloadHeader.Zvisdat,
+						"Visdat": this.handleOdataDateFormat(oPayloadHeader.Zvisdat),
 						"Proname": oPayloadHeader.Zproname,
 						"Zcomment": oPayloadHeader.Zcomment
 					},

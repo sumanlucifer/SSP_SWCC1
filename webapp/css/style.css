@@ -578,6 +578,10 @@
     visibility: hidden;
 }
 
+.ssp-dtl-title .sapMOHRStates .sapMOHRStatesCont2 {
+    width: 44%;
+}
+
 .ssp-dtl-title .sapMOHR {
     padding: 1rem;
 }
@@ -597,7 +601,7 @@
 .ssp-dtl-title .sapMObjStatusText {
     line-height: 1.4rem;
     white-space: pre-line !important;
-    max-width: 90% !important;
+    /* max-width: 90% !important;*/
     font-weight: bold !important;
     padding-left: 5px;
 }
