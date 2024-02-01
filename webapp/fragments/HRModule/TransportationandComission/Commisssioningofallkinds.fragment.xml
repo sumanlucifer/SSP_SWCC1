@@ -86,8 +86,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Clockinclockout}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLOCKINOUTGROUP-com.swcc.Template.fragments.HRModule.ClockInOutF4-/PlantF4/" width="100%"
-					placeholder="Select ClockIn/ClockOut" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLOCKINOUTGROUP-com.swcc.Template.fragments.HRModule.ClockInOutF4-/ClockInOutF4/" width="100%"
+					placeholder="Select ClockIn/ClockOut" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ClockInOutF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Code "/>
 						<core:CustomData key="value_1" value="Description "/>
@@ -124,7 +125,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>timezone}" required="true"/>
-				<ComboBox placeholder="Select Time Zone" items="{/TimeZoneData}">
+				<ComboBox selectedKey="{/TransportationCommision/Commisioning/Header/TimeZoneKey/}" placeholder="Select Time Zone" items="{/TimeZoneData}">
 					<core:Item key="{value}" text="{label}"/>
 				</ComboBox>
 				<Label text="{i18n>payscale}" required="true"/>
@@ -165,7 +166,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>payrollid}" required="true"/>
-				<Input placeholder="Enter Payroll ID" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Payroll ID" showSuggestion="" value="{/TransportationCommision/Commisioning/Header/Payrollid/}" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

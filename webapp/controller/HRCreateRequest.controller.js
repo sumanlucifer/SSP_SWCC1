@@ -340,6 +340,10 @@ sap.ui.define([
 				//-------------------------------------------Transport and comission----------------------------------------------------------------------
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1006-1" ? this.HRCreatetransfersecondRequest(this.getModel().getProperty(
 					"/TransportationCommision/Transfer/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1006-2" ? this.HRCreateemployeetransportationRequest(this.getModel().getProperty(
+					"/TransportationCommision/EmpTransporation/Header/"), "") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1006-3" ? this.HRCreatecomissionofallkindsRequest(this.getModel().getProperty(
+					"/TransportationCommision/Commisioning/Header/"), "") : null;
 
 			},
 			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
@@ -594,6 +598,73 @@ sap.ui.define([
 						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate)
 					},
 					"ServiceHeadertoItem": []
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreateemployeetransportationRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
+						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
+						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
+						"Payscgrp": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
+						"Zposition": this.getModel().getProperty("/PositionF4/") ? this.getModel().getProperty("/PositionF4/").split("-")[0] : "",
+						"Emploc": this.getModel().getProperty("/EmployeeLocF4/") ? this.getModel().getProperty("/EmployeeLocF4/").split("-")[0] : "",
+						"Paysclvl": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : ""
+					},
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
+				};
+				this.HRCreateaRequestAPI(oPayload);
+			},
+			HRCreatecomissionofallkindsRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/HRAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"NotifText": oPayloadHeader.Zcomment,
+					"ZHeaderExtra": {
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
+						"Hiredat": this.handleOdataDateFormat(oPayloadHeader.Zhiredat),
+						"Company": this.getModel().getProperty("/CompanyF4/") ? this.getModel().getProperty("/CompanyF4/").split("-")[0] : "",
+						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : "",
+						"Orgdat": this.handleOdataDateFormat(oPayloadHeader.Zorgdat),
+						"Seniordat": this.handleOdataDateFormat(oPayloadHeader.Zseniordat),
+						"Servdat": this.handleOdataDateFormat(oPayloadHeader.Zservdat),
+						"Zposition": this.getModel().getProperty("/PositionF4/") ? this.getModel().getProperty("/PositionF4/").split("-")[0] : "",
+						"Emploc": this.getModel().getProperty("/EmployeeLocF4/") ? this.getModel().getProperty("/EmployeeLocF4/").split("-")[0] : "",
+						"Tzone": oPayloadHeader.TimeZoneKey,
+						"Contrtype": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
+						"Payscgrp": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
+						"Paysclvl": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : "",
+						"Schkn": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : "",
+						"Timeprf": this.getModel().getProperty("/TimeProfileF4/") ? this.getModel().getProperty("/TimeProfileF4/").split("-")[0] : "",
+						"Timerecprf": this.getModel().getProperty("/TimeRecoringF4/") ? this.getModel().getProperty("/TimeRecoringF4/").split("-")[0] : "",
+						"Timerecadmis": this.getModel().getProperty("/TimeRecoringAdmisF4/") ? this.getModel().getProperty("/TimeRecoringAdmisF4/").split(
+							"-")[
+							0] : "",
+						"Timerecvar": this.getModel().getProperty("/TimeRecoringVariantF4/") ? this.getModel().getProperty("/TimeRecoringVariantF4/").split(
+							"-")[0] : "",
+						"Clockinout": this.getModel().getProperty("/ClockInOutF4/") ? this.getModel().getProperty("/ClockInOutF4/").split("-")[0] : "",
+						"Payrollid": oPayloadHeader.Payrollid,
+						"Paygrp": this.getModel().getProperty("/PayGroupF4/") ? this.getModel().getProperty("/PayGroupF4/").split("-")[0] : ""
+
+					},
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
