@@ -647,15 +647,14 @@ sap.ui.define([
 						"Zposition": this.getModel().getProperty("/PositionF4/") ? this.getModel().getProperty("/PositionF4/").split("-")[0] : "",
 						"Emploc": this.getModel().getProperty("/EmployeeLocF4/") ? this.getModel().getProperty("/EmployeeLocF4/").split("-")[0] : "",
 						"Tzone": oPayloadHeader.TimeZoneKey,
-						"Contrtype": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
+						"Contrtype": this.getModel().getProperty("/ContracttypeF4/") ? this.getModel().getProperty("/ContracttypeF4/").split("-")[0] : "",
 						"Payscgrp": this.getModel().getProperty("/PayscalegroupF4/") ? this.getModel().getProperty("/PayscalegroupF4/").split("-")[0] : "",
 						"Paysclvl": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : "",
 						"Schkn": this.getModel().getProperty("/PayscalelevelF4/") ? this.getModel().getProperty("/PayscalelevelF4/").split("-")[0] : "",
 						"Timeprf": this.getModel().getProperty("/TimeProfileF4/") ? this.getModel().getProperty("/TimeProfileF4/").split("-")[0] : "",
 						"Timerecprf": this.getModel().getProperty("/TimeRecoringF4/") ? this.getModel().getProperty("/TimeRecoringF4/").split("-")[0] : "",
 						"Timerecadmis": this.getModel().getProperty("/TimeRecoringAdmisF4/") ? this.getModel().getProperty("/TimeRecoringAdmisF4/").split(
-							"-")[
-							0] : "",
+							"-")[0] : "",
 						"Timerecvar": this.getModel().getProperty("/TimeRecoringVariantF4/") ? this.getModel().getProperty("/TimeRecoringVariantF4/").split(
 							"-")[0] : "",
 						"Clockinout": this.getModel().getProperty("/ClockInOutF4/") ? this.getModel().getProperty("/ClockInOutF4/").split("-")[0] : "",

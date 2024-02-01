@@ -50,12 +50,12 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Contracttype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CONTRACTTYPE-com.swcc.Template.fragments.HRModule.EmployeeLocF4-/PayscalelevelF4/"
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CONTRACTTYPE-com.swcc.Template.fragments.HRModule.contracttypeF4-/ContracttypeF4/"
 					width="100%" placeholder="Select Contract Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/PayscalelevelF4/}">
+					value="{/ContracttypeF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Payscale "/>
-						<core:CustomData key="value_1" value="Payscale Level "/>
+						<core:CustomData key="keyfield" value="Contract Type "/>
+						<core:CustomData key="value_1" value="Contract Dscription"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>payscalelevel}" required="true"/>
