@@ -342,6 +342,11 @@ sap.ui.define([
 			},
 
 			ITCreateNonProcuremenRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/ITAppVisible/"),
@@ -350,7 +355,8 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.ITCreateRequestAPI(oPayload);

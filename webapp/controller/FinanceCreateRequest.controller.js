@@ -779,6 +779,11 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceCreateMaintainChartofAccRequest: function (oPayloadHeader) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -792,7 +797,8 @@ sap.ui.define([
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
@@ -916,6 +922,11 @@ sap.ui.define([
 			},
 
 			FinanceSaleofAssetRequest: function (oPayloadHeader) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -938,7 +949,8 @@ sap.ui.define([
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
