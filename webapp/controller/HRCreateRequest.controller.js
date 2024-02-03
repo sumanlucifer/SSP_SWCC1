@@ -397,6 +397,11 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareinsuranceRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -417,13 +422,15 @@ sap.ui.define([
 							"-")[0] : "",
 						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
 						"Gesch": oPayloadHeader.Gesch,
-						"Natsl": oPayloadHeader.Natsl,
-						"PadVorna": oPayloadHeader.PadVorna,
-						"AdNach2": oPayloadHeader.AdNach2,
-						"PadNachn": oPayloadHeader.PadNachn,
+						"Natsl": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split(
+							"-")[0] : "",
+						"Vorna": oPayloadHeader.Vorna,
+						"Nach2": oPayloadHeader.Nach2,
+						"Nachn": oPayloadHeader.Nachn,
 						"Depid": oPayloadHeader.Zdepid
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
@@ -446,6 +453,10 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeevacationsRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -457,11 +468,16 @@ sap.ui.define([
 						"Endate": this.handleOdataDateFormat(oPayloadHeader.Zendate),
 						"Timetype": this.getModel().getProperty("/TimetypeF4/") ? this.getModel().getProperty("/TimetypeF4/").split("-")[0] : ""
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateupdatemasterdataRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -471,7 +487,8 @@ sap.ui.define([
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Detailupdat": oPayloadHeader.Zdetailupdat
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},

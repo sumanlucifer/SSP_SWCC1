@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
 	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
@@ -43,10 +43,11 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Padname/}" showValueHelp=""
+				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Cname/}" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>whenshould}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" displayformat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}"
+					change="handleChange" class=""/>
 				<Label text="{i18n>National}" required="true"/>
 				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
 					valueHelpRequest=""/>

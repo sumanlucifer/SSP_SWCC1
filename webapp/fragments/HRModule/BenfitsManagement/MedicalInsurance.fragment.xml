@@ -35,7 +35,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>whenshould}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}"
+				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/BenefitsManagement/MedicalInsurance/Header/Begda/}"
 					change="handleChange" class=""/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPTYPE-com.swcc.Template.fragments.HRModule.TypeofemployeementF4-/TypeofemployeementF4/"
@@ -87,12 +87,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FirstName}" required="true"/>
-				<Input placeholder="Enter First Name" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter First Name" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Vorna/}" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>middlename}" required="true"/>
-				<Input placeholder="Enter Middle Name" value="{/BenefitsManagement/MedicalInsurance/Header/AdNach2/}" showSuggestion="" showValueHelp=""
+				<Input placeholder="Enter Middle Name" value="{/BenefitsManagement/MedicalInsurance/Header/Nach2/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>LastName}" required="true"/>
-				<Input placeholder="Enter Last Name" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="Enter Last Name" value="{/BenefitsManagement/MedicalInsurance/Header/Nachn/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>depedentnational}" required="true"/>
 				<Input id="mi-depedentnational" placeholder="Enter Dependent National ID" value="{/BenefitsManagement/MedicalInsurance/Header/Zdepid/}"
 					showSuggestion="" showValueHelp="" valueHelpRequest=""/>
@@ -104,7 +106,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/SubmitComplaint/Header/Zcomment/}" growing="true"
+				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/MedicalInsurance/Header/Zcomment/}" growing="true"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>

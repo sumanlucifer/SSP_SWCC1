@@ -29,8 +29,8 @@
 				<Label text="{i18n>userid}" required="true"/>
 				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker placeholder="Enter Start Date" valueFormat="dd/MM/yyyy" value="{/Payroll/EmployeeVacation/Header/Begda/}" change="handleChange"
-					class=""/>
+				<DatePicker placeholder="Enter Start Date" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
+					value="{/Payroll/EmployeeVacation/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>timetype}" required="true"/>
@@ -42,8 +42,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>enddate}" required="true"/>
-				<DatePicker placeholder="Enter End Date" valueFormat="dd/MM/yyyy" value="{/Payroll/EmployeeVacation/Header/Zendate/}" change="handleChange"
-					class=""/>
+				<DatePicker placeholder="Enter End Date" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
+					value="{/Payroll/EmployeeVacation/Header/Zendate/}" change="handleChange" class=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
