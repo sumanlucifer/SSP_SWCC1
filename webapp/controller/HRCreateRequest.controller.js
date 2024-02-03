@@ -522,7 +522,8 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
+						/*"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),*/
+						"Persno": "U001486",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": []
