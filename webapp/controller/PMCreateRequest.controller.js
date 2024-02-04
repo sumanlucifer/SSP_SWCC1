@@ -179,16 +179,19 @@ sap.ui.define([
 				var filters = [{
 						path: dynamicColumns[0].template,
 						value: afilterBar[0].getValue(),
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: dynamicColumns[1].template,
 						value: afilterBar[1].getValue(),
 						operator: sap.ui.model.FilterOperator.Contains,
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: dynamicColumns[2] && dynamicColumns[2].template ? dynamicColumns[2].template : "",
 						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue().split("-")[0] : "",
-						group: "DynamicF4SearchFilter"
+						group: "DynamicF4SearchFilter",
+						useOR: true
 					}, {
 						path: dynamicColumns[3] && dynamicColumns[3].template ? dynamicColumns[3].template : "",
 						operator: sap.ui.model.FilterOperator.Contains,
