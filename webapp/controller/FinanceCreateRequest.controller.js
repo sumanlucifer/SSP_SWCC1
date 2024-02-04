@@ -388,6 +388,7 @@ sap.ui.define([
 
 				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1") {
 					this.getModel().setProperty(`${spath}`, aData[0].NetAmount);
+					this.getModel().setProperty(`/InsuranceandClaim/CreateInsurance/Header/currency/`, aData[0].DocumentCurrency);
 
 				}
 
@@ -396,21 +397,27 @@ sap.ui.define([
 				this.onHandleValueHelpCancelPress();
 			},
 			onFilterBarSearch: function (oEvent) {
+
+				var dynamicColumns = this.getModel().getProperty("/dynamicColumns");
 				var afilterBar = oEvent.getParameter("selectionSet");
 				var filters = [{
-						path: this.getModel().getProperty("/valueHelpKey1"),
+						path: dynamicColumns[0].template,
 						value: afilterBar[0].getValue(),
 						group: "DynamicF4SearchFilter"
+
 					}, {
-						path: this.getModel().getProperty("/valueHelpKey2"),
+						path: dynamicColumns[1].template,
 						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
 						group: "DynamicF4SearchFilter"
 					}
 
 				];
 				var dynamicFilters = this.getFilters(filters);
 
-				this._filterTable(dynamicFilters.DynamicF4SearchFilter);
+				this._filterTable(
+					dynamicFilters.DynamicF4SearchFilter
+				);
 			},
 			handleFiltersForValueHelp: function (F4) {
 
@@ -428,6 +435,11 @@ sap.ui.define([
 						value: this.getModel().getProperty("/VendorF4") ? this.getModel().getProperty(
 							"/VendorF4").split("-")[0] : "",
 						group: "POF4Filter"
+					}, {
+						path: "Zzinspono",
+						value: this.getModel().getProperty("/InsuranceF4") ? this.getModel().getProperty(
+							"/InsuranceF4").split("-")[0] : "",
+						group: "PONumberF4Filter"
 					}
 
 				];
@@ -448,6 +460,9 @@ sap.ui.define([
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && F4 === "/POF4/") {
 
 					aFilter = this._getfilterforControl(dynamicFilters.POF4Filter);
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && F4 === "/POF4/") {
+
+					aFilter = this._getfilterforControl(dynamicFilters.PONumberF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -514,6 +529,10 @@ sap.ui.define([
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
 						group: "ManageProcessCollectionFilter"
+					}, {
+						path: "zzinspono",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						group: "MarineTransporationFilter"
 					}
 
 				];
@@ -537,6 +556,13 @@ sap.ui.define([
 					"/ArCollectionProcessSet/",
 					"GET",
 					dynamicFilters.ManageProcessCollectionFilter, null, "/AccountsReceivable/Manageandprocess/itemData/") : null;
+
+				//Insurance-Marine Transportation
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.callCommonFinanceSearchRequest(
+					"/ZCDSV_INSURANCE_CLMVH/",
+					"GET",
+					dynamicFilters.MarineTransporationFilter, null, "/InsuranceandClaim/MarineTransportation/itemData") : null;
 
 			},
 			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
@@ -1190,30 +1216,44 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/InsuranceandClaim/MarineTransportation/itemData"), {
+
+					InsStartDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].InsStartDate,
+					InsExpiryDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].InsExpiryDate,
+					zzplant: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].zzplant,
+					ebeln: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ebeln,
+					claim_value: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].claim_value,
+					zzinspono: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].claim_value,
+					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ClaimStatus,
+					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].TotalPremium,
+					expense: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].expense,
+					AccidentDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].AccidentDate,
+					ClaimRecDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ClaimRecDate,
+					New: true
+
+				}, "/InsuranceandClaim/MarineTransportation/itemData") : "";
+
+			},
+
+			updateItemAddModel: function (oModel, obj, path) {
+
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
 				});
-				oItems.push({
-					Material: "",
-					Description: "",
-					StorageLocation: "",
-					Quantity: "",
-					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
-				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
-
+				oItems.push(obj);
+				this.getModel().setProperty(`${path}`, oItems);
 			},
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/MarineTransportation/itemData")) : "";
+
+			},
+			updateItemDeleteModel: function (index, oModel) {
+				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
 			onFileAdded: function (oEvent) {

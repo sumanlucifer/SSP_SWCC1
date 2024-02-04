@@ -57,7 +57,9 @@
 				<Label text="{i18n>PolicyStatus}" required="true"/>
 				<Input required="true" enabled="false" value="New" width="100%"/>
 				<Label text="{i18n>TotalPremiumAmount}" required="true"/>
-				<Input type="Number" enabled="false" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/}" required="true" width="100%"/>
+				<Input enabled="false"
+					value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/} {/InsuranceandClaim/CreateInsurance/Header/currency/}" required="true"
+					width="100%"/>
 				<Label text="{i18n>DepeciationRate}" required="true"/>
 				<Input type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/}" required="true" width="100%"/>
 				<Label text="{i18n>WarRiskPercetage}" required="true"/>

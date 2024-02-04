@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2"
+		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
@@ -44,15 +44,17 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>PurchaseOrderNo}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.POF4-/POF4/"
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.MarinePOF4-/POF4/"
 					width="100%" placeholder="Select PO" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/POF4/}">
 					<customData>
-						<core:CustomData key="PurchaseOrder" value="PO"/>
-						<core:CustomData key="Supplier" value="Vendor Code"/>
+						<core:CustomData key="Ebeln" value="PO"/>
+						<core:CustomData key="ZzpolicyStatus" value="Status"/>
 					</customData>
 				</Input>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
@@ -74,70 +76,65 @@
 			<ToolbarSpacer/>
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
-		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
-				<columns>
-					<Column>
-						<Text text="Insurance Start Date"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Insurance End Date"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Plant"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Purchase Order"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Value(RSA)"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Insurance Policy No."/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Status"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Total Premium"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Expense"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Total Claim Value"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Accident Date"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Claim Recieved Date"/>
-					</Column>
-					<Column width="5%"></Column>
-				</columns>
-				<items>
-					<ColumnListItem vAlign="Middle">
-						<cells>
-							<DatePicker value="" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<DatePicker value="" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<Text text="Will shi"/>
-							<Text text="2"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Text text="2"/>
-							<Input value="SAR"/>
-							<Text text="2"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<DatePicker value="{ 'path': '/valueDP11', 'type': 'sap.ui.model.type.Date'}" change="handleChange" class="sapUiSmallMarginBottom"/>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</ScrollContainer>
+		<Table mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false" growingThreshold="10">
+			<columns>
+				<Column>
+					<Text text="Insurance Start Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Insurance End Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Plant"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Purchase Order"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Claim Value(RSA)"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Insurance Policy No."/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Claim Status"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Total Premium"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Expense"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Accident Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Claim Recieved Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text=""/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{path:'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Text text="{path:'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Text text="{zzplant}"/>
+						<Text text="{ebeln}"/>
+						<Text value="{claim_value}"/>
+						<Text text="{zzinspono}"/>
+						<Text text="{ClaimStatus}"/>
+						<Text text="{TotalPremium}"/>
+						<Text value="{expense}"/>
+						<Text text="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Text text="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 		<!--	</fm:content>
 		</fm:SimpleForm>-->
 	</VBox>
