@@ -17,6 +17,16 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>jobnumber}" required="true"/>
+				<Input placeholder="Enter Job Number" value="{/Recruitment/InternalRecruitment/Header/Zjnum/}" type="Number"/>
+				<Label text="{i18n>jobtitle}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -27,14 +37,6 @@
 				</Input>
 				<!--	<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>-->
-				<Label text="{i18n>jobtitle}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
-					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Job Code"/>
-						<core:CustomData key="value_1" value="Job Desc"/>
-					</customData>
-				</Input>
 				<Label text="{i18n>jobgrade}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
 					placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
@@ -43,8 +45,6 @@
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>jobnumber}" required="true"/>
-				<Input placeholder="Enter Job Number" value="{/Recruitment/InternalRecruitment/Header/Zjnum/}" type="Number"/>
 				<Label text="{i18n>joblocation}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
 					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
@@ -77,7 +77,7 @@
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>comments}" required="false"/>
+				<Label text="{i18n>Remarks}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/Recruitment/InternalRecruitment/Header/Zcomment/}" growingMaxLines="7"
 					height="6rem" width="100%"/>
 			</fm:content>
