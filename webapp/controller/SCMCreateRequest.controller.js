@@ -908,6 +908,17 @@ sap.ui.define([
 					Lgpla: "",
 					Sgtxt: ""
 				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/itemData"), {
+					Matnr: "",
+					Wercks: "",
+					Menge: "",
+					Plant: "",
+					BaseUnit: "",
+					Lgort: "",
+					Lgpla: "",
+					Sgtxt: ""
+				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
 
 			},
 

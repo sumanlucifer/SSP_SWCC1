@@ -122,12 +122,13 @@
 							<Input placeholder="Unit Price" value="{UNIT_PRICE}" liveChange="handleLiveChange"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input value="{Plant}" enabled="false"/>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/PurchasingGroupSet-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
-								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{PurchasinggroupF4}">
+							<Input
+								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+								width="100%" placeholder="Enter Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{/PurchasinggroupF4/}">
 								<customData>
-									<core:CustomData key="Ekgrp" value="Purchasing group"/>
-									<core:CustomData key="Eknam" value="Purchasing group name"/>
+									<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
+									<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
 								</customData>
 							</Input>
 							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
