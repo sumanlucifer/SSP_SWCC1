@@ -300,9 +300,9 @@
 .ssp-form-txtarea .sapMInputBaseContentWrapper,
 .ssp-form-txtarea .sapMTextAreaInner {
     background: #b5c8eb;
-    /* border: 0px;
-    height: auto;*/
-    font-family: 'SWCC-3-Medium';
+    border: 0.0625rem solid #b5c8eb;
+    height: 100%;
+    */ font-family: 'SWCC-3-Medium';
 
 }
 
@@ -310,8 +310,8 @@
 .ssp-form-txtarea .sapMInputBaseContentWrapper:not(.sapMInputBaseReadonlyWrapper):not(.sapMInputBaseContentWrapperState):not(.sapMInputBaseDisabledWrapper):active {
     background: #b5c8eb;
     border: 0px;
-    height: auto;
-    box-shadow: 2px 2px 5px 1px #729ac39e;
+    height: 100%;
+    /* box-shadow: 2px 2px 5px 1px #729ac39e;*/
     font-family: 'SWCC-3-Medium';
 }
 
@@ -752,11 +752,9 @@
     display: block;
 }
 
-
-
-/*.upload-data {
-    display: none;
-}*/
+.upload-data .sapMListTbl .sapMTableTBody .sapMListTblRow td:nth-child(4) {
+    text-align: end !important;
+}
 
 /*.upload-table+.sapMVBox .upload-data.remove-table {
     display: none;

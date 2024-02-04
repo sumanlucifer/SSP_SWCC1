@@ -129,8 +129,8 @@
 									<core:CustomData key="StorageLocationName" value="Storage Location Name"/>
 								</customData>
 							</Input>
-							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input value="{Stock}" enabled="false"/>
+							<Input value="{Price}" enabled="false"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
