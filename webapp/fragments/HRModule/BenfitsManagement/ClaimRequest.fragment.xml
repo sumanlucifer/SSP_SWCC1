@@ -89,6 +89,8 @@
 						<core:CustomData key="value_1" value="Claim type"/>
 					</customData>
 				</Input>
+				<Label text=""/>
+				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="tru" href="util/SLA_PDF/SLA.pdf"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -103,7 +105,7 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox>
-		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
 			<headerToolbar>
 				<Toolbar>
 					<content>

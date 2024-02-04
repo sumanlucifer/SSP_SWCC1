@@ -34,6 +34,13 @@ sap.ui.define([
 				this.getModel().setProperty("/HRAppVisible/", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/EventreasonF4",
+					"27-Early Retirement") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-2" ? this.getModel().setProperty("/EventreasonF4",
+					"30-Retirement(completion of statutory work service)") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.getModel().setProperty("/EventreasonF4",
+					"20-Resignation") : null;
+
 			},
 			_createItemDataModel: function () {
 				this.getModel().setData({
