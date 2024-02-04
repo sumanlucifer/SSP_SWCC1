@@ -256,18 +256,23 @@ sap.ui.define([
 				});
 			},
 
+			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-
+				debugger;
+				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]) : "";
+				this.getModel().setProperty("/itemIndex", iIndex);
+				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
+				this.getModel().setProperty("/valueHelpName", oEve.getSource().getAriaLabelledBy()[0].split("-")[6]);
 				var sEntity = oEve.getSource().getAriaLabelledBy()[0].split("-")[3];
 				var sEntityPath = oEve.getSource().getAriaLabelledBy()[0].split("-")[4];
 				var sFragName = oEve.getSource().getAriaLabelledBy()[0].split("-")[5];
-				var sFragModel = oEve.getSource().getAriaLabelledBy()[0].split("-")[6];
+				var sFragModel = sValuehelpCheck === "" ? oEve.getSource().getAriaLabelledBy()[0].split("-")[6] : sValuehelpCheck;
 				this.getModel().setProperty("/FragModel", sFragModel);
 				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
 				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
 				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
-				var sColumn2Template = oEve.getSource().getCustomData()[1] ? oEve.getSource().getCustomData()[1].getKey() : "";
-				var sColumn2Label = oEve.getSource().getCustomData()[1] ? oEve.getSource().getCustomData()[1].getValue() : "";
+				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
+				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
 				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
 				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
 				// Example usage:
@@ -281,10 +286,31 @@ sap.ui.define([
 					template: sColumn2Template,
 				}];
 
-				// var sPath = "/ZCDSV_EQUIPMENTVH";
-
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
+			},
+
+			handleItemValuehelps: function (iIndex, valuehelpModel) {
+				if (iIndex === "") {
+					this.getModel().setProperty("/HeaderValueHelp", true);
+					return "";
+				}
+
+				this.getModel().setProperty("/HeaderValueHelp", false)
+				var sModelPath;
+				// Procurement: Computer devices and accessories Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4001-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: Conferencing Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-3" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+				// Procurement: IP telephone Screen
+				sModelPath = this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-1" && this.getModel().getProperty(
+					"/ITProcurement/itemData").length !== 0 ? `/ITProcurement/itemData/${iIndex}${valuehelpModel}` : sModelPath;
+
+				return sModelPath;
 			},
 			onValueHelpOkPress: function (oEvent) {
 
@@ -300,21 +326,7 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
-				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && this.getModel().getProperty("/FragModel") ===
-					"/InsuranceF4/") {
-					var filters = [{
-							path: "Zzinspono",
-							value: this.getModel().getProperty("/InsuranceF4") ? this.getModel().getProperty(
-								"/InsuranceF4").split("-")[0] : "",
-							group: "InsuranceFilter"
-						}
-
-					];
-
-					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
-						dynamicFilters.InsuranceFilter, "/PMCreateRequest/WorkCenterF4/")
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/FragModel") ===
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/valueHelpName") ===
 					"/costF4/") {
 					var filters = [{
 							path: "CostCenter",
@@ -326,25 +338,52 @@ sap.ui.define([
 					];
 
 					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilteAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
 						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && this.getModel().getProperty("/valueHelpName") ===
+					"/POF4/") {
+					var filters = [{
+							path: "PurchaseOrder",
+							value: this.getModel().getProperty("/POF4") ? this.getModel().getProperty(
+								"/POF4").split("-")[0] : "",
+							group: "POFilter"
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_FI_POVH2",
+						dynamicFilters.POFilter, "/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/")
 				}
 			},
 
-			callDependentFilteAPI: function (entity, path, filter, model) {
+			callDependentFilterAPI: function (entity, path, filter, model) {
 
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
 				).then(function (oResponse) {
 
-					this.getModel().setProperty(`${model}`, oResponse.results);
+					this.handleDependentFilterResponse(oResponse.results, `${model}`);
 					this.getModel().setProperty("/busy", false);
 
 				}.bind(this)).catch(function (error) {
 					MessageBox.error(error.responseText);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
+			},
+			handleDependentFilterResponse: function (aData, oModel) {
+				if (!aData[0]) {
+					return;
+				}
+				var spath = this.getModel().setProperty("/HeaderValueHelp", true) ? oModel : oModel.replace(/\/[^/]+\/$/, '/');
+				// var spath =  oModel.replace(/\/[^/]+\/$/, '/');
+
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1") {
+					this.getModel().setProperty(`${spath}`, aData[0].NetAmount);
+
+				}
+
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -1046,13 +1085,13 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Zzinspono": this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						"Zzinspono": oPayloadHeader.Zzinspono,
 						"Zzvendor": this.getModel().getProperty("/VendorF4/") ? this.getModel().getProperty("/VendorF4/").split("-")[0] : "",
 						"Zzinsurper": oPayloadHeader.Zzinsurper,
 						"ZzpolicyType": this.getModel().getProperty("/PolicyTypeF4/") ? this.getModel().getProperty("/PolicyTypeF4/").split("-")[0] : "",
 						"ZzinsurAmount": oPayloadHeader.ZzinsurAmount,
 						"Ebeln": this.getModel().getProperty("/POF4/") ? this.getModel().getProperty("/POF4/").split("-")[0] : "",
-						"Zzdeprate": parseInt(oPayloadHeader.ZzinsurAmount).toFixed(2),
+						"Zzdeprate": parseInt(oPayloadHeader.Zzdeprate).toFixed(2),
 						"ZzpolicyStatus": "New",
 						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat),
 						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat)

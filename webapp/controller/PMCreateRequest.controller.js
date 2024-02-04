@@ -33,10 +33,12 @@ sap.ui.define([
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
 				var sOrderID = this.handlegetlocalStorage("OrderID");
+				var sEquipmentNo = this.handlegetlocalStorage("EquipmentNo");
 				this.getModel().setProperty("/PMCreateRequest/Header/MaintOrder", sOrderID);
-				var sOrderID = this.handlegetlocalStorage("userType");
+				this.getModel().setProperty("/EquipmentF4", sEquipmentNo);
+				var sUserType = this.handlegetlocalStorage("userType");
 
-				sOrderID === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : false;
+				sUserType === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : false;
 
 			},
 

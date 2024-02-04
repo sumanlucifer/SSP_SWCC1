@@ -33,15 +33,7 @@
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>PolicyNo}" required="true"/>
-				<Input
-					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
-					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/InsuranceF4/}">
-					<customData>
-						<core:CustomData key="Zzinspono" value="Insurance Policy No."/>
-						<core:CustomData key="Zzpolicytype" value="Policy Type"/>
-					</customData>
-				</Input>
+				<Input type="Number" placeholder="Enter Insurance Policy No." value="{/InsuranceandClaim/CreateInsurance/Header/Zzinspono/}"/>
 				<Label text="{i18n>Vendor}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_VENDORVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.VendorF4-/VendorF4/"
@@ -65,7 +57,7 @@
 				<Label text="{i18n>PolicyStatus}" required="true"/>
 				<Input required="true" enabled="false" value="New" width="100%"/>
 				<Label text="{i18n>TotalPremiumAmount}" required="true"/>
-				<Input type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/}" required="true" width="100%"/>
+				<Input type="Number" enabled="false" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/}" required="true" width="100%"/>
 				<Label text="{i18n>DepeciationRate}" required="true"/>
 				<Input type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/}" required="true" width="100%"/>
 				<Label text="{i18n>WarRiskPercetage}" required="true"/>
@@ -129,7 +121,7 @@
 					<Text text="File Size"/>
 				</Column>
 				<Column>
-					<Text text="Delete"/>
+					<Text text=""/>
 				</Column>
 				<!-- Add more columns as needed -->
 			</columns>
