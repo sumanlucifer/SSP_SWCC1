@@ -18,11 +18,13 @@ sap.ui.define([
 				this._createHeaderModel();
 
 				var sUrlOrderID = oEve.getParameter("arguments").orderId,
-					sUrlOrderID = sUrlOrderID ? this.handleRedirection(sUrlOrderID) : this.handleNormalFlow();
+					param2 = oEve.getParameter("arguments").param2,
+					sUrlOrderID = sUrlOrderID ? this.handleRedirection(sUrlOrderID, param2) : this.handleNormalFlow();
 
 			},
-			handleRedirection: function (sVal) {
-				this.handleSetLocalStaorage("OrderID", sVal);
+			handleRedirection: function (param1, param2) {
+				this.handleSetLocalStaorage("OrderID", param1);
+				this.handleSetLocalStaorage("EquipmentNo", param2);
 				this.byId("idService").setSelectedKey("ZSSM");
 				this.getServiceTypeDD();
 
@@ -31,6 +33,7 @@ sap.ui.define([
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sModuleType = oStorage.get("sMouleType");
 				this.handleSetLocalStaorage("OrderID", "");
+				this.handleSetLocalStaorage("EquipmentNo", "");
 				this.byId("idService").setSelectedKey(sModuleType);
 				this.getServiceTypeDD();
 			},

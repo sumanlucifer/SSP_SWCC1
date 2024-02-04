@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
-	<ValueHelpDialog title="Vendor Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+	<ValueHelpDialog title="PO Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
 		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="PurchaseOrder" descriptionKey="Supplier" class="value-header">
 		<filterBar>
 			<fb:FilterBar advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Vendor Code" label="Vendor Code" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="PO Code" label="PO Code" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Vendor Code"/>
+							<m:Input name="PO Code"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Name" label="Name" visibleInFilterBar="true">
