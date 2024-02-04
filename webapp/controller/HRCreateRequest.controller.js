@@ -347,6 +347,11 @@ sap.ui.define([
 
 			},
 			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -362,11 +367,17 @@ sap.ui.define([
 						"Aprnum": oPayloadHeader.Zaprnum,
 						"Zcomment": oPayloadHeader.Zcomment
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareclaimRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -392,7 +403,8 @@ sap.ui.define([
 						"Proname": oPayloadHeader.Zproname,
 						"Zcomment": oPayloadHeader.Zcomment
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
@@ -493,6 +505,11 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreaterecruitmentRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -510,7 +527,8 @@ sap.ui.define([
 						"Jgrade": this.getModel().getProperty("/JobgradeF4/") ? this.getModel().getProperty("/JobgradeF4/").split("-")[0] : "",
 						"Jlocation": this.getModel().getProperty("/JoblocationF4/") ? this.getModel().getProperty("/JoblocationF4/").split("-")[0] : ""
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
@@ -532,6 +550,11 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateterminationRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -543,7 +566,8 @@ sap.ui.define([
 						"Persno": "U001486",
 						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : ""
 					},
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 				};
 				this.HRCreateaRequestAPI(oPayload);
 			},
