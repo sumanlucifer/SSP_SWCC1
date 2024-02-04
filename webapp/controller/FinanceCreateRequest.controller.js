@@ -269,22 +269,26 @@ sap.ui.define([
 				var sFragModel = sValuehelpCheck === "" ? oEve.getSource().getAriaLabelledBy()[0].split("-")[6] : sValuehelpCheck;
 				this.getModel().setProperty("/FragModel", sFragModel);
 				this.handleFiltersForValueHelp(this.getModel().getProperty("/FragModel"));
-				var sColumn1Template = oEve.getSource().getCustomData()[0].getKey();
-				var sColumn1Label = oEve.getSource().getCustomData()[0].getValue();
-				var sColumn2Template = oEve.getSource().getCustomData()[1].getKey();
-				var sColumn2Label = oEve.getSource().getCustomData()[1].getValue();
-				this.getModel().setProperty("/valueHelpKey1", sColumn1Template);
-				this.getModel().setProperty("/valueHelpKey2", sColumn2Template);
-				// Example usage:
+				var customData = oEve.getSource().getCustomData();
+				var aColumns = [];
+
+				// Iterate through custom data and dynamically add columns
+				for (var i = 0; i < customData.length; i++) {
+					var columnLabel = customData[i].getValue();
+					var columnTemplate = customData[i].getKey();
+
+					// Add column only if label and template are available
+					if (columnLabel && columnTemplate) {
+						aColumns.push({
+							label: columnLabel,
+							template: columnTemplate,
+							// You can add other properties as needed
+						});
+					}
+				}
+				this.getModel().setProperty("/dynamicColumns", aColumns);
+				var aColumns = aColumns;
 				var oModel = this.getOwnerComponent().getModel(sEntity);
-				var aColumns = [{
-					label: sColumn1Label,
-					template: sColumn1Template,
-					width: "10rem",
-				}, {
-					label: sColumn2Label,
-					template: sColumn2Template,
-				}];
 
 				this.onHandleValueHelpRequest(oModel, aColumns, sEntityPath, sFragName);
 
@@ -314,10 +318,11 @@ sap.ui.define([
 			},
 			onValueHelpOkPress: function (oEvent) {
 
+				var dynamicColumns = this.getModel().getProperty("/dynamicColumns");
 				var sModelPath = this.getModel().getProperty("/FragModel");
 				var tokens = oEvent.getParameter("tokens"); // Pass the tokens you want to process
-				var sKeyProperty = this.getModel().getProperty("/valueHelpKey1"); // Property name to set in the model
-				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
+				var sKeyProperty = dynamicColumns[0].template; // Property name to set in the model
+				var textProperty = dynamicColumns[1].template; // Property name for the token text
 				var yourModel = this.getModel(); // Pass your model here
 				var sModelPath = sModelPath;
 
