@@ -331,7 +331,8 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
-				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/valueHelpName") ===
+				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel().getProperty("/valueHelpName") ===
 					"/costF4/") {
 					var filters = [{
 							path: "CostCenter",
@@ -345,7 +346,8 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_COSTCTRVH",
 						dynamicFilters.RecordAssetFilter, "/AssetLifecycle/RecordAsset/Header/ProfitCentr/")
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && this.getModel().getProperty("/valueHelpName") ===
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && this.getModel().getProperty(
+						"/HeaderValueHelp") && this.getModel().getProperty("/valueHelpName") ===
 					"/POF4/") {
 					var filters = [{
 							path: "PurchaseOrder",
