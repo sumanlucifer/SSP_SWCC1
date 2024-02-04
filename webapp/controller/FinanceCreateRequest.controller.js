@@ -43,6 +43,7 @@ sap.ui.define([
 					ChartofaccountF4: "1000- SWCC Chart of Account(1000)",
 					LanguageF4: "EN- English (EN)",
 					FmareaF4: "1000- SWCC (1000)",
+					InsuranceF4: "",
 					Assestsupernumber: "",
 					CashJournalF4: "",
 					GLAccountf4: "",
@@ -399,6 +400,7 @@ sap.ui.define([
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-2" && F4 === "/CashJornalF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" && F4 === "/POF4/") {
+
 					aFilter = this._getfilterforControl(dynamicFilters.POF4Filter);
 				} else {
 					// Default case if none of the conditions are met
@@ -1030,6 +1032,11 @@ sap.ui.define([
 			},
 
 			FinanceInsuranceRegistrationRequest: function (oPayloadHeader) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1041,18 +1048,19 @@ sap.ui.define([
 
 						"Zzinspono": this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						"Zzvendor": this.getModel().getProperty("/VendorF4/") ? this.getModel().getProperty("/VendorF4/").split("-")[0] : "",
-						"Zzinsurper": oPayloadHeader.Poper,
-						"Zzpolicytype": this.getModel().getProperty("/PolicyTypeF4/") ? this.getModel().getProperty("/PolicyTypeF4/").split("-")[0] : "",
-						"ZzinsurAmount": this.getModel().getProperty("/ProjectNtwrkF4/") ? this.getModel().getProperty("/ProjectNtwrkF4/").split("-")[0] : "",
+						"Zzinsurper": oPayloadHeader.Zzinsurper,
+						"ZzpolicyType": this.getModel().getProperty("/PolicyTypeF4/") ? this.getModel().getProperty("/PolicyTypeF4/").split("-")[0] : "",
+						"ZzinsurAmount": oPayloadHeader.ZzinsurAmount,
 						"Ebeln": this.getModel().getProperty("/POF4/") ? this.getModel().getProperty("/POF4/").split("-")[0] : "",
-						"Zzdeprate": "",
-						"ZzpolicyStatus": "",
+						"Zzdeprate": parseInt(oPayloadHeader.ZzinsurAmount).toFixed(2),
+						"ZzpolicyStatus": "New",
 						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat),
 						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat)
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
