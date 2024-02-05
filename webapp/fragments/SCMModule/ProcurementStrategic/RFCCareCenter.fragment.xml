@@ -75,7 +75,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="MultiSelect" items="{path : '/ProcurementAdhoc/PrepareofDirectpurchase/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table items="{path : '/ProcurementAdhoc/PrepareofDirectpurchase/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -98,14 +98,6 @@
 				</items>
 			</Table>
 		</ScrollContainer>
-	</VBox>
-	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<Label text="{i18n>Attachments}" required="false"/>
-		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
-			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
-			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
-			placeholder="Choose a file" style="Emphasized"
-			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">

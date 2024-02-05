@@ -33,11 +33,12 @@
 				<Label text="{i18n>resigndate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/Termination/Termination/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>TerminationReason}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
-					placeholder="Enter Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TERMINATIONREASON-com.swcc.Template.fragments.HRModule.TerminationF4-/TerminationF4/"
+					width="100%" placeholder="Enter Termination Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TerminationF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Event Code"/>
-						<core:CustomData key="value_1" value="Name"/>
+						<core:CustomData key="keyfield" value="Termination"/>
+						<core:CustomData key="value_1" value="Termination Reason"/>
 					</customData>
 				</Input>
 			</fm:content>

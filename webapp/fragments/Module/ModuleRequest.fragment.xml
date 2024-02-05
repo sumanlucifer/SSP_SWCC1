@@ -6,7 +6,7 @@
 				<Toolbar id="TB1" class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg " id="Title1" text="{i18n>modulesearch}"/>
-					<ToolbarSpacer/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 				</Toolbar>
 			</fm:toolbar>
 			<Label text="{i18n>Service}" required="true"/>

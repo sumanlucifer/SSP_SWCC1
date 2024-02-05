@@ -103,6 +103,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>requisitioner}"/>
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TotalPrice}"/>
+					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -125,13 +128,14 @@
 							<Input
 								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
 								width="100%" placeholder="Enter Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{/PurchasinggroupF4/}">
+								value="{PurchasinggroupF4}">
 								<customData>
 									<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
 									<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
 								</customData>
 							</Input>
 							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
+							<Input enabled="false" value="{TotalPrice}"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

@@ -7,6 +7,7 @@
 				<Toolbar id="TB1" class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title text="{i18n>welcome}"/>
+					<Button icon="sap-icon://home" class="home-btn" press="handleBackPress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
