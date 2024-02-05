@@ -1162,13 +1162,11 @@ sap.ui.define([
 
 						"Zzinspono": aCustomDataEntry[0].zzinspono,
 						"Ebeln": aCustomDataEntry[0].ebeln,
-
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
 						"Expense": aCustomDataEntry[0].expense,
 						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
 						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
-						"PayDate": ""
 
 					},
 
