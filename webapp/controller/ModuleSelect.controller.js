@@ -57,12 +57,16 @@ sap.ui.define([
 					}
 
 				];
-
+				// Define your sorting parameters
+				var sortParams = [{
+					sPath: "MaterialGroupText", // Replace with your actual property
+					bDescending: false // true for descending, false for ascending
+				}];
 				var dynamicFilters = this.getFilters(filters);
 
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_PRODUCTTYPEVH/', null,
-						dynamicFilters.ServiceTypeFilter)
+						dynamicFilters.ServiceTypeFilter, null, sortParams)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/ModuleSearch/SelectServiceType/", oResponse.results);
 						this.getModel().setProperty("/busy", false);
@@ -81,12 +85,16 @@ sap.ui.define([
 					}
 
 				];
-
+				// Define your sorting parameters
+				var sortParams = [{
+					sPath: "Product", // Replace with your actual property
+					bDescending: false // true for descending, false for ascending
+				}];
 				var dynamicFilters = this.getFilters(filters);
 
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', '/ZCDSV_SUBSERVICEVH/', null,
-						dynamicFilters.ServiceTypeFilter)
+						dynamicFilters.ServiceTypeFilter, null, sortParams)
 					.then(function (oResponse) {
 						this.getModel().setProperty("/ModuleSearch/SelectSubServiceType/", oResponse.results);
 						this.getModel().setProperty("/busy", false);

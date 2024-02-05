@@ -211,7 +211,7 @@ sap.ui.define([
 
 		// 			return dynamicFilters;
 		// 		},
-		getFilters: function (filterParams) {
+		getFilters: function (filterParams, orderBy) {
 			var dynamicFilters = {};
 
 			filterParams.forEach(function (filterParam) {
@@ -240,7 +240,11 @@ sap.ui.define([
 				var useOR = dynamicFilters[group].useOR;
 				finalFilters[group] = new sap.ui.model.Filter(groupFilters, useOR); // useOR controls AND (false) or OR (true)
 			});
-
+			// Add the order by clause if provided
+			if (orderBy) {
+				debugger;
+				finalFilters.$orderby = orderBy;
+			}
 			return finalFilters;
 		},
 
