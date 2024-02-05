@@ -4,10 +4,11 @@ sap.ui.define([
 		"sap/ui/core/routing/History",
 		"sap/m/MessageBox",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.FinaceCreateRequest", {
 			onInit: function () {
@@ -649,6 +650,12 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1" ? this.FinanceInsuranceRegistrationRequest(this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/CreateInsurance/Header/")) : null;
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.FinanceMarineTransportationRequest(this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/MarineTransportation/Header/"), this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/MarineTransportation/itemData")) : null;
+
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
@@ -1137,6 +1144,40 @@ sap.ui.define([
 				};
 				this.FinanceCreateRequestAPI(oPayload);
 			},
+
+			FinanceMarineTransportationRequest: function (oPayloadHeader, aItem) {
+
+				var aCustomDataEntry = aItem.filter(function (element) {
+					return element.New === true;
+				});
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Zzinspono": aCustomDataEntry[0].zzinspono,
+						"Ebeln": aCustomDataEntry[0].ebeln,
+
+						"ClaimValue": aCustomDataEntry[0].claim_value,
+						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
+						"Expense": aCustomDataEntry[0].expense,
+						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+						"PayDate": ""
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+
+			},
 			FinanceCreateRequestAPI: function (oPayload) {
 				debugger;
 				this.getModel().setProperty("/busy", true);
@@ -1217,7 +1258,9 @@ sap.ui.define([
 			},
 			onAddItemsPress: function (oEvent) {
 
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.updateItemAddModel(this.getModel().getProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && this.handleItemValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/"), this.getModel().getProperty(
+					"/InsuranceandClaim/MarineTransportation/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/MarineTransportation/itemData"), {
 
 					InsStartDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].InsStartDate,
@@ -1235,6 +1278,22 @@ sap.ui.define([
 
 				}, "/InsuranceandClaim/MarineTransportation/itemData") : "";
 
+			},
+
+			handleItemValidation: function (service, aData) {
+				var isValid = true;
+
+				if (service === "SSA-FIN-3007-1") {
+					// Check if any element has isActive set to true
+					var aCustomDataEntry = aData.filter(function (element) {
+						return element.New === true;
+					});
+					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
+						"Only one claim can be added "), false) : true;
+
+				}
+
+				return isValid;
 			},
 
 			updateItemAddModel: function (oModel, obj, path) {
@@ -1258,7 +1317,6 @@ sap.ui.define([
 				this.getModel().refresh();
 			},
 			onFileAdded: function (oEvent) {
-				debugger;
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
@@ -1278,8 +1336,6 @@ sap.ui.define([
 			},
 
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
-
-				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
 
 				if (oModel.length >= 5) {

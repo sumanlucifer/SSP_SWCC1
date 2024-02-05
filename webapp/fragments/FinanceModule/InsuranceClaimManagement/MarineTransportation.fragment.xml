@@ -19,7 +19,7 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input placeholder="Enter Quantity" value="{/InsuranceandClaim/MarineTransportation/Header/MaterialQty/}"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
@@ -29,7 +29,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/InsuranceandClaim/MarineTransportation/Header/Descript/}" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -62,8 +63,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/InsuranceandClaim/MarineTransportation/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -79,37 +80,37 @@
 		<Table mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 			class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false" growingThreshold="10">
 			<columns>
-				<Column width="10rem">
+				<Column width="8rem">
 					<Text text="Insurance Start Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
 					<Text text="Insurance End Date"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Plant"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
 					<Text text="Purchase Order"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
 					<Text text="Claim Value(RSA)"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
 					<Text text="Insurance Policy No."/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem">
 					<Text text="Claim Status"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem">
 					<Text text="Total Premium"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Expense"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
 					<Text text="Accident Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
 					<Text text="Claim Recieved Date"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">

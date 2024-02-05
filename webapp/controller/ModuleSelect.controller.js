@@ -59,7 +59,7 @@ sap.ui.define([
 				];
 				// Define your sorting parameters
 				var sortParams = [{
-					sPath: "MaterialGroupText", // Replace with your actual property
+					sPath: "ProductGroup", // Replace with your actual property
 					bDescending: false // true for descending, false for ascending
 				}];
 				var dynamicFilters = this.getFilters(filters);
