@@ -198,8 +198,6 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 			},
-			
-			
 
 			handleDependentFilterResponse: function (aData, oModel) {
 

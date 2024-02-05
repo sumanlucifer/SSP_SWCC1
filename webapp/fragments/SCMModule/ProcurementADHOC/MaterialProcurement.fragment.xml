@@ -25,32 +25,17 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
-					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Plant/}" items="{/PlantF4/}">
-					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
-				</ComboBox>-->
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TEN_PRE/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
-				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{workCenterModel>/}">
-					<suggestionItems>
-						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
-					</suggestionItems>
-				</Input>-->
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center"
-					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/Workcenter/}" items="{/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
+				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/}" showValueHelp=""
 					editable="false" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -66,9 +51,6 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="ssp-table-box">
-		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>-->
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
@@ -118,11 +100,9 @@
 									<core:CustomData key="Description" value="Product Name"/>
 								</customData>
 							</Input>
-							<!--	<Input width="100%" placeholder="Enter Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onMatValueHelpRequest"
-								value="{/ProcurementAdhoc/MaterialProcurement/itemData/MATNR}"/>-->
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" showSuggestion="" value="{MENGE}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Unit Price" value="{UNIT_PRICE}" liveChange="handleLiveChange"/>
+							<Input placeholder="QTY" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Unit Price" value="{UNIT_PRICE}" liveChange="handleLiveChangeUnit"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input value="{Plant}" enabled="false"/>
 							<Input
@@ -142,7 +122,5 @@
 				</items>
 			</Table>
 		</ScrollContainer>
-		<!--	</fm:content>
-		</fm:SimpleForm>-->
 	</VBox>
 </core:FragmentDefinition>

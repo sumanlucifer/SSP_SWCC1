@@ -935,7 +935,7 @@ sap.ui.define([
 					"/ProcurementAdhoc/MaterialProcurement/itemData"), {
 					Matnr: "",
 					Wercks: "",
-					Menge: "",
+					Menge: null,
 					Plant: "",
 					BaseUnit: "",
 					Lgort: "",
@@ -982,6 +982,25 @@ sap.ui.define([
 			updateItemDeleteModel: function (index, oModel) {
 				oModel.splice(index, 1);
 				this.getModel().refresh();
+			},
+			handleLiveChangeUnit: function (oEvent) {
+
+				var sBindingPath = oEvent.getSource().getBindingContext().getPath();
+				var iItemIndex = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
+				var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+				var sQty = parseInt(oEvent.getSource().getBindingContext().getObject().Menge);
+
+				var sTotal = sUnit * sQty;
+				this.getModel().setProperty(`${sBindingPath}/TotalPrice/`, sTotal);
+
+				const totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData").reduce((acc, currentItem) => acc +
+					parseInt(currentItem.TotalPrice),
+					0);
+
+				var iEstimated = (totalSum) + 0.15 * totalSum;
+
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/", iEstimated);
+
 			},
 
 			/* File uplaod 	*/
