@@ -74,12 +74,12 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button visible="{= ${/InsuranceandClaim/MarineTransportation/itemData}.length > 0}" icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<Table mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 			class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false" growingThreshold="10">
 			<columns>
-				<Column>
+				<Column width="10rem">
 					<Text text="Insurance Start Date"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
@@ -106,10 +106,10 @@
 				<Column minScreenWidth="Tablet" demandPopin="true">
 					<Text text="Expense"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
 					<Text text="Accident Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column minScreenWidth="Tablet" demandPopin="true" width="10rem">
 					<Text text="Claim Recieved Date"/>
 				</Column>
 				<Column minScreenWidth="Tablet" demandPopin="true">
@@ -123,13 +123,19 @@
 						<Text text="{path:'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
 						<Text text="{zzplant}"/>
 						<Text text="{ebeln}"/>
-						<Text value="{claim_value}"/>
+						<Input enabled="{= ${New} === true ? true : false}" value="{claim_value}"/>
 						<Text text="{zzinspono}"/>
-						<Text text="{ClaimStatus}"/>
+						<Input enabled="{= ${New} === true ? true : false}" value="{ClaimStatus}"/>
 						<Text text="{TotalPremium}"/>
-						<Text value="{expense}"/>
-						<Text text="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
-						<Text text="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Input enabled="{= ${New} === true ? true : false}" value="{expense}"/>
+						<DatePicker valueFormat="dd/MM/yyyy"
+							value="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"
+							change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
+						<DatePicker valueFormat="dd/MM/yyyy"
+							value="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"
+							change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
+						<!--<Text text="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>-->
+						<!--<Text text="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>-->
 						<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 					</cells>
 				</ColumnListItem>

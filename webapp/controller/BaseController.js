@@ -450,6 +450,21 @@ sap.ui.define([
 			var megabytes = bytes / (1024 * 1024);
 			return megabytes.toFixed(2) + ' MB';
 		},
+
+		extractIndexFromPath: function (path) {
+			// Use regular expression to extract the last numeric value from the path
+			var match = path.match(/\/(\d+)$/);
+
+			// Check if a match is found
+			if (match && match[1]) {
+				// Convert the matched value to an integer and return
+				return parseInt(match[1], 10);
+			}
+
+			// Return null if no match is found
+			return null;
+		},
+
 		/**
 		 * Getter for the resource bundle.
 	

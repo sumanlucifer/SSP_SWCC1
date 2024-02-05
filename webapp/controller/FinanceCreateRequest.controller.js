@@ -1225,7 +1225,7 @@ sap.ui.define([
 					zzplant: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].zzplant,
 					ebeln: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ebeln,
 					claim_value: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].claim_value,
-					zzinspono: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].claim_value,
+					zzinspono: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].zzinspono,
 					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ClaimStatus,
 					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].TotalPremium,
 					expense: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].expense,
@@ -1246,7 +1246,8 @@ sap.ui.define([
 				this.getModel().setProperty(`${path}`, oItems);
 			},
 			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var iRowNumberToDelete = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
+				// var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/MarineTransportation/itemData")) : "";

@@ -38,7 +38,8 @@ sap.ui.define([
 				this.getModel().setProperty("/EquipmentF4", sEquipmentNo);
 				var sUserType = this.handlegetlocalStorage("userType");
 
-				sUserType === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : false;
+				sUserType === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : this.getModel().setProperty("/RemarksVisibility",
+					false);
 
 			},
 
@@ -326,9 +327,10 @@ sap.ui.define([
 					},
 
 					{
-						path: this.getModel().getProperty("/RemarksVisibility/") === true ? "/PMCreateRequest/Header/NotifText/" : "/RemarksVisibility/",
-						condition: this.getModel().getProperty("/RemarksVisibility/") || !!this.getModel().getProperty(
-							"/PMCreateRequest/Header/NotifText/")
+
+						path: this.getModel().getProperty("/RemarksVisibility/") === true && !this.getModel().getProperty(
+							"/PMCreateRequest/Header/NotifText/") ? "/PMCreateRequest/Header/NotifText/" : "/ServiceDescription/",
+						condition: true
 					}
 
 				];
