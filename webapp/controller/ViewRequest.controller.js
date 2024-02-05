@@ -1,8 +1,10 @@
 sap.ui.define([
 	"./BaseController",
 	"sap/ui/core/routing/History",
-	"sap/m/MessageBox"
-], function (BaseController, History, MessageBox) {
+	"sap/m/MessageBox",
+	"sap/ui/model/Filter",
+	"sap/ui/model/FilterOperator"
+], function (BaseController, History, MessageBox, Filter, FilterOperator) {
 	"use strict";
 
 	return BaseController.extend("com.swcc.Template.controller.ViewRequest", {
@@ -61,6 +63,26 @@ sap.ui.define([
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
+		},
+		onSearch: function (oEvent) {
+			var aFilters = [];
+			var sQuery = oEvent.getSource().getValue();
+			if (sQuery && sQuery.length > 0) {
+				aFilters.push(
+					this.createFilter("RequestID", FilterOperator.Contains, sQuery, false)
+				);
+			}
+
+			var oTable = this.byId("idViewRequestTable");
+			var oBinding = oTable.getBinding("items");
+			oBinding.filter(aFilters);
+		},
+		createFilter: function (key, operator, value, useToLower) {
+			return new Filter(
+				useToLower ? "tolower(" + key + ")" : key,
+				operator,
+				useToLower ? "'" + value.toLowerCase() + "'" : value
+			);
 		},
 
 		onPressTile: function (oEvent) {

@@ -43,6 +43,19 @@
 							</l:content>
 						</l:VerticalLayout>
 					</IconTabFilter>
+					<IconTabFilter text="Invoices">
+						<l:VerticalLayout class="" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Invoices}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.Invoices" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
 				</items>
 			</IconTabBar>
 		</headerContainer>

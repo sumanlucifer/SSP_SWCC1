@@ -25,6 +25,7 @@ sap.ui.define([
 				return sLoginID;
 			} catch (error) {
 				var sLoginID = "WT_POWER";
+				//SC_ZMOHAMMED
 				// Handle the error gracefully, such as using a default value or logging the error
 				return sLoginID;
 			}
@@ -189,28 +190,7 @@ sap.ui.define([
 
 		},
 		// 			___________________________________________________Dynamic Filters for API Method_________________________________________________________
-		// 		getFilters: function (filterParams) {
 
-		// 			var dynamicFilters = {};
-
-		// 			filterParams.forEach(function (filterParam) {
-		// 				if (filterParam.value !== undefined && filterParam.value !== "") {
-		// 					var filter = new sap.ui.model.Filter({
-		// 						path: filterParam.path,
-		// 						operator: filterParam.operator ? filterParam.operator : sap.ui.model.FilterOperator.EQ,
-		// 						value1: filterParam.value
-		// 					});
-
-		// 					if (!dynamicFilters[filterParam.group]) {
-		// 						dynamicFilters[filterParam.group] = [];
-		// 					}
-
-		// 					dynamicFilters[filterParam.group].push(filter);
-		// 				}
-		// 			});
-
-		// 			return dynamicFilters;
-		// 		},
 		getFilters: function (filterParams, orderBy) {
 			var dynamicFilters = {};
 

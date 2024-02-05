@@ -44,9 +44,10 @@ sap.ui.define([
 			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, null,
 					urlParameters)
 				.then(function (oResponse) {
-
+					debugger;
 					this.getModel().setProperty("/busy", false);
 					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
+					this.getModel().setProperty("/RequestDetails/Header/Invoice", "data:application/pdf;base64," + oResponse.Invoice);
 					this.getModel().setProperty("/RequestDetails/Attachments/", oResponse.getAttachments.results);
 					var aProcessFlowData = this.customResponseData(oResponse.Statuses.results);
 					this.getModel().setProperty("/ProcessFlowData/", aProcessFlowData);
