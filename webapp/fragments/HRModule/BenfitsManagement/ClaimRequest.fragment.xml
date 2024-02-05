@@ -90,7 +90,8 @@
 					</customData>
 				</Input>
 				<Label text=""/>
-				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="tru" href="util/SLA_PDF/SLA.pdf"/>
+				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="true"
+					href="ui5_ui5/sap/zssp_app/util/SLA_PDF/SLA.pdf"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

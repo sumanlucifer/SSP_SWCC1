@@ -108,10 +108,9 @@ sap.ui.define([
 				}
 
 			},
-			/*onback: function () {
-				this.getOwnerComponent().getTargets().display("LandingView");
-
-			},*/
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
+			},
 
 			onSearch: function () {
 
