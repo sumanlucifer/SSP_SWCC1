@@ -80,6 +80,10 @@ sap.ui.define([
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
 				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty(
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
@@ -119,6 +123,9 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" &&
 						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 						.getProperty("/valueHelpName") === "/ProductF4/") ||
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" &&
+						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/ProductF4/") ||
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" &&
 						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 						.getProperty("/valueHelpName") === "/ProductF4/") ||
@@ -151,9 +158,13 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
 						dynamicFilters.Item_ProductFilter,
 						`${this.getModel().getProperty("/FragModel")}`)
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel()
-					.getProperty("/valueHelpName") === "/WarehouseF4/") {
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/WarehouseF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && !
+						this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/WarehouseF4/")) {
 					var filters = [
 
 						{
@@ -241,7 +252,7 @@ sap.ui.define([
 					var serviceUrl = `/SCMStockCheckSet(Material='${sMaterial}',Plant='${sPlant}',StorageLoc='${sstorageloc}')`;
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", serviceUrl,
 						null,
-						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}`)
+						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -259,37 +270,32 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
-				if (!aData[0]) {
-					return;
-				}
+				/*	if (!aData[0]) {
+						return;
+					}*/
 
 				var spath = oModel.replace(/\/[^/]+\/$/, '/');
 
-				if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
-					`${oModel}`) {
+				if ((this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`) || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)) {
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
 					`${oModel}`) {
 					debugger;
-					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
-					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && this.getModel().getProperty("/FragModel") ===
-					`${oModel}`) {
-					debugger;
-
 					var sF4 = oModel.replace(/\/$/, '').split('/').pop();
-
 					if (sF4 === "ProductF4") {
 						this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 						this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
-					} else if (sF4 === "") {
-						this.getModel().setProperty(`${spath}/Stock/`, aData[0].Stock);
-						this.getModel().setProperty(`${spath}/Price/`, aData[0].Price);
+						this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+					} else if (sF4 === "StoragelocationF4") {
+						debugger;
+						this.getModel().setProperty(`${spath}/Stock/`, aData.Stock ? aData.Stock : 0);
+						this.getModel().setProperty(`${spath}/Price/`, aData.Price);
 					}
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" && this.getModel().getProperty("/FragModel") ===
 					`${oModel}`) {
-					debugger;
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
@@ -329,7 +335,11 @@ sap.ui.define([
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" &&
 							F4 === `/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" &&
-							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" &&
+							F4 === `/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" &&
+							F4 === `/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
 					)) {
 
 					var filters = [{
@@ -343,8 +353,13 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 
 					aFilter = this._getfilterforControl(dynamicFilters.Material4Filter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
-					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) {
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`) || (this.getModel()
+						.getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
+
+				) {
 
 					var filters = [{
 							path: "Material",
@@ -362,8 +377,13 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
-					`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`) {
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`) || (this.getModel().getProperty(
+							"/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`)
+
+				) {
 
 					var filters = [{
 							path: "Lgort",
@@ -580,6 +600,11 @@ sap.ui.define([
 						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
 					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-2" ? this.ScmCreateRfcRequest(this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
+					null;
+
 				//--------------------------Qualification-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
 						.getProperty(
@@ -587,6 +612,11 @@ sap.ui.define([
 					null;
 				//--------------------------Warehouseand logistics-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.ScmCreateissueofmaterialRequest(this.getModel()
+						.getProperty(
+							"/WarehouseandLogistics/IssueofMaterial/Header/"), this.getModel().getProperty(
+							"/WarehouseandLogistics/IssueofMaterial/itemData/")) :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" ? this.ScmCreateissueofmaterialRequest(this.getModel()
 						.getProperty(
 							"/WarehouseandLogistics/IssueofMaterial/Header/"), this.getModel().getProperty(
 							"/WarehouseandLogistics/IssueofMaterial/itemData/")) :
@@ -651,13 +681,14 @@ sap.ui.define([
 						"TotalValue": oPayloadHeader.TOT_EST_VAL
 					},
 
-					/*	"ServiceHeadertoItem": aItem.map(
-							function (items) {
-								return {
-									Material: aItem.MATNR
-								};
-							}
-						)*/
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Material: aItem.MATNR,
+
+							};
+						}
+					)
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -680,7 +711,7 @@ sap.ui.define([
 						"ProjName": oPayloadHeader.PROJ_NAME
 					},
 
-					"ServiceHeadertoItem": aItem
+					"ServiceHeadertoItem": []
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -778,21 +809,25 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatespirRequest: function (oPayloadHeader, aItem) {
-				debugger;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"SpirNo": this.handleOdataDateFormat(oPayloadHeader.SPIR_NO),
+						"SpirNo": oPayloadHeader.SPIR_NO,
 						//"Bwart": oPayloadHeader.BWART,
 						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
 						"EquiTyp": oPayloadHeader.EQUI_TYP,
 						"SpirSub": oPayloadHeader.SPIR_SUB,
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -815,7 +850,7 @@ sap.ui.define([
 							return {
 								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
 								Werks: items.Plant,
-								/*	Menge: items.Menge,*/
+								Menge: items.Menge,
 								Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : ""
 									/*Lglpa: items.Lgpla,*/
 									/*Sgtxt: items.Sgtxt,*/
@@ -855,11 +890,18 @@ sap.ui.define([
 			},
 			onAddItemsPress: function (oEvent) {
 
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemAddModel(this.getModel().getProperty(
-					"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
-					Matnr: "",
-					Menge: ""
-				}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" || this.getModel().getProperty("/SCMAppVisible/") ===
+					"SSA-PSCM-2004-2" ? this.updateItemAddModel(this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
+						Matnr: "",
+						Menge: ""
+					}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/ClasssificationandInventory/DuplicateResolution/itemData"), {
+					ProductF4: "",
+					Description: "",
+					Plant: ""
+				}, "/ClasssificationandInventory/DuplicateResolution/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ClasssificationandInventory/STO/itemData"), {
 					ProductF4: null,
@@ -870,18 +912,19 @@ sap.ui.define([
 					UnitPrice: "",
 					TotalPrice: ""
 				}, "/ClasssificationandInventory/STO/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.updateItemAddModel(this.getModel().getProperty(
-					"/WarehouseandLogistics/IssueofMaterial/itemData"), {
-					Matnr: "",
-					Wercks: "",
-					Menge: "",
-					Plant: "",
-					BaseUnit: "",
-					Lgort: "",
-					Lgpla: "",
-					Sgtxt: ""
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" || this.getModel().getProperty("/SCMAppVisible/") ===
+					"SSA-PSCM-2010-3" ? this.updateItemAddModel(this.getModel().getProperty(
+						"/WarehouseandLogistics/IssueofMaterial/itemData"), {
+						Matnr: "",
+						Wercks: "",
+						Menge: "",
+						Plant: "",
+						BaseUnit: "",
+						Lgort: "",
+						Lgpla: "",
+						Sgtxt: ""
 
-				}, "/WarehouseandLogistics/IssueofMaterial/itemData") : "";
+					}, "/WarehouseandLogistics/IssueofMaterial/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
 					Matnr: "",
@@ -930,6 +973,9 @@ sap.ui.define([
 					.getProperty(
 						"/ClasssificationandInventory/STO/itemData")) : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/WarehouseandLogistics/IssueofMaterial/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/WarehouseandLogistics/IssueofMaterial/itemData")) : "";
 			},

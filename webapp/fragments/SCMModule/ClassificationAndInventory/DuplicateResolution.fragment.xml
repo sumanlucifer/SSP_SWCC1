@@ -59,7 +59,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="Multiselect" items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table items="{path : '/ClasssificationandInventory/DuplicateResolution/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -77,17 +77,16 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
-								placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{/MaterialgroupF4/}">
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
 								<customData>
-									<core:CustomData key="ExternalProductGroup" value="Material group"/>
-									<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
 								</customData>
 							</Input>
 							<Input value="{Material group name}" enabled="false"/>
 							<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-								placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+								placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{PlantF4}">
 								<customData>
 									<core:CustomData key="Plant" value="Plant"/>
 									<core:CustomData key="PlantName" value="Plant Name"/>
