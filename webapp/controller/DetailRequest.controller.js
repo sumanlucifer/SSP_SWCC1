@@ -250,7 +250,18 @@ sap.ui.define([
 			}, "Rejected");
 		},
 
-		onCloseRequestPress: function () {
+		onCloseRequestPress: function (oEve) {
+
+			var params = {
+
+				sMsgTxt: `Please note that the cancellation charges will be levied if the request has been open for more than 24 hours`,
+				sBtnTxt: "OK"
+			};
+
+			this.handleConfirmMessage(this.onCloseRequestPress1.bind(this))(params);
+
+		},
+		onCloseRequestPress1: function () {
 			this.AssignRequestAPI({
 				"Status": "CLOSE"
 			}, "Closed");

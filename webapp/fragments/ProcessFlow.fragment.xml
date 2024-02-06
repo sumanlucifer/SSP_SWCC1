@@ -2,72 +2,11 @@
 	xmlns:m="sap.m">
 	<l:VerticalLayout class="sapUiContentPadding" width="100%">
 		<l:content>
-			<!--<MicroProcessFlow class="ssp-processflow" content="{/RequestDetails/Header/Statuses/results}">-->
-			<!--	<content>-->
-			<!--		<MicroProcessFlowItem state="{State}" press="itemPress"/>-->
-			<!--	</content>-->
-			<!--</MicroProcessFlow>-->
-			<!--.................................................-->
 			<ProcessFlow scrollable="false" lanes="{/ProcessFlowData}" headerPress="onHeaderPress">
 				<lanes>
 					<ProcessFlowLaneHeader press="onLanePress" laneId="{id}" iconSrc="{icon}" text="{label}" position="{position}" state="{state}"/>
 				</lanes>
 			</ProcessFlow>
-			<!--...............................................-->
-			<!--<m:Text text="Request Status"/>-->
-			<!--<MicroProcessFlow showIntermediary="true" class="ssp-processflow" renderType="Scrolling">-->
-			<!--	<content>-->
-			<!--		<MicroProcessFlowItem state="Neutral" priority="1" title="Request Status" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Request ID : 5467364"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>-->
-			<!--				<core:CustomData key="subTitle" value="Service request 5467364"/>-->
-			<!--				<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--		<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Request ID : 5467364"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>-->
-			<!--				<core:CustomData key="subTitle" value="Service request 5467364"/>-->
-			<!--				<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--		<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Request ID : 5467364"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>-->
-			<!--				<core:CustomData key="subTitle" value="Service request 5467364"/>-->
-			<!--				<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--		<MicroProcessFlowItem state="Neutral" title="Request Status" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Request ID : 5467364"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://crm-service-manager"/>-->
-			<!--				<core:CustomData key="subTitle" value="Service request 5467364"/>-->
-			<!--				<core:CustomData key="description" value="Team is to be working on this request we will get back shortly"/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--		<MicroProcessFlowItem state="Success" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Inprogress"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://accept"/>-->
-			<!--				<core:CustomData key="subTitle" value="Payment successful"/>-->
-			<!--				<core:CustomData key="description" value="Lorem ipsum dolor sit amet."/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--		<MicroProcessFlowItem state="Warning" press="itemPress">-->
-			<!--			<customData>-->
-			<!--				<core:CustomData key="title" value="Closed"/>-->
-			<!--				<core:CustomData key="icon" value="sap-icon://warning"/>-->
-			<!--				<core:CustomData key="subTitle" value="Complete in 15 hours"/>-->
-			<!--				<core:CustomData key="description"-->
-			<!--					value="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin maximus congue massa, sed euismod lectus tristique at. Praesent ornare arcu lacus, id consectetur ligula vestibulum vel. Nunc at lorem feugiat, malesuada nunc eu, ultrices lorem."/>-->
-			<!--			</customData>-->
-			<!--		</MicroProcessFlowItem>-->
-			<!--	</content>-->
-			<!--</MicroProcessFlow>-->
 		</l:content>
 	</l:VerticalLayout>
 </core:FragmentDefinition>

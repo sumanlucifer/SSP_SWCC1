@@ -259,6 +259,12 @@ sap.ui.define([
 					title: 'Confirm',
 					type: 'Message',
 					content: [
+
+						new sap.ui.core.Icon({
+							src: "sap-icon://alert",
+							size: "2rem", // Adjust the size as needed
+							color: "red" // Adjust the color as needed
+						}),
 						new sap.m.Text({
 							text: params.sMsgTxt,
 						}),
