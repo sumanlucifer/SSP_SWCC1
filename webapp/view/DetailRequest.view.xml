@@ -21,7 +21,7 @@
 							visible="{= ${/RequestDetails/Header/Action} === true ? true : false}"/>
 						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Neutral" press="onRejectPress"
 							class="sapUiSizeCompact sapUiTinyMarginEnd"/>
-						<Button text="{i18n>Close}" type="Negative" press="onCancelPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
+						<Button text="{i18n>Close}" type="Negative" press="onCloseRequestPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
 							visible="{= ${objectViewModel>/EditMode} === true ? true : false}"/>
 					</FlexBox>
 					<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.DetailRequest" type="XML"/>

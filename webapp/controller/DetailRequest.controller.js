@@ -47,7 +47,10 @@ sap.ui.define([
 					debugger;
 					this.getModel().setProperty("/busy", false);
 					this.getModel().setProperty("/RequestDetails/Header/", oResponse);
-					this.getModel().setProperty("/RequestDetails/Header/Invoice", "data:application/pdf;base64," + oResponse.Invoice);
+
+					oResponse.Invoice === "" ? this.getModel().setProperty("/RequestDetails/Header/Invoice", "") : this.getModel().setProperty(
+						"/RequestDetails/Header/Invoice", "data:application/pdf;base64," + oResponse.Invoice);
+
 					this.getModel().setProperty("/RequestDetails/Attachments/", oResponse.getAttachments.results);
 					var aProcessFlowData = this.customResponseData(oResponse.Statuses.results);
 					this.getModel().setProperty("/ProcessFlowData/", aProcessFlowData);
@@ -247,6 +250,12 @@ sap.ui.define([
 			}, "Rejected");
 		},
 
+		onCloseRequestPress: function () {
+			this.AssignRequestAPI({
+				"Status": "CLOSE"
+			}, "Closed");
+		},
+
 		AssignRequestAPI: function (oPayload, sText) {
 			debugger;
 			var sApi = `/ViewRequestSet(RequestID='${this.getModel().getProperty("/sRequestid")}')`;
@@ -256,8 +265,11 @@ sap.ui.define([
 				.then(function (oResponse) {
 					this.getModel().setProperty("/busy", false);
 					this._handleMessageBoxProceed(`Request has been successfully ${sText}`);
-					this.RequestDetailsAPI(sReqId);
+					this.RequestDetailsAPI(this.getModel().getProperty("/sRequestid"));
 
+				}.bind(this)).catch(function (error) {
+					MessageBox.error(error.responseText);
+					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
 		},
