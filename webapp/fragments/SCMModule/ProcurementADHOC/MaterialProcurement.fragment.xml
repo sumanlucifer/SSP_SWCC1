@@ -26,17 +26,16 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TEN_PRE/}">
+				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>justification}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/}" showValueHelp=""
-					editable="false" valueHelpRequest=""/>
+				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -45,7 +44,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ProcurementAdhoc/MaterialProcurement/Header/NotifText/}"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -85,9 +84,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>requisitioner}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<!--	<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>TotalPrice}"/>
-					</Column>
+					</Column>-->
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -101,8 +100,8 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Unit Price" value="{UNIT_PRICE}" liveChange="handleLiveChangeUnit"/>
+							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
+							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" liveChange="handleLiveChangeUnit"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input value="{Plant}" enabled="false"/>
 							<Input
@@ -115,7 +114,7 @@
 								</customData>
 							</Input>
 							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
-							<Input enabled="false" value="{TotalPrice}"/>
+							<!--	<Input enabled="false" value="{TotalPrice}"/>-->
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
