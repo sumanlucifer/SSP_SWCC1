@@ -11,11 +11,6 @@
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<!--<Toolbar>-->
-				<!--	<Title level="H3" text="{i18n>ManagePettyCash}" class="ssp-tlbr-title"/>-->
-				<!--	<ToolbarSpacer/>-->
-				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
-				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>

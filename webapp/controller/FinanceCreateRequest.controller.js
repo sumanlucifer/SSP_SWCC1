@@ -674,9 +674,9 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.FinanceVehicleRequest(this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/ShipHulls/Header"), this.getModel()
+						"/InsuranceandClaim/Vehicle/Header"), this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/ShipHulls/itemData")) : null;
+						"/InsuranceandClaim/Vehicle/itemData")) : null;
 
 			},
 
@@ -1218,6 +1218,35 @@ sap.ui.define([
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
 						"Expense": aCustomDataEntry[0].expense,
+						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+
+					},
+
+					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
+			FinanceVehicleRequest: function (oPayloadHeader, aItem) {
+				var aCustomDataEntry = aItem.filter(function (element) {
+					return element.New === true;
+				});
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Zzinspono": aCustomDataEntry[0].zzinspono,
+						"ClaimValue": aCustomDataEntry[0].claim_value,
+						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
+						"PayDate": aCustomDataEntry[0].PayDate,
 						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
 						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
 

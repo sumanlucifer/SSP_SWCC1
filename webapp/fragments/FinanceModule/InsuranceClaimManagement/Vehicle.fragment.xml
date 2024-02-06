@@ -67,34 +67,31 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>AssetNumber}"/>
-				<Text text="2389798"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/zzassetid/}"/>
 				<Label text="{i18n>SubNumber}"/>
-				<Text text="8787867"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/zzassetsubid/}"/>
 				<Label text="{i18n>AssetDesc}"/>
-				<Text text="Aset Gluten"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/AssetDesc/}"/>
 				<Label text="{i18n>CarModel}"/>
-				<Text text="HBC-89788"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/CarModel/}"/>
 				<Label text="{i18n>Manufacturer}"/>
 				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/Manufac/}"/>
 				<Label text="{i18n>Plate Number}"/>
-				<Text text="IUI87787"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/PlateNo/}"/>
 				<Label text="{i18n>Chassis Number}"/>
-				<Text text="98777YTY"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/ChassisNo/}"/>
 				<Label text="{i18n>PlateRegistrationNumber}"/>
-				<Text text="huiko"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/PlateRegisNo/}"/>
 				<Label text="{i18n>YearManufacture}"/>
-				<Text text="huiko"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/YearofManuf/}"/>
 				<Label text="{i18n>Color}"/>
-				<Text text="huiko"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/Color/}"/>
 				<Label text="{i18n>Plant}"/>
-				<Text text="huiko"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/CarPlant/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="ssp-table-box">
-		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>-->
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
@@ -124,7 +121,7 @@
 						<Text text="Purchase Amount"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="Description Amount"/>
+						<Text text="Depreciation Amount"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="Insurance Policy No."/>
@@ -152,28 +149,33 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Text text="Will shi"/>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input value="SAR"/>
-							<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+							<Text text="{zzassetid}"/>
+							<Text text="{zzassetsubid}"/>
+							<DatePicker valueFormat="dd/MM/yyyy" value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
+							<ComboBox selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
+								<items>
+									<core:Item key="Work Shop" text="Work Shop"/>
+									<core:Item key="Total Loss" text="Total Loss"/>
+									<core:Item key="Third Party Liability" text="Third Party Liability"/>
+								</items>
+							</ComboBox>
+							<Input enabled="{= ${New} === true ? true : false}" value="{claim_value}"/>
+							<Text text="{ebeln}"/>
+							<Text text="{DepreciationAmt}"/>
+							<Text text="{zzinspono}"/>
+							<DatePicker valueFormat="dd/MM/yyyy" value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
+							<ComboBox selectedKey="{type}" value="{ClaimStatus}" placeholder="Select Claim Status" width="100%" valueState="None">
+								<items>
+									<core:Item key="Closed" text="Closed"/>
+									<core:Item key="Active" text="Active"/>
+									<core:Item key="Rejected" text="Rejected"/>
+									<core:Item key="Settled" text="Settled"/>
+								</items>
+							</ComboBox>
+							<DatePicker valueFormat="dd/MM/yyyy" value="{PayDate}" class="sapUiSmallMarginBottom"/>
+							<Text text="{InsStatus}"/>
+							<DatePicker valueFormat="dd/MM/yyyy" value="{InsStartDate}" class="sapUiSmallMarginBottom"/>
+							<DatePicker valueFormat="dd/MM/yyyy" value="{InsExpiryDate}" class="sapUiSmallMarginBottom"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
@@ -210,9 +212,8 @@
 					<Text text="File Size"/>
 				</Column>
 				<Column>
-					<Text text="Delete"/>
+					<Text text=""/>
 				</Column>
-				<!-- Add more columns as needed -->
 			</columns>
 			<items>
 				<ColumnListItem>
