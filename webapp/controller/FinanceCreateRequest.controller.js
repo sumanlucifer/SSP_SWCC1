@@ -498,17 +498,6 @@ sap.ui.define([
 				this.handleVHFilterTable(oFilter, sType);
 			},
 
-			onCheckPlantVal: function (oEve) {
-
-				oEve.getSource().getSelectedKey() === "" ? oEve.getSource().setValue(null) : "";
-
-			},
-
-			handleManagePettyCashDateChange: function (oEve) {
-
-				var sYear = oEve.getSource().getValue();
-			},
-
 			onSearchFinanceRequest: function () {
 				var filters = [{
 						path: "CompanyCode",
