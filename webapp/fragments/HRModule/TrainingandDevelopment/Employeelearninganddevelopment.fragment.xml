@@ -7,6 +7,7 @@
 				<Toolbar class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+						<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -55,5 +56,49 @@
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Title text="{i18n>Attachments}" required="true" level="H1"></Title>
+							<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 	</VBox>
 </core:FragmentDefinition>

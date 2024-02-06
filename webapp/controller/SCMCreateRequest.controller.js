@@ -465,6 +465,19 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
+					`/MovementtypeF4/`) {
+					debugger;
+					var filters = [{
+							path: "shkzg",
+							value: "H",
+							group: "StorageFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
+
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -592,6 +605,9 @@ sap.ui.define([
 			handleBackPress: function () {
 				this.navigationBack();
 
+			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
 			},
 
 			onProceed: function () {

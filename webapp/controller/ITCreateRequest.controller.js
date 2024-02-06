@@ -293,11 +293,14 @@ sap.ui.define([
 				this.navigationBack();
 
 			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
+			},
 
-			onback: function () {
+			/*onback: function () {
 				this.getOwnerComponent().getTargets().display("HomePage");
 
-			},
+			},*/
 
 			onProceed: function () {
 
