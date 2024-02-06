@@ -288,15 +288,11 @@ sap.ui.define([
 			},
 
 			handleBackPress: function () {
-				var oHistory, sPreviousHash;
-				oHistory = History.getInstance();
-				sPreviousHash = oHistory.getPreviousHash();
-				if (sPreviousHash !== undefined) {
-					window.history.go(-1);
-				} else {
-					this.getRouter().navTo("HomePage", {}, true);
-				}
+				this.navigationBack();
 
+			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
 			},
 			/*	onback: function () {
 					this.getOwnerComponent().getTargets().display("LandingView");

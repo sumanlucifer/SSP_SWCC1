@@ -1246,6 +1246,9 @@ sap.ui.define([
 				this.navigationBack();
 
 			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
+			},
 
 			_handleMessageBoxProceed: function (sMessage) {
 				var params = {

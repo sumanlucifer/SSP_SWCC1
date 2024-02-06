@@ -408,6 +408,9 @@ sap.ui.define([
 			handleBackPress: function () {
 				this.navigationBack();
 			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
+			},
 			onCancel: function () {
 				this.navigationBack();
 			},

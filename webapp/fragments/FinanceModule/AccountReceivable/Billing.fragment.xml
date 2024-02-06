@@ -6,7 +6,8 @@
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-					<Title class="ssp-form-bg" text="{i18n>Billing}"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>

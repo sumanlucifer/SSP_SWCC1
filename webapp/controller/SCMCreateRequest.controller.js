@@ -606,6 +606,9 @@ sap.ui.define([
 				this.navigationBack();
 
 			},
+			handleBackHomePress: function () {
+				this.getRouter().navTo("HomePage", {}, true);
+			},
 
 			onProceed: function () {
 				debugger;
