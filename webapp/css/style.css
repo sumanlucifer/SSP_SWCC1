@@ -593,17 +593,18 @@
     padding: 10px 0px 10px 0px;
 }
 
-.ssp-dtl-title .sapMOHRFourCols.sapMOHRStatesCont4 {
+.ssp-dtl-title .sapMOHRFourCols.sapMOHRStatesCont4 .sapMOHRStatus {
     visibility: hidden;
 }
 
-.ssp-dtl-title .sapMOHRStates .sapMOHRStatesCont2 {
+/*.ssp-dtl-title .sapMOHRStates .sapMOHRStatesCont2 {
     width: 46%;
-}
+}*/
 
 .ssp-dtl-title .sapMOHR {
     padding: 1rem;
 }
+
 
 .ssp-dtl-title .sapMOHR .sapMOHRAttr .sapMObjectAttributeTitle,
 .ssp-dtl-title .sapMObjStatusTitle {
@@ -624,6 +625,7 @@
     font-weight: bold !important;
     padding-left: 5px;
     overflow: hidden !important;
+    word-wrap: break-word;
 }
 
 .ssp-dtl-title .sapMObjStatusText {
