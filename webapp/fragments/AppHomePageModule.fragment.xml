@@ -35,17 +35,17 @@
 		</FlexBox>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Transparent" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding ne-flexbox2">
-			<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" id="ZSSH" header="{i18n>HR}">
-				<TileContent>
-					<ImageContent src="sap-icon://family-care"/>
-				</TileContent>
-			</GenericTile>
-			<!--<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessHR} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"-->
-			<!--	press="onPressTile" id="ZSSH" header="{i18n>HR}">-->
+			<!--<GenericTile class="sapUiSmallMargin tileLayout ssp-module" press="onPressTile" id="ZSSH" header="{i18n>HR}">-->
 			<!--	<TileContent>-->
 			<!--		<ImageContent src="sap-icon://family-care"/>-->
 			<!--	</TileContent>-->
 			<!--</GenericTile>-->
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessHR} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
+				press="onPressTile" id="ZSSH" header="{i18n>HR}">
+				<TileContent>
+					<ImageContent src="sap-icon://family-care"/>
+				</TileContent>
+			</GenericTile>
 			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessIT} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
 				press="onPressTile" id="ZSSI" header="{i18n>IT}">
 				<TileContent>
