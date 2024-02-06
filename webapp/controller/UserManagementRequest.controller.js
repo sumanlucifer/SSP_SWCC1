@@ -185,8 +185,7 @@ sap.ui.define([
 				} = aData;
 
 				this.callSaveUSerAPI(oPayload);
-				// var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
-				// this.SubmitBPRegistration(oPayload);
+
 			},
 
 			callSaveUSerAPI: function (oPayload) {

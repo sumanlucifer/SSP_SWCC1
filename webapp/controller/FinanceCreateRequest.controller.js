@@ -214,22 +214,21 @@ sap.ui.define([
 							},
 							itemData: []
 						},
-						Property: {
-							Header: {
-								quantity: "1",
-								CompanyCode: "1000"
-
-							},
-							ItemData: []
-						},
-
 						Vehicle: {
 							Header: {
 								quantity: "1",
 								CompanyCode: "1000"
 
 							},
-							ItemData: []
+							itemData: []
+						},
+						Property: {
+							Header: {
+								quantity: "1",
+								CompanyCode: "1000"
+
+							},
+							itemData: []
 						}
 
 					},
@@ -531,6 +530,10 @@ sap.ui.define([
 						path: "zzinspono",
 						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "ShipHullsFilter"
+					}, {
+						path: "zzinspono",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						group: "VehiclesFilter"
 					}
 
 				];
@@ -566,6 +569,11 @@ sap.ui.define([
 					"/ZCDSV_INSURANCE_CLMVH/",
 					"GET",
 					dynamicFilters.ShipHullsFilter, null, "/InsuranceandClaim/ShipHulls/itemData") : null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.callCommonFinanceSearchRequest(
+					"/ZCDSV_INSURANCE_CLMVH/",
+					"GET",
+					dynamicFilters.VehiclesFilter, null, "/InsuranceandClaim/Vehicle/itemData") : null;
 
 			},
 			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
@@ -659,6 +667,12 @@ sap.ui.define([
 						"/InsuranceandClaim/MarineTransportation/itemData")) : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" ? this.FinanceShipHullsRequest(this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/ShipHulls/Header"), this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/ShipHulls/itemData")) : null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.FinanceVehicleRequest(this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/ShipHulls/Header"), this.getModel()
 					.getProperty(

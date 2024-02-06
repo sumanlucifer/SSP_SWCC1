@@ -11,11 +11,6 @@
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<!--<Toolbar>-->
-				<!--	<Title level="H3" text="{i18n>ManagePettyCash}" class="ssp-tlbr-title"/>-->
-				<!--	<ToolbarSpacer/>-->
-				<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
-				<!--</Toolbar>-->
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
@@ -48,7 +43,8 @@
 					</customData>
 				</Input>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
@@ -79,7 +75,7 @@
 				<Label text="{i18n>CarModel}"/>
 				<Text text="HBC-89788"/>
 				<Label text="{i18n>Manufacturer}"/>
-				<Text text="Lambord"/>
+				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/Manufac/}"/>
 				<Label text="{i18n>Plate Number}"/>
 				<Text text="IUI87787"/>
 				<Label text="{i18n>Chassis Number}"/>
@@ -105,7 +101,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/InsuranceandClaim/Vehicle/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -184,8 +180,6 @@
 				</items>
 			</Table>
 		</ScrollContainer>
-		<!--	</fm:content>
-		</fm:SimpleForm>-->
 	</VBox>
 	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
