@@ -12,10 +12,6 @@
 				</Toolbar>
 			</fm:toolbar>
 			<fm:content>
-				<Toolbar>
-					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
-					<ToolbarSpacer/>
-				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
@@ -35,7 +31,8 @@
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/ShipHulls/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
-				<Input
+				<Input valueState="{= ${/InsuranceF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceF4/} === '' ? 'Enter Insurance Policy No.' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
 					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsuranceF4/}">

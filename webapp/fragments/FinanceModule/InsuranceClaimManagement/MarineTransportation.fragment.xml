@@ -36,7 +36,8 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
-				<Input
+				<Input valueState="{= ${/InsuranceF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceF4/} === '' ? 'Enter Insurance Policy No.' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
 					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsuranceF4/}">
@@ -132,8 +133,6 @@
 						<Input enabled="{= ${New} === true ? true : false}" value="{expense}"/>
 						<DatePicker valueFormat="dd/MM/yyyy" value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
 						<DatePicker valueFormat="dd/MM/yyyy" value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
-						<!--<Text text="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>-->
-						<!--<Text text="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>-->
 						<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 					</cells>
 				</ColumnListItem>

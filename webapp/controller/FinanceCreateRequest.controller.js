@@ -44,7 +44,7 @@ sap.ui.define([
 					ChartofaccountF4: "1000- SWCC Chart of Account(1000)",
 					LanguageF4: "EN- English (EN)",
 					FmareaF4: "1000- SWCC (1000)",
-					InsuranceF4: "",
+					InsuranceF4: null,
 					Assestsupernumber: "",
 					CashJournalF4: "",
 					GLAccountf4: "",
@@ -498,6 +498,9 @@ sap.ui.define([
 			},
 
 			onSearchFinanceRequest: function () {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return;
+
 				var filters = [{
 						path: "CompanyCode",
 						value: "1000",
@@ -674,9 +677,9 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.FinanceVehicleRequest(this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/ShipHulls/Header"), this.getModel()
+						"/InsuranceandClaim/Vehicle/Header"), this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/ShipHulls/itemData")) : null;
+						"/InsuranceandClaim/Vehicle/itemData")) : null;
 
 			},
 
@@ -1168,6 +1171,10 @@ sap.ui.define([
 			},
 
 			FinanceMarineTransportationRequest: function (oPayloadHeader, aItem) {
+				debugger;
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+						"/InsuranceandClaim/MarineTransportation/Header"))) return;
 
 				var aCustomDataEntry = aItem.filter(function (element) {
 					return element.New === true;
@@ -1200,6 +1207,9 @@ sap.ui.define([
 			},
 
 			FinanceShipHullsRequest: function (oPayloadHeader, aItem) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+						"/InsuranceandClaim/ShipHulls/Header"))) return;
 				var aCustomDataEntry = aItem.filter(function (element) {
 					return element.New === true;
 				});
@@ -1224,6 +1234,43 @@ sap.ui.define([
 					},
 
 					"ServiceHeadertoItem": []
+
+				};
+				this.FinanceCreateRequestAPI(oPayload);
+			},
+
+			FinanceVehicleRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+						"/InsuranceandClaim/ShipHulls/Header"))) return;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
+				var aCustomDataEntry = aItem.filter(function (element) {
+					return element.New === true;
+				});
+				debugger;
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
+					"MaterialQty": oPayloadHeader.quantity,
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Descript": oPayloadHeader.Descript,
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+
+						"Zzinspono": aCustomDataEntry[0].zzinspono,
+						"ClaimValue": aCustomDataEntry[0].claim_value,
+						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
+						"PayDate": this.handleOdataDateFormat(aCustomDataEntry[0].PayDate),
+						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+
+					},
+
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
@@ -1351,12 +1398,105 @@ sap.ui.define([
 
 				}, "/InsuranceandClaim/ShipHulls/itemData") : "";
 
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" && this.handleItemValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/"), this.getModel().getProperty(
+					"/InsuranceandClaim/Vehicle/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
+					"/InsuranceandClaim/Vehicle/itemData"), {
+
+					InsStartDate: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].InsStartDate,
+					InsExpiryDate: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].InsExpiryDate,
+					zzplant: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].zzplant,
+					ebeln: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].ebeln,
+					claim_value: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].claim_value,
+					zzinspono: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].zzinspono,
+					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].ClaimStatus,
+					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].TotalPremium,
+					expense: this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData")[0].expense,
+					AccidentDate: null,
+					ClaimRecDate: null,
+					New: true
+
+				}, "/InsuranceandClaim/Vehicle/itemData") : "";
+
+			},
+
+			handleValidation: function (service, header, item) {
+				if (!this.handleHeaderValidation(service, header) || !this.handleItemValidation(service, item)) return false;
+				// Continue with the rest of the code if both validations pass
+			},
+
+			handleHeaderValidation: function (service, aData) {
+				var isValid = true;
+				var validationProperties;
+				if (service === "SSA-FIN-3007-3") {
+
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3007-1") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-2") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				}
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						isValid = false;
+
+					}
+				});
+
+				if (!isValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
+
+				return isValid;
 			},
 
 			handleItemValidation: function (service, aData) {
 				var isValid = true;
 
 				if (service === "SSA-FIN-3007-1") {
+					var itemCheck = aData.length === 0;
+					var hasNewClaim = aData.some(element => element.New === true);
+					if (itemCheck) {
+						MessageToast.show("Claim Data Required to Submit");
+						isValid = false;
+						return isValid;
+					} else if (!hasNewClaim && aData.length === 2) {
+						MessageToast.show("Please add at least one claim");
+						isValid = false;
+						return isValid;
+					} else if (hasNewClaim) {
+						debugger;
+						var aCustomDataEntry = aData.filter(function (element) {
+							return element.New === true;
+						});
+						var customEntryDatalengthCheck = aCustomDataEntry.length >= 1 ? false : true;
+						MessageToast.show("Only one claim can be added");
+						isValid = customEntryDatalengthCheck;
+						return isValid;
+					}
+
+				} else if (service === "SSA-FIN-3007-2") {
 					// Check if any element has isActive set to true
 					var aCustomDataEntry = aData.filter(function (element) {
 						return element.New === true;
@@ -1364,7 +1504,7 @@ sap.ui.define([
 					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
 						"Only one claim can be added "), false) : true;
 
-				} else if (service === "SSA-FIN-3007-2") {
+				} else if (service === "SSA-FIN-3007-3") {
 					// Check if any element has isActive set to true
 					var aCustomDataEntry = aData.filter(function (element) {
 						return element.New === true;
@@ -1391,6 +1531,10 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/MarineTransportation/itemData")) : "";
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/Vehicle/itemData")) : "";
 
 			},
 			updateItemDeleteModel: function (index, oModel) {
