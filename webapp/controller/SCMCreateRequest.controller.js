@@ -494,6 +494,19 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
 
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
+					`/MovementtypeF4/`) {
+					debugger;
+					var filters = [{
+							path: "shkzg",
+							value: "S",
+							group: "StorageFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
+
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
