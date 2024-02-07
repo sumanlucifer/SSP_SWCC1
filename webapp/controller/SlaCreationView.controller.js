@@ -209,14 +209,6 @@ sap.ui.define([
 			},
 
 			loadPDFView: function () {
-				// var oView = this.getView();
-				// var oScrollContainer = oView.byId("myHTMLControl");
-				// oScrollContainer.addEventDelegate({
-				// 	onAfterRendering: function () {
-				// 		var oScrollDomRef = oScrollContainer.getDomRef();
-				// 		oScrollDomRef.addEventListener("scroll", this.onScroll.bind(this));
-				// 	}.bind(this)
-				// });
 
 				var oScrollContainer = this.getView().byId("myHTMLControl");
 				oScrollContainer.$().off("scroll"); // Unbind any existing scroll event handlers
