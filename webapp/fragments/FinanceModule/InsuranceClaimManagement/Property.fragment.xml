@@ -28,17 +28,13 @@
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
 				</Input>
-				<!--<Label text="{i18n>workcenter}" required="true"/>-->
-				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"-->
-				<!--	items="{/PMCreateRequest/WorkCenterF4/}">-->
-				<!--	<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>-->
-				<!--</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
-				<Input
+				<Input valueState="{= ${/InsuranceF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceF4/} === '' ? 'Enter Insurance Policy No.' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
 					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsuranceF4/}">
@@ -48,7 +44,8 @@
 					</customData>
 				</Input>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="40%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">
@@ -71,21 +68,21 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>AssetNumber}"/>
-				<Text text="2389798"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/zzassetid/}"/>
 				<Label text="{i18n>SubNumber}"/>
-				<Text text="8787867"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/zzassetsubid/}"/>
 				<Label text="{i18n>AssetDesc}"/>
-				<Text text="Aset Gluten"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/AssetDesc/}"/>
 				<Label text="{i18n>PropertyNumber}"/>
-				<Text text="HBC-89788"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/zzpropertyno/}"/>
 				<Label text="{i18n>District}"/>
-				<Text text="Lambord"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/District/}"/>
 				<Label text="{i18n>PurchaseAmount}"/>
-				<Text text="IUI87787"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/PurchaseAmt/}"/>
 				<Label text="{i18n>YearofCapitalization}"/>
-				<Text text="98777YTY"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/prop/}"/>
 				<Label text="{i18n>Plant}"/>
-				<Text text="huiko"/>
+				<Text text="{/InsuranceandClaim/Property/itemData/0/CarPlant/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -99,7 +96,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/InsuranceandClaim/Property/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -147,29 +144,28 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Text text="Will shi"/>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>
-							<Input value="SAR"/>
-							<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+							<Text text="{zzassetid}"/>
+							<Text text="{zzassetsubid}"/>
+							<Text text="{zzpropertyno}"/>
+							<Text text="{CarPlant}"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
+							<Input enabled="{= ${New} === true ? true : false}" value="{DeductVal}"/>
+							<Text text="{NetPay}"/>
+							<Text text="{zzinspono}"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{PayDate}" class="sapUiSmallMarginBottom"/>
+							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" value="{ClaimStatus}" placeholder="Select Claim Status"
+								width="100%" valueState="None">
+								<items>
+									<core:Item key="Closed" text="Closed"/>
+									<core:Item key="Active" text="Active"/>
+									<core:Item key="Rejected" text="Rejected"/>
+									<core:Item key="Settled" text="Settled"/>
+								</items>
+							</ComboBox>
+							<Text text="{path:'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+							<Text text="{path:'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+							<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
 				</items>
