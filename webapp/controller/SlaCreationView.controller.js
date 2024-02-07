@@ -65,14 +65,9 @@ sap.ui.define([
 
 			},
 
-			onSubmitBP: function () {
-				var aSLAResponseData = this.getModel().getProperty("/SLARegistrationData/Header/");
-				var oPayload = this.getModel().getProperty("/CustomerRegistrationData/Header/");
-				oPayload.P2_Customer = aSLAResponseData ? aSLAResponseData.P2_Customer : "";
-
-				this.SubmitBPRegistration(oPayload);
-			},
 			SubmitSLARegistration: function (oPayload) {
+				var aSLAResponseData = this.getModel().getProperty("/SLARegistrationData/Header/");
+				oPayload.P2_Customer = aSLAResponseData ? aSLAResponseData.P2_Customer : "";
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'POST', '/SLARequestSet',
 						oPayload)
