@@ -28,28 +28,25 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>totalestimatedvalue}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<ComboBox items="">
+				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TenPre/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
 				<Label text="{i18n>contractduration}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjecttypeF4-/ProjecttypeF4/"
-					width="100%" placeholder="Enter Project" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Enter Project Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjecttypeF4/}">
 					<customData>
 						<core:CustomData key="Status" value="Project type"/>
 						<core:CustomData key="Text" value="Description"/>
 					</customData>
 				</Input>
-				<!--	<ComboBox width="100%" valueState="None" placeholder="Select Project Type"
-					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/Status}" items="{/ProjectTypef4/}">
-					<core:Item key="{Status}" text="{Status} - {Text}"/>
-				</ComboBox>-->
 				<Label text="{i18n>costestimationtype}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.CostestF4-/CostestF4/"
 					width="100%" placeholder="Enter Cost Estimation Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -60,7 +57,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
-				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
+				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TecEva/}">
 					<core:Item key="A" text="Avaliable"/>
 					<core:Item key="N" text="Not Avaliable"/>
 				</ComboBox>
@@ -74,15 +71,14 @@
 					</customData>
 				</Input>-->
 				<Label text="{i18n>suggestedcompany}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>extratermsconditions}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
-				<!--<Label text="{i18n>workcenter}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.RequeststatF4-/RequiredstatF4/"
@@ -114,7 +110,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
-				<Input
+				<!--	<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
 					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjectstatusF4/}">
@@ -122,9 +118,13 @@
 						<core:CustomData key="Status" value="Status"/>
 						<core:CustomData key="Text" value="Text"/>
 					</customData>
-				</Input>
+				</Input>-->
+				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/}">
+					<core:Item key="Y" text="Yes"/>
+					<core:Item key="N" text="No"/>
+				</ComboBox>
 				<Label text="{i18n>securityprojectapproval}" required="fasle"/>
-				<Input
+				<!--<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
 					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjectstatusF4/}">
@@ -132,9 +132,13 @@
 						<core:CustomData key="Status" value="Status"/>
 						<core:CustomData key="Text" value="Text"/>
 					</customData>
-				</Input>
+				</Input>-->
+				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/SecProj/}">
+					<core:Item key="A" text="Avaliable"/>
+					<core:Item key="NA" text="Not Required"/>
+				</ComboBox>
 				<Label text="{i18n>justification}" required="false"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/PrJust/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -143,27 +147,22 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/ProcurementAdhoc/ServiceProcurement/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox class="ssp-table-box">
-		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>-->
 		<Toolbar>
 			<Title level="H3" text="{i18n>itemoverview}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button id="idItemOverviewTable" icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
-		<ScrollContainer horizontal="true" vertical="false" height="auto">
+		<ScrollContainer horizontal="true" vertical="true" height="auto">
 			<Table mode="None" items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
-					<!--	<Column>
-						<Text text="{i18n>servicecode}"/>
-					</Column>-->
 					<Column>
 						<Text text="{i18n>serviceshort}"/>
 					</Column>
@@ -178,20 +177,22 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<!--	<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
-							</Input>-->
-							<Text text="Will shi"/>
-							<Input value="{BaseUnit}"/>
-							<Text text="{uom}"/>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input placeholder="" showSuggestion="" value="{Txz01}" showValueHelp="" valueHelpRequest=""/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
+								</customData>
+							</Input>
+							<Input
+								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{PurchasinggroupF4}">
+								<customData>
+									<core:CustomData key="PurchasingGroup" value="Purchasing Group"/>
+									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
+								</customData>
 							</Input>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
@@ -209,10 +210,10 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>itemdetail}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" id="idItemDetailTable" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData1'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -236,18 +237,22 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input placeholder="Enter Short Text" showSuggestion="" value="{TXZ01}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input placeholder="Enter Quantity" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
+								placeholder="Select UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{uomF4}">
+								<customData>
+									<core:CustomData key="UnitOfMeasure" value="Unit of Measure"/>
+									<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
+								</customData>
 							</Input>
-							<Text text="Will shi"/>
-							<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-								suggestionItems="{/ProductCollection}">
-								<suggestionItems>
-									<core:Item text="{Name}"/>
-								</suggestionItems>
+							<Input placeholder="" showSuggestion="" type="Number" value="{UnitPrice}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/CostcenterF4/" width="100%"
+								placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{CostcenterF4}">
+								<customData>
+									<core:CustomData key="ControllingArea" value="Cost Center"/>
+									<core:CustomData key="CostCenter" value="Cost Text"/>
+								</customData>
 							</Input>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>

@@ -102,6 +102,10 @@ sap.ui.define([
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
 
 				return sModelPath;
 			},
@@ -563,7 +567,8 @@ sap.ui.define([
 						},
 						ServiceProcurement: {
 							Header: {},
-							itemData: []
+							itemData: [],
+							itemData1: []
 						},
 						PrepareofDirectpurchase: {
 							Header: {},
@@ -644,7 +649,8 @@ sap.ui.define([
 				//-----------------Procurement-ADHOC-----------------------------------------------------
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.ScmCreateServiceProcurementRequest(this.getModel().getProperty(
 					"/ProcurementAdhoc/ServiceProcurement/Header/"), this.getModel().getProperty(
-					"/ProcurementAdhoc/ServiceProcurement/itemData/")) : null;
+					"/ProcurementAdhoc/ServiceProcurement/itemData/"), this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/itemData1/")) : null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/itemData/")) :
@@ -701,22 +707,45 @@ sap.ui.define([
 			},
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-					"Descript": oPayloadHeader.Descript,
+					/*	"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Gjahr": oPayloadHeader.FiscalYear,
-						"Bukrs": this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : ""
+						"TotalPrice": oPayloadHeader.TotalPrice,
+						"TenPre": oPayloadHeader.TenPre,
+						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
+						"AFNAM": oPayloadHeader.AFNAM,
+						"PrJust": oPayloadHeader.PrJust,
+						"ContDur": oPayloadHeader.ContDur,
+						"ConfProj": this.getModel().getProperty("/ConfidentialF4/") ? this.getModel().getProperty("/ConfidentialF4/").split("-")[0] : "",
+						"ProjTyp": this.getModel().getProperty("/ProjecttypeF4/") ? this.getModel().getProperty("/ProjecttypeF4/").split("-")[0] : "",
+						"SiteVis": this.getModel().getProperty("/SitevisitF4/") ? this.getModel().getProperty("/SitevisitF4/").split("-")[0] : "",
+						"EstTyp": this.getModel().getProperty("/CostestF4/") ? this.getModel().getProperty("/CostestF4/").split("-")[0] : "",
+						"SugComp": oPayloadHeader.SugComp,
+						"TecEva": oPayloadHeader.TecEva,
+						"EconFeas": oPayloadHeader.EconFeas,
+						"SecProj": oPayloadHeader.SecProj,
+						"ExTc": oPayloadHeader.ExTc
 					},
 
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								Belnr: items.InvoiceNo,
-								Budat: items.PostingDate,
+								Txz01: items.Txz01,
+								Matkl: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
+								Ekgrp: items.PurchasinggroupF4 ? items.PurchasinggroupF4.split("-")[0] : "",
+								TXZ01: items.Txz01,
+								Meins: items.uomF4 ? items.uomF4.split("-")[0] : "",
+								Kostl: items.CostcenterF4 ? items.CostcenterF4.split("-")[0] : "",
+								Menge: items.Menge,
+								UnitPrice: items.UnitPrice
 
 							};
 						}
@@ -726,7 +755,6 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateMaterialProcurementRequest: function (oPayloadHeader, aItem) {
-				debugger;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -758,7 +786,6 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateRfcRequest: function (oPayloadHeader, aItem) {
-				debugger;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -960,7 +987,8 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
-
+				debugger;
+				var sTable = oEvent.getSource().getId().split("-")[2] ? oEvent.getSource().getId().split("-")[2] : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" || this.getModel().getProperty("/SCMAppVisible/") ===
 					"SSA-PSCM-2004-2" ? this.updateItemAddModel(this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
@@ -1020,17 +1048,22 @@ sap.ui.define([
 					UnitPrice: "",
 					Afnam: ""
 				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemAddModel(this.getModel().getProperty(
-					"/ProcurementAdhoc/ServiceProcurement/itemData"), {
-					Matnr: "",
-					Wercks: "",
-					Menge: "",
-					Plant: "",
-					BaseUnit: "",
-					Lgort: "",
-					Lgpla: "",
-					Sgtxt: ""
-				}, "/ProcurementAdhoc/ServiceProcurement/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" && sTable === "idItemOverviewTable" ? this.updateItemAddModel(
+					this.getModel().getProperty(
+						"/ProcurementAdhoc/ServiceProcurement/itemData"), {
+						Txz01: "",
+						Matkl: "",
+						Ekgrp: ""
+					}, "/ProcurementAdhoc/ServiceProcurement/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" && sTable === "idItemDetailTable" ? this.updateItemAddModel(
+					this.getModel().getProperty(
+						"/ProcurementAdhoc/ServiceProcurement/itemData1"), {
+						TXZ01: "",
+						Meins: "",
+						Kostl: "",
+						Menge: "",
+						UnitPrice: ""
+					}, "/ProcurementAdhoc/ServiceProcurement/itemData1") : "";
 
 			},
 
@@ -1065,6 +1098,12 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ClasssificationandInventory/DuplicateResolution/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/ServiceProcurement/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/ServiceProcurement/itemData1")) : "";
 			},
 			updateItemDeleteModel: function (index, oModel) {
 				oModel.splice(index, 1);
