@@ -52,6 +52,7 @@ sap.ui.define([
 					.then(function (oResponse) {
 						this.getModel().setProperty("/AppHomeTileDisplay/Header/", oResponse);
 						this.handleSetLocalStaorage("userType", oResponse.UserType);
+						this.handleSetLocalStaorage("userPlant", oResponse.Plant);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
 						MessageBox.error(error.responseText);
