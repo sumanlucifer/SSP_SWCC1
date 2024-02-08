@@ -874,4 +874,8 @@
     display: none !important;
 }
 
+.sapMOHR .sapMOHRAttr .sapMObjectAttributeText {
+    vertical-align: top !important;
+}
+
 /* custom css for deploy version ends here */
