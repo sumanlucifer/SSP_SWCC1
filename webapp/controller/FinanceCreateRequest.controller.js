@@ -1535,6 +1535,7 @@ sap.ui.define([
 
 					];
 				}
+				if (!validationProperties) return true;
 
 				validationProperties.forEach(property => {
 					var propertyValue = this.getModel().getProperty(property.path);
