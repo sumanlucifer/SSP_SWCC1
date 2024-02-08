@@ -614,6 +614,7 @@
     line-height: 1.5rem !important;
     color: #004687;
     letter-spacing: 0.5px;
+    vertical-align: top;
 }
 
 .ssp-dtl-title .sapMObjectAttributeColon,
