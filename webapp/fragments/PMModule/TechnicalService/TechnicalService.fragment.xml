@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
 	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:fiori="sap.ui.webc.fiori" xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm id="ssp-create-sr" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
@@ -34,6 +34,7 @@
 				<DatePicker valueState="{= ${/PMCreateRequest/Header/EndDate/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PMCreateRequest/Header/EndDate/} === '' ? 'Enter Remarks' : '' }"
 					value="{path: '/PMCreateRequest/Header/EndDate', type: 'sap.ui.model.type.Date'}" change="" class="sapUiSmallMarginBottom"/>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>plant}" required="true"/>

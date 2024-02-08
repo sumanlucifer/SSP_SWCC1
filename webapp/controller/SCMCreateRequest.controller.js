@@ -1030,7 +1030,7 @@ sap.ui.define([
 					Lgort: "",
 					Lgpla: "",
 					Sgtxt: ""
-				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
+				}, "/ProcurementAdhoc/ServiceProcurement/itemData") : "";
 
 			},
 
