@@ -17,7 +17,7 @@
 		<ObjectAttribute title="Sub Service" text="{/RequestDetails/Header/Material}"/>
 		<ObjectAttribute title="Price" text="{/RequestDetails/Header/Price}"/>
 		<ObjectAttribute title="Service" text="{/RequestDetails/Header/MatGroup}"/>
-		<ObjectAttribute title="SLA" text="{/RequestDetails/Header/Status}" visible="true" state="Error"/>
+		<ObjectAttribute title="SLA" text="{/RequestDetails/Header/SLA}" visible="true" state="Error"/>
 		<ObjectAttribute title="Request Status" text="{/RequestDetails/Header/Status}"/>
 		<headerContainer>
 			<IconTabBar id="itb1" selectedKey="key3" upperCase="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content">

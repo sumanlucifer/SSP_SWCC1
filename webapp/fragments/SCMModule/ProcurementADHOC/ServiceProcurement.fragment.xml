@@ -246,7 +246,7 @@
 									<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
 								</customData>
 							</Input>
-							<Input placeholder="" showSuggestion="" type="Number" value="{UnitPrice}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input placeholder="" showSuggestion="" type="Number" value="{UnitPrice}"/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/CostcenterF4/" width="100%"
 								placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{CostcenterF4}">
 								<customData>
