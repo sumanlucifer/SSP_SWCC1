@@ -38,13 +38,14 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Select Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>
+				<!--<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"-->
+				<!--	placeholder="Select Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">-->
+				<!--	<customData>-->
+				<!--		<core:CustomData key="Plant" value="Plant"/>-->
+				<!--		<core:CustomData key="PlantName" value="Plant Name"/>-->
+				<!--	</customData>-->
+				<!--</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>workcenter}" required="true"/>
 				<Input enabled="{= ${/PlantF4/} !== undefined ? true : false }"
 					ariaLabelledBy="-ZSSP_COMMON_SRV-/ZCDSV_WORKCENTERVH-com.swcc.Template.fragments.CommonF4.WorkCenterF4-/WorkCenterF4/" width="100%"

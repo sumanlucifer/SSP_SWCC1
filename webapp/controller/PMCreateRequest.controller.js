@@ -36,6 +36,9 @@ sap.ui.define([
 				var sEquipmentNo = this.handlegetlocalStorage("EquipmentNo");
 				this.getModel().setProperty("/PMCreateRequest/Header/MaintOrder", sOrderID);
 				this.getModel().setProperty("/EquipmentF4", sEquipmentNo);
+				var sUserPlant = this.handlegetlocalStorage("userPlant");
+				this.getModel().setProperty("/PlantF4", sUserPlant);
+
 				var sUserType = this.handlegetlocalStorage("userType");
 
 				sUserType === "E" ? this.getModel().setProperty("/RemarksVisibility", true) : this.getModel().setProperty("/RemarksVisibility",
@@ -212,7 +215,7 @@ sap.ui.define([
 
 				var filters = [{
 						path: "Plant",
-						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 						group: "WorrkCenterF4Filter",
 						useOR: true
 					}, {
@@ -221,7 +224,7 @@ sap.ui.define([
 						group: "WorrkCenterF4Filter"
 					}, {
 						path: "MaintenancePlanningPlant",
-						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 						group: "EquipmentF4Filter"
 					}
 
@@ -365,7 +368,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": oPayloadHeader.Material,
 					"MaterialQty": oPayloadHeader.MaterialQty.toString(),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"StartDate": this.handleReturnDateonly(oPayloadHeader.StartDate),
