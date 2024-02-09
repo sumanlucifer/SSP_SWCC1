@@ -33,6 +33,10 @@ sap.ui.define([
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/HRAppVisible/", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
+				var sUserPlant = this.handlegetlocalStorage("userPlant");
+				this.getModel().setProperty("/PlantF4", sUserPlant);
+
+				var sUserType = this.handlegetlocalStorage("userType");
 
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/EventreasonF4",
 					"27-Early Retirement") : null;
@@ -358,7 +362,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -384,7 +388,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -420,7 +424,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -453,7 +457,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -475,7 +479,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -496,7 +500,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -516,7 +520,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -539,7 +543,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Jdept": oPayloadHeader.Zjdept,
@@ -561,7 +565,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
@@ -578,7 +582,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -599,7 +603,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -616,7 +620,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -633,7 +637,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -654,7 +658,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -679,7 +683,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),

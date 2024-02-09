@@ -7,7 +7,7 @@
 				<Toolbar class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
-						<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -22,13 +22,7 @@
 				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>
+				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>type}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%"
 					placeholder="Enter Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">

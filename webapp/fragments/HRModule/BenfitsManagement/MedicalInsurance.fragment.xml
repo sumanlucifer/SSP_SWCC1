@@ -7,7 +7,7 @@
 				<Toolbar class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
-						<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -20,13 +20,7 @@
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>
+				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>policyno}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
 					placeholder="Select Policy No" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
