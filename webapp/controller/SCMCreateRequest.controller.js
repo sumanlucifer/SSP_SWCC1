@@ -28,6 +28,10 @@ sap.ui.define([
 				this.getModel().setProperty("/MaterialProcurement/Header/Material", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
 				this.getModel().setProperty("/SCMAppVisible/", sServiceProduct);
+				var sUserPlant = this.handlegetlocalStorage("userPlant");
+				this.getModel().setProperty("/PlantF4", sUserPlant);
+
+				var sUserType = this.handlegetlocalStorage("userType");
 
 			},
 			/* Value help request */
@@ -152,7 +156,7 @@ sap.ui.define([
 
 						{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -183,7 +187,7 @@ sap.ui.define([
 
 						{
 							path: "Material",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "WareHouseFilter",
 							useOR: true
 
@@ -232,7 +236,7 @@ sap.ui.define([
 
 						{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -258,7 +262,7 @@ sap.ui.define([
 					var sMaterial = this.getModel().getProperty(
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
 						"-")[0];
-					var sPlant = this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "";
+					var sPlant = this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "";
 					var sstorageloc = this.getModel().getProperty(
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`).split(
 						"-")[0];
@@ -372,7 +376,7 @@ sap.ui.define([
 
 					var filters = [{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "Material4Filter"
 						}
 
@@ -398,7 +402,7 @@ sap.ui.define([
 							useOR: true
 						}, {
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "StorageFilter"
 						}
 
@@ -422,7 +426,7 @@ sap.ui.define([
 							useOR: true
 						}, {
 							path: "Werks",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "WarehouseFilter"
 						}
 
@@ -434,7 +438,7 @@ sap.ui.define([
 
 					var filters = [{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "ProductFilter"
 						}
 
@@ -453,7 +457,7 @@ sap.ui.define([
 							useOR: true
 						}, {
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "StorageFilter"
 						}
 
@@ -472,7 +476,7 @@ sap.ui.define([
 							useOR: true
 						}, {
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "StorageFilter"
 						}, {
 							path: "StorageLoc",
@@ -624,18 +628,18 @@ sap.ui.define([
 
 				});
 			},
-			PlantF4: function () {
-				this.getModel().setProperty("/busy", true);
-				this.CallValueHelpAPI('/A_Plant/')
-					.then(function (oResponse) {
-						this.getModel().setProperty("/busy", false);
-						this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-					}.bind(this)).catch(function (error) {
-						this.getModel().setProperty("/busy", false);
-						MessageBox.error(error.responseText);
-					}.bind(this));
+			/*		PlantF4: function () {
+						this.getModel().setProperty("/busy", true);
+						this.CallValueHelpAPI('/A_Plant/')
+							.then(function (oResponse) {
+								this.getModel().setProperty("/busy", false);
+								this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
+							}.bind(this)).catch(function (error) {
+								this.getModel().setProperty("/busy", false);
+								MessageBox.error(error.responseText);
+							}.bind(this));
 
-			},
+					},*/
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -714,7 +718,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					/*	"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -758,7 +762,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					/*"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -789,7 +793,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					/*"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
@@ -815,7 +819,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"QualTyp": oPayloadHeader.QUAL_TYP,
@@ -837,7 +841,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
@@ -869,7 +873,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
@@ -889,7 +893,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					/*"Menge": oPayloadHeader.MENGE,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {},
@@ -914,7 +918,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"SpirNo": oPayloadHeader.SPIR_NO,
@@ -935,7 +939,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"SupplPlant": this.getModel().getProperty("/SuppPlantF4/ ") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[
