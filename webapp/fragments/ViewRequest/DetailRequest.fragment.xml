@@ -36,7 +36,7 @@
 							</l:content>
 						</l:VerticalLayout>
 					</IconTabFilter>
-					<IconTabFilter text="Attachments">
+					<IconTabFilter visible="{= ${/RequestDetails/Attachments/}.length > 0}" text="Attachments">
 						<l:VerticalLayout class="" width="100%">
 							<l:content>
 								<VBox class="sapUiSmallMargin">
