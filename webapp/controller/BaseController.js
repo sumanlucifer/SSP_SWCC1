@@ -118,45 +118,71 @@ sap.ui.define([
 		onHandleValueHelpCancelPress: function () {
 			this._oValueHelpDialog.close();
 		},
-		// 		handleVHFilterTable: function (oFilter, sType) {
+
+		handleVHFilterTable: function (oFilter, sType, oTable) {
+			var oValueHelpDialog = this._oValueHelpDialog;
+			if (!Array.isArray(oTable)) {
+				oTable = [oTable];
+			}
+
+			if (oValueHelpDialog) {
+				oValueHelpDialog.getTableAsync().then(function (oTable) {
+					if (oTable) {
+						var oBinding;
+
+						if (oTable.bindRows) {
+							oBinding = oTable.getBinding("rows");
+						} else if (oTable.bindItems) {
+							oBinding = oTable.getBinding("items");
+						}
+
+						if (oBinding) {
+							oBinding.filter(oFilter, sType || "Application");
+						}
+
+						oValueHelpDialog.update();
+					}
+				});
+			} else if (oTable) {
+				oTable.forEach(function (oTable) {
+					if (oTable) {
+						var oBinding;
+						if (oTable.bindRows) {
+							oBinding = oTable.getBinding("rows");
+						} else if (oTable.bindItems) {
+							oBinding = oTable.getBinding("items");
+						}
+						if (oBinding) {
+							oBinding.filter(oFilter, sType || "Application");
+						}
+					}
+				});
+
+			}
+
+		},
+
+		// 		handleVHFilterTable1: function (oFilter, sType) {
 		// 			var oValueHelpDialog = this._oValueHelpDialog;
 
 		// 			oValueHelpDialog.getTableAsync().then(function (oTable) {
-		// 				if (oTable.bindRows) {
-		// 					oTable.getBinding("rows").filter(oFilter, sType || "Application");
-		// 				}
+		// 				if (oTable) {
+		// 					var oBinding;
 
-		// 				if (oTable.bindItems) {
-		// 					oTable
-		// 						.getBinding("items")
-		// 						.filter(oFilter, sType || "Application");
-		// 				}
+		// 					if (oTable.bindRows) {
+		// 						oBinding = oTable.getBinding("rows");
+		// 					} else if (oTable.bindItems) {
+		// 						oBinding = oTable.getBinding("items");
+		// 					}
 
-		// 				oValueHelpDialog.update();
+		// 					if (oBinding) {
+		// 						oBinding.filter(oFilter, sType || "Application");
+		// 					}
+
+		// 					oValueHelpDialog.update();
+		// 				}
 		// 			});
 		// 		},
-
-		handleVHFilterTable: function (oFilter, sType) {
-			var oValueHelpDialog = this._oValueHelpDialog;
-
-			oValueHelpDialog.getTableAsync().then(function (oTable) {
-				if (oTable) {
-					var oBinding;
-
-					if (oTable.bindRows) {
-						oBinding = oTable.getBinding("rows");
-					} else if (oTable.bindItems) {
-						oBinding = oTable.getBinding("items");
-					}
-
-					if (oBinding) {
-						oBinding.filter(oFilter, sType || "Application");
-					}
-
-					oValueHelpDialog.update();
-				}
-			});
-		},
 
 		CallValueHelpAPI: function (entity) {
 

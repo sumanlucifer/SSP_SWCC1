@@ -35,6 +35,46 @@ sap.ui.define([
 				});
 			},
 
+			onFilterBarSearch: function (oEvent) {
+				debugger;
+
+				var oAvailableUsersTable = this.getView().byId("idAvailableUsers");
+				var oPendingUserTable = this.getView().byId("idPendingUserTable");
+				var afilterBar = oEvent.getParameter("selectionSet");
+				var filters = [{
+						path: "RequestID",
+						value: afilterBar[0].getValue(),
+						group: "DynamicF4SearchFilter",
+						useOR: true
+					}, {
+						path: "FirstName",
+						value: afilterBar[1].getValue(),
+						operator: sap.ui.model.FilterOperator.Contains,
+						group: "DynamicF4SearchFilter",
+						useOR: true
+					}, {
+						path: "LastName",
+						value: afilterBar[2] && afilterBar[2].getValue() ? afilterBar[2].getValue().split("-")[0] : "",
+						operator: sap.ui.model.FilterOperator.Contains,
+						group: "DynamicF4SearchFilter",
+						useOR: true
+					}, {
+						path: "Email",
+						value: afilterBar[3] && afilterBar[3].getValue() ? afilterBar[3].getValue() : "",
+						group: "DynamicF4SearchFilter"
+					}
+
+				];
+				var dynamicFilters = this.getFilters(filters);
+
+				this._filterTable(dynamicFilters.DynamicF4SearchFilter, "Application", [oAvailableUsersTable, oPendingUserTable]);
+			},
+
+			_filterTable: function (oFilter, sType, oTable) {
+
+				this.handleVHFilterTable(oFilter, sType, oTable);
+			},
+
 			getPendingUserDetails: function () {
 				var filters = [{
 						path: "ID",

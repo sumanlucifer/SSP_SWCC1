@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
-	<Table id="idProductsTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="None" items="{path : '/OpenItemRequestData/itemData'}"
-		class="ssp-request-Table">
+	<Table id="idPendingUserTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="None"
+		items="{path : '/OpenItemRequestData/itemData'}" class="ssp-request-Table">
 		<headerToolbar>
 			<OverflowToolbar>
 				<Title text="Requests" level="H2"/>
