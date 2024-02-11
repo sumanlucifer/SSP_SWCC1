@@ -51,19 +51,20 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding">
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="Open" press="onOpen" frameType="TwoByHalf">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="{i18n>openReqst}" press="onOpen"
+				frameType="TwoByHalf">
 				<TileContent>
 					<NumericContent value="20" icon="sap-icon://open-folder" withMargin="false"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-progress" header="Inprogress" subheader="" press="onOpen"
-				frameType="TwoByHalf">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-progress" header="{i18n>inProgresRqst}" subheader=""
+				press="onOpen" frameType="TwoByHalf">
 				<TileContent>
 					<ImageContent src=""/>
 					<NumericContent value="15" icon="sap-icon://in-progress" withMargin="false"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-done" header="Done" subheader="" press="onOpen"
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-done" header="{i18n>doneRqst}" subheader="" press="onOpen"
 				frameType="TwoByHalf">
 				<TileContent>
 					<ImageContent src=""/>

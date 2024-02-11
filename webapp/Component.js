@@ -27,6 +27,19 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
+			var slanguage = this.getLanguage();
+			sap.ui.getCore().getConfiguration().setLanguage(slanguage);
+		},
+
+		getLanguage: function () {
+			var sLang = sap.ui.getCore().getConfiguration().getLanguage();
+			if (sLang === "AR") {
+				sLang = "AR"
+			} else {
+				var sLang = sap.ui.getCore().getConfiguration().getLanguage();
+
+			}
+			return sLang;
 		},
 		destroy: function () {
 			this._oErrorHandler.destroy();
