@@ -25,6 +25,8 @@ sap.ui.define([
 				var sServiceDescription = sServiceProductLocalVal.split("_")[1];
 				this.getModel().setProperty("/ITAppVisible/", sServiceProduct);
 				this.getModel().setProperty("/ServiceDescription", sServiceDescription);
+				var sUserPlant = this.handlegetlocalStorage("userPlant");
+				this.getModel().setProperty("/PlantF4", sUserPlant);
 
 			},
 			_createItemDataModel: function () {
@@ -353,7 +355,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/ITAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {},
@@ -369,7 +371,7 @@ sap.ui.define([
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/ITAppVisible/"),
-					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
