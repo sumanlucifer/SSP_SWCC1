@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
@@ -38,16 +38,7 @@
 						<core:CustomData key="ProjectDescription" value="Project Description"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>WBSElement}" required="false"/>
-				<Input
-					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.WBSElementF4-/WBSElementF4/"
-					width="100%" placeholder="Enter WBS Element" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/WBSElementF4}">
-					<customData>
-						<core:CustomData key="WBSElement" value="WBS Element"/>
-						<core:CustomData key="WBSDescription" value="WBS Description"/>
-					</customData>
-				</Input>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Network}" required="false"/>
@@ -81,6 +72,9 @@
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker valueFormat="yyyy" displayFormat="yyyy" value="{/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/}" change="handleChange"
 					class=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>ProcessingType}" required="true"/>
 				<ComboBox placeholder="Select Processing Type" width="100%" valueState="None" enabled="true">
 					<items>
@@ -90,14 +84,23 @@
 						<core:Item key="5" text="Full Settlement"/>
 					</items>
 				</ComboBox>
-				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+				<Label text="{i18n>WBSElement}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.WBSElementF4-/WBSElementF4/"
+					width="100%" placeholder="Enter WBS Element" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/WBSElementF4}">
+					<customData>
+						<core:CustomData key="WBSElement" value="WBS Element"/>
+						<core:CustomData key="WBSDescription" value="WBS Description"/>
+					</customData>
+				</Input>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
-				</Input>
+				</Input>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

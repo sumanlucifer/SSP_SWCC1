@@ -1,8 +1,8 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm title="{i18n>createservicerequest}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
@@ -21,23 +21,25 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/AccountPayable/ManagePettyCash/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
-				</Input>
+				</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountPayable/ManagePettyCash/Header/Descript/}"
+					valueHelpRequest=""/>
 				<!--<Label text="{i18n>workcenter}" required="true"/>-->
 				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"-->
 				<!--	items="{/PMCreateRequest/WorkCenterF4/}">-->
 				<!--	<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>-->
 				<!--</ComboBox>-->
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountPayable/ManagePettyCash/Header/Descript/}"
-					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
 					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -49,7 +51,7 @@
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}"
-					change="handleManagePettyCashDateChange" class="sapUiSmallMarginBottom"/>
+					change="handleManagePettyCashDateChange" class=""/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_CASHJOURNALVH1-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
 					width="100%" placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"

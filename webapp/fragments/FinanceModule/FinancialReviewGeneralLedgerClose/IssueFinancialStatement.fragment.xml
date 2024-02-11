@@ -1,12 +1,12 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
 					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
-						<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
 					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
@@ -55,6 +55,7 @@
 						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>ComparisionYear}" required="true"/>
@@ -91,14 +92,16 @@
 						<core:CustomData key="FinancialStatementVariantName" value="Financial Statement Name"/>
 					</customData>
 				</Input>
+				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>ComparisionPeriod}" required="true"/>
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilabmonFrom/}" width="100%" enabled="true"
 					valueState="None" placeholder="From">

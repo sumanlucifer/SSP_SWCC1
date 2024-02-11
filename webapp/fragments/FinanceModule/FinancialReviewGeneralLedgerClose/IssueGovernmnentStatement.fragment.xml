@@ -1,7 +1,7 @@
 <core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
 	<VBox width="100%">
-		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="true"
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
@@ -24,6 +24,7 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
 					value="{/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/}" valueHelpRequest=""/>
+				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>FinancialYear}" required="true"/>
@@ -41,14 +42,16 @@
 					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/FinancialManagementArea}" items="{/Fmareaf4/}">
 					<core:Item key="{FinancialManagementArea}" text="{FinancialManagementArea} - {FinancialManagementArea_Text}"/>
 				</ComboBox>-->
+				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4}">
 					<customData>
 						<core:CustomData key="Plant" value="Plant"/>
 						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>Period}" required="true"/>
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Poper}" width="100%" enabled="true" valueState="None"
 					placeholder="Select Period">
@@ -70,8 +73,8 @@
 				</ComboBox>
 			</fm:content>
 		</fm:SimpleForm>
-		<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Toolbar>
 					<Title level="H3" text="{i18n>ResponsiblePerson}" class="ssp-tlbr-title"/>
@@ -101,6 +104,7 @@
 						<core:CustomData key="Name" value="Director of FM Name"/>
 					</customData>
 				</Input>
+				<core:Title text=""/>
 				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
 					placeholder="DirectorofFinancialManagement" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
 					items="{/DirectorFinancef4/}">

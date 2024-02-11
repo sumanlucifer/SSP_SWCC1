@@ -109,7 +109,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "com.swcc.Template.i18n.i18n_en"
+					"bundleName": "com.swcc.Template.i18n.i18n"
 				}
 			},
 			"ZSSP_USER_SRV": {
