@@ -768,7 +768,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"PrJust": oPayloadHeader.PrJust,
 						"TenPre": oPayloadHeader.TenPre,
-						"TotalPrice": parseFloat(oPayloadHeader.TotalPrice).toFixed(2)
+						"EstPrice": `${oPayloadHeader.EstPrice}`
 
 					},
 
@@ -1121,14 +1121,14 @@ sap.ui.define([
 				var sQty = parseInt(oEvent.getSource().getBindingContext().getObject().Menge);
 
 				var sTotal = sUnit * sQty;
-				this.getModel().setProperty(`${sBindingPath}/TotalPrice/`, sTotal);
+				this.getModel().setProperty(`${sBindingPath}/EstPrice/`, sTotal);
 
 				const totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData").reduce((acc, currentItem) => acc +
-					parseInt(currentItem.TotalPrice), 0);
+					parseInt(currentItem.EstPrice), 0);
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
-				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/", iEstimated);
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/", iEstimated);
 
 			},
 
