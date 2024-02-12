@@ -16,15 +16,20 @@ sap.ui.define([
 					if (sRouteName === "RouteApp" || sRouteName === "HomePage") {
 						this._createTileDataModel();
 						this.BPFlagCheckAPI();
+						this.getViewRequestDetails();
 
 					}
 				}, this);
+
+				// this.oRouter = this.getRouter();
+				// this._onObjectMatched();
 
 			},
 
 			_onObjectMatched: function () {
 				this._createTileDataModel();
 				this.BPFlagCheckAPI();
+				this.getViewRequestDetails();
 			},
 			_createTileDataModel: function () {
 				this.getModel().setData({
@@ -68,6 +73,72 @@ sap.ui.define([
 			},
 			onPressUserViewRequest: function () {
 				this.oRouter.navTo("ViewRequest");
+
+			},
+			getViewRequestDetails: function () {
+				this.getModel().setProperty("/busy", true);
+				var filters = [{
+						path: "Username",
+						value: this.getCurrentUserLoggedIn(),
+						group: "SubmitStatusFilter",
+						useOR: true
+					}, {
+						path: "Status",
+						value: "Request Submitted",
+						group: "SubmitStatusFilter"
+					}, {
+						path: "Username",
+						value: this.getCurrentUserLoggedIn(),
+						group: "CompleteFilter",
+						useOR: true
+					}, {
+						path: "Status",
+						value: "Request Completed",
+						group: "CompleteFilter"
+					}, {
+						path: "Username",
+						value: this.getCurrentUserLoggedIn(),
+						group: "ProcessFilter",
+						useOR: true
+					}, {
+						path: "Status",
+						value: "Request Under process",
+						group: "ProcessFilter"
+					}
+
+				];
+
+				var dynamicFilters = this.getFilters(filters);
+				Promise.allSettled([this.readChecklistEntity("/ViewRequestSet/$count", dynamicFilters.SubmitStatusFilter),
+					this.readChecklistEntity("/ViewRequestSet/$count", dynamicFilters.CompleteFilter),
+					this.readChecklistEntity("/ViewRequestSet/$count", dynamicFilters.ProcessFilter)
+				]).then(this.buildChecklist.bind(this)).catch(function (error) {}.bind(this));
+
+			},
+
+			readChecklistEntity: function (path, filter) {
+
+				return new Promise(
+					function (resolve, reject) {
+						this.getOwnerComponent().getModel("ZSSP_COMMON_SRV").read(path, {
+							filters: [filter],
+							success: function (oData) {
+								resolve(oData);
+							},
+							error: function (oResult) {
+								reject(oResult);
+
+							}
+						});
+					}.bind(this));
+			},
+
+			buildChecklist: function (values) {
+				debugger;
+				this.getModel().setProperty("/busy", false);
+				this.getModel().setProperty("/TileData/Header/openRequest/", parseInt(values[0].value));
+				this.getModel().setProperty("/TileData/Header/inProgressRqt/", parseInt(values[1].value));
+				this.getModel().setProperty("/TileData/Header/doneReqst/", parseInt(values[2].value));
 
 			},
 

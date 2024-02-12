@@ -40,8 +40,9 @@
 		</fm:SimpleForm>
 	</HBox>
 	<VBox class="serv-desc">
-		<fm:SimpleForm layout="ResponsiveLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
-			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+		<fm:SimpleForm visible="{= ${/ModuleSearch/Header/SUbServiceKey/} !== undefined ? true : false }" layout="ResponsiveLayout"
+			class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12"
+			labelSpanS="12">
 			<fm:content>
 				<Toolbar>
 					<Title level="H3" text="{i18n>servicedesc}" class="ssp-tlbr-title"/>
@@ -49,8 +50,8 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Text text="{/ModuleSearch/Header/Desc/}"/>
-				<Text text="{/ModuleSearch/Header/SLA/}"/>
-				<Text text="{/ModuleSearch/Header/Price/}"/>
+				<Text text="Service Level: {/ModuleSearch/Header/SLA/}"/>
+				<Text text="Price: {/ModuleSearch/Header/Price/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

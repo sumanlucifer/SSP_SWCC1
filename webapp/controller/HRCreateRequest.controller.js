@@ -832,6 +832,20 @@ sap.ui.define([
 
 				this.handleFileSizeExceed();
 			},
+
+			onDownloadClaim: function () {
+				// Specify the PDF file URL
+				var pdfUrl = "./util/Claimform.pdf";
+
+				var link = document.createElement("a");
+				link.href = pdfUrl;
+				link.target = "_blank"; // Open in a new tab/window
+				link.download = "Claimform.pdf"; // Name of the downloaded file
+				// Simulate click event to trigger the download
+				link.click();
+
+				//	window.open(pdfUrl, '_blank');
+			},
 			onCancel: function () {
 				this.navigationBack();
 			}
