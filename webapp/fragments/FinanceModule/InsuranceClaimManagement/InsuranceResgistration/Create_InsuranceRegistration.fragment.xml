@@ -33,8 +33,8 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
 					valueHelpRequest=""/>
-				<Label text="{i18n>PolicyNo}" required="true"/>
-				<Input type="Number" placeholder="Enter Insurance Policy No." value="{/InsuranceandClaim/CreateInsurance/Header/Zzinspono/}"/>
+				<!--<Label text="{i18n>PolicyNo}" required="true"/>-->
+				<!--<Input type="Number" placeholder="Enter Insurance Policy No." value="{/InsuranceandClaim/CreateInsurance/Header/Zzinspono/}"/>-->
 				<Label text="{i18n>Vendor}" required="true"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_VENDORVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.VendorF4-/VendorF4/"
@@ -76,12 +76,12 @@
 						<core:CustomData key="Text" value="Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>InsuranceStartDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
-				<Label text="{i18n>InsuranceEndDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<!--<Label text="{i18n>InsuranceStartDate}" required="true"/>-->
+				<!--<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"-->
+				<!--	class="sapUiSmallMarginBottom"/>-->
+				<!--<Label text="{i18n>InsuranceEndDate}" required="true"/>-->
+				<!--<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"-->
+				<!--	class="sapUiSmallMarginBottom"/>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

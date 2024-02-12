@@ -111,7 +111,7 @@
 					<Text text="File Size"/>
 				</Column>
 				<Column>
-					<Text text="Delete"/>
+					<Text text=""/>
 				</Column>
 				<!-- Add more columns as needed -->
 			</columns>

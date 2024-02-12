@@ -32,7 +32,9 @@
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/><Label text="{i18n>ChartofAccount}" required="true"/><Label text="{i18n>plant}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<!--<Label text="{i18n>ChartofAccount}" required="true"/>-->
+				<!--<Label text="{i18n>plant}" required="true"/>-->
 				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
 					selectedKey="{/PMCreateRequest/Header/Plant/}" items="{/PMCreateRequest/PlantF4/}">
 					<core:Item key="{Plant}" text="{Plant} - {PlantName}"/>
@@ -60,8 +62,8 @@
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
-					width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/FinancialReviewGeneralClose/MaintainChart/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
