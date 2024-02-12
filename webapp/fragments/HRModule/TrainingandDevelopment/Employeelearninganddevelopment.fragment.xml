@@ -53,7 +53,7 @@
 		</fm:SimpleForm>
 	</VBox>
 	<VBox>
-		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
 			<headerToolbar>
 				<Toolbar>
 					<content>

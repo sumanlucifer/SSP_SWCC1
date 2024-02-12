@@ -97,7 +97,7 @@
 			<OverflowToolbar id="idOverflowToolbar" visible="true">
 				<ToolbarSpacer id="idToolbarSpacer"/>
 				<Button id="idproceed" text="{i18n>Submit}" type="Accept" class="btn-proceed" press="onProceed"/>
-				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
 			</OverflowToolbar>
 		</f:footer>
 	</f:DynamicPage>

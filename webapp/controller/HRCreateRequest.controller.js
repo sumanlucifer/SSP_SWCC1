@@ -831,6 +831,9 @@ sap.ui.define([
 			onFileSizeExceed: function () {
 
 				this.handleFileSizeExceed();
+			},
+			onCancel: function () {
+				this.navigationBack();
 			}
 		})
 	})
