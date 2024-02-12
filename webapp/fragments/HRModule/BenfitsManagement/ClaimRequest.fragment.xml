@@ -7,6 +7,7 @@
 				<Toolbar class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
 					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
@@ -84,7 +85,8 @@
 					</customData>
 				</Input>
 				<Label text=""/>
-				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="true" href="/zssp_app/util/SLA_PDF/SLA.pdf"/>
+				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="true"
+					href="sap/bc/ui5_ui5/sap/zssp_app/util/Claimform.pdf"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

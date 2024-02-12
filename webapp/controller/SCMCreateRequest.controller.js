@@ -722,7 +722,7 @@ sap.ui.define([
 					/*	"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"TotalPrice": oPayloadHeader.TotalPrice,
+						"EstPrice": `${oPayloadHeader.EstPrice}`,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
 						"AFNAM": oPayloadHeader.AFNAM,
@@ -736,15 +736,15 @@ sap.ui.define([
 						"TecEva": oPayloadHeader.TecEva,
 						"EconFeas": oPayloadHeader.EconFeas,
 						"SecProj": oPayloadHeader.SecProj,
-						"ExTc": oPayloadHeader.ExTc
+						"ExTc": oPayloadHeader.ExTc,
+						"Txz01": oPayloadHeader.Txz01,
+						"Matkl": this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : ""
 					},
 
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								Txz01: items.Txz01,
-								Matkl: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
-								Ekgrp: items.PurchasinggroupF4 ? items.PurchasinggroupF4.split("-")[0] : "",
 								TXZ01: items.Txz01,
 								Meins: items.uomF4 ? items.uomF4.split("-")[0] : "",
 								Kostl: items.CostcenterF4 ? items.CostcenterF4.split("-")[0] : "",

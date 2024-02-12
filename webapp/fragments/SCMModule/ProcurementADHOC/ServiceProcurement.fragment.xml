@@ -158,12 +158,11 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>itemoverview}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button id="idItemOverviewTable" icon="sap-icon://add" press=".onAddItemsPress"/>
+			<!--<Button id="idItemOverviewTable" icon="sap-icon://add" press=".onAddItemsPress"/>-->
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="true" height="auto">
-			<Table mode="None" items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
+			<Table sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5"
+				growingScrollToLoad="true" growing="true" fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="{i18n>serviceshort}"/>
@@ -174,12 +173,12 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>purchasinggroup}"/>
 					</Column>
-					<Column width="5%"></Column>
+					<!--<Column width="5%"></Column>-->
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="" value="{Txz01}" showValueHelp="" valueHelpRequest=""/>
+							<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/Txz01}" showValueHelp="" valueHelpRequest=""/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
 								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
 								<customData>
@@ -196,7 +195,7 @@
 									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
 								</customData>
 							</Input>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+							<!--	<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>-->
 						</cells>
 					</ColumnListItem>
 				</items>
