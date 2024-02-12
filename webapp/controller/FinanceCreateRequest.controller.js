@@ -1167,16 +1167,16 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Zzinspono": oPayloadHeader.Zzinspono,
+						// 		"Zzinspono": oPayloadHeader.Zzinspono,
 						"Zzvendor": this.getModel().getProperty("/VendorF4/") ? this.getModel().getProperty("/VendorF4/").split("-")[0] : "",
 						"Zzinsurper": oPayloadHeader.Zzinsurper,
 						"ZzpolicyType": this.getModel().getProperty("/PolicyTypeF4/") ? this.getModel().getProperty("/PolicyTypeF4/").split("-")[0] : "",
 						"ZzinsurAmount": oPayloadHeader.ZzinsurAmount,
 						"Ebeln": this.getModel().getProperty("/POF4/") ? this.getModel().getProperty("/POF4/").split("-")[0] : "",
 						"Zzdeprate": parseInt(oPayloadHeader.Zzdeprate).toFixed(2),
-						"ZzpolicyStatus": "New",
-						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat),
-						"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat)
+						"ZzpolicyStatus": "New"
+							// 		"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat),
+							// 		"ZzinsStrtDat": this.handleOdataDateFormat(oPayloadHeader.ZzinsStrtDat)
 
 					},
 
