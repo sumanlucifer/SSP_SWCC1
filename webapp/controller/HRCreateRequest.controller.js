@@ -38,11 +38,11 @@ sap.ui.define([
 
 				var sUserType = this.handlegetlocalStorage("userType");
 
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/EventreasonF4",
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/TerminationF4",
 					"27-Early Retirement") : null;
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-2" ? this.getModel().setProperty("/EventreasonF4",
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-2" ? this.getModel().setProperty("/TerminationF4",
 					"30-Retirement(completion of statutory work service)") : null;
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.getModel().setProperty("/EventreasonF4",
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.getModel().setProperty("/TerminationF4",
 					"20-Resignation") : null;
 
 			},

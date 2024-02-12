@@ -240,6 +240,14 @@
     font-family: 'SWCC-4-Bold';
 }
 
+.sapMTBStandard.ssp-title {
+    width: 100%;
+}
+
+.ssp-title .sapMBtn {
+    margin-top: 2px !important;
+}
+
 .sapUiFormTitleH5 {
     background: none !important;
 }
@@ -270,8 +278,7 @@
 
 .module-home-btn {
     font-size: 24px;
-    position: absolute;
-    right: 10px;
+    /*float: right;*/
 }
 
 .ssp-fm-stl .sapMLabel {

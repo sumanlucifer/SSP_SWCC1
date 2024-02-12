@@ -6,34 +6,37 @@
 				<Toolbar id="TB1" class="ssp-title">
 					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
 					<Title class="ssp-form-bg " id="Title1" text="{i18n>modulesearch}"/>
+					<ToolbarSpacer/>
 					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 				</Toolbar>
 			</fm:toolbar>
-			<Label text="{i18n>Service}" required="true"/>
-			<ComboBox id="idService" width="100%" enabled="false" valueState="None">
-				<items>
-					<core:Item key="ZSSM" text="Plant Maintenance"/>
-					<core:Item key="ZSSH" text="Human Resource"/>
-					<core:Item key="ZSSI" text="Information Technology"/>
-					<core:Item key="ZSSF" text="Finance"/>
-					<core:Item key="ZSSS" text="Supply Chain"/>
-				</items>
-			</ComboBox>
-			<Label text="{i18n>SelectServiceType}" required="true"/>
-			<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectServiceTypeDD" placeholder="Select Service Type"
-				selectedKey="{/ModuleSearch/Header/ServiceTypeKey/}" items="{/ModuleSearch/SelectServiceType/}"
-				valueState="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Error' : 'None' }"
-				valueStateText="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Select Service Type' : '' }">
-				<core:Item key="{ProductGroup}" text="{MaterialGroupText}"/>
-			</ComboBox>
-			<Label text="{i18n>SelectSubService}" required="true"/>
-			<ComboBox enabled="{= ${/ModuleSearch/Header/ServiceTypeKey/} !== undefined ? true : false }" width="100%"
-				selectionChange="onSelectSubServiceTypeDD" placeholder="Select SubService" selectedKey="{/ModuleSearch/Header/SUbServiceKey/}"
-				items="{/ModuleSearch/SelectSubServiceType/}" valueState="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Error' : 'None' }"
-				valueStateText="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Select Sub Service Type' : '' }">
-				<core:ListItem key="{Product}_{ProductName}_{MaterialLongText}_{BaseUnit}_{SLA}_{Price}" text="{ProductName}"/>
-			</ComboBox>
-			<Button text="Proceed" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<fm:content>
+				<Label text="{i18n>Service}" required="true"/>
+				<ComboBox id="idService" width="100%" enabled="false" valueState="None">
+					<items>
+						<core:Item key="ZSSM" text="{i18n>PM}"/>
+						<core:Item key="ZSSH" text="{i18n>HR}"/>
+						<core:Item key="ZSSI" text="{i18n>IT}"/>
+						<core:Item key="ZSSF" text="{i18n>FICO}"/>
+						<core:Item key="ZSSS" text="{i18n>SCM}"/>
+					</items>
+				</ComboBox>
+				<Label text="{i18n>SelectServiceType}" required="true"/>
+				<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectServiceTypeDD" placeholder="{i18n>SelectServiceType}"
+					selectedKey="{/ModuleSearch/Header/ServiceTypeKey/}" items="{/ModuleSearch/SelectServiceType/}"
+					valueState="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ModuleSearch/Header/ServiceTypeKey/} === '' ? 'Select Service Type' : '' }">
+					<core:Item key="{ProductGroup}" text="{MaterialGroupText}"/>
+				</ComboBox>
+				<Label text="{i18n>SelectSubService}" required="true"/>
+				<ComboBox enabled="{= ${/ModuleSearch/Header/ServiceTypeKey/} !== undefined ? true : false }" width="100%"
+					selectionChange="onSelectSubServiceTypeDD" placeholder="{i18n>SelectSubService}" selectedKey="{/ModuleSearch/Header/SUbServiceKey/}"
+					items="{/ModuleSearch/SelectSubServiceType/}" valueState="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ModuleSearch/Header/SUbServiceKey/} === '' ? 'Select Sub Service Type' : '' }">
+					<core:ListItem key="{Product}_{ProductName}_{MaterialLongText}_{BaseUnit}_{SLA}_{Price}" text="{ProductName}"/>
+				</ComboBox>
+				<Button text="{i18n>Proceed}" type="Default" press="onSearch" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			</fm:content>
 		</fm:SimpleForm>
 	</HBox>
 	<VBox class="serv-desc">

@@ -38,7 +38,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>amount}" required="true"/>
-				<Input placeholder="Enter Amount" value="{/BenefitsManagement/ClaimRequest/Header/Zamount/}"/>
+				<Input placeholder="Enter Amount" type="Number" value="{/BenefitsManagement/ClaimRequest/Header/Zamount/}"/>
 				<Label text="{i18n>bankname}" required="true"/>
 				<Input placeholder="Enter Bank Name" value="{/BenefitsManagement/ClaimRequest/Header/Bankk/}"/>
 				<Label text="{i18n>country}" required="true"/>
@@ -84,8 +84,7 @@
 					</customData>
 				</Input>
 				<Label text=""/>
-				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="true"
-					href="ui5_ui5/sap/zssp_app/util/SLA_PDF/SLA.pdf"/>
+				<Link text="{i18n>claimrequest}" class="sapUiMediumMarginTop" target="_blank" emphasized="true" href="/zssp_app/util/SLA_PDF/SLA.pdf"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

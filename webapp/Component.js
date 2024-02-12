@@ -37,10 +37,11 @@ sap.ui.define([
 				sLang = "AR"
 			} else {
 				var sLang = sap.ui.getCore().getConfiguration().getLanguage();
-
+				/*sLang = "AR";*/
 			}
 			return sLang;
 		},
+
 		destroy: function () {
 			this._oErrorHandler.destroy();
 			// call the base component's destroy function
