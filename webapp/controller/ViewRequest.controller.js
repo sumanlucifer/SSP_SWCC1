@@ -14,13 +14,66 @@ sap.ui.define([
 			this.getRouter().getRoute("ViewRequest").attachPatternMatched(this._onObjectMatched, this);
 
 		},
-		_onObjectMatched: function () {
-			this._createItemDataModel();
-			this.getViewRequestDetails();
-			//this.getModel().setProperty("/PMCreateRequest/Header/Material", sServiceProduct);
-			//this.getModel().setProperty("/ServiceDescription", sServiceDescription);
-			//this.getModel().setProperty("/PMCreateRequest/CustomDisplayData/BaseUnit", sBaseUnit);
+		_onObjectMatched: function (oEvent) {
+			debugger;
+			var sStatusId = oEvent.getParameter("arguments").StatusId;
 
+			this._createItemDataModel();
+			var statusFilters = this.StatusRequestFilter(sStatusId);
+			this.getViewRequestDetails(statusFilters);
+
+		},
+
+		StatusRequestFilter: function (sStatus) {
+			var filters = [{
+					path: "Username",
+					value: this.getCurrentUserLoggedIn(),
+					group: "SubmitStatusFilter",
+					useOR: true
+				}, {
+					path: "Status",
+					value: "Request Submitted",
+					group: "SubmitStatusFilter"
+				}, {
+					path: "Username",
+					value: this.getCurrentUserLoggedIn(),
+					group: "CompleteFilter",
+					useOR: true
+				}, {
+					path: "Status",
+					value: "Request Completed",
+					group: "CompleteFilter"
+				}, {
+					path: "Username",
+					value: this.getCurrentUserLoggedIn(),
+					group: "InProgessFilter",
+					useOR: true
+				}, {
+					path: "Status",
+					value: "Request under Process",
+					group: "InProgessFilter"
+				}, {
+					path: "Username",
+					value: this.getCurrentUserLoggedIn(),
+					group: "allRequestFilter",
+
+				}
+
+			];
+
+			var dynamicFilters = this.getFilters(filters);
+			var statusFilter;
+			if (sStatus === "Open") {
+				statusFilter = dynamicFilters.SubmitStatusFilter;
+			} else if (sStatus === "In Progress") {
+				statusFilter = dynamicFilters.InProgessFilter
+			} else if (sStatus === "Done") {
+				statusFilter = dynamicFilters.CompleteFilter
+			} else if (sStatus === "NA") {
+				statusFilter = dynamicFilters.allRequestFilter
+			}
+
+			return statusFilter;
 		},
 		_createItemDataModel: function () {
 			this.getModel().setData({
@@ -41,19 +94,11 @@ sap.ui.define([
 			});
 		},
 
-		getViewRequestDetails: function () {
-			var filters = [{
-					path: "Username",
-					value: this.getCurrentUserLoggedIn(),
-					group: "ViewRequestFilter"
-				}
+		getViewRequestDetails: function (statusFilters) {
 
-			];
 			this.getModel().setProperty("/busy", true);
-			var dynamicFilters = this.getFilters(filters);
-			//var sortParams = [new sap.ui.model.Sorter("CreatedOn", true)];
 			var sAPI = `/ViewRequestSet`;
-			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, dynamicFilters.ViewRequestFilter,
+			this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'GET', sAPI, null, statusFilters,
 					null)
 				.then(function (oResponse) {
 					this.getModel().setProperty("/RequestDetails/itemData/", oResponse.results);

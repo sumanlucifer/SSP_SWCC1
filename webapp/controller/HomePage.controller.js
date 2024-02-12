@@ -35,7 +35,8 @@ sap.ui.define([
 				this.getModel().setData({
 					busy: false,
 					TileData: {
-						Header: {}
+						Header: {},
+						subTile: {}
 					}
 				});
 			},
@@ -72,7 +73,9 @@ sap.ui.define([
 				this.oRouter.navTo("UserManagementRequest");
 			},
 			onPressUserViewRequest: function () {
-				this.oRouter.navTo("ViewRequest");
+				this.oRouter.navTo("ViewRequest", {
+					StatusId: "NA"
+				});
 
 			},
 			getViewRequestDetails: function () {
@@ -102,7 +105,7 @@ sap.ui.define([
 						useOR: true
 					}, {
 						path: "Status",
-						value: "Request Under process",
+						value: "Request under Process",
 						group: "ProcessFilter"
 					}
 
@@ -134,17 +137,20 @@ sap.ui.define([
 			},
 
 			buildChecklist: function (values) {
-				debugger;
 				this.getModel().setProperty("/busy", false);
-				this.getModel().setProperty("/TileData/Header/openRequest/", parseInt(values[0].value));
-				this.getModel().setProperty("/TileData/Header/inProgressRqt/", parseInt(values[1].value));
-				this.getModel().setProperty("/TileData/Header/doneReqst/", parseInt(values[2].value));
+				this.getModel().setProperty("/TileData/subTile/openRequest/", parseInt(values[0].value));
+				this.getModel().setProperty("/TileData/subTile/inProgressRqt/", parseInt(values[2].value));
+				this.getModel().setProperty("/TileData/subTile/doneReqst/", parseInt(values[1].value));
 
 			},
 
-			onOpen: function () {
+			onPressSubTile: function (oEve) {
 
-				this.oRouter.navTo("ViewRequest");
+				this.oRouter.navTo("ViewRequest", {
+					StatusId: oEve.getSource().getHeader()
+				});
+
+				// this.oRouter.navTo("ViewRequest");
 
 			}
 		})

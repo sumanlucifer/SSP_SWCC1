@@ -51,24 +51,24 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding">
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="{i18n>openReqst}" press="onOpen"
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="{i18n>openReqst}" press="onPressSubTile"
 				frameType="TwoByHalf">
 				<TileContent>
-					<NumericContent value="{/TileData/Header/openRequest/}" icon="sap-icon://open-folder" withMargin="false"/>
+					<NumericContent value="{/TileData/subTile/openRequest/}" icon="sap-icon://open-folder" withMargin="false"/>
 				</TileContent>
 			</GenericTile>
 			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-progress" header="{i18n>inProgresRqst}" subheader=""
-				press="onOpen" frameType="TwoByHalf">
+				press="onPressSubTile" frameType="TwoByHalf">
 				<TileContent>
 					<ImageContent src=""/>
-					<NumericContent value="{/TileData/Header/inProgressRqt/}" icon="sap-icon://in-progress" withMargin="false"/>
+					<NumericContent value="{/TileData/subTile/inProgressRqt/}" icon="sap-icon://in-progress" withMargin="false"/>
 				</TileContent>
 			</GenericTile>
-			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-done" header="{i18n>doneRqst}" subheader="" press="onOpen"
-				frameType="TwoByHalf">
+			<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-done" header="{i18n>doneRqst}" subheader=""
+				press="onPressSubTile" frameType="TwoByHalf">
 				<TileContent>
 					<ImageContent src=""/>
-					<NumericContent value="{/TileData/Header/doneReqst/}" icon="sap-icon://accounting-document-verification" withMargin="false"/>
+					<NumericContent value="{/TileData/subTile/doneReqst/}" icon="sap-icon://accounting-document-verification" withMargin="false"/>
 				</TileContent>
 			</GenericTile>
 		</FlexBox>
