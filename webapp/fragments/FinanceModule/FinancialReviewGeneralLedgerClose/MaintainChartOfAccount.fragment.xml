@@ -33,6 +33,8 @@
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/MaintainChart/Header/Descript/}" valueHelpRequest=""/>
 				<!--<Label text="{i18n>ChartofAccount}" required="true"/>-->
 				<!--<Label text="{i18n>plant}" required="true"/>-->
 				<!--<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
