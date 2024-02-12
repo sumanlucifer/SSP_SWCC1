@@ -263,6 +263,10 @@
     font-family: 'SWCC-4-Bold';
 
 }
+.ssp-title .sapMTitle
+{
+width:9;	
+}
 
 .home-btn:hover .sapUiIcon {
     position: relative;
