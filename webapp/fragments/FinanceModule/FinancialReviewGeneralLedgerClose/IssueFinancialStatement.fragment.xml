@@ -204,7 +204,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+				<TextArea placeholder="" rows="5" cols="20" value="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
