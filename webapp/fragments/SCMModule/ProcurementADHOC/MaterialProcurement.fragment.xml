@@ -38,7 +38,7 @@
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalPrice/}" enabled="false"/>
+				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
