@@ -145,9 +145,9 @@ sap.ui.define([
 			},
 
 			onPressSubTile: function (oEve) {
-
+				debugger;
 				this.oRouter.navTo("ViewRequest", {
-					StatusId: oEve.getSource().getHeader()
+					StatusId: oEve.getSource().getId().split("--")[1]
 				});
 
 				// this.oRouter.navTo("ViewRequest");

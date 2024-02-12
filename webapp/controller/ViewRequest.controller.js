@@ -65,7 +65,7 @@ sap.ui.define([
 			var statusFilter;
 			if (sStatus === "Open") {
 				statusFilter = dynamicFilters.SubmitStatusFilter;
-			} else if (sStatus === "In Progress") {
+			} else if (sStatus === "In_Progress") {
 				statusFilter = dynamicFilters.InProgessFilter
 			} else if (sStatus === "Done") {
 				statusFilter = dynamicFilters.CompleteFilter
