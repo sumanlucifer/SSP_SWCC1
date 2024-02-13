@@ -105,49 +105,51 @@
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
-					<Column>
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Asset Number"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Sub Number"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Claim Received Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Type of Claim"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Claim Value"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Purchase Amount"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Depreciation Amount"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Policy No."/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Accident Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Claim Status"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Payment Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Status"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Start Date "/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance End Date"/>
 					</Column>
-					<Column width="5%"></Column>
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="8%">
+						<Text text=""/>
+					</Column>
 				</columns>
 				<items>
 					<ColumnListItem vAlign="Middle">

@@ -80,43 +80,44 @@
 			<ToolbarSpacer/>
 			<Button visible="{= ${/InsuranceandClaim/MarineTransportation/itemData}.length > 0}" icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
-		<Table mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-			class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false" growingThreshold="10">
+		<Table enableBusyIndicator="true" mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}"
+			sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false"
+			growingThreshold="10">
 			<columns>
-				<Column width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Insurance Start Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Insurance End Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Plant"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Purchase Order"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Claim Value(RSA)"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Insurance Policy No."/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="4rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Claim Status"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="5rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Total Premium"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Expense"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Accident Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true" width="8rem">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Claim Recieved Date"/>
 				</Column>
-				<Column minScreenWidth="Tablet" demandPopin="true">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="8%">
 					<Text text=""/>
 				</Column>
 			</columns>
