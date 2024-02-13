@@ -50,6 +50,7 @@ sap.ui.define([
 
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_USER_SRV"), 'GET', sAPI)
 					.then(function (oResponse) {
+						this.handleAcessissueError(oResponse);
 						this.getModel().setProperty("/AppHomeTileDisplay/Header/", oResponse);
 						this.handleSetLocalStaorage("userType", oResponse.UserType);
 						this.handleSetLocalStaorage("userPlant", oResponse.Plant);
@@ -60,7 +61,18 @@ sap.ui.define([
 					}.bind(this));
 
 			},
+			handleAcessissueError: function (response) {
+				debugger;
+				const allEmpty = response.AccessHR === "" && response.AccessFI === "" && response.AccessIT === "" && response.AccessSC ===
+					"" && response.AccessPM === "";
 
+				// Throw an error if all access fields are empty
+				if (allEmpty) {
+					MessageBox.error("You do not have permission to access, Please Contact System Administrator ");
+					return;
+				}
+
+			},
 			onPressTile: function (oEvent) {
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
 				var sVal = oEvent.getSource().getId().split("--")[1];
