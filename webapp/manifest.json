@@ -186,9 +186,11 @@
 		],
 		"defaultLocale": "",
 		"resources": {
-			"css": [{
-				"uri": "css/style.css"
-			}]
+			"css": [
+				{
+					"uri": "css/style.css"
+				}
+			]
 		},
 		"routing": {
 			"config": {
@@ -207,115 +209,134 @@
 					]
 				}
 			},
-			"routes": [{
-				"name": "RouteApp",
-				"pattern": "",
-				"target": [
-					"TargetApp"
-				]
-			}, {
-				"name": "ModuleSelect",
-				"pattern": "ModuleSelect/:orderId:/:param2:",
-				"target": [
-					"ModuleSelect"
-				]
-			}, {
-				"name": "DetailRequest",
-				"pattern": "DetailRequest/{RequestID}",
-				"target": [
-					"DetailRequest"
-				]
-			}, {
-				"name": "ViewRequest",
-				"pattern": "ViewRequest/{StatusId}",
-				"target": [
-					"ViewRequest"
-				]
-			}, {
-				"name": "LandingView",
-				"pattern": "LandingView",
-				"target": [
-					"LandingView"
-				]
-			}, {
-				"name": "CustomerRegistration",
-				"pattern": "CustomerRegistration",
-				"target": [
-					"CustomerRegistration"
-				]
-			}, {
-				"name": "HomePage",
-				"pattern": "HomePage",
-				"target": [
-					"HomePage"
-				]
-			}, {
-				"name": "AppHomePage",
-				"pattern": "AppHomePage",
-				"target": [
-					"AppHomePage"
-				]
-			}, {
-				"name": "SlaCreation",
-				"pattern": "SlaCreation",
-				"target": [
-					"SlaCreation"
-				]
-			}, {
-				"name": "FinanceCreateRequest",
-				"pattern": "FinanceCreateRequest",
-				"target": [
-					"FinanceCreateRequest"
-				]
-			}, {
-				"name": "FinanceRequestView",
-				"pattern": "FinanceRequestView",
-				"target": [
-					"FinanceRequestView"
-				]
-			}, {
-				"name": "ITCreateRequest",
-				"pattern": "ITCreateRequest",
-				"target": [
-					"ITCreateRequest"
-				]
-			}, {
-				"name": "PMCreateServiceRequest",
-				"pattern": "PMCreateServiceRequest",
-				"target": [
-					"PMCreateServiceRequest"
-				]
-			}, {
-				"name": "HRCreateRequest",
-				"pattern": "HRCreateRequest",
-				"target": [
-					"HRCreateRequest"
-				]
-			}, {
-				"name": "PMRequestView",
-				"pattern": "PMRequestView",
-				"target": [
-					"PMRequestView"
-				]
-			}, {
-				"name": "UserProfile",
-				"pattern": "UserProfile",
-				"target": [
-					"UserProfile"
-				]
-			}, {
-				"name": "UserManagementRequest",
-				"pattern": "UserManagementRequest",
-				"target": [
-					"UserManagementRequest"
-				]
-			}, {
-				"name": "SCMCreateRequest",
-				"pattern": "SCMCreateRequest",
-				"target": [
-					"SCMCreateRequest"
-				]
-			}],
+			"routes": [
+				{
+					"name": "RouteApp",
+					"pattern": "",
+					"target": [
+						"TargetApp"
+					]
+				},
+				{
+					"name": "ModuleSelect",
+					"pattern": "ModuleSelect/:orderId:/:param2:",
+					"target": [
+						"ModuleSelect"
+					]
+				},
+				{
+					"name": "DetailRequest",
+					"pattern": "DetailRequest/{RequestID}",
+					"target": [
+						"DetailRequest"
+					]
+				},
+				{
+					"name": "ViewRequest",
+					"pattern": "ViewRequest/{StatusId}",
+					"target": [
+						"ViewRequest"
+					]
+				},
+				{
+					"name": "LandingView",
+					"pattern": "LandingView",
+					"target": [
+						"LandingView"
+					]
+				},
+				{
+					"name": "CustomerRegistration",
+					"pattern": "CustomerRegistration",
+					"target": [
+						"CustomerRegistration"
+					]
+				},
+				{
+					"name": "HomePage",
+					"pattern": "HomePage",
+					"target": [
+						"HomePage"
+					]
+				},
+				{
+					"name": "AppHomePage",
+					"pattern": "AppHomePage",
+					"target": [
+						"AppHomePage"
+					]
+				},
+				{
+					"name": "SlaCreation",
+					"pattern": "SlaCreation",
+					"target": [
+						"SlaCreation"
+					]
+				},
+				{
+					"name": "FinanceCreateRequest",
+					"pattern": "FinanceCreateRequest",
+					"target": [
+						"FinanceCreateRequest"
+					]
+				},
+				{
+					"name": "FinanceRequestView",
+					"pattern": "FinanceRequestView",
+					"target": [
+						"FinanceRequestView"
+					]
+				},
+				{
+					"name": "ITCreateRequest",
+					"pattern": "ITCreateRequest",
+					"target": [
+						"ITCreateRequest"
+					]
+				},
+				{
+					"name": "PMCreateServiceRequest",
+					"pattern": "PMCreateServiceRequest",
+					"target": [
+						"PMCreateServiceRequest"
+					]
+				},
+				{
+					"name": "HRCreateRequest",
+					"pattern": "HRCreateRequest",
+					"target": [
+						"HRCreateRequest"
+					]
+				},
+				{
+					"name": "PMRequestView",
+					"pattern": "PMRequestView",
+					"target": [
+						"PMRequestView"
+					]
+				},
+				{
+					"name": "UserProfile",
+					"pattern": "UserProfile",
+					"target": [
+						"UserProfile"
+					]
+				},
+				{
+					"name": "UserManagementRequest",
+					"pattern": "UserManagementRequest",
+					"target": [
+						"UserManagementRequest"
+					]
+				},
+				{
+					"name": "SCMCreateRequest",
+					"pattern": "SCMCreateRequest",
+					"target": [
+						"SCMCreateRequest"
+					]
+				}
+			],
 			"targets": {
 				"TargetApp": {
 					"viewType": "XML",
