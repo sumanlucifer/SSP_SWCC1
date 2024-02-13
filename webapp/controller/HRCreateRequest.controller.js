@@ -441,7 +441,7 @@ sap.ui.define([
 							"-")[0] : "",
 						"Zibegda": this.handleOdataDateFormat(oPayloadHeader.Zibegda),
 						"Gesch": oPayloadHeader.Gesch,
-						"Natsl": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split(
+						"Natio": this.getModel().getProperty("/CountryF4/") ? this.getModel().getProperty("/CountryF4/").split(
 							"-")[0] : "",
 						"Vorna": oPayloadHeader.Vorna,
 						"Nach2": oPayloadHeader.Nach2,
