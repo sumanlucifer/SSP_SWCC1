@@ -263,9 +263,9 @@
     font-family: 'SWCC-4-Bold';
 
 }
-.ssp-title .sapMTitle
-{
-width:9;	
+
+.ssp-title .sapMTitle {
+    width: 95%;
 }
 
 .home-btn:hover .sapUiIcon {
