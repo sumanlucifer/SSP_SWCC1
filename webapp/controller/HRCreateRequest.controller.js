@@ -835,7 +835,7 @@ sap.ui.define([
 
 			onDownloadClaim: function () {
 				// Specify the PDF file URL
-				var pdfUrl = "./util/Claimform.pdf";
+				var pdfUrl = "../util/Claimform.pdf";
 
 				var link = document.createElement("a");
 				link.href = pdfUrl;
