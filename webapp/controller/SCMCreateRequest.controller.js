@@ -738,7 +738,7 @@ sap.ui.define([
 						"SecProj": oPayloadHeader.SecProj,
 						"ExTc": oPayloadHeader.ExTc,
 						"Txz01": oPayloadHeader.Txz01,
-						"Matkl": this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : ""
 					},
 
