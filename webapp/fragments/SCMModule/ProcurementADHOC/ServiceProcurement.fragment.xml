@@ -29,7 +29,7 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>totalestimatedvalue}" required="true"/>
-				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
+				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TenPre/}">
@@ -72,15 +72,14 @@
 					</customData>
 				</Input>-->
 				<Label text="{i18n>suggestedcompany}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>extratermsconditions}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}"/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
-				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/EstPrice/}" valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.RequeststatF4-/RequiredstatF4/"
@@ -112,29 +111,11 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>economicfeasibilitystudy}" required="false"/>
-				<!--	<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZECON_FEAS')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
-					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
-					</customData>
-				</Input>-->
 				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
 				<Label text="{i18n>securityprojectapproval}" required="fasle"/>
-				<!--<Input
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSEC_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ProjectstatusF4/}">
-					<customData>
-						<core:CustomData key="Status" value="Status"/>
-						<core:CustomData key="Text" value="Text"/>
-					</customData>
-				</Input>-->
 				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/SecProj/}">
 					<core:Item key="A" text="Avaliable"/>
 					<core:Item key="NA" text="Not Required"/>
@@ -212,7 +193,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>itemdetail}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" id="idItemDetailTable" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
 			<Table items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData1'}" sticky="ColumnHeaders,HeaderToolbar"
@@ -240,7 +221,7 @@
 					<ColumnListItem vAlign="Middle">
 						<cells>
 							<Input placeholder="Enter Short Text" showSuggestion="" value="{TXZ01}" showValueHelp="" valueHelpRequest="" liveChange=""/>
-							<Input placeholder="Enter Quantity" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input placeholder="Enter Quantity" type="Number" showSuggestion="" value="{Menge}"/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
 								placeholder="Select UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{uomF4}">
 								<customData>
@@ -248,7 +229,8 @@
 									<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
 								</customData>
 							</Input>
-							<Input placeholder="" showSuggestion="" type="Number" value="{UnitPrice}"/>
+							<Input enabled="{= ${Menge} !== '' ? true : false }" placeholder="Enter Unit Price" liveChange="handleLiveChangeServcePrcUnitPrice"
+								type="Number" value="{UnitPrice}"/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/CostcenterF4/" width="100%"
 								placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{CostcenterF4}">
 								<customData>

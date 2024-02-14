@@ -995,7 +995,7 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
-				debugger;
+
 				var sTable = oEvent.getSource().getId().split("-")[2] ? oEvent.getSource().getId().split("-")[2] : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" || this.getModel().getProperty("/SCMAppVisible/") ===
 					"SSA-PSCM-2004-2" ? this.updateItemAddModel(this.getModel().getProperty(
@@ -1124,6 +1124,26 @@ sap.ui.define([
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
 				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/", iEstimated);
+
+			},
+
+			handleLiveChangeServcePrcUnitPrice: function (oEvent) {
+				debugger;
+				var sBindingPath = oEvent.getSource().getBindingContext().getPath();
+				var iItemIndex = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
+				var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+				var sQty = parseInt(oEvent.getSource().getBindingContext().getObject().Menge);
+
+				var sTotal = sUnit * sQty;
+
+				this.getModel().setProperty(`${sBindingPath}/TotalPrice/`, sTotal);
+
+				const totalSum = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/itemData1").reduce((acc, currentItem) => acc +
+					parseInt(currentItem.TotalPrice), 0);
+				this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/", totalSum);
+				var iEstimated = (totalSum) + 0.15 * totalSum;
+
+				this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/EstPrice/", iEstimated);
 
 			},
 
