@@ -51,22 +51,17 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ServiceGroupSet-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
-					placeholder="Enter Material group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/MaterialgroupF4/}">
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
+					placeholder="Select Material Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{servicegroupF4}">
 					<customData>
-						<core:CustomData key="ExternalProductGroup" value="Material group"/>
-						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+						<core:CustomData key="Matkl" value="Service Code"/>
+						<core:CustomData key="Wgbez" value="Service Name"/>
 					</customData>
 				</Input>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{workCenterModel>Workcenter}"
-					items="{workCenterModel>/}">
-					<core:Item key="{workCenterModel>Workcenter}" text="{workCenterModel>Workcenter} - {workCenterModel>WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>Industrysector}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/IndustrySectorSet-com.swcc.Template.fragments.SCMModule.IndustrysectorF4-/IndustrysectorF4/"
 					width="100%" placeholder="Enter Industry Sector" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -76,24 +71,14 @@
 						<core:CustomData key="Value" value="Industry Sector Name"/>
 					</customData>
 				</Input>
-				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" id="industrySector" valueState="None" placeholder="Industry Sector"
-					selectedKey="{/ClasssificationandInventory/ChangeRequest/Key}" items="{/IndustrialSectorf4/}">
-					<core:Item key="{Key}" text="{Key} - {Value}"/>
-				</ComboBox>-->
-				<!--<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>-->
-				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>crtypedescription}" required="true"/>
+				<Input placeholder="Enter CR Type Description" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.BaseunitF4-/BaseunitF4/" width="100%"
-					placeholder="Enter Base UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/BaseunitF4/}">
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
+					placeholder="Select UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{uomF4}">
 					<customData>
-						<core:CustomData key="Product" value="Product"/>
-						<core:CustomData key="BaseUnit" value="Base Unit"/>
+						<core:CustomData key="UnitOfMeasure" value="Unit of Measure"/>
+						<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
@@ -137,17 +122,14 @@
 					placeholder="Enter Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClassF4/}">
 					<customData>
 						<core:CustomData key="Class" value="Class"/>
-						<core:CustomData key="conv_char" value="Text"/>
+						<core:CustomData key="conv_char" value="Description"/>
 					</customData>
 				</Input>
 				<!--<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 			</fm:content>
 		</fm:SimpleForm>
-		<Table id="totalamount2" sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
+		<Table sticky="ColumnHeaders,HeaderToolbar" inset="false" class="ssp-request-Table sapUiContentPadding">
 			<columns>
-				<Column>
-					<Text text="Sno"/>
-				</Column>
 				<Column width="">
 					<Text text="{i18n>Characteristicsdescription}"/>
 				</Column>
@@ -158,21 +140,12 @@
 			<items>
 				<ColumnListItem vAlign="Middle">
 					<cells>
-						<Text text="1"/>
-						<Text text=""/>
-						<Text text=""/>
+						<Input value="{Stock}" enabled="false"/>
+						<Input placeholder="Enter Value" type="Number" value="{Menge}" liveChange=""/>
 					</cells>
 				</ColumnListItem>
 			</items>
 		</Table>
-	</VBox>
-	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
-		<Label text="{i18n>Attachments}" required="false"/>
-		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
-			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
-			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
-			placeholder="Choose a file" style="Emphasized"
-			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 	</VBox>
 	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">

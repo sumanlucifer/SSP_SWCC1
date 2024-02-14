@@ -100,13 +100,13 @@
 						<Text text="{i18n>uom}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Storage Location}"/>
+						<Text text="{i18n>Storagelocation}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Stock(Supplying Plant)}"/>
+						<Text text="{i18n>stock}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Unit Price(Supplying Plant)}"/>
+						<Text text="{i18n>unitprice}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>

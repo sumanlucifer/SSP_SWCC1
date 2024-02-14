@@ -17,11 +17,11 @@
 						</fm:SimpleForm>
 					</VBox>
 					<FlexBox height="" alignItems="Start" justifyContent="End">
-						<Button text="{i18n>Approve}" type="Success" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
+						<Button text="{i18n>Approve}" type="Accept" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
 							visible="{= ${/RequestDetails/Header/Action} === true ? true : false}"/>
-						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Neutral" press="onRejectPress"
+						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Reject" press="onRejectPress"
 							class="sapUiSizeCompact sapUiTinyMarginEnd"/>
-						<Button text="{i18n>Close}" type="Negative" press="onCloseRequestPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
+						<Button text="{i18n>Close}" type="Reject" press="onCloseRequestPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
 							visible="{= ${/RequestDetails/Header/Status} === 'Request Completed' || ${/RequestDetails/Header/Status} === 'Request Cancelled' ? false : true}"/>
 					</FlexBox>
 					<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.DetailRequest" type="XML"/>
