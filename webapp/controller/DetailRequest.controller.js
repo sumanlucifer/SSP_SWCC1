@@ -142,7 +142,9 @@ sap.ui.define([
 			if (sPreviousHash !== undefined) {
 				window.history.go(-1);
 			} else {
-				this.getRouter().navTo("ViewRequest", {}, true);
+				this.oRouter.navTo("ViewRequest", {
+					StatusId: "NA"
+				});
 			}
 		},
 
