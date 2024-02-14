@@ -36,7 +36,6 @@ sap.ui.define([
 			},
 			/* Value help request */
 			onValueHelpRequest: function (oEve) {
-				debugger;
 				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[4]) : "";
 				this.getModel().setProperty("/itemIndex", iIndex);
 				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6], oEve.getSource().getBindingContext());
@@ -571,7 +570,11 @@ sap.ui.define([
 						},
 						ServiceProcurement: {
 							Header: {},
-							itemData: [],
+							itemData: [{
+								Txz01: "",
+								Matkl: "",
+								Ekgrp: ""
+							}],
 							itemData1: []
 						},
 						PrepareofDirectpurchase: {
@@ -649,7 +652,7 @@ sap.ui.define([
 			},
 
 			onProceed: function () {
-				debugger;
+
 				//-----------------Procurement-ADHOC-----------------------------------------------------
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.ScmCreateServiceProcurementRequest(this.getModel().getProperty(
 					"/ProcurementAdhoc/ServiceProcurement/Header/"), this.getModel().getProperty(
@@ -710,7 +713,8 @@ sap.ui.define([
 					null;
 			},
 
-			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem) {
+			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem, aitem1) {
+				debugger;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -722,7 +726,7 @@ sap.ui.define([
 					/*	"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"EstPrice": `${oPayloadHeader.EstPrice}`,
+						"EstPrice": `${oPayloadHeader.TotalPrice}`,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
 						"AFNAM": oPayloadHeader.AFNAM,
@@ -737,9 +741,9 @@ sap.ui.define([
 						"EconFeas": oPayloadHeader.EconFeas,
 						"SecProj": oPayloadHeader.SecProj,
 						"ExTc": oPayloadHeader.ExTc,
-						"Txz01": oPayloadHeader.Txz01,
-						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
-						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : ""
+						"Txz01": aItem[0].Txz01,
+						"Matkl": aItem[0].servicegroupF4 ? aItem[0].servicegroupF4.split("-")[0] : "",
+						"Ekgrp": aItem[0].PurchasinggroupF4 ? aItem[0].PurchasinggroupF4.split("-")[0] : ""
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -1052,14 +1056,7 @@ sap.ui.define([
 					UnitPrice: "",
 					Afnam: ""
 				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" && sTable === "idItemOverviewTable" ? this.updateItemAddModel(
-					this.getModel().getProperty(
-						"/ProcurementAdhoc/ServiceProcurement/itemData"), {
-						Txz01: "",
-						Matkl: "",
-						Ekgrp: ""
-					}, "/ProcurementAdhoc/ServiceProcurement/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" && sTable === "idItemDetailTable" ? this.updateItemAddModel(
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemAddModel(
 					this.getModel().getProperty(
 						"/ProcurementAdhoc/ServiceProcurement/itemData1"), {
 						TXZ01: "",
@@ -1134,7 +1131,7 @@ sap.ui.define([
 
 			/* File uplaod 	*/
 			onFileAdded: function (oEvent) {
-				debugger;
+
 				var that = this;
 				var oFileUploader = oEvent.getSource();
 				var aFiles = oEvent.getParameter("files");
@@ -1155,7 +1152,6 @@ sap.ui.define([
 
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
 
-				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
 
 				if (oModel.length >= 5) {

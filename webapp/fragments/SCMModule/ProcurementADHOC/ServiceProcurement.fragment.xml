@@ -161,8 +161,9 @@
 			<!--<Button id="idItemOverviewTable" icon="sap-icon://add" press=".onAddItemsPress"/>-->
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="true" height="auto">
-			<Table sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5"
-				growingScrollToLoad="true" growing="true" fixedLayout="true">
+			<Table items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
 				<columns>
 					<Column>
 						<Text text="{i18n>serviceshort}"/>
@@ -178,9 +179,9 @@
 				<items>
 					<ColumnListItem vAlign="Middle">
 						<cells>
-							<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/Txz01}" showValueHelp="" valueHelpRequest=""/>
+							<Input placeholder="" showSuggestion="" value="{Txz01}" showValueHelp="" valueHelpRequest=""/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
-								placeholder="Select Service Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{servicegroupF4}">
+								placeholder="Select Service Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{Matkl}">
 								<customData>
 									<core:CustomData key="Matkl" value="Service Code"/>
 									<core:CustomData key="Wgbez" value="Service Name"/>
@@ -189,7 +190,7 @@
 							<Input
 								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
 								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{PurchasinggroupF4}">
+								value="{Ekgrp}">
 								<customData>
 									<core:CustomData key="PurchasingGroup" value="Purchasing Group"/>
 									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
