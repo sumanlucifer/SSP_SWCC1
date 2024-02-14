@@ -16,7 +16,7 @@
 							</fm:toolbar>
 						</fm:SimpleForm>
 					</VBox>
-					<FlexBox height="" alignItems="Start" justifyContent="End">
+					<FlexBox height="" alignItems="Start" justifyContent="End" class="view-reqbtn">
 						<Button text="{i18n>Approve}" type="Accept" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
 							visible="{= ${/RequestDetails/Header/Action} === true ? true : false}"/>
 						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Reject" press="onRejectPress"
