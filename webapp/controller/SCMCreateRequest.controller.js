@@ -729,7 +729,7 @@ sap.ui.define([
 						"EstPrice": `${oPayloadHeader.TotalPrice}`,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
-						"AFNAM": oPayloadHeader.AFNAM,
+						"Afnam": oPayloadHeader.AFNAM,
 						"PrJust": oPayloadHeader.PrJust,
 						"ContDur": oPayloadHeader.ContDur,
 						"ConfProj": this.getModel().getProperty("/ConfidentialF4/") ? this.getModel().getProperty("/ConfidentialF4/").split("-")[0] : "",
@@ -749,7 +749,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								TXZ01: items.Txz01,
+								Txz01: items.Txz01,
 								Meins: items.uomF4 ? items.uomF4.split("-")[0] : "",
 								Kostl: items.CostcenterF4 ? items.CostcenterF4.split("-")[0] : "",
 								Menge: items.Menge,
@@ -1060,8 +1060,6 @@ sap.ui.define([
 					this.getModel().getProperty(
 						"/ProcurementAdhoc/ServiceProcurement/itemData1"), {
 						TXZ01: "",
-						Meins: "",
-						Kostl: "",
 						Menge: "",
 						UnitPrice: ""
 					}, "/ProcurementAdhoc/ServiceProcurement/itemData1") : "";

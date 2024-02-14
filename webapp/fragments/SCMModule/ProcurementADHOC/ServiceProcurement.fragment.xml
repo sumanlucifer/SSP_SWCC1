@@ -181,7 +181,7 @@
 						<cells>
 							<Input placeholder="" showSuggestion="" value="{Txz01}" showValueHelp="" valueHelpRequest=""/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
-								placeholder="Select Service Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{Matkl}">
+								placeholder="Select Service Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{servicegroupF4}">
 								<customData>
 									<core:CustomData key="Matkl" value="Service Code"/>
 									<core:CustomData key="Wgbez" value="Service Name"/>
@@ -190,7 +190,7 @@
 							<Input
 								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
 								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{Ekgrp}">
+								value="{PurchasinggroupF4}">
 								<customData>
 									<core:CustomData key="PurchasingGroup" value="Purchasing Group"/>
 									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
