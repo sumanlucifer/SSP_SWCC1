@@ -61,7 +61,9 @@
 					<cells>
 						<ObjectIdentifier title="{RequestID}"/>
 						<Text text="{RequestType}"/>
-						<Text text="{path:'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
+						<!--<Text text="{path:'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<Text text="{path: 'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy HH:mm:ss' } }"/>
+						<!--<Text text="{path: 'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy hh:mm:ss a' } }"/>-->
 						<Text text="{Material}"/>
 						<Text text="{SLA}"/>
 						<Text text="{Price}"/>
