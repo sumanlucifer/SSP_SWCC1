@@ -32,12 +32,13 @@
 				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TenPre/}">
+				<ComboBox placeholder="Select Tender Pre-Qualification" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TenPre/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
 				<Label text="{i18n>contractduration}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
+				<Input showSuggestion="" placeholder="Enter Contract Duration" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}"
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>projecttype}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjecttypeF4-/ProjecttypeF4/"
@@ -58,7 +59,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>technicalevaluationcriteria}" required="false"/>
-				<ComboBox selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TecEva/}">
+				<ComboBox placeholder="Enter Technical Evaluation" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TecEva/}">
 					<core:Item key="A" text="Avaliable"/>
 					<core:Item key="N" text="Not Avaliable"/>
 				</ComboBox>
@@ -72,12 +73,12 @@
 					</customData>
 				</Input>-->
 				<Label text="{i18n>suggestedcompany}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}"/>
+				<Input placeholder="Enter suggested company" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>extratermsconditions}" required="false"/>
-				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}"/>
+				<Input placeholder="Enter Terms and Conditions" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}"/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/EstPrice/}" valueHelpRequest=""/>
 				<Label text="{i18n>requeststat}" required="false"/>
