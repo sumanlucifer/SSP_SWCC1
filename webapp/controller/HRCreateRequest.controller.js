@@ -5,11 +5,12 @@ sap.ui.define([
 		"sap/ui/core/routing/History",
 		"sap/m/MessageBox",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
@@ -557,6 +558,10 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateterminationRequest: function (oPayloadHeader, aItem) {
+				debugger;
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Termination/Termination/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -741,7 +746,64 @@ sap.ui.define([
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
-			onAddItemsPress: function (oEvent) {
+			handleValidation: function (service, header, item) {
+				if (!this.handleHeaderValidation(service, header) || !this.handleItemValidation(service, item)) return false;
+				// Continue with the rest of the code if both validations pass
+			},
+			handleHeaderValidation: function (service, aData) {
+				var isValid = true;
+				var validationProperties;
+				if (service === "SSA-HR-1005-1") {
+					validationProperties = [{
+						path: "/Termination/Termination/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TerminationF4/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-FIN-3007-1") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-2") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-4") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				}
+				var bValid = true;
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						bValid = false;
+
+					}
+				});
+
+				if (!bValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
+
+				return bValid;
+			},
+			/*onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
@@ -767,7 +829,7 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-			},
+			},*/
 
 			onSearch: function () {
 
