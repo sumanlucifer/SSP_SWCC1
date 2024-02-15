@@ -33,7 +33,8 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>resigndate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/Termination/Termination/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/Termination/Termination/Header/Begda/}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>TerminationReason}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TERMINATIONREASON-com.swcc.Template.fragments.HRModule.TerminationF4-/TerminationF4/"
 					width="100%" placeholder="Enter Termination Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
