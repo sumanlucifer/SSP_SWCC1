@@ -1510,7 +1510,34 @@ sap.ui.define([
 			handleHeaderValidation: function (service, aData) {
 				var isValid = true;
 				var validationProperties;
-				if (service === "SSA-FIN-3007-3") {
+
+				if (service === "SSA-FIN-3001-2") {
+					validationProperties = [{
+							path: "/AccountPayable/ManagePettyCash/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/CashJornalF4/",
+							condition: true
+						}, {
+							path: "/AccountPayable/ManagePettyCash/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3001-1") {
+
+					validationProperties = [{
+							path: "/AccountPayable/RecordProcess/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
 							path: "/InsuranceF4/",

@@ -18,7 +18,7 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
@@ -27,12 +27,13 @@
 					</customData>
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>quantity}" required="true"/>
+				<Label text="{i18n>quantity}" required="false"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-				<Input placeholder="Enter Quantity" value="{/AccountPayable/RecordProcess/Header/quantity/}"/>
+				<Input placeholder="Enter Quantity" enabled="false" value="{/AccountPayable/RecordProcess/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountPayable/RecordProcess/Header/Descript/}"
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/AccountPayable/RecordProcess/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/RecordProcess/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AccountPayable/RecordProcess/Header/Descript/}" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
 					items="{/PMCreateRequest/WorkCenterF4/}">
@@ -41,7 +42,7 @@
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Label text="{i18n>CompanyCode}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
 					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CompanycodeF4/}">
@@ -51,8 +52,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/RecordProcess/Header/FiscalYear}" change="handleChange"
-					class="sapUiSmallMarginBottom"/>
+				<DatePicker valueState="{= ${/AccountPayable/RecordProcess/Header/FiscalYear} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/RecordProcess/Header/FiscalYear} === '' ? 'Enter Fiscal' : '' }" displayFormat="yyyy"
+					valueFormat="yyyy" value="{/AccountPayable/RecordProcess/Header/FiscalYear}" change="handleChange" class="sapUiSmallMarginBottom"/>
 			</fm:content>
 			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
 				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
