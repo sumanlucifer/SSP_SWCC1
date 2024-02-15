@@ -96,8 +96,8 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" liveChange="handleLiveChangeUnit"/>
+							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" change="handleLiveChange"/>
+							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" change="handleLiveChangeUnit"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input value="{Plant}" enabled="false"/>
 							<Input
