@@ -156,7 +156,10 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 				var sServiceURL = this.getOwnerComponent().getModel("ZSSP_USER_SRV").sServiceUrl;
 
-				fetch(sServiceURL + "/SLAPreviewSet(Username='WT_POWER')/$value")
+				var sLoggedInUserName = this.getCurrentUserLoggedIn();
+				var sAPI = `/SLAPreviewSet(Username='${sLoggedInUserName}')/$value`;
+
+				fetch(sServiceURL + sAPI)
 					.then(response => response.blob())
 					.then(blob => {
 						const url = URL.createObjectURL(blob);
