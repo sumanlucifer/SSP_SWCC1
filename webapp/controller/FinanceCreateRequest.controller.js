@@ -505,24 +505,28 @@ sap.ui.define([
 
 				var filters = [{
 						path: "CompanyCode",
-						value: "1000",
-						group: "ManagePettyCashFilter"
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManagePettyCashFilter",
+						useOR: true
 					}, {
 						path: "FiscalYear",
 						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear"),
-						group: "ManagePettyCashFilter"
+						group: "ManagePettyCashFilter",
+						useOR: true
 					}, {
 						path: "PostingNo",
 						value: this.getModel().getProperty("/CashJornalF4") ? this.getModel().getProperty("/CashJornalF4").split("-")[0] : "",
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "CompanyCode",
-						value: "1000",
-						group: "ManageRecordInvoiceFilter"
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManageRecordInvoiceFilter",
+						useOR: true
 					}, {
 						path: "FiscalYear",
-						value: this.getModel().getProperty("/RecordandProcessInvoice/FiscalYear"),
-						group: "ManageRecordInvoiceFilter"
+						value: this.getModel().getProperty("/AccountPayable/RecordProcess/Header/FiscalYear"),
+						group: "ManageRecordInvoiceFilter",
+						useOR: true
 					}, {
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
@@ -1506,7 +1510,34 @@ sap.ui.define([
 			handleHeaderValidation: function (service, aData) {
 				var isValid = true;
 				var validationProperties;
-				if (service === "SSA-FIN-3007-3") {
+
+				if (service === "SSA-FIN-3001-2") {
+					validationProperties = [{
+							path: "/AccountPayable/ManagePettyCash/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/CashJornalF4/",
+							condition: true
+						}, {
+							path: "/AccountPayable/ManagePettyCash/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3001-1") {
+
+					validationProperties = [{
+							path: "/AccountPayable/RecordProcess/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
 							path: "/InsuranceF4/",

@@ -18,9 +18,9 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/AccountPayable/ManagePettyCash/Header/quantity/}"/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AccountPayable/ManagePettyCash/Header/quantity/}"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
@@ -30,8 +30,9 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountPayable/ManagePettyCash/Header/Descript/}"
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/AccountPayable/ManagePettyCash/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/ManagePettyCash/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AccountPayable/ManagePettyCash/Header/Descript/}" valueHelpRequest=""/>
 				<!--<Label text="{i18n>workcenter}" required="true"/>-->
 				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"-->
 				<!--	items="{/PMCreateRequest/WorkCenterF4/}">-->
@@ -40,7 +41,7 @@
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Label text="{i18n>CompanyCode}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
 					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CompanycodeF4/}">
@@ -50,11 +51,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}"
-					change="handleManagePettyCashDateChange" class=""/>
+				<DatePicker valueState="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} === '' ? 'Enter Fiscal Year' : '' }" displayFormat="yyyy"
+					valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}" change="handleManagePettyCashDateChange" class=""/>
 				<Label text="{i18n>CashJournalNUmber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_CASHJOURNALVH1-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/"
-					width="100%" placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input enabled="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} !== undefined ? true : false }"
+					valueState="{= ${/CashJornalF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CashJornalF4/} === '' ? 'Enter Cash Jornal Code' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_CASHJOURNALVH1-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/" width="100%"
+					placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CashJornalF4/}">
 					<customData>
 						<core:CustomData key="CashJournalDocumentInternalID" value="Cash Journal Document Internal ID"/>
