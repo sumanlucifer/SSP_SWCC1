@@ -505,24 +505,28 @@ sap.ui.define([
 
 				var filters = [{
 						path: "CompanyCode",
-						value: "1000",
-						group: "ManagePettyCashFilter"
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManagePettyCashFilter",
+						useOR: true
 					}, {
 						path: "FiscalYear",
 						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear"),
-						group: "ManagePettyCashFilter"
+						group: "ManagePettyCashFilter",
+						useOR: true
 					}, {
 						path: "PostingNo",
 						value: this.getModel().getProperty("/CashJornalF4") ? this.getModel().getProperty("/CashJornalF4").split("-")[0] : "",
 						group: "ManagePettyCashFilter"
 					}, {
 						path: "CompanyCode",
-						value: "1000",
-						group: "ManageRecordInvoiceFilter"
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManageRecordInvoiceFilter",
+						useOR: true
 					}, {
 						path: "FiscalYear",
-						value: this.getModel().getProperty("/RecordandProcessInvoice/FiscalYear"),
-						group: "ManageRecordInvoiceFilter"
+						value: this.getModel().getProperty("/AccountPayable/RecordProcess/Header/FiscalYear"),
+						group: "ManageRecordInvoiceFilter",
+						useOR: true
 					}, {
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",

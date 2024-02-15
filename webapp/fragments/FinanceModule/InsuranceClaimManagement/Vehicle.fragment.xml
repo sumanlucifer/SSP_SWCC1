@@ -111,7 +111,7 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Sub Number"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
 						<Text text="Claim Received Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -129,13 +129,13 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Policy No."/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
 						<Text text="Accident Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Claim Status"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
 						<Text text="Payment Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -169,7 +169,7 @@
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
 							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
-							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" value="{ClaimStatus}" placeholder="Select Claim Status"
+							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
 								<items>
 									<core:Item key="Closed" text="Closed"/>
@@ -179,7 +179,7 @@
 								</items>
 							</ComboBox>
 							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{PayDate}" class="sapUiSmallMarginBottom"/>
-							<Text text="{InsStatus}"/>
+							<Text text="{zzpolicy_status}"/>
 							<Text text="{path:'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
 							<Text text="{path:'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
 							<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
