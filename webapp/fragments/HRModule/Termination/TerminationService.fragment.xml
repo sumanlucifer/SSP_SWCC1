@@ -34,8 +34,7 @@
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>resigndate}" required="true"/>
 				<DatePicker valueState="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Enter Date' : '' }"
-					value="{path: '/Termination/Termination/Header/Begda/', type: 'sap.ui.model.type.Date', formatOptions: { pattern: 'dd/MM/yyyy' }}"
+					valueStateText="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Enter Date' : '' }" value="{/Termination/Termination/Header/Begda/}"
 					displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>TerminationReason}" required="true"/>
 				<Input valueState="{= ${/TerminationF4/} === '' ? 'Error' : 'None' }"

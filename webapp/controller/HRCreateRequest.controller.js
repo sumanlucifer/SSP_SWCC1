@@ -513,6 +513,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreaterecruitmentRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Recruitment/InternalRecruitment/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -762,20 +764,52 @@ sap.ui.define([
 						condition: true
 					}];
 
-				} else if (service === "SSA-FIN-3007-1") {
+				} else if (service === "SSA-HR-1001-1") {
 					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-2") {
+						path: "/Recruitment/InternalRecruitment/Header/Zjnum/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zoreq/",
+						condition: true
+					}, {
+						path: "/JobgradeF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjdescr/",
+						condition: true
+					}, {
+						path: "/JoblocationF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjfreq/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zscopelevel/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjtasks/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1001-2") {
 					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
+						path: "/Recruitment/ExternalRecruitment/Header/Zexp/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjtasks/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjqreq/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjdept/",
+						condition: true
+					}];
 				} else if (service === "SSA-FIN-3007-4") {
 					validationProperties = [{
 							path: "/InsuranceF4/",

@@ -23,48 +23,34 @@
 				<!--	<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>-->
 				<Label text="{i18n>jobtitle}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
-					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? 'Enter Job Title' : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="{i18n>jobtitle}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Code"/>
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
-				<!--	<Label text="{i18n>jobgrade}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
-					placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Job Grade"/>
-						<core:CustomData key="value_1" value="Job Desc"/>
-					</customData>
-				</Input>-->
 				<Label text="{i18n>yearsofexp}" required="true"/>
-				<Input placeholder="Enter Job Number" type="Number" value="{/Recruitment/ExternalRecruitment/Header/Zexp/}"/>
-				<!--	<Label text="{i18n>joblocation}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
-					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
-					<customData>
-						<core:CustomData key="keyfield" value="Job Code"/>
-						<core:CustomData key="value_1" value="Job Location"/>
-					</customData>
-				</Input>-->
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>yearsofexp}"
+					type="Number" value="{/Recruitment/ExternalRecruitment/Header/Zexp/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<!--	<Label text="{i18n>jobdesc}" required="true"/>
-				<Input placeholder="Enter Job Description" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjdescr/}" showValueHelp=""
-					valueHelpRequest=""/>-->
+				<Input placeholder="{i18n>Description}" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>thewebsite}" required="true"/>
-				<Input placeholder="Enter Requirements and Conditions" value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>thewebsite}"
+					value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>
 				<Label text="{i18n>taskduties}" required="true"/>
-				<Input placeholder="Enter Scope of Advertising" showSuggestion="" value="{/Recruitment/ExternalRecruitment/Header/Zjtasks/}"
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>taskduties}"
+					showSuggestion="" value="{/Recruitment/ExternalRecruitment/Header/Zjtasks/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>qualificationreq}" required="true"/>
-				<Input placeholder="Enter Requirements for Position" value="{/Recruitment/ExternalRecruitment/Header/Zjqreq/}" showSuggestion=""
-					showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>tasksrequired}" required="true"/>
-				<Input placeholder="Enter Task" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
-					valueHelpRequest=""/>-->
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }"
+					placeholder="{i18n>qualificationreq}" value="{/Recruitment/ExternalRecruitment/Header/Zjqreq/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
