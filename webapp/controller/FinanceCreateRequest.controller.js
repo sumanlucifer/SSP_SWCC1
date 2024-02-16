@@ -481,7 +481,6 @@ sap.ui.define([
 
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
-
 				this._filterTable(aFilter, "Control");
 			},
 			_getfilterforControl: function (aFilter) {
@@ -705,6 +704,10 @@ sap.ui.define([
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1346,11 +1349,13 @@ sap.ui.define([
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
 			},
+
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -1502,12 +1507,12 @@ sap.ui.define([
 
 			},
 
-			handleValidation: function (service, header, item) {
-				if (!this.handleHeaderValidation(service, header) || !this.handleItemValidation(service, item)) return false;
-				// Continue with the rest of the code if both validations pass
-			},
+			// 			handleValidation: function (service, header, item) {
+			// 				if (!this.handleHeaderValidation(service) || !this.handleItemValidation(service, item)) return false;
+			// 				// Continue with the rest of the code if both validations pass
+			// 			},
 
-			handleHeaderValidation: function (service, aData) {
+			handleHeaderValidation: function (service) {
 				var isValid = true;
 				var validationProperties;
 
@@ -1529,7 +1534,8 @@ sap.ui.define([
 
 					validationProperties = [{
 							path: "/AccountPayable/RecordProcess/Header/Descript/",
-							condition: true
+							condition: true,
+							errorMessage: "Please enter Description."
 						}, {
 							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
 							condition: true
@@ -1591,7 +1597,16 @@ sap.ui.define([
 			handleItemValidation: function (service, aData) {
 				var isValid = true;
 
-				if (service === "SSA-FIN-3007-1") {
+				if (service === "SSA-FIN-3001-2") {
+					var itemCheck = aData ? aData.length === 0 : false;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+
+				} else if (service === "SSA-FIN-3007-1") {
 					var itemCheck = aData.length === 0;
 					var hasNewClaim = aData.some(element => element.New === true);
 					if (itemCheck) {

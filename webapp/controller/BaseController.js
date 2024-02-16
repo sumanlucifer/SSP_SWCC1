@@ -1,12 +1,14 @@
 sap.ui.define([
 	"sap/ui/core/mvc/Controller",
+	"sap/ui/core/UIComponent",
 	'sap/ui/core/BusyIndicator',
 	'com/swcc/Template/util/api',
 	"sap/ui/model/json/JSONModel",
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/History",
-	"sap/ui/Device"
-], function (Controller, BusyIndicator, api, JSONModel, MessageBox, History, Device) {
+	"sap/ui/Device",
+	"sap/m/library"
+], function (Controller, UIComponent, BusyIndicator, api, JSONModel, MessageBox, History, Device, mobileLibrary) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -15,7 +17,7 @@ sap.ui.define([
 		// 	___________________________________________________Router Method_________________________________________________________
 		getRouter: function () {
 
-			return sap.ui.core.UIComponent.getRouterFor(this);
+			return UIComponent.getRouterFor(this);
 
 		},
 
@@ -476,6 +478,13 @@ sap.ui.define([
 
 			// Return null if no match is found
 			return null;
+		},
+		_handleError: function (error) {
+			// Call the error handler object to handle the error
+			var errorHandler = this.getOwnerComponent().getErrorHandler();
+			if (errorHandler) {
+				errorHandler._showServiceError(error);
+			}
 		},
 
 		/**

@@ -2,7 +2,7 @@ sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
 	"com/swcc/Template/model/models",
-	"com/swcc/Template/controller/ErrorHandler"
+	"./controller/ErrorHandler"
 ], function (UIComponent, Device, models, ErrorHandler) {
 	"use strict";
 
@@ -20,7 +20,7 @@ sap.ui.define([
 		init: function () {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
-			//	this._oErrorHandler = new ErrorHandler(this);
+			this._oErrorHandler = new ErrorHandler(this);
 
 			// enable routing
 			this.getRouter().initialize();
@@ -30,7 +30,10 @@ sap.ui.define([
 			var slanguage = this.getLanguage();
 			sap.ui.getCore().getConfiguration().setLanguage(slanguage);
 		},
-
+		// Define a method to get the error handler instance
+		getErrorHandler: function () {
+			return this._oErrorHandler;
+		},
 		getLanguage: function () {
 			var sLang = sap.ui.getCore().getConfiguration().getLanguage();
 			if (sLang === "AR") {
