@@ -17,13 +17,15 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Label text="{i18n>serviceproduct}" required="false"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>userjob}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_USERJOBLOCATION-com.swcc.Template.fragments.HRModule.UserJoblocationF4-/UserJoblocationF4/"
-					width="100%" placeholder="Enter User Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/UserJoblocationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/UserJoblocationF4/} === '' ? ${i18n>userjob} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_USERJOBLOCATION-com.swcc.Template.fragments.HRModule.UserJoblocationF4-/UserJoblocationF4/"
+					width="100%" placeholder="{i18n>userjob}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/UserJoblocationF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Code"/>
@@ -31,14 +33,20 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>requireddate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/} === '' ? ${i18n>requireddate} : '' }"
+					value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+					change="handleChange"/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>userid}" required="true"/>
+				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>itemdetails}" required="true"/>
-				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/} === '' ? ${i18n>itemdetails} : '' }"
+					placeholder="{i18n>doyouhave}" value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

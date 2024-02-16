@@ -562,8 +562,6 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateterminationRequest: function (oPayloadHeader, aItem) {
-				debugger;
-
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
 						"/Termination/Termination/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
@@ -626,6 +624,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeelearningRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -633,7 +633,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
-						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Reqdat),
 						"Itemdet": oPayloadHeader.Itemdet,
 						"Userjobloc": this.getModel().getProperty("/UserJoblocationF4/") ? this.getModel().getProperty("/UserJoblocationF4/").split(
 							"-")[0] : ""
@@ -757,7 +757,7 @@ sap.ui.define([
 			handleHeaderValidation: function (service, aData) {
 				var isValid = true;
 				var validationProperties;
-				if (service === "SSA-HR-1005-1") {
+				if (service === "SSA-HR-1005-1" || service === "SSA-HR-1004-1") {
 					validationProperties = [{
 						path: "/Termination/Termination/Header/Begda/",
 						condition: true
@@ -765,7 +765,6 @@ sap.ui.define([
 						path: "/TerminationF4/",
 						condition: true
 					}];
-
 				} else if (service === "SSA-HR-1001-1") {
 					validationProperties = [{
 						path: "/Recruitment/InternalRecruitment/Header/Zjnum/",
@@ -812,13 +811,17 @@ sap.ui.define([
 						path: "/Recruitment/ExternalRecruitment/Header/Zjdept/",
 						condition: true
 					}];
-				} else if (service === "SSA-FIN-3007-4") {
+				} else if (service === "SSA-HR-1002-1") {
 					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
+						path: "/UserJoblocationF4/",
+						condition: true
+					}, {
+						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/",
+						condition: true
+					}, {
+						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/",
+						condition: true
+					}];
 				}
 				var bValid = true;
 
