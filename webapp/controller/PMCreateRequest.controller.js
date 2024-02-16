@@ -391,7 +391,8 @@ sap.ui.define([
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 

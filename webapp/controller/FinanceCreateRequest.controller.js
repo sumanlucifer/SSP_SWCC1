@@ -481,7 +481,6 @@ sap.ui.define([
 
 				//   apply filter before value help open 
 				var aFilter = this.getModel().getProperty("/DynamicValuehelpFilter");
-
 				this._filterTable(aFilter, "Control");
 			},
 			_getfilterforControl: function (aFilter) {
@@ -1346,11 +1345,13 @@ sap.ui.define([
 						this._handleMessageBoxProceed(`Service Request has been created : ${oResponse.Notificat}`);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
 			},
+
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -1529,11 +1530,15 @@ sap.ui.define([
 
 					validationProperties = [{
 							path: "/AccountPayable/RecordProcess/Header/Descript/",
-							condition: true
+							condition: true,
+							errorMessage: "Please enter Description."
 						}, {
 							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
 							condition: true
-						}
+						}, {
+							path: "/AccountPayable/RecordProcess/itemData",
+							condition: this.getModel().getProperty("/AccountPayable/RecordProcess/itemData").length !== 0 // Check if itemData is not empty
+						},
 
 					];
 
@@ -1570,6 +1575,16 @@ sap.ui.define([
 				}
 				if (!validationProperties) return true;
 
+				// validationProperties.forEach(property => {
+				// 	var propertyValue = this.getModel().getProperty(property.path);
+
+				// 	if (!propertyValue || (property.condition && !property.condition)) {
+				// 		this.getModel().setProperty(property.path, "");
+				// 		this.getModel().setProperty("/ValidationFlag/", true);
+				// 		isValid = false;
+
+				// 	}
+				// });
 				validationProperties.forEach(property => {
 					var propertyValue = this.getModel().getProperty(property.path);
 
@@ -1577,13 +1592,13 @@ sap.ui.define([
 						this.getModel().setProperty(property.path, "");
 						this.getModel().setProperty("/ValidationFlag/", true);
 						isValid = false;
-
+						MessageToast.show(property.errorMessage); // Show specific error message
 					}
 				});
 
-				if (!isValid) {
-					MessageToast.show("Please Enter all Mandatory Fields");
-				}
+				// if (!isValid) {
+				// 	MessageToast.show("Please Enter all Mandatory Fields");
+				// }
 
 				return isValid;
 			},
