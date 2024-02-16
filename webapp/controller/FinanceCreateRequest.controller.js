@@ -704,6 +704,10 @@ sap.ui.define([
 			},
 
 			FinanceCreateManangePettyCashRequest: function (oPayloadHeader, aItem) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/AccountPayable/ManagePettyCash/customItemData/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1503,12 +1507,12 @@ sap.ui.define([
 
 			},
 
-			handleValidation: function (service, header, item) {
-				if (!this.handleHeaderValidation(service, header) || !this.handleItemValidation(service, item)) return false;
-				// Continue with the rest of the code if both validations pass
-			},
+			// 			handleValidation: function (service, header, item) {
+			// 				if (!this.handleHeaderValidation(service) || !this.handleItemValidation(service, item)) return false;
+			// 				// Continue with the rest of the code if both validations pass
+			// 			},
 
-			handleHeaderValidation: function (service, aData) {
+			handleHeaderValidation: function (service) {
 				var isValid = true;
 				var validationProperties;
 
@@ -1535,10 +1539,7 @@ sap.ui.define([
 						}, {
 							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
 							condition: true
-						}, {
-							path: "/AccountPayable/RecordProcess/itemData",
-							condition: this.getModel().getProperty("/AccountPayable/RecordProcess/itemData").length !== 0 // Check if itemData is not empty
-						},
+						}
 
 					];
 
@@ -1575,16 +1576,6 @@ sap.ui.define([
 				}
 				if (!validationProperties) return true;
 
-				// validationProperties.forEach(property => {
-				// 	var propertyValue = this.getModel().getProperty(property.path);
-
-				// 	if (!propertyValue || (property.condition && !property.condition)) {
-				// 		this.getModel().setProperty(property.path, "");
-				// 		this.getModel().setProperty("/ValidationFlag/", true);
-				// 		isValid = false;
-
-				// 	}
-				// });
 				validationProperties.forEach(property => {
 					var propertyValue = this.getModel().getProperty(property.path);
 
@@ -1592,13 +1583,13 @@ sap.ui.define([
 						this.getModel().setProperty(property.path, "");
 						this.getModel().setProperty("/ValidationFlag/", true);
 						isValid = false;
-						MessageToast.show(property.errorMessage); // Show specific error message
+
 					}
 				});
 
-				// if (!isValid) {
-				// 	MessageToast.show("Please Enter all Mandatory Fields");
-				// }
+				if (!isValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
 
 				return isValid;
 			},
@@ -1606,7 +1597,16 @@ sap.ui.define([
 			handleItemValidation: function (service, aData) {
 				var isValid = true;
 
-				if (service === "SSA-FIN-3007-1") {
+				if (service === "SSA-FIN-3001-2") {
+					var itemCheck = aData ? aData.length === 0 : false;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+
+				} else if (service === "SSA-FIN-3007-1") {
 					var itemCheck = aData.length === 0;
 					var hasNewClaim = aData.some(element => element.New === true);
 					if (itemCheck) {
