@@ -23,7 +23,7 @@
 				<!--	<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>-->
 				<Label text="{i18n>jobtitle}" required="false"/>
-				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? 'Enter Job Title' : '' }"
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? ${i18n>jobtitle} : '' }"
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
 					placeholder="{i18n>jobtitle}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
 					<customData>
@@ -32,23 +32,26 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>yearsofexp}" required="true"/>
-				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>yearsofexp}"
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? ${i18n>yearsofexp} : '' }" placeholder="{i18n>yearsofexp}"
 					type="Number" value="{/Recruitment/ExternalRecruitment/Header/Zexp/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="{i18n>Description}" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>thewebsite}" required="true"/>
-				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>thewebsite}"
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? ${i18n>thewebsite} : '' }" placeholder="{i18n>thewebsite}"
 					value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>
+				<!--	<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? '{i18n>thewebsite}' : '' }" placeholder="{i18n>thewebsite}"
+					value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>-->
 				<Label text="{i18n>taskduties}" required="true"/>
-				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }" placeholder="{i18n>taskduties}"
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjtasks/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjtasks/} === '' ? ${i18n>taskduties} : '' }" placeholder="{i18n>taskduties}"
 					showSuggestion="" value="{/Recruitment/ExternalRecruitment/Header/Zjtasks/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>qualificationreq}" required="true"/>
-				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zoreq/} === '' ? 'Enter Recruitment' : '' }"
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjqreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjqreq/} === '' ? ${i18n>qualificationreq} : '' }"
 					placeholder="{i18n>qualificationreq}" value="{/Recruitment/ExternalRecruitment/Header/Zjqreq/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
