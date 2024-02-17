@@ -775,7 +775,7 @@ sap.ui.define([
 
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/FinanceAppVisible/"),
-						this.getModel().getProperty("/AccountPayable/RecordProcess/itemData"))) return false;
+						this.getModel().getProperty("/AccountPayable/RecordProcess/customItemData"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -805,7 +805,7 @@ sap.ui.define([
 			FinanceCreateManageProcessRequest: function (oPayloadHeader, aItem) {
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/FinanceAppVisible/"),
-						this.getModel().getProperty("/AccountsReceivable/Manageandprocess/itemData"))) return false;
+						this.getModel().getProperty("/AccountsReceivable/Manageandprocess/customItemData"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -928,6 +928,7 @@ sap.ui.define([
 			},
 
 			FinanceCreateIssueFinancialStmntsRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1652,6 +1653,47 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/LedgerF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-2") {
+
+					validationProperties = [{
+							path: "/CurrencytypeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/",
+							condition: true
+						}, {
+							path: "/ChartofaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/LedgerF4/",
+							condition: true
+						},
+
+						{
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/",
+							condition: true
+						}, {
+							path: "/FinancialstatmentF4/",
+							condition: true
+						}, {
+							path: "/LanguageF4/",
 							condition: true
 						}
 
