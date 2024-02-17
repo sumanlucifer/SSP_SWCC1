@@ -12,6 +12,7 @@ sap.ui.define([
 
 	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator, MessageToast) {
 		"use strict";
+
 		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
 				/**/

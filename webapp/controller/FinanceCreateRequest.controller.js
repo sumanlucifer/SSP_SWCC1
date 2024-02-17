@@ -526,11 +526,49 @@ sap.ui.define([
 						value: this.getModel().getProperty("/AccountPayable/RecordProcess/Header/FiscalYear"),
 						group: "ManageRecordInvoiceFilter",
 						useOR: true
-					}, {
+					},
+
+					{
+						path: "PostingDate",
+						value: this.getModel().getProperty("/AccountsReceivable/Billing/Header/PostingDate/") ? this.handleOdataDateFormat(this.getModel()
+							.getProperty("/AccountsReceivable/Billing/Header/PostingDate/")) : "",
+						group: "BillingRequestFilter"
+					},
+
+					{
+						path: "CompanyCode",
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "BillingRequestFilter",
+						useOR: true
+					},
+
+					{
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
-						group: "ManageProcessCollectionFilter"
+						group: "BillingRequestFilter"
+					},
+
+					{
+						path: "CustomerCode",
+						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
+						group: "ManageProcessCollectionFilter",
+						useOR: true
+					},
+
+					{
+						path: "CompanyCode",
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManageProcessCollectionFilter",
+						useOR: true
 					}, {
+
+						path: "PostingDate",
+						value: this.getModel().getProperty("/AccountsReceivable/Manageandprocess/Header/PostingDate/") ? this.handleOdataDateFormat(this
+							.getModel().getProperty("/AccountsReceivable/Manageandprocess/Header/PostingDate/")) : "",
+						group: "ManageProcessCollectionFilter"
+					},
+
+					{
 						path: "zzinspono",
 						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "MarineTransporationFilter"
@@ -563,7 +601,7 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-2" ? this.callCommonFinanceSearchRequest(
 					"/AccReceivableBillingSet/",
 					"GET",
-					dynamicFilters.ManagePettyCashFilter, null, "/AccountsReceivable/Billing/itemData/") : null;
+					dynamicFilters.BillingRequestFilter, null, "/AccountsReceivable/Billing/itemData/") : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3002-1" ? this.callCommonFinanceSearchRequest(
 					"/ArCollectionProcessSet/",
@@ -765,6 +803,9 @@ sap.ui.define([
 			},
 
 			FinanceCreateManageProcessRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/AccountsReceivable/Manageandprocess/itemData"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -791,6 +832,9 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceCreateBillingRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/AccountsReceivable/Billing/itemData"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -856,6 +900,8 @@ sap.ui.define([
 			},
 
 			FinanceCreatePrepareReviewBalanceRequest: function (oPayloadHeader) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1511,11 +1557,6 @@ sap.ui.define([
 
 			},
 
-			// 			handleValidation: function (service, header, item) {
-			// 				if (!this.handleHeaderValidation(service) || !this.handleItemValidation(service, item)) return false;
-			// 				// Continue with the rest of the code if both validations pass
-			// 			},
-
 			handleHeaderValidation: function (service) {
 				var isValid = true;
 				var validationProperties;
@@ -1566,6 +1607,51 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3002-2") {
+
+					validationProperties = [{
+							path: "/AccountsReceivable/Billing/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/customercodeF4/",
+							condition: true
+						}, {
+							path: "/AccountsReceivable/Billing/Header/PostingDate/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-1") {
+
+					validationProperties = [{
+							path: "/CurrencytypeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/ChartofaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/LedgerF4/",
 							condition: true
 						}
 
@@ -1635,6 +1721,14 @@ sap.ui.define([
 					}
 
 				} else if (service === "SSA-FIN-3001-1") {
+					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+				} else if (service === "SSA-FIN-3002-1") {
 					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
 
 					if (!itemCheck) {
