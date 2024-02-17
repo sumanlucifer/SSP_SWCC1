@@ -21,16 +21,18 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/AccountsReceivable/Manageandprocess/Header/quantity/}"/>
 				<Label text="{i18n>BANKGL}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
-					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/GlaccountF4/}">
+				<Input valueState="{= ${/GlaccountF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/GlaccountF4/} === '' ? 'Enter GL Account' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/" width="100%"
+					placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/GlaccountF4/}">
 					<customData>
 						<core:CustomData key="GLAccount" value="GL Account Code"/>
 						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>CustomerCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Customer_VH-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/" width="100%"
+				<Input valueState="{= ${/customercodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/customercodeF4/} === '' ? 'Enter Customer Code' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_Customer_VH-com.swcc.Template.fragments.FinanceModule.customercodeF4-/customercodeF4/" width="100%"
 					placeholder="Enter customer code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/customercodeF4/}">
 					<customData>
@@ -78,7 +80,8 @@
 				<!--	</customData>-->
 				<!--</Input>-->
 				<Label text="{i18n>Postingdt}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"
+				<DatePicker valueState="{= ${/AccountsReceivable/Manageandprocess/Header/PostingDate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountsReceivable/Manageandprocess/Header/PostingDate/} === '' ? 'Enter Posting Date' : '' }" valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"
 					change="handleManagePettyCashDateChange" class=""/>
 				<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
 					class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>

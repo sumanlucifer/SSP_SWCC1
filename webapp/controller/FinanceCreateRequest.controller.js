@@ -1553,6 +1553,24 @@ sap.ui.define([
 
 					];
 
+				} else if (service === "SSA-FIN-3002-1") {
+
+					validationProperties = [{
+							path: "/GlaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/customercodeF4/",
+							condition: true
+						}, {
+							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
+							condition: true
+						}
+
+					];
+
 				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
