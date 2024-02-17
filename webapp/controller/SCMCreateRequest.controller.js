@@ -729,6 +729,8 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"EstPrice": `${oPayloadHeader.TotalPrice}`,
+						"Totalvalue": `${oPayloadHeader.TotalServiceLevel}`,
+						"Servlev": oPayloadHeader.ServiceLevel,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
 						/*"Afnam": oPayloadHeader.AFNAM,*/
@@ -772,6 +774,8 @@ sap.ui.define([
 					/*"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
+						"Totalvalue": `${oPayloadHeader.TotalServiceLevel}`,
+						"Servlev": oPayloadHeader.ServiceLevel,
 						"PrJust": oPayloadHeader.PrJust,
 						"TenPre": oPayloadHeader.TenPre,
 						"EstPrice": `${oPayloadHeader.EstPrice}`
