@@ -30,11 +30,11 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value=""/>
 				<Label text="{i18n>crtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/CRTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhCrTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
 					placeholder="Enter CR Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CrtypeF4/}">
 					<customData>
-						<core:CustomData key="Key" value="CR Type"/>
-						<core:CustomData key="Value" value="CR Name"/>
+						<core:CustomData key="UsmdCreqType" value="CR Type"/>
+						<core:CustomData key="Txtmi" value="CR Name"/>
 					</customData>
 				</Input>
 				<!--	<ComboBox width="100%" change="" selectionChange="onSelectPlant" valueState="None" placeholder="Select Plant"
@@ -42,12 +42,12 @@
 					<core:Item key="{Key}" text="{Key} - {Value}"/>
 				</ComboBox>-->
 				<Label text="{i18n>Materialtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/MaterialTypeSet-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ProductTypeText-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
 					placeholder="Enter Material Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialtypeF4/}">
 					<customData>
-						<core:CustomData key="Key" value="Material Type"/>
-						<core:CustomData key="Value" value="Material Name"/>
+						<core:CustomData key="ProductType" value="Material Type"/>
+						<core:CustomData key="MaterialTypeName" value="Material Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>
@@ -63,14 +63,15 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>Industrysector}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/IndustrySectorSet-com.swcc.Template.fragments.SCMModule.IndustrysectorF4-/IndustrysectorF4/"
+				<Input textFormatMode="KeyValue" placeholder="Enter product" value="U - Utility Industry"/>
+				<!--<Input ariaLabelledBy="-ZSSP_SCM_SRV-/IndustrySectorSet-com.swcc.Template.fragments.SCMModule.IndustrysectorF4-/IndustrysectorF4/"
 					width="100%" placeholder="Enter Industry Sector" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/IndustrysectorF4/}">
 					<customData>
 						<core:CustomData key="Key" value="Industry Sector"/>
 						<core:CustomData key="Value" value="Industry Sector Name"/>
 					</customData>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>crtypedescription}" required="true"/>
 				<Input placeholder="Enter CR Type Description" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
@@ -118,11 +119,11 @@
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>class}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_CLASS-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ClfnClassVH-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
 					placeholder="Enter Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClassF4/}">
 					<customData>
-						<core:CustomData key="Class" value="Class"/>
-						<core:CustomData key="conv_char" value="Description"/>
+						<core:CustomData key="ClassType" value="Class"/>
+						<core:CustomData key="Class" value="Description"/>
 					</customData>
 				</Input>
 				<!--<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
