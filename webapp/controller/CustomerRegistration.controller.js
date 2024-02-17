@@ -10,7 +10,6 @@ sap.ui.define([
 
 	return BaseController.extend("com.swcc.Template.controller.CustomerRegistration", {
 		onInit: function () {
-
 			this.oRouter = this.getRouter();
 			var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			oRouter.attachRouteMatched(function (oEvent) {
