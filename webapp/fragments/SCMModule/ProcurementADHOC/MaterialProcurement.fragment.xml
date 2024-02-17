@@ -25,6 +25,12 @@
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
+				<Label text="{i18n>servicelevel}" required="true"/>
+				<ComboBox selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+					<core:Item key="N" text="Normal"/>
+					<core:Item key="U" text="Urgent"/>
+					<core:Item key="E" text="Emergency"/>
+				</ComboBox>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -32,6 +38,8 @@
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="true"/>
 				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
+				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

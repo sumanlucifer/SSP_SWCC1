@@ -1,6 +1,6 @@
 <core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
 	<ValueHelpDialog title="Class" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
-		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="ClassType" descriptionKey="Class" class="value-header">
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Class" descriptionKey="Class_Text" class="value-header">
 		<filterBar>
 			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
 				<fb:filterGroupItems>
