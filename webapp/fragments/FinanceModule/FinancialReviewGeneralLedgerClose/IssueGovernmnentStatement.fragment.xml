@@ -120,10 +120,6 @@
 						<core:CustomData key="Name" value="Financial Auditor Name"/>
 					</customData>
 				</Input>
-				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>FinancialAuditor}"
-					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}" items="{/FinancialAuditorf4/}">
-					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
-				</ComboBox>-->
 				<Label text="{i18n>Authority}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Authority-com.swcc.Template.fragments.FinanceModule.AuthorityF4-/AuthorityF4/" width="100%"
 					placeholder="Enter Authority" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AuthorityF4}">

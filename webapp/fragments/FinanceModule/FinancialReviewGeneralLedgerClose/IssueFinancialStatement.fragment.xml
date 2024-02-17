@@ -20,19 +20,15 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/quantity/}"/>
-				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
-					value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/}" valueHelpRequest=""/>
+				<Input valueState="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -60,13 +56,18 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>ComparisionYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/}"
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/} === '' ? 'Enter Comparision Year' : '' }"
+					displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/}"
 					change="handleChange" class=""/>
 				<Label text="{i18n>ReportingYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/}"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/} === '' ? 'Enter Reporting Year' : '' }"
+					displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>CurrencyType}" required="true"/>
-				<Input
+				<Input valueState="{= ${/CurrencytypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CurrencytypeF4/} === '' ? 'Enter Currency Type' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_CurrencyTypeAndValuationView-com.swcc.Template.fragments.FinanceModule.CurrencytypeF4-/CurrencytypeF4/"
 					width="100%" placeholder="Enter Currency type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CurrencytypeF4/}">
@@ -76,7 +77,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Ledger}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_LedgerStdVH-com.swcc.Template.fragments.FinanceModule.LedgerF4-/LedgerF4/" width="100%"
+				<Input valueState="{= ${/LedgerF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/LedgerF4/} === '' ? 'Enter Ledger' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_LedgerStdVH-com.swcc.Template.fragments.FinanceModule.LedgerF4-/LedgerF4/" width="100%"
 					placeholder="Enter Ledger" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/LedgerF4/}">
 					<customData>
 						<core:CustomData key="Ledger" value="Ledger code"/>
@@ -84,7 +86,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FinanacialStatmentVersion}" required="true"/>
-				<Input
+				<Input valueState="{= ${/FinancialstatmentF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialstatmentF4/} === '' ? 'Enter Financial Statement' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/C_FinancialStatementVersion-com.swcc.Template.fragments.FinanceModule.FinancialstatmentF4-/FinancialstatmentF4/"
 					width="100%" placeholder="Enter Financial Statement" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/FinancialstatmentF4/}">
@@ -107,7 +110,6 @@
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilabmonFrom/}" width="100%" enabled="true"
 					valueState="None" placeholder="From">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -125,10 +127,9 @@
 						<core:Item key="15" text="15"/>
 					</items>
 				</ComboBox>
-				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilabmonTo/}" width="100%" enabled="true"
-					valueState="None" placeholder="To">
+				<ComboBox enabled="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilabmonFrom/} !== undefined ? true : false }"
+					selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilabmonTo/}" width="100%" valueState="None" placeholder="To">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -150,7 +151,6 @@
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilavmonFrom/}" width="100%" enabled="true"
 					valueState="None" placeholder="From">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -168,10 +168,9 @@
 						<core:Item key="15" text="15"/>
 					</items>
 				</ComboBox>
-				<ComboBox selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilavmonTo/}" width="100%" enabled="true"
-					valueState="None" placeholder="To">
+				<ComboBox enabled="{= ${/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilavmonFrom/} !== undefined ? true : false }"
+					selectedKey="{/FinancialReviewGeneralClose/IssueFinancialStatement/Header/BilavmonTo/}" width="100%" valueState="None" placeholder="To">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -190,7 +189,8 @@
 					</items>
 				</ComboBox>
 				<Label text="{i18n>Language}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_LanguageText-com.swcc.Template.fragments.FinanceModule.LanguageF4-/LanguageF4/" width="100%"
+				<Input valueState="{= ${/LanguageF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/LanguageF4/} === '' ? 'Enter Language Code' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_LanguageText-com.swcc.Template.fragments.FinanceModule.LanguageF4-/LanguageF4/" width="100%"
 					placeholder="Enter Language " valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/LanguageF4/}">
 					<customData>
 						<core:CustomData key="LanguageCode" value="Language code"/>
