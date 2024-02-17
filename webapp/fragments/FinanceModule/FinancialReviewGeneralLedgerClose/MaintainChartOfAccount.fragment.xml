@@ -27,11 +27,14 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/MaintainChart/Header/Descript/}" valueHelpRequest=""/>
+				<Input valueState="{= ${/FinancialReviewGeneralClose/MaintainChart/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/MaintainChart/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/MaintainChart/Header/Descript/}"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
