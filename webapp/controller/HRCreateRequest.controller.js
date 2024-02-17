@@ -589,6 +589,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatetimemanagementRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TimeManagement/ActivatingAccessCard/Header"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -845,19 +847,28 @@ sap.ui.define([
 					}];
 				} else if (service === "SSA-HR-1007-1") {
 					validationProperties = [{
-						path: "/EventF4/",
+						path: "/TimeManagement/ActivatingAccessCard/Header/Vorna/",
 						condition: true
 					}, {
-						path: "/EventreasonF4/",
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zarea/",
 						condition: true
 					}, {
-						path: "/PayscalegroupF4/",
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zdasetting/",
 						condition: true
 					}, {
-						path: "/PayscalelevelF4/",
+						path: "/Termination/Termination/Header/Zendate/",
 						condition: true
 					}, {
-						path: "/CompensationRewards/RegularRewards/Header/Begda/",
+						path: "/TimeManagement/ActivatingAccessCard/Header/Nachn/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Idcot/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zcardno/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Orgeh/",
 						condition: true
 					}];
 				}
