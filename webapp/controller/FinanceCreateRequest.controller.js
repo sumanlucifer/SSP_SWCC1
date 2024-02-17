@@ -834,7 +834,7 @@ sap.ui.define([
 			FinanceCreateBillingRequest: function (oPayloadHeader, aItem) {
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/FinanceAppVisible/"),
-						this.getModel().getProperty("/AccountsReceivable/Billing/itemData"))) return false;
+						this.getModel().getProperty("/AccountsReceivable/Billing/customItemData/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1820,7 +1820,7 @@ sap.ui.define([
 				var isValid = true;
 
 				if (service === "SSA-FIN-3001-2") {
-					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
+					var itemCheck = !aData || aData.length === 0 ? false : true;
 
 					if (!itemCheck) {
 						MessageToast.show("item Data is required to Submit the request");
@@ -1829,7 +1829,7 @@ sap.ui.define([
 					}
 
 				} else if (service === "SSA-FIN-3001-1") {
-					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
+					var itemCheck = !aData || aData.length === 0 ? false : true;
 
 					if (!itemCheck) {
 						MessageToast.show("item Data is required to Submit the request");
@@ -1837,7 +1837,15 @@ sap.ui.define([
 						return isValid;
 					}
 				} else if (service === "SSA-FIN-3002-1") {
-					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+				} else if (service === "SSA-FIN-3002-2") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
 
 					if (!itemCheck) {
 						MessageToast.show("item Data is required to Submit the request");
@@ -1845,9 +1853,9 @@ sap.ui.define([
 						return isValid;
 					}
 				} else if (service === "SSA-FIN-3007-1") {
-					var itemCheck = aData.length === 0;
+					var itemCheck = !aData || aData.length === 0 ? false : true;
 					var hasNewClaim = aData.some(element => element.New === true);
-					if (itemCheck) {
+					if (!itemCheck) {
 						MessageToast.show("Claim Data Required to Submit");
 						isValid = false;
 						return isValid;
