@@ -559,6 +559,7 @@ sap.ui.define([
 					busy: false,
 					PlantF4: "",
 					TypeofcompetitionF4: "",
+					IndustrysectorF4: "U- Utility Industry",
 					//WorkCenterF4: [],
 					//Crtype: [],
 					UploadedData: [],
@@ -694,7 +695,8 @@ sap.ui.define([
 				//-------------------------Classification and Inventory-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" ? this.ScmCreatechangeRequest(this.getModel()
 						.getProperty(
-							"/ClasssificationandInventory/ChangeRequest/Header/"), "") :
+							"/ClasssificationandInventory/ChangeRequest/Header/"), this.getModel().getProperty(
+							"/ClasssificationandInventory/ChangeRequest/itemData/")) :
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.ScmCreateduplicateresolutionRequest(this.getModel()
 						.getProperty(
@@ -880,14 +882,24 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
-						//"Bwart": oPayloadHeader.BWART,
-						"Bwart": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
-						"Kostl": this.getModel().getProperty("/costF4/ ") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
-						"Wempf": oPayloadHeader.WEMPF,
+						"SecName": this.getModel().getProperty("/IndustrysectorF4/ ") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
+						"ReqParty": this.getModel().getProperty("/MaterialtypeF4/ ") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
+						"CompTyp": this.getModel().getProperty("/uomF4/ ") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
+						"EstCost": oPayloadHeader.EstCost,
+						"ImpPeriod": this.getModel().getProperty("/ClassF4/ ") ? this.getModel().getProperty("/ClassF4/").split("-")[0] : ""
 					},
-
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								/*Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",*/
+								Atinn: items.Atinn,
+								Atwrt: items.Atwrt
+									/*	Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",*/
+									/*Lglpa: items.Lgpla,*/
+									/*Sgtxt: items.Sgtxt,*/
+							};
+						}
+					)
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1075,7 +1087,7 @@ sap.ui.define([
 				this.getModel().setProperty(`${path}`, oItems);
 			},
 			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
+				var iRowNumberToDelete = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
@@ -1091,7 +1103,12 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/itemData")) : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+
+				// 	&& this.itemCalculationCheck(oEvent, iRowNumberToDelete, this.getModel()
+				// .getProperty(
+				// 	"/ProcurementAdhoc/MaterialProcurement/itemData"))
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" ? this.updateItemDeleteModel(
+					iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/itemData")) : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
@@ -1108,11 +1125,39 @@ sap.ui.define([
 				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
-			handleLiveChangeUnit: function (oEvent) {
 
+			itemCalculationCheck: function (oEVe, iRowNumber, aItemData) {
+				debugger;
+				var s = "";
+
+				var sTotal = sUnit * sQty;
+				this.getModel().setProperty(`${sBindingPath}/EstPrice/`, sTotal);
+
+				const totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData").reduce((acc, currentItem) => acc +
+					parseInt(currentItem.EstPrice), 0);
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/", totalSum);
+
+				if (service === "SSA-PSCM-2001-1") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				}
+
+				var iEstimated = (totalSum) + 0.15 * totalSum;
+
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/", iEstimated);
+			},
+			handleLiveChangeUnit: function (oEvent) {
+				debugger;
 				var sBindingPath = oEvent.getSource().getBindingContext().getPath();
 				var iItemIndex = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+				var service = this.getModel().getProperty("/SCMAppVisible/");
 				var sQty = parseInt(oEvent.getSource().getBindingContext().getObject().Menge);
 
 				var sTotal = sUnit * sQty;
@@ -1120,10 +1165,40 @@ sap.ui.define([
 
 				const totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/itemData").reduce((acc, currentItem) => acc +
 					parseInt(currentItem.EstPrice), 0);
+				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/", totalSum);
+
+				if (service === "SSA-PSCM-2001-1") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				}
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
 				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/", iEstimated);
+
+			},
+
+			onChangeServiceLevel: function (oEve) {
+				debugger;
+				var serviceLevel = oEve.getSource().getSelectedKey();
+				var service = this.getModel().getProperty("/SCMAppVisible/");
+				if (service === "SSA-PSCM-2001-1") {
+					var totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/");
+					if (!totalSum) return;
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				}
 
 			},
 
