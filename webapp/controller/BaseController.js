@@ -417,7 +417,7 @@ sap.ui.define([
 			var year = parseInt(parts[2], 10);
 
 			// Create a Date object with the parsed date
-			var myDate = new Date(year, month, day);
+			var myDate = new Date(year, month - 1, day);
 
 			// Get the current time
 			var currentTime = new Date();

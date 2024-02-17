@@ -19,10 +19,13 @@
 				<Label text="{i18n>serviceproduct}" required="true"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>jobnumber}" required="true"/>
-				<Input placeholder="Enter Job Number" value="{/Recruitment/InternalRecruitment/Header/Zjnum/}" type="Number"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjnum/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjnum/} === '' ? ${i18n>jobnumber} : '' }" placeholder="{i18n>jobnumber}"
+					value="{/Recruitment/InternalRecruitment/Header/Zjnum/}" type="Number"/>
 				<Label text="{i18n>jobtitle}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
-					placeholder="Enter Job title" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? ${i18n>jobtitle} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="{i18n>jobtitle}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Code"/>
 						<core:CustomData key="value_1" value="Job Desc"/>
@@ -33,37 +36,47 @@
 				<!--	<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>-->
 				<Label text="{i18n>jobgrade}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
-					placeholder="Select Job Grade" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
+				<Input valueState="{= ${/JobgradeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobgradeF4/} === '' ? ${i18n>jobgrade} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
+					placeholder="{i18n>jobgrade}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Grade"/>
 						<core:CustomData key="value_1" value="Job Desc"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>joblocation}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
-					placeholder="Enter Job Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
+				<Input valueState="{= ${/JoblocationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/JoblocationF4/} === '' ? ${i18n>joblocation} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
+					placeholder="{i18n>joblocation}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Job Code"/>
 						<core:CustomData key="value_1" value="Job Location"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>doyouhave}" required="true"/>
-				<Input placeholder="Enter Requirements for Position" value="{/Recruitment/InternalRecruitment/Header/Zoreq/}" showSuggestion=""
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zoreq/} === '' ? ${i18n>doyouhave} : '' }" placeholder="{i18n>doyouhave}"
+					value="{/Recruitment/InternalRecruitment/Header/Zoreq/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Input value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>jobdesc}" required="true"/>
-				<Input placeholder="Enter Job Description" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjdescr/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjdescr/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjdescr/} === '' ? ${i18n>jobdesc} : '' }" placeholder="{i18n>jobdesc}"
+					showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjdescr/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>requirementsandconditions}" required="true"/>
-				<Input placeholder="Enter Requirements and Conditions" value="{/Recruitment/InternalRecruitment/Header/Zjfreq/}" showSuggestion=""/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjfreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjfreq/} === '' ? ${i18n>requirementsandconditions} : '' }"
+					placeholder="{i18n>requirementsandconditions}" value="{/Recruitment/InternalRecruitment/Header/Zjfreq/}" showSuggestion=""/>
 				<Label text="{i18n>scope}" required="true"/>
-				<Input placeholder="Enter Scope of Advertising" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zscopelevel/}"
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zscopelevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zscopelevel/} === '' ? ${i18n>scope} : '' }" placeholder="{i18n>scope}"
+					showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zscopelevel/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>tasksrequired}" required="true"/>
-				<Input placeholder="Enter Task" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjtasks/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjtasks/} === '' ? ${i18n>tasksrequired} : '' }"
+					placeholder="{i18n>tasksrequired}" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>

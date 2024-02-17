@@ -19,13 +19,6 @@
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="true"/>
-				<!--<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
@@ -103,8 +96,8 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" liveChange="handleLiveChange"/>
-							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" liveChange="handleLiveChangeUnit"/>
+							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" change="handleLiveChange"/>
+							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" change="handleLiveChangeUnit"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input value="{Plant}" enabled="false"/>
 							<Input

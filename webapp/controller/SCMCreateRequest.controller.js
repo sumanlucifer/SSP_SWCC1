@@ -729,7 +729,7 @@ sap.ui.define([
 						"EstPrice": `${oPayloadHeader.TotalPrice}`,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
-						"Afnam": oPayloadHeader.AFNAM,
+						/*"Afnam": oPayloadHeader.AFNAM,*/
 						"PrJust": oPayloadHeader.PrJust,
 						"ContDur": oPayloadHeader.ContDur,
 						"ConfProj": this.getModel().getProperty("/ConfidentialF4/") ? this.getModel().getProperty("/ConfidentialF4/").split("-")[0] : "",

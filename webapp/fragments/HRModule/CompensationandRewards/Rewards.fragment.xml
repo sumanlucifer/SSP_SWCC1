@@ -17,45 +17,53 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Label text="{i18n>serviceproduct}" required="false"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>userid}" required="true"/>
+				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>event}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%"
-					placeholder="Select Event" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
+				<Input valueState="{= ${/EventF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/EventF4/} === '' ? ${i18n>event} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%" placeholder="{i18n>event}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Event"/>
 						<core:CustomData key="value_1" value="Event Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>payscale}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/"
-					width="100%" placeholder="Select Payscale Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/PayscalegroupF4/}">
+				<Input valueState="{= ${/PayscalegroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalegroupF4/} === '' ? ${i18n>payscale} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/" width="100%"
+					placeholder="{i18n>payscale}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayscalegroupF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Payscale "/>
 						<core:CustomData key="value_1" value="Payscale group"/>
 					</customData>
 				</Input>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/CompensationRewards/RegularRewards/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? ${i18n>startdate} : '' }" valueFormat="dd/MM/yyyy"
+					value="{/CompensationRewards/RegularRewards/Header/Begda/}" placeholder="{i18n>startdate}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
-					placeholder="Select event reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+				<Input valueState="{= ${/EventreasonF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/EventreasonF4/} === '' ? ${i18n>eventreason} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="{i18n>eventreason}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Event"/>
 						<core:CustomData key="value_1" value="Event Reason"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>payscalelevel}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/"
-					width="100%" placeholder="Select Payscale level" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>payscalelevel} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/" width="100%"
+					placeholder="{i18n>payscalelevel}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/PayscalelevelF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Payscale "/>

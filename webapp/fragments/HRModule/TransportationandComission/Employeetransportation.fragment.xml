@@ -61,7 +61,7 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="Enter Date"
+				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="{i18n>EnterDate}"
 					value="{/TransportationCommision/EmpTransporation/Header/Begda/}" change="handleChange" class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"

@@ -33,10 +33,14 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>resigndate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/Termination/Termination/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Enter Date' : '' }" value="{/Termination/Termination/Header/Begda/}"
+					displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>TerminationReason}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TERMINATIONREASON-com.swcc.Template.fragments.HRModule.TerminationF4-/TerminationF4/"
-					width="100%" placeholder="Enter Termination Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/TerminationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TerminationF4/} === '' ? 'Enter Termination Reason' : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TERMINATIONREASON-com.swcc.Template.fragments.HRModule.TerminationF4-/TerminationF4/" width="100%"
+					placeholder="Enter Termination Reason" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/TerminationF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Termination"/>

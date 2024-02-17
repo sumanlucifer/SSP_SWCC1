@@ -5,11 +5,12 @@ sap.ui.define([
 		"sap/ui/core/routing/History",
 		"sap/m/MessageBox",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.HRCreateRequest", {
 			onInit: function () {
@@ -454,6 +455,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreaterewardsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/CompensationRewards/RegularRewards/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -512,6 +515,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreaterecruitmentRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Recruitment/InternalRecruitment/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -540,6 +545,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateexternalrecruitmentRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Recruitment/ExternalRecruitment/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -557,6 +564,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateterminationRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Termination/Termination/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -569,9 +578,9 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						/*"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),*/
-						"Persno": "U001486",
-						"Massn": this.getModel().getProperty("/EventreasonF4/") ? this.getModel().getProperty("/EventreasonF4/").split("-")[0] : ""
+						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
+						/*"Persno": "U001486",*/
+						"Massn": this.getModel().getProperty("/TerminationF4/") ? this.getModel().getProperty("/TerminationF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": [],
 					"Attachments": aUploadData
@@ -617,6 +626,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeelearningRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -624,7 +635,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
-						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Begda),
+						"Reqdat": this.handleOdataDateFormat(oPayloadHeader.Reqdat),
 						"Itemdet": oPayloadHeader.Itemdet,
 						"Userjobloc": this.getModel().getProperty("/UserJoblocationF4/") ? this.getModel().getProperty("/UserJoblocationF4/").split(
 							"-")[0] : ""
@@ -741,7 +752,134 @@ sap.ui.define([
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
-			onAddItemsPress: function (oEvent) {
+			handleValidation: function (service, header, item) {
+				if (!this.handleHeaderValidation(service, header) || !this.handleItemValidation(service, item)) return false;
+				// Continue with the rest of the code if both validations pass
+			},
+			handleHeaderValidation: function (service, aData) {
+				var isValid = true;
+				var validationProperties;
+				if (service === "SSA-HR-1005-1" || service === "SSA-HR-1004-1" || service === "SSA-HR-1004-2" || service === "SSA-HR-1004-3" ||
+					service === "SSA-HR-1005-1") {
+					validationProperties = [{
+						path: "/Termination/Termination/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TerminationF4/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1001-1") {
+					validationProperties = [{
+						path: "/Recruitment/InternalRecruitment/Header/Zjnum/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zoreq/",
+						condition: true
+					}, {
+						path: "/JobgradeF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjdescr/",
+						condition: true
+					}, {
+						path: "/JoblocationF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjfreq/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zscopelevel/",
+						condition: true
+					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Zjtasks/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1001-2") {
+					validationProperties = [{
+						path: "/Recruitment/ExternalRecruitment/Header/Zexp/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjtasks/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjqreq/",
+						condition: true
+					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Zjdept/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1002-1") {
+					validationProperties = [{
+						path: "/UserJoblocationF4/",
+						condition: true
+					}, {
+						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/",
+						condition: true
+					}, {
+						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1003-1" || service === "SSA-HR-1003-2") {
+					validationProperties = [{
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/CompensationRewards/RegularRewards/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1007-1") {
+					validationProperties = [{
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/CompensationRewards/RegularRewards/Header/Begda/",
+						condition: true
+					}];
+				}
+				var bValid = true;
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						bValid = false;
+
+					}
+				});
+
+				if (!bValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
+
+				return bValid;
+			},
+			/*onAddItemsPress: function (oEvent) {
 				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
 				var oItems = oModel.map(function (oItem) {
 					return Object.assign({}, oItem);
@@ -767,7 +905,7 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-			},
+			},*/
 
 			onSearch: function () {
 
