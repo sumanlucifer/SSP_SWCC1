@@ -42,10 +42,11 @@
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>CompanyCode}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -79,9 +80,9 @@
 			<ToolbarSpacer/>
 			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 		</Toolbar>
-		<Table mode="MultiSelect" noDataText="No Data Found" growing="true" growingScrollToLoad="false" growingThreshold="10"
+		<Table mode="MultiSelect" noDataText="No Data Found" growingThreshold="5" growingScrollToLoad="true" growing="true"
 			sticky="ColumnHeaders,HeaderToolbar" items="{path : '/AccountPayable/RecordProcess/itemData'}" inset="false"
-			class="ssp-request-Table sapUiContentPadding" selectionChange="onTableSelectionChange">
+			class="ssp-request-Table sapUiContentPadding" fixedLayout="true" selectionChange="onTableSelectionChange">
 			<columns>
 				<Column width="20em">
 					<Text text="Invoice Number"/>

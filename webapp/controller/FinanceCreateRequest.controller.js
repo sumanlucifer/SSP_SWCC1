@@ -734,6 +734,10 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceCreateRecordInvoiceRequest: function (oPayloadHeader, aItem) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/AccountPayable/RecordProcess/itemData"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1526,6 +1530,9 @@ sap.ui.define([
 						}, {
 							path: "/AccountPayable/ManagePettyCash/Header/Descript/",
 							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
 						}
 
 					];
@@ -1538,6 +1545,9 @@ sap.ui.define([
 							errorMessage: "Please enter Description."
 						}, {
 							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
 							condition: true
 						}
 
@@ -1598,7 +1608,7 @@ sap.ui.define([
 				var isValid = true;
 
 				if (service === "SSA-FIN-3001-2") {
-					var itemCheck = aData ? aData.length === 0 : false;
+					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
 
 					if (!itemCheck) {
 						MessageToast.show("item Data is required to Submit the request");
@@ -1606,6 +1616,14 @@ sap.ui.define([
 						return isValid;
 					}
 
+				} else if (service === "SSA-FIN-3001-1") {
+					var itemCheck = !aData || aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
 				} else if (service === "SSA-FIN-3007-1") {
 					var itemCheck = aData.length === 0;
 					var hasNewClaim = aData.some(element => element.New === true);
