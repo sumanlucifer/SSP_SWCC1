@@ -18,8 +18,8 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/PerfomAsset/Header/quantity/}"/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/PerfomAsset/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/PerfomAsset/Header/Descript/}"
 					valueHelpRequest=""/>
@@ -49,14 +49,7 @@
 					</customData>
 				</Input>
 				<core:Title text=""/>
-				<Label text="{i18n>plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>ReportingDate}" required="true"/>
 				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="{i18n>EnterDate}"

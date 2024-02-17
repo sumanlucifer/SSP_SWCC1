@@ -18,24 +18,27 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>quantity}" required="true"/>
+				<Label text="{i18n>quantity}" required="false"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
-				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/DepreciationProcess/Header/quantity/}"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/DepreciationProcess/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/DepreciationProcess/Header/Descript/}"
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/AssetLifecycle/DepreciationProcess/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/DepreciationProcess/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AssetLifecycle/DepreciationProcess/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange"
-					class=""/>
+				<DatePicker valueState="{= ${/AssetLifecycle/DepreciationProcess/Header/FiscalYear/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/DepreciationProcess/Header/FiscalYear/} === '' ? 'Enter Fiscal Year' : '' }" displayFormat="yyyy"
+					valueFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange" class=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -52,7 +55,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Postingprd}" required="true"/>
-				<ComboBox selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Poper/}" width="100%" enabled="true" valueState="None" placeholder="From">
+				<ComboBox valueState="{= ${/AssetLifecycle/DepreciationProcess/Header/Poper/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/DepreciationProcess/Header/Poper/} === '' ? 'Enter Posting Period' : '' }"
+					selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Poper/}" width="100%" enabled="true" placeholder="From">
 					<items>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
