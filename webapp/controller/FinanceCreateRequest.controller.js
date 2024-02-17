@@ -1017,6 +1017,7 @@ sap.ui.define([
 			},
 
 			FinanceDepreciationProcessRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1760,6 +1761,24 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Poper",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-1") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/DepreciationProcess/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/DepreciationProcess/Header/Poper/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/DepreciationProcess/Header/FiscalYear/",
 							condition: true
 						}
 
