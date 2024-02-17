@@ -52,9 +52,10 @@
 					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<!--<Input required="true" width="100%" value="1000"/>-->
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -81,8 +82,9 @@
 				<!--</Input>-->
 				<Label text="{i18n>Postingdt}" required="true"/>
 				<DatePicker valueState="{= ${/AccountsReceivable/Manageandprocess/Header/PostingDate/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/AccountsReceivable/Manageandprocess/Header/PostingDate/} === '' ? 'Enter Posting Date' : '' }" valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}"
-					change="handleManagePettyCashDateChange" class=""/>
+					valueStateText="{= ${/AccountsReceivable/Manageandprocess/Header/PostingDate/} === '' ? 'Enter Posting Date' : '' }"
+					valueFormat="dd/MM/yyyy" value="{/AccountsReceivable/Manageandprocess/Header/PostingDate/}" change="handleManagePettyCashDateChange"
+					class=""/>
 				<Button text="Search" type="Default" press="onSearchFinanceRequest" width="40%"
 					class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
 			</fm:content>

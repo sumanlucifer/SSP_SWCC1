@@ -22,17 +22,14 @@
 				<Input placeholder="Enter Quantity" enabled="false" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/quantity/}"/>
 				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
-					value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/}" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
+				<Input valueState="{= ${/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/}"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -42,8 +39,10 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>ChartofAccount}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ChartOfAccountsStdVH-com.swcc.Template.fragments.FinanceModule.ChartofaccountF4-/ChartofaccountF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/ChartofaccountF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ChartofaccountF4/} === '' ? 'Enter Chart of Accounts' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ChartOfAccountsStdVH-com.swcc.Template.fragments.FinanceModule.ChartofaccountF4-/ChartofaccountF4/"
+					width="100%" placeholder="Enter Chart of Accounts" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ChartofaccountF4/}">
 					<customData>
 						<core:CustomData key="ChartOfAccounts" value="Chart of Account"/>
@@ -60,8 +59,10 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/}"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/} === '' ? 'Enter Fiscal Year' : '' }"
+					displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/}" change="handleChange"
+					class=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
@@ -73,7 +74,8 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>CurrencyType}" required="true"/>
-				<Input
+				<Input valueState="{= ${/CurrencytypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CurrencytypeF4/} === '' ? 'Enter Currency Type' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_CurrencyTypeAndValuationView-com.swcc.Template.fragments.FinanceModule.CurrencytypeF4-/CurrencytypeF4/"
 					width="100%" placeholder="Enter Currency type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/CurrencytypeF4/}">
@@ -83,7 +85,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Ledger}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_LedgerStdVH-com.swcc.Template.fragments.FinanceModule.LedgerF4-/LedgerF4/" width="100%"
+				<Input valueState="{= ${/LedgerF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/LedgerF4/} === '' ? 'Enter Ledger' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_LedgerStdVH-com.swcc.Template.fragments.FinanceModule.LedgerF4-/LedgerF4/" width="100%"
 					placeholder="Enter Ledger" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/LedgerF4/}">
 					<customData>
 						<core:CustomData key="Ledger" value="Ledger code"/>
@@ -94,7 +97,6 @@
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/BilabmonFrom/}" id="Report1" width="100%" enabled="true"
 					valueState="None" placeholder="From">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -115,7 +117,6 @@
 				<ComboBox selectedKey="{/FinancialReviewGeneralClose/PrepareReviewTrail/Header/BilabmonTo/}" width="100%" enabled="true" valueState="None"
 					placeholder="To">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -134,7 +135,7 @@
 					</items>
 				</ComboBox>
 			</fm:content>
-			<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+			<!--<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>-->
 		</fm:SimpleForm>
 	</VBox>
 	<VBox width="100%">

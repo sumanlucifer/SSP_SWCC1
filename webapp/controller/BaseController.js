@@ -164,28 +164,6 @@ sap.ui.define([
 
 		},
 
-		// 		handleVHFilterTable1: function (oFilter, sType) {
-		// 			var oValueHelpDialog = this._oValueHelpDialog;
-
-		// 			oValueHelpDialog.getTableAsync().then(function (oTable) {
-		// 				if (oTable) {
-		// 					var oBinding;
-
-		// 					if (oTable.bindRows) {
-		// 						oBinding = oTable.getBinding("rows");
-		// 					} else if (oTable.bindItems) {
-		// 						oBinding = oTable.getBinding("items");
-		// 					}
-
-		// 					if (oBinding) {
-		// 						oBinding.filter(oFilter, sType || "Application");
-		// 					}
-
-		// 					oValueHelpDialog.update();
-		// 				}
-		// 			});
-		// 		},
-
 		CallValueHelpAPI: function (entity) {
 
 			return new Promise(function (resolve, reject) {
