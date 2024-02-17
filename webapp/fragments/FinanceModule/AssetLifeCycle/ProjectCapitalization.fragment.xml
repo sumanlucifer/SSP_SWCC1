@@ -18,13 +18,8 @@
 				</Toolbar>
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/AssetLifecycle/ProjectCaptilization/Header/quantity/}"/>
-				<!--<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input placeholder="Enter Quantity" enabled="false" value="{/AssetLifecycle/ProjectCaptilization/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/ProjectCaptilization/Header/Descript/}"
 					valueHelpRequest=""/>
@@ -54,7 +49,6 @@
 				<ComboBox selectedKey="{/AssetLifecycle/ProjectCaptilization/Header/Poper/}" width="100%" enabled="true" valueState="None"
 					placeholder="From">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>
@@ -73,7 +67,7 @@
 				<DatePicker valueFormat="yyyy" displayFormat="yyyy" value="{/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/}" change="handleChange"
 					class=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>ProcessingType}" required="true"/>
 				<ComboBox placeholder="Select Processing Type" width="100%" valueState="None" enabled="true">
