@@ -92,7 +92,8 @@ sap.ui.define([
 						this.getModel().setProperty("/OpenItemRequestData/itemData", oResponse.results);
 
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
@@ -118,7 +119,8 @@ sap.ui.define([
 						this.getModel().setProperty("/ClosedItemRequestData/itemData", aCustomItemData);
 
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
@@ -159,7 +161,8 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						this._handleMessageBoxProceed(`Request has been Approved Successfully `);
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 
@@ -195,7 +198,8 @@ sap.ui.define([
 						this.getModel().setProperty("/busy", false);
 						this._handleMessageBoxProceed(`Request has been Rejected Successfully `);
 					}.bind(this)).catch(function (error) {
-						MessageBox.error(error.responseText);
+						// 		MessageBox.error(error.responseText);
+						this._handleError(error);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this));
 			},

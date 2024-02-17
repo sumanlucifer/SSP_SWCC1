@@ -61,7 +61,8 @@ sap.ui.define([
 					this.getModel().setProperty("/CustomerRegistrationData/CountryF4/", oResponse.results);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {
-					MessageBox.error(error.responseText);
+					// 	MessageBox.error(error.responseText);
+					this._handleError(error);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 
@@ -91,7 +92,8 @@ sap.ui.define([
 					this.getModel().setProperty("/CustomerRegistrationData/RegionF4/", oResponse.results);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this)).catch(function (error) {
-					MessageBox.error(error.responseText);
+					// 	MessageBox.error(error.responseText);
+					this._handleError(error);
 					this.getModel().setProperty("/busy", false);
 				}.bind(this));
 		},
