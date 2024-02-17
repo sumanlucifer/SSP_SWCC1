@@ -862,6 +862,7 @@ sap.ui.define([
 			},
 
 			FinanceCreateFinancialCLoseRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -880,6 +881,7 @@ sap.ui.define([
 			},
 
 			FinanceCreatePeriodEndReconclRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -960,6 +962,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceCreateMaintainChartofAccRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -985,6 +988,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceCreateIssueGovStatmntRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1699,6 +1703,68 @@ sap.ui.define([
 
 					];
 
+				} else if (service === "SSA-FIN-3003-3") {
+
+					validationProperties = [{
+							path: "/PostingF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/FinancialClose/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-4") {
+
+					validationProperties = [{
+							path: "/GlaccountF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-5") {
+
+					validationProperties = [{
+							path: "/FinancialReviewGeneralClose/MaintainChart/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3004-1") {
+
+					validationProperties = [{
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/",
+							condition: true
+						}, {
+							path: "/FmareaF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Poper",
+							condition: true
+						}
+
+					];
+
 				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
@@ -1898,7 +1964,6 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/UploadedData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-				currentElement.removeStyleClass("remove-table");
 
 			},
 			handleMissmatch: function () {

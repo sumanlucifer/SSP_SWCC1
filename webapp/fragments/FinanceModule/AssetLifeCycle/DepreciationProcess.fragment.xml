@@ -24,14 +24,7 @@
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/DepreciationProcess/Header/Descript/}"
 					valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>FiscalYear}" required="true"/>
 				<DatePicker displayFormat="yyyy" valueFormat="yyyy" value="{/AssetLifecycle/DepreciationProcess/Header/FiscalYear/}" change="handleChange"
@@ -48,11 +41,6 @@
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
 					</customData>
 				</Input>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>AccountingPrinciple}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/I_AccountingPrincipleText-com.swcc.Template.fragments.FinanceModule.AccountingprincipalF4-/AccountingprincipalF4/"
@@ -66,7 +54,6 @@
 				<Label text="{i18n>Postingprd}" required="true"/>
 				<ComboBox selectedKey="{/AssetLifecycle/DepreciationProcess/Header/Poper/}" width="100%" enabled="true" valueState="None" placeholder="From">
 					<items>
-						<core:Item key="choose" text="Choose Period"/>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
 						<core:Item key="03" text="03"/>

@@ -21,26 +21,28 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
-					value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/}" valueHelpRequest=""/>
+				<Input valueState="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/} === '' ? 'Enter Short Description Code' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>GLAccount}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/"
-					width="100%" placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/GlaccountF4/}">
+				<Input valueState="{= ${/GlaccountF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/GlaccountF4/} === '' ? 'Enter GL Account' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/" width="100%"
+					placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/GlaccountF4/}">
 					<customData>
 						<core:CustomData key="GLAccount" value="GL Account Code"/>
 						<core:CustomData key="GLAccountName" value="GL Account Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -76,8 +78,10 @@
 					<RadioButton id="RB1-1" text="Open Item"/>
 				</RadioButtonGroup>
 				<Label text="{i18n>Opendate}" required="true" class="sapUiTinyMarginTop"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}"
-					placeholder="{i18n>EnterDate}" change="handleChange" class="sapUiTinyMarginBegin"/>
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/} === '' ? 'Enter Open Date' : '' }"
+					valueFormat="dd/mm/yyyy" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}" placeholder="{i18n>EnterDate}"
+					change="handleChange" class="sapUiTinyMarginBegin"/>
 			</HBox>
 			<Table mode="None" items="" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false"
 				growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
