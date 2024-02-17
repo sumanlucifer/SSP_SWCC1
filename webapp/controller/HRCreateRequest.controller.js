@@ -455,6 +455,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreaterewardsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/CompensationRewards/RegularRewards/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -757,7 +759,8 @@ sap.ui.define([
 			handleHeaderValidation: function (service, aData) {
 				var isValid = true;
 				var validationProperties;
-				if (service === "SSA-HR-1005-1" || service === "SSA-HR-1004-1") {
+				if (service === "SSA-HR-1005-1" || service === "SSA-HR-1004-1" || service === "SSA-HR-1004-2" || service === "SSA-HR-1004-3" ||
+					service === "SSA-HR-1005-1") {
 					validationProperties = [{
 						path: "/Termination/Termination/Header/Begda/",
 						condition: true
@@ -820,6 +823,40 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1003-1" || service === "SSA-HR-1003-2") {
+					validationProperties = [{
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/CompensationRewards/RegularRewards/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1007-1") {
+					validationProperties = [{
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/CompensationRewards/RegularRewards/Header/Begda/",
 						condition: true
 					}];
 				}
