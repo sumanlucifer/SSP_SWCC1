@@ -1146,6 +1146,15 @@ sap.ui.define([
 
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
 
+				} else if (service === "SSA-PSCM-2002-1") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/", iTotal);
+
 				}
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
@@ -1176,6 +1185,15 @@ sap.ui.define([
 
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
 
+				} else if (service === "SSA-PSCM-2001-2") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 5000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 7000 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 10000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
 				}
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
@@ -1193,10 +1211,40 @@ sap.ui.define([
 					if (!totalSum) return;
 					var iTotal;
 					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
-					iTotal = serviceLevel === "U" ? 3750 + 0.04 * totalSum : iTotal;
-					iTotal = serviceLevel === "E" ? 7000 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + (0.04 * totalSum) : iTotal;
 
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2001-2") {
+					var totalSum = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/");
+					if (!totalSum) return;
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 2150 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 3750 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "E" ? 7000 + (0.04 * totalSum) : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2002-1") {
+					var totalSum = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/");
+					if (!totalSum) return;
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 4000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 7000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "E" ? 10000 + (0.04 * totalSum) : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2002-2") {
+					var totalSum = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/");
+					if (!totalSum) return;
+					var iTotal;
+					iTotal = serviceLevel === "N" ? 7000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 10000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "E" ? 12000 + (0.04 * totalSum) : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/", iTotal);
 
 				}
 
@@ -1219,6 +1267,27 @@ sap.ui.define([
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
 				this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/EstPrice/", iEstimated);
+				var serviceLevel = oEvent.getSource().getSelectedKey();
+				var service = this.getModel().getProperty("/SCMAppVisible/");
+				if (service === "SSA-PSCM-2002-1") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/");
+					var iTotal = iEstimated;
+					iTotal = serviceLevel === "N" ? 4000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 7000 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 10000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2002-2") {
+					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/");
+					var iTotal = iEstimated;
+					iTotal = serviceLevel === "N" ? 7000 + (0.04 * totalSum) : iTotal;
+					iTotal = serviceLevel === "U" ? 10000 + 0.04 * totalSum : iTotal;
+					iTotal = serviceLevel === "E" ? 12000 + 0.04 * totalSum : iTotal;
+
+					this.getModel().setProperty("/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/", iTotal);
+
+				}
 
 			},
 
