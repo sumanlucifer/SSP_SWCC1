@@ -1865,6 +1865,44 @@ sap.ui.define([
 						}
 					];
 
+				} else if (service === "SSA-FIN-3005-3C") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Budat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Bzdat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Anbtr/",
+							condition: true
+						}, {
+							path: "/AccountingprincipalF4/",
+							condition: true
+						}, {
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/DepreciationF4/",
+							condition: true
+						}
+
+					];
+
 				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
