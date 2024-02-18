@@ -21,26 +21,24 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/SaleofAssets/Header/quantity/}"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
 					</customData>
 				</Input>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/SaleofAssets/Header/Descript/}"
+				<Input valueState="{= ${/AssetLifecycle/SaleofAssets/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/SaleofAssets/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/SaleofAssets/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
-					width="100%" placeholder="Enter Asset Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/AssestF4}">
+				<Input valueState="{= ${/AssestF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/AssestF4/} === '' ? 'Enter Asset Number' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/" width="100%"
+					placeholder="Enter Asset Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestF4}">
 					<customData>
 						<core:CustomData key="SubNumber" value="SubNumber"/>
 						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
@@ -60,25 +58,32 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>DepreciationArea}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/"
-					width="100%" placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/DepreciationF4/}">
+				<Input valueState="{= ${/DepreciationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/DepreciationF4/} === '' ? 'Enter Depreciation Area' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/DepreciationF4/}">
 					<customData>
 						<core:CustomData key="AssetDepreciationArea" value="Asset Depreciation"/>
 						<core:CustomData key="AssetDepreciationArea_Text" value="Asset Depreciation Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>PostingDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/AssetLifecycle/SaleofAssets/Header/Budat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/SaleofAssets/Header/Budat/} === '' ? 'Enter Posting Date' : '' }" valueFormat="dd/MM/yyyy"
+					value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<Label text="{i18n>DocumentDate}" required="false"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bldat/}" change="handleChange" class=""/>
+				<DatePicker enabled="false" valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Budat/}" change="handleChange" class=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>AssetValueDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/SaleofAssets/Header/Bzdat/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/AssetLifecycle/SaleofAssets/Header/Bzdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/SaleofAssets/Header/Bzdat/} === '' ? 'Enter Asset Value Date' : '' }" valueFormat="dd/MM/yyyy"
+					value="{/AssetLifecycle/SaleofAssets/Header/Bzdat/}" change="handleChange" class=""/>
 				<Label text="{i18n>Revenue}" required="true"/>
-				<Input type="Number" value="{/AssetLifecycle/SaleofAssets/Header/Erlbt/}" placeholder="Enter Revenue" required="true" width="100%"/>
+				<Input valueState="{= ${/AssetLifecycle/SaleofAssets/Header/Erlbt/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/SaleofAssets/Header/Erlbt/} === '' ? 'Enter Revenue' : '' }" type="Number"
+					value="{/AssetLifecycle/SaleofAssets/Header/Erlbt/}" placeholder="Enter Revenue" required="true" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -121,7 +126,7 @@
 					<Text text="File Size"/>
 				</Column>
 				<Column>
-					<Text text="Delete"/>
+					<Text text=""/>
 				</Column>
 				<!-- Add more columns as needed -->
 			</columns>

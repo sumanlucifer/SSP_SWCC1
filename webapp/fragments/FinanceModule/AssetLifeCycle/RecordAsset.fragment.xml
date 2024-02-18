@@ -21,19 +21,24 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/RecordAsset/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/RecordAsset/Header/Descript/}"
+				<Input valueState="{= ${/AssetLifecycle/RecordAsset/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RecordAsset/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/RecordAsset/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetClass}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_AssetClassStdVH-com.swcc.Template.fragments.FinanceModule.Assestclass-/AssestclassF4/" width="100%"
+				<Input valueState="{= ${/AssestclassF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssestclassF4/} === '' ? 'Select Asset Class' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_AssetClassStdVH-com.swcc.Template.fragments.FinanceModule.Assestclass-/AssestclassF4/" width="100%"
 					placeholder="Enter Assest Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestclassF4/}">
 					<customData>
 						<core:CustomData key="AssetClass" value="Asset Class"/>
@@ -50,7 +55,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Description}" required="true"/>
-				<Input required="true" value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" width="100%"/>
+				<Input placeholder="Enter Description" valueState="{= ${/AssetLifecycle/RecordAsset/Header/Txt50/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RecordAsset/Header/Txt50/} === '' ? 'Enter Description' : '' }" required="true"
+					value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" width="100%"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -63,7 +70,8 @@
 				<Label text="{i18n>CaptitalizedOn}" required="false"/>
 				<Input placeholder="Enter Capitalized On." value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
 				<Label text="{i18n>CostCenter}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? 'Enter Cost Center' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
 					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="CostCenter" value="Cost Center"/>
@@ -72,7 +80,7 @@
 				</Input>
 				<Label text="{i18n>ProfitCenter}" required="false"/>
 				<Input enabled="false" width="100%" placeholder="Enter Profit Center" valueHelpOnly="false"
-					value="{/AssetLifecycle/RecordAsset/Header/ProfitCentr/0/ProfitCenter/}"></Input>
+					value="{/AssetLifecycle/RecordAsset/Header/ProfitCentr/}"></Input>
 				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
@@ -109,10 +117,6 @@
 						<core:CustomData key="AssetSuperText" value="Asset Super Text"/>
 					</customData>
 				</Input>
-				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None" placeholder="{i18n>AssetSuperNumber}"
-					selectedKey="{/AssetLifecycle/RecordAsset/Header/AssetSuperNum}" items="{/AssestSuperf4/}">
-					<core:Item key="{AssetSuperNum}" text="{AssetSuperNum} - {AssetSuperText}"/>
-				</ComboBox>-->
 				<Label text="{i18n>NonTechnicalAsset}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4-/AssestnontechF4/"

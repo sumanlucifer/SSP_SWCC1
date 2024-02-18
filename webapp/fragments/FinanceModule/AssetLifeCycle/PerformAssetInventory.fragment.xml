@@ -21,20 +21,17 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/PerfomAsset/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/PerfomAsset/Header/Descript/}"
-					valueHelpRequest=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"
-					items="{/PMCreateRequest/WorkCenterF4/}">
-					<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>
-				</ComboBox>-->
+				<Input placeholder="Allowed 40 Charcters" valueState="{= ${/AssetLifecycle/PerfomAsset/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/PerfomAsset/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					value="{/AssetLifecycle/PerfomAsset/Header/Descript/}" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
@@ -52,12 +49,14 @@
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>ReportingDate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="{i18n>EnterDate}"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/AssetLifecycle/PerfomAsset/Header/Brdatu/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/PerfomAsset/Header/Brdatu/} === '' ? 'Enter Reporting Date' : '' }" valueFormat="dd/MM/yyyy"
+					value="{/AssetLifecycle/PerfomAsset/Header/Brdatu/}" placeholder="{i18n>EnterDate}" change="handleChange" class=""/>
 				<Label text="{i18n>DepreciationArea}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/"
-					width="100%" placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/DepreciationF4/}">
+				<Input valueState="{= ${/DepreciationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/DepreciationF4/} === '' ? 'Enter Depreciation Area' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/DepreciationF4/}">
 					<customData>
 						<core:CustomData key="AssetDepreciationArea" value="Asset Depreciation"/>
 						<core:CustomData key="AssetDepreciationArea_Text" value="Asset Depreciation Name"/>
