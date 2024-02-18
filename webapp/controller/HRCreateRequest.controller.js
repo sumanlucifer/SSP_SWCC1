@@ -476,6 +476,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeevacationsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Payroll/EmployeeVacation/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -612,6 +614,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemanageemployeeRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TimeManagement/ManageEmpShifts/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -869,6 +873,32 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/TimeManagement/ActivatingAccessCard/Header/Orgeh/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1007-2") {
+					validationProperties = [{
+						path: "/TimeManagement/ManageEmpShifts/Header/Begda/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/WorkscheduleF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+
+					}];
+				} else if (service === "SSA-HR-1008-1") {
+					validationProperties = [{
+						path: "/Payroll/EmployeeVacation/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/TimetypeF4/",
+						condition: true
+					}, {
+						path: "/Payroll/EmployeeVacation/Header/Begda/",
 						condition: true
 					}];
 				}

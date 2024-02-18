@@ -109,6 +109,10 @@ sap.ui.define([
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
 
 				return sModelPath;
 			},
@@ -270,6 +274,23 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", serviceUrl,
 						null,
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/ClassF4/")) {
+					var filters = [{
+							path: "ClassInternalID",
+							value: this.getModel().getProperty(`${this.getModel().getProperty("/FragModel")}`).split("-")[0],
+							group: "WareHouseFilter"
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/I_ClfnClassCharcForKeyDate",
+						dynamicFilters.WareHouseFilter,
+						`${this.getModel().getProperty("/FragModel")}`)
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -290,7 +311,7 @@ sap.ui.define([
 				/*	if (!aData[0]) {
 						return;
 					}*/
-
+				debugger;
 				var spath = oModel.replace(/\/[^/]+\/$/, '/');
 
 				if ((this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
@@ -326,6 +347,14 @@ sap.ui.define([
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 					/*this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);*/
 					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
+					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/itemData/`, aData);
+					/*this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);*/
+					/*this.getModel().setProperty(`${spath}/CharcInternalID/`, aData[0].CharcInternalID);*/
 
 				}
 
@@ -607,7 +636,9 @@ sap.ui.define([
 					},
 					ClasssificationandInventory: {
 						ChangeRequest: {
-							Header: {},
+							Header: {
+								quantity: "1"
+							},
 							itemData: []
 						},
 						DuplicateResolution: {
@@ -885,22 +916,23 @@ sap.ui.define([
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
+					"MaterialQty": oPayloadHeader.quantity.toString(),
 					"ZHeaderExtra": {
-						"SecName": this.getModel().getProperty("/IndustrysectorF4/ ") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
-						"ReqParty": this.getModel().getProperty("/MaterialtypeF4/ ") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
-						"CompTyp": this.getModel().getProperty("/uomF4/ ") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
-						"EstCost": oPayloadHeader.EstCost,
-						"ImpPeriod": this.getModel().getProperty("/ClassF4/ ") ? this.getModel().getProperty("/ClassF4/").split("-")[0] : ""
+						"UsmdCreqType": this.getModel().getProperty("/CrtypeF4/") ? this.getModel().getProperty("/CrtypeF4/").split("-")[0] : "",
+						"Mtart": this.getModel().getProperty("/MaterialtypeF4/") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
+						"Meins": this.getModel().getProperty("/uomF4/") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
+						"Txz01": oPayloadHeader.Txz01,
+						"Mbrsh": this.getModel().getProperty("/IndustrysectorF4/") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
+						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
+						"Extwg": this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
+						"Maktx": oPayloadHeader.Maktx,
+						"Clint": this.getModel().getProperty("/ClassF4/") ? this.getModel().getProperty("/ClassF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								/*Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",*/
-								Atinn: items.Atinn,
+								Atinn: items.Characteristic,
 								Atwrt: items.Atwrt
-									/*	Lgort: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",*/
-									/*Lglpa: items.Lgpla,*/
-									/*Sgtxt: items.Sgtxt,*/
 							};
 						}
 					)
