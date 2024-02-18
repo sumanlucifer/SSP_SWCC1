@@ -21,24 +21,27 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/TransferofAssets/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/TransferofAssets/Header/Descript/}"
+				<Input valueState="{= ${/AssetLifecycle/TransferofAssets/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/TransferofAssets/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/TransferofAssets/Header/Descript/}"
 					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/"
-					width="100%" placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/CompanycodeF4/}">
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
 					<customData>
 						<core:CustomData key="CompanyCode" value="Company Code"/>
 						<core:CustomData key="CompanyCodeName" value="Company Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>AssetNumber}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
-					width="100%" placeholder="Enter Asset Number" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/AssestF4}">
+				<Input valueState="{= ${/AssestF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/AssestF4/} === '' ? 'Enter Asset Number' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/" width="100%"
+					placeholder="Enter Asset Number" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestF4}">
 					<customData>
 						<core:CustomData key="SubNumber" value="SubNumber"/>
 						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
@@ -56,7 +59,8 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>newcostcenter}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? 'Enter Cost Center' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
 					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="CostCenter" value="Cost Center"/>

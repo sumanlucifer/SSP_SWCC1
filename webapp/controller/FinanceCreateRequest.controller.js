@@ -1903,6 +1903,28 @@ sap.ui.define([
 
 					];
 
+				} else if (service === "SSA-FIN-3005-4") {
+
+					validationProperties = [{
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/costF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/TransferofAssets/Header/Descript/",
+							condition: true
+						}
+
+					];
+
 				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{
