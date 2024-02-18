@@ -21,14 +21,7 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/InsuranceandClaim/MarineTransportation/Header/MaterialQty/}"/>
-				<Label text="{i18n>plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
