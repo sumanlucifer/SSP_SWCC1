@@ -393,6 +393,9 @@ sap.ui.define([
 					this.getModel().setProperty(`${spath}`, aData[0].NetAmount);
 					this.getModel().setProperty(`/InsuranceandClaim/CreateInsurance/Header/currency/`, aData[0].DocumentCurrency);
 
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A") {
+					this.getModel().setProperty(`${spath}`, aData[0].ProfitCenter);
+
 				}
 
 			},
@@ -1042,6 +1045,7 @@ sap.ui.define([
 			},
 
 			FinancePerformAsstInventoryRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1065,6 +1069,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceRecordAssetRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -1108,6 +1113,7 @@ sap.ui.define([
 			},
 
 			FinanceSaleofAssetRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -1122,7 +1128,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 
-						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Bldat),
+						"Bldat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Budat": this.handleOdataDateFormat(oPayloadHeader.Budat),
 						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Bzdat),
 						"Erlbt": `${oPayloadHeader.Erlbt}.00`,
@@ -1142,6 +1148,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceRetirementofAssetRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1169,6 +1176,7 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 			FinanceTransferofAssetRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1192,6 +1200,7 @@ sap.ui.define([
 			},
 
 			FinanceProjectCapitalizationRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/FinanceAppVisible/"),
@@ -1678,9 +1687,6 @@ sap.ui.define([
 							path: "/CompanycodeF4/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
-							condition: true
-						}, {
 							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
 							condition: true
 						}, {
@@ -1779,6 +1785,119 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/AssetLifecycle/DepreciationProcess/Header/FiscalYear/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-2") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/PerfomAsset/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/PerfomAsset/Header/Brdatu/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/DepreciationF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-3A") {
+
+					validationProperties = [{
+							path: "/costF4/",
+							condition: true
+						}, {
+							path: "/AssestclassF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RecordAsset/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/RecordAsset/Header/Txt50/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-3B") {
+
+					validationProperties = [{
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Budat/",
+							condition: true
+						},
+
+						{
+							path: "/DepreciationF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/SaleofAssets/Header/Bzdat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Erlbt/",
+							condition: true
+						}
+					];
+
+				} else if (service === "SSA-FIN-3005-3C") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Budat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Bzdat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Anbtr/",
+							condition: true
+						}, {
+							path: "/AccountingprincipalF4/",
+							condition: true
+						}, {
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/DepreciationF4/",
 							condition: true
 						}
 
