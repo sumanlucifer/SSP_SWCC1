@@ -659,10 +659,10 @@ sap.ui.define([
 					"/ProcurementAdhoc/ServiceProcurement/Header/"), this.getModel().getProperty(
 					"/ProcurementAdhoc/ServiceProcurement/itemData/"), this.getModel().getProperty(
 					"/ProcurementAdhoc/ServiceProcurement/itemData1/")) : null;
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
-						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
-						"/ProcurementAdhoc/MaterialProcurement/itemData/")) :
-					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-2" ? this.ScmCreateServiceProcurementRequest(this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/Header/"), this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/itemData/"), this.getModel().getProperty(
+					"/ProcurementAdhoc/ServiceProcurement/itemData1/")) : null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/itemData/")) :
@@ -729,8 +729,8 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"EstPrice": `${oPayloadHeader.TotalPrice}`,
-						"Totalvalue": `${oPayloadHeader.TotalServiceLevel}`,
-						"Servlev": oPayloadHeader.ServiceLevel,
+						"TotalValue": `${oPayloadHeader.TotalServiceLevel}`,
+						"ServLev": oPayloadHeader.ServiceLevel,
 						"TenPre": oPayloadHeader.TenPre,
 						"ReqStat": this.getModel().getProperty("/RequeststatF4/") ? this.getModel().getProperty("/RequeststatF4/").split("-")[0] : "",
 						/*"Afnam": oPayloadHeader.AFNAM,*/
@@ -774,8 +774,8 @@ sap.ui.define([
 					/*"Descript": oPayloadHeader.Descript,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Totalvalue": `${oPayloadHeader.TotalServiceLevel}`,
-						"Servlev": oPayloadHeader.ServiceLevel,
+						"TotalValue": `${oPayloadHeader.TotalServiceLevel}`,
+						"ServLev": oPayloadHeader.ServiceLevel,
 						"PrJust": oPayloadHeader.PrJust,
 						"TenPre": oPayloadHeader.TenPre,
 						"EstPrice": `${oPayloadHeader.EstPrice}`
@@ -1072,13 +1072,14 @@ sap.ui.define([
 					UnitPrice: "",
 					Afnam: ""
 				}, "/ProcurementAdhoc/MaterialProcurement/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemAddModel(
-					this.getModel().getProperty(
-						"/ProcurementAdhoc/ServiceProcurement/itemData1"), {
-						TXZ01: "",
-						Menge: "",
-						UnitPrice: ""
-					}, "/ProcurementAdhoc/ServiceProcurement/itemData1") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" || this.getModel().getProperty("/SCMAppVisible/") ===
+					"SSA-PSCM-2002-2" ? this.updateItemAddModel(
+						this.getModel().getProperty(
+							"/ProcurementAdhoc/ServiceProcurement/itemData1"), {
+							TXZ01: "",
+							Menge: "",
+							UnitPrice: ""
+						}, "/ProcurementAdhoc/ServiceProcurement/itemData1") : "";
 
 			},
 
@@ -1122,6 +1123,9 @@ sap.ui.define([
 					.getProperty(
 						"/ProcurementAdhoc/ServiceProcurement/itemData")) : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/ServiceProcurement/itemData1")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/ServiceProcurement/itemData1")) : "";
 			},
