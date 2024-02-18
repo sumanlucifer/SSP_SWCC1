@@ -499,6 +499,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateupdatemasterdataRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/PeopleCareCenter/UpdateMasterData/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -652,6 +654,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatetransfersecondRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/Transfer/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -669,6 +673,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeetransportationRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/EmpTransporation/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -899,6 +905,42 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/Payroll/EmployeeVacation/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-1") {
+					validationProperties = [{
+						path: "/TransportationCommision/Transfer/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Transfer/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-2") {
+					validationProperties = [{
+						path: "/TransportationCommision/EmpTransporation/Header/Begda/",
+						condition: true
+					}, {
+						path: "/PositionF4/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/EmployeeLocF4/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1009-1") {
+					validationProperties = [{
+						path: "/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/",
 						condition: true
 					}];
 				}
