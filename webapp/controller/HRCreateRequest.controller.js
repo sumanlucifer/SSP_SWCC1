@@ -382,6 +382,9 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareclaimRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -846,12 +849,6 @@ sap.ui.define([
 						path: "/EventreasonF4/",
 						condition: true
 					}, {
-						path: "/PayscalegroupF4/",
-						condition: true
-					}, {
-						path: "/PayscalelevelF4/",
-						condition: true
-					}, {
 						path: "/CompensationRewards/RegularRewards/Header/Begda/",
 						condition: true
 					}];
@@ -945,6 +942,7 @@ sap.ui.define([
 					}];
 				}
 				var bValid = true;
+				if (!validationProperties) return true;
 
 				validationProperties.forEach(property => {
 					var propertyValue = this.getModel().getProperty(property.path);
@@ -963,34 +961,20 @@ sap.ui.define([
 
 				return bValid;
 			},
-			/*onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
-				var oItems = oModel.map(function (oItem) {
-					return Object.assign({}, oItem);
-				});
-				oItems.push({
-					Material: "",
-					Description: "",
-					StorageLocation: "",
-					Quantity: "",
-					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
-				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
 
+			handleAttachmentvalidation: function (service, oItems, aData) {
+				var isValid = true;
+				if (service === "SSA-HR-1010-1-A") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Item data is required to submit the request");
+						isValid = false;
+					}
+				}
+				return isValid;
 			},
-			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
-				this.getModel().refresh();
-			},*/
-
 			onSearch: function () {
 
 				this.oRouter.navTo("LandingView");
@@ -1017,8 +1001,6 @@ sap.ui.define([
 			},
 
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
-
-				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
 
 				if (oModel.length >= 5) {
