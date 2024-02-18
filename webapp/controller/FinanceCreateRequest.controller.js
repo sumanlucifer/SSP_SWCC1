@@ -1925,6 +1925,21 @@ sap.ui.define([
 
 					];
 
+				} else if (service === "SSA-FIN-3005-5") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/ProjectCaptilization/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/ProjectCaptilization/Header/Poper/",
+							condition: true
+						}
+
+					];
+
 				} else if (service === "SSA-FIN-3007-3") {
 
 					validationProperties = [{

@@ -21,7 +21,9 @@
 				<Label text="{i18n>quantity}" required="false"/>
 				<Input placeholder="Enter Quantity" enabled="false" value="{/AssetLifecycle/ProjectCaptilization/Header/quantity/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/ProjectCaptilization/Header/Descript/}"
+				<Input valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/ProjectCaptilization/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>Project}" required="false"/>
 				<Input
@@ -46,8 +48,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>SettlementPeriod}" required="true"/>
-				<ComboBox selectedKey="{/AssetLifecycle/ProjectCaptilization/Header/Poper/}" width="100%" enabled="true" valueState="None"
-					placeholder="From">
+				<ComboBox valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/Poper/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/Poper/} === '' ? 'Enter Settlement Period' : '' }"
+					selectedKey="{/AssetLifecycle/ProjectCaptilization/Header/Poper/}" width="100%" enabled="true" placeholder="From">
 					<items>
 						<core:Item key="01" text="01"/>
 						<core:Item key="02" text="02"/>
@@ -64,8 +67,9 @@
 					</items>
 				</ComboBox>
 				<Label text="{i18n>FiscalYear}" required="true"/>
-				<DatePicker valueFormat="yyyy" displayFormat="yyyy" value="{/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/}" change="handleChange"
-					class=""/>
+				<DatePicker valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/} === '' ? 'Enter Fiscal Year' : '' }" valueFormat="yyyy"
+					displayFormat="yyyy" value="{/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/}" change="handleChange" class=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
