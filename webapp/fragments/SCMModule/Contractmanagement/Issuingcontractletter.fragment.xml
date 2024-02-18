@@ -36,7 +36,7 @@
 						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
 					</suggestionItems>
 				</Input>-->
-				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Label text="{i18n>typeofletter}" required="true"/>
 				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>
 				<core:Title text=""/>

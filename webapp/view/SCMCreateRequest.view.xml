@@ -43,8 +43,11 @@
 					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2002-1') || (${/SCMAppVisible} === 'SSA-PSCM-2002-2')}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementADHOC.ServiceProcurement" type="XML"/>
 					</VBox>
-					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-1')}">
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-1')|| (${/SCMAppVisible} === 'SSA-PSCM-2007-1-A')}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Contractmanagement.ContractualOrders" type="XML"/>
+					</VBox>
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-2-A')|| (${/SCMAppVisible} === 'SSA-PSCM-2007-2')}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Contractmanagement.Issuingcontractletter" type="XML"/>
 					</VBox>
 				</l:content>
 			</l:VerticalLayout>
