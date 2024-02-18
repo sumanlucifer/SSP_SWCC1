@@ -1,13 +1,12 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
 	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
 		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:toolbar>
 				<Toolbar class="ssp-title">
-					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
 					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
-					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
 					<ToolbarSpacer/>
 				</Toolbar>
 			</fm:toolbar>
@@ -15,37 +14,43 @@
 				<Toolbar>
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
-					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
-				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>userid}" required="false"/>
-				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
-				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>type}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%"
-					placeholder="Enter Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
+				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="true"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Type"/>
-						<core:CustomData key="value_1" value="Name"/>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
 					</customData>
-				</Input>
-				<Label text="{i18n>approvalnumber}" required="true"/>
-				<Input placeholder="Enter Approval Number" value="{/BenefitsManagement/SubmitComplaint/Header/Zaprnum/}" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+				</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>prno}" required="false"/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>contractor}" required="false"/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
+				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{workCenterModel>/}">
+					<suggestionItems>
+						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
+					</suggestionItems>
+				</Input>-->
+				<Label text="{i18n>typeofletter}" required="true"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
+					editable="true" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Cname/}" showValueHelp=""
+				<Label text="{i18n>requestingparty}" required="false"/>
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}"
+					showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>pono}" required="false"/>
+				<Input placeholder="{i18n>pono}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp=""
 					valueHelpRequest=""/>
-				<Label text="{i18n>whenshould}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayformat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}"
-					change="handleChange" class=""/>
-				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Label text="{i18n>contractvalue}" required="true"/>
+				<Input placeholder="{i18n>contractvalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
+					editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -53,14 +58,14 @@
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>comments}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/SubmitComplaint/Header/Zcomment/}" growing="true"
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
 	<VBox>
-		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
 			<headerToolbar>
 				<Toolbar>
 					<content>

@@ -17,16 +17,9 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
-				<!--<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>totalestimatedvalue}" required="true"/>
 				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
@@ -74,6 +67,12 @@
 				</Input>-->
 				<Label text="{i18n>suggestedcompany}" required="false"/>
 				<Input placeholder="Enter suggested company" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}"/>
+				<Label text="{i18n>servicelevel}" required="true"/>
+				<ComboBox selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/}">
+					<core:Item key="N" text="Normal"/>
+					<core:Item key="U" text="Urgent"/>
+					<core:Item key="E" text="Emergency"/>
+				</ComboBox>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -123,6 +122,8 @@
 				</ComboBox>
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/PrJust/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

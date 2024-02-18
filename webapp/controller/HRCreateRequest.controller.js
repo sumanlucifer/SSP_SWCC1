@@ -382,6 +382,9 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareclaimRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -476,6 +479,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeevacationsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/Payroll/EmployeeVacation/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -497,6 +502,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateupdatemasterdataRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/PeopleCareCenter/UpdateMasterData/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -589,6 +596,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatetimemanagementRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TimeManagement/ActivatingAccessCard/Header"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -610,6 +619,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemanageemployeeRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TimeManagement/ManageEmpShifts/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -646,6 +657,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatetransfersecondRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/Transfer/Header/"))) return;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -663,6 +676,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeetransportationRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/EmpTransporation/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -834,34 +849,100 @@ sap.ui.define([
 						path: "/EventreasonF4/",
 						condition: true
 					}, {
-						path: "/PayscalegroupF4/",
-						condition: true
-					}, {
-						path: "/PayscalelevelF4/",
-						condition: true
-					}, {
 						path: "/CompensationRewards/RegularRewards/Header/Begda/",
 						condition: true
 					}];
 				} else if (service === "SSA-HR-1007-1") {
 					validationProperties = [{
+						path: "/TimeManagement/ActivatingAccessCard/Header/Vorna/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zarea/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zdasetting/",
+						condition: true
+					}, {
+						path: "/Termination/Termination/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Nachn/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Idcot/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zcardno/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Orgeh/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1007-2") {
+					validationProperties = [{
+						path: "/TimeManagement/ManageEmpShifts/Header/Begda/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/WorkscheduleF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+
+					}];
+				} else if (service === "SSA-HR-1008-1") {
+					validationProperties = [{
+						path: "/Payroll/EmployeeVacation/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/TimetypeF4/",
+						condition: true
+					}, {
+						path: "/Payroll/EmployeeVacation/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-1") {
+					validationProperties = [{
+						path: "/TransportationCommision/Transfer/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Transfer/Header/Begda/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-2") {
+					validationProperties = [{
+						path: "/TransportationCommision/EmpTransporation/Header/Begda/",
+						condition: true
+					}, {
+						path: "/PositionF4/",
+						condition: true
+					}, {
 						path: "/EventF4/",
 						condition: true
 					}, {
 						path: "/EventreasonF4/",
 						condition: true
 					}, {
-						path: "/PayscalegroupF4/",
+						path: "/EmployeeLocF4/",
 						condition: true
-					}, {
-						path: "/PayscalelevelF4/",
-						condition: true
-					}, {
-						path: "/CompensationRewards/RegularRewards/Header/Begda/",
+					}];
+				} else if (service === "SSA-HR-1009-1") {
+					validationProperties = [{
+						path: "/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/",
 						condition: true
 					}];
 				}
 				var bValid = true;
+				if (!validationProperties) return true;
 
 				validationProperties.forEach(property => {
 					var propertyValue = this.getModel().getProperty(property.path);
@@ -880,34 +961,20 @@ sap.ui.define([
 
 				return bValid;
 			},
-			/*onAddItemsPress: function (oEvent) {
-				var oModel = this.getModel().getProperty("/MarineTransportation/itemData");
-				var oItems = oModel.map(function (oItem) {
-					return Object.assign({}, oItem);
-				});
-				oItems.push({
-					Material: "",
-					Description: "",
-					StorageLocation: "",
-					Quantity: "",
-					BaseUnit: "",
-					Batch: "",
-					M: true,
-					// UnloadPoint: "",
-					AvailableQty: null,
-					PopupItems: null,
-					IsBOQApplicable: ""
-				});
-				this.getModel().setProperty("/MarineTransportation/itemData", oItems);
 
+			handleAttachmentvalidation: function (service, oItems, aData) {
+				var isValid = true;
+				if (service === "SSA-HR-1010-1-A") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Item data is required to submit the request");
+						isValid = false;
+					}
+				}
+				return isValid;
 			},
-			onDeleteItemPress: function (oEvent) {
-				var iRowNumberToDelete = parseInt(oEvent.getSource().getBindingContext().getPath().split("/")[3]);
-				var aTableData = this.getModel().getProperty("/MarineTransportation/itemData");
-				aTableData.splice(iRowNumberToDelete, 1);
-				this.getModel().refresh();
-			},*/
-
 			onSearch: function () {
 
 				this.oRouter.navTo("LandingView");
@@ -934,8 +1001,6 @@ sap.ui.define([
 			},
 
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
-
-				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
 
 				if (oModel.length >= 5) {

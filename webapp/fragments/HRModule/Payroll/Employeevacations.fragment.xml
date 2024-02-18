@@ -17,29 +17,32 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
-				<Input value="{/HRAppVisible/}"/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/HRAppVisible/}" enabled="false"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>userid}" required="true"/>
+				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
 				<Label text="{i18n>startdate}" required="true"/>
-				<DatePicker placeholder="Enter Start Date" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
-					value="{/Payroll/EmployeeVacation/Header/Begda/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/Payroll/EmployeeVacation/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Payroll/EmployeeVacation/Header/Begda/} === '' ? ${i18n>startdate} : '' }" valueFormat="dd/MM/yyyy"
+					value="{/Payroll/EmployeeVacation/Header/Begda/}" placeholder="{i18n>startdate}" change="handleChange" class=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>timetype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMETYPE-com.swcc.Template.fragments.HRModule.TimetypeF4-/TimetypeF4/" width="100%"
-					placeholder="Select Time Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TimetypeF4/}">
+				<Input valueState="{= ${/TimetypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/TimetypeF4/} === '' ? ${i18n>timetype} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMETYPE-com.swcc.Template.fragments.HRModule.TimetypeF4-/TimetypeF4/" width="100%"
+					placeholder="{i18n>timetype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TimetypeF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Time type"/>
 						<core:CustomData key="value_1" value="Time type group"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>enddate}" required="true"/>
-				<DatePicker placeholder="Enter End Date" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
-					value="{/Payroll/EmployeeVacation/Header/Zendate/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/Payroll/EmployeeVacation/Header/Zendate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Payroll/EmployeeVacation/Header/Zendate/} === '' ? ${i18n>enddate} : '' }" valueFormat="dd/MM/yyyy"
+					value="{/Payroll/EmployeeVacation/Header/Zendate/}" placeholder="{i18n>enddate}" change="handleChange" class=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

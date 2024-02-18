@@ -32,7 +32,7 @@
 						<core:CustomData key="value_1" value="Event Description"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>payscale}" required="true"/>
+				<!--	<Label text="{i18n>payscale}" required="true"/>
 				<Input valueState="{= ${/PayscalegroupF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PayscalegroupF4/} === '' ? ${i18n>payscale} : '' }"
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/" width="100%"
@@ -41,14 +41,15 @@
 						<core:CustomData key="keyfield" value="Payscale "/>
 						<core:CustomData key="value_1" value="Payscale group"/>
 					</customData>
-				</Input>
+				</Input>-->
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>startdate}" required="true"/>
 				<DatePicker valueState="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? ${i18n>startdate} : '' }" valueFormat="dd/MM/yyyy"
-					value="{/CompensationRewards/RegularRewards/Header/Begda/}" placeholder="{i18n>startdate}" change="handleChange" class=""/>
+					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? ${i18n>startdate} : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/MM/yyyy" value="{/CompensationRewards/RegularRewards/Header/Begda/}" placeholder="{i18n>startdate}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>eventreason}" required="true"/>
 				<Input valueState="{= ${/EventreasonF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/EventreasonF4/} === '' ? ${i18n>eventreason} : '' }"
@@ -59,7 +60,7 @@
 						<core:CustomData key="value_1" value="Event Reason"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>payscalelevel}" required="true"/>
+				<!--	<Label text="{i18n>payscalelevel}" required="true"/>
 				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>payscalelevel} : '' }"
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/" width="100%"
@@ -69,7 +70,7 @@
 						<core:CustomData key="keyfield" value="Payscale "/>
 						<core:CustomData key="value_1" value="Payscale Level "/>
 					</customData>
-				</Input>
+				</Input>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
