@@ -421,6 +421,9 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareinsuranceRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -939,19 +942,49 @@ sap.ui.define([
 					}];
 				} else if (service === "SSA-HR-1010-1-A") {
 					validationProperties = [{
-						path: "/TransportationCommision/EmpTransporation/Header/Begda/",
+						path: "/BenefitsManagement/ClaimRequest/Header/PadCname/",
 						condition: true
 					}, {
-						path: "/PositionF4/",
+						path: "/BenefitsManagement/ClaimRequest/Header/Zmobile/",
 						condition: true
 					}, {
-						path: "/EventF4/",
+						path: "/InsurancepolicyF4/",
 						condition: true
 					}, {
-						path: "/EventreasonF4/",
+						path: "/BenefitsManagement/ClaimRequest/Header/Zamount/",
 						condition: true
 					}, {
-						path: "/EmployeeLocF4/",
+						path: "/CountryF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zproname/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Begda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zmemnum/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/P25Idcot/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Iban/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Gesch/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/PadOrt01/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zvisdat/",
+						condition: true
+					}, {
+						path: "/ClaimtypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Bankk/",
 						condition: true
 					}];
 				} else if (service === "SSA-HR-1006-3") {
@@ -1013,6 +1046,53 @@ sap.ui.define([
 						path: "/TransportationCommision/Commisioning/Header/Zseniordat/",
 						condition: true
 					}];
+				} else if (service === "SSA-HR-1010-1") {
+					validationProperties = [{
+						path: "/PolicyNoF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TypeofemployeementF4/",
+						condition: true
+					}, {
+						path: "/RequesttypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zmobile/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Idcot/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zibegda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Gbdat/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Gesch/",
+						condition: true
+					}, {
+						path: "/CountryF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Vorna/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Nach2/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Nachn/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zdepid/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Bankk/",
+						condition: true
+					}];
 				} else if (service === "SSA-HR-1009-1") {
 					validationProperties = [{
 						path: "/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/",
@@ -1047,7 +1127,7 @@ sap.ui.define([
 
 					// Check if 'oItems' is empty or not
 					if (!oItems || oItems.length === 0) {
-						MessageToast.show("Item data is required to submit the request");
+						MessageToast.show("Please Upload Attachments");
 						isValid = false;
 					}
 				}

@@ -17,24 +17,28 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Label text="{i18n>serviceproduct}" required="false"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>policyno}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
-					placeholder="Select Policy No" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
+				<Input valueState="{= ${/PolicyNoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PolicyNoF4/} === '' ? ${i18n>policyno} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
+					placeholder="{i18n>policyno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Policy"/>
 						<core:CustomData key="value_1" value="Policy No."/>
 					</customData>
 				</Input>
 				<Label text="{i18n>effectivedate}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/BenefitsManagement/MedicalInsurance/Header/Begda/}"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Begda/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Begda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>typeofemployment}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPTYPE-com.swcc.Template.fragments.HRModule.TypeofemployeementF4-/TypeofemployeementF4/"
-					width="100%" placeholder="Select Employement Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/TypeofemployeementF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TypeofemployeementF4/} === '' ? ${i18n>typeofemployment} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPTYPE-com.swcc.Template.fragments.HRModule.TypeofemployeementF4-/TypeofemployeementF4/"
+					width="100%" placeholder="{i18n>typeofemployment}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/TypeofemployeementF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Employee Type"/>
@@ -42,57 +46,79 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>requesttype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_REQTYPE-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
-					placeholder="Enter Request Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
+				<Input valueState="{= ${/RequesttypeF4} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/RequesttypeF4/} === '' ? ${i18n>requesttype} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_REQTYPE-com.swcc.Template.fragments.HRModule.RequesttypeF4-/RequesttypeF4/" width="100%"
+					placeholder="{i18n>requesttype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/RequesttypeF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Request"/>
 						<core:CustomData key="value_1" value="Request Type"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>mobileNumber}" required="true"/>
-				<Input placeholder="Enter Mobile Number" type="Number" value="{/BenefitsManagement/MedicalInsurance/Header/Zmobile/}" showSuggestion=""
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Zmobile/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Zmobile/} === '' ? ${i18n>mobileNumber} : '' }"
+					placeholder="{i18n>mobileNumber}" type="Number" value="{/BenefitsManagement/MedicalInsurance/Header/Zmobile/}" showSuggestion=""
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Idcot/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Idcot/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Idcot/} === '' ? ${i18n>National} : '' }" placeholder="{i18n>National}"
+					showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Idcot/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>insurancestdt}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="{i18n>EnterDate}"
-					value="{/BenefitsManagement/MedicalInsurance/Header/Zibegda/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Zibegda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Zibegda/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Zibegda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
 				<Label text="{i18n>dateofBirth}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" placeholder="{i18n>EnterDate}"
-					value="{/BenefitsManagement/MedicalInsurance/Header/Gbdat/}" change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Gbdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Gbdat/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Gbdat/}" displayFormat="dd/MM/yyyy" placeholder="{i18n>EnterDate}"
+					valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>gender}" required="true"/>
-				<ComboBox selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
+				<!--<ComboBox selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
+					<items>
+						<core:Item key="M" text="Male"/>
+						<core:Item key="F" text="Female"/>
+					</items>
+				</ComboBox>-->
+				<ComboBox valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Gesch/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Gesch/} === '' ? ${i18n>gender} : '' }"
+					selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="{i18n>gender}">
 					<items>
 						<core:Item key="M" text="Male"/>
 						<core:Item key="F" text="Female"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>nationality}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
-					placeholder="Select Country" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
+				<Input valueState="{= ${/CountryF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CountryF4/} === '' ? ${i18n>nationality} : '' }"
+					ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
+					placeholder="{i18n>nationality}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
 					<customData>
 						<core:CustomData key="Country" value="Country"/>
 						<core:CustomData key="CountryName" value="CountryName"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>FirstName}" required="true"/>
-				<Input placeholder="Enter First Name" showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Vorna/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Vorna/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Vorna/} === '' ? ${i18n>FirstName} : '' }" placeholder="{i18n>FirstName}"
+					showSuggestion="" value="{/BenefitsManagement/MedicalInsurance/Header/Vorna/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>middlename}" required="true"/>
-				<Input placeholder="Enter Middle Name" value="{/BenefitsManagement/MedicalInsurance/Header/Nach2/}" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Nach2/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Nach2/} === '' ? ${i18n>middlename} : '' }" placeholder="{i18n>middlename}"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Nach2/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>LastName}" required="true"/>
-				<Input placeholder="Enter Last Name" value="{/BenefitsManagement/MedicalInsurance/Header/Nachn/}" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Nachn/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Nachn/} === '' ? ${i18n>LastName} : '' }" placeholder="{i18n>LastName}"
+					value="{/BenefitsManagement/MedicalInsurance/Header/Nachn/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>depedentnational}" required="true"/>
-				<Input placeholder="Enter Dependent National ID" value="{/BenefitsManagement/MedicalInsurance/Header/Zdepid/}" showSuggestion=""
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Zdepid/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Zdepid/} === '' ? ${i18n>depedentnational} : '' }"
+					placeholder="{i18n>depedentnational}" value="{/BenefitsManagement/MedicalInsurance/Header/Zdepid/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
