@@ -535,7 +535,8 @@ sap.ui.define([
 						path: "PostingDate",
 						value: this.getModel().getProperty("/AccountsReceivable/Billing/Header/PostingDate/") ? this.handleOdataDateFormat(this.getModel()
 							.getProperty("/AccountsReceivable/Billing/Header/PostingDate/")) : "",
-						group: "BillingRequestFilter"
+						group: "BillingRequestFilter",
+						useOR: true
 					},
 
 					{
