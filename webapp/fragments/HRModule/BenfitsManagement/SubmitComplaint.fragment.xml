@@ -17,34 +17,41 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Label text="{i18n>serviceproduct}" required="false"/>
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>type}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%"
-					placeholder="Enter Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
+				<Input valueState="{= ${/TypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/TypeF4/} === '' ? ${i18n>type} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%" placeholder="{i18n>type}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
 					<customData>
 						<core:CustomData key="keyfield" value="Type"/>
 						<core:CustomData key="value_1" value="Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>approvalnumber}" required="true"/>
-				<Input placeholder="Enter Approval Number" value="{/BenefitsManagement/SubmitComplaint/Header/Zaprnum/}" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Zaprnum/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Zaprnum/} === '' ? ${i18n>approvalnumber} : '' }"
+					placeholder="{i18n>approvalnumber}" value="{/BenefitsManagement/SubmitComplaint/Header/Zaprnum/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>name}" required="true"/>
-				<Input placeholder="Enter Name" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Cname/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Cname/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Cname/} === '' ? ${i18n>name} : '' }" placeholder="Enter Name"
+					showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Cname/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>whenshould}" required="true"/>
-				<DatePicker valueFormat="dd/MM/yyyy" displayformat="dd/MM/yyyy" value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Begda/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>National}" required="true"/>
-				<Input placeholder="Enter National ID" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
+				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Enter Termination Reason' : '' }"
+					placeholder="{i18n>National}" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -53,7 +60,7 @@
 		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
-				<Label text="{i18n>comments}" required="false"/>
+				<Label text="{i18n>Remarks}" required="false"/>
 				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/SubmitComplaint/Header/Zcomment/}" growing="true"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>

@@ -54,7 +54,7 @@ sap.ui.define([
 					LoginUserID: "",
 					HRAppVisible: null,
 					TimeZoneData: "",
-					TypeF4: "",
+					/*	TypeF4: "",*/
 					UploadedData: [],
 					HRCreateRequest: {
 						UploadedData: [],
@@ -356,6 +356,8 @@ sap.ui.define([
 
 			},
 			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/BenefitsManagement/SubmitComplaint/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -369,9 +371,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						//"Userid": oPayloadHeader.Persno,
 						"Cname": oPayloadHeader.Cname,
-						//"Idcot": "9hgcgdc",
 						"Type": this.getModel().getProperty("/TypeF4/") ? this.getModel().getProperty("/TypeF4/").split("-")[0] : "",
 						"Aprnum": oPayloadHeader.Zaprnum,
 						"Zcomment": oPayloadHeader.Zcomment
@@ -641,8 +641,11 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeelearningRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
-						"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				/*	if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+							"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;*/
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -1088,6 +1091,23 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/BenefitsManagement/MedicalInsurance/Header/Zdepid/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1010-1-B") {
+					validationProperties = [{
+						path: "/TypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Zaprnum/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Cname/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Begda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Idcot/",
 						condition: true
 					}];
 				} else if (service === "SSA-HR-1009-1") {
