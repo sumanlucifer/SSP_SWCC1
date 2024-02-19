@@ -15,39 +15,33 @@
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>prno}" required="false"/>
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>contractor}" required="false"/>
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{workCenterModel>/}">
-					<suggestionItems>
-						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
-					</suggestionItems>
-				</Input>-->
 				<Label text="{i18n>totalservicevalue}" required="true"/>
 				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>requestingparty}" required="false"/>
 				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}"
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>pono}" required="false"/>
-				<Input placeholder="{i18n>pono}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<!--	<Input placeholder="{i18n>pono}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp=""
+					valueHelpRequest=""/>-->
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
+					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Order"/>
+						<core:CustomData key="NetAmount" value="Net Amount"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>contractvalue}" required="true"/>
 				<Input placeholder="{i18n>contractvalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>

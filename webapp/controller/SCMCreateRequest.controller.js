@@ -18,7 +18,6 @@ sap.ui.define([
 
 			},
 			_onObjectMatched: function () {
-				// debugger;
 				this._createItemDataModel();
 				var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local),
 					sServiceProductLocalVal = oStorage.get("sSubServiceType");
@@ -634,6 +633,24 @@ sap.ui.define([
 							itemData: []
 						}
 					},
+					ContractManagement: {
+						ContractualChangeOrders: {
+							Header: {},
+							itemData: []
+						},
+						NonContractualOrders: {
+							Header: {},
+							itemData: []
+						},
+						IssuingContractualLetters: {
+							Header: {},
+							itemData: []
+						},
+						ContractClosure: {
+							Header: {},
+							itemData: []
+						}
+					},
 					ClasssificationandInventory: {
 						ChangeRequest: {
 							Header: {
@@ -663,18 +680,6 @@ sap.ui.define([
 
 				});
 			},
-			/*		PlantF4: function () {
-						this.getModel().setProperty("/busy", true);
-						this.CallValueHelpAPI('/A_Plant/')
-							.then(function (oResponse) {
-								this.getModel().setProperty("/busy", false);
-								this.getModel().setProperty("/PMCreateRequest/PlantF4/", oResponse.results);
-							}.bind(this)).catch(function (error) {
-								this.getModel().setProperty("/busy", false);
-								MessageBox.error(error.responseText);
-							}.bind(this));
-
-					},*/
 			handleBackPress: function () {
 				this.navigationBack();
 
@@ -743,6 +748,23 @@ sap.ui.define([
 						.getProperty(
 							"/ClasssificationandInventory/STO/Header/"), this.getModel().getProperty(
 							"/ClasssificationandInventory/STO/itemData/")) :
+					null;
+				//--------------------------Contract Management-----------------------------------------------------	
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" ? this.ScmContractualChangeOrdersRequest(this.getModel()
+						.getProperty(
+							"/ContractManagement/ContractualChangeOrders/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1-A" ? this.ScmContractualChangeOrdersRequest(this.getModel()
+						.getProperty(
+							"/ContractManagement/NonContractualOrders/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" ? this.ScmIssuingRequest(this.getModel()
+						.getProperty(
+							"/ContractManagement/IssuingContractualLetters/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2-A" ? this.ScmIssuingRequest(this.getModel()
+						.getProperty(
+							"/ContractManagement/ContractClosure/Header/"), "") :
 					null;
 			},
 
@@ -1012,6 +1034,54 @@ sap.ui.define([
 							};
 						}
 					)
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmContractualChangeOrdersRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"ReqParty": oPayloadHeader.SPIR_NO,
+						"EstPrice": oPayloadHeader.BWART,
+						"Ebeln": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"TotalValue": oPayloadHeader.TotalValue,
+						"Zzvendor": oPayloadHeader.Zzvendor
+					},
+
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmIssuingRequest: function (oPayloadHeader, aItem) {
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"SpirNo": oPayloadHeader.SPIR_NO,
+						//"Bwart": oPayloadHeader.BWART,
+						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"EquiTyp": oPayloadHeader.EQUI_TYP,
+						"SpirSub": oPayloadHeader.SPIR_SUB
+					},
+
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
