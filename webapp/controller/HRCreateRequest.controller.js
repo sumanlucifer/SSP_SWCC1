@@ -1089,9 +1089,6 @@ sap.ui.define([
 					}, {
 						path: "/BenefitsManagement/MedicalInsurance/Header/Zdepid/",
 						condition: true
-					}, {
-						path: "/BenefitsManagement/ClaimRequest/Header/Bankk/",
-						condition: true
 					}];
 				} else if (service === "SSA-HR-1009-1") {
 					validationProperties = [{
@@ -1123,6 +1120,14 @@ sap.ui.define([
 			handleAttachmentvalidation: function (service, oItems, aData) {
 				var isValid = true;
 				if (service === "SSA-HR-1010-1-A") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-HR-1010-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not
@@ -1184,7 +1189,7 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/UploadedData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-				currentElement.removeStyleClass("remove-table");
+				//currentElement.removeStyleClass("remove-table");
 
 			},
 			handleMissmatch: function () {

@@ -21,7 +21,7 @@
 				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>policyno}" required="false"/>
+				<Label text="{i18n>policyno}" required="true"/>
 				<Input valueState="{= ${/PolicyNoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PolicyNoF4/} === '' ? ${i18n>policyno} : '' }"
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
 					placeholder="{i18n>policyno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
@@ -69,7 +69,7 @@
 					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Zibegda/} === '' ? 'Enter Date' : '' }"
 					value="{/BenefitsManagement/MedicalInsurance/Header/Zibegda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
