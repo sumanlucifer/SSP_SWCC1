@@ -703,6 +703,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatecomissionofallkindsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/Commisioning/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -933,6 +935,82 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/EmployeeLocF4/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1010-1-A") {
+					validationProperties = [{
+						path: "/TransportationCommision/EmpTransporation/Header/Begda/",
+						condition: true
+					}, {
+						path: "/PositionF4/",
+						condition: true
+					}, {
+						path: "/EventF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/EmployeeLocF4/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-3") {
+					validationProperties = [{
+						path: "/TransportationCommision/Commisioning/Header/Zorgdat/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zservdat/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/ContracttypeF4/",
+						condition: true
+					}, {
+						path: "/TimeProfileF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringAdmisF4/",
+						condition: true
+					}, {
+						path: "/ClockInOutF4/",
+						condition: true
+					}, {
+						path: "/PayGroupF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PositionF4/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/TimeZoneKey/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/WorkscheduleF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringVariantF4/",
+						condition: true
+					}, {
+						path: "/Payrollid/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zhiredat/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zseniordat/",
 						condition: true
 					}];
 				} else if (service === "SSA-HR-1009-1") {
