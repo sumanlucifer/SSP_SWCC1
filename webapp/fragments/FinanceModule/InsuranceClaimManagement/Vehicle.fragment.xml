@@ -21,13 +21,6 @@
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
 				<Label text="{i18n>plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
@@ -156,8 +149,8 @@
 						<cells>
 							<Text text="{zzassetid}"/>
 							<Text text="{zzassetsubid}"/>
-							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy"
-								value="{path:'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{ClaimRecDate}"
+								class="sapUiSmallMarginBottom"/>
 							<ComboBox selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
 								<items>
 									<core:Item key="Work Shop" text="Work Shop"/>
@@ -169,8 +162,8 @@
 							<Text text="{ebeln}"/>
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
-							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy"
-								value="{path:'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{AccidentDate}"
+								class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
 								<items>
@@ -180,11 +173,11 @@
 									<core:Item key="Settled" text="Settled"/>
 								</items>
 							</ComboBox>
-							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy"
-								value="{path:'PaymentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{PaymentDate}"
+								class="sapUiSmallMarginBottom"/>
 							<Text text="{zzpolicy_status}"/>
-							<Text text="{path:'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
-							<Text text="{path:'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
+							<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsStartDate}" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsExpiryDate}" class="sapUiSmallMarginBottom"/>
 							<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
