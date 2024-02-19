@@ -505,7 +505,7 @@ sap.ui.define([
 			onSearchFinanceRequest: function () {
 
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return;
-
+				debugger;
 				var filters = [{
 						path: "CompanyCode",
 						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
@@ -582,6 +582,7 @@ sap.ui.define([
 						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "ShipHullsFilter"
 					}, {
+
 						path: "zzinspono",
 						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "VehiclesFilter"
@@ -633,7 +634,7 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.callCommonFinanceSearchRequest(
 					"/ZCDSV_INSURANCE_DTVH/",
 					"GET",
-					dynamicFilters.VehiclesFilter, null, "InsuranceandClaim/Vehicle/CarDetails/") : null;
+					dynamicFilters.VehiclesFilter, null, "/InsuranceandClaim/Vehicle/CarDetails/") : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" ? this.callCommonFinanceSearchRequest(
 					"/ZCDSV_INSURANCE_CLMVH/",
@@ -646,7 +647,7 @@ sap.ui.define([
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_FI_SRV"), operation, Entity, null, Filters)
 					.then(function (oResponse) {
-
+						debugger;
 						this.getModel().setProperty(`${oModelSet}`, oResponse.results);
 						this.getModel().setProperty("/busy", false);
 					}.bind(this)).catch(function (error) {

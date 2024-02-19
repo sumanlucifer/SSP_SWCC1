@@ -63,27 +63,27 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>AssetNumber}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/zzassetid}"/>
 				<Label text="{i18n>SubNumber}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/zzassetsubid/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/zzassetsubid/}"/>
 				<Label text="{i18n>AssetDesc}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/AssetDesc/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/AssetDesc/}"/>
 				<Label text="{i18n>CarModel}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/CarModel/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/CarModel/}"/>
 				<Label text="{i18n>Manufacturer}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/Manufac/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/Manufac/}"/>
 				<Label text="{i18n>Plate Number}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/PlateNo/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/PlateNo/}"/>
 				<Label text="{i18n>Chassis Number}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/ChassisNo/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/ChassisNo/}"/>
 				<Label text="{i18n>PlateRegistrationNumber}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/PlateRegisNo/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/PlateRegisNo/}"/>
 				<Label text="{i18n>YearManufacture}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/YearofManuf/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/YearofManuf/}"/>
 				<Label text="{i18n>Color}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/Color/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/Color/}"/>
 				<Label text="{i18n>Plant}"/>
-				<Text text="{/InsuranceandClaim/Vehicle/itemData/0/CarPlant/}"/>
+				<Text text="{/InsuranceandClaim/Vehicle/CarDetails/0/CarPlant/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -122,7 +122,7 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Policy No."/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
 						<Text text="Accident Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -134,10 +134,10 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Status"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 						<Text text="Insurance Start Date "/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 						<Text text="Insurance End Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="8%">
@@ -149,8 +149,8 @@
 						<cells>
 							<Text text="{zzassetid}"/>
 							<Text text="{zzassetsubid}"/>
-							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{ClaimRecDate}"
-								class="sapUiSmallMarginBottom"/>
+							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+								value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
 							<ComboBox selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
 								<items>
 									<core:Item key="Work Shop" text="Work Shop"/>
@@ -162,8 +162,10 @@
 							<Text text="{ebeln}"/>
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
-							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{AccidentDate}"
-								class="sapUiSmallMarginBottom"/>
+							
+							
+							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+								value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
 								<items>
@@ -176,8 +178,8 @@
 							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{PaymentDate}"
 								class="sapUiSmallMarginBottom"/>
 							<Text text="{zzpolicy_status}"/>
-							<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsStartDate}" class="sapUiSmallMarginBottom"/>
-							<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsExpiryDate}" class="sapUiSmallMarginBottom"/>
+							<Text text="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
+							<Text text="{path: 'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
 							<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
