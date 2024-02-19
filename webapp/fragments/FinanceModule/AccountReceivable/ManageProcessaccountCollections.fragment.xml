@@ -41,15 +41,12 @@
 					</customData>
 				</Input>
 				<core:Title text=""/>
-				<!--	<Label text="{i18n>workcenter}" required="true"/>
-				<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{fiModel>workCenter}" items="{fiModel>/workCenter}">
-					<core:Item key="{fiModel>Workcenter}" text="{fiModel>Workcenter} - {fiModel>WorkcenterDesc}"/>
-				</ComboBox>-->
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AccountsReceivable/Manageandprocess/Header/Descript/}"
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/AccountsReceivable/Manageandprocess/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountsReceivable/Manageandprocess/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AccountsReceivable/Manageandprocess/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>CompanyCode}" required="true"/>
 				<!--<Input required="true" width="100%" value="1000"/>-->
 				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"

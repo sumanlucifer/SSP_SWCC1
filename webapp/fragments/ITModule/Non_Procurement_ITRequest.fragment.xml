@@ -23,14 +23,7 @@
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>IssueDescription}" required="false"/>
 				<Input placeholder="Enter Description" value="{/NonITProcurement/Header/Descript/}"/>
-				<Label text="{i18n>plant}" required="true"/>
-				<!--<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -74,7 +67,7 @@
 					<Text text="File Size"/>
 				</Column>
 				<Column>
-					<Text text="Delete"/>
+					<Text text=""/>
 				</Column>
 				<!-- Add more columns as needed -->
 			</columns>

@@ -24,10 +24,12 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
+				<Input valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
 					valueHelpRequest=""/>
 				<Label text="{i18n>Vendor}" required="true"/>
-				<Input
+				<Input valueState="{= ${/VendorF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/VendorF4/} === '' ? 'Select Vendor' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_VENDORVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.VendorF4-/VendorF4/"
 					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/VendorF4/}">
@@ -36,8 +38,10 @@
 						<core:CustomData key="SupplierName" value="Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>PO}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.POF4-/POF4/"
+				<Label text="{i18n>PO}" required="true"/>
+				<Input enabled="{= ${/VendorF4/} !== undefined ? true : false }" valueState="{= ${/POF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/POF4/} === '' ? 'Select PO' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.POF4-/POF4/"
 					width="100%" placeholder="Select PO" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/POF4/}">
 					<customData>
 						<core:CustomData key="PurchaseOrder" value="PO"/>
@@ -50,12 +54,18 @@
 				<Input enabled="false"
 					value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/} {/InsuranceandClaim/CreateInsurance/Header/currency/}" width="100%"/>
 				<Label text="{i18n>DepeciationRate}" required="true"/>
-				<Input type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/}" required="true" width="100%"/>
+				<Input placeholder="Enter Depreciation Rate"
+					valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/} === '' ? 'Enter Depreciation Rate' : '' }" type="Number"
+					value="{/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/}" required="true" width="100%"/>
 				<Label text="{i18n>WarRiskPercetage}" required="true"/>
-				<Input placeholder="Enter War Risk Percentage" type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/}"
-					showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/} === '' ? 'Enter War Percentage' : '' }"
+					placeholder="Enter War Risk Percentage" type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>PolicyType}" required="true"/>
-				<Input
+				<Input valueState="{= ${/PolicyTypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PolicyTypeF4/} === '' ? 'Select Policy Type' : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPOLICY_TYP_CODE')/Set/-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.PolicyTypeF4-/PolicyTypeF4/"
 					width="100%" placeholder="Select Policy Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/PolicyTypeF4/}">
@@ -64,12 +74,6 @@
 						<core:CustomData key="Text" value="Name"/>
 					</customData>
 				</Input>
-				<!--<Label text="{i18n>InsuranceStartDate}" required="true"/>-->
-				<!--<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"-->
-				<!--	class="sapUiSmallMarginBottom"/>-->
-				<!--<Label text="{i18n>InsuranceEndDate}" required="true"/>-->
-				<!--<DatePicker valueFormat="dd/MM/yyyy" value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsStrtDat/}" change="handleChange"-->
-				<!--	class="sapUiSmallMarginBottom"/>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
