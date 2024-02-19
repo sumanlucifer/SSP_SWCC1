@@ -222,6 +222,7 @@ sap.ui.define([
 								CompanyCode: "1000"
 
 							},
+							CarDetails: {},
 							itemData: []
 						},
 						Property: {
@@ -628,6 +629,11 @@ sap.ui.define([
 					"/ZCDSV_INSURANCE_CLMVH/",
 					"GET",
 					dynamicFilters.VehiclesFilter, null, "/InsuranceandClaim/Vehicle/itemData") : null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.callCommonFinanceSearchRequest(
+					"/ZCDSV_INSURANCE_DTVH/",
+					"GET",
+					dynamicFilters.VehiclesFilter, null, "InsuranceandClaim/Vehicle/CarDetails/") : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" ? this.callCommonFinanceSearchRequest(
 					"/ZCDSV_INSURANCE_CLMVH/",
