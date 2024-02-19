@@ -1225,6 +1225,7 @@ sap.ui.define([
 			},
 
 			FinanceInsuranceRegistrationRequest: function (oPayloadHeader) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -1623,6 +1624,9 @@ sap.ui.define([
 						}, {
 							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
 							condition: true
+						}, {
+							path: "/AccountsReceivable/Manageandprocess/Header/Descript/",
+							condition: true
 						}
 
 					];
@@ -1949,6 +1953,32 @@ sap.ui.define([
 
 					];
 
+				} else if (service === "SSA-FIN-3006-1") {
+					validationProperties = [{
+							path: "/VendorF4/",
+							condition: true
+						}, {
+							path: "/POF4/",
+							condition: true
+						}, {
+							path: "/InsuranceandClaim/CreateInsurance/Header/Descript/",
+							condition: true
+						}, {
+							path: "/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/",
+							condition: true
+						},
+
+						{
+							path: "/PolicyTypeF4/",
+							condition: true
+						},
+
+						{
+							path: "/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/",
+							condition: true
+						}
+
+					];
 				} else if (service === "SSA-FIN-3007-1") {
 					validationProperties = [{
 							path: "/InsuranceF4/",
