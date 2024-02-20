@@ -852,7 +852,8 @@ sap.ui.define([
 						"ExTc": oPayloadHeader.ExTc,
 						"Txz01": aItem[0].Txz01,
 						"Matkl": aItem[0].servicegroupF4 ? aItem[0].servicegroupF4.split("-")[0] : "",
-						"Ekgrp": aItem[0].PurchasinggroupF4 ? aItem[0].PurchasinggroupF4.split("-")[0] : ""
+						"Ekgrp": aItem[0].PurchasinggroupF4 ? aItem[0].PurchasinggroupF4.split("-")[0] : "",
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -862,7 +863,8 @@ sap.ui.define([
 								Meins: items.uomF4 ? items.uomF4.split("-")[0] : "",
 								Kostl: items.CostcenterF4 ? items.CostcenterF4.split("-")[0] : "",
 								Menge: items.Menge,
-								UnitPrice: items.UnitPrice
+								UnitPrice: items.UnitPrice,
+								Afnam: items.AFNAM
 
 							};
 						}

@@ -124,6 +124,8 @@
 				<Input placeholder="" value="{/ProcurementAdhoc/ServiceProcurement/Header/PrJust/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalservicevalue}" required="true"/>
 				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/}" enabled="false"/>
+				<Label visible="false" text="{i18n>Plant}" required="false"/>
+				<Input enabled="false" visible="false" value="{/PlantF4/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -217,6 +219,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>costcenter}"/>
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>requisitioner}"/>
+					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -236,10 +241,11 @@
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/CostcenterF4/" width="100%"
 								placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{CostcenterF4}">
 								<customData>
-									<core:CustomData key="ControllingArea" value="Cost Center"/>
-									<core:CustomData key="CostCenter" value="Cost Text"/>
+									<core:CustomData key="CostCenter" value="Cost Center"/>
+									<core:CustomData key="ControllingArea" value="Cost Text"/>
 								</customData>
 							</Input>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
