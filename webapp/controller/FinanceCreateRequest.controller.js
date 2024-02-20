@@ -565,12 +565,6 @@ sap.ui.define([
 						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
 						group: "ManageProcessCollectionFilter",
 						useOR: true
-					}, {
-
-						path: "PostingDate",
-						value: this.getModel().getProperty("/AccountsReceivable/Manageandprocess/Header/PostingDate/") ? this.handleOdataDateFormat(this
-							.getModel().getProperty("/AccountsReceivable/Manageandprocess/Header/PostingDate/")) : "",
-						group: "ManageProcessCollectionFilter"
 					},
 
 					{
@@ -584,11 +578,12 @@ sap.ui.define([
 					}, {
 
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.handleRegexforremovedash(this.getModel().getProperty("/InsuranceF4/")) : "",
 						group: "VehiclesFilter"
 					}, {
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.handleRegexforremovedash(this.getModel().getProperty("/InsuranceF4/")) : "",
+						// 		value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "PropertyFilter"
 					}
 
@@ -640,6 +635,11 @@ sap.ui.define([
 					"/ZCDSV_INSURANCE_CLMVH/",
 					"GET",
 					dynamicFilters.PropertyFilter, null, "/InsuranceandClaim/Property/itemData") : null;
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" ? this.callCommonFinanceSearchRequest(
+					"/ZCDSV_INSURANCE_DTVH/",
+					"GET",
+					dynamicFilters.PropertyFilter, null, "/InsuranceandClaim/Property/PropertyDetails") : null;
 
 			},
 			callCommonFinanceSearchRequest: function (Entity, operation, Filters, oPayload, oModelSet) {
