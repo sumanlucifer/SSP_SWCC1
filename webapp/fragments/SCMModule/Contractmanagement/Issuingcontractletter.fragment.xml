@@ -35,12 +35,17 @@
 						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>typeofletter}" required="true"/>
-				<ComboBox selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}"
+					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Warning" text="Warning"/>
 					<core:Item key="Termination" text="Service Termination"/>
 					<core:Item key="Withdrawl" text="Withdrawl"/>
 					<core:Item key="Appeal" text="Appeal"/>
+				</ComboBox>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}"
+					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Contract" text="Contract Closure"/>
 				</ComboBox>
 				<core:Title text=""/>
