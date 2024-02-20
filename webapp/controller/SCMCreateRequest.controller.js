@@ -164,9 +164,7 @@ sap.ui.define([
 
 						}, {
 							path: "Product",
-							value: this.getModel().getProperty(
-								`${this.getModel().getProperty("/FragModel")}`).split(
-								"-")[0],
+							value: this.getModel().getProperty(`${this.getModel().getProperty("/FragModel")}`).split("-")[0],
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -293,7 +291,7 @@ sap.ui.define([
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
-
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
@@ -352,10 +350,12 @@ sap.ui.define([
 						`${oModel}`)
 				) {
 					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/itemData/`, aData);
-					/*this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);*/
-					/*this.getModel().setProperty(`${spath}/CharcInternalID/`, aData[0].CharcInternalID);*/
-
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2") {
+					this.getModel().setProperty(`/ContractManagement/IssuingContractualLetters/Header/Po`, aData[0].PurchaseOrder);
 				}
+				/*else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1") {
+					this.getModel().setProperty(`/PonoF4/`, aData[0].PurchaseOrder);
+				}*/
 
 			},
 			onValueHelpCancelPress: function () {
@@ -542,6 +542,58 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
 
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/PonoF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" &&
+						this.getModel()
+						.getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/PonoF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2-A" &&
+						this
+						.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/PonoF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2007-1-A" && this
+						.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/PonoF4/")) {
+					var filters = [{
+							path: "Supplier",
+							value: this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split(
+								"-")[0] : "",
+							group: "WareHouseFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/PrnoF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" &&
+						this.getModel()
+						.getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/PrnoF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2-A" &&
+						this
+						.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/PrnoF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2007-1-A" && this
+						.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/PrnoF4/")) {
+					var filters = [{
+							path: "PurchasingDocument",
+							value: this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split(
+								"-")[0] : "",
+							group: "WareHouseFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -756,7 +808,7 @@ sap.ui.define([
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1-A" ? this.ScmContractualChangeOrdersRequest(this.getModel()
 						.getProperty(
-							"/ContractManagement/NonContractualOrders/Header/"), "") :
+							"/ContractManagement/ContractualChangeOrders/Header/"), "") :
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" ? this.ScmIssuingRequest(this.getModel()
 						.getProperty(
@@ -1049,11 +1101,11 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"ReqParty": oPayloadHeader.SPIR_NO,
-						"EstPrice": oPayloadHeader.BWART,
-						"Ebeln": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
-						"TotalValue": oPayloadHeader.TotalValue,
-						"Zzvendor": oPayloadHeader.Zzvendor
+						"ReqParty": oPayloadHeader.ReqParty,
+						"EstPrice": oPayloadHeader.EstPrice,
+						"Ebeln": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
+						"TotalValue": `${oPayloadHeader.TotalValue}`,
+						"Zzvendor": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
 					},
 
 					"ServiceHeadertoItem": [],
@@ -1073,10 +1125,10 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"SpirNo": oPayloadHeader.SPIR_NO,
-						//"Bwart": oPayloadHeader.BWART,
+						"ReqParty": oPayloadHeader.ReqParty,
+						"EstPrice": oPayloadHeader.EstPrice,
 						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
-						"EquiTyp": oPayloadHeader.EQUI_TYP,
+						"Ebeln": oPayloadHeader.Ebeln,
 						"SpirSub": oPayloadHeader.SPIR_SUB
 					},
 
@@ -1235,9 +1287,24 @@ sap.ui.define([
 				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
+			handleLiveChangeContractPrcUnitPrice: function (oEvent) {
+				debugger;
+				var service = this.getModel().getProperty("/SCMAppVisible/");
+				if (service === "SSA-PSCM-2007-1") {
+					var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+					var sTotal = parseInt(5000) + (0.01 * sUnit);
+					this.getModel().setProperty(`/ContractManagement/ContractualChangeOrders/Header/TotalValue/`, sTotal);
+					/*	this.getModel().setProperty("/ContractManagement/ContractualChangeOrders/Header/", true);*/
+				} else if (service === "SSA-PSCM-2007-1-A") {
+					var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+					var sTotal = parseInt(10000) + (0.01 * sUnit);
+					this.getModel().setProperty(`/ContractManagement/ContractualChangeOrders/Header/TotalValue/`, sTotal);
+					/*	this.getModel().setProperty("/ContractManagement/ContractualChangeOrders/Header/", true);*/
+				}
+
+			},
 
 			itemCalculationCheck: function (oEVe, iRowNumber, aItemData) {
-				debugger;
 				var s = "";
 
 				var sTotal = sUnit * sQty;
@@ -1449,7 +1516,7 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/UploadedData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-				currentElement.removeStyleClass("remove-table");
+				//currentElement.removeStyleClass("remove-table");
 
 			},
 			handleMissmatch: function () {

@@ -20,9 +20,16 @@
 				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>prno}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%"
+					placeholder="{i18n>prno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
+					<customData>
+						<core:CustomData key="PurchasingDocument" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>contractor}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
+				<Input placeholder="" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/Zzvendor/}" showValueHelp=""
+					valueHelpRequest=""/>
 				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
 					suggestionItems="{workCenterModel>/}">
 					<suggestionItems>
@@ -30,19 +37,24 @@
 					</suggestionItems>
 				</Input>-->
 				<Label text="{i18n>typeofletter}" required="true"/>
-				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
-					editable="true" valueHelpRequest=""/>
+				<ComboBox selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
+					<core:Item key="Warning" text="Warning"/>
+					<core:Item key="Termination" text="Service Termination"/>
+					<core:Item key="Withdrawl" text="Withdrawl"/>
+					<core:Item key="Appeal" text="Appeal"/>
+					<core:Item key="Contract" text="Contract Closure"/>
+				</ComboBox>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>requestingparty}" required="false"/>
-				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}"
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>pono}" required="false"/>
-				<Input placeholder="{i18n>pono}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input placeholder="{i18n>pono}" enabled="false" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/Ebeln/}"
+					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>contractvalue}" required="true"/>
-				<Input placeholder="{i18n>contractvalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
+				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -52,7 +64,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ContractManagement/IssuingContractualLetters/Header/NotifText/}"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
