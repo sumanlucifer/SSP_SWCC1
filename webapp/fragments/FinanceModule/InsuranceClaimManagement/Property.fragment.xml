@@ -31,7 +31,7 @@
 				<Input valueState="{= ${/InsuranceF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/InsuranceF4/} === '' ? 'Enter Insurance Policy No.' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_INSURANCEVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.InsurancePolicyNo-/InsuranceF4/"
-					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="Enter Insurance Policy No." valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsuranceF4/}">
 					<customData>
 						<core:CustomData key="Zzinspono" value="Insurance Policy No."/>
@@ -63,21 +63,21 @@
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
 				<Label text="{i18n>AssetNumber}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/zzassetid/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/zzassetid/}"/>
 				<Label text="{i18n>SubNumber}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/zzassetsubid/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/zzassetsubid/}"/>
 				<Label text="{i18n>AssetDesc}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/AssetDesc/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/AssetDesc/}"/>
 				<Label text="{i18n>PropertyNumber}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/zzpropertyno/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/zzpropertyno/}"/>
 				<Label text="{i18n>District}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/District/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/District/}"/>
 				<Label text="{i18n>PurchaseAmount}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/PurchaseAmt/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/PurchaseAmt/}"/>
 				<Label text="{i18n>YearofCapitalization}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/prop/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/prop/}"/>
 				<Label text="{i18n>Plant}"/>
-				<Text text="{/InsuranceandClaim/Property/itemData/0/CarPlant/}"/>
+				<Text text="{/InsuranceandClaim/Property/PropertyDetails/0/CarPlant/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -95,43 +95,43 @@
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
-					<Column>
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Asset Number"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Sub Number"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Property Number"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Plant"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Claim Received Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Deductible Value"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Net Payment"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Policy No."/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Accident Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Payment Date"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Status"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Start Date "/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance End Date"/>
 					</Column>
 					<Column width="5%"></Column>
@@ -143,7 +143,8 @@
 							<Text text="{zzassetsubid}"/>
 							<Text text="{zzpropertyno}"/>
 							<Text text="{CarPlant}"/>
-							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{ClaimRecDate}"
+								class="sapUiSmallMarginBottom"/>
 							<Input enabled="{= ${New} === true ? true : false}" value="{DeductVal}"/>
 							<Text text="{NetPay}"/>
 							<Text text="{zzinspono}"/>

@@ -465,10 +465,25 @@ sap.ui.define([
 			}
 		},
 
+		handleRegexforremovedash: function (sVal) {
+
+			// Pattern for text2
+			const pattern2 = /v-\d+/;
+			const match2 = sVal.match(pattern2);
+
+			if (match2) {
+				console.log("Match 2:", match2[0]); // Output: v-1010
+				return match2[0];
+			} else {
+				return sVal.split("-")[0];
+
+			}
+
+		},
 		/**
-		 * Getter for the resource bundle.
+			 * Getter for the resource bundle.
 	
-		 */
+			 */
 		getResourceBundle: function () {
 			return this.getOwnerComponent().getModel("i18n").getResourceBundle();
 		}
