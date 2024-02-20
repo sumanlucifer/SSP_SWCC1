@@ -1127,9 +1127,8 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"ReqParty": oPayloadHeader.ReqParty,
 						"EstPrice": oPayloadHeader.EstPrice,
-						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
-						"Ebeln": oPayloadHeader.Ebeln,
-						"SpirSub": oPayloadHeader.SPIR_SUB
+						"Ebeln": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
+						"Zzvendor": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
 					},
 
 					"ServiceHeadertoItem": [],

@@ -19,6 +19,14 @@
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>contractor}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Supplier_VH-com.swcc.Template.fragments.SCMModule.SupplierF4-/SupplierF4/" width="100%"
+					placeholder="{i18n>contractor}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SupplierF4/}">
+					<customData>
+						<core:CustomData key="Supplier" value="Supplier"/>
+						<core:CustomData key="SupplierName" value="Supplier Name"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>prno}" required="false"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%"
 					placeholder="{i18n>prno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
@@ -27,15 +35,6 @@
 						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>contractor}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/Zzvendor/}" showValueHelp=""
-					valueHelpRequest=""/>
-				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{workCenterModel>/}">
-					<suggestionItems>
-						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
-					</suggestionItems>
-				</Input>-->
 				<Label text="{i18n>typeofletter}" required="true"/>
 				<ComboBox selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Warning" text="Warning"/>
@@ -51,8 +50,13 @@
 				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>pono}" required="false"/>
-				<Input placeholder="{i18n>pono}" enabled="false" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/Ebeln/}"
-					showValueHelp="" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
+					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>contractvalue}" required="true"/>
 				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>
@@ -64,7 +68,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ContractManagement/IssuingContractualLetters/Header/NotifText/}"
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ContractManagement/IssuingContractualLetters/Header/NotifText/}"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
