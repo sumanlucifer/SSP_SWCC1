@@ -694,6 +694,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
+						"Tzone": oPayloadHeader.TimeZoneKey,
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
 						"Massg": this.getModel().getProperty("/EventF4/") ? this.getModel().getProperty("/EventF4/").split("-")[0] : "",
@@ -938,6 +939,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/EmpTransporation/Header/TimeZoneKey/",
 						condition: true
 					}, {
 						path: "/EmployeeLocF4/",

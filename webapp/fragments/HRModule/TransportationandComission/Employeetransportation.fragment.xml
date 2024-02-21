@@ -79,6 +79,12 @@
 						<core:CustomData key="value_1" value="Event Reason"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>timezone}" required="true"/>
+				<ComboBox valueState="{= ${/TransportationCommision/EmpTransporation/Header/TimeZoneKey/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/EmpTransporation/Header/TimeZoneKey/} === '' ? ${i18n>timezone} : '' }"
+					selectedKey="{/TransportationCommision/EmpTransporation/Header/TimeZoneKey/}" placeholder="{i18n>timezone}" items="{/TimeZoneData}">
+					<core:Item key="{value}" text="{label}"/>
+				</ComboBox>
 				<!--	<Label text="{i18n>payscalelevel}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/"
 					width="100%" placeholder="Select Payscale level" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
