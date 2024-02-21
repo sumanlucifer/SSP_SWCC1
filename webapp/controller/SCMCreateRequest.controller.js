@@ -158,7 +158,7 @@ sap.ui.define([
 
 						{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							value: this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[0] : "",
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -305,9 +305,9 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
-				/*	if (!aData[0]) {
-						return;
-					}*/
+				if (!aData[0]) {
+					return;
+				}
 				debugger;
 				var spath = oModel.replace(/\/[^/]+\/$/, '/');
 
@@ -963,9 +963,10 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
 						//"Bwart": oPayloadHeader.BWART,
-						"Bwart": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
-						"Kostl": this.getModel().getProperty("/costF4/ ") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
-						"Wempf": oPayloadHeader.WEMPF
+						"Bwart": this.getModel().getProperty("/MovementtypeF4/") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
+						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
+						"Wempf": oPayloadHeader.WEMPF,
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -1070,10 +1071,10 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"SupplPlant": this.getModel().getProperty("/SuppPlantF4/ ") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[
+						"SupplPlant": this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[
 							0] : "",
-						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/ ") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : "",
-						"Werks": this.getModel().getProperty("/PlantF4/ ") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : ""
+						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : "",
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
