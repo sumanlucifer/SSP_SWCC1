@@ -1359,7 +1359,7 @@ sap.ui.define([
 						"Zzinspono": aCustomDataEntry[0].zzinspono,
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
-						"PayDate": this.handleOdataDateFormat(aCustomDataEntry[0].PayDate),
+						"PayDate": this.handleOdataDateFormat(aCustomDataEntry[0].PaymentDate),
 						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
 						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
 

@@ -104,7 +104,7 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Sub Number"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
 						<Text text="Claim Received Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
