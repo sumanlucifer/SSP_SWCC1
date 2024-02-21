@@ -551,20 +551,18 @@ sap.ui.define([
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
 						group: "BillingRequestFilter"
+					}, {
+						path: "CompanyCode",
+						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
+						group: "ManageProcessCollectionFilter",
+						useOR: true
 					},
 
 					{
 						path: "CustomerCode",
 						value: this.getModel().getProperty("/customercodeF4/") ? this.getModel().getProperty("/customercodeF4/").split("-")[0] : "",
-						group: "ManageProcessCollectionFilter",
-						useOR: true
-					},
+						group: "ManageProcessCollectionFilter"
 
-					{
-						path: "CompanyCode",
-						value: this.getModel().getProperty("/CompanycodeF4/") ? this.getModel().getProperty("/CompanycodeF4/").split("-")[0] : "",
-						group: "ManageProcessCollectionFilter",
-						useOR: true
 					},
 
 					{
@@ -1697,9 +1695,6 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
 							condition: true
 						}, {
 							path: "/LedgerF4/",
