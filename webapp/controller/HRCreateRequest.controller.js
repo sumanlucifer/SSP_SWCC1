@@ -54,7 +54,7 @@ sap.ui.define([
 					LoginUserID: "",
 					HRAppVisible: null,
 					TimeZoneData: "",
-					TypeF4: "",
+					/*	TypeF4: "",*/
 					UploadedData: [],
 					HRCreateRequest: {
 						UploadedData: [],
@@ -356,6 +356,8 @@ sap.ui.define([
 
 			},
 			HRCreatemedicalcaresubmitcomplaintRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/BenefitsManagement/SubmitComplaint/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -369,9 +371,7 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
-						//"Userid": oPayloadHeader.Persno,
 						"Cname": oPayloadHeader.Cname,
-						//"Idcot": "9hgcgdc",
 						"Type": this.getModel().getProperty("/TypeF4/") ? this.getModel().getProperty("/TypeF4/").split("-")[0] : "",
 						"Aprnum": oPayloadHeader.Zaprnum,
 						"Zcomment": oPayloadHeader.Zcomment
@@ -421,6 +421,9 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatemedicalcareinsuranceRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -638,8 +641,11 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateemployeelearningRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
-						"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/HRAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				/*	if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+							"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;*/
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -703,6 +709,8 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreatecomissionofallkindsRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
+						"/TransportationCommision/Commisioning/Header/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -935,6 +943,173 @@ sap.ui.define([
 						path: "/EmployeeLocF4/",
 						condition: true
 					}];
+				} else if (service === "SSA-HR-1010-1-A") {
+					validationProperties = [{
+						path: "/BenefitsManagement/ClaimRequest/Header/PadCname/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zmobile/",
+						condition: true
+					}, {
+						path: "/InsurancepolicyF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zamount/",
+						condition: true
+					}, {
+						path: "/CountryF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zproname/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Begda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zmemnum/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/P25Idcot/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Iban/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Gesch/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/PadOrt01/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Zvisdat/",
+						condition: true
+					}, {
+						path: "/ClaimtypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Bankk/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1006-3") {
+					validationProperties = [{
+						path: "/TransportationCommision/Commisioning/Header/Zorgdat/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zservdat/",
+						condition: true
+					}, {
+						path: "/JobtitleF4/",
+						condition: true
+					}, {
+						path: "/PayscalelevelF4/",
+						condition: true
+					}, {
+						path: "/ContracttypeF4/",
+						condition: true
+					}, {
+						path: "/TimeProfileF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringAdmisF4/",
+						condition: true
+					}, {
+						path: "/ClockInOutF4/",
+						condition: true
+					}, {
+						path: "/PayGroupF4/",
+						condition: true
+					}, {
+						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/PositionF4/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/TimeZoneKey/",
+						condition: true
+					}, {
+						path: "/PayscalegroupF4/",
+						condition: true
+					}, {
+						path: "/WorkscheduleF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringF4/",
+						condition: true
+					}, {
+						path: "/TimeRecoringVariantF4/",
+						condition: true
+					}, {
+						path: "/Payrollid/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zhiredat/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Zseniordat/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1010-1") {
+					validationProperties = [{
+						path: "/PolicyNoF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TypeofemployeementF4/",
+						condition: true
+					}, {
+						path: "/RequesttypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zmobile/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Idcot/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zibegda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Gbdat/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Gesch/",
+						condition: true
+					}, {
+						path: "/CountryF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Vorna/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Nach2/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Nachn/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Zdepid/",
+						condition: true
+					}];
+				} else if (service === "SSA-HR-1010-1-B") {
+					validationProperties = [{
+						path: "/TypeF4/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Zaprnum/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Cname/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Begda/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Idcot/",
+						condition: true
+					}];
 				} else if (service === "SSA-HR-1009-1") {
 					validationProperties = [{
 						path: "/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/",
@@ -969,7 +1144,15 @@ sap.ui.define([
 
 					// Check if 'oItems' is empty or not
 					if (!oItems || oItems.length === 0) {
-						MessageToast.show("Item data is required to submit the request");
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-HR-1010-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
 						isValid = false;
 					}
 				}
@@ -1026,7 +1209,7 @@ sap.ui.define([
 				var aTableData = this.getModel().getProperty("/UploadedData");
 				aTableData.splice(iRowNumberToDelete, 1);
 				this.getModel().refresh();
-				currentElement.removeStyleClass("remove-table");
+				//currentElement.removeStyleClass("remove-table");
 
 			},
 			handleMissmatch: function () {

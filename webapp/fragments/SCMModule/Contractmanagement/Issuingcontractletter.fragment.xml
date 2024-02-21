@@ -15,41 +15,55 @@
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
-				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
-					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
-					<customData>
-						<core:CustomData key="Plant" value="Plant"/>
-						<core:CustomData key="PlantName" value="Plant Name"/>
-					</customData>
-				</Input>-->
+				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>prno}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>contractor}" required="false"/>
-				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Input id="productInput" placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{workCenterModel>/}">
-					<suggestionItems>
-						<core:Item text="{workCenterModel>WorkcenterDesc}"/>
-					</suggestionItems>
-				</Input>-->
-				<Label text="{i18n>typeofletter}" required="true"/>
-				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
-					editable="true" valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Supplier_VH-com.swcc.Template.fragments.SCMModule.SupplierF4-/SupplierF4/" width="100%"
+					placeholder="{i18n>contractor}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SupplierF4/}">
+					<customData>
+						<core:CustomData key="Supplier" value="Supplier"/>
+						<core:CustomData key="SupplierName" value="Supplier Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>prno}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%"
+					placeholder="{i18n>prno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
+					<customData>
+						<core:CustomData key="PurchasingDocument" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
+					</customData>
+				</Input>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}"
+					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
+					<core:Item key="Warning" text="Warning"/>
+					<core:Item key="Termination" text="Service Termination"/>
+					<core:Item key="Withdrawl" text="Withdrawl"/>
+					<core:Item key="Appeal" text="Appeal"/>
+				</ComboBox>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}"
+					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
+					<core:Item key="Contract" text="Contract Closure"/>
+				</ComboBox>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>requestingparty}" required="false"/>
-				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}"
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
 					showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>pono}" required="false"/>
-				<Input placeholder="{i18n>pono}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp=""
-					valueHelpRequest=""/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
+					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
+					</customData>
+				</Input>
 				<Label text="{i18n>contractvalue}" required="true"/>
-				<Input placeholder="{i18n>contractvalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TOTAL_PRICE/}" showValueHelp=""
+				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
 					editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -59,7 +73,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" text="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ContractManagement/IssuingContractualLetters/Header/NotifText/}"
 					growingMaxLines="7" height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>

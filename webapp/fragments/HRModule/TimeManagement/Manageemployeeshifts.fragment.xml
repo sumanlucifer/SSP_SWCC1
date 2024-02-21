@@ -42,8 +42,8 @@
 					placeholder="{i18n>workschedule}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/WorkscheduleF4/}">
 					<customData>
-						<core:CustomData key="value_1" value="Work Schedule"/>
-						<core:CustomData key="keyfield" value="Work Schedule Group"/>
+						<core:CustomData key="keyfield" value="Work Schedule"/>
+						<core:CustomData key="value_1" value="Work Schedule Group"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>startdate}" required="true"/>

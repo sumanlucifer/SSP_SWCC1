@@ -36,7 +36,7 @@
 					value="{/MaterialtypeF4/}">
 					<customData>
 						<core:CustomData key="ProductType" value="Material Type"/>
-						<core:CustomData key="MaterialTypeName" value="Material Name"/>
+						<core:CustomData key="MaterialTypeName" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>

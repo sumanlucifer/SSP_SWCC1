@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Product Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose"
+		afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="PurchaseOrder" descriptionKey="PurchaseOrderType" class="value-header">
+		<filterBar>
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Purchase Order" label="Purchase Order" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Purchase Order"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Net Amount" label="Net Amount" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Net Amount"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

@@ -9,9 +9,9 @@
 							<m:Input name="Material Type"/>
 						</fb:control>
 					</fb:FilterGroupItem>
-					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Material Name" label="Material Name" visibleInFilterBar="true">
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Description" label="Description" visibleInFilterBar="true">
 						<fb:control>
-							<m:Input name="Material Name"/>
+							<m:Input name="Description"/>
 						</fb:control>
 					</fb:FilterGroupItem>
 				</fb:filterGroupItems>
