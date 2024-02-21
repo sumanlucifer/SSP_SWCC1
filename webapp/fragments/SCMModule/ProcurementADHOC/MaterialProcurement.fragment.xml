@@ -16,29 +16,33 @@
 					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
 					<ToolbarSpacer/>
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
+				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>tenderpre}" required="true"/>
-				<ComboBox selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
+				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? ${i18n>tenderpre} : '' }"
+					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
 				</ComboBox>
 				<Label text="{i18n>servicelevel}" required="true"/>
-				<ComboBox selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
+					selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
 					<core:Item key="N" text="Normal"/>
 					<core:Item key="U" text="Urgent"/>
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>justification}" required="false"/>
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>totalestvalue}" required="true"/>
+				<Label text="{i18n>totalestvalue}" required="false"/>
 				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
-				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
 				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>

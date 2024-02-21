@@ -5,10 +5,11 @@ sap.ui.define([
 		"sap/m/MessageBox",
 		"sap/ui/core/Fragment",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Fragment, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Fragment, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.SCMCreateRequest", {
 			onInit: function () {
@@ -143,9 +144,6 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" &&
 						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 						.getProperty("/valueHelpName") === "/ProductF4/") ||
-					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" &&
-						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
-						.getProperty("/valueHelpName") === "/ProductF4/") ||
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" &&
 						!this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
 						.getProperty("/valueHelpName") === "/ProductF4/") ||
@@ -154,6 +152,32 @@ sap.ui.define([
 						.getProperty("/valueHelpName") === "/ProductF4/")
 				) {
 
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Product",
+							value: this.getModel().getProperty(`${this.getModel().getProperty("/FragModel")}`).split("-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
+						dynamicFilters.Item_ProductFilter,
+						`${this.getModel().getProperty("/FragModel")}`)
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/ProductF4/")) {
 					var filters = [
 
 						{
@@ -874,6 +898,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateMaterialProcurementRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/itemData/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1468,6 +1495,528 @@ sap.ui.define([
 
 				}
 
+			},
+			handleHeaderValidation: function (service) {
+				var isValid = true;
+				var validationProperties;
+
+				if (service === "SSA-PSCM-2001-1" || service === "SSA-PSCM-2001-2") {
+					validationProperties = [{
+						path: "/ProcurementAdhoc/MaterialProcurement/Header/TenPre",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-FIN-3001-1") {
+
+					validationProperties = [{
+							path: "/AccountPayable/RecordProcess/Header/Descript/",
+							condition: true,
+							errorMessage: "Please enter Description."
+						}, {
+							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3002-1") {
+
+					validationProperties = [{
+							path: "/GlaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/customercodeF4/",
+							condition: true
+						}, {
+							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
+							condition: true
+						}, {
+							path: "/AccountsReceivable/Manageandprocess/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3002-2") {
+
+					validationProperties = [{
+							path: "/AccountsReceivable/Billing/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/customercodeF4/",
+							condition: true
+						}, {
+							path: "/AccountsReceivable/Billing/Header/PostingDate/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-1") {
+
+					validationProperties = [{
+							path: "/CurrencytypeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/ChartofaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/LedgerF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-2") {
+
+					validationProperties = [{
+							path: "/CurrencytypeF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/",
+							condition: true
+						}, {
+							path: "/ChartofaccountF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/LedgerF4/",
+							condition: true
+						},
+
+						{
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/",
+							condition: true
+						}, {
+							path: "/FinancialstatmentF4/",
+							condition: true
+						}, {
+							path: "/LanguageF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-3") {
+
+					validationProperties = [{
+							path: "/PostingF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/FinancialClose/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-4") {
+
+					validationProperties = [{
+							path: "/GlaccountF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3003-5") {
+
+					validationProperties = [{
+							path: "/FinancialReviewGeneralClose/MaintainChart/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3004-1") {
+
+					validationProperties = [{
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/",
+							condition: true
+						}, {
+							path: "/FmareaF4/",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear",
+							condition: true
+						}, {
+							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Poper",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-1") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/DepreciationProcess/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/DepreciationProcess/Header/Poper/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/DepreciationProcess/Header/FiscalYear/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-2") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/PerfomAsset/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/PerfomAsset/Header/Brdatu/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						}, {
+							path: "/DepreciationF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-3A") {
+
+					validationProperties = [{
+							path: "/costF4/",
+							condition: true
+						}, {
+							path: "/AssestclassF4/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RecordAsset/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/RecordAsset/Header/Txt50/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-3B") {
+
+					validationProperties = [{
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Budat/",
+							condition: true
+						},
+
+						{
+							path: "/DepreciationF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/SaleofAssets/Header/Bzdat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/SaleofAssets/Header/Erlbt/",
+							condition: true
+						}
+					];
+
+				} else if (service === "SSA-FIN-3005-3C") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Descript/",
+							condition: true
+						}, {
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Budat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Bzdat/",
+							condition: true
+						},
+
+						{
+							path: "/AssetLifecycle/RetirementofAssets/Header/Anbtr/",
+							condition: true
+						}, {
+							path: "/AccountingprincipalF4/",
+							condition: true
+						}, {
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/DepreciationF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-4") {
+
+					validationProperties = [{
+							path: "/CompanycodeF4/",
+							condition: true
+						},
+
+						{
+							path: "/AssestF4/",
+							condition: true
+						},
+
+						{
+							path: "/costF4/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/TransferofAssets/Header/Descript/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3005-5") {
+
+					validationProperties = [{
+							path: "/AssetLifecycle/ProjectCaptilization/Header/Descript/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/ProjectCaptilization/Header/Poper/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3007-3") {
+
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+
+				} else if (service === "SSA-FIN-3006-1") {
+					validationProperties = [{
+							path: "/VendorF4/",
+							condition: true
+						}, {
+							path: "/POF4/",
+							condition: true
+						}, {
+							path: "/InsuranceandClaim/CreateInsurance/Header/Descript/",
+							condition: true
+						}, {
+							path: "/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/",
+							condition: true
+						},
+
+						{
+							path: "/PolicyTypeF4/",
+							condition: true
+						},
+
+						{
+							path: "/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-1") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-2") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				} else if (service === "SSA-FIN-3007-4") {
+					validationProperties = [{
+							path: "/InsuranceF4/",
+							condition: true
+						}
+
+					];
+				}
+				if (!validationProperties) return true;
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						isValid = false;
+
+					}
+				});
+
+				if (!isValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
+
+				return isValid;
+			},
+			handleItemValidation: function (service, aData) {
+				var isValid = true;
+
+				if (service === "SSA-FIN-3001-2") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+
+				} else if (service === "SSA-FIN-3001-1") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+				} else if (service === "SSA-FIN-3002-1") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+				} else if (service === "SSA-FIN-3002-2") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					if (!itemCheck) {
+						MessageToast.show("item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+				} else if (service === "SSA-FIN-3007-1") {
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+					var hasNewClaim = aData.some(element => element.New === true);
+					if (!itemCheck) {
+						MessageToast.show("Claim Data Required to Submit");
+						isValid = false;
+						return isValid;
+					} else if (!hasNewClaim && aData.length === 2) {
+						MessageToast.show("Please add at least one claim");
+						isValid = false;
+						return isValid;
+					} else if (hasNewClaim) {
+						debugger;
+						var aCustomDataEntry = aData.filter(function (element) {
+							return element.New === true;
+						});
+						var customEntryDatalengthCheck = aCustomDataEntry.length >= 1 ? false : true;
+						MessageToast.show("Only one claim can be added");
+						isValid = customEntryDatalengthCheck;
+						return isValid;
+					}
+
+				} else if (service === "SSA-FIN-3007-2") {
+					// Check if any element has isActive set to true
+					var aCustomDataEntry = aData.filter(function (element) {
+						return element.New === true;
+					});
+					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
+						"Only one claim can be added "), false) : true;
+
+				} else if (service === "SSA-FIN-3007-3") {
+					// Check if any element has isActive set to true
+					var aCustomDataEntry = aData.filter(function (element) {
+						return element.New === true;
+					});
+					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
+						"Only one claim can be added "), false) : true;
+
+				} else if (service === "SSA-FIN-3007-4") {
+					// Check if any element has isActive set to true
+					var aCustomDataEntry = aData.filter(function (element) {
+						return element.New === true;
+					});
+					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
+						"Only one claim can be added "), false) : true;
+
+				}
+
+				return isValid;
 			},
 
 			/* File uplaod 	*/
