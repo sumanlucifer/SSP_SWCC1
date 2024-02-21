@@ -20,7 +20,7 @@
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
