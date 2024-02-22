@@ -779,6 +779,10 @@ sap.ui.define([
 						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/MaterialProcurement/itemData/")) :
 					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.ScmCreateMaterialProcurementRequest(this.getModel().getProperty(
+						"/ProcurementAdhoc/MaterialProcurement/Header/"), this.getModel().getProperty(
+						"/ProcurementAdhoc/MaterialProcurement/itemData/")) :
+					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.ScmCreateRfcRequest(this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
@@ -1067,6 +1071,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatespirRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -1081,7 +1088,7 @@ sap.ui.define([
 						//"Bwart": oPayloadHeader.BWART,
 						"Equnr": this.getModel().getProperty("/MovementtypeF4/ ") ? this.getModel().getProperty("/MovementtypeF4/").split("-")[0] : "",
 						"EquiTyp": oPayloadHeader.EQUI_TYP,
-						"SpirSub": oPayloadHeader.SPIR_SUB
+						"SpirSub": oPayloadHeader.SpirSub
 					},
 
 					"ServiceHeadertoItem": [],
@@ -1509,21 +1516,21 @@ sap.ui.define([
 						condition: true
 					}];
 
-				} else if (service === "SSA-FIN-3001-1") {
+				} else if (service === "SSA-PSCM-2012-1") {
 
 					validationProperties = [{
-							path: "/AccountPayable/RecordProcess/Header/Descript/",
-							condition: true,
-							errorMessage: "Please enter Description."
-						}, {
-							path: "/AccountPayable/RecordProcess/Header/FiscalYear",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}
-
-					];
+						path: "/ClasssificationandInventory/SPIR/Header/Spirno/",
+						condition: true
+					}, {
+						path: "/ClasssificationandInventory/SPIR/Header/Descript/",
+						condition: true
+					}, {
+						path: "/ClasssificationandInventory/SPIR/Header/EQUI_TYP/",
+						condition: true
+					}, {
+						path: "/ClasssificationandInventory/SPIR/Header/SpirSub/",
+						condition: true
+					}];
 
 				} else if (service === "SSA-FIN-3002-1") {
 
@@ -2016,6 +2023,27 @@ sap.ui.define([
 
 				}
 
+				return isValid;
+			},
+			handleAttachmentvalidation: function (service, oItems, aData) {
+				var isValid = true;
+				if (service === "SSA-PSCM-2012-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-HR-1010-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				}
 				return isValid;
 			},
 

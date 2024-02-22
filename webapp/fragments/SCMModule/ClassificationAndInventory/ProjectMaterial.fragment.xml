@@ -17,9 +17,9 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
+				<Label text="{i18n>Plant}" required="false"/>
 				<!--<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
@@ -31,19 +31,27 @@
 				<!--	<Label text="{i18n>quantity}" required="true"/>
 				<Input placeholder="Enter Quantity" value="{/ClasssificationandInventory/SPIR/Header/MaterialQty/}"/>-->
 				<Label text="{i18n>spirno}" required="true"/>
-				<Input placeholder="Enter SPIR No" value="{/ClasssificationandInventory/SPIR/Header/Spirno/}"/>
+				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/Spirno} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/Spirno} === '' ? ${i18n>spirno} : '' }" placeholder="{i18n>spirno}"
+					value="{/ClasssificationandInventory/SPIR/Header/Spirno/}"/>
 				<Label text="{i18n>spirsubject}" required="true"/>
-				<Input placeholder="Enter SPIR Subject" value=""/>
+				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/SpirSub/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/SpirSub/} === '' ? ${i18n>spirsubject} : '' }"
+					placeholder="{i18n>spirsubject}" value="{/ClasssificationandInventory/SPIR/Header/SpirSub/}" enabled="true"/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>RequestDescription}" required="true"/>
-				<Input placeholder="Enter Description" value="{/ClasssificationandInventory/SPIR/Header/Descript/}" enabled="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/Descript/} === '' ? ${i18n>spirno} : '' }"
+					placeholder="{i18n>RequestDescription}" value="{/ClasssificationandInventory/SPIR/Header/Descript/}" enabled="true"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
-				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="Enter Equipment Type" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? ${i18n>equipmenttype} : '' }"
+					value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="{i18n>equipmenttype}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>equipmentno}" required="false"/>
-				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="Enter Equipment No" showSuggestion="" showValueHelp=""
+				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="{i18n>equipmentno}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
