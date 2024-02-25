@@ -50,9 +50,8 @@
 					value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>National}" required="true"/>
 				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Enter Termination Reason' : '' }"
-					placeholder="{i18n>National}" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
-					valueHelpRequest=""/>
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? ${i18n>National} : '' }" placeholder="{i18n>National}"
+					showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

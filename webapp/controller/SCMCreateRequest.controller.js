@@ -664,6 +664,7 @@ sap.ui.define([
 					PlantF4: "",
 					TypeofcompetitionF4: "",
 					IndustrysectorF4: "U- Utility Industry",
+					PurchasinggroupF4: "901- STO-PlantRequestor",
 					//WorkCenterF4: [],
 					//Crtype: [],
 					UploadedData: [],
@@ -1217,7 +1218,7 @@ sap.ui.define([
 				}, "/ClasssificationandInventory/DuplicateResolution/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ClasssificationandInventory/STO/itemData"), {
-					ProductF4: null,
+					ProductF4: "",
 					Description: "",
 					Menge: "",
 					BaseUnit: "",
@@ -1238,12 +1239,12 @@ sap.ui.define([
 						Sgtxt: ""
 
 					}, "/WarehouseandLogistics/IssueofMaterial/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
-					"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
-					Matnr: "",
-					Wercks: "",
-					Lgort: ""
-				}, "/ClasssificationandInventory/STO/itemData") : "";
+				/*	this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
+						Matnr: "",
+						Wercks: "",
+						Lgort: ""
+					}, "/ClasssificationandInventory/STO/itemData") : "";*/
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ProcurementAdhoc/MaterialProcurement/itemData"), {
 					Matnr: "",

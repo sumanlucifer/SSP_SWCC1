@@ -46,10 +46,18 @@
 					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/Descript/} === '' ? ${i18n>spirno} : '' }"
 					placeholder="{i18n>RequestDescription}" value="{/ClasssificationandInventory/SPIR/Header/Descript/}" enabled="true"/>
 				<Label text="{i18n>equipmenttype}" required="true"/>
-				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? 'Error' : 'None' }"
+				<!--<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? ${i18n>equipmenttype} : '' }"
 					value="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}" placeholder="{i18n>equipmenttype}" showSuggestion="" showValueHelp=""
-					valueHelpRequest=""/>
+					valueHelpRequest=""/>-->
+				<ComboBox valueState="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? 'Error' : 'None' }"
+					placeholder="{i18n>equipmenttype}"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/EQUI_TYP/} === '' ? ${i18n>equipmenttype} : '' }"
+					selectedKey="{/ClasssificationandInventory/SPIR/Header/EQUI_TYP/}">
+					<core:Item key="MECH" text="Mechanical"/>
+					<core:Item key="ELEC" text="Electrical"/>
+					<core:Item key="INST" text="Instrumental"/>
+				</ComboBox>
 				<Label text="{i18n>equipmentno}" required="false"/>
 				<Input value="{/ClasssificationandInventory/SPIR/Header/EQUNR/}" placeholder="{i18n>equipmentno}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
