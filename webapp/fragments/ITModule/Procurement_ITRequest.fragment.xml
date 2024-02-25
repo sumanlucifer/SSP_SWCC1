@@ -87,7 +87,7 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange="handleLiveChangeQty"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" change="handleLiveChangeQty"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input placeholder="Req" value="{StockAvailable}" enabled="false"/>
 							<Input enabled="false" value="{UnitPrice}"/>
