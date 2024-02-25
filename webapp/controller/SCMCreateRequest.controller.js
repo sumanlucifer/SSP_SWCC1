@@ -1337,6 +1337,11 @@ sap.ui.define([
 					var sTotal = parseInt(10000) + (0.01 * sUnit);
 					this.getModel().setProperty(`/ContractManagement/ContractualChangeOrders/Header/TotalValue/`, sTotal);
 					/*	this.getModel().setProperty("/ContractManagement/ContractualChangeOrders/Header/", true);*/
+				} else if (service === "SSA-PSCM-2004-2") {
+					var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
+					var sTotal = parseInt(3000) + (0.01 * sUnit);
+					this.getModel().setProperty(`/ProcurementAdhoc/PrepareofDirectpurchase/Header/TotalValue/`, sTotal);
+					/*	this.getModel().setProperty("/ContractManagement/ContractualChangeOrders/Header/", true);*/
 				}
 
 			},

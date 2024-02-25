@@ -50,14 +50,17 @@
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>requestingparty}" required="true"/>
-				<Input placeholder="Enter Requesting Party" showSuggestion="" showValueHelp=""
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}" valueHelpRequest=""/>
 				<Label text="{i18n>estimatedcost}" required="true"/>
-				<Input placeholder="Enter Estimated cost" type="Number" showSuggestion="" showValueHelp=""
+				<Input placeholder="{i18n>estimatedcost}" change="handleLiveChangeContractPrcUnitPrice" type="Number" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}" valueHelpRequest=""/>
 				<Label text="{i18n>projectdescription}" required="true"/>
 				<Input placeholder="Enter Project Description" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/}" valueHelpRequest=""/>
+				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/TotalValue/}"
+					showValueHelp="" editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
