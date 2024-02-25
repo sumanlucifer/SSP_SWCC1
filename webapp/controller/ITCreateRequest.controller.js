@@ -384,8 +384,10 @@ sap.ui.define([
 							return {
 								Matnr: items.MaterialF4.split("-")[0],
 								Menge: items.Menge,
-								UnitPrice: parseFloat(items.UnitPrice).toFixed(2),
-								TotalPrice: parseFloat(items.TotalPrice).toFixed(2)
+								UnitPrice: Number.isNaN(parseFloat(items.UnitPrice)) ? "0.00" : parseFloat(items.UnitPrice).toFixed(2),
+								TotalPrice: Number.isNaN(parseFloat(items.TotalPrice)) ? "0.00" : parseFloat(items.TotalPrice).toFixed(2)
+									// UnitPrice: parseFloat(items.UnitPrice).toFixed(2),
+									// TotalPrice: parseFloat(items.TotalPrice).toFixed(2)
 
 							};
 						}
@@ -530,6 +532,7 @@ sap.ui.define([
 
 				var iEstimated = (totalSum) + 0.15 * totalSum;
 
+				iEstimated = Number.isNaN(iEstimated) ? 0 : iEstimated;
 				this.getModel().setProperty("/ITProcurement/Header/EstPrice/", iEstimated);
 			},
 
