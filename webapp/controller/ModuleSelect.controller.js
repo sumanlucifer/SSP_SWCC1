@@ -198,18 +198,6 @@ sap.ui.define([
 				this.getModel().setProperty("/ModuleSearch/Header/SLA/", sKey.split("_")[4]);
 				this.getModel().setProperty("/ModuleSearch/Header/Price/", sKey.split("_")[5]);
 
-			},
-			testCPI_API: function () {
-
-				var oOptions = {
-					url: "http/sf",
-					type: "GET"
-				};
-				this.getAPI.crudOperations_REST(oOptions)
-					.then(function (oResponse) {
-						var aData = oResponse.data;
-
-					}.bind(this));
 			}
 
 		})
