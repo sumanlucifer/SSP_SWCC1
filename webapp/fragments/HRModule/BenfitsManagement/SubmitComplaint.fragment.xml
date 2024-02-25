@@ -28,8 +28,8 @@
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%" placeholder="{i18n>type}"
 					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Type"/>
-						<core:CustomData key="value_1" value="Name"/>
+						<core:CustomData key="value_1" value="Type"/>
+						<core:CustomData key="keyfield" value="Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>approvalnumber}" required="true"/>
