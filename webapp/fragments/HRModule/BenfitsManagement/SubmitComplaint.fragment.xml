@@ -65,7 +65,7 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox>
+	<!--	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
 			<headerToolbar>
 				<Toolbar>
@@ -96,17 +96,17 @@
 				<Column>
 					<Text text="Delete"/>
 				</Column>
-				<!-- Add more columns as needed -->
-			</columns>
-			<items>
-				<ColumnListItem>
-					<cells>
-						<Text text="{Filename}"/>
-						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
-						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
-					</cells>
-				</ColumnListItem>
-			</items>
-		</Table>
-	</VBox>
+			
+</columns>
+<items>
+	<ColumnListItem>
+		<cells>
+			<Text text="{Filename}"/>
+			<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+			<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+		</cells>
+	</ColumnListItem>
+</items>
+</Table>
+</VBox>-->
 </core:FragmentDefinition>
