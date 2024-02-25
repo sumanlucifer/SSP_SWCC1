@@ -20,8 +20,8 @@
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>quantity}" required="true"/>
-				<Input enabled="true" placeholder="Enter Quantity" value="{/ClasssificationandInventory/ChangeRequest/Header/quantity/}"/>
+				<!--	<Label text="{i18n>quantity}" required="true"/>
+				<Input enabled="true" placeholder="Enter Quantity" value="{/ClasssificationandInventory/ChangeRequest/Header/quantity/}"/>-->
 				<Label text="{i18n>crtype}" required="true"/>
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhCrTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
 					placeholder="{i18n>crtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CrtypeF4/}">
@@ -39,15 +39,18 @@
 						<core:CustomData key="MaterialTypeName" value="Description"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Materialgroup}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
-					placeholder="{i18n>Materialgroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/servicegroupF4/}">
+				<Label text="{i18n>Externalmaterial}" required="true"/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+					placeholder="{i18n>Externalmaterial}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MaterialgroupF4/}">
 					<customData>
-						<core:CustomData key="Matkl" value="Service Code"/>
-						<core:CustomData key="Wgbez" value="Service Name"/>
+						<core:CustomData key="ExternalProductGroup" value="Material group"/>
+						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Materialdesc}" required="true"/>
+				<Input placeholder="{i18n>Materialdesc}" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -64,17 +67,17 @@
 						<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Externalmaterial}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
-					placeholder="{i18n>Externalmaterial}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/MaterialgroupF4/}">
+				<Label text="{i18n>Materialgroup}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
+					placeholder="{i18n>Materialgroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/servicegroupF4/}">
 					<customData>
-						<core:CustomData key="ExternalProductGroup" value="Material group"/>
-						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
+						<core:CustomData key="Matkl" value="Service Code"/>
+						<core:CustomData key="Wgbez" value="Service Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Materialdesc}" required="true"/>
-				<Input placeholder="{i18n>Materialdesc}" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}"
+				<Label text="{i18n>Materialcode}" required="true"/>
+				<Input placeholder="{i18n>Materialcode}" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}"
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>

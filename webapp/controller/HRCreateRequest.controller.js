@@ -374,6 +374,7 @@ sap.ui.define([
 						"Cname": oPayloadHeader.Cname,
 						"Type": this.getModel().getProperty("/TypeF4/") ? this.getModel().getProperty("/TypeF4/").split("-")[0] : "",
 						"Aprnum": oPayloadHeader.Zaprnum,
+						"Idcot": oPayloadHeader.Idcot,
 						"Zcomment": oPayloadHeader.Zcomment
 					},
 					"ServiceHeadertoItem": [],

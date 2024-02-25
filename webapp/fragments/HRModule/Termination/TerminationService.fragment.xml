@@ -60,7 +60,7 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox>
+	<!--	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
 			<headerToolbar>
 				<Toolbar>
@@ -91,7 +91,7 @@
 				<Column>
 					<Text text="Delete"/>
 				</Column>
-				<!-- Add more columns as needed -->
+			
 			</columns>
 			<items>
 				<ColumnListItem>
@@ -103,5 +103,5 @@
 				</ColumnListItem>
 			</items>
 		</Table>
-	</VBox>
+	</VBox>-->
 </core:FragmentDefinition>

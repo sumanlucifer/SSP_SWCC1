@@ -28,8 +28,8 @@
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TYPE-com.swcc.Template.fragments.HRModule.TypeF4-/TypeF4/" width="100%" placeholder="{i18n>type}"
 					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TypeF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Type"/>
-						<core:CustomData key="value_1" value="Name"/>
+						<core:CustomData key="value_1" value="Type"/>
+						<core:CustomData key="keyfield" value="Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>approvalnumber}" required="true"/>
@@ -50,9 +50,8 @@
 					value="{/BenefitsManagement/SubmitComplaint/Header/Begda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
 				<Label text="{i18n>National}" required="true"/>
 				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Enter Termination Reason' : '' }"
-					placeholder="{i18n>National}" showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp=""
-					valueHelpRequest=""/>
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? ${i18n>National} : '' }" placeholder="{i18n>National}"
+					showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -66,7 +65,7 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox>
+	<!--	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
 			<headerToolbar>
 				<Toolbar>
@@ -97,17 +96,17 @@
 				<Column>
 					<Text text="Delete"/>
 				</Column>
-				<!-- Add more columns as needed -->
-			</columns>
-			<items>
-				<ColumnListItem>
-					<cells>
-						<Text text="{Filename}"/>
-						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
-						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
-					</cells>
-				</ColumnListItem>
-			</items>
-		</Table>
-	</VBox>
+			
+</columns>
+<items>
+	<ColumnListItem>
+		<cells>
+			<Text text="{Filename}"/>
+			<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+			<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+		</cells>
+	</ColumnListItem>
+</items>
+</Table>
+</VBox>-->
 </core:FragmentDefinition>
