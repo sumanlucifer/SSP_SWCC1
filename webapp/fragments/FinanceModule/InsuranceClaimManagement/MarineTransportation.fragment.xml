@@ -20,7 +20,7 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input placeholder="Enter Quantity" value="{/InsuranceandClaim/MarineTransportation/Header/MaterialQty/}"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/InsuranceandClaim/MarineTransportation/Header/MaterialQty/}"/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
@@ -71,7 +71,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button visible="{= ${/InsuranceandClaim/MarineTransportation/itemData}.length > 0}" icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<Table enableBusyIndicator="true" mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}"
 			sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false"

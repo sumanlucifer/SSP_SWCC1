@@ -733,7 +733,7 @@ sap.ui.define([
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" ? this.FinanceShipHullsRequest(this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/ShipHulls/Header"), this.getModel()
+						"/InsuranceandClaim/ShipHulls/Header/"), this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/ShipHulls/itemData")) : null;
 
@@ -1510,7 +1510,8 @@ sap.ui.define([
 			},
 			onAddItemsPress: function (oEvent) {
 
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && this.handleItemValidation(this.getModel().getProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && this.handleHeaderValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/")) && this.handleItemValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/"), this.getModel().getProperty(
 					"/InsuranceandClaim/MarineTransportation/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/MarineTransportation/itemData"), {
@@ -1530,7 +1531,8 @@ sap.ui.define([
 
 				}, "/InsuranceandClaim/MarineTransportation/itemData") : "";
 
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" && this.handleItemValidation(this.getModel().getProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" && this.handleHeaderValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/")) && this.handleItemValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/"), this.getModel().getProperty(
 					"/InsuranceandClaim/ShipHulls/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/ShipHulls/itemData"), {
@@ -1550,7 +1552,8 @@ sap.ui.define([
 
 				}, "/InsuranceandClaim/ShipHulls/itemData") : "";
 
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" && this.handleItemValidation(this.getModel().getProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" && this.handleHeaderValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/")) && this.handleItemValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/"), this.getModel().getProperty(
 					"/InsuranceandClaim/Vehicle/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/Vehicle/itemData"), {
@@ -1570,7 +1573,8 @@ sap.ui.define([
 
 				}, "/InsuranceandClaim/Vehicle/itemData") : "";
 
-				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" && this.handleItemValidation(this.getModel().getProperty(
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" && this.handleHeaderValidation(this.getModel().getProperty(
+					"/FinanceAppVisible/")) && this.handleItemValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/"), this.getModel().getProperty(
 					"/InsuranceandClaim/Property/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/Property/itemData"), {
@@ -1592,6 +1596,9 @@ sap.ui.define([
 
 			},
 
+			handleItemDependentData: function (service) {
+				this.onSearchFinanceRequest();
+			},
 			handleHeaderValidation: function (service) {
 				var isValid = true;
 				var validationProperties;
