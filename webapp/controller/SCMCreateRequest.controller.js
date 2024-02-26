@@ -1129,6 +1129,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmContractualChangeOrdersRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -1153,6 +1156,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmIssuingRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -1538,44 +1544,37 @@ sap.ui.define([
 						condition: true
 					}];
 
-				} else if (service === "SSA-FIN-3002-1") {
+				} else if (service === "SSA-PSCM-2007-1" || service === "SSA-PSCM-2007-1-A") {
 
 					validationProperties = [{
-							path: "/GlaccountF4/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/customercodeF4/",
-							condition: true
-						}, {
-							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
-							condition: true
-						}, {
-							path: "/AccountsReceivable/Manageandprocess/Header/Descript/",
-							condition: true
-						}
+						path: "/SupplierF4/",
+						condition: true
+					}, {
+						path: "/PrnoF4/",
+						condition: true
+					}, {
+						path: "/PonoF4/",
+						condition: true
+					}, {
+						path: "/ContractManagement/ContractualChangeOrders/Header/EstPrice/",
+						condition: true
+					}];
 
-					];
-
-				} else if (service === "SSA-FIN-3002-2") {
+				} else if (service === "SSA-PSCM-2007-2" || service === "SSA-PSCM-2007-2-A") {
 
 					validationProperties = [{
-							path: "/AccountsReceivable/Billing/Header/Descript/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/customercodeF4/",
-							condition: true
-						}, {
-							path: "/AccountsReceivable/Billing/Header/PostingDate/",
-							condition: true
-						}
-
-					];
+						path: "/SupplierF4/",
+						condition: true
+					}, {
+						path: "/PrnoF4/",
+						condition: true
+					}, {
+						path: "/PonoF4/",
+						condition: true
+					}, {
+						path: "/ContractManagement/IssuingContractualLetters/Header/EstPrice/",
+						condition: true
+					}];
 
 				} else if (service === "SSA-FIN-3003-1") {
 
