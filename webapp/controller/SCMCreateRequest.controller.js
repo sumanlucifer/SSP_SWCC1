@@ -555,7 +555,6 @@ sap.ui.define([
 
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
 					`/MovementtypeF4/`) {
-					debugger;
 					var filters = [{
 							path: "shkzg",
 							value: "S",
@@ -618,6 +617,19 @@ sap.ui.define([
 
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ProductF4/") {
+
+					var filters = [{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -1019,7 +1031,13 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatechangeRequest: function (oPayloadHeader, aItem) {
-				debugger;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1044,7 +1062,8 @@ sap.ui.define([
 								Atwrt: items.Atwrt
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1576,28 +1595,34 @@ sap.ui.define([
 						condition: true
 					}];
 
-				} else if (service === "SSA-FIN-3003-1") {
+				} else if (service === "SSA-PSCM-2011-1") {
 
 					validationProperties = [{
-							path: "/CurrencytypeF4/",
+							path: "/CrtypeF4/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							path: "/MaterialtypeF4/",
 							condition: true
 						}, {
-							path: "/ChartofaccountF4/",
+							path: "/ClasssificationandInventory/ChangeRequest/Maktx/",
 							condition: true
 						}, {
-							path: "/CompanycodeF4/",
+							path: "/MaterialgroupF4/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
+							path: "/IndustrysectorF4/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							path: "/ClasssificationandInventory/ChangeRequest/Header/Txz01/",
 							condition: true
 						}, {
-							path: "/LedgerF4/",
+							path: "/uomF4/",
+							condition: true
+						}, {
+							path: "/servicegroupF4/",
+							condition: true
+						}, {
+							path: "/ProductF4/",
 							condition: true
 						}
 

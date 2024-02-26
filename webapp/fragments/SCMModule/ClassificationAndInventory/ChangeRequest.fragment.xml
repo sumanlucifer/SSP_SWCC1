@@ -23,7 +23,8 @@
 				<!--	<Label text="{i18n>quantity}" required="true"/>
 				<Input enabled="true" placeholder="Enter Quantity" value="{/ClasssificationandInventory/ChangeRequest/Header/quantity/}"/>-->
 				<Label text="{i18n>crtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhCrTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
+				<Input valueState="{= ${/CrtypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CrtypeF4/} === '' ? ${i18n>crtype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZhCrTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
 					placeholder="{i18n>crtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CrtypeF4/}">
 					<customData>
 						<core:CustomData key="UsmdCreqType" value="CR Type"/>
@@ -31,7 +32,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ProductTypeText-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
+				<Input valueState="{= ${/MaterialtypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/MaterialtypeF4/} === '' ? ${i18n>crtype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_ProductTypeText-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
 					placeholder="{i18n>Materialtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialtypeF4/}">
 					<customData>
@@ -39,8 +42,14 @@
 						<core:CustomData key="MaterialTypeName" value="Description"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>Materialdesc}" required="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/ChangeRequest/Maktx/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/ChangeRequest/Maktx/} === '' ? ${i18n>crtype} : '' }" placeholder="{i18n>Materialdesc}"
+					showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}" valueHelpRequest=""/>
 				<Label text="{i18n>Externalmaterial}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
+				<Input valueState="{= ${/MaterialgroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/MaterialgroupF4/} === '' ? ${i18n>Externalmaterial} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_ExtProdGrp-com.swcc.Template.fragments.SCMModule.MaterialgroupF4-/MaterialgroupF4/" width="100%"
 					placeholder="{i18n>Externalmaterial}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialgroupF4/}">
 					<customData>
@@ -48,19 +57,21 @@
 						<core:CustomData key="ExternalProductGroup_Text" value="Material group name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Materialdesc}" required="true"/>
-				<Input placeholder="{i18n>Materialdesc}" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}"
-					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>Industrysector}" required="true"/>
-				<Input textFormatMode="KeyValue" placeholder="" value="{/IndustrysectorF4/}"/>
+				<Label text="{i18n>Industrysector}" required="false"/>
+				<Input valueState="{= ${/IndustrysectorF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/IndustrysectorF4/} === '' ? ${i18n>Industrysector} : '' }" textFormatMode="KeyValue" placeholder=""
+					value="{/IndustrysectorF4/}"/>
 				<Label text="{i18n>crtypedescription}" required="true"/>
-				<Input placeholder="{i18n>crtypedescription}" value="{/ClasssificationandInventory/ChangeRequest/Header/Txz01}" showSuggestion=""
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/ClasssificationandInventory/ChangeRequest/Header/Txz01/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/ChangeRequest/Header/Txz01/} === '' ? ${i18n>crtype} : '' }"
+					placeholder="{i18n>crtypedescription}" value="{/ClasssificationandInventory/ChangeRequest/Header/Txz01}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>Baseuom}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
+				<Input valueState="{= ${/uomF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/uomF4/} === '' ? ${i18n>Baseuom} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
 					placeholder="{i18n>Baseuom}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/uomF4/}">
 					<customData>
 						<core:CustomData key="UnitOfMeasure" value="Unit of Measure"/>
@@ -68,7 +79,9 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialgroup}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
+				<Input valueState="{= ${/servicegroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/servicegroupF4/} === '' ? ${i18n>Materialgroup} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
 					placeholder="{i18n>Materialgroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/servicegroupF4/}">
 					<customData>
@@ -77,8 +90,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>Materialcode}" required="true"/>
-				<Input placeholder="{i18n>Materialcode}" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Maktx}"
-					valueHelpRequest=""/>
+				<Input valueState="{= ${/ProductF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/ProductF4/} === '' ? ${i18n>Materialgroup} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+					placeholder="{i18n>Materialcode}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+					<customData>
+						<core:CustomData key="Product" value="Product Code"/>
+						<core:CustomData key="Description" value="Product Name"/>
+					</customData>
+				</Input>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
