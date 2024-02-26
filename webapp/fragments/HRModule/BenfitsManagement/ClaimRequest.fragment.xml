@@ -39,8 +39,8 @@
 					placeholder="{i18n>insurancepolicy}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/InsurancepolicyF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Insurance policy"/>
-						<core:CustomData key="value_1" value="Insurance policy type"/>
+						<core:CustomData key="value_1" value="Insurance policy"/>
+						<core:CustomData key="keyfield" value="Insurance policy type"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>amount}" required="true"/>
@@ -95,8 +95,8 @@
 					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Gesch/} === '' ? ${i18n>gender} : '' }"
 					selectedKey="{/BenefitsManagement/ClaimRequest/Header/Gesch/}" placeholder="{i18n>gender}">
 					<items>
-						<core:Item key="M" text="Male"/>
-						<core:Item key="F" text="Female"/>
+						<core:Item key="2" text="Male"/>
+						<core:Item key="3" text="Female"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>City}" required="true"/>
