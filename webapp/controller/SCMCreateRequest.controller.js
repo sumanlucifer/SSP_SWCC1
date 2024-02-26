@@ -1420,6 +1420,10 @@ sap.ui.define([
 					parseInt(currentItem.EstPrice), 0);
 				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/", totalSum);
 
+				const totalSum1 = this.getModel().getProperty("/WarehouseandLogistics/IssueofMaterial/itemData").reduce((acc, currentItem) => acc +
+					parseInt(currentItem.EstPrice), 0);
+				this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/totalSum/", totalSum1);
+
 				if (service === "SSA-PSCM-2001-1") {
 					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/");
 					var iTotal;
@@ -1437,6 +1441,12 @@ sap.ui.define([
 					iTotal = serviceLevel === "E" ? 10000 + 0.04 * totalSum : iTotal;
 
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2010-2") {
+					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = (0.04 * totalSum1) + totalSum1;
+					this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/", iTotal);
 
 				}
 

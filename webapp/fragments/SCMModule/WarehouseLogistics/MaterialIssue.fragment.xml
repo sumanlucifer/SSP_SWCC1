@@ -54,7 +54,7 @@
 				<Label text="{i18n>goodsrecipient}" required="false"/>
 				<Input placeholder="{i18n>goodsrecipient}" value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
 				<Label text="{i18n>totalservicevalue}" required="true"/>
-				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalValue/}"
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -138,7 +138,7 @@
 								</customData>
 							</Input>
 							<Input value="{Lgpla}" enabled="false"/>
-							<Input change="handleLiveChangeUnit" value="{Sgtxt}"/>
+							<Input change="handleLiveChangeUnit" value="{UnitPrice}"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/></cells>
 					</ColumnListItem>
 				</items>
