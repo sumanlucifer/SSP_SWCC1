@@ -53,11 +53,11 @@
 					value="{/BenefitsManagement/ClaimRequest/Header/Bankk/}"/>
 				<Label text="{i18n>country}" required="true"/>
 				<Input valueState="{= ${/CountryF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CountryF4/} === '' ? ${i18n>country} : '' }"
-					ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_COUNTRYCLAIM-com.swcc.Template.fragments.HRModule.ClaimCountryF4-/CountryF4/" width="100%"
 					placeholder="{i18n>country}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
 					<customData>
-						<core:CustomData key="Country" value="Country"/>
-						<core:CustomData key="CountryName" value="CountryName"/>
+						<core:CustomData key="keyfield" value="Country"/>
+						<core:CustomData key="value_1" value="Country Name"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>providername}" required="true"/>
