@@ -127,7 +127,7 @@
 				<ColumnListItem vAlign="Middle">
 					<cells>
 						<Input value="{Characteristic}" enabled="false"/>
-						<Input placeholder="Enter Value" type="Number" value="{Atwrt}" liveChange=""/>
+						<Input placeholder="Enter Value" value="{Atwrt}" liveChange=""/>
 					</cells>
 				</ColumnListItem>
 			</items>
