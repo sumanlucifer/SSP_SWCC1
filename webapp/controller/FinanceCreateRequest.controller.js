@@ -330,7 +330,8 @@ sap.ui.define([
 				var yourModel = this.getModel(); // Pass your model here
 				var sModelPath = sModelPath;
 
-				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
+				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty, this.getModel().getProperty(
+					"/FinanceAppVisible/"));
 				this.setDependentFilterData();
 
 			},
@@ -567,20 +568,20 @@ sap.ui.define([
 
 					{
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
 						group: "MarineTransporationFilter"
 					}, {
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
 						group: "ShipHullsFilter"
 					}, {
 
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.handleRegexforremovedash(this.getModel().getProperty("/InsuranceF4/")) : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
 						group: "VehiclesFilter"
 					}, {
 						path: "zzinspono",
-						value: this.getModel().getProperty("/InsuranceF4/") ? this.handleRegexforremovedash(this.getModel().getProperty("/InsuranceF4/")) : "",
+						value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
 						// 		value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split("-")[0] : "",
 						group: "PropertyFilter"
 					}
@@ -1271,6 +1272,11 @@ sap.ui.define([
 
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
 						"/InsuranceandClaim/MarineTransportation/Header"))) return;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 
 				var aCustomDataEntry = aItem.filter(function (element) {
 					return element.New === true;
@@ -1295,7 +1301,8 @@ sap.ui.define([
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
@@ -1306,6 +1313,11 @@ sap.ui.define([
 
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
 						"/InsuranceandClaim/ShipHulls/Header"))) return;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var aCustomDataEntry = aItem.filter(function (element) {
 					return element.New === true;
 				});
@@ -1329,7 +1341,8 @@ sap.ui.define([
 
 					},
 
-					"ServiceHeadertoItem": []
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
 
 				};
 				this.FinanceCreateRequestAPI(oPayload);
@@ -2129,6 +2142,10 @@ sap.ui.define([
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/Vehicle/itemData")) : "";
+
+				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/InsuranceandClaim/ShipHulls/itemData")) : "";
 
 			},
 			updateItemDeleteModel: function (index, oModel) {
