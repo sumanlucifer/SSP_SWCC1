@@ -95,11 +95,11 @@
 				</ComboBox>
 				<Label text="{i18n>nationality}" required="true"/>
 				<Input valueState="{= ${/CountryF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CountryF4/} === '' ? ${i18n>nationality} : '' }"
-					ariaLabelledBy="-ZSSP_USER_SRV-/A_CountryText-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_COUNTRYINSURANCE-com.swcc.Template.fragments.HRModule.CountryF4-/CountryF4/" width="100%"
 					placeholder="{i18n>nationality}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
 					<customData>
-						<core:CustomData key="Country" value="Country"/>
-						<core:CustomData key="CountryName" value="CountryName"/>
+						<core:CustomData key="keyfield" value="Country"/>
+						<core:CustomData key="value_1" value="Description"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>FirstName}" required="true"/>
