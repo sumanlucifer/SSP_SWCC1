@@ -97,7 +97,7 @@ sap.ui.define([
 
 			this._oValueHelpDialog.open();
 		},
-		onHandleValueHelpOkPress: function (oModel, sModelPath, aTokens, sKeyProperty, sTextProperty) {
+		onHandleValueHelpOkPress: function (oModel, sModelPath, aTokens, sKeyProperty, sTextProperty, service) {
 			var oData = [];
 			var xUnique = new Set();
 
@@ -113,8 +113,20 @@ sap.ui.define([
 				}
 			});
 
-			// Adjust the property path and model based on your use case
-			oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}- ${oData[0][sTextProperty]}`);
+			//below if else condition i added coz i missed they key value split with ":" which should be with unique
+			if (service === "SSA-FIN-3007-1") {
+				oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}: ${oData[0][sTextProperty]}`);
+			} else if (service === "SSA-FIN-3007-2") {
+				oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}: ${oData[0][sTextProperty]}`);
+			} else if (service === "SSA-FIN-3007-3") {
+				oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}: ${oData[0][sTextProperty]}`);
+			} else if (service === "SSA-FIN-3007-4") {
+				oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}: ${oData[0][sTextProperty]}`);
+			} else {
+				// Adjust the property path and model based on your use case
+				oModel.setProperty(sModelPath, oData.length === 0 ? "" : `${oData[0][sKeyProperty]}- ${oData[0][sTextProperty]}`);
+			}
+
 			this._oValueHelpDialog.close();
 		},
 		onHandleValueHelpCancelPress: function () {
