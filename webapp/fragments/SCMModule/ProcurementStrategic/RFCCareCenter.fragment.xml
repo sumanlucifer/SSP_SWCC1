@@ -52,7 +52,8 @@
 				<Label text="{i18n>requestingparty}" required="true"/>
 				<Input placeholder="{i18n>requestingparty}" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}" valueHelpRequest=""/>
-				<Label text="{i18n>estimatedcost}" required="true"/>
+				<!--<Label text="{i18n>estimatedcost}" required="true"/>-->
+				<Label text="{i18n>estimatedprjvalue}" required="true"/>
 				<Input placeholder="{i18n>estimatedcost}" change="handleLiveChangeContractPrcUnitPrice" type="Number" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}" valueHelpRequest=""/>
 				<Label text="{i18n>projectdescription}" required="true"/>

@@ -26,8 +26,8 @@
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POLICYNUMBER-com.swcc.Template.fragments.HRModule.PolicyNoF4-/PolicyNoF4/" width="100%"
 					placeholder="{i18n>policyno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PolicyNoF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Policy"/>
-						<core:CustomData key="value_1" value="Policy No."/>
+						<core:CustomData key="value_1" value="Policy"/>
+						<core:CustomData key="keyfield" value="Policy No."/>
 					</customData>
 				</Input>
 				<Label text="{i18n>effectivedate}" required="true"/>
@@ -89,8 +89,8 @@
 					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Gesch/} === '' ? ${i18n>gender} : '' }"
 					selectedKey="{/BenefitsManagement/MedicalInsurance/Header/Gesch/}" placeholder="{i18n>gender}">
 					<items>
-						<core:Item key="M" text="Male"/>
-						<core:Item key="F" text="Female"/>
+						<core:Item key="2" text="Male"/>
+						<core:Item key="3" text="Female"/>
 					</items>
 				</ComboBox>
 				<Label text="{i18n>nationality}" required="true"/>

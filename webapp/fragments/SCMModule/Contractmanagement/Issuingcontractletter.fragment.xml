@@ -35,6 +35,23 @@
 						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
 					</customData>
 				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<!--<Label text="{i18n>requestingparty}" required="false"/>
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
+					showValueHelp="" valueHelpRequest=""/>-->
+				<Label text="{i18n>pono}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
+					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>contractvalue}" required="true"/>
+				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
+					editable="true" valueHelpRequest=""/>
 				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}" text="{i18n>typeofletter}" required="true"/>
 				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}"
 					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
@@ -48,23 +65,6 @@
 					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Contract" text="Contract Closure"/>
 				</ComboBox>
-				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>requestingparty}" required="false"/>
-				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
-					showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>pono}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
-					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
-					<customData>
-						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
-						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
-					</customData>
-				</Input>
-				<Label text="{i18n>contractvalue}" required="true"/>
-				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
-					editable="true" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
