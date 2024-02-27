@@ -19,17 +19,19 @@
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>contractor}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Supplier_VH-com.swcc.Template.fragments.SCMModule.SupplierF4-/SupplierF4/" width="100%"
+				<Label text="{i18n>contractor}" required="true"/>
+				<Input valueState="{= ${/SupplierF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/SupplierF4/} === '' ? ${i18n>contractor} : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_Supplier_VH-com.swcc.Template.fragments.SCMModule.SupplierF4-/SupplierF4/" width="100%"
 					placeholder="{i18n>contractor}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SupplierF4/}">
 					<customData>
 						<core:CustomData key="Supplier" value="Supplier"/>
 						<core:CustomData key="SupplierName" value="Supplier Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>prno}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%"
-					placeholder="{i18n>prno}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
+				<Label text="{i18n>prno}" required="true"/>
+				<Input valueState="{= ${/PrnoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PrnoF4/} === '' ? ${i18n>prno} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%" placeholder="{i18n>prno}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
 					<customData>
 						<core:CustomData key="PurchasingDocument" value="Purchase Requisition"/>
 						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
@@ -41,18 +43,21 @@
 				<!--<Label text="{i18n>requestingparty}" required="false"/>
 				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ContractManagement/IssuingContractualLetters/Header/ReqParty/}"
 					showValueHelp="" valueHelpRequest=""/>-->
-				<Label text="{i18n>pono}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%"
-					placeholder="{i18n>pono}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+				<Label text="{i18n>pono}" required="true"/>
+				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>pono} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%" placeholder="{i18n>pono}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
 					<customData>
 						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
 						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
 					</customData>
 				</Input>
 				<Label text="{i18n>contractvalue}" required="true"/>
-				<Input placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp=""
-					editable="true" valueHelpRequest=""/>
-				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<Input valueState="{= ${/ContractManagement/IssuingContractualLetters/Header/EstPrice/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ContractManagement/IssuingContractualLetters/Header/EstPrice/} === '' ? ${i18n>contractvalue} : '' }"
+					placeholder="{i18n>contractvalue}" value="{/ContractManagement/IssuingContractualLetters/Header/EstPrice/}" showValueHelp="" editable="true"
+					valueHelpRequest=""/>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}" text="{i18n>typeofletter}" required="false"/>
 				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2' ? true : false}"
 					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Warning" text="Warning"/>
@@ -60,7 +65,7 @@
 					<core:Item key="Withdrawl" text="Withdrawl"/>
 					<core:Item key="Appeal" text="Appeal"/>
 				</ComboBox>
-				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}" text="{i18n>typeofletter}" required="true"/>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}" text="{i18n>typeofletter}" required="false"/>
 				<ComboBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-2-A' ? true : false}"
 					selectedKey="{/ContractManagement/IssuingContractualLetters/Header/Typelet/}">
 					<core:Item key="Contract" text="Contract Closure"/>

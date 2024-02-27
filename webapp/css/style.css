@@ -889,4 +889,117 @@
     vertical-align: top !important;
 }
 
+.sapFDynamicPage .sapFDynamicPageContent {
+    background-color: #f7f7f7;
+}
+
+.sapMFlexBoxBGSolid {
+    background: #FFFFFF;
+
+}
+
+.sapMSelectListItemBaseHoverable:hover {
+    background-color: #0066cc;
+    color: #FFFFFF;
+}
+
+.sapMBtn:hover>.sapMBtnHoverable {
+    background-color: #ebf5fe;
+    border-color: #0854a0;
+    color: #000000;
+}
+
+.btn-proceed .sapMBtnInner.sapMBtnAccept {
+    background-color: #004687;
+    border-radius: 5px;
+    color: #ffffff;
+}
+
+.sapContrast .sapMBtnInner {
+    text-shadow: none;
+}
+
+.compValueHelpDialog.sapMDialog>.sapMDialogSection,
+.compValueHelpDialog .compVHDarkBackground {
+    background: #ffffff !important;
+}
+
+.upload-data .sapMListTbl .sapMText {
+    color: #ffffff;
+}
+
+.view-reqbtn span.sapMBtnInner.sapMBtnReject {
+    background: #b00;
+    border-color: #b00;
+    color: #FFFFFF
+}
+
+.sapMBtn:not(.sapMBtnDisabled):hover .sapMBtnNegative {
+    background: #970000;
+    border-color: #970000;
+}
+
+.sapContrast .sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive),
+.sapMIBar-CTX.sapContrast .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive) {
+    background-color: #ebf5fe;
+    border-color: #0854a0;
+}
+
+.sapContrast .sapMBtn:hover>.sapMBtnHoverable.sapMBtnAccept:not(.sapMBtnActive),
+.sapMBtn.sapContrast:hover>.sapMBtnHoverable.sapMBtnAccept:not(.sapMBtnActive) {
+    background-color: #ebf5fe;
+    border-color: #0854a0;
+    color: #0854a0;
+
+}
+
+.ssp-dtl-title .sapMOHRTabs .sapMITBScrollContainer {
+    margin: 0px !important;
+
+}
+
+.sapMITBContent {
+    background-color: #FFFFFF;
+}
+
+.sapContrast .sapMBtn:hover>.sapMBtnHoverable.sapMBtnReject:not(.sapMBtnActive),
+.sapMBtn.sapContrast:hover>.sapMBtnHoverable.sapMBtnReject:not(.sapMBtnActive) {
+    background-color: #ffebeb;
+    border-color: #b00;
+    color: #b00;
+}
+
+.sapContrast span.sapMBtnInner.sapMBtnReject,
+span.sapMBtnInner.sapMBtnReject.sapContrast {
+    color: #ffffff;
+    background-color: #b03636;
+}
+
+.sapMDialog.sapMPopup-CTX>header .sapMHeader-CTX,
+.sapMDialog.sapMPopup-CTX>header .sapMSubHeader-CTX {
+    background-color: #FFFFFF;
+}
+
+.sapMDialog>header.sapMDialogTitle .sapMTitle,
+.sapMDialog.sapMMessageBoxSuccess .sapMDialogIcon.sapUiIcon {
+    color: #107e3e;
+}
+
+.sapMDialog>.sapMDialogSection {
+    background-color: #FFFFFF;
+}
+
+.sapMIBar-CTX .sapMBtn:hover>.sapMBtnHoverable:not(.sapMBtnActive) {
+    background-color: #ebf5fe;
+}
+
+.sapMSticky>.sapMListHdrTBar.sapMTB-Transparent-CTX {
+    background-color: #FFFFFF;
+}
+
+.sapMLIBHoverable:hover {
+    background-color: #ebf5fe;
+}
+
+
 /* custom css for deploy version ends here */

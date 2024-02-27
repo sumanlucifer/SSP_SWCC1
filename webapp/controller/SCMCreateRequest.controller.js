@@ -555,7 +555,6 @@ sap.ui.define([
 
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
 					`/MovementtypeF4/`) {
-					debugger;
 					var filters = [{
 							path: "shkzg",
 							value: "S",
@@ -618,6 +617,19 @@ sap.ui.define([
 
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ProductF4/") {
+
+					var filters = [{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -851,10 +863,17 @@ sap.ui.define([
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem, aitem1) {
 				debugger;
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/itemData/")) || !this.handleAttachmentvalidation(
+						this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1019,7 +1038,17 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatechangeRequest: function (oPayloadHeader, aItem) {
-				debugger;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/")) || !this.handleAttachmentvalidation(
+						this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1044,13 +1073,21 @@ sap.ui.define([
 								Atwrt: items.Atwrt
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateduplicateresolutionRequest: function (oPayloadHeader, aItem) {
-				debugger;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1066,7 +1103,8 @@ sap.ui.define([
 								Werks: items.Plant
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1075,10 +1113,11 @@ sap.ui.define([
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1099,6 +1138,13 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatestoRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				debugger;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
@@ -1123,12 +1169,16 @@ sap.ui.define([
 
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmContractualChangeOrdersRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -1153,6 +1203,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmIssuingRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
 					Filesize,
 					...rest
@@ -1395,6 +1448,10 @@ sap.ui.define([
 					parseInt(currentItem.EstPrice), 0);
 				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/totalSum/", totalSum);
 
+				const totalSum1 = this.getModel().getProperty("/WarehouseandLogistics/IssueofMaterial/itemData").reduce((acc, currentItem) => acc +
+					parseInt(currentItem.EstPrice), 0);
+				this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/totalSum/", totalSum1);
+
 				if (service === "SSA-PSCM-2001-1") {
 					var serviceLevel = this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/");
 					var iTotal;
@@ -1412,6 +1469,12 @@ sap.ui.define([
 					iTotal = serviceLevel === "E" ? 10000 + 0.04 * totalSum : iTotal;
 
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2010-2") {
+					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = (0.04 * totalSum1) + totalSum1;
+					this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/", iTotal);
 
 				}
 
@@ -1538,114 +1601,117 @@ sap.ui.define([
 						condition: true
 					}];
 
-				} else if (service === "SSA-FIN-3002-1") {
+				} else if (service === "SSA-PSCM-2007-1" || service === "SSA-PSCM-2007-1-A") {
 
 					validationProperties = [{
-							path: "/GlaccountF4/",
+						path: "/SupplierF4/",
+						condition: true
+					}, {
+						path: "/PrnoF4/",
+						condition: true
+					}, {
+						path: "/PonoF4/",
+						condition: true
+					}, {
+						path: "/ContractManagement/ContractualChangeOrders/Header/EstPrice/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-PSCM-2007-2" || service === "SSA-PSCM-2007-2-A") {
+
+					validationProperties = [{
+						path: "/SupplierF4/",
+						condition: true
+					}, {
+						path: "/PrnoF4/",
+						condition: true
+					}, {
+						path: "/PonoF4/",
+						condition: true
+					}, {
+						path: "/ContractManagement/IssuingContractualLetters/Header/EstPrice/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-PSCM-2011-1") {
+
+					validationProperties = [{
+							path: "/CrtypeF4/",
 							condition: true
 						}, {
-							path: "/CompanycodeF4/",
+							path: "/MaterialtypeF4/",
 							condition: true
 						}, {
-							path: "/customercodeF4/",
+							path: "/ClasssificationandInventory/ChangeRequest/Maktx/",
 							condition: true
 						}, {
-							path: "/AccountsReceivable/Manageandprocess/Header/PostingDate/",
+							path: "/MaterialgroupF4/",
 							condition: true
 						}, {
-							path: "/AccountsReceivable/Manageandprocess/Header/Descript/",
+							path: "/IndustrysectorF4/",
+							condition: true
+						}, {
+							path: "/ClasssificationandInventory/ChangeRequest/Header/Txz01/",
+							condition: true
+						}, {
+							path: "/uomF4/",
+							condition: true
+						}, {
+							path: "/servicegroupF4/",
+							condition: true
+						}, {
+							path: "/ProductF4/",
 							condition: true
 						}
 
 					];
 
-				} else if (service === "SSA-FIN-3002-2") {
+				} else if (service === "SSA-PSCM-2011-2-2") {
 
 					validationProperties = [{
-							path: "/AccountsReceivable/Billing/Header/Descript/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/customercodeF4/",
-							condition: true
-						}, {
-							path: "/AccountsReceivable/Billing/Header/PostingDate/",
-							condition: true
-						}
+						path: "/SuppPlantF4/",
+						condition: true
+					}, {
+						path: "/PurchasinggroupF4/",
+						condition: true
+					}];
 
-					];
-
-				} else if (service === "SSA-FIN-3003-1") {
-
+				} else if (service === "SSA-PSCM-2002-1") {
 					validationProperties = [{
-							path: "/CurrencytypeF4/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/TenPre/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/ContDur/",
 							condition: true
 						}, {
-							path: "/ChartofaccountF4/",
+							path: "/ProjecttypeF4/",
 							condition: true
 						}, {
-							path: "/CompanycodeF4/",
+							path: "/CostestF4/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/Descript/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/TecEva/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/PrepareReviewTrail/Header/FiscalYear/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/SugComp/",
 							condition: true
 						}, {
-							path: "/LedgerF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3003-2") {
-
-					validationProperties = [{
-							path: "/CurrencytypeF4/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/",
+							path: "/RequeststatF4/",
 							condition: true
 						}, {
-							path: "/ChartofaccountF4/",
+							path: "/ConfidentialF4/",
 							condition: true
 						}, {
-							path: "/CompanycodeF4/",
+							path: "/SitevisitF4/",
 							condition: true
 						}, {
-							path: "/LedgerF4/",
-							condition: true
-						},
-
-						{
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/",
-							condition: true
-						}, {
-							path: "/FinancialstatmentF4/",
-							condition: true
-						}, {
-							path: "/LanguageF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3003-3") {
-
-					validationProperties = [{
-							path: "/PostingF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/FinancialClose/Header/Descript/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/SecProj/",
 							condition: true
 						}
 
@@ -2041,7 +2107,31 @@ sap.ui.define([
 						MessageToast.show("Please Upload Attachments");
 						isValid = false;
 					}
-				} else if (service === "SSA-HR-1010-1") {
+				} else if (service === "SSA-PSCM-2011-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2011-A") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2011-2-2") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2002-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not
