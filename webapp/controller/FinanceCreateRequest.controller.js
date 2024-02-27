@@ -1372,9 +1372,9 @@ sap.ui.define([
 						"Zzinspono": aCustomDataEntry[0].zzinspono,
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
-						"PayDate": this.handleOdataDateFormat(aCustomDataEntry[0].PaymentDate),
-						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
-						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+						"PayDate": this.handleReturnDateonly1(aCustomDataEntry[0].PaymentDate),
+						"Zzaccdntdate": this.handleReturnDateonly1(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleReturnDateonly1(aCustomDataEntry[0].ClaimRecDate),
 
 					},
 
@@ -1405,17 +1405,16 @@ sap.ui.define([
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-
 						"Zzinspono": aCustomDataEntry[0].zzinspono,
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
-						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
-						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
-						"PayDate": this.handleOdataDateFormat(aCustomDataEntry[0].PayDate),
+						"Zzaccdntdate": this.handleReturnDateonly1(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleReturnDateonly1(aCustomDataEntry[0].ClaimRecDate),
+						"PayDate": this.handleReturnDateonly1(aCustomDataEntry[0].PayDate),
 						"DeductVal": aCustomDataEntry[0].DeductVal,
 						"NetPay": aCustomDataEntry[0].NetPay,
-						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
-						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+						"Zzaccdntdate": this.handleReturnDateonly1(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleReturnDateonly1(aCustomDataEntry[0].ClaimRecDate),
 
 					},
 
