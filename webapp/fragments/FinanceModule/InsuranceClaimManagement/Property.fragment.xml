@@ -122,7 +122,7 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
 						<Text text="Accident Date"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
 						<Text text="Payment Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
