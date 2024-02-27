@@ -863,10 +863,17 @@ sap.ui.define([
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem, aitem1) {
 				debugger;
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/itemData/")) || !this.handleAttachmentvalidation(
+						this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1033,11 +1040,15 @@ sap.ui.define([
 			ScmCreatechangeRequest: function (oPayloadHeader, aItem) {
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
-						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/")) || !this.handleAttachmentvalidation(
+						this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1069,7 +1080,14 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateduplicateresolutionRequest: function (oPayloadHeader, aItem) {
-				debugger;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1085,7 +1103,8 @@ sap.ui.define([
 								Werks: items.Plant
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1094,10 +1113,11 @@ sap.ui.define([
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1118,6 +1138,13 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatestoRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
 				debugger;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
@@ -1142,7 +1169,8 @@ sap.ui.define([
 
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1638,48 +1666,52 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3003-2") {
+				} else if (service === "SSA-PSCM-2011-2-2") {
 
 					validationProperties = [{
-							path: "/CurrencytypeF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Descript/",
-							condition: true
-						}, {
-							path: "/ChartofaccountF4/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/LedgerF4/",
-							condition: true
-						},
+						path: "/SuppPlantF4/",
+						condition: true
+					}, {
+						path: "/PurchasinggroupF4/",
+						condition: true
+					}];
 
-						{
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Gjahr/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueFinancialStatement/Header/Zzyearofmanf/",
-							condition: true
-						}, {
-							path: "/FinancialstatmentF4/",
-							condition: true
-						}, {
-							path: "/LanguageF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3003-3") {
-
+				} else if (service === "SSA-PSCM-2002-1") {
 					validationProperties = [{
-							path: "/PostingF4/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/TenPre/",
 							condition: true
 						}, {
-							path: "/FinancialReviewGeneralClose/FinancialClose/Header/Descript/",
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/ContDur/",
+							condition: true
+						}, {
+							path: "/ProjecttypeF4/",
+							condition: true
+						}, {
+							path: "/CostestF4/",
+							condition: true
+						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/TecEva/",
+							condition: true
+						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/SugComp/",
+							condition: true
+						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/",
+							condition: true
+						}, {
+							path: "/RequeststatF4/",
+							condition: true
+						}, {
+							path: "/ConfidentialF4/",
+							condition: true
+						}, {
+							path: "/SitevisitF4/",
+							condition: true
+						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/",
+							condition: true
+						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/SecProj/",
 							condition: true
 						}
 
@@ -2075,7 +2107,31 @@ sap.ui.define([
 						MessageToast.show("Please Upload Attachments");
 						isValid = false;
 					}
-				} else if (service === "SSA-HR-1010-1") {
+				} else if (service === "SSA-PSCM-2011-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2011-A") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2011-2-2") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2002-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not
