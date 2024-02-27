@@ -630,6 +630,19 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ClassF4/") {
+
+					var filters = [{
+							path: "ClassType",
+							value: "001",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -810,6 +823,14 @@ sap.ui.define([
 						.getProperty(
 							"/Quality/SpecalizedWorkQualification/Header/"), "") :
 					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-2" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
+						.getProperty(
+							"/Quality/SpecalizedWorkQualification/Header/"), "") :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-3" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
+						.getProperty(
+							"/Quality/SpecalizedWorkQualification/Header/"), "") :
+					null;
 				//--------------------------Warehouseand logistics-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" ? this.ScmCreateissueofmaterialRequest(this.getModel()
 						.getProperty(
@@ -980,10 +1001,15 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatespecializedworkqualificationRequest: function (oPayloadHeader, aItem) {
-				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
-					Filesize,
-					...rest
-				}) => rest);
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(
+						this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1006,6 +1032,9 @@ sap.ui.define([
 			},
 			ScmCreateissueofmaterialRequest: function (oPayloadHeader, aItem) {
 				debugger;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/WarehouseandLogistics/IssueofMaterial//itemData/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1032,7 +1061,8 @@ sap.ui.define([
 
 							};
 						}
-					)
+					),
+					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1069,7 +1099,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								Atinn: items.Characteristic,
+								Atinn: items.CharcInternalID,
 								Atwrt: items.Atwrt
 							};
 						}
@@ -1717,33 +1747,38 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3003-4") {
+				} else if (service === "SSA-PSCM-2010-2" || service === "SSA-PSCM-2010-3") {
 
 					validationProperties = [{
-							path: "/GlaccountF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						},
+						path: "/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/",
+						condition: true
+					}, {
+						path: "/MovementtypeF4/",
+						condition: true
+					}, {
+						path: "/costF4/",
+						condition: true
+					}];
 
-						{
-							path: "/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3003-5") {
+				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
 
 					validationProperties = [{
-							path: "/FinancialReviewGeneralClose/MaintainChart/Header/Descript/",
+							path: "/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/",
 							condition: true
 						}, {
-							path: "/CompanycodeF4/",
+							path: "/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/",
+							condition: true
+						}, {
+							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CR/",
+							condition: true
+						}, {
+							path: "/ProjectstatusF4/",
+							condition: true
+						}, {
+							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CON/",
+							condition: true
+						}, {
+							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/",
 							condition: true
 						}
 
@@ -2132,6 +2167,14 @@ sap.ui.define([
 						isValid = false;
 					}
 				} else if (service === "SSA-PSCM-2002-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2005-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not

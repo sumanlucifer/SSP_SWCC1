@@ -17,9 +17,9 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
+				<Label text="{i18n>Plant}" required="false"/>
 				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
@@ -29,22 +29,26 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>basedate}" required="true"/>
-				<DatePicker valueFormat="dd/mm/yyyy" value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="Enter Date"
-					change="handleChange" class=""/>
+				<DatePicker valueState="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" valueFormat="dd/mm/yyyy"
+					value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange" class=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? ${i18n>costcenter} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
 					<customData>
 						<core:CustomData key="ControllingArea" value="Cost Center"/>
 						<core:CustomData key="CostCenter" value="Cost Text"/>
 					</customData>
 				</Input>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>movementtype}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_GoodsMovementType-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/"
-					width="100%" placeholder="{i18n>movementtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+				<Input valueState="{= ${/MovementtypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/MovementtypeF4/} === '' ? ${i18n>movementtype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_GoodsMovementType-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/" width="100%"
+					placeholder="{i18n>movementtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MovementtypeF4/}">
 					<customData>
 						<core:CustomData key="GoodsMovementType" value="Movement Type"/>
@@ -53,7 +57,7 @@
 				</Input>
 				<Label text="{i18n>goodsrecipient}" required="false"/>
 				<Input placeholder="{i18n>goodsrecipient}" value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
-				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
 				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>
 			</fm:content>
