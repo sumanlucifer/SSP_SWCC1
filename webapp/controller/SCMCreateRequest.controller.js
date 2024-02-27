@@ -630,6 +630,19 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ClassF4/") {
+
+					var filters = [{
+							path: "ClassType",
+							value: "001",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -1069,7 +1082,7 @@ sap.ui.define([
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {
-								Atinn: items.Characteristic,
+								Atinn: items.CharcInternalID,
 								Atwrt: items.Atwrt
 							};
 						}
