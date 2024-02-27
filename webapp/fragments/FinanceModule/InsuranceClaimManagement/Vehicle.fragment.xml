@@ -19,14 +19,14 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input enabled="false" placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/InsuranceandClaim/Vehicle/Header/quantity}"/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>shortdescription}" required="true"/>
-				<Input placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PMCreateRequest/Header/Descript/}" valueHelpRequest=""/>
+				<Input placeholder="Allowed 40 Charcters" value="{/InsuranceandClaim/Vehicle/Header/Descript}" valueHelpRequest=""/>
 				<Label text="{i18n>InsurancePolicyNo}" required="true"/>
 				<Input valueState="{= ${/InsuranceF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/InsuranceF4/} === '' ? 'Enter Insurance Policy No.' : '' }"
@@ -104,10 +104,10 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Sub Number"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="33%">
 						<Text text="Claim Received Date"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 						<Text text="Type of Claim"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -122,13 +122,13 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Policy No."/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="33%">
 						<Text text="Accident Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 						<Text text="Insurance Claim Status"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="25%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
 						<Text text="Payment Date"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -150,8 +150,8 @@
 							<Text text="{zzassetid}"/>
 							<Text text="{zzassetsubid}"/>
 							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
-								value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
-							<ComboBox selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
+								value="{path: 'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
 								<items>
 									<core:Item key="Work Shop" text="Work Shop"/>
 									<core:Item key="Total Loss" text="Total Loss"/>
@@ -163,7 +163,7 @@
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
 							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
-								value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
+								value="{path: 'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
 								<items>
@@ -173,11 +173,11 @@
 									<core:Item key="Settled" text="Settled"/>
 								</items>
 							</ComboBox>
-							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{PaymentDate}"
-								class="sapUiSmallMarginBottom"/>
+							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+								value="{path: 'PaymentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<Text text="{zzpolicy_status}"/>
-							<Text text="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
-							<Text text="{path: 'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+							<Text text="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
+							<Text text="{path: 'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
 							<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

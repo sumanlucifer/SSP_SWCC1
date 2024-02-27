@@ -77,10 +77,10 @@
 			sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false"
 			growingThreshold="10">
 			<columns>
-				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 					<Text text="Insurance Start Date"/>
 				</Column>
-				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 					<Text text="Insurance End Date"/>
 				</Column>
 				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
@@ -104,10 +104,10 @@
 				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
 					<Text text="Expense"/>
 				</Column>
-				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 					<Text text="Accident Date"/>
 				</Column>
-				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 					<Text text="Claim Recieved Date"/>
 				</Column>
 				<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="8%">
@@ -117,8 +117,11 @@
 			<items>
 				<ColumnListItem vAlign="Middle">
 					<cells>
-						<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsStartDate}" class="sapUiSmallMarginBottom"/>
-						<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{InsExpiryDate}" class="sapUiSmallMarginBottom"/>
+						<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							value="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+						<DatePicker enabled="false" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							value="{path: 'InsExpiryDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"
+							class="sapUiSmallMarginBottom"/>
 						<Text text="{zzplant}"/>
 						<Text text="{ebeln}"/>
 						<Input enabled="{= ${New} === true ? true : false}" value="{claim_value}"/>
@@ -126,8 +129,10 @@
 						<Input enabled="{= ${New} === true ? true : false}" value="{ClaimStatus}"/>
 						<Text text="{TotalPremium}"/>
 						<Input enabled="{= ${New} === true ? true : false}" value="{expense}"/>
-						<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{AccidentDate}" class="sapUiSmallMarginBottom"/>
-						<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" value="{ClaimRecDate}" class="sapUiSmallMarginBottom"/>
+						<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							value="{path: 'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
+						<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							value="{path: 'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 						<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 					</cells>
 				</ColumnListItem>

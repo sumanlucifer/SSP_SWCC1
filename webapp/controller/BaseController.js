@@ -451,6 +451,15 @@ sap.ui.define([
 			return dateWithoutTime;
 		},
 
+		handleReturnDateonly1: function (oDate) {
+			var sapUIDate = oDate; // Replace this with your SAPUI5 date object
+			var year = sapUIDate.getFullYear();
+			var month = sapUIDate.getMonth();
+			var day = sapUIDate.getDate() + 1;
+			var sDate = `${day}/${month}/${year}`;
+			var sDate = this.handleOdataDateFormat(sDate);
+			return sDate;
+		},
 		formatBytesToMB: function (bytes) {
 			var megabytes = bytes / (1024 * 1024);
 			return megabytes.toFixed(2) + ' MB';
