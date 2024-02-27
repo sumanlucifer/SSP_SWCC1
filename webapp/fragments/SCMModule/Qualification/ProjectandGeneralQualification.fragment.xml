@@ -17,9 +17,9 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<Label text="{i18n>Plant}" required="true"/>
+				<Label text="{i18n>Plant}" required="false"/>
 				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
 					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
 					<customData>
@@ -29,23 +29,30 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>typeofqualification}" required="true"/>
-				<Input placeholder="Enter Qualification type" showSuggestion="" value="{/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/}"
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/} === '' ? ${i18n>typeofqualification} : '' }"
+					placeholder="{i18n>typeofqualification}" showSuggestion="" value="{/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/}" showValueHelp=""
+					valueHelpRequest=""/>
 				<Label text="{i18n>suppliername}" required="true"/>
-				<Input placeholder="Enter Supplier Name" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/}" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/} === '' ? ${i18n>suppliername} : '' }"
+					placeholder="{i18n>suppliername}" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>suppliercontactno}" required="true"/>
-				<Input placeholder="Enter Supplier Contact no" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CON/}" showSuggestion=""
-					showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CON/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CON/} === '' ? ${i18n>suppliercontactno} : '' }"
+					placeholder="{i18n>suppliercontactno}" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CON/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>typeofvendor}" required="true"/>
-				<Input
+				<Input valueState="{= ${/ProjectstatusF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProjectstatusF4/} === '' ? ${i18n>typeofvendor} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZVEN_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjectstatusF4-/ProjectstatusF4/"
-					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					width="100%" placeholder="{i18n>typeofvendor}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/ProjectstatusF4/}">
 					<customData>
 						<core:CustomData key="Status" value="Vendor code"/>
@@ -53,10 +60,14 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>suppliercrno}" required="true"/>
-				<Input placeholder="Enter Supplier No" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CR/}" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CR/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CR/} === '' ? ${i18n>typeofqualification} : '' }"
+					placeholder="Enter Supplier No" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CR/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>projectname}" required="true"/>
-				<Input placeholder="Enter Project Name" value="{/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/}" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/} === '' ? ${i18n>projectname} : '' }"
+					placeholder="Enter Project Name" value="{/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -77,12 +88,12 @@
 				<Toolbar>
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
-							<Title text="{i18n>Attachments}" level="H1"></Title>
-							<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+							<Label required="true" text="{i18n>Attachments}"></Label>
+							<!--	<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
-							</Text>
+							</Text>-->
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
 								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"

@@ -282,7 +282,7 @@
 				<Toolbar>
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
-							<Label required="true" text="{i18n>Attachments}" level="H1"></Label>
+							<Label required="true" text="{i18n>Attachments}"></Label>
 							<!--<Text text="{i18n>uploadtooltip5mb}" class="sapUiTinyMarginBegin upload-info">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
