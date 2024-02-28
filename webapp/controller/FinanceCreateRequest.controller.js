@@ -415,6 +415,21 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
 						dynamicFilters.InsuranceFilter, "/InsuranceandClaim/Vehicle/NewClaimItemData/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" && this.getModel().getProperty(
+						"/HeaderValueHelp") && this.getModel().getProperty("/valueHelpName") ===
+					"/InsuranceF4/") {
+					var filters = [{
+
+							path: "Zzinspono",
+							value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
+							group: "InsuranceFilter"
+						},
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
+						dynamicFilters.InsuranceFilter, "/InsuranceandClaim/Property/NewClaimItemData/")
 				}
 
 			},
@@ -455,6 +470,9 @@ sap.ui.define([
 					this.getModel().setProperty(`${spath}`, aData);
 
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3") {
+					this.getModel().setProperty(`${spath}`, aData);
+
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4") {
 					this.getModel().setProperty(`${spath}`, aData);
 
 				}
@@ -1461,9 +1479,14 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 
-			FinancePropertyRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
-						"/InsuranceandClaim/Property/Header"))) return;
+			FinancePropertyRequest: function (oPayloadHeader, aItem, action) {
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/InsuranceandClaim/Property/itemData"), action)) return false;
+
+				// if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+				// 		"/InsuranceandClaim/Property/Header"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
