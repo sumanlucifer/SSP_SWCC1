@@ -68,7 +68,9 @@
 				<Label text="{i18n>InventoryNote}" required="false"/>
 				<Input placeholder="Enter Inventory Note" value="{/AssetLifecycle/RecordAsset/Header/Invzu/}" width="100%"/>
 				<Label text="{i18n>CaptitalizedOn}" required="false"/>
-				<Input placeholder="Enter Capitalized On." value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>
+				<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" enabled="true" value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}"
+					change="handleChange" class=""/>
+				<!--	<Input placeholder="Enter Capitalized On." value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>-->
 				<Label text="{i18n>CostCenter}" required="true"/>
 				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? 'Enter Cost Center' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
