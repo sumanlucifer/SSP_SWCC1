@@ -647,6 +647,11 @@ sap.ui.define([
 						this.getModel().getProperty("/UploadedData"))) return false;
 				/*	if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
 							"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;*/
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -1153,6 +1158,14 @@ sap.ui.define([
 						isValid = false;
 					}
 				} else if (service === "SSA-HR-1010-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-HR-1002-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not
