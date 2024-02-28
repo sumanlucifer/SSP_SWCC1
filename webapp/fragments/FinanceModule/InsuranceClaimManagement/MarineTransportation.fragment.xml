@@ -71,7 +71,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" text="Add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<Table enableBusyIndicator="true" mode="None" items="{path : '/InsuranceandClaim/MarineTransportation/itemData'}"
 			sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false" growing="true" growingScrollToLoad="false"
@@ -126,12 +126,20 @@
 						<Text text="{ebeln}"/>
 						<Input enabled="{= ${New} === true ? true : false}" value="{claim_value}"/>
 						<Text text="{zzinspono}"/>
-						<Input enabled="{= ${New} === true ? true : false}" value="{ClaimStatus}"/>
+						<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" value="{ClaimStatus}" placeholder="Select Claim Status"
+							width="100%" valueState="None">
+							<items>
+								<core:Item key="Closed" text="Closed"/>
+								<core:Item key="Active" text="Active"/>
+								<core:Item key="Rejected" text="Rejected"/>
+								<core:Item key="Settled" text="Settled"/>
+							</items>
+						</ComboBox>
 						<Text text="{TotalPremium}"/>
 						<Input enabled="{= ${New} === true ? true : false}" value="{expense}"/>
-						<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+						<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 							value="{path: 'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
-						<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+						<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 							value="{path: 'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 						<Button visible="{= ${New} === true ? true : false}" icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 					</cells>

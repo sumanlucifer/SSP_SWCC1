@@ -48,7 +48,7 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Remarks}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" text="{/PMCreateRequest/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+				<TextArea placeholder="" rows="5" cols="20" value="{/InsuranceandClaim/Vehicle/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
 					width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
@@ -91,7 +91,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button visible="{= ${/InsuranceandClaim/Vehicle/itemData}.length > 0}" icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button text="Add" icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
 			<Table mode="None" items="{path : '/InsuranceandClaim/Vehicle/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
@@ -125,13 +125,13 @@
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="33%">
 						<Text text="Accident Date"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 						<Text text="Insurance Claim Status"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="30%">
 						<Text text="Payment Date"/>
 					</Column>
-					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="15%">
+					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
 						<Text text="Insurance Status"/>
 					</Column>
 					<Column demandPopin="true" minScreenWidth="Desktop" popinDisplay="Inline" width="20%">
@@ -149,7 +149,7 @@
 						<cells>
 							<Text text="{zzassetid}"/>
 							<Text text="{zzassetsubid}"/>
-							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
 								<items>
@@ -162,7 +162,7 @@
 							<Text text="{ebeln}"/>
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
-							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
@@ -173,7 +173,7 @@
 									<core:Item key="Settled" text="Settled"/>
 								</items>
 							</ComboBox>
-							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'PaymentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<Text text="{zzpolicy_status}"/>
 							<Text text="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
