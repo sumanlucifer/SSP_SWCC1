@@ -206,7 +206,8 @@ sap.ui.define([
 								CompanyCode: "1000"
 
 							},
-							itemData: []
+							itemData: [],
+							NewClaimItemData: []
 						},
 						ShipHulls: {
 							Header: {
@@ -366,6 +367,21 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_FI_POVH2",
 						dynamicFilters.POFilter, "/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && this.getModel().getProperty(
+						"/HeaderValueHelp") && this.getModel().getProperty("/valueHelpName") ===
+					"/InsuranceF4/") {
+					var filters = [{
+
+							path: "Zzinspono",
+							value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
+							group: "InsuranceFilter"
+						},
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
+						dynamicFilters.InsuranceFilter, "/InsuranceandClaim/MarineTransportation/NewClaimItemData/")
 				}
 			},
 
@@ -390,13 +406,16 @@ sap.ui.define([
 				}
 				var spath = this.getModel().setProperty("/HeaderValueHelp", true) ? oModel : oModel.replace(/\/[^/]+\/$/, '/');
 				// var spath =  oModel.replace(/\/[^/]+\/$/, '/');
-
+				debugger;
 				if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3006-1") {
 					this.getModel().setProperty(`${spath}`, aData[0].NetAmount);
 					this.getModel().setProperty(`/InsuranceandClaim/CreateInsurance/Header/currency/`, aData[0].DocumentCurrency);
 
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3005-3A") {
 					this.getModel().setProperty(`${spath}`, aData[0].ProfitCenter);
+
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1") {
+					this.getModel().setProperty(`${spath}`, aData);
 
 				}
 
@@ -655,7 +674,8 @@ sap.ui.define([
 					}.bind(this));
 			},
 
-			onProceed: function () {
+			onProceed: function (oEve) {
+				debugger;
 
 				//-------------------------------------------Accounts Payable----------------------------------------------------------------------
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3001-1" ? this.FinanceCreateRecordInvoiceRequest(this.getModel().getProperty(
@@ -729,7 +749,7 @@ sap.ui.define([
 					.getProperty(
 						"/InsuranceandClaim/MarineTransportation/Header/"), this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/MarineTransportation/itemData")) : null;
+						"/InsuranceandClaim/MarineTransportation/itemData"), oEve.getSource().getText()) : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2" ? this.FinanceShipHullsRequest(this.getModel()
 					.getProperty(
@@ -1267,11 +1287,16 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 
-			FinanceMarineTransportationRequest: function (oPayloadHeader, aItem) {
+			FinanceMarineTransportationRequest: function (oPayloadHeader, aItem, action) {
 				debugger;
 
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
-						"/InsuranceandClaim/MarineTransportation/Header"))) return;
+				// if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+				// 		"/InsuranceandClaim/MarineTransportation/Header"))) return;
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData"), action)) return false;
+
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -1296,8 +1321,8 @@ sap.ui.define([
 						"ClaimValue": aCustomDataEntry[0].claim_value,
 						"Zzinsclaimstat": aCustomDataEntry[0].ClaimStatus,
 						"Expense": aCustomDataEntry[0].expense,
-						"Zzaccdntdate": this.handleOdataDateFormat(aCustomDataEntry[0].AccidentDate),
-						"Zzinsdateclaim": this.handleOdataDateFormat(aCustomDataEntry[0].ClaimRecDate),
+						"Zzaccdntdate": this.handleReturnDateonly1(aCustomDataEntry[0].AccidentDate),
+						"Zzinsdateclaim": this.handleReturnDateonly1(aCustomDataEntry[0].ClaimRecDate),
 
 					},
 
@@ -1508,22 +1533,22 @@ sap.ui.define([
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
 			onAddItemsPress: function (oEvent) {
-
+				debugger;
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-1" && this.handleHeaderValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/")) && this.handleItemValidation(this.getModel().getProperty(
 					"/FinanceAppVisible/"), this.getModel().getProperty(
-					"/InsuranceandClaim/MarineTransportation/itemData")) ? this.updateItemAddModel(this.getModel().getProperty(
+					"/InsuranceandClaim/MarineTransportation/itemData"), oEvent.getSource().getText()) ? this.updateItemAddModel(this.getModel().getProperty(
 					"/InsuranceandClaim/MarineTransportation/itemData"), {
 
-					InsStartDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].InsStartDate,
-					InsExpiryDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].InsExpiryDate,
-					zzplant: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].zzplant,
-					ebeln: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ebeln,
-					claim_value: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].claim_value,
-					zzinspono: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].zzinspono,
-					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].ClaimStatus,
-					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].TotalPremium,
-					expense: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/itemData")[0].expense,
+					InsStartDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].ZzinsStrtDat,
+					InsExpiryDate: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].ZzinsurExpyDat,
+					zzplant: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].Zzplant,
+					ebeln: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].Ebeln,
+					claim_value: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].claim_value,
+					zzinspono: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].Zzinspono,
+					ClaimStatus: "New",
+					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].ZzinsurAmount,
+					expense: this.getModel().getProperty("/InsuranceandClaim/MarineTransportation/NewClaimItemData")[0].expense,
 					AccidentDate: null,
 					ClaimRecDate: null,
 					New: true
@@ -1542,7 +1567,7 @@ sap.ui.define([
 					ebeln: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].ebeln,
 					claim_value: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].claim_value,
 					zzinspono: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].zzinspono,
-					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].ClaimStatus,
+					ClaimStatus: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].ZzpolicyStatus,
 					TotalPremium: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].TotalPremium,
 					expense: this.getModel().getProperty("/InsuranceandClaim/ShipHulls/itemData")[0].expense,
 					AccidentDate: null,
@@ -2043,7 +2068,8 @@ sap.ui.define([
 				return isValid;
 			},
 
-			handleItemValidation: function (service, aData) {
+			handleItemValidation: function (service, aData, action) {
+				debugger;
 				var isValid = true;
 
 				if (service === "SSA-FIN-3001-2") {
@@ -2080,24 +2106,20 @@ sap.ui.define([
 						return isValid;
 					}
 				} else if (service === "SSA-FIN-3007-1") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
+
+					var itemCheck = aData && aData.length > 0;
 					var hasNewClaim = aData.some(element => element.New === true);
-					if (!itemCheck) {
+					if (action === 'addItem' && hasNewClaim) {
+						MessageToast.show("Only one claim can be added");
+						isValid = false;
+						return isValid;
+					} else if (!aData.length && action === 'Submit') {
 						MessageToast.show("Claim Data Required to Submit");
 						isValid = false;
 						return isValid;
 					} else if (!hasNewClaim && aData.length === 3) {
 						MessageToast.show("Please add at least one claim");
 						isValid = false;
-						return isValid;
-					} else if (hasNewClaim) {
-						debugger;
-						var aCustomDataEntry = aData.filter(function (element) {
-							return element.New === true;
-						});
-						var customEntryDatalengthCheck = aCustomDataEntry.length >= 1 ? false : true;
-						MessageToast.show("Only one claim can be added");
-						isValid = customEntryDatalengthCheck;
 						return isValid;
 					}
 
