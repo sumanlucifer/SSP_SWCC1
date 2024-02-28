@@ -1176,7 +1176,7 @@ sap.ui.define([
 						"Anlhtxt": oPayloadHeader.Txt50,
 						"Invnr": oPayloadHeader.Invnr,
 						"Invzu": oPayloadHeader.Invzu,
-						"Aktiv": oPayloadHeader.Aktiv,
+						"Bzdat": this.handleOdataDateFormat(oPayloadHeader.Aktiv),
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 						"Kostl": this.getModel().getProperty("/costF4/") ? this.getModel().getProperty("/costF4/").split("-")[0] : "",
 						"Prctr": oPayloadHeader.ProfitCentr ? oPayloadHeader.ProfitCentr[0].ProfitCenter : "",
