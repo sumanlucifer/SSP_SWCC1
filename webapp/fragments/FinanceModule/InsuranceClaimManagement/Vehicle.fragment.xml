@@ -91,7 +91,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button visible="{= ${/InsuranceandClaim/Vehicle/itemData}.length > 0}" icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button text="Add" icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
 			<Table mode="None" items="{path : '/InsuranceandClaim/Vehicle/itemData'}" sticky="ColumnHeaders,HeaderToolbar"

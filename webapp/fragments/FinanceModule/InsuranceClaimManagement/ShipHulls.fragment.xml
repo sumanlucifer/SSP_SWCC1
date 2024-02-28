@@ -71,7 +71,7 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" text="Add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
 			<Table mode="None" items="{path : '/InsuranceandClaim/ShipHulls/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
@@ -122,7 +122,15 @@
 							<Text text="{ebeln}"/>
 							<Input enabled="{= ${New} === true ? true : false}" value="{claim_value}"/>
 							<Text text="{zzinspono}"/>
-							<Input enabled="{= ${New} === true ? true : false}" value="{ClaimStatus}"/>
+							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" value="{ClaimStatus}" placeholder="Select Claim Status"
+								width="100%" valueState="None">
+								<items>
+									<core:Item key="Closed" text="Closed"/>
+									<core:Item key="Active" text="Active"/>
+									<core:Item key="Rejected" text="Rejected"/>
+									<core:Item key="Settled" text="Settled"/>
+								</items>
+							</ComboBox>
 							<Text text="{TotalPremium}"/>
 							<Input enabled="{= ${New} === true ? true : false}" value="{expense}"/>
 							<DatePicker enabled="{= ${New} === true ? true : false}" valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy"
