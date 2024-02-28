@@ -225,7 +225,8 @@ sap.ui.define([
 
 							},
 							CarDetails: {},
-							itemData: []
+							itemData: [],
+							NewClaimItemData: []
 						},
 						Property: {
 							Header: {
@@ -233,7 +234,8 @@ sap.ui.define([
 								CompanyCode: "1000"
 
 							},
-							itemData: []
+							itemData: [],
+							NewClaimItemData: []
 						}
 
 					},
@@ -398,7 +400,23 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
 						dynamicFilters.InsuranceFilter, "/InsuranceandClaim/ShipHulls/NewClaimItemData/")
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3" && this.getModel().getProperty(
+						"/HeaderValueHelp") && this.getModel().getProperty("/valueHelpName") ===
+					"/InsuranceF4/") {
+					var filters = [{
+
+							path: "Zzinspono",
+							value: this.getModel().getProperty("/InsuranceF4/") ? this.getModel().getProperty("/InsuranceF4/").split(":")[0] : "",
+							group: "InsuranceFilter"
+						},
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_FI_SRV", "/ZCDSV_INSURANCEVH",
+						dynamicFilters.InsuranceFilter, "/InsuranceandClaim/Vehicle/NewClaimItemData/")
 				}
+
 			},
 
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -434,6 +452,9 @@ sap.ui.define([
 					this.getModel().setProperty(`${spath}`, aData);
 
 				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-2") {
+					this.getModel().setProperty(`${spath}`, aData);
+
+				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-3") {
 					this.getModel().setProperty(`${spath}`, aData);
 
 				}
@@ -780,13 +801,13 @@ sap.ui.define([
 					.getProperty(
 						"/InsuranceandClaim/Vehicle/Header"), this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/Vehicle/itemData")) : null;
+						"/InsuranceandClaim/Vehicle/itemData"), oEve.getSource().getText()) : null;
 
 				this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3007-4" ? this.FinancePropertyRequest(this.getModel()
 					.getProperty(
 						"/InsuranceandClaim/Property/Header"), this.getModel()
 					.getProperty(
-						"/InsuranceandClaim/Property/itemData")) : null;
+						"/InsuranceandClaim/Property/itemData"), oEve.getSource().getText()) : null;
 
 			},
 
@@ -1397,9 +1418,15 @@ sap.ui.define([
 				this.FinanceCreateRequestAPI(oPayload);
 			},
 
-			FinanceVehicleRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
-						"/InsuranceandClaim/Vehicle/Header"))) return;
+			FinanceVehicleRequest: function (oPayloadHeader, aItem, action) {
+
+				// if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/"), this.getModel().getProperty(
+				// 		"/InsuranceandClaim/Vehicle/Header"))) return;
+
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/FinanceAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/FinanceAppVisible/"),
+						this.getModel().getProperty("/InsuranceandClaim/Vehicle/itemData"), action)) return false;
+
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -1644,9 +1671,6 @@ sap.ui.define([
 
 			},
 
-			handleItemDependentData: function (service) {
-				this.onSearchFinanceRequest();
-			},
 			handleHeaderValidation: function (service) {
 				var isValid = true;
 				var validationProperties;
@@ -2150,7 +2174,7 @@ sap.ui.define([
 				} else if (service === "SSA-FIN-3007-2") {
 					var itemCheck = aData && aData.length > 0;
 					var hasNewClaim = aData.some(element => element.New === true);
-					if (action === 'addItem' && hasNewClaim) {
+					if (action === 'Add' && hasNewClaim) {
 						MessageToast.show("Only one claim can be added");
 						isValid = false;
 						return isValid;
@@ -2165,20 +2189,38 @@ sap.ui.define([
 					}
 
 				} else if (service === "SSA-FIN-3007-3") {
-					// Check if any element has isActive set to true
-					var aCustomDataEntry = aData.filter(function (element) {
-						return element.New === true;
-					});
-					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
-						"Only one claim can be added "), false) : true;
+					var itemCheck = aData && aData.length > 0;
+					var hasNewClaim = aData.some(element => element.New === true);
+					if (action === 'Add' && hasNewClaim) {
+						MessageToast.show("Only one claim can be added");
+						isValid = false;
+						return isValid;
+					} else if (!aData.length && action === 'Submit') {
+						MessageToast.show("Claim Data Required to Submit");
+						isValid = false;
+						return isValid;
+					} else if (!hasNewClaim && aData.length === 3) {
+						MessageToast.show("Please add at least one claim");
+						isValid = false;
+						return isValid;
+					}
 
 				} else if (service === "SSA-FIN-3007-4") {
-					// Check if any element has isActive set to true
-					var aCustomDataEntry = aData.filter(function (element) {
-						return element.New === true;
-					});
-					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
-						"Only one claim can be added "), false) : true;
+					var itemCheck = aData && aData.length > 0;
+					var hasNewClaim = aData.some(element => element.New === true);
+					if (action === 'Add' && hasNewClaim) {
+						MessageToast.show("Only one claim can be added");
+						isValid = false;
+						return isValid;
+					} else if (!aData.length && action === 'Submit') {
+						MessageToast.show("Claim Data Required to Submit");
+						isValid = false;
+						return isValid;
+					} else if (!hasNewClaim && aData.length === 3) {
+						MessageToast.show("Please add at least one claim");
+						isValid = false;
+						return isValid;
+					}
 
 				}
 

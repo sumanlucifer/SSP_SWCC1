@@ -149,7 +149,7 @@
 						<cells>
 							<Text text="{zzassetid}"/>
 							<Text text="{zzassetsubid}"/>
-							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'ClaimRecDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{type}" placeholder="Select Claim Type" width="100%" valueState="None">
 								<items>
@@ -162,7 +162,7 @@
 							<Text text="{ebeln}"/>
 							<Text text="{DepreciationAmt}"/>
 							<Text text="{zzinspono}"/>
-							<DatePicker width="10rem" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'AccidentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<ComboBox enabled="{= ${New} === true ? true : false}" selectedKey="{ClaimStatus}" value="{ClaimStatus}" placeholder="Select Claim Status"
 								width="100%" valueState="None">
@@ -173,7 +173,7 @@
 									<core:Item key="Settled" text="Settled"/>
 								</items>
 							</ComboBox>
-							<DatePicker enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
+							<DatePicker placeholder="dd/MM/yyyy" enabled="{= ${New} === true ? true : false}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy"
 								value="{path: 'PaymentDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }" class="sapUiSmallMarginBottom"/>
 							<Text text="{zzpolicy_status}"/>
 							<Text text="{path: 'InsStartDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd/MM/yyyy' } }"/>
