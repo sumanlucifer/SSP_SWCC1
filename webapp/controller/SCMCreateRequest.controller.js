@@ -1613,9 +1613,6 @@ sap.ui.define([
 
 				if (service === "SSA-PSCM-2001-1" || service === "SSA-PSCM-2001-2") {
 					validationProperties = [{
-						path: "/ProcurementAdhoc/MaterialProcurement/Header/TenPre",
-						condition: true
-					}, {
 						path: "/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/",
 						condition: true
 					}];
