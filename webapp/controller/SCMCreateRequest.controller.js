@@ -946,6 +946,11 @@ sap.ui.define([
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/itemData/"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1763,13 +1768,7 @@ sap.ui.define([
 				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
 
 					validationProperties = [{
-							path: "/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/",
-							condition: true
-						}, {
 							path: "/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/",
-							condition: true
-						}, {
-							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CR/",
 							condition: true
 						}, {
 							path: "/ProjectstatusF4/",
@@ -2175,6 +2174,14 @@ sap.ui.define([
 						isValid = false;
 					}
 				} else if (service === "SSA-PSCM-2005-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-PSCM-2001-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not

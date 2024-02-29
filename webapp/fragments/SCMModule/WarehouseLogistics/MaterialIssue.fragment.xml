@@ -55,8 +55,9 @@
 						<core:CustomData key="GoodsMovementTypeName" value="Movement Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>goodsrecipient}" required="false"/>
-				<Input placeholder="{i18n>goodsrecipient}" value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" text="{i18n>goodsrecipient}" required="false"/>
+				<Input visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" placeholder="{i18n>goodsrecipient}"
+					value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
 				<Label text="{i18n>totalservicevalue}" required="false"/>
 				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>

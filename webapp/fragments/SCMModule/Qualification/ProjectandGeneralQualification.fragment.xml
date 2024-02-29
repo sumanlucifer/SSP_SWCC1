@@ -28,11 +28,11 @@
 					</customData>
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>typeofqualification}" required="true"/>
+				<!--	<Label text="{i18n>typeofqualification}" required="true"/>
 				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/} === '' ? ${i18n>typeofqualification} : '' }"
 					placeholder="{i18n>typeofqualification}" showSuggestion="" value="{/Quality/SpecalizedWorkQualification/Header/QUAL_TYP/}" showValueHelp=""
-					valueHelpRequest=""/>
+					valueHelpRequest=""/>-->
 				<Label text="{i18n>suppliername}" required="true"/>
 				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/} === '' ? ${i18n>suppliername} : '' }"
@@ -59,10 +59,8 @@
 						<core:CustomData key="Text" value="vendor text"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>suppliercrno}" required="true"/>
-				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CR/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CR/} === '' ? ${i18n>typeofqualification} : '' }"
-					placeholder="Enter Supplier No" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CR/}" showSuggestion="" showValueHelp=""
+				<Label text="{i18n>suppliercrno}" required="false"/>
+				<Input placeholder="Enter Supplier No" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CR/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
 				<Label text="{i18n>projectname}" required="true"/>
 				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/} === '' ? 'Error' : 'None' }"
