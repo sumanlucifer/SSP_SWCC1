@@ -46,6 +46,8 @@ sap.ui.define([
 					"30-Retirement(completion of statutory work service)") : null;
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.getModel().setProperty("/TerminationF4",
 					"20-Resignation") : null;
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.getModel().setProperty("/PolicyNoF4",
+					"PN- 501369001") : null;
 
 			},
 			_createItemDataModel: function () {
@@ -224,9 +226,8 @@ sap.ui.define([
 						value: "Employee Location",
 						group: "EventFilter"
 					}, {
-						path: "FiscalYear",
-						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
-							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						path: "value_1",
+						value: "PN",
 						group: "CashJrnlF4Filter"
 					}
 
@@ -237,8 +238,8 @@ sap.ui.define([
 
 				if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" && F4 === "/UserijdtF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.EventFilter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" && F4 === "/PolicyNoF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];

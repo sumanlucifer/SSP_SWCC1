@@ -1001,5 +1001,8 @@ span.sapMBtnInner.sapMBtnReject.sapContrast {
     background-color: #ebf5fe;
 }
 
+.sapMNCValue.WithoutMargin {
+    justify-content: left;
+}
 
 /* custom css for deploy version ends here */
