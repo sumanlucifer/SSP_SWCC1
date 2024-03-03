@@ -127,9 +127,20 @@ sap.ui.define([
 				var textProperty = this.getModel().getProperty("/valueHelpKey2"); // Property name for the token text
 				var yourModel = this.getModel(); // Pass your model here
 				var sModelPath = sModelPath;
-
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
 				this.setDependentFilterData();
+				// Check each token and set visibility based on its value
+				tokens.forEach(function (token) {
+					var tokenValue = token.getKey();
+					if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02"].includes(tokenValue)) {
+						isVisible = true; // Set visibility to true if any of the tokens match
+					} else {
+						isVisible = false;
+					}
+				});
+
+				// Set the visibility property in the model
+				yourModel.setProperty("/materialCodeVisible", isVisible);
 
 			},
 			setDependentFilterData: function () {
