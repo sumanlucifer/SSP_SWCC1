@@ -130,17 +130,25 @@ sap.ui.define([
 				this.onHandleValueHelpOkPress(yourModel, sModelPath, tokens, sKeyProperty, textProperty);
 				this.setDependentFilterData();
 				// Check each token and set visibility based on its value
-				tokens.forEach(function (token) {
-					var tokenValue = token.getKey();
-					if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02"].includes(tokenValue)) {
-						isVisible = true; // Set visibility to true if any of the tokens match
-					} else {
-						isVisible = false;
-					}
-				});
 
+				if (this.getModel()
+					.getProperty("/valueHelpName") === "/CrtypeF4/") {
+					tokens.forEach(function (token) {
+						var tokenValue = token.getKey();
+						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02"].includes(tokenValue)) {
+							// Set visibility to true if any of the tokens match
+							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
+						} else {
+							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", false);
+						}
+					}.bind(this));
+				}
+				debugger;
+
+				if (!this.handleItemValidation(this.getModel().getProperty(
+						"/SCMAppVisible/"), this.getModel().getProperty(
+						"/ClasssificationandInventory/DuplicateResolution/itemData/"), "Add")) return false;
 				// Set the visibility property in the model
-				yourModel.setProperty("/materialCodeVisible", isVisible);
 
 			},
 			setDependentFilterData: function () {
@@ -783,7 +791,8 @@ sap.ui.define([
 					ClasssificationandInventory: {
 						ChangeRequest: {
 							Header: {
-								quantity: "1"
+								quantity: "1",
+								MaterialVisible: false
 							},
 							itemData: []
 						},
@@ -829,7 +838,7 @@ sap.ui.define([
 				this.getRouter().navTo("HomePage", {}, true);
 			},
 
-			onProceed: function () {
+			onProceed: function (oEve) {
 
 				//-----------------Procurement-ADHOC-----------------------------------------------------
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" ? this.ScmCreateServiceProcurementRequest(this.getModel().getProperty(
@@ -905,7 +914,7 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.ScmCreateduplicateresolutionRequest(this.getModel()
 						.getProperty(
 							"/ClasssificationandInventory/DuplicateResolution/Header/"), this.getModel().getProperty(
-							"/ClasssificationandInventory/DuplicateResolution/itemData/")) :
+							"/ClasssificationandInventory/DuplicateResolution/itemData/"), oEve.getSource().getText()) :
 					null;
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2012-1" ? this.ScmCreatespirRequest(this.getModel()
 						.getProperty(
@@ -1168,8 +1177,11 @@ sap.ui.define([
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},
-			ScmCreateduplicateresolutionRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+			ScmCreateduplicateresolutionRequest: function (oPayloadHeader, aItem, action) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ClasssificationandInventory/DuplicateResolution/itemData"), action) || !this.handleAttachmentvalidation(
+						this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
@@ -1453,12 +1465,15 @@ sap.ui.define([
 						Matnr: "",
 						Menge: ""
 					}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
-				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" ? this.updateItemAddModel(this.getModel().getProperty(
-					"/ClasssificationandInventory/DuplicateResolution/itemData"), {
-					ProductF4: "",
-					Description: "",
-					Plant: ""
-				}, "/ClasssificationandInventory/DuplicateResolution/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" && this.handleItemValidation(this.getModel().getProperty(
+					"/SCMAppVisible/"), this.getModel().getProperty(
+					"/ClasssificationandInventory/DuplicateResolution/itemData/"), oEvent.getSource().getText()) ? this.updateItemAddModel(this.getModel()
+					.getProperty(
+						"/ClasssificationandInventory/DuplicateResolution/itemData"), {
+						ProductF4: "",
+						Description: "",
+						Plant: ""
+					}, "/ClasssificationandInventory/DuplicateResolution/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemAddModel(this.getModel().getProperty(
 					"/ClasssificationandInventory/STO/itemData"), {
 					ProductF4: "",
@@ -1576,6 +1591,44 @@ sap.ui.define([
 				oModel.splice(index, 1);
 				this.getModel().refresh();
 			},
+
+			handleItemValidation: function (service, aData, action) {
+				debugger;
+				var isValid = true;
+
+				if (service === "SSA-PSCM-2011-A") {
+					var itemCheck = !aData || aData.length < 2 ? false : true;
+					// Check for duplicates based on the 'Plant' property
+					var bCheckDuplicate = aData.some((element, index) => {
+						return aData.findIndex(obj => obj.ProductF4 === element.ProductF4) !== index;
+					});
+					if (action === 'Submit' && (!itemCheck || bCheckDuplicate)) {
+						if (!itemCheck) {
+							MessageToast.show("Please add at least 2 Item entries");
+						} else {
+							MessageToast.show("Please ensure there are no duplicate materials");
+						}
+						isValid = false;
+						return isValid;
+					} else if (action === 'Add' && aData.length > 0) {
+
+						var bCheckMaterialSelected = aData.some(item => !item.ProductF4);
+
+						if (bCheckMaterialSelected) {
+							MessageToast.show("Please ensure Material items is selected");
+							isValid = false;
+						} else if (bCheckDuplicate) {
+							MessageToast.show("Please ensure there are no duplicate materials");
+							isValid = false;
+						}
+
+					}
+
+				}
+
+				return isValid;
+			},
+
 			handleLiveChangeContractPrcUnitPrice: function (oEvent) {
 				debugger;
 				var service = this.getModel().getProperty("/SCMAppVisible/");
@@ -2206,92 +2259,7 @@ sap.ui.define([
 
 				return isValid;
 			},
-			handleItemValidation: function (service, aData) {
-				var isValid = true;
 
-				if (service === "SSA-FIN-3001-2") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
-
-					if (!itemCheck) {
-						MessageToast.show("item Data is required to Submit the request");
-						isValid = false;
-						return isValid;
-					}
-
-				} else if (service === "SSA-FIN-3001-1") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
-
-					if (!itemCheck) {
-						MessageToast.show("item Data is required to Submit the request");
-						isValid = false;
-						return isValid;
-					}
-				} else if (service === "SSA-FIN-3002-1") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
-
-					if (!itemCheck) {
-						MessageToast.show("item Data is required to Submit the request");
-						isValid = false;
-						return isValid;
-					}
-				} else if (service === "SSA-FIN-3002-2") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
-
-					if (!itemCheck) {
-						MessageToast.show("item Data is required to Submit the request");
-						isValid = false;
-						return isValid;
-					}
-				} else if (service === "SSA-FIN-3007-1") {
-					var itemCheck = !aData || aData.length === 0 ? false : true;
-					var hasNewClaim = aData.some(element => element.New === true);
-					if (!itemCheck) {
-						MessageToast.show("Claim Data Required to Submit");
-						isValid = false;
-						return isValid;
-					} else if (!hasNewClaim && aData.length === 2) {
-						MessageToast.show("Please add at least one claim");
-						isValid = false;
-						return isValid;
-					} else if (hasNewClaim) {
-						debugger;
-						var aCustomDataEntry = aData.filter(function (element) {
-							return element.New === true;
-						});
-						var customEntryDatalengthCheck = aCustomDataEntry.length >= 1 ? false : true;
-						MessageToast.show("Only one claim can be added");
-						isValid = customEntryDatalengthCheck;
-						return isValid;
-					}
-
-				} else if (service === "SSA-FIN-3007-2") {
-					// Check if any element has isActive set to true
-					var aCustomDataEntry = aData.filter(function (element) {
-						return element.New === true;
-					});
-					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
-						"Only one claim can be added "), false) : true;
-
-				} else if (service === "SSA-FIN-3007-3") {
-					// Check if any element has isActive set to true
-					var aCustomDataEntry = aData.filter(function (element) {
-						return element.New === true;
-					});
-					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
-						"Only one claim can be added "), false) : true;
-
-				} else if (service === "SSA-FIN-3007-4") {
-					// Check if any element has isActive set to true
-					var aCustomDataEntry = aData.filter(function (element) {
-						return element.New === true;
-					});
-					isValid = aCustomDataEntry.length >= 1 ? (MessageToast.show(
-						"Only one claim can be added "), false) : true;
-
-				}
-
-				return isValid;
-			},
 			handleAttachmentvalidation: function (service, oItems, aData) {
 				var isValid = true;
 				if (service === "SSA-PSCM-2012-1") {
