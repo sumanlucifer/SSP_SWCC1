@@ -17,7 +17,7 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>purchaseorg}" required="true"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
@@ -38,10 +38,10 @@
 				</Input>
 				<!--	<Label text="{i18n>documenttype}" required="true"/>
 				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
-				<Label text="{i18n>receivingplant}" required="true"/>
+				<Label text="{i18n>receivingplant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>purchasinggroup}" required="true"/>
 				<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
