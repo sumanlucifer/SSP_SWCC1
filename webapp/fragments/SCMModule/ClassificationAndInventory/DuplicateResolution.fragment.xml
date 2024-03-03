@@ -59,42 +59,40 @@
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
 			<ToolbarSpacer/>
-			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+			<Button icon="sap-icon://add" text="Add" press=".onAddItemsPress"/>
 		</Toolbar>
-		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table items="{path : '/ClasssificationandInventory/DuplicateResolution/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
-				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
-				fixedLayout="true">
-				<columns>
-					<Column>
-						<Text text="{i18n>material}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Description}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Plant}"/>
-					</Column>
-					<Column width="5%"></Column>
-				</columns>
-				<items>
-					<ColumnListItem vAlign="Middle">
-						<cells>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
-								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
-								<customData>
-									<core:CustomData key="Product" value="Product Code"/>
-									<core:CustomData key="Description" value="Product Name"/>
-								</customData>
-							</Input>
-							<Input value="{Description}" enabled="false"/>
-							<Input value="{Plant}" enabled="false"/>
-							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</ScrollContainer>
+		<Table items="{path : '/ClasssificationandInventory/DuplicateResolution/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+			fixedLayout="true">
+			<columns>
+				<Column>
+					<Text text="{i18n>material}"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>Description}"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="{i18n>Plant}"/>
+				</Column>
+				<Column width="5%"></Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+							placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+							<customData>
+								<core:CustomData key="Product" value="Product Code"/>
+								<core:CustomData key="Description" value="Product Name"/>
+							</customData>
+						</Input>
+						<Input value="{Description}" enabled="false"/>
+						<Input value="{Plant}" enabled="false"/>
+						<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 		<!--	</fm:content>
 		</fm:SimpleForm>-->
 	</VBox>
