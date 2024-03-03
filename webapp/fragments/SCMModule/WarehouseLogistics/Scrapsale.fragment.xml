@@ -60,7 +60,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table mode="None" items="{path : '/WarehouseandLogistics/IssueofMaterial/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table mode="None" items="{path : '/WarehouseandLogistics/Scrapsale/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>

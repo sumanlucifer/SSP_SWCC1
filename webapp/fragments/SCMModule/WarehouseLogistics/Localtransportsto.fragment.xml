@@ -19,8 +19,6 @@
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="true"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>documenttype}" required="true"/>
-				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>plant}" required="true"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>storequest}" required="true"/>
@@ -37,17 +35,17 @@
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>servicelevel}" required="true"/>
-				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
-					selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+				<ComboBox valueState="{= ${/WarehouseandLogistics/Localtransportsto/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransportsto/Header/ServiceLevel/} === '' ? ${i18n>servicelevel} : '' }"
+					selectionChange="onChangeServiceLevel" selectedKey="{/WarehouseandLogistics/Localtransportsto/Header/ServiceLevel/}">
 					<core:Item key="N" text="Normal"/>
 					<core:Item key="U" text="Urgent"/>
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
 				<Label text="{i18n>stono}" required="true"/>
-				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
-					placeholder="{i18n>receiver}" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/WarehouseandLogistics/Localtransportsto/Header/Ebeln/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransportsto/Header/Ebeln/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
+					placeholder="{i18n>stono}" value="{/WarehouseandLogistics/Localtransportsto/Header/Ebeln/}" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
