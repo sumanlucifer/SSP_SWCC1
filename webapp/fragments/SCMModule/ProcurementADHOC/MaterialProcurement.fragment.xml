@@ -1,5 +1,5 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
-	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
 	<VBox width="100%">
 		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
@@ -20,13 +20,13 @@
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>tenderpre}" required="true"/>
+				<!--	<Label text="{i18n>tenderpre}" required="true"/>
 				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? ${i18n>tenderpre} : '' }"
 					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
 					<core:Item key="Y" text="Yes"/>
 					<core:Item key="N" text="No"/>
-				</ComboBox>
+				</ComboBox>-->
 				<Label text="{i18n>servicelevel}" required="true"/>
 				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
@@ -35,6 +35,8 @@
 					<core:Item key="U" text="Urgent"/>
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/}" enabled="false"/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -42,8 +44,6 @@
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="false"/>
 				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
-				<Label text="{i18n>totalservicevalue}" required="false"/>
-				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/}" enabled="false"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -129,5 +129,49 @@
 				</items>
 			</Table>
 		</ScrollContainer>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label required="false" text="{i18n>Attachments}"></Label>
+							<!--	<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>-->
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text=""/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
 	</VBox>
 </core:FragmentDefinition>

@@ -33,8 +33,8 @@
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%" placeholder="{i18n>prno}"
 					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
 					<customData>
-						<core:CustomData key="PurchasingDocument" value="Purchase Requisition"/>
-						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
+						<core:CustomData key="PurchasingDocument" value="Purchasing Document "/>
+						<core:CustomData key="PurchaseRequisition" value="Purchase Requisition"/>
 					</customData>
 				</Input>
 				<!--	<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>-->

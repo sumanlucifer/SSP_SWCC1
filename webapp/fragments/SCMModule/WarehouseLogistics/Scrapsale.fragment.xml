@@ -28,39 +28,15 @@
 					</customData>
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>basedate}" required="true"/>
-				<DatePicker valueState="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" valueFormat="dd/mm/yyyy"
-					value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange" class=""/>
-				<Label text="{i18n>costcenter}" required="false"/>
-				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? ${i18n>costcenter} : '' }"
-					ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
-					<customData>
-						<core:CustomData key="ControllingArea" value="Cost Center"/>
-						<core:CustomData key="CostCenter" value="Cost Text"/>
-					</customData>
-				</Input>
-				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>movementtype}" required="true"/>
-				<Input valueState="{= ${/MovementtypeF4/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/MovementtypeF4/} === '' ? ${i18n>movementtype} : '' }"
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_GoodsMovementType-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/" width="100%"
-					placeholder="{i18n>movementtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/MovementtypeF4/}">
-					<customData>
-						<core:CustomData key="GoodsMovementType" value="Movement Type"/>
-						<core:CustomData key="GoodsMovementTypeName" value="Movement Name"/>
-					</customData>
-				</Input>
-				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" text="{i18n>goodsrecipient}" required="false"/>
-				<Input visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" placeholder="{i18n>goodsrecipient}"
-					value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
 				<Label text="{i18n>totalservicevalue}" required="false"/>
 				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>scrapyard}" required="false"/>
+				<Input placeholder="{i18n>goodsrecipient}" value="100 - Scrap Yard"/>
+				<!--<Input placeholder="{i18n>goodsrecipient}" value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

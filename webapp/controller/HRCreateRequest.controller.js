@@ -40,12 +40,14 @@ sap.ui.define([
 
 				var sUserType = this.handlegetlocalStorage("userType");
 
-				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/TerminationF4",
+				/*this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-1" ? this.getModel().setProperty("/TerminationF4",
 					"27-Early Retirement") : null;
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-2" ? this.getModel().setProperty("/TerminationF4",
 					"30-Retirement(completion of statutory work service)") : null;
 				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" ? this.getModel().setProperty("/TerminationF4",
-					"20-Resignation") : null;
+					"20-Resignation") : null;*/
+				this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" ? this.getModel().setProperty("/PolicyNoF4",
+					"PN- 501369001") : null;
 
 			},
 			_createItemDataModel: function () {
@@ -224,9 +226,8 @@ sap.ui.define([
 						value: "Employee Location",
 						group: "EventFilter"
 					}, {
-						path: "FiscalYear",
-						value: this.getModel().getProperty("/AccountPayable/ManagePettyCash/Header/FiscalYear") ? this.getModel().getProperty(
-							"/AccountPayable/ManagePettyCash/Header/FiscalYear") : "",
+						path: "value_1",
+						value: "PN",
 						group: "CashJrnlF4Filter"
 					}
 
@@ -237,8 +238,8 @@ sap.ui.define([
 
 				if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1004-3" && F4 === "/UserijdtF4/") {
 					aFilter = this._getfilterforControl(dynamicFilters.EventFilter);
-				} else if (this.getModel().getProperty("/FinanceAppVisible/") === "SSA-FIN-3003-1" && F4 === "/GlaccountF4/") {
-					aFilter = this._getfilterforControl(dynamicFilters.GLF4Filter);
+				} else if (this.getModel().getProperty("/HRAppVisible/") === "SSA-HR-1010-1" && F4 === "/PolicyNoF4/") {
+					aFilter = this._getfilterforControl(dynamicFilters.CashJrnlF4Filter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -647,6 +648,11 @@ sap.ui.define([
 						this.getModel().getProperty("/UploadedData"))) return false;
 				/*	if (!this.handleHeaderValidation(this.getModel().getProperty("/HRAppVisible/"), this.getModel().getProperty(
 							"/TrainingDevelopment/EmployeeLearningDevelopment/Header"))) return;*/
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
+					({
+						Filesize,
+						...rest
+					}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
@@ -1153,6 +1159,14 @@ sap.ui.define([
 						isValid = false;
 					}
 				} else if (service === "SSA-HR-1010-1") {
+					this.getModel().setProperty("/UploadedData", oItems);
+
+					// Check if 'oItems' is empty or not
+					if (!oItems || oItems.length === 0) {
+						MessageToast.show("Please Upload Attachments");
+						isValid = false;
+					}
+				} else if (service === "SSA-HR-1002-1") {
 					this.getModel().setProperty("/UploadedData", oItems);
 
 					// Check if 'oItems' is empty or not

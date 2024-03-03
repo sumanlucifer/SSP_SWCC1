@@ -49,6 +49,15 @@
 					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-2-A')|| (${/SCMAppVisible} === 'SSA-PSCM-2007-2')}">
 						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Contractmanagement.Issuingcontractletter" type="XML"/>
 					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2008-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Localtransport" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2008-2-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Localtransportsto" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Scrapsale" type="XML"/>
+					</VBox>
 				</l:content>
 			</l:VerticalLayout>
 		</f:content>
