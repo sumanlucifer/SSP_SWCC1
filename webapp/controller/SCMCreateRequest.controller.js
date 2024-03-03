@@ -113,6 +113,10 @@ sap.ui.define([
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
 
 				return sModelPath;
 			},
@@ -422,7 +426,9 @@ sap.ui.define([
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" &&
 							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" &&
-							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" &&
+							F4 === `/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
 					)) {
 
 					var filters = [{
@@ -643,6 +649,16 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && F4 ===
+					`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
+
+					var filters = [{
+						path: "Scrap",
+						value: "100",
+						group: "Scrapsale"
+					}];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.Scrapsale);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -777,6 +793,18 @@ sap.ui.define([
 						IssueofMaterial: {
 							Header: {},
 							itemData: []
+						},
+						Localtransport: {
+							Header: {},
+							itemData: []
+						},
+						Localtransportsto: {
+							Header: {},
+							itemData: []
+						},
+						Scrapsale: {
+							Header: {},
+							itemData: []
 						}
 					},
 
@@ -841,6 +869,21 @@ sap.ui.define([
 						.getProperty(
 							"/WarehouseandLogistics/IssueofMaterial/Header/"), this.getModel().getProperty(
 							"/WarehouseandLogistics/IssueofMaterial/itemData/")) :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" ? this.ScmCreatescrapsaleRequest(this.getModel()
+						.getProperty(
+							"/WarehouseandLogistics/Scrapsale/Header/"), this.getModel().getProperty(
+							"/WarehouseandLogistics/Scrapsale/itemData/")) :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" ? this.ScmCreatelocaltransportRequest(this.getModel()
+						.getProperty(
+							"/WarehouseandLogistics/Localtransport/Header/"), this.getModel().getProperty(
+							"/WarehouseandLogistics/Localtransport/itemData/")) :
+					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" ? this.ScmCreatelocaltransportstoRequest(this.getModel()
+						.getProperty(
+							"/WarehouseandLogistics/Localtransportsto/Header/"), this.getModel().getProperty(
+							"/WarehouseandLogistics/Localtransportsto/itemData/")) :
 					null;
 				//-------------------------Classification and Inventory-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" ? this.ScmCreatechangeRequest(this.getModel()
@@ -1263,6 +1306,107 @@ sap.ui.define([
 				};
 				this.SCMCreateaRequestAPI(oPayload);
 			},
+			ScmCreatelocaltransportRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Werks": oPayloadHeader.Werks,
+						"Kostl": oPayloadHeader.Kostl,
+						"ServLev": oPayloadHeader.ServLev,
+						"Trtyp": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
+						"Vehtyp": `${oPayloadHeader.TotalValue}`,
+						"Extloc": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
+						"Zzvendor": oPayloadHeader.ServLev,
+						"Reqparty": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
+						"Wempf": `${oPayloadHeader.TotalValue}`,
+						"Mobile": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
+								Txz01: items.Plant,
+								Menge: items.Menge,
+								Matlen: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
+								Matbrd: items.Matbrd,
+								Mathgt: items.Mathgt,
+								Matwgt: items.Matwgt
+
+							};
+						}
+					),
+					"Attachments": aUploadData
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreatelocaltransportstoRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+						"ServLev": oPayloadHeader.ServiceLevel,
+						"Ebeln": oPayloadHeader.Ebeln
+					},
+
+					"ServiceHeadertoItem": [],
+					"Attachments": aUploadData
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
+			ScmCreatescrapsaleRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/UploadedData"))) return false;
+				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
+					Filesize,
+					...rest
+				}) => rest);
+				var oPayload = {
+					"Username": this.getCurrentUserLoggedIn(),
+					"Material": this.getModel().getProperty("/SCMAppVisible/"),
+					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"NotifText": oPayloadHeader.NotifText,
+					"ZHeaderExtra": {
+						"Werks": oPayloadHeader.Werks,
+						"TotalValue": oPayloadHeader.TotalValue
+					},
+
+					"ServiceHeadertoItem": aItem.map(
+						function (items) {
+							return {
+								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
+								Menge: items.Menge
+							};
+						}
+					),
+					"Attachments": aUploadData
+
+				};
+				this.SCMCreateaRequestAPI(oPayload);
+			},
 
 			SCMCreateaRequestAPI: function (oPayload) {
 				debugger;
@@ -1359,6 +1503,12 @@ sap.ui.define([
 							Menge: "",
 							UnitPrice: ""
 						}, "/ProcurementAdhoc/ServiceProcurement/itemData1") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/WarehouseandLogistics/Scrapsale/itemData"), {
+					Matnr: "",
+					Wercks: "",
+					Menge: ""
+				}, "/WarehouseandLogistics/Scrapsale/itemData") : "";
 
 			},
 
@@ -1407,6 +1557,9 @@ sap.ui.define([
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/ServiceProcurement/itemData1")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/WarehouseandLogistics/Scrapsale/itemData")) : "";
 			},
 			updateItemDeleteModel: function (index, oModel) {
 				oModel.splice(index, 1);
@@ -2246,7 +2399,7 @@ sap.ui.define([
 			},
 			onFileSizeExceed: function () {
 
-				this.handleFileSizeExceed();
+				this.handleFileSizeExceedScm();
 			},
 			onCancel: function () {
 				this.navigationBack();

@@ -356,6 +356,10 @@ sap.ui.define([
 		handleFileSizeExceed: function () {
 			return MessageBox.error("File size exceeded, Please upload file upto 2MB.");
 		},
+		// ___________________________File Exceed Error _______________________________
+		handleFileSizeExceedScm: function () {
+			return MessageBox.error("File size exceeded, Please upload file upto 5MB.");
+		},
 		// ____________________________________________________set local session storage___________________________________________________
 		handleSetLocalStaorage: function (sProperty, sVal) {
 			// Get access to local storage
