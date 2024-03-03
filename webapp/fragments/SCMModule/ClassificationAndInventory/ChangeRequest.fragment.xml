@@ -91,7 +91,6 @@
 				</Input>
 				<Label text="{i18n>Materialcode}" required="true"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
-					valueState="{= ${/ProductF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/ProductF4/} === '' ? ${i18n>Materialcode} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
 					placeholder="{i18n>Materialcode}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ProductF4/}">
 					<customData>
@@ -170,7 +169,7 @@
 							</Text>-->
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
-								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
 								placeholder="Choose a file" style="Emphasized"
 								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 						</FlexBox>

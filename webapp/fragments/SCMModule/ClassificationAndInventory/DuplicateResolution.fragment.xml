@@ -103,14 +103,14 @@
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
 							<Label required="true" text="{i18n>Attachments}" level="H1"></Label>
-							<!--	<Text text="{i18n>uploadtooltip5mb}" class="sapUiTinyMarginBegin upload-info">
+							<Text text="{i18n>uploadtooltip5mb}" class="sapUiTinyMarginBegin upload-info">
 								<layoutData>
 									<FlexItemData growFactor="1"/>
 								</layoutData>
-							</Text>-->
+							</Text>
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
-								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
 								placeholder="Choose a file" style="Emphasized"
 								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
 						</FlexBox>

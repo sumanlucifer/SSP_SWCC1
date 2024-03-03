@@ -1909,7 +1909,7 @@ sap.ui.define([
 							path: "/servicegroupF4/",
 							condition: true
 						}, {
-							path: "/ProductF4/",
+							path: "/ClassF4/",
 							condition: true
 						}
 
