@@ -143,7 +143,6 @@ sap.ui.define([
 						}
 					}.bind(this));
 				}
-				debugger;
 
 				if (!this.handleItemValidation(this.getModel().getProperty(
 						"/SCMAppVisible/"), this.getModel().getProperty(
@@ -339,7 +338,7 @@ sap.ui.define([
 						"/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/ProductF4/") {
-					debugger;
+
 					var filters = [
 
 						{
@@ -375,7 +374,7 @@ sap.ui.define([
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
-				debugger;
+
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
@@ -392,7 +391,7 @@ sap.ui.define([
 				if (!aData[0]) {
 					return;
 				}
-				debugger;
+
 				var spath = oModel.replace(/\/[^/]+\/$/, '/');
 
 				if ((this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
@@ -408,7 +407,7 @@ sap.ui.define([
 						this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 						this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
 					} else if (sF4 === "StoragelocationF4") {
-						debugger;
+
 						this.getModel().setProperty(`${spath}/Stock/`, aData.Stock ? aData.Stock : 0);
 						this.getModel().setProperty(`${spath}/Price/`, aData.Price);
 					}
@@ -738,10 +737,10 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel().getProperty("/valueHelpName") === "/MaterialgroupF4/") {
-					debugger;
 					var filters = [{
 							path: "ExternalProductGroup",
 							value: this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
+							operator: sap.ui.model.FilterOperator.Contains,
 							group: "ProductFilter"
 						}
 
@@ -750,7 +749,6 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel().getProperty("/valueHelpName") === "/CostcenterF4/") {
-					debugger;
 					var filters = [{
 							path: "usrid",
 							value: this.getCurrentUserLoggedIn(),
@@ -1028,7 +1026,6 @@ sap.ui.define([
 			},
 
 			ScmCreateServiceProcurementRequest: function (oPayloadHeader, aItem, aitem1) {
-				debugger;
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/ProcurementAdhoc/ServiceProcurement/itemData/")) || !this.handleAttachmentvalidation(
@@ -1181,7 +1178,6 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateissueofmaterialRequest: function (oPayloadHeader, aItem) {
-				debugger;
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/WarehouseandLogistics/IssueofMaterial//itemData/"))) return false;
@@ -1329,7 +1325,6 @@ sap.ui.define([
 					Filesize,
 					...rest
 				}) => rest);
-				debugger;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1515,7 +1510,6 @@ sap.ui.define([
 			},
 
 			SCMCreateaRequestAPI: function (oPayload) {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -1676,7 +1670,6 @@ sap.ui.define([
 			},
 
 			handleItemValidation: function (service, aData, action) {
-				debugger;
 				var isValid = true;
 
 				if (service === "SSA-PSCM-2011-A") {
@@ -1713,7 +1706,6 @@ sap.ui.define([
 			},
 
 			handleLiveChangeContractPrcUnitPrice: function (oEvent) {
-				debugger;
 				var service = this.getModel().getProperty("/SCMAppVisible/");
 				if (service === "SSA-PSCM-2007-1") {
 					var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
@@ -1769,7 +1761,6 @@ sap.ui.define([
 				this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/", iEstimated);
 			},
 			handleLiveChangeUnit: function (oEvent) {
-				debugger;
 				var sBindingPath = oEvent.getSource().getBindingContext().getPath();
 				var iItemIndex = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
@@ -1820,7 +1811,7 @@ sap.ui.define([
 			},
 
 			onChangeServiceLevel: function (oEve) {
-				debugger;
+
 				var serviceLevel = oEve.getSource().getSelectedKey();
 				var service = this.getModel().getProperty("/SCMAppVisible/");
 				if (service === "SSA-PSCM-2001-1") {
@@ -1868,7 +1859,7 @@ sap.ui.define([
 			},
 
 			handleLiveChangeServcePrcUnitPrice: function (oEvent) {
-				debugger;
+
 				var sBindingPath = oEvent.getSource().getBindingContext().getPath();
 				var iItemIndex = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
