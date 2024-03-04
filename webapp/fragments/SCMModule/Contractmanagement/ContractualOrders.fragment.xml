@@ -28,13 +28,13 @@
 						<core:CustomData key="SupplierName" value="Supplier Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>prno}" required="true"/>
-				<Input valueState="{= ${/PrnoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PrnoF4/} === '' ? ${i18n>prno} : '' }"
-					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%" placeholder="{i18n>prno}"
-					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
+				<Label text="{i18n>pono}" required="true"/>
+				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>pono} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%" placeholder="{i18n>pono}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
 					<customData>
-						<core:CustomData key="PurchasingDocument" value="Purchasing Document "/>
-						<core:CustomData key="PurchaseRequisition" value="Purchase Requisition"/>
+						<core:CustomData key="PurchaseOrder" value="Purchasing Document"/>
+						<core:CustomData key="PurchaseOrderType" value="Document Type"/>
 					</customData>
 				</Input>
 				<!--	<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>-->
@@ -44,21 +44,30 @@
 				<!--	<Label text="{i18n>requestingparty}" required="false"/>
 				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/ReqParty/}"
 					showValueHelp="" valueHelpRequest=""/>-->
-				<Label text="{i18n>pono}" required="true"/>
-				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>pono} : '' }"
-					ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%" placeholder="{i18n>pono}"
-					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+				<Label text="{i18n>prno}" required="true"/>
+				<Input valueState="{= ${/PrnoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PrnoF4/} === '' ? ${i18n>prno} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%" placeholder="{i18n>prno}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
 					<customData>
-						<core:CustomData key="PurchaseOrder" value="Purchase Requisition"/>
-						<core:CustomData key="PurchaseOrderType" value="Purchasing Document"/>
+						<core:CustomData key="PurchasingDocument" value="Purchasing Document "/>
+						<core:CustomData key="PurchaseRequisition" value="Purchase Requisition"/>
 					</customData>
 				</Input>
 				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1' ? true : false}" text="{i18n>contractvalue}" required="true"/>
-				<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? 'Error' : 'None' }"
+				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>contractvalue} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PURORDER_VH-com.swcc.Template.fragments.SCMModule.ContractvalueF4-/ContractvalueF4/" width="100%"
+					placeholder="{i18n>contractvalue}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ContractvalueF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Order"/>
+						<core:CustomData key="NetPriceAmount" value="Net Price Amount"/>
+					</customData>
+				</Input>
+				<!--	<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${//ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? ${i18n>contractvalue} : '' }"
 					visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1' ? true : false}" placeholder="{i18n>contractvalue}"
 					value="{/ContractManagement/ContractualChangeOrders/Header/EstPrice}" change="handleLiveChangeContractPrcUnitPrice" showValueHelp=""
-					editable="true" valueHelpRequest=""/>
+					editable="true" valueHelpRequest=""/>-->
 				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1-A' ? true : false}" text="{i18n>changeordervalue}" required="true"/>
 				<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${//ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? ${i18n>contractvalue} : '' }"

@@ -683,6 +683,29 @@ sap.ui.define([
 
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" &&
+						this.getModel()
+						.getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2007-2-A" &&
+						this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2007-1-A" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/ContractvalueF4/")) {
+					var filters = [{
+							path: "PurchaseOrder",
+							value: this.getModel().getProperty("/PrnoF4/") ? this.getModel().getProperty("/PrnoF4/").split("-")[1].trim() : "",
+							group: "WareHouseFilter",
+							useOR: true
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.WareHouseFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/ProductF4/") {
