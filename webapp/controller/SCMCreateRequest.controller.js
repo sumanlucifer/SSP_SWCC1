@@ -470,7 +470,7 @@ sap.ui.define([
 				this._filterTable(Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter);
 			},
 			handleFiltersForValueHelp: function (F4) {
-
+				debugger;
 				var aFilter;
 
 				// if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
@@ -732,11 +732,11 @@ sap.ui.define([
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel().getProperty("/valueHelpName") === "/servicegroupF4/") {
-
+					this.getModel().getProperty("/valueHelpName") === "/MaterialgroupF4/") {
+					debugger;
 					var filters = [{
 							path: "ExternalProductGroup",
-							value: this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/") : "",
+							value: this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 							group: "ProductFilter"
 						}
 
