@@ -388,6 +388,7 @@ sap.ui.define([
 			},
 
 			handleDependentFilterResponse: function (aData, oModel) {
+				debugger;
 				if (!aData[0]) {
 					return;
 				}
@@ -395,7 +396,8 @@ sap.ui.define([
 				var spath = oModel.replace(/\/[^/]+\/$/, '/');
 
 				if ((this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/FragModel") ===
-						`${oModel}`) || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`) || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3" && this.getModel().getProperty(
+							"/FragModel") ===
 						`${oModel}`)) {
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
@@ -413,7 +415,8 @@ sap.ui.define([
 					}
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-2" && this.getModel().getProperty("/FragModel") ===
-						`${oModel}`) || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`) || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" && this.getModel().getProperty(
+							"/FragModel") ===
 						`${oModel}`)
 				) {
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
@@ -435,19 +438,20 @@ sap.ui.define([
 					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/itemData/`, aData);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2") {
 					this.getModel().setProperty(`/ContractManagement/IssuingContractualLetters/Header/Po`, aData[0].PurchaseOrder);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && this.getModel().getProperty("/FragModel") ===
-					`${oModel}`) {
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
 					debugger;
-					var sF4 = oModel.replace(/\/$/, '').split('/').pop();
-					if (sF4 === "ProductF4") {
-						this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
-						this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
-						this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
-					}
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
+					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
+					debugger;
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 				}
 
@@ -532,7 +536,8 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.StorageFilter);
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
-						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`) || (this.getModel().getProperty(
+						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`) || (this.getModel()
+						.getProperty(
 							"/SCMAppVisible/") === "SSA-PSCM-2010-3" && F4 ===
 						`/WarehouseandLogistics/IssueofMaterial/itemData/${this.getModel().getProperty("/itemIndex")}/WarehouseF4/`)
 
@@ -689,7 +694,8 @@ sap.ui.define([
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2" && this.getModel().getProperty("/HeaderValueHelp") &&
 						this.getModel()
-						.getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" &&
+						.getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2007-1" &&
 						this.getModel()
 						.getProperty("/HeaderValueHelp") && this.getModel()
 						.getProperty("/valueHelpName") === "/ContractvalueF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
@@ -1032,11 +1038,12 @@ sap.ui.define([
 						this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1088,11 +1095,12 @@ sap.ui.define([
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/ProcurementAdhoc/MaterialProcurement/Header/itemData/"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1152,11 +1160,12 @@ sap.ui.define([
 						this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1220,11 +1229,12 @@ sap.ui.define([
 						this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1263,11 +1273,12 @@ sap.ui.define([
 						this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1293,11 +1304,12 @@ sap.ui.define([
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
-				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
-					({
-						Filesize,
-						...rest
-					}) => rest);
+				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
+					.map(
+						({
+							Filesize,
+							...rest
+						}) => rest);
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -1465,6 +1477,7 @@ sap.ui.define([
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
+					"Descript": this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
 					"ZHeaderExtra": {
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 						"ServLev": oPayloadHeader.ServiceLevel,
@@ -1707,6 +1720,7 @@ sap.ui.define([
 
 			handleLiveChangeContractPrcUnitPrice: function (oEvent) {
 				var service = this.getModel().getProperty("/SCMAppVisible/");
+				debugger;
 				if (service === "SSA-PSCM-2007-1") {
 					var sUnit = oEvent.getSource().getValue() === "" ? "" : parseInt(oEvent.getSource().getValue());
 					var sTotal = parseInt(5000) + (0.01 * sUnit);
