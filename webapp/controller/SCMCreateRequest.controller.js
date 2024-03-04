@@ -736,7 +736,7 @@ sap.ui.define([
 
 					var filters = [{
 							path: "ExternalProductGroup",
-							value: this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/") : "",
 							group: "ProductFilter"
 						}
 
