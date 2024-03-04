@@ -370,8 +370,18 @@ sap.ui.define([
 					var serviceUrl = `/SCMStockCheckSet(Material='${sMaterial}',Plant='${sPlant}',StorageLoc='${sstorageloc}')`;
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", serviceUrl,
 						null,
-						`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
+						`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/ContractvalueF4/")) {
+					debugger;
+					let sUnit = this.getModel().getProperty("/ContractvalueF4/") ? parseInt(this.getModel().getProperty("/ContractvalueF4/").split("-")[
+						1]) : "";
+					var sTotal = parseInt(5000) + (0.01 * sUnit);
+					this.getModel().setProperty(`/ContractManagement/ContractualChangeOrders/Header/TotalValue/`, sTotal);
 				}
+
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
 
@@ -389,7 +399,9 @@ sap.ui.define([
 
 			handleDependentFilterResponse: function (aData, oModel) {
 				debugger;
-				if (!aData[0]) {
+				aData = aData ? aData : aData[0];
+
+				if (!aData) {
 					return;
 				}
 
@@ -443,9 +455,9 @@ sap.ui.define([
 						`${oModel}`)
 				) {
 					debugger;
-					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
-					this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
-					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+					this.getModel().setProperty(`${spath}/Plant/`, aData.Plant);
+					this.getModel().setProperty(`${spath}/BaseUnit/`, aData.BaseUnit);
+					this.getModel().setProperty(`${spath}/Description/`, aData.Description);
 
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/FragModel") ===
