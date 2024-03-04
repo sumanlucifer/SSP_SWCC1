@@ -33,12 +33,13 @@
 					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" valueFormat="dd/mm/yyyy"
 					value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange" class=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
-				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? ${i18n>costcenter} : '' }"
-					ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
-					placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+				<Input valueState="{= ${/CostcenterF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CostcenterF4/} === '' ? ${i18n>costcenter} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_KOSTL_VH-com.swcc.Template.fragments.SCMModule.CostcenterF4-/CostcenterF4/" width="100%"
+					placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CostcenterF4/}">
 					<customData>
-						<core:CustomData key="ControllingArea" value="Cost Center"/>
-						<core:CustomData key="CostCenter" value="Cost Text"/>
+						<core:CustomData key="usrid" value="user"/>
+						<core:CustomData key="costcenter" value="Cost Center"/>
 					</customData>
 				</Input>
 				<core:Title text=""/>

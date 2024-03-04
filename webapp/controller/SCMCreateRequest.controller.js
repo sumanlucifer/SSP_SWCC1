@@ -135,7 +135,7 @@ sap.ui.define([
 					.getProperty("/valueHelpName") === "/CrtypeF4/") {
 					tokens.forEach(function (token) {
 						var tokenValue = token.getKey();
-						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02"].includes(tokenValue)) {
+						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02"].includes(tokenValue)) {
 							// Set visibility to true if any of the tokens match
 							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
 						} else {
@@ -672,8 +672,7 @@ sap.ui.define([
 						this.getModel().getProperty("/valueHelpName") === "/PrnoF4/")) {
 					var filters = [{
 							path: "PurchasingDocument",
-							value: this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split(
-								"-")[0] : "",
+							value: this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
 							group: "WareHouseFilter",
 							useOR: true
 
@@ -726,6 +725,18 @@ sap.ui.define([
 					var filters = [{
 							path: "ClassType",
 							value: "001",
+							group: "ProductFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel().getProperty("/valueHelpName") === "/servicegroupF4/") {
+
+					var filters = [{
+							path: "ExternalProductGroup",
+							value: this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
 							group: "ProductFilter"
 						}
 
@@ -1212,6 +1223,7 @@ sap.ui.define([
 						"Mtart": this.getModel().getProperty("/MaterialtypeF4/") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
 						"Meins": this.getModel().getProperty("/uomF4/") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
 						"Txz01": oPayloadHeader.Txz01,
+						"TXT50": oPayloadHeader.TXT50,
 						"Mbrsh": this.getModel().getProperty("/IndustrysectorF4/") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
 						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 						"Extwg": this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
@@ -1345,7 +1357,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"ReqParty": oPayloadHeader.ReqParty,
-						"EstPrice": oPayloadHeader.EstPrice,
+						"EstPrice": this.getModel().getProperty("/ContractvalueF4/") ? this.getModel().getProperty("/ContractvalueF4/").split("-")[0] : "",
 						"Ebeln": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
 						"TotalValue": `${oPayloadHeader.TotalValue}`,
 						"Zzvendor": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
