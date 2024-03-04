@@ -57,7 +57,7 @@
 				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>contractvalue} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PURORDER_VH-com.swcc.Template.fragments.SCMModule.ContractvalueF4-/ContractvalueF4/" width="100%"
 					placeholder="{i18n>contractvalue}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/ContractvalueF4/}">
+					change="handleLiveChangeContractPrcUnitPrice" value="{/ContractvalueF4/}">
 					<customData>
 						<core:CustomData key="PurchaseOrder" value="Purchase Order"/>
 						<core:CustomData key="NetPriceAmount" value="Net Price Amount"/>

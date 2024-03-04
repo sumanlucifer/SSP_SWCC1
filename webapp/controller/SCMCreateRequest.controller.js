@@ -445,6 +445,11 @@ sap.ui.define([
 						this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
 						this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
 					}
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
+					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
 				}
 
 			},
@@ -743,6 +748,18 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel().getProperty("/valueHelpName") === "/CostcenterF4/") {
+					debugger;
+					var filters = [{
+							path: "usrid",
+							value: this.getCurrentUserLoggedIn(),
+							group: "userIdFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.userIdFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
