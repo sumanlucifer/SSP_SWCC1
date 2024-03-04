@@ -454,10 +454,8 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && this.getModel().getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
-					debugger;
-					this.getModel().setProperty(`${spath}/Plant/`, aData.Plant);
-					this.getModel().setProperty(`${spath}/BaseUnit/`, aData.BaseUnit);
-					this.getModel().setProperty(`${spath}/Description/`, aData.Description);
+					this.getModel().setProperty(`${spath}/Price/`, aData.Price);
+					this.getModel().setProperty(`${spath}/Stock/`, aData.Stock);
 
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/FragModel") ===
@@ -1516,7 +1514,7 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Werks": oPayloadHeader.Werks,
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 						"TotalValue": oPayloadHeader.TotalValue
 					},
 
@@ -1827,6 +1825,12 @@ sap.ui.define([
 					var iTotal;
 					iTotal = (0.04 * totalSum1) + totalSum1;
 					this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2010-3-A") {
+					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = (0.04 * totalSum1) + totalSum1;
+					this.getModel().setProperty("/WarehouseandLogistics/Scrapsale/Header/TotalServiceLevel/", iTotal);
 
 				}
 

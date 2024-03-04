@@ -29,7 +29,7 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>totalservicevalue}" required="false"/>
-				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/Scrapsale/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
@@ -45,8 +45,8 @@
 			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>Description}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/WarehouseandLogistics/IssueofMaterial/Header/NotifText/}"
-					growingMaxLines="7" height="6rem" width="100%"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/WarehouseandLogistics/Scrapsale/Header/NotifText/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
@@ -95,10 +95,10 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="UOM" value="{Baseunit}" enabled="false"/>
+							<Input value="{Price}" enabled="false"/>
+							<Input value="{Stock}" enabled="false"/>
 							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
-							<Input value="{Plant}" enabled="false"/>
-							<Input value="{Lgpla}" enabled="false"/>
-							<Input value="{Lgpla}" enabled="false"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/></cells>
 					</ColumnListItem>
 				</items>
