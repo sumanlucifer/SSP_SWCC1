@@ -68,25 +68,19 @@
 						<Text text="{i18n>material}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Quantity}"/>
+						<Text text="{i18n>Description}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>UOM}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Plant}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Storagelocation}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Warehouseno}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>Storagebin}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Avaliablestock}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
 					</Column>
 					<Column width="5%"></Column>
 				</columns>
@@ -100,26 +94,11 @@
 									<core:CustomData key="Description" value="Product Name"/>
 								</customData>
 							</Input>
-							<Input placeholder="Enter Quantity" value="{Menge}"/>
-							<Input enabled="false" value="{BaseUnit}" liveChange=""/>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
 							<Input value="{Plant}" enabled="false"/>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/C_StorageLocationVH-com.swcc.Template.fragments.SCMModule.StoragelocationF4-/StoragelocationF4/"
-								width="100%" placeholder="Select Storage Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{StoragelocationF4}">
-								<customData>
-									<core:CustomData key="StorageLocation" value="Storage Location"/>
-									<core:CustomData key="StorageLocationName" value="Storage Location Name"/>
-								</customData>
-							</Input>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SC_WAREHOUSE-com.swcc.Template.fragments.SCMModule.WarehouseF4-/WarehouseF4/" width="100%"
-								placeholder="Select Warehouse" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{WarehouseF4}">
-								<customData>
-									<core:CustomData key="Warehouse" value="Warehouse"/>
-									<core:CustomData key="WarehouseName" value="Warehouse Name"/>
-								</customData>
-							</Input>
 							<Input value="{Lgpla}" enabled="false"/>
-							<Input change="handleLiveChangeUnit" value="{UnitPrice}"/>
+							<Input value="{Lgpla}" enabled="false"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/></cells>
 					</ColumnListItem>
 				</items>

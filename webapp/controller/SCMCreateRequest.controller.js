@@ -335,6 +335,43 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/I_ClfnClassCharcForKeyDate",
 						dynamicFilters.WareHouseFilter,
 						`${this.getModel().getProperty("/FragModel")}`)
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && !this.getModel().getProperty(
+						"/HeaderValueHelp") &&
+					this.getModel()
+					.getProperty("/valueHelpName") === "/ProductF4/") {
+					debugger;
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Material",
+							value: this.getModel().getProperty(`${this.getModel().getProperty("/FragModel")}`).split("-")[0],
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "StorageLoc",
+							value: "100",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+					];
+					var sMaterial = this.getModel().getProperty(
+						`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
+						"-")[0];
+					var sPlant = this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "";
+					var sstorageloc = 100;
+
+					var serviceUrl = `/SCMStockCheckSet(Material='${sMaterial}',Plant='${sPlant}',StorageLoc='${sstorageloc}')`;
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", serviceUrl,
+						null,
+						`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
 				}
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
@@ -399,10 +436,16 @@ sap.ui.define([
 					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/itemData/`, aData);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-2") {
 					this.getModel().setProperty(`/ContractManagement/IssuingContractualLetters/Header/Po`, aData[0].PurchaseOrder);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && this.getModel().getProperty("/FragModel") ===
+					`${oModel}`) {
+					debugger;
+					var sF4 = oModel.replace(/\/$/, '').split('/').pop();
+					if (sF4 === "ProductF4") {
+						this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+						this.getModel().setProperty(`${spath}/BaseUnit/`, aData[0].BaseUnit);
+						this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+					}
 				}
-				/*else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1") {
-					this.getModel().setProperty(`/PonoF4/`, aData[0].PurchaseOrder);
-				}*/
 
 			},
 			onValueHelpCancelPress: function () {
@@ -445,9 +488,7 @@ sap.ui.define([
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" &&
 							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" &&
-							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
-						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" &&
-							F4 === `/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
 					)) {
 
 					var filters = [{
@@ -668,16 +709,6 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && F4 ===
-					`/WarehouseandLogistics/Scrapsale/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) {
-
-					var filters = [{
-						path: "Scrap",
-						value: "100",
-						group: "Scrapsale"
-					}];
-					var dynamicFilters = this.getFilters(filters);
-					aFilter = this._getfilterforControl(dynamicFilters.Scrapsale);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
