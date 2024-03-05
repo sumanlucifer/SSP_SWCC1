@@ -786,26 +786,12 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" &&
 						F4 === `/ProcurementAdhoc/ServiceProcurement/itemData1/${this.getModel().getProperty("/itemIndex")}/CostcenterF4/`)) {
 					var filters = [{
-							path: "usrid",
-							value: this.getCurrentUserLoggedIn(),
-							group: "userIdFilter"
-						}
-
-					];
+						path: "usrid",
+						value: this.getCurrentUserLoggedIn(),
+						group: "userIdFilter"
+					}];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.userIdFilter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel().getProperty("/valueHelpName") === "/StosrF4/") {
-					debugger;
-					var filters = [{
-							path: "qmnum",
-							value: this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
-							group: "StoFilter"
-						}
-
-					];
-					var dynamicFilters = this.getFilters(filters);
-					aFilter = this._getfilterforControl(dynamicFilters.StoFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
