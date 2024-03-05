@@ -180,6 +180,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>purchasinggroup}"/>
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>requisitioner}"/>
+					</Column>
 					<!--<Column width="5%"></Column>-->
 				</columns>
 				<items>
@@ -202,6 +205,7 @@
 									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
 								</customData>
 							</Input>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
 							<!--	<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>-->
 						</cells>
 					</ColumnListItem>
@@ -240,9 +244,6 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>costcenter}"/>
 					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>requisitioner}"/>
-					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -259,14 +260,15 @@
 							</Input>
 							<Input enabled="{= ${Menge} !== '' ? true : false }" placeholder="Enter Unit Price" change="handleLiveChangeServcePrcUnitPrice"
 								type="Number" value="{UnitPrice}"/>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_CostCenterVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/CostcenterF4/" width="100%"
-								placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{CostcenterF4}">
+							<Input valueState="{= ${/CostcenterF4/} === '' ? 'Error' : 'None' }"
+								valueStateText="{= ${/CostcenterF4/} === '' ? ${i18n>costcenter} : '' }"
+								ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_KOSTL_VH-com.swcc.Template.fragments.SCMModule.CostcenterF4-/CostcenterF4/" width="100%"
+								placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CostcenterF4/}">
 								<customData>
-									<core:CustomData key="CostCenter" value="Cost Center"/>
-									<core:CustomData key="ControllingArea" value="Cost Text"/>
+									<core:CustomData key="usrid" value="user"/>
+									<core:CustomData key="costcenter" value="Cost Center"/>
 								</customData>
 							</Input>
-							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>
@@ -283,11 +285,6 @@
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
 							<Label required="true" text="{i18n>Attachments}"></Label>
-							<Text text="{i18n>uploadtooltip5mb}" class="sapUiTinyMarginBegin upload-info">
-								<layoutData>
-									<FlexItemData growFactor="1"/>
-								</layoutData>
-							</Text>
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
 								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"

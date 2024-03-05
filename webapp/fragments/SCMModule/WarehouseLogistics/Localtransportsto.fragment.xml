@@ -22,10 +22,9 @@
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>storequest}" required="true"/>
-				<Input valueState="{= ${/SuppPlantF4/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/SuppPlantF4/} === '' ? ${i18n>supplyingplant} : '' }"
+				<Input valueState="{= ${/SuppPlantF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/SuppPlantF4/} === '' ? ${i18n>storequest} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_STO_REQ_VH-com.swcc.Template.fragments.SCMModule.StosrF4-/StosrF4/" width="100%"
-					placeholder="{i18n>supplyingplant}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/StosrF4/}">
+					placeholder="{i18n>storequest}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/StosrF4/}">
 					<customData>
 						<core:CustomData key="qmnum" value="STO Request"/>
 						<core:CustomData key="matnr" value="Name"/>
@@ -66,11 +65,6 @@
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
 							<Label text="{i18n>Attachments}"></Label>
-							<Text text="{i18n>uploadtooltip5mb}" class="sapUiTinyMarginBegin upload-info">
-								<layoutData>
-									<FlexItemData growFactor="1"/>
-								</layoutData>
-							</Text>
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
 								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"

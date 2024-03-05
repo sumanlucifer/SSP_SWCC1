@@ -117,6 +117,10 @@ sap.ui.define([
 						`${sTabelModel}`).length !== 0 ?
 					`${sTableBindingPath}${valuehelpModel}` :
 					sModelPath;
+				sModelPath = this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" && this.getModel().getProperty(
+						`${sTabelModel}`).length !== 0 ?
+					`${sTableBindingPath}${valuehelpModel}` :
+					sModelPath;
 
 				return sModelPath;
 			},
@@ -375,7 +379,7 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 						this.getModel()
 						.getProperty("/valueHelpName") === "/ContractvalueF4/")) {
-					debugger;
+
 					let sUnit = this.getModel().getProperty("/ContractvalueF4/") ? parseInt(this.getModel().getProperty("/ContractvalueF4/").split("-")[
 						1]) : "";
 					var sTotal = parseInt(5000) + (0.01 * sUnit);
@@ -461,8 +465,19 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2007-1" && this.getModel().getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
-					debugger;
 					this.getModel().setProperty(`${spath}/Plant/`, aData[0].Plant);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
+					debugger;
+					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
+					debugger;
+					this.getModel().setProperty(`${spath}/follow_doc/`, aData[0].follow_doc);
 				}
 
 			},
@@ -488,7 +503,6 @@ sap.ui.define([
 				this._filterTable(Object.keys(dynamicFilters).length === 0 ? [] : dynamicFilters.DynamicF4SearchFilter);
 			},
 			handleFiltersForValueHelp: function (F4) {
-				debugger;
 				var aFilter;
 
 				// if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && F4 ===
@@ -506,7 +520,9 @@ sap.ui.define([
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2001-1" &&
 							F4 === `/ProcurementAdhoc/MaterialProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
 						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" &&
-							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
+							F4 === `/ClasssificationandInventory/DuplicateResolution/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`) ||
+						(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" &&
+							F4 === `/WarehouseandLogistics/Localtransport/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`)
 					)) {
 
 					var filters = [{
@@ -763,8 +779,12 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel().getProperty("/valueHelpName") === "/CostcenterF4/") {
+				} else if ((this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/CostcenterF4/") || (this.getModel().getProperty("/SCMAppVisible/") ===
+						"SSA-PSCM-2008-2" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel().getProperty("/valueHelpName") === "/CostcenterF4/") ||
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" &&
+						F4 === `/ProcurementAdhoc/ServiceProcurement/itemData1/${this.getModel().getProperty("/itemIndex")}/CostcenterF4/`)) {
 					var filters = [{
 							path: "usrid",
 							value: this.getCurrentUserLoggedIn(),
@@ -774,6 +794,18 @@ sap.ui.define([
 					];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.userIdFilter);
+				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel().getProperty("/valueHelpName") === "/StosrF4/") {
+					debugger;
+					var filters = [{
+							path: "qmnum",
+							value: this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
+							group: "StoFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					aFilter = this._getfilterforControl(dynamicFilters.StoFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -1444,14 +1476,14 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
-						"Kostl": oPayloadHeader.Kostl,
+						"Kostl": this.getModel().getProperty("/CostcenterF4/") ? this.getModel().getProperty("/CostcenterF4/").split("-")[0] : "",
 						"ServLev": oPayloadHeader.ServiceLevel,
 						"Wempf": oPayloadHeader.Wempf,
-						"Trtyp": oPayloadHeader.Trtyp,
-						"Vehtyp": oPayloadHeader.Vehtyp,
-						"Extloc": oPayloadHeader.Extloc,
-						"Zzvendor": oPayloadHeader.Zzvendor,
-						"Reqparty": oPayloadHeader.Reqparty,
+						"TrTyp": oPayloadHeader.TrTyp,
+						"VehTyp": oPayloadHeader.VehTyp,
+						"ExtLoc": oPayloadHeader.ExtLoc,
+						"Zzvendor": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
+						"ReqParty": oPayloadHeader.ReqParty,
 						"Mobile": oPayloadHeader.Mobile
 					},
 
@@ -1459,12 +1491,12 @@ sap.ui.define([
 						function (items) {
 							return {
 								Matnr: items.ProductF4 ? items.ProductF4.split("-")[0] : "",
-								Txz01: items.Plant,
+								Txz01: items.Txz01,
 								Menge: items.Menge,
-								Matlen: items.StoragelocationF4 ? items.StoragelocationF4.split("-")[0] : "",
-								Matbrd: items.Matbrd,
-								Mathgt: items.Mathgt,
-								Matwgt: items.Matwgt
+								MatLen: items.Matlen,
+								MatBrd: items.Matbrd,
+								MatHgt: items.Mathgt,
+								MatWgt: items.Matwgt
 
 							};
 						}
