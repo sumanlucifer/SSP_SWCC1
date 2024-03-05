@@ -17,7 +17,7 @@
 					<ToolbarSpacer/>
 					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
 				</Toolbar>
-				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<!--	<Label text="{i18n>purchaseorg}" required="true"/>
 				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
@@ -26,20 +26,20 @@
 						<core:Item text="{Name}"/>
 					</suggestionItems>
 				</Input>-->
-				<Label text="{i18n>plant}" required="true"/>
+				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>servicelevel}" required="true"/>
-				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
-					selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+				<ComboBox valueState="{= ${/WarehouseandLogistics/Localtransport/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/ServiceLevel/} === '' ? ${i18n>servicelevel} : '' }"
+					selectionChange="onChangeServiceLevel" selectedKey="{/WarehouseandLogistics/Localtransport/Header/ServiceLevel/}">
 					<core:Item key="N" text="Normal"/>
 					<core:Item key="U" text="Urgent"/>
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
 				<Label text="{i18n>vehicletype}" required="true"/>
-				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? ${i18n>vehicletype} : '' }" showSuggestion=""
-					placeholder="{i18n>vehicletype}" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
+				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/Vehtyp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/Vehtyp/} === '' ? ${i18n>vehicletype} : '' }" showSuggestion=""
+					placeholder="{i18n>vehicletype}" value="{/WarehouseandLogistics/Localtransport/Header/Vehtyp/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>repairingvendor}" required="true"/>
 				<Input valueState="{= ${/ProjecttypeF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ProjecttypeF4/} === '' ? ${i18n>repairingvendor} : '' }"
@@ -56,7 +56,7 @@
 					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
 					placeholder="{i18n>receiver}" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
 				<core:Title text=""/>
-				<Label text="{i18n>Description}" required="true"/>
+				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>costcenter}" required="true"/>
 				<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
@@ -70,16 +70,12 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>transporttype}" required="true"/>
-				<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/PurchasinggroupF4/} === '' ? ${i18n>purchasinggroup} : '' }"
-					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
-					width="100%" placeholder="{i18n>purchasinggroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-					value="{/PurchasinggroupF4/}">
-					<customData>
-						<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
-						<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
-					</customData>
-				</Input>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
+					selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+					<core:Item key="I" text="External-Inbound"/>
+					<core:Item key="O" text="External-Outbound"/>
+				</ComboBox>
 				<Label text="{i18n>externallocation}" required="true"/>
 				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
@@ -114,7 +110,7 @@
 			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
 		</Toolbar>
 		<ScrollContainer horizontal="true" vertical="false" height="auto">
-			<Table items="{path : '/ClasssificationandInventory/STO/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+			<Table items="{path : '/WarehouseandLogistics/Localtransport/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
 				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
 				fixedLayout="true">
 				<columns>
@@ -157,17 +153,10 @@
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
 							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
 							<Input placeholder="Enter Plant" value="{Plant}" enabled="false"/>
-							<Input value="{BaseUnit}" enabled="false"/>
-							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/C_StorageLocationVH-com.swcc.Template.fragments.SCMModule.StoragelocationF4-/StoragelocationF4/"
-								width="100%" placeholder="Select Storage Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
-								value="{StoragelocationF4}">
-								<customData>
-									<core:CustomData key="StorageLocation" value="Storage Location"/>
-									<core:CustomData key="StorageLocationName" value="Storage Location Name"/>
-								</customData>
-							</Input>
-							<Input value="{Stock}" enabled="false"/>
-							<Input value="{Price}" enabled="false"/>
+							<Input value="{Matlen}" placeholder="Length"/>
+							<Input value="{Matbrd}" placeholder="Breadth"/>
+							<Input value="{Mathgt}" placeholder="Height"/>
+							<Input value="{Matwgt}" placeholder="Weight"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

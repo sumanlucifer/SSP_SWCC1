@@ -574,7 +574,7 @@ sap.ui.define([
 
 					var filters = [{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							value: this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[0] : "",
 							group: "ProductFilter"
 						}
 
@@ -1443,16 +1443,16 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
-						"Werks": oPayloadHeader.Werks,
+						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
 						"Kostl": oPayloadHeader.Kostl,
-						"ServLev": oPayloadHeader.ServLev,
-						"Trtyp": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
-						"Vehtyp": `${oPayloadHeader.TotalValue}`,
-						"Extloc": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
-						"Zzvendor": oPayloadHeader.ServLev,
-						"Reqparty": this.getModel().getProperty("/PonoF4/") ? this.getModel().getProperty("/PonoF4/").split("-")[0] : "",
-						"Wempf": `${oPayloadHeader.TotalValue}`,
-						"Mobile": this.getModel().getProperty("/SupplierF4/") ? this.getModel().getProperty("/SupplierF4/").split("-")[0] : "",
+						"ServLev": oPayloadHeader.ServiceLevel,
+						"Wempf": oPayloadHeader.Wempf,
+						"Trtyp": oPayloadHeader.Trtyp,
+						"Vehtyp": oPayloadHeader.Vehtyp,
+						"Extloc": oPayloadHeader.Extloc,
+						"Zzvendor": oPayloadHeader.Zzvendor,
+						"Reqparty": oPayloadHeader.Reqparty,
+						"Mobile": oPayloadHeader.Mobile
 					},
 
 					"ServiceHeadertoItem": aItem.map(
@@ -1635,6 +1635,16 @@ sap.ui.define([
 					Wercks: "",
 					Menge: ""
 				}, "/WarehouseandLogistics/Scrapsale/itemData") : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" ? this.updateItemAddModel(this.getModel().getProperty(
+					"/WarehouseandLogistics/Localtransport/itemData"), {
+					Matnr: "",
+					Txz01: "",
+					Menge: "",
+					Matlen: "",
+					Matbrd: "",
+					Mathgt: "",
+					Matwgt: ""
+				}, "/WarehouseandLogistics/Localtransport/itemData") : "";
 
 			},
 
