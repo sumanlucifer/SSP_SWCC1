@@ -384,6 +384,23 @@ sap.ui.define([
 						1]) : "";
 					var sTotal = parseInt(5000) + (0.01 * sUnit);
 					this.getModel().setProperty(`/ContractManagement/ContractualChangeOrders/Header/TotalValue/`, sTotal);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/StosrF4/")) {
+
+					var filters = [{
+							path: "qmnum",
+							value: this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
+							group: "StoFilter"
+						}
+
+					];
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_STO_REQ_VH",
+						dynamicFilters.StoFilter,
+						`${this.getModel().getProperty("/FragModel")}`)
+
 				}
 
 			},
@@ -477,7 +494,7 @@ sap.ui.define([
 						`${oModel}`)
 				) {
 					debugger;
-					this.getModel().setProperty(`${spath}/follow_doc/`, aData[0].follow_doc);
+					this.getModel().setProperty(`/WarehouseandLogistics/Localtransportsto/Header/follow_doc/`, aData[0].follow_doc);
 				}
 
 			},

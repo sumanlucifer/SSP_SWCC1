@@ -42,9 +42,7 @@
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
 				<Label text="{i18n>stono}" required="true"/>
-				<Input valueState="{= ${/WarehouseandLogistics/Localtransportsto/Header/Ebeln/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/WarehouseandLogistics/Localtransportsto/Header/Ebeln/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
-					placeholder="{i18n>stono}" value="{/WarehouseandLogistics/Localtransportsto/Header/Ebeln/}" showValueHelp="" valueHelpRequest=""/>
+				<Input enabled="false" placeholder="{i18n>stono}" value="{/WarehouseandLogistics/Localtransportsto/Header/follow_doc/}"/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
