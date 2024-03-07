@@ -1291,7 +1291,7 @@ sap.ui.define([
 						"Mtart": this.getModel().getProperty("/MaterialtypeF4/") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
 						"Meins": this.getModel().getProperty("/uomF4/") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
 						"Txz01": oPayloadHeader.Txz01,
-						"TXT50": oPayloadHeader.TXT50,
+						"Txt50": oPayloadHeader.TXT50,
 						"Mbrsh": this.getModel().getProperty("/IndustrysectorF4/") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
 						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 						"Extwg": this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
