@@ -78,7 +78,7 @@ sap.ui.define([
 			getPendingUserDetails: function () {
 				var filters = [{
 						path: "ID",
-						value: "WT_POWER",
+						value: this.getCurrentUserLoggedIn(),
 						group: "UserFilter"
 					}
 
@@ -103,7 +103,7 @@ sap.ui.define([
 			getApprovedUserDetails: function () {
 				var filters = [{
 						path: "SapID",
-						value: "WT_POWER",
+						value: this.getCurrentUserLoggedIn(),
 						group: "UserFilter"
 					}
 
