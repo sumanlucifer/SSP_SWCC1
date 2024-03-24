@@ -1262,7 +1262,6 @@ sap.ui.define([
 							};
 						}
 					),
-					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -2136,9 +2135,6 @@ sap.ui.define([
 					}, {
 						path: "/MovementtypeF4/",
 						condition: true
-					}, {
-						path: "/costF4/",
-						condition: true
 					}];
 
 				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
@@ -2159,177 +2155,6 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3004-1") {
-
-					validationProperties = [{
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/",
-							condition: true
-						}, {
-							path: "/FmareaF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Poper",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-1") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/DepreciationProcess/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/DepreciationProcess/Header/Poper/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/DepreciationProcess/Header/FiscalYear/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-2") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/PerfomAsset/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/PerfomAsset/Header/Brdatu/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/DepreciationF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-3A") {
-
-					validationProperties = [{
-							path: "/costF4/",
-							condition: true
-						}, {
-							path: "/AssestclassF4/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RecordAsset/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/RecordAsset/Header/Txt50/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-3B") {
-
-					validationProperties = [{
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Budat/",
-							condition: true
-						},
-
-						{
-							path: "/DepreciationF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/SaleofAssets/Header/Bzdat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Erlbt/",
-							condition: true
-						}
-					];
-
-				} else if (service === "SSA-FIN-3005-3C") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Descript/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Budat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Bzdat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Anbtr/",
-							condition: true
-						}, {
-							path: "/AccountingprincipalF4/",
-							condition: true
-						}, {
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/DepreciationF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-4") {
-
-					validationProperties = [{
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/costF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/TransferofAssets/Header/Descript/",
-							condition: true
-						}
-
-					];
-
 				} else if (service === "SSA-FIN-3005-5") {
 
 					validationProperties = [{
@@ -2345,62 +2170,6 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3007-3") {
-
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3006-1") {
-					validationProperties = [{
-							path: "/VendorF4/",
-							condition: true
-						}, {
-							path: "/POF4/",
-							condition: true
-						}, {
-							path: "/InsuranceandClaim/CreateInsurance/Header/Descript/",
-							condition: true
-						}, {
-							path: "/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/",
-							condition: true
-						},
-
-						{
-							path: "/PolicyTypeF4/",
-							condition: true
-						},
-
-						{
-							path: "/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-1") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-2") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-4") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
 				}
 				if (!validationProperties) return true;
 
