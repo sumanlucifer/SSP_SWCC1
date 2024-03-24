@@ -1595,11 +1595,12 @@ sap.ui.define([
 
 				var sTable = oEvent.getSource().getId().split("-")[2] ? oEvent.getSource().getId().split("-")[2] : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" || this.getModel().getProperty("/SCMAppVisible/") ===
-					"SSA-PSCM-2004-2" ? this.updateItemAddModel(this.getModel().getProperty(
-						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
-						Matnr: "",
-						Menge: ""
-					}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+					"SSA-PSCM-2004-2" || this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-3" ? this.updateItemAddModel(this.getModel()
+						.getProperty(
+							"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
+							Matnr: "",
+							Menge: ""
+						}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" && this.handleItemValidation(this.getModel().getProperty(
 					"/SCMAppVisible/"), this.getModel().getProperty(
 					"/ClasssificationandInventory/DuplicateResolution/itemData/"), oEvent.getSource().getText()) ? this.updateItemAddModel(this.getModel()
@@ -1694,6 +1695,12 @@ sap.ui.define([
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
@@ -1866,6 +1873,12 @@ sap.ui.define([
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
 
 				} else if (service === "SSA-PSCM-2010-2") {
+					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = (0.04 * totalSum1) + totalSum1;
+					this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2010-3") {
 					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
 					var iTotal;
 					iTotal = (0.04 * totalSum1) + totalSum1;
