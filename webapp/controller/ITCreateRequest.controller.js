@@ -168,6 +168,12 @@ sap.ui.define([
 							path: "ProductGroup",
 							value: "IT001",
 							group: "ConferencingFilter"
+						} {
+							path: "Product",
+							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
+								"-")[0],
+							group: "ConferencingFilter"
+
 						}
 
 					];
@@ -183,6 +189,12 @@ sap.ui.define([
 							path: "ProductGroup",
 							value: "IT001",
 							group: "ITTelephonicFilter"
+						} {
+							path: "Product",
+							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
+								"-")[0],
+							group: "ITTelephonicFilter"
+
 						}
 
 					];
