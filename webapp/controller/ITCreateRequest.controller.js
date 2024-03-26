@@ -167,8 +167,10 @@ sap.ui.define([
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
-							group: "ConferencingFilter"
-						} {
+							group: "ConferencingFilter",
+							useOR: true
+
+						}, {
 							path: "Product",
 							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
 								"-")[0],
@@ -188,8 +190,9 @@ sap.ui.define([
 					var filters = [{
 							path: "ProductGroup",
 							value: "IT001",
-							group: "ITTelephonicFilter"
-						} {
+							group: "ITTelephonicFilter",
+							useOR: true
+						}, {
 							path: "Product",
 							value: this.getModel().getProperty(`/ITProcurement/itemData/${this.getModel().getProperty("/itemIndex")}/MaterialF4/`).split(
 								"-")[0],
