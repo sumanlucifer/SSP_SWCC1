@@ -4,10 +4,11 @@ sap.ui.define([
 		"sap/ui/core/routing/History",
 		"sap/m/MessageBox",
 		"sap/ui/model/Filter",
-		"sap/ui/model/FilterOperator"
+		"sap/ui/model/FilterOperator",
+		"sap/m/MessageToast"
 	],
 
-	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator) {
+	function (BaseController, JSONModel, History, MessageBox, Filter, FilterOperator, MessageToast) {
 		"use strict";
 		return BaseController.extend("com.swcc.Template.controller.ITCreateRequest", {
 			onInit: function () {
@@ -345,7 +346,24 @@ sap.ui.define([
 					null;
 
 			},
+			handleValidation: function (array) {
+				var isValid = true;
+				var itemCheck = !array || array.length === 0 ? false : true;
+				const hasYes = array.some(obj => obj.StockAvailable === "Yes");
+				const hasNo = array.some(obj => obj.StockAvailable === "No");
+				if (!itemCheck) {
+					MessageToast.show("item Data is required to Submit the request");
+					isValid = false;
+					return isValid;
+				}
+				if ((hasYes && hasNo) || (!hasYes && !hasNo)) {
+					isValid = false;
+					MessageToast.show("Enter either stock materials or nonstock materials combination is not allowed here.");
+				}
 
+				return isValid;
+
+			},
 			ITCreateNonProcuremenRequest: function (oPayloadHeader, aItem) {
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
@@ -368,6 +386,7 @@ sap.ui.define([
 			},
 
 			ITCreateProcuremenRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleValidation(aItem)) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,

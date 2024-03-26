@@ -89,6 +89,13 @@ sap.ui.define([
 		onRowPress: function (oEvent) {
 
 			var oSelected = oEvent.getSource().getBindingContext().getObject();
+			var sRequestType = oSelected.RequestType;
+			if (sRequestType === "SLA") {
+				return false;
+			}
+			if (sRequestType === "Customer Registration") {
+				return false;
+			}
 			this.getOwnerComponent().getRouter().navTo("DetailRequest", {
 				RequestID: oSelected.RequestID
 			});
