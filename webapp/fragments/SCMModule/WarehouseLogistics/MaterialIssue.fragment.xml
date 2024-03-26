@@ -30,8 +30,9 @@
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>basedate}" required="true"/>
 				<DatePicker valueState="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" valueFormat="dd/mm/yyyy"
-					value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange" class=""/>
+					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/mm/yyyy" value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange"
+					class=""/>
 				<Label text="{i18n>costcenter}" required="false"/>
 				<Input valueState="{= ${/CostcenterF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/CostcenterF4/} === '' ? ${i18n>costcenter} : '' }"

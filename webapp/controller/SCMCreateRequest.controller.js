@@ -803,26 +803,12 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2002-1" &&
 						F4 === `/ProcurementAdhoc/ServiceProcurement/itemData1/${this.getModel().getProperty("/itemIndex")}/CostcenterF4/`)) {
 					var filters = [{
-							path: "usrid",
-							value: this.getCurrentUserLoggedIn(),
-							group: "userIdFilter"
-						}
-
-					];
+						path: "usrid",
+						value: this.getCurrentUserLoggedIn(),
+						group: "userIdFilter"
+					}];
 					var dynamicFilters = this.getFilters(filters);
 					aFilter = this._getfilterforControl(dynamicFilters.userIdFilter);
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/HeaderValueHelp") &&
-					this.getModel().getProperty("/valueHelpName") === "/StosrF4/") {
-					debugger;
-					var filters = [{
-							path: "qmnum",
-							value: this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
-							group: "StoFilter"
-						}
-
-					];
-					var dynamicFilters = this.getFilters(filters);
-					aFilter = this._getfilterforControl(dynamicFilters.StoFilter);
 				} else {
 					// Default case if none of the conditions are met
 					aFilter = [];
@@ -1276,7 +1262,6 @@ sap.ui.define([
 							};
 						}
 					),
-					"Attachments": aUploadData
 
 				};
 				this.SCMCreateaRequestAPI(oPayload);
@@ -1305,7 +1290,7 @@ sap.ui.define([
 						"Mtart": this.getModel().getProperty("/MaterialtypeF4/") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
 						"Meins": this.getModel().getProperty("/uomF4/") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
 						"Txz01": oPayloadHeader.Txz01,
-						"TXT50": oPayloadHeader.TXT50,
+						"Txt50": oPayloadHeader.TXT50,
 						"Mbrsh": this.getModel().getProperty("/IndustrysectorF4/") ? this.getModel().getProperty("/IndustrysectorF4/").split("-")[0] : "",
 						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 						"Extwg": this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
@@ -1609,11 +1594,12 @@ sap.ui.define([
 
 				var sTable = oEvent.getSource().getId().split("-")[2] ? oEvent.getSource().getId().split("-")[2] : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" || this.getModel().getProperty("/SCMAppVisible/") ===
-					"SSA-PSCM-2004-2" ? this.updateItemAddModel(this.getModel().getProperty(
-						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
-						Matnr: "",
-						Menge: ""
-					}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
+					"SSA-PSCM-2004-2" || this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-3" ? this.updateItemAddModel(this.getModel()
+						.getProperty(
+							"/ProcurementAdhoc/PrepareofDirectpurchase/itemData"), {
+							Matnr: "",
+							Menge: ""
+						}, "/ProcurementAdhoc/PrepareofDirectpurchase/itemData") : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-A" && this.handleItemValidation(this.getModel().getProperty(
 					"/SCMAppVisible/"), this.getModel().getProperty(
 					"/ClasssificationandInventory/DuplicateResolution/itemData/"), oEvent.getSource().getText()) ? this.updateItemAddModel(this.getModel()
@@ -1708,6 +1694,12 @@ sap.ui.define([
 			onDeleteItemPress: function (oEvent) {
 				var iRowNumberToDelete = this.extractIndexFromPath(oEvent.getSource().getBindingContext().getPath());
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-1" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
+					.getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-3" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
 					.getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData")) : "";
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-2-2" ? this.updateItemDeleteModel(iRowNumberToDelete, this.getModel()
@@ -1880,6 +1872,12 @@ sap.ui.define([
 					this.getModel().setProperty("/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/", iTotal);
 
 				} else if (service === "SSA-PSCM-2010-2") {
+					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
+					var iTotal;
+					iTotal = (0.04 * totalSum1) + totalSum1;
+					this.getModel().setProperty("/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/", iTotal);
+
+				} else if (service === "SSA-PSCM-2010-3") {
 					//var serviceLevel = this.getModel().getProperty("{/WarehouseandLogistics/IssueofMaterial/Header/ServiceLevel/");
 					var iTotal;
 					iTotal = (0.04 * totalSum1) + totalSum1;
@@ -2137,9 +2135,6 @@ sap.ui.define([
 					}, {
 						path: "/MovementtypeF4/",
 						condition: true
-					}, {
-						path: "/costF4/",
-						condition: true
 					}];
 
 				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
@@ -2160,177 +2155,6 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3004-1") {
-
-					validationProperties = [{
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/",
-							condition: true
-						}, {
-							path: "/FmareaF4/",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear",
-							condition: true
-						}, {
-							path: "/FinancialReviewGeneralClose/IssueGovernment/Header/Poper",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-1") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/DepreciationProcess/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/DepreciationProcess/Header/Poper/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/DepreciationProcess/Header/FiscalYear/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-2") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/PerfomAsset/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/PerfomAsset/Header/Brdatu/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						}, {
-							path: "/DepreciationF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-3A") {
-
-					validationProperties = [{
-							path: "/costF4/",
-							condition: true
-						}, {
-							path: "/AssestclassF4/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RecordAsset/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/RecordAsset/Header/Txt50/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-3B") {
-
-					validationProperties = [{
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Budat/",
-							condition: true
-						},
-
-						{
-							path: "/DepreciationF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/SaleofAssets/Header/Bzdat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/SaleofAssets/Header/Erlbt/",
-							condition: true
-						}
-					];
-
-				} else if (service === "SSA-FIN-3005-3C") {
-
-					validationProperties = [{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Descript/",
-							condition: true
-						}, {
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Budat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Bzdat/",
-							condition: true
-						},
-
-						{
-							path: "/AssetLifecycle/RetirementofAssets/Header/Anbtr/",
-							condition: true
-						}, {
-							path: "/AccountingprincipalF4/",
-							condition: true
-						}, {
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/DepreciationF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3005-4") {
-
-					validationProperties = [{
-							path: "/CompanycodeF4/",
-							condition: true
-						},
-
-						{
-							path: "/AssestF4/",
-							condition: true
-						},
-
-						{
-							path: "/costF4/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/TransferofAssets/Header/Descript/",
-							condition: true
-						}
-
-					];
-
 				} else if (service === "SSA-FIN-3005-5") {
 
 					validationProperties = [{
@@ -2346,62 +2170,6 @@ sap.ui.define([
 
 					];
 
-				} else if (service === "SSA-FIN-3007-3") {
-
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-
-				} else if (service === "SSA-FIN-3006-1") {
-					validationProperties = [{
-							path: "/VendorF4/",
-							condition: true
-						}, {
-							path: "/POF4/",
-							condition: true
-						}, {
-							path: "/InsuranceandClaim/CreateInsurance/Header/Descript/",
-							condition: true
-						}, {
-							path: "/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/",
-							condition: true
-						},
-
-						{
-							path: "/PolicyTypeF4/",
-							condition: true
-						},
-
-						{
-							path: "/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-1") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-2") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
-				} else if (service === "SSA-FIN-3007-4") {
-					validationProperties = [{
-							path: "/InsuranceF4/",
-							condition: true
-						}
-
-					];
 				}
 				if (!validationProperties) return true;
 
