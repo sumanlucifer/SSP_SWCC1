@@ -420,11 +420,8 @@ sap.ui.define([
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
-					"ZHeaderExtra": {
-
-						"EstPrice": `${oPayloadHeader.EstPrice}`
-					},
-
+					"Funcloc": `${oPayloadHeader.EstPrice}`,
+					"ZHeaderExtra": {},
 					"ServiceHeadertoItem": aItem.map(
 						function (items) {
 							return {

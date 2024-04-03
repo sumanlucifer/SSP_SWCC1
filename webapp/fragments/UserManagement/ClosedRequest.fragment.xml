@@ -47,16 +47,16 @@
 					<Text text="{LastName}"/>
 					<Text text="{Email}"/>
 					<HBox>
-						<CheckBox visible="{= ${AccessHR} === 'NA' ? false : true }" selected="{= ${AccessHR} === 'X' ? true : false }" enabled="{editFlag}"
-							text="HR"/>
-						<CheckBox visible="{= ${AccessFI} === 'NA' ? false : true }" selected="{= ${AccessFI} === 'X' ? true : false }" enabled="{editFlag}"
-							text="FI"/>
-						<CheckBox visible="{= ${AccessIT} === 'NA' ? false : true }" selected="{= ${AccessIT} === 'X' ? true : false }" enabled="{editFlag}"
-							text="IT"/>
-						<CheckBox visible="{= ${AccessPM} === 'NA' ? false : true }" selected="{= ${AccessPM} === 'X' ? true : false }" enabled="{editFlag}"
-							text="TECH"/>
-						<CheckBox visible="{= ${AccessSC} === 'NA' ? false : true }" selected="{= ${AccessSC} === 'X' ? true : false }" enabled="{editFlag}"
-							text="SCM"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessHR} === 'NA' ? false : true }" selected="{= ${AccessHR} === 'X' ? true : false }"
+							enabled="{editFlag}" text="HR"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessFI} === 'NA' ? false : true }" selected="{= ${AccessFI} === 'X' ? true : false }"
+							enabled="{editFlag}" text="FI"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessIT} === 'NA' ? false : true }" selected="{= ${AccessIT} === 'X' ? true : false }"
+							enabled="{editFlag}" text="IT"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessPM} === 'NA' ? false : true }" selected="{= ${AccessPM} === 'X' ? true : false }"
+							enabled="{editFlag}" text="TECH"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessSC} === 'NA' ? false : true }" selected="{= ${AccessSC} === 'X' ? true : false }"
+							enabled="{editFlag}" text="SCM"/>
 					</HBox>
 					<HBox>
 						<Button icon="sap-icon://edit" visible="{= !${editFlag} }" text="Edit Role" class="swcc-pmy-btn" type="Accept" press="onEditUSer"/>

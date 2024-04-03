@@ -214,6 +214,66 @@ sap.ui.define([
 				}
 
 			},
+			// 			onSelectRoleHR: function (oEve) {
+			// 				debugger;
+			// 				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+
+			// 				if (oEve.getSource().getSelected()) {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessHR/`, "X");
+			// 				} else {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessHR/`, "");
+			// 				}
+
+			// 			},
+			onSelectRole: function (oEve) {
+				debugger;
+				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+
+				var sRoleTxt = oEve.getSource().getText();
+				sRoleTxt = sRoleTxt === "HR" ? "AccessHR" : sRoleTxt;
+				sRoleTxt = sRoleTxt === "FI" ? "AccessFI" : sRoleTxt;
+				sRoleTxt = sRoleTxt === "IT" ? "AccessIT" : sRoleTxt;
+				sRoleTxt = sRoleTxt === "TECH" ? "AccessPM" : sRoleTxt;
+				sRoleTxt = sRoleTxt === "SCM" ? "AccessSC" : sRoleTxt;
+				var s = sRoleTxt;
+
+				if (oEve.getSource().getSelected()) {
+					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/${sRoleTxt}/`, "X");
+				} else {
+					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/${sRoleTxt}/`, "");
+				}
+
+			},
+			// 			onSelectRoleIT: function (oEve) {
+			// 				debugger;
+			// 				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+			// 				if (oEve.getSource().getSelected()) {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessIT/`, "X");
+			// 				} else {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessIT/`, "");
+			// 				}
+
+			// 			},
+			// 			onSelectRolePM: function (oEve) {
+			// 				debugger;
+			// 				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+			// 				if (oEve.getSource().getSelected()) {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessPM/`, "X");
+			// 				} else {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessPM/`, "");
+			// 				}
+
+			// 			},
+			// 			onSelectRoleSCM: function (oEve) {
+			// 				debugger;
+			// 				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
+			// 				if (oEve.getSource().getSelected()) {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessSC/`, "X");
+			// 				} else {
+			// 					this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/AccessSC/`, "");
+			// 				}
+
+			// 			},
 			onEditUSer: function (oEve) {
 				var iRowNumber = parseInt(oEve.getSource().getBindingContext().getPath().split("/")[3]);
 				this.getModel().setProperty(`/ClosedItemRequestData/itemData/${iRowNumber}/editFlag/`, true);

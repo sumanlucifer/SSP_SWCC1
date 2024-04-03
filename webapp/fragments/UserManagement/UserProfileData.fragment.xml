@@ -18,7 +18,7 @@
 				<Label text="{i18n>customerid}"/>
 				<Text text="{/UserDetails/Header/SapID/}" class="user-dtls"/>
 				<Label text="{i18n>slanumber}"/>
-				<Text text="" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/SLAno/}" class="user-dtls"/>
 				<Label text="{i18n>FirstName}"/>
 				<Text text="{/UserDetails/Header/FirstName/}" class="user-dtls"/>
 				<Label text="{i18n>PhoneNumber}"/>
@@ -26,7 +26,7 @@
 				<Label text="{i18n>customername}"/>
 				<Text text="{/UserDetails/Header/Company/}" class="user-dtls"/>
 				<Label text="{i18n>poweruser}"/>
-				<Text text="" class="user-dtls"/>
+				<Text text="{/UserDetails/Header/PowerUser/}" class="user-dtls"/>
 				<Label text="{i18n>LastName}"/>
 				<Text text="{/UserDetails/Header/LastName/}" class="user-dtls"/>
 				<Label text="{i18n>EMailid}"/>

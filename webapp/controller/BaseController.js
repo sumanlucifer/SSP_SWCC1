@@ -26,10 +26,10 @@ sap.ui.define([
 				var sLoginID = new sap.ushell.services.UserInfo().getId();
 				return sLoginID;
 			} catch (error) {
-				var sLoginID = "SC_ZMOHAMMED";
+				var sLoginID = "WT_POWER";
 				//WT_POWER
 				//SC_ZMOHAMMED
-				//dv_averma
+				//DV_AVERMA
 				// Handle the error gracefully, such as using a default value or logging the error
 				return sLoginID;
 			}
