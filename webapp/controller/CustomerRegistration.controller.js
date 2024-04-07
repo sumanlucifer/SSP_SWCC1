@@ -76,8 +76,7 @@ sap.ui.define([
 				}, {
 					path: "Language",
 					value: "EN",
-					group: "CountryChangeFilter",
-					useOR: true
+					group: "CountryChangeFilter"
 				}
 
 			];
