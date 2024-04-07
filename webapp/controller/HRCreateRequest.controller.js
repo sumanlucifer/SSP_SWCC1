@@ -796,9 +796,6 @@ sap.ui.define([
 					validationProperties = [{
 						path: "/Termination/Termination/Header/Begda/",
 						condition: true
-					}, {
-						path: "/TerminationF4/",
-						condition: true
 					}];
 				} else if (service === "SSA-HR-1001-1") {
 					validationProperties = [{

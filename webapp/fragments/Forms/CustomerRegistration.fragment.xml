@@ -22,7 +22,7 @@
 				<Label text="{i18n>City}" required="true"/>
 				<ComboBox enabled="{= ${/CustomerRegistrationData/Header/Land1/} !== undefined ? true : false }"
 					valueState="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Select City' : '' }" width="100%" placeholder="Select Region"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Select City' : '' }" width="100%" placeholder="Select City"
 					selectedKey="{/CustomerRegistrationData/Header/Regio/}" items="{/CustomerRegistrationData/RegionF4/}">
 					<core:Item key="{Country}" text="{RegionName}"/>
 				</ComboBox>

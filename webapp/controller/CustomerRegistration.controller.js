@@ -46,7 +46,7 @@ sap.ui.define([
 
 			var filters = [{
 					path: "Language",
-					value: "en",
+					value: "EN",
 					group: "CountryFilter"
 				}
 
@@ -71,11 +71,13 @@ sap.ui.define([
 			var filters = [{
 					path: "Country",
 					value: oEve.getSource().getSelectedKey(),
-					group: "CountryChangeFilter"
+					group: "CountryChangeFilter",
+					useOR: true
 				}, {
 					path: "Language",
 					value: "EN",
-					group: "CountryChangeFilter"
+					group: "CountryChangeFilter",
+					useOR: true
 				}
 
 			];
