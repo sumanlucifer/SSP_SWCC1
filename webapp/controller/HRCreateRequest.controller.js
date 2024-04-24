@@ -876,7 +876,7 @@ sap.ui.define([
 						path: "/TimeManagement/ActivatingAccessCard/Header/Zdasetting/",
 						condition: true
 					}, {
-						path: "/Termination/Termination/Header/Zendate/",
+						path: "/TimeManagement/ActivatingAccessCard/Header/Zendate/",
 						condition: true
 					}, {
 						path: "/TimeManagement/ActivatingAccessCard/Header/Nachn/",
