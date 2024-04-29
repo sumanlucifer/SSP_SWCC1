@@ -73,6 +73,7 @@
 			</GenericTile>
 		</FlexBox>
 	</VBox>
+	<!-- viz frame -->
 	<!--	<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='donut'>
 		<viz:dataset>
 			<viz.data:FlattenedDataset data="{/data}">
