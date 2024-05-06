@@ -52,6 +52,11 @@
 				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Idcot/} === '' ? ${i18n>National} : '' }" placeholder="{i18n>National}"
 					showSuggestion="" value="{/BenefitsManagement/SubmitComplaint/Header/Idcot/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/SubmitComplaint/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/SubmitComplaint/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/BenefitsManagement/SubmitComplaint/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

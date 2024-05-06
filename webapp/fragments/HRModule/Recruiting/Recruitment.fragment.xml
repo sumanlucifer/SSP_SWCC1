@@ -78,6 +78,11 @@
 					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjtasks/} === '' ? ${i18n>tasksrequired} : '' }"
 					placeholder="{i18n>tasksrequired}" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Recruitment/InternalRecruitment/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

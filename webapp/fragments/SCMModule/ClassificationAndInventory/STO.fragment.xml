@@ -54,6 +54,11 @@
 						<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
 					</customData>
 				</Input>
+				<!--<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/ChangeRequest/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/ChangeRequest/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/ChangeRequest/Header/Descript/}"
+					valueHelpRequest=""/>-->
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

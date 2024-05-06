@@ -21,8 +21,11 @@
 				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>IssueDescription}" required="false"/>
-				<Input placeholder="Enter Description" value="{/NonITProcurement/Header/Descript/}"/>
+				<Label text="{i18n>IssueDescription}" required="true"/>
+				<!--<Input placeholder="Enter Description" value="{/NonITProcurement/Header/Descript/}"/>-->
+				<Input valueState="{= ${/NonITProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/NonITProcurement/Header/Descript/} === '' ? 'Enter Issue Description' : '' }" placeholder="Allowed 40 Charcters"
+					showSuggestion="" showValueHelp="" value="{/NonITProcurement/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 			</fm:content>

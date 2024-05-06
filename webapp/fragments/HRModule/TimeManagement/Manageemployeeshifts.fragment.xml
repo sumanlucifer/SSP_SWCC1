@@ -32,6 +32,11 @@
 						<core:CustomData key="value_1" value="Event Type"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ManageEmpShifts/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ManageEmpShifts/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TimeManagement/ManageEmpShifts/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

@@ -59,6 +59,11 @@
 				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zcardno/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zcardno/} === '' ? ${i18n>cardno} : '' }" placeholder="{i18n>cardno}"
 					value="{/TimeManagement/ActivatingAccessCard/Header/Zcardno/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TimeManagement/ActivatingAccessCard/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

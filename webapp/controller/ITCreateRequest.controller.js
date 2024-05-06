@@ -387,6 +387,7 @@ sap.ui.define([
 
 			},
 			ITCreateNonProcuremenRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/ITAppVisible/"))) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -408,7 +409,7 @@ sap.ui.define([
 			},
 
 			ITCreateProcuremenRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleValidation(aItem)) return;
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/ITAppVisible/")) || !this.handleValidation(aItem)) return;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData").map(
 					({
 						Filesize,
@@ -465,6 +466,44 @@ sap.ui.define([
 			onPresshomepage: function () {
 				this.getOwnerComponent().getRouter().navTo("HomePage");
 			},
+			handleHeaderValidation: function (service) {
+				var isValid = true;
+				var validationProperties;
+
+				if (service === "SSA-IT-4001-1") {
+					validationProperties = [{
+						path: "/NonITProcurement/Header/Descript/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-IT-4001-2") {
+
+					validationProperties = [{
+						path: "/ITProcurement/Header/Descript/",
+						condition: true
+					}];
+
+				}
+				if (!validationProperties) return true;
+
+				validationProperties.forEach(property => {
+					var propertyValue = this.getModel().getProperty(property.path);
+
+					if (!propertyValue || (property.condition && !property.condition)) {
+						this.getModel().setProperty(property.path, "");
+						this.getModel().setProperty("/ValidationFlag/", true);
+						isValid = false;
+
+					}
+				});
+
+				if (!isValid) {
+					MessageToast.show("Please Enter all Mandatory Fields");
+				}
+
+				return isValid;
+			},
+
 			onAddItemsPress: function (oEvent) {
 
 				this.getModel().getProperty("/ITAppVisible/") === "SSA-IT-4003-2" ? this.updateItemAddModel(this.getModel().getProperty(
@@ -608,7 +647,6 @@ sap.ui.define([
 
 			_addData: function (Filecontent, Filename, Filetype, Filesize) {
 
-				debugger;
 				var oModel = this.getModel().getProperty("/UploadedData");
 
 				if (oModel.length >= 5) {

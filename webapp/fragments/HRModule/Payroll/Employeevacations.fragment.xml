@@ -43,6 +43,11 @@
 				<DatePicker valueState="{= ${/Payroll/EmployeeVacation/Header/Zendate/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/Payroll/EmployeeVacation/Header/Zendate/} === '' ? ${i18n>enddate} : '' }" valueFormat="dd/MM/yyyy"
 					value="{/Payroll/EmployeeVacation/Header/Zendate/}" placeholder="{i18n>enddate}" change="handleChange" class=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Payroll/EmployeeVacation/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Payroll/EmployeeVacation/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Payroll/EmployeeVacation/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

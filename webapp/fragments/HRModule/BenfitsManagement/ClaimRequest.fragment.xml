@@ -65,6 +65,11 @@
 					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zproname/} === '' ? ${i18n>providername} : '' }"
 					value="{/BenefitsManagement/ClaimRequest/Header/Zproname/}" placeholder="{i18n>providername}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/BenefitsManagement/ClaimRequest/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

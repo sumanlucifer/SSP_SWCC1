@@ -68,6 +68,11 @@
 				<DatePicker valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Zibegda/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Zibegda/} === '' ? 'Enter Date' : '' }"
 					value="{/BenefitsManagement/MedicalInsurance/Header/Zibegda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/MedicalInsurance/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/MedicalInsurance/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/BenefitsManagement/MedicalInsurance/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

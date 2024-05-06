@@ -50,6 +50,11 @@
 						<core:CustomData key="value_1" value="Position group"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TransportationCommision/EmpTransporation/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/EmpTransporation/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TransportationCommision/EmpTransporation/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

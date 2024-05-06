@@ -1093,7 +1093,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
-					/*	"Descript": oPayloadHeader.Descript,*/
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"EstPrice": `${oPayloadHeader.TotalPrice}`,
@@ -1150,7 +1150,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
-					/*"Descript": oPayloadHeader.Descript,*/
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"TotalValue": `${oPayloadHeader.TotalServiceLevel}`,
@@ -1183,7 +1183,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
-					/*"Descript": oPayloadHeader.Descript,*/
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"SecName": oPayloadHeader.SEC_NAME,
@@ -1215,6 +1215,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"QualTyp": oPayloadHeader.QUAL_TYP,
@@ -1239,6 +1240,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Rsdat": this.handleOdataDateFormat(oPayloadHeader.Rsdat),
@@ -1283,6 +1285,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"MaterialQty": oPayloadHeader.quantity.toString(),
 					"ZHeaderExtra": {
@@ -1327,6 +1330,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					/*"Menge": oPayloadHeader.MENGE,*/
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {},
@@ -1358,6 +1362,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"SpirNo": oPayloadHeader.SPIR_NO,
@@ -1385,6 +1390,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"SupplPlant": this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[
@@ -1422,6 +1428,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"ReqParty": oPayloadHeader.ReqParty,
@@ -1449,6 +1456,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"ReqParty": oPayloadHeader.ReqParty,
@@ -1475,6 +1483,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
@@ -1520,6 +1529,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"Descript": this.getModel().getProperty("/StosrF4/") ? this.getModel().getProperty("/StosrF4/").split("-")[0] : "",
 					"ZHeaderExtra": {
@@ -1546,6 +1556,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.NotifText,
 					"ZHeaderExtra": {
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
@@ -1993,6 +2004,9 @@ sap.ui.define([
 					validationProperties = [{
 						path: "/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/",
 						condition: true
+					}, {
+						path: "/ProcurementAdhoc/MaterialProcurement/Header/Descript/",
+						condition: true
 					}];
 
 				} else if (service === "SSA-PSCM-2012-1") {
@@ -2005,6 +2019,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/ClasssificationandInventory/SPIR/Header/EQUI_TYP/",
+						condition: true
+					}, {
+						path: "/ClasssificationandInventory/SPIR/Header/Descript/",
 						condition: true
 					}, {
 						path: "/ClasssificationandInventory/SPIR/Header/SpirSub/",
@@ -2023,6 +2040,9 @@ sap.ui.define([
 						path: "/PonoF4/",
 						condition: true
 					}, {
+						path: "/ContractManagement/ContractualChangeOrders/Header/Descript/",
+						condition: true
+					}, {
 						path: "/ContractManagement/ContractualChangeOrders/Header/EstPrice/",
 						condition: true
 					}];
@@ -2037,6 +2057,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/PonoF4/",
+						condition: true
+					}, {
+						path: "/ContractManagement/IssuingContractualLetters/Header/Descript/",
 						condition: true
 					}, {
 						path: "/ContractManagement/IssuingContractualLetters/Header/EstPrice/",
@@ -2059,6 +2082,9 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/IndustrysectorF4/",
+							condition: true
+						}, {
+							path: "/ClasssificationandInventory/ChangeRequest/Header/Descript/",
 							condition: true
 						}, {
 							path: "/ClasssificationandInventory/ChangeRequest/Header/Txz01/",
@@ -2109,6 +2135,9 @@ sap.ui.define([
 							path: "/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/",
 							condition: true
 						}, {
+							path: "/ProcurementAdhoc/ServiceProcurement/Header/Descript/",
+							condition: true
+						}, {
 							path: "/RequeststatF4/",
 							condition: true
 						}, {
@@ -2135,6 +2164,9 @@ sap.ui.define([
 					}, {
 						path: "/MovementtypeF4/",
 						condition: true
+					}, {
+						path: "/WarehouseandLogistics/IssueofMaterial/Header/Descript/",
+						condition: true
 					}];
 
 				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
@@ -2144,6 +2176,9 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/ProjectstatusF4/",
+							condition: true
+						}, {
+							path: "/Quality/SpecalizedWorkQualification/Header/Descript/",
 							condition: true
 						}, {
 							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CON/",
@@ -2162,6 +2197,9 @@ sap.ui.define([
 							condition: true
 						}, {
 							path: "/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/",
+							condition: true
+						}, {
+							path: "/AssetLifecycle/ProjectCaptilization/Header/Descript/",
 							condition: true
 						}, {
 							path: "/AssetLifecycle/ProjectCaptilization/Header/Poper/",

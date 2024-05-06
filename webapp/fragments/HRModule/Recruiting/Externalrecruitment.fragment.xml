@@ -35,6 +35,11 @@
 				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? ${i18n>yearsofexp} : '' }" placeholder="{i18n>yearsofexp}"
 					type="Number" value="{/Recruitment/ExternalRecruitment/Header/Zexp/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Recruitment/ExternalRecruitment/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="{i18n>Description}" value="{/ServiceDescription/}" enabled="false"/>

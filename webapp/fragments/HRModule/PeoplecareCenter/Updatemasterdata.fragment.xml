@@ -31,6 +31,11 @@
 					valueStateText="{= ${/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/} === '' ? ${i18n>detailstobeupdate} : '' }"
 					placeholder="Enter Details" value="{/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/PeopleCareCenter/UpdateMasterData/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PeopleCareCenter/UpdateMasterData/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/PeopleCareCenter/UpdateMasterData/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

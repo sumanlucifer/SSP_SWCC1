@@ -846,8 +846,12 @@
     display: block;
 }
 
-.sapUshellShellHeadContainer {
+.sapUshellShellHeadContainer .sapUshellShellHeadItm {
     display: none !important;
+}
+
+.sapUshellShellHeadContainer .help-id-homeBtn {
+    display: block !important;
 }
 
 .sapUshellShellIco {

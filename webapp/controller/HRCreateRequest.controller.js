@@ -368,6 +368,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -396,6 +397,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -435,6 +437,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -470,6 +473,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -494,6 +498,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -517,6 +522,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -539,6 +545,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -564,6 +571,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Jdept": oPayloadHeader.Zjdept,
@@ -588,6 +596,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Begda": this.handleOdataDateFormat(oPayloadHeader.Begda),
@@ -607,6 +616,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -630,6 +640,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -657,6 +668,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -676,6 +688,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -699,6 +712,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Tzone": oPayloadHeader.TimeZoneKey,
@@ -727,6 +741,7 @@ sap.ui.define([
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/HRAppVisible/"),
 					"Plant": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+					"Descript": oPayloadHeader.Descript,
 					"NotifText": oPayloadHeader.Zcomment,
 					"ZHeaderExtra": {
 						"Persno": this.getModel().getProperty("/LoginUserID").substring(0, 8),
@@ -760,7 +775,6 @@ sap.ui.define([
 				this.HRCreateaRequestAPI(oPayload);
 			},
 			HRCreateaRequestAPI: function (oPayload) {
-				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(this.getOwnerComponent().getModel("ZSSP_COMMON_SRV"), 'POST', '/ServNotificationSet',
 						oPayload)
@@ -796,6 +810,9 @@ sap.ui.define([
 					validationProperties = [{
 						path: "/Termination/Termination/Header/Begda/",
 						condition: true
+					}, {
+						path: "/Termination/Termination/Header/Descript/",
+						condition: true
 					}];
 				} else if (service === "SSA-HR-1001-1") {
 					validationProperties = [{
@@ -823,6 +840,9 @@ sap.ui.define([
 						path: "/Recruitment/InternalRecruitment/Header/Zscopelevel/",
 						condition: true
 					}, {
+						path: "/Recruitment/InternalRecruitment/Header/Descript/",
+						condition: true
+					}, {
 						path: "/Recruitment/InternalRecruitment/Header/Zjtasks/",
 						condition: true
 					}];
@@ -840,6 +860,9 @@ sap.ui.define([
 						path: "/Recruitment/ExternalRecruitment/Header/Zjqreq/",
 						condition: true
 					}, {
+						path: "/Recruitment/ExternalRecruitment/Header/Descript/",
+						condition: true
+					}, {
 						path: "/Recruitment/ExternalRecruitment/Header/Zjdept/",
 						condition: true
 					}];
@@ -851,6 +874,9 @@ sap.ui.define([
 						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/",
 						condition: true
 					}, {
+						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Descript/",
+						condition: true
+					}, {
 						path: "/TrainingDevelopment/EmployeeLearningDevelopment/Header/Reqdat/",
 						condition: true
 					}];
@@ -860,6 +886,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/EventreasonF4/",
+						condition: true
+					}, {
+						path: "/CompensationRewards/RegularRewards/Header/Descript/",
 						condition: true
 					}, {
 						path: "/CompensationRewards/RegularRewards/Header/Begda/",
@@ -885,6 +914,9 @@ sap.ui.define([
 						path: "/TimeManagement/ActivatingAccessCard/Header/Idcot/",
 						condition: true
 					}, {
+						path: "/TimeManagement/ActivatingAccessCard/Header/Descript/",
+						condition: true
+					}, {
 						path: "/TimeManagement/ActivatingAccessCard/Header/Zcardno/",
 						condition: true
 					}, {
@@ -894,6 +926,9 @@ sap.ui.define([
 				} else if (service === "SSA-HR-1007-2") {
 					validationProperties = [{
 						path: "/TimeManagement/ManageEmpShifts/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TimeManagement/ManageEmpShifts/Header/Descript/",
 						condition: true
 					}, {
 						path: "/EventF4/",
@@ -911,6 +946,9 @@ sap.ui.define([
 						path: "/Payroll/EmployeeVacation/Header/Zendate/",
 						condition: true
 					}, {
+						path: "/Payroll/EmployeeVacation/Header/Descript/",
+						condition: true
+					}, {
 						path: "/TimetypeF4/",
 						condition: true
 					}, {
@@ -920,6 +958,9 @@ sap.ui.define([
 				} else if (service === "SSA-HR-1006-1") {
 					validationProperties = [{
 						path: "/TransportationCommision/Transfer/Header/Zendate/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Transfer/Header/Descript/",
 						condition: true
 					}, {
 						path: "/EventreasonF4/",
@@ -934,6 +975,9 @@ sap.ui.define([
 				} else if (service === "SSA-HR-1006-2") {
 					validationProperties = [{
 						path: "/TransportationCommision/EmpTransporation/Header/Begda/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/EmpTransporation/Header/Descript/",
 						condition: true
 					}, {
 						path: "/PositionF4/",
@@ -957,6 +1001,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/BenefitsManagement/ClaimRequest/Header/Zmobile/",
+						condition: true
+					}, {
+						path: "/BenefitsManagement/ClaimRequest/Header/Descript/",
 						condition: true
 					}, {
 						path: "/InsurancepolicyF4/",
@@ -1004,6 +1051,9 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/TransportationCommision/Commisioning/Header/Zservdat/",
+						condition: true
+					}, {
+						path: "/TransportationCommision/Commisioning/Header/Descript/",
 						condition: true
 					}, {
 						path: "/JobtitleF4/",
@@ -1065,6 +1115,9 @@ sap.ui.define([
 						path: "/BenefitsManagement/MedicalInsurance/Header/Begda/",
 						condition: true
 					}, {
+						path: "/BenefitsManagement/MedicalInsurance/Header/Descript/",
+						condition: true
+					}, {
 						path: "/TypeofemployeementF4/",
 						condition: true
 					}, {
@@ -1109,6 +1162,9 @@ sap.ui.define([
 						path: "/BenefitsManagement/SubmitComplaint/Header/Zaprnum/",
 						condition: true
 					}, {
+						path: "/BenefitsManagement/SubmitComplaint/Header/Descript/",
+						condition: true
+					}, {
 						path: "/BenefitsManagement/SubmitComplaint/Header/Cname/",
 						condition: true
 					}, {
@@ -1121,6 +1177,9 @@ sap.ui.define([
 				} else if (service === "SSA-HR-1009-1") {
 					validationProperties = [{
 						path: "/PeopleCareCenter/UpdateMasterData/Header/Zdetailupdat/",
+						condition: true
+					}, {
+						path: "/PeopleCareCenter/UpdateMasterData/Header/Descript/",
 						condition: true
 					}];
 				}

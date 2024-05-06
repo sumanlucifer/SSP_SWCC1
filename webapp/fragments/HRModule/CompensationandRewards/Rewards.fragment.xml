@@ -60,6 +60,11 @@
 						<core:CustomData key="value_1" value="Event Reason"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/CompensationRewards/RegularRewards/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/CompensationRewards/RegularRewards/Header/Descript/}"
+					valueHelpRequest=""/>
 				<!--	<Label text="{i18n>payscalelevel}" required="true"/>
 				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>payscalelevel} : '' }"

@@ -23,8 +23,11 @@
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
-				<Label text="{i18n>IssueDescription}" required="false"/>
-				<Input placeholder="Enter Description" value="{/ITProcurement/Header/Descript/}"/>
+				<Label text="{i18n>IssueDescription}" required="true"/>
+				<!--	<Input placeholder="Enter Description" value="{/ITProcurement/Header/Descript/}"/>-->
+				<Input valueState="{= ${/ITProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ITProcurement/Header/Descript/} === '' ? 'Enter Issue Description' : '' }" placeholder="Allowed 40 Charcters"
+					showSuggestion="" showValueHelp="" value="{/ITProcurement/Header/Descript/}" valueHelpRequest=""/>
 				<Label text="{i18n>TotalEstimatedValue}" required="false"/>
 				<Input enabled="false" value="{/ITProcurement/Header/EstPrice/}" placeholder=""></Input>
 			</fm:content>

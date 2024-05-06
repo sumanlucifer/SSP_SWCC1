@@ -47,6 +47,11 @@
 					valueStateText="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/} === '' ? ${i18n>itemdetails} : '' }"
 					placeholder="{i18n>doyouhave}" value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Itemdet/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TrainingDevelopment/EmployeeLearningDevelopment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/TrainingDevelopment/EmployeeLearningDevelopment/Header/Descript/}" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

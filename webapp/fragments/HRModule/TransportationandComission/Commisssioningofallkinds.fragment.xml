@@ -197,6 +197,11 @@
 				<Input valueState="{= ${/Payrollid/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/Payrollid/} === '' ? ${i18n>payrollid} : '' }"
 					placeholder="{i18n>payrollid}" showSuggestion="" value="{/TransportationCommision/Commisioning/Header/Payrollid/}" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TransportationCommision/Commisioning/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TransportationCommision/Commisioning/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

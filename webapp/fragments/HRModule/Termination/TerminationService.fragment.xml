@@ -29,14 +29,19 @@
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>userid}" required="false"/>
 				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Termination/Termination/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Termination/Termination/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Termination/Termination/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
-				<Label text="{i18n>resigndate}" required="false"/>
+				<Label text="{i18n>resigndate}" required="true"/>
 				<DatePicker valueState="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/Termination/Termination/Header/Begda/} === '' ? 'Enter Date' : '' }" value="{/Termination/Termination/Header/Begda/}"
 					displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
-				<Label visible="{= ${/HRAppVisible} === 'SSA-HR-1004-1' ? true : false}" text="{i18n>TerminationReason}" required="false"/>
+				<Label visible="{= ${/HRAppVisible} === 'SSA-HR-1004-1' ? true : false}" text="{i18n>TerminationReason}" required="true"/>
 				<Input enabled="false" visible="{= ${/HRAppVisible} === 'SSA-HR-1004-1' ? true : false}" placeholder="{i18n>TerminationReason}"
 					value="27-Early Retirement"/>
 				<Label visible="{= ${/HRAppVisible} === 'SSA-HR-1004-2' ? true : false}" text="{i18n>TerminationReason}" required="true"/>
