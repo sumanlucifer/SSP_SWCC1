@@ -44,6 +44,11 @@
 				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>totalestvalue}" required="false"/>
 				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+					valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

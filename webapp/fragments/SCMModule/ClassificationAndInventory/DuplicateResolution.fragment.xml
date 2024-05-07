@@ -28,6 +28,11 @@
 					</customData>
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/DuplicateResolution/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/DuplicateResolution/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/ClasssificationandInventory/DuplicateResolution/Header/Descript/}" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

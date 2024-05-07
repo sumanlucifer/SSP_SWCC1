@@ -43,6 +43,11 @@
 					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/SUPP_CON/} === '' ? ${i18n>suppliercontactno} : '' }"
 					placeholder="{i18n>suppliercontactno}" value="{/Quality/SpecalizedWorkQualification/Header/SUPP_CON/}" showSuggestion="" showValueHelp=""
 					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Quality/SpecalizedWorkQualification/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Quality/SpecalizedWorkQualification/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Quality/SpecalizedWorkQualification/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

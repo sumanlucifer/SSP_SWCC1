@@ -29,9 +29,11 @@
 				</Input>-->
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>nameOfsector}" required="true"/>
-				<Input placeholder="Enter Name of Sector" showSuggestion="" showValueHelp=""
-					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}" valueHelpRequest=""/>
-				<Label text="{i18n>typeOfcompetition}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/} === '' ? 'Enter name of sector' : '' }"
+					placeholder="Enter Name of Sector" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}"
+					valueHelpRequest=""/>
+				<Label text="{i18n>typeOfcompetition}" required="false"/>
 				<Input
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCOMP_TYPE')/Set/-com.swcc.Template.fragments.SCMModule.TypeofcompetitionF4-/TypeofcompetitionF4/"
 					width="100%" placeholder="Select Type of Competiton" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -42,22 +44,35 @@
 					</customData>
 				</Input>
 				<Label text="{i18n>implementationperiod}" required="true"/>
-				<Input placeholder="Enter Implemenatation Period" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/} === '' ? 'Enter Implementation Period' : '' }"
+					placeholder="Enter Implemenatation Period" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/}" valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="true"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<!--	<Label text="{i18n>workcenter}" required="true"/>
 				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
 				<Label text="{i18n>requestingparty}" required="true"/>
-				<Input placeholder="{i18n>requestingparty}" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/} === '' ? 'Enter requesting party' : '' }"
+					placeholder="{i18n>requestingparty}" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}" valueHelpRequest=""/>
 				<!--<Label text="{i18n>estimatedcost}" required="true"/>-->
 				<Label text="{i18n>estimatedprjvalue}" required="true"/>
-				<Input placeholder="{i18n>estimatedcost}" change="handleLiveChangeContractPrcUnitPrice" type="Number" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/} === '' ? 'Enter estimated value' : '' }"
+					placeholder="{i18n>estimatedcost}" change="handleLiveChangeContractPrcUnitPrice" type="Number" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}" valueHelpRequest=""/>
 				<Label text="{i18n>projectdescription}" required="true"/>
-				<Input placeholder="Enter Project Description" showSuggestion="" showValueHelp=""
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/} === '' ? 'Enter Project Description' : '' }"
+					placeholder="Enter Project Description" showSuggestion="" showValueHelp=""
 					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/}" valueHelpRequest=""/>
 				<Label text="{i18n>totalservicevalue}" required="true"/>
 				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/TotalValue/}"

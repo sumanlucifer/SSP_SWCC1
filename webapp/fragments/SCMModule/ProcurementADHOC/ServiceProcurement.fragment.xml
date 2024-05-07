@@ -86,6 +86,11 @@
 					<core:Item key="U" text="Urgent"/>
 					<core:Item key="E" text="Emergency"/>
 				</ComboBox>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/ServiceProcurement/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

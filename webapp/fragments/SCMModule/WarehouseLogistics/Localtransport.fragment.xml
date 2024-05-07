@@ -19,13 +19,6 @@
 				</Toolbar>
 				<Label text="{i18n>Serviceproduct}" required="false"/>
 				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
-				<!--	<Label text="{i18n>purchaseorg}" required="true"/>
-				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
-					suggestionItems="{/ProductCollection}">
-					<suggestionItems>
-						<core:Item text="{Name}"/>
-					</suggestionItems>
-				</Input>-->
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>servicelevel}" required="true"/>
@@ -53,6 +46,11 @@
 				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/Wempf/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/Wempf/} === '' ? ${i18n>receiver} : '' }" showSuggestion=""
 					placeholder="{i18n>receiver}" value="{/WarehouseandLogistics/Localtransport/Header/Wempf/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/WarehouseandLogistics/Localtransport/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -76,15 +74,15 @@
 				<Label text="{i18n>externallocation}" required="true"/>
 				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/ExtLoc/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/ExtLoc/} === '' ? ${i18n>externallocation} : '' }" showSuggestion=""
-					placeholder="{i18n>receiver}" value="{/WarehouseandLogistics/Localtransport/Header/ExtLoc/}" showValueHelp="" valueHelpRequest=""/>
+					placeholder="{i18n>externallocation}" value="{/WarehouseandLogistics/Localtransport/Header/ExtLoc/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>sender}" required="true"/>
 				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/ReqParty/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/ReqParty/} === '' ? ${i18n>sender} : '' }" showSuggestion=""
-					placeholder="{i18n>receiver}" value="{/WarehouseandLogistics/Localtransport/Header/ReqParty/}" showValueHelp="" valueHelpRequest=""/>
+					placeholder="{i18n>sender}" value="{/WarehouseandLogistics/Localtransport/Header/ReqParty/}" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>contact}" required="true"/>
 				<Input valueState="{= ${/WarehouseandLogistics/Localtransport/Header/Mobile/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/WarehouseandLogistics/Localtransport/Header/Mobile/} === '' ? ${i18n>contact} : '' }" showSuggestion=""
-					placeholder="{i18n>receiver}" value="{/WarehouseandLogistics/Localtransport/Header/Mobile/}" showValueHelp="" valueHelpRequest=""/>
+					placeholder="{i18n>contact}" value="{/WarehouseandLogistics/Localtransport/Header/Mobile/}" showValueHelp="" valueHelpRequest=""/>
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>

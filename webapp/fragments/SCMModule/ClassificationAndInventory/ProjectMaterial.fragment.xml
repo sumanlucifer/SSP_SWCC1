@@ -38,6 +38,11 @@
 				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/SpirSub/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/SpirSub/} === '' ? ${i18n>spirsubject} : '' }"
 					placeholder="{i18n>spirsubject}" value="{/ClasssificationandInventory/SPIR/Header/SpirSub/}" enabled="true"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/SPIR/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/SPIR/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/SPIR/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

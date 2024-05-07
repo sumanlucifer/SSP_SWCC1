@@ -37,6 +37,11 @@
 						<core:CustomData key="PurchaseRequisition" value="Purchasing Document"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ContractManagement/IssuingContractualLetters/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ContractManagement/IssuingContractualLetters/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp=""
+					value="{/ContractManagement/IssuingContractualLetters/Header/Descript/}" valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

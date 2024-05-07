@@ -31,6 +31,11 @@
 				<Label text="{i18n>totalservicevalue}" required="false"/>
 				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/Scrapsale/Header/TotalServiceLevel/}"
 					showValueHelp="" editable="true" valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/WarehouseandLogistics/Scrapsale/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Scrapsale/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/WarehouseandLogistics/Scrapsale/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

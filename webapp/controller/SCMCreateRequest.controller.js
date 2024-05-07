@@ -996,6 +996,10 @@ sap.ui.define([
 						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
 						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
 					null;
+				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2004-3" ? this.ScmCreateRfcRequest(this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/Header/"), this.getModel().getProperty(
+						"/ProcurementAdhoc/PrepareofDirectpurchase/itemData/")) :
+					null;
 
 				//--------------------------Qualification-----------------------------------------------------	
 				this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2005-1" ? this.ScmCreatespecializedworkqualificationRequest(this.getModel()
@@ -1179,6 +1183,7 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreateRfcRequest: function (oPayloadHeader, aItem) {
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/"))) return false;
 				var oPayload = {
 					"Username": this.getCurrentUserLoggedIn(),
 					"Material": this.getModel().getProperty("/SCMAppVisible/"),
@@ -2108,6 +2113,9 @@ sap.ui.define([
 						path: "/SuppPlantF4/",
 						condition: true
 					}, {
+						path: "/ClasssificationandInventory/STO/Header/Descript/",
+						condition: true
+					}, {
 						path: "/PurchasinggroupF4/",
 						condition: true
 					}];
@@ -2172,41 +2180,107 @@ sap.ui.define([
 				} else if (service === "SSA-PSCM-2005-1" || service === "SSA-PSCM-2005-2" || service === "SSA-PSCM-2005-3") {
 
 					validationProperties = [{
-							path: "/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/",
-							condition: true
-						}, {
-							path: "/ProjectstatusF4/",
-							condition: true
-						}, {
-							path: "/Quality/SpecalizedWorkQualification/Header/Descript/",
-							condition: true
-						}, {
-							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CON/",
-							condition: true
-						}, {
-							path: "/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/",
-							condition: true
-						}
+						path: "/Quality/SpecalizedWorkQualification/Header/PROJ_NAME/",
+						condition: true
+					}, {
+						path: "/ProjectstatusF4/",
+						condition: true
+					}, {
+						path: "/Quality/SpecalizedWorkQualification/Header/Descript/",
+						condition: true
+					}, {
+						path: "/Quality/SpecalizedWorkQualification/Header/SUPP_CON/",
+						condition: true
+					}, {
+						path: "/Quality/SpecalizedWorkQualification/Header/SUPP_NAME/",
+						condition: true
+					}];
 
-					];
-
-				} else if (service === "SSA-FIN-3005-5") {
+				} else if (service === "SSA-PSCM-2004-1" || service === "SSA-PSCM-2004-2" || service === "SSA-PSCM-2004-3") {
 
 					validationProperties = [{
-							path: "/AssetLifecycle/ProjectCaptilization/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/ProjectCaptilization/Header/Descript/",
-							condition: true
-						}, {
-							path: "/AssetLifecycle/ProjectCaptilization/Header/Poper/",
-							condition: true
-						}
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/",
+						condition: true
+					}, {
+						path: "/TypeofcompetitionF4/",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/",
+						condition: true
+					}, {
+						path: "/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/",
+						condition: true
+					}];
 
-					];
+				} else if (service === "SSA-PSCM-2008-2") {
+
+					validationProperties = [{
+						path: "/WarehouseandLogistics/Localtransport/Header/ServiceLevel/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/VehTyp/",
+						condition: true
+					}, {
+						path: "/SupplierF4/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/Wempf/",
+						condition: true
+					}, {
+						path: "/CostcenterF4/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/TrTyp/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/ExtLoc/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/ReqParty/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/Mobile/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransport/Header/Descript/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-PSCM-2008-2-A") {
+
+					validationProperties = [{
+						path: "/SuppPlantF4/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransportsto/Header/Descript/",
+						condition: true
+					}, {
+						path: "/WarehouseandLogistics/Localtransportsto/Header/ServiceLevel/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-PSCM-2010-3-A") {
+
+					validationProperties = [{
+						path: "/WarehouseandLogistics/Scrapsale/Header/Descript/",
+						condition: true
+					}];
+
+				} else if (service === "SSA-PSCM-2011-A") {
+
+					validationProperties = [{
+						path: "/ClasssificationandInventory/DuplicateResolution/Header/Descript",
+						condition: true
+					}];
 
 				}
 				if (!validationProperties) return true;

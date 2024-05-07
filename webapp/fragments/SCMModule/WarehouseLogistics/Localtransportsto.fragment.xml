@@ -30,6 +30,11 @@
 						<core:CustomData key="matnr" value="Name"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/WarehouseandLogistics/Localtransportsto/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/Localtransportsto/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/WarehouseandLogistics/Localtransportsto/Header/Descript/}"
+					valueHelpRequest=""/>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>

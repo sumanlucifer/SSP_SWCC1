@@ -37,6 +37,11 @@
 						<core:CustomData key="PurchaseOrderType" value="Document Type"/>
 					</customData>
 				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ContractManagement/ContractualChangeOrders/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ContractManagement/ContractualChangeOrders/Header/Descript/}"
+					valueHelpRequest=""/>
 				<!--	<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>-->
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
