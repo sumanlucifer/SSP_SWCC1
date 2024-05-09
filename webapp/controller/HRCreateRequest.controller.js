@@ -626,7 +626,6 @@ sap.ui.define([
 						"Nachn": oPayloadHeader.Nachn,
 						"Area": oPayloadHeader.Zarea,
 						"Idcot": oPayloadHeader.Idcot,
-						"Dasetting": oPayloadHeader.Zdasetting,
 						"Cardno": oPayloadHeader.Zcardno
 					},
 					"ServiceHeadertoItem": []
@@ -900,9 +899,6 @@ sap.ui.define([
 						condition: true
 					}, {
 						path: "/TimeManagement/ActivatingAccessCard/Header/Zarea/",
-						condition: true
-					}, {
-						path: "/TimeManagement/ActivatingAccessCard/Header/Zdasetting/",
 						condition: true
 					}, {
 						path: "/TimeManagement/ActivatingAccessCard/Header/Zendate/",

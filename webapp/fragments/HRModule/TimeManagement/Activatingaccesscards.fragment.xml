@@ -31,13 +31,13 @@
 				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zarea/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zarea/} === '' ? ${i18n>area} : '' }" placeholder="{i18n>area}"
 					value="{/TimeManagement/ActivatingAccessCard/Header/Zarea/}"/>
-				<Label text="{i18n>device}" required="true"/>
+				<!--	<Label text="{i18n>device}" required="true"/>
 				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zdasetting/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zdasetting/} === '' ? ${i18n>device} : '' }" placeholder="{i18n>device}"
-					value="{/TimeManagement/ActivatingAccessCard/Header/Zdasetting/}"/>
+					value="{/TimeManagement/ActivatingAccessCard/Header/Zdasetting/}"/>-->
 				<Label text="{i18n>enddate}" required="true"/>
-				<DatePicker valueState="{= ${/Termination/Termination/Header/Zendate/} === '' ? 'Error' : 'None' }"
-					valueStateText="{= ${/Termination/Termination/Header/Zendate/} === '' ? ${i18n>enddate} : '' }" placeholder="{i18n>enddate}"
+				<DatePicker valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zendate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zendate/} === '' ? ${i18n>enddate} : '' }" placeholder="{i18n>enddate}"
 					valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/TimeManagement/ActivatingAccessCard/Header/Zendate/}" change="handleChange"
 					class=""/>
 				<core:Title text=""/>
