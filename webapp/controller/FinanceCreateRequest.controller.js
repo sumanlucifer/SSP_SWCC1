@@ -2073,12 +2073,7 @@ sap.ui.define([
 
 				} else if (service === "SSA-FIN-3006-1") {
 					validationProperties = [{
-							path: "/VendorF4/",
-							condition: true
-						}, {
-							path: "/POF4/",
-							condition: true
-						}, {
+
 							path: "/InsuranceandClaim/CreateInsurance/Header/Descript/",
 							condition: true
 						}, {

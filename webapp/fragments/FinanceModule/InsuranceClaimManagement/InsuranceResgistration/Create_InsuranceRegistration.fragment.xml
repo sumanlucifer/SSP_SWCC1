@@ -28,7 +28,7 @@
 					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
 					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
 					valueHelpRequest=""/>
-				<Label text="{i18n>Vendor}" required="true"/>
+				<!--	<Label text="{i18n>Vendor}" required="true"/>
 				<Input valueState="{= ${/VendorF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/VendorF4/} === '' ? 'Select Vendor' : '' }"
 					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_VENDORVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.VendorF4-/VendorF4/"
 					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -47,11 +47,11 @@
 						<core:CustomData key="PurchaseOrder" value="PO"/>
 						<core:CustomData key="Supplier" value="Vendor Code"/>
 					</customData>
-				</Input>
+				</Input>-->
 				<Label text="{i18n>PolicyStatus}" required="false"/>
 				<Input enabled="false" value="New" width="100%"/>
 				<Label text="{i18n>TotalPremiumAmount}" required="false"/>
-				<Input enabled="false"
+				<Input enabled="true" type="Number"
 					value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/} {/InsuranceandClaim/CreateInsurance/Header/currency/}" width="100%"/>
 				<Label text="{i18n>DepeciationRate}" required="true"/>
 				<Input placeholder="Enter Depreciation Rate"

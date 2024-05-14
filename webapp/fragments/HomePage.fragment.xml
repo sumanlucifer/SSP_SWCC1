@@ -8,8 +8,8 @@
 		</fm:SimpleForm>
 		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
 			class="sapUiResponsiveContentPadding ne-flexbox2">
-			<GenericTile visible="{= ${/TileData/Header/Create} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active"
-				press="onPressCreateRequest" header="{i18n>createservicerequest}">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active" press="onPressCreateRequest"
+				header="{i18n>createservicerequest}">
 				<TileContent>
 					<ImageContent src="sap-icon://add-document"/>
 				</TileContent>
