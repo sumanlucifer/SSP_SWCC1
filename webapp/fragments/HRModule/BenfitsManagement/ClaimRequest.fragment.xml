@@ -118,8 +118,8 @@
 					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLAIMTYPE-com.swcc.Template.fragments.HRModule.ClaimtypeF4-/ClaimtypeF4/" width="100%"
 					placeholder="{i18n>claimtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClaimtypeF4/}">
 					<customData>
-						<core:CustomData key="keyfield" value="Claim"/>
-						<core:CustomData key="value_1" value="Claim type"/>
+						<core:CustomData key="value_1" value="Claim"/>
+						<core:CustomData key="keyfield" value="Claim type"/>
 					</customData>
 				</Input>
 				<Label text=""/>
