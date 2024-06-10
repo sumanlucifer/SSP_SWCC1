@@ -78,7 +78,7 @@
 						<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
 					</customData>
 				</Input>
-				<Label text="{i18n>Materialgroup}" required="false"/>
+				<Label text="{i18n>Materialgroup}" required="true"/>
 				<Input valueState="{= ${/servicegroupF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/servicegroupF4/} === '' ? ${i18n>Materialgroup} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
@@ -166,7 +166,7 @@
 				<Toolbar>
 					<content>
 						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
-							<Label required="true" text="{i18n>Attachments}" level="H1"></Label>
+							<Label required="false" text="{i18n>Attachments}" level="H1"></Label>
 							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
 								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
 								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"

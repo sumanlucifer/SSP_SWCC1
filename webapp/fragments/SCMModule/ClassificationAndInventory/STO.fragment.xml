@@ -44,7 +44,7 @@
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
 				<Label text="{i18n>purchasinggroup}" required="true"/>
-				<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
+				<!--	<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/PurchasinggroupF4/} === '' ? ${i18n>purchasinggroup} : '' }"
 					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
 					width="100%" placeholder="{i18n>purchasinggroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
@@ -53,7 +53,13 @@
 						<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
 						<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
 					</customData>
-				</Input>
+				</Input>-->
+				<ComboBox valueState="{= ${/ClasssificationandInventory/STO/Header/Ekgrp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/STO/Header/Ekgrp} === '' ? ${i18n>purchasinggroup} : '' }"
+					placeholder="{i18n>purchasinggroup}" selectedKey="{/ClasssificationandInventory/STO/Header/Ekgrp}">
+					<core:Item key="901" text="901-STO-PlantRequestor"/>
+					<core:Item key="902" text="902-STO-HQ Requestor"/>
+				</ComboBox>
 				<Label text="{i18n>shortdescription}" required="true"/>
 				<Input valueState="{= ${/ClasssificationandInventory/STO/Header/Descript/} === '' ? 'Error' : 'None' }"
 					valueStateText="{= ${/ClasssificationandInventory/STO/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
@@ -93,9 +99,6 @@
 						<Text text="{i18n>Description}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>reqquantity}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>supplyingplant}"/>
 					</Column>
 					<Column minScreenWidth="Tablet" demandPopin="true">
@@ -110,6 +113,9 @@
 					<Column minScreenWidth="Tablet" demandPopin="true">
 						<Text text="{i18n>unitprice}"/>
 					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>reqquantity}"/>
+					</Column>
 					<Column width="5%"></Column>
 				</columns>
 				<items>
@@ -123,7 +129,6 @@
 								</customData>
 							</Input>
 							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
-							<Input placeholder="QTY" type="Number" value="{Menge}" liveChange=""/>
 							<Input placeholder="Enter Plant" value="{Plant}" enabled="false"/>
 							<Input value="{BaseUnit}" enabled="false"/>
 							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/C_StorageLocationVH-com.swcc.Template.fragments.SCMModule.StoragelocationF4-/StoragelocationF4/"
@@ -136,6 +141,7 @@
 							</Input>
 							<Input value="{Stock}" enabled="false"/>
 							<Input value="{Price}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" change="handleLiveChangeQty"/>
 							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
 						</cells>
 					</ColumnListItem>

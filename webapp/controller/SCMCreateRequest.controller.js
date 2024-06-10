@@ -312,7 +312,8 @@ sap.ui.define([
 					var sMaterial = this.getModel().getProperty(
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/ProductF4/`).split(
 						"-")[0];
-					var sPlant = this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "";
+					var sPlant = this.getModel().getProperty(
+						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/Plant/`);
 					var sstorageloc = this.getModel().getProperty(
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`).split(
 						"-")[0];
@@ -626,7 +627,7 @@ sap.ui.define([
 							useOR: true
 						}, {
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							value: this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/") : "",
 							group: "StorageFilter"
 						}
 
@@ -1276,10 +1277,7 @@ sap.ui.define([
 			ScmCreatechangeRequest: function (oPayloadHeader, aItem) {
 				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
-						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/")) || !this.handleAttachmentvalidation(
-						this.getModel()
-						.getProperty("/SCMAppVisible/"),
-						this.getModel().getProperty("/UploadedData"))) return false;
+						this.getModel().getProperty("/ClasssificationandInventory/ChangeRequest/Header/itemData/"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").length === 0 ? [] : this.getModel().getProperty("/UploadedData")
 					.map(
 						({
@@ -1400,7 +1398,8 @@ sap.ui.define([
 					"ZHeaderExtra": {
 						"SupplPlant": this.getModel().getProperty("/SuppPlantF4/") ? this.getModel().getProperty("/SuppPlantF4/").split("-")[
 							0] : "",
-						"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : "",
+						"Ekgrp": oPayloadHeader.Ekgrp,
+						/*"Ekgrp": this.getModel().getProperty("/PurchasinggroupF4/") ? this.getModel().getProperty("/PurchasinggroupF4/").split("-")[0] : "",*/
 						"Werks": this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": aItem.map(
@@ -1761,7 +1760,6 @@ sap.ui.define([
 
 			handleItemValidation: function (service, aData, action) {
 				var isValid = true;
-
 				if (service === "SSA-PSCM-2011-A") {
 					var itemCheck = !aData || aData.length < 2 ? false : true;
 					// Check for duplicates based on the 'Plant' property
@@ -2116,7 +2114,7 @@ sap.ui.define([
 						path: "/ClasssificationandInventory/STO/Header/Descript/",
 						condition: true
 					}, {
-						path: "/PurchasinggroupF4/",
+						path: "/ClasssificationandInventory/STO/Header/Ekgrp/",
 						condition: true
 					}];
 
@@ -2301,6 +2299,16 @@ sap.ui.define([
 				}
 
 				return isValid;
+			},
+			handleLiveChangeQty: function (oEve) {
+				debugger;
+				var qty = parseInt(oEve.getSource().getBindingContext().getObject().Stock);
+				var enterQty = parseInt(oEve.getSource().getValue());
+				if (enterQty > qty) {
+					MessageToast.show("Required Qty should be less than or equal to the available quatity");
+					oEve.getSource().setValue(null);
+				}
+
 			},
 
 			handleAttachmentvalidation: function (service, oItems, aData) {
