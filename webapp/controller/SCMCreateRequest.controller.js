@@ -139,8 +139,9 @@ sap.ui.define([
 					.getProperty("/valueHelpName") === "/CrtypeF4/") {
 					tokens.forEach(function (token) {
 						var tokenValue = token.getKey();
-						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02"].includes(tokenValue)) {
-							// Set visibility to true if any of the tokens match
+						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01"].includes(tokenValue)) {
+							//Set visibility to true
+							//if any of the tokens match
 							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
 						} else {
 							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", false);
@@ -1382,7 +1383,9 @@ sap.ui.define([
 				this.SCMCreateaRequestAPI(oPayload);
 			},
 			ScmCreatestoRequest: function (oPayloadHeader, aItem) {
-				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleAttachmentvalidation(this.getModel()
+				if (!this.handleHeaderValidation(this.getModel().getProperty("/SCMAppVisible/")) || !this.handleItemValidation(this.getModel()
+						.getProperty("/SCMAppVisible/"),
+						this.getModel().getProperty("/ClasssificationandInventory/STO/itemData/")) || !this.handleAttachmentvalidation(this.getModel()
 						.getProperty("/SCMAppVisible/"),
 						this.getModel().getProperty("/UploadedData"))) return false;
 				const aUploadData = this.getModel().getProperty("/UploadedData").map(({
@@ -1786,6 +1789,22 @@ sap.ui.define([
 							isValid = false;
 						}
 
+					}
+
+				}
+				if (service === "SSA-PSCM-2011-2-2") {
+					debugger;
+					var itemCheck = !aData || aData.length === 0 ? false : true;
+					var bCheckMaterialSelected = aData.some(item => !item.Menge);
+
+					if (!itemCheck) {
+						MessageToast.show("Item Data is required to Submit the request");
+						isValid = false;
+						return isValid;
+					}
+					if (bCheckMaterialSelected === true) {
+						MessageToast.show("Please Enter Required Quantity");
+						isValid = false;
 					}
 
 				}
@@ -2301,7 +2320,6 @@ sap.ui.define([
 				return isValid;
 			},
 			handleLiveChangeQty: function (oEve) {
-				debugger;
 				var qty = parseInt(oEve.getSource().getBindingContext().getObject().Stock);
 				var enterQty = parseInt(oEve.getSource().getValue());
 				if (enterQty > qty) {
