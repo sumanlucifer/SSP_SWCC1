@@ -139,7 +139,8 @@ sap.ui.define([
 					.getProperty("/valueHelpName") === "/CrtypeF4/") {
 					tokens.forEach(function (token) {
 						var tokenValue = token.getKey();
-						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01"].includes(tokenValue)) {
+						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01", "ZAMATL02"].includes(
+								tokenValue)) {
 							//Set visibility to true
 							//if any of the tokens match
 							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
@@ -403,6 +404,33 @@ sap.ui.define([
 						dynamicFilters.StoFilter,
 						`${this.getModel().getProperty("/FragModel")}`)
 
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
+						this.getModel()
+						.getProperty("/valueHelpName") === "/ProductF4/")) {
+					debugger;
+					var filters = [
+
+						{
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}, {
+							path: "Product",
+							value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+							group: "Item_ProductFilter",
+							useOR: true
+
+						}
+
+					];
+
+					var dynamicFilters = this.getFilters(filters);
+					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
+						dynamicFilters.Item_ProductFilter,
+						`${this.getModel().getProperty("/FragModel")}`)
 				}
 
 			},
@@ -467,7 +495,8 @@ sap.ui.define([
 					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
 
 				} else if (
-					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/FragModel") ===
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && !this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
 					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/itemData/`, aData);
@@ -489,14 +518,22 @@ sap.ui.define([
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2" && this.getModel().getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
-					debugger;
 					this.getModel().setProperty(`${spath}/Description/`, aData[0].Description);
 				} else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2008-2-A" && this.getModel().getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
-					debugger;
 					this.getModel().setProperty(`/WarehouseandLogistics/Localtransportsto/Header/follow_doc/`, aData[0].follow_doc);
+				} else if (
+					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") && this.getModel()
+						.getProperty("/FragModel") ===
+						`${oModel}`)
+				) {
+					this.getModel().setProperty("/uomF4/", aData[0].BaseUnit);
+					this.getModel().setProperty("/MaterialgroupF4/", aData[0].ExternalProductGroup);
+					this.getModel().setProperty("/servicegroupF4/", aData[0].ProductGroup);
+					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Maktx/`, aData[0].Description);
+					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Header/TXT50/`, aData[0].MaterialLongText);
 				}
 
 			},
@@ -788,6 +825,7 @@ sap.ui.define([
 					aFilter = this._getfilterforControl(dynamicFilters.ProductFilter);
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel().getProperty("/valueHelpName") === "/MaterialgroupF4/") {
+
 					var filters = [{
 							path: "ExternalProductGroup",
 							value: this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
