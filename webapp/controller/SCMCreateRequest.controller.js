@@ -184,7 +184,7 @@ sap.ui.define([
 
 						{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -413,7 +413,7 @@ sap.ui.define([
 
 						{
 							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/").split("-")[0] : "",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "Item_ProductFilter",
 							useOR: true
 
@@ -813,10 +813,14 @@ sap.ui.define([
 				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/ClassF4/") {
-
+					debugger;
 					var filters = [{
-							path: "ClassType",
-							value: "001",
+							path: "Plant",
+							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+							group: "ProductFilter"
+						}, {
+							path: "Material",
+							value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
 							group: "ProductFilter"
 						}
 
@@ -1331,7 +1335,7 @@ sap.ui.define([
 					"NotifText": oPayloadHeader.NotifText,
 					"MaterialQty": oPayloadHeader.quantity.toString(),
 					"ZHeaderExtra": {
-						"UsmdCreqType": this.getModel().getProperty("/CrtypeF4/") ? this.getModel().getProperty("/CrtypeF4/").split("-")[0] : "",
+						"UsmdCreqType": oPayloadHeader.UsmdCreqType,
 						"Mtart": this.getModel().getProperty("/MaterialtypeF4/") ? this.getModel().getProperty("/MaterialtypeF4/").split("-")[0] : "",
 						"Meins": this.getModel().getProperty("/uomF4/") ? this.getModel().getProperty("/uomF4/").split("-")[0] : "",
 						"Txz01": oPayloadHeader.Txz01,
@@ -1868,6 +1872,26 @@ sap.ui.define([
 					var sTotal = parseInt(3000) + (0.01 * sUnit);
 					this.getModel().setProperty(`/ProcurementAdhoc/PrepareofDirectpurchase/Header/TotalValue/`, sTotal);
 					/*	this.getModel().setProperty("/ContractManagement/ContractualChangeOrders/Header/", true);*/
+				}
+
+			},
+
+			onChangeCrLevel: function (oEve) {
+				debugger;
+				var serviceCr = oEve.getSource().getSelectedKey();
+				var service = this.getModel().getProperty("/SCMAppVisible/");
+				if (service === "SSA-PSCM-2011-1") {
+					if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01", "ZAMATL02"].includes(
+							serviceCr)) {
+						//Set visibility to true
+						//if any of the tokens match
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
+					} else {
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", false);
+					}
+
+					this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/", serviceCr);
+
 				}
 
 			},

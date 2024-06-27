@@ -23,14 +23,24 @@
 				<!--	<Label text="{i18n>quantity}" required="true"/>
 				<Input enabled="true" placeholder="Enter Quantity" value="{/ClasssificationandInventory/ChangeRequest/Header/quantity/}"/>-->
 				<Label text="{i18n>crtype}" required="true"/>
-				<Input valueState="{= ${/CrtypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CrtypeF4/} === '' ? ${i18n>crtype} : '' }"
+				<!--<Input valueState="{= ${/CrtypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CrtypeF4/} === '' ? ${i18n>crtype} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/ZhCrTypeSet-com.swcc.Template.fragments.SCMModule.CrtypeF4-/CrtypeF4/" width="100%"
 					placeholder="{i18n>crtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CrtypeF4/}">
 					<customData>
 						<core:CustomData key="UsmdCreqType" value="CR Type"/>
 						<core:CustomData key="Txtmi" value="CR Name"/>
 					</customData>
-				</Input>
+				</Input>-->
+				<ComboBox valueState="{= ${/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/} === '' ? ${i18n>crtype} : '' }"
+					placeholder="{i18n>crtype}" selectionChange="onChangeCrLevel"
+					selectedKey="{/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/}">
+					<core:Item key="ZAMATL02" text="ZAMATL02-CMS-Other Change Request"/>
+					<core:Item key="ZEMATL02" text="ZEMATL02-Specification Change Req.-Cent.Mat.Spec."/>
+					<core:Item key="ZFMATL02" text="ZFMATL02-Stock Level Change Request"/>
+					<core:Item key="ZMATL01" text="ZMATL01-New Item Creation Request"/>
+					<core:Item key="ZSLMAT02" text="ZSLMAT02-Material Stock Level Change Request"/>
+				</ComboBox>
 				<Label text="{i18n>Materialtype}" required="true"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === false ? true : false }"
 					valueState="{= ${/MaterialtypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/MaterialtypeF4/} === '' ? ${i18n>crtype} : '' }"
@@ -60,6 +70,16 @@
 				<Label text="{i18n>profilecode}" required="false"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
 					placeholder="Enter Profile Code" value="{/ClasssificationandInventory/ChangeRequest/Header/NotifText/}" enabled="true"/>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
+					valueState="{= ${/PlantF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PlantF4/} === '' ? ${i18n>supplyingplant} : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="{i18n>supplyingplant}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
 				<core:Title text=""/>
 				<Label text="{i18n>Description}" required="false"/>
 				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
@@ -132,7 +152,7 @@
 			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
 			<fm:content>
 				<Label text="{i18n>class}" required="true"/>
-				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_ClfnClass-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
+				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ClassCharacteristicsSet-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
 					placeholder="Enter Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClassF4/}">
 					<customData>
 						<core:CustomData key="ClassInternalID" value="Class"/>
