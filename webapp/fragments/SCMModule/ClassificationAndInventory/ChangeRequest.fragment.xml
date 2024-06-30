@@ -42,8 +42,8 @@
 					<core:Item key="ZSLMAT02" text="ZSLMAT02-Material Stock Level Change Request"/>
 				</ComboBox>
 				<Label text="{i18n>Materialtype}" required="true"/>
-				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === false ? true : false }"
-					valueState="{= ${/MaterialtypeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/MaterialtypeF4/} === '' ? ${i18n>crtype} : '' }"
+				<Input valueState="{= ${/MaterialtypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/MaterialtypeF4/} === '' ? ${i18n>crtype} : '' }"
 					ariaLabelledBy="-ZSSP_SCM_SRV-/I_ProductTypeText-com.swcc.Template.fragments.SCMModule.MaterialtypeF4-/MaterialtypeF4/" width="100%"
 					placeholder="{i18n>Materialtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
 					value="{/MaterialtypeF4/}">
@@ -69,7 +69,7 @@
 				</Input>
 				<Label text="{i18n>profilecode}" required="false"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
-					placeholder="Enter Profile Code" value="{/ClasssificationandInventory/ChangeRequest/Header/NotifText/}" enabled="true"/>
+					placeholder="Enter Profile Code" value="" enabled="true"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
 					valueState="{= ${/PlantF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PlantF4/} === '' ? ${i18n>supplyingplant} : '' }"

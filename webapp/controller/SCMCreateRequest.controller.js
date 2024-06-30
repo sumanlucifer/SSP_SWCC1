@@ -529,6 +529,7 @@ sap.ui.define([
 						.getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
+					debugger;
 					this.getModel().setProperty("/uomF4/", aData[0].BaseUnit);
 					this.getModel().setProperty("/MaterialgroupF4/", aData[0].ExternalProductGroup);
 					this.getModel().setProperty("/servicegroupF4/", aData[0].ProductGroup);
