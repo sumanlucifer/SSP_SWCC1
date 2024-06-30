@@ -135,11 +135,11 @@ sap.ui.define([
 				this.setDependentFilterData();
 				// Check each token and set visibility based on its value
 
-				if (this.getModel()
+				/*if (this.getModel()
 					.getProperty("/valueHelpName") === "/CrtypeF4/") {
 					tokens.forEach(function (token) {
 						var tokenValue = token.getKey();
-						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01", "ZAMATL02"].includes(
+						if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZAMATL02"].includes(
 								tokenValue)) {
 							//Set visibility to true
 							//if any of the tokens match
@@ -148,7 +148,7 @@ sap.ui.define([
 							this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", false);
 						}
 					}.bind(this));
-				}
+				}*/
 
 				if (!this.handleItemValidation(this.getModel().getProperty(
 						"/SCMAppVisible/"), this.getModel().getProperty(
@@ -1876,24 +1876,29 @@ sap.ui.define([
 
 			},
 
-			onChangeCrLevel: function (oEve) {
+			onChangeCrLevel: function (oEvent) {
 				debugger;
-				var serviceCr = oEve.getSource().getSelectedKey();
+				var serviceCr = oEvent.getSource().getSelectedKey();
 				var service = this.getModel().getProperty("/SCMAppVisible/");
+
 				if (service === "SSA-PSCM-2011-1") {
-					if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZMATL01", "ZAMATL02"].includes(
-							serviceCr)) {
-						//Set visibility to true
-						//if any of the tokens match
-						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", true);
+					if (["ZEMATL02", "ZFMATL02", "ZGMATL02", "ZHMATL02", "ZIMATL02", "ZJMATL02", "ZDMATL02", "ZAMATL02"].includes(serviceCr)) {
+						// Set visibility to true if any of the tokens match
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible", true);
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/Materiallabel", true);
+					} else if (["ZMATL01"].includes(serviceCr)) {
+						// Set visibility and add class to label
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible", false);
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/Materiallabel", false);
 					} else {
-						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/", false);
+						// Set visibility to false if no tokens match
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible", false);
+						this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/Materiallabel", false);
 					}
 
-					this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/", serviceCr);
-
+					// Update the UsmdCreqType property
+					this.getModel().setProperty("/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType", serviceCr);
 				}
-
 			},
 
 			itemCalculationCheck: function (oEVe, iRowNumber, aItemData) {
@@ -2153,7 +2158,7 @@ sap.ui.define([
 				} else if (service === "SSA-PSCM-2011-1") {
 
 					validationProperties = [{
-							path: "/CrtypeF4/",
+							path: "/ClasssificationandInventory/ChangeRequest/Header/UsmdCreqType/",
 							condition: true
 						}, {
 							path: "/MaterialtypeF4/",
