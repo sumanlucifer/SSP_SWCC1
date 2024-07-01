@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog title="Head of the Accounting Details" ok=".onValueHelpOkPress" cancel=".onValueHelpCancelPress"
+		afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Position_key" descriptionKey="Name"
+		class="value-header">
+		<filterBar>
+			<fb:FilterBar showClearOnFB="true" advancedMode="true" search="onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="HeadoftheAccountingSection" label="HeadoftheAccountingSection" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="HeadoftheAccountingSection"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Head of the Accounting Section Name" label="Head of the Accounting Section Name"
+						visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Head of the Accounting Section Name"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

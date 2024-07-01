@@ -1,0 +1,80 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false"/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>FirstName}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Vorna/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Vorna/} === '' ? ${i18n>FirstName} : '' }" placeholder="{i18n>FirstName}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Vorna/}"/>
+				<Label text="{i18n>area}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zarea/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zarea/} === '' ? ${i18n>area} : '' }" placeholder="{i18n>area}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Zarea/}"/>
+				<!--	<Label text="{i18n>device}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zdasetting/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zdasetting/} === '' ? ${i18n>device} : '' }" placeholder="{i18n>device}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Zdasetting/}"/>-->
+				<Label text="{i18n>enddate}" required="true"/>
+				<DatePicker valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zendate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zendate/} === '' ? ${i18n>enddate} : '' }" placeholder="{i18n>enddate}"
+					valueFormat="dd/MM/yyyy" displayFormat="dd/MM/yyyy" value="{/TimeManagement/ActivatingAccessCard/Header/Zendate/}" change="handleChange"
+					class=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>department}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Orgeh/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Orgeh/} === '' ? ${i18n>department} : '' }" placeholder="{i18n>department}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Orgeh/}"/>
+				<Label text="{i18n>LastName}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Nachn/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Nachn/} === '' ? ${i18n>LastName} : '' }" placeholder="{i18n>LastName}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Nachn/}"/>
+				<Label text="{i18n>identityno}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Idcot/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Idcot/} === '' ? ${i18n>identityno} : '' }" placeholder="{i18n>identityno}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Idcot/}"/>
+				<Label text="{i18n>cardno}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Zcardno/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Zcardno/} === '' ? ${i18n>cardno} : '' }" placeholder="{i18n>cardno}"
+					value="{/TimeManagement/ActivatingAccessCard/Header/Zcardno/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TimeManagement/ActivatingAccessCard/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeManagement/ActivatingAccessCard/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TimeManagement/ActivatingAccessCard/Header/Descript/}"
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/TimeManagement/ActivatingAccessCard/Header/Zcomment/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

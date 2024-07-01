@@ -1,0 +1,124 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press="handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AccountPayable/ManagePettyCash/Header/quantity/}"/>
+				<Label text="{i18n>plant}" required="false"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/AccountPayable/ManagePettyCash/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/ManagePettyCash/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AccountPayable/ManagePettyCash/Header/Descript/}" valueHelpRequest=""/>
+				<!--<Label text="{i18n>workcenter}" required="true"/>-->
+				<!--<ComboBox width="100%" valueState="None" placeholder="Select Work Center" selectedKey="{/PMCreateRequest/Header/PmWkctr/}"-->
+				<!--	items="{/PMCreateRequest/WorkCenterF4/}">-->
+				<!--	<core:Item key="{Workcenter}" text="{Workcenter} - {WorkcenterDesc}"/>-->
+				<!--</ComboBox>-->
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>FiscalYear}" required="true"/>
+				<DatePicker valueState="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} === '' ? 'Enter Fiscal Year' : '' }" displayFormat="yyyy"
+					valueFormat="yyyy" value="{/AccountPayable/ManagePettyCash/Header/FiscalYear}" change="handleManagePettyCashDateChange" class=""/>
+				<Label text="{i18n>CashJournalNUmber}" required="true"/>
+				<Input enabled="{= ${/AccountPayable/ManagePettyCash/Header/FiscalYear} !== undefined ? true : false }"
+					valueState="{= ${/CashJornalF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CashJornalF4/} === '' ? 'Enter Cash Jornal Code' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_CASHJOURNALVH1-com.swcc.Template.fragments.FinanceModule.CashJournalF4-/CashJornalF4/" width="100%"
+					placeholder="Enter Cash Jornal Code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CashJornalF4/}">
+					<customData>
+						<core:CustomData key="CashJournalDocumentInternalID" value="Cash Journal Document Internal ID"/>
+						<core:CustomData key="FiscalYear" value="Fiscal Year"/>
+					</customData>
+				</Input>
+			</fm:content>
+			<Button text="Search" type="Default" press="onSearchFinanceRequest" width="65%"
+				class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/AccountPayable/ManagePettyCash/Header/NotifText/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+		</Toolbar>
+		<Table growingThreshold="5" growingScrollToLoad="true" growing="true" selectionChange="onTableSelectionChange"
+			sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="MultiSelect" items="{path : '/AccountPayable/ManagePettyCash/itemData'}"
+			fixedLayout="true" class="ssp-request-Table sapUiContentPadding">
+			<columns>
+				<Column width="20em">
+					<Text text="Cash Journal Number"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Posting Date"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Amount"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Currency"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle">
+					<cells>
+						<Text text="{PostingNo}"/>
+						<Text text="{path:'PostingDate', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'dd MMMM, yyyy' } }"/>
+						<Text text="{NetAmount}"/>
+						<Text text="{Currency}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,805 @@
+{
+    "resources": [
+        {
+            "name": "fragments/SCMModule/WarehouseLogistics/Scrapsale.fragment.xml"
+        },
+        {
+            "name": "i18n/i18n.properties",
+            "raw": "i18n/i18n.properties"
+        },
+        {
+            "name": "controller/App.controller.js"
+        },
+        {
+            "name": "manifest.json"
+        },
+        {
+            "name": "util/formatter.js"
+        },
+        {
+            "name": "util/api.js"
+        },
+        {
+            "name": "model/models.js"
+        },
+        {
+            "name": "controller/ViewRequest.controller.js"
+        },
+        {
+            "name": "controller/UserProfile.controller.js"
+        },
+        {
+            "name": "controller/UserManagementRequest.controller.js"
+        },
+        {
+            "name": "controller/SlaCreationView.controller.js"
+        },
+        {
+            "name": "controller/SCMCreateRequest.controller.js"
+        },
+        {
+            "name": "controller/PMCreateRequest.controller.js"
+        },
+        {
+            "name": "controller/NotFound.controller.js"
+        },
+        {
+            "name": "controller/ModuleSelect.controller.js"
+        },
+        {
+            "name": "controller/ITCreateRequest.controller.js"
+        },
+        {
+            "name": "controller/HomePage.controller.js"
+        },
+        {
+            "name": "controller/HRCreateRequest.controller.js"
+        },
+        {
+            "name": "controller/FinanceCreateRequest.controller.js"
+        },
+        {
+            "name": "controller/ErrorHandler.js"
+        },
+        {
+            "name": "controller/DetailRequest.controller.js"
+        },
+        {
+            "name": "controller/CustomerRegistration.controller.js"
+        },
+        {
+            "name": "controller/BaseController.js"
+        },
+        {
+            "name": "controller/AppHomePage.controller.js"
+        },
+        {
+            "name": "model/timezones.json"
+        },
+        {
+            "name": "serviceBinding.js"
+        },
+        {
+            "name": "Component.js"
+        },
+        {
+            "name": "manifest-bundle.zip"
+        },
+        {
+            "name": "Component-preload.js",
+            "merged": true
+        },
+        {
+            "name": "controller/CustomerRegistration-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "util/formatter-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "util/api-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "model/models-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/ViewRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/UserProfile-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/UserManagementRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/SlaCreationView-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/SCMCreateRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/PMCreateRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/NotFound-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/ModuleSelect-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/ITCreateRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/HomePage-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/HRCreateRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/FinanceCreateRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/ErrorHandler-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/DetailRequest-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/BaseController-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/AppHomePage-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "controller/App-dbg.controller.js",
+            "isDebug": true
+        },
+        {
+            "name": "serviceBinding-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "Component-dbg.js",
+            "isDebug": true
+        },
+        {
+            "name": "../../../sap-ui-version.json"
+        },
+        {
+            "name": "neo-app.json"
+        },
+        {
+            "name": "di.code-validation.core_issues.json"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/InsuranceResgistration/Create_InsuranceRegistration.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/F4Helps/VendorF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/F4Helps/PolicyTypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/F4Helps/POF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/F4Helps/MarinePOF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/F4Helps/InsurancePolicyNo.fragment.xml"
+        },
+        {
+            "name": "i18n/i18n_ar.properties",
+            "raw": "i18n/i18n.properties",
+            "locale": "_ar"
+        },
+        {
+            "name": "fragments/SCMModule/WarehouseLogistics/MaterialIssue.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/WarehouseLogistics/Localtransportsto.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/WarehouseLogistics/Localtransport.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/Qualification/ProjectandGeneralQualification.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProcurementStrategic/RFCCareCenter.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProcurementADHOC/ServiceProcurement.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProcurementADHOC/MaterialProcurement.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/Contractmanagement/Issuingcontractletter.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/Contractmanagement/ContractualOrders.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ClassificationAndInventory/STO.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ClassificationAndInventory/ProjectMaterial.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ClassificationAndInventory/DuplicateResolution.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ClassificationAndInventory/ChangeRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/PMModule/TechnicalService/TechnicalService.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TransportationandComission/Transferandsecondment.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TransportationandComission/Employeetransportation.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TransportationandComission/Commisssioningofallkinds.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TrainingandDevelopment/Employeelearninganddevelopment.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeManagement/Manageemployeeshifts.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeManagement/Activatingaccesscards.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/Termination/TerminationService.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/Recruiting/Recruitment.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/Recruiting/Externalrecruitment.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PeoplecareCenter/Updatemasterdata.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/Payroll/Employeevacations.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/CompensationandRewards/Rewards.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/BenfitsManagement/SubmitComplaint.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/BenfitsManagement/MedicalInsurance.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/BenfitsManagement/ClaimRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/Vehicle.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/ShipHulls.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/Property.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/InsuranceClaimManagement/MarineTransportation.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/PrepareReviewTrailBalance.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/PeriodEndReconciliation.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/MaintainChartOfAccount.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/IssueGovernmnentStatement.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/IssueFinancialStatement.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialReviewGeneralLedgerClose/FinancialClose.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/WBSElementF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/TransferofAssets.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/SaleofAssets.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/RetirementofAssets.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/RecordAsset.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/ProjectNtwrkF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/ProjectCapitalization.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/PerformAssetInventory.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/NonTechAssetF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/NetworkF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/DepreciationProcess.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AssetLifeCycle/AssestF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AccountsPayable/RecordProcessInvoice.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AccountsPayable/ManagePettyCash.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AccountReceivable/ManageProcessaccountCollections.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AccountReceivable/Billing.fragment.xml"
+        },
+        {
+            "name": "util/SLA_PDF/SLA_img.png"
+        },
+        {
+            "name": "util/SLA_PDF/SLA.pdf"
+        },
+        {
+            "name": "util/Images/uploadfile.png"
+        },
+        {
+            "name": "util/Images/bg1.png"
+        },
+        {
+            "name": "util/Fonts/SWCC-4-Bold.ttf"
+        },
+        {
+            "name": "util/Fonts/SWCC-3-Medium.ttf"
+        },
+        {
+            "name": "util/Fonts/SWCC-2-Regular.ttf"
+        },
+        {
+            "name": "fragments/ViewRequest/OpenAttachmentDialog.fragment.xml"
+        },
+        {
+            "name": "fragments/ViewRequest/Invoices.fragment.xml"
+        },
+        {
+            "name": "fragments/ViewRequest/DetailRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/ViewRequest/Attachments.fragment.xml"
+        },
+        {
+            "name": "fragments/ViewRequest/AllRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/UserRequestFilter.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/UserProfileRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/UserProfileData.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/UserFilter.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/OpenRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/UserManagement/ClosedRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/SmartTable/ViewAllRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/uomF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/servicegroupF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/WarehouseF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/TypeofcompetitionF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/TechnicalevalF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/SupplierF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/StosrF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/StoragelocationF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/StoragebinF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/StockchecksetF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/SitevisitF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/Servicegroup1F4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/RequeststatF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/PurchasinggroupF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProjecttypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProjectstatusF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ProductF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/PrnoF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/PonoF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/MovementtypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/MaterialtypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/MaterialgroupF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/IndustrysectorF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/CrtypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/CostcenterF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ContractvalueF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ConfidentialF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/ClassF4.fragment.xml"
+        },
+        {
+            "name": "fragments/SCMModule/BaseunitF4.fragment.xml"
+        },
+        {
+            "name": "fragments/PMModule/EquipmentF4.fragment.xml"
+        },
+        {
+            "name": "fragments/Module/ModuleRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/IcontabBar/ViewRequestSection.fragment.xml"
+        },
+        {
+            "name": "fragments/ITModule/Procurement_ITRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/ITModule/Non_Procurement_ITRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/ITModule/MaterialF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/contracttypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/WorkscheduleF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/UseridF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/UserJoblocationF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TypeofemployeementF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimetypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeRecoringVariantF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeRecoringF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeRecoringAdmisF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TimeProfileF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/TerminationF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/RequesttypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PositionF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PolicyNoF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PayscalelevelF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PayscalegroupF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/PayGroupF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/JobtitleF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/JoblocationF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/JobgradeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/InsurancerequestypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/InsurancepolicyF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/EventreasonF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/EventF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/EmployeeLocF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/CountryF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/CompanyF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/ClockInOutF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/ClaimtypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/HRModule/ClaimCountryF4.fragment.xml"
+        },
+        {
+            "name": "fragments/Forms/SLAAgreementCreation.fragment.xml"
+        },
+        {
+            "name": "fragments/Forms/CustomerRegistration.fragment.xml"
+        },
+        {
+            "name": "fragments/Forms/CreateServiceRequest.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/customercodeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/UnitF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/SystemF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/PostingvariantF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/LedgerF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/LanguageF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/HeadofaccountingF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/GlaccountF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FmareaF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialstatmentF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/FinancialauditorF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/DirectorfmF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/DepreciationF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/CurrencytypeF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/CostcenterF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/ChartofaccountF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/CashJournalF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AuthorityF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/Assestsupernumber.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/Assestclass.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AreaF4.fragment.xml"
+        },
+        {
+            "name": "fragments/FinanceModule/AccountingprincipalF4.fragment.xml"
+        },
+        {
+            "name": "fragments/CommonF4/WorkCenterF4.fragment.xml"
+        },
+        {
+            "name": "fragments/CommonF4/PlantF4.fragment.xml"
+        },
+        {
+            "name": "fragments/CommonF4/MaterialF4.fragment.xml"
+        },
+        {
+            "name": "fragments/CommonF4/CompanycodeF4.fragment.xml"
+        },
+        {
+            "name": "view/app.view.xml"
+        },
+        {
+            "name": "view/ViewRequest.view.xml"
+        },
+        {
+            "name": "view/UserProfile.view.xml"
+        },
+        {
+            "name": "view/UserManagementRequest.view.xml"
+        },
+        {
+            "name": "view/SlaCreation.view.xml"
+        },
+        {
+            "name": "view/SCMCreateRequest.view.xml"
+        },
+        {
+            "name": "view/PMCreateServiceRequest.view.xml"
+        },
+        {
+            "name": "view/PMCreateRequest.view.xml"
+        },
+        {
+            "name": "view/NotFound.view.xml"
+        },
+        {
+            "name": "view/ModuleSelect.view.xml"
+        },
+        {
+            "name": "view/ITCreateRequest.view.xml"
+        },
+        {
+            "name": "view/HomePage.view.xml"
+        },
+        {
+            "name": "view/HRCreateRequest.view.xml"
+        },
+        {
+            "name": "view/FinanceCreateRequest.view.xml"
+        },
+        {
+            "name": "view/DetailRequest.view.xml"
+        },
+        {
+            "name": "view/CustomerRegistration.view.xml"
+        },
+        {
+            "name": "view/AppHomePage.view.xml"
+        },
+        {
+            "name": "util/Claimform.pdf"
+        },
+        {
+            "name": "localService/metadata.xml"
+        },
+        {
+            "name": "fragments/ProcessFlow.fragment.xml"
+        },
+        {
+            "name": "fragments/PDFViewer.fragment.xml"
+        },
+        {
+            "name": "fragments/HomePage.fragment.xml"
+        },
+        {
+            "name": "fragments/Graphview.fragment.xml"
+        },
+        {
+            "name": "fragments/Comment.fragment.xml"
+        },
+        {
+            "name": "fragments/AppHomePageModule.fragment.xml"
+        },
+        {
+            "name": "css/style.css"
+        },
+        {
+            "name": "index.html"
+        }
+    ]
+}

@@ -1,0 +1,107 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/ITAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>IssueDescription}" required="true"/>
+				<!--	<Input placeholder="Enter Description" value="{/ITProcurement/Header/Descript/}"/>-->
+				<Input valueState="{= ${/ITProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ITProcurement/Header/Descript/} === '' ? 'Enter Issue Description' : '' }" placeholder="Allowed 40 Charcters"
+					showSuggestion="" showValueHelp="" value="{/ITProcurement/Header/Descript/}" valueHelpRequest=""/>
+				<Label text="{i18n>TotalEstimatedValue}" required="false"/>
+				<Input enabled="false" value="{/ITProcurement/Header/EstPrice/}" placeholder=""></Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm id="ssp-changerequest1" title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3"
+			columnsXL="4" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="true"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/ITProcurement/Header/NotifText/}" growing="true" growingMaxLines="7" height="6rem"
+					width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table items="{path : '/ITProcurement/itemData/'}" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding"
+				inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>material}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Description}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>StockAvailability}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TotalPrice}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_ITMATERIALVH-com.swcc.Template.fragments.ITModule.MaterialF4-/MaterialF4/" width="100%"
+								placeholder="Select Material" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{MaterialF4}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="ProductName" value="Description"/>
+								</customData>
+							</Input>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" change="handleLiveChangeQty"/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input placeholder="Req" value="{StockAvailable}" enabled="false"/>
+							<Input enabled="false" value="{UnitPrice}"/>
+							<Input enabled="false" value="{TotalPrice}"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>

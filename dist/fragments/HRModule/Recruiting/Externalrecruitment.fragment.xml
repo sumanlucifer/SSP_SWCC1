@@ -1,0 +1,75 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<!--	<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>-->
+				<Label text="{i18n>jobtitle}" required="false"/>
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? ${i18n>jobtitle} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="{i18n>jobtitle}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>yearsofexp}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zexp/} === '' ? ${i18n>yearsofexp} : '' }" placeholder="{i18n>yearsofexp}"
+					type="Number" value="{/Recruitment/ExternalRecruitment/Header/Zexp/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Recruitment/ExternalRecruitment/Header/Descript/}"
+					valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="{i18n>Description}" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>thewebsite}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? ${i18n>thewebsite} : '' }" placeholder="{i18n>thewebsite}"
+					value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>
+				<!--	<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjdept/} === '' ? '{i18n>thewebsite}' : '' }" placeholder="{i18n>thewebsite}"
+					value="{/Recruitment/ExternalRecruitment/Header/Zjdept/}" showSuggestion=""/>-->
+				<Label text="{i18n>taskduties}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjtasks/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjtasks/} === '' ? ${i18n>taskduties} : '' }" placeholder="{i18n>taskduties}"
+					showSuggestion="" value="{/Recruitment/ExternalRecruitment/Header/Zjtasks/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>qualificationreq}" required="true"/>
+				<Input valueState="{= ${/Recruitment/ExternalRecruitment/Header/Zjqreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/ExternalRecruitment/Header/Zjqreq/} === '' ? ${i18n>qualificationreq} : '' }"
+					placeholder="{i18n>qualificationreq}" value="{/Recruitment/ExternalRecruitment/Header/Zjqreq/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/Recruitment/ExternalRecruitment/Header/Zcomment/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

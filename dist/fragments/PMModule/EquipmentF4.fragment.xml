@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns="sap.ui.comp.valuehelpdialog" xmlns:m="sap.m" xmlns:fb="sap.ui.comp.filterbar" xmlns:core="sap.ui.core">
+	<ValueHelpDialog ariaDescribedBy="/PMCreateRequest/Header/Equipment/" title="Equipment Details" ok=".onValueHelpOkPress"
+		cancel=".onValueHelpCancelPress" afterClose=".onValueHelpAfterClose" afterOpen=".onValueHelpAfterOpen" supportRanges="false" key="Equipment"
+		descriptionKey="EquipmentName">
+		<filterBar>
+			<fb:FilterBar change="onFilterValChanged" clear="onClearFilter" showClearOnFB="true" showClearButton="true" advancedMode=" true"
+				search=" onFilterBarSearch">
+				<fb:filterGroupItems>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Equipment" label="Equipment Code" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Equipment"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="EquipmentName" label="Equipment Name" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="EquipmentName"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="ObjectType" label="Object Type" visibleInFilterBar="true">
+						<fb:control>
+							<m:ComboBox name="Object" items="{/PMCreateRequest/ObjectType/}">
+								<m:items>
+									<core:Item key="{TechnicalObjectType}" text="{TechnicalObjectType}-{TechnicalObjectTypeDesc}"/>
+								</m:items>
+							</m:ComboBox>
+						</fb:control>
+					</fb:FilterGroupItem>
+					<fb:FilterGroupItem groupName="__$INTERNAL$" name="Sort" label="Sort" visibleInFilterBar="true">
+						<fb:control>
+							<m:Input name="Sort"/>
+						</fb:control>
+					</fb:FilterGroupItem>
+				</fb:filterGroupItems>
+			</fb:FilterBar>
+		</filterBar>
+	</ValueHelpDialog>
+</core:FragmentDefinition>

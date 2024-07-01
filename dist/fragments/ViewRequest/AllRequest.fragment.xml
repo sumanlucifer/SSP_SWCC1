@@ -1,0 +1,76 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox width="100%" class="viewall-tbl">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>viewallrequest}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+		</fm:SimpleForm>
+		<Table id="idViewRequestTable" growing="true" growingScrollToLoad="false" growingThreshold="10" sticky="ColumnHeaders,HeaderToolbar"
+			inset="false" items="{path : '/RequestDetails/itemData'}" noDataText="No Open Requests Pending" class="ssp-request-Table">
+			<headerToolbar>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<OverflowToolbar>
+						<ToolbarSpacer/>
+						<SearchField placeholder="Enter Request ID" search="onSearch" width="17.5rem"/>
+					</OverflowToolbar>
+					<!--	<Button text="Approve" class="swcc-pmy-btn" press="onApprove"/>
+					<Button type="Reject" class="swcc-sec-btn" text="Reject" press="onPress"/>-->
+					<!--<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
+					<!--<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
+					<!--<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
+					<!--	<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
+				</OverflowToolbar>
+			</headerToolbar>
+			<infoToolbar>
+				<OverflowToolbar id="vsdFilterBar" visible="false">
+					<Text id="vsdFilterLabel"/>
+				</OverflowToolbar>
+			</infoToolbar>
+			<columns>
+				<Column width="12em">
+					<Text text="Request ID"/>
+				</Column>
+				<Column width="12em">
+					<Text text="Request Type"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Created On"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Sub Service Product"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Service Level"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Price"/>
+				</Column>
+				<Column minScreenWidth="Tablet" demandPopin="true">
+					<Text text="Status"/>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem vAlign="Middle" type="Active" navigated="{ parts: [ 'settings>/navigatedItem', 'ProductId' ], formatter: '.isNavigated' }"
+					press="onRowPress">
+					<cells>
+						<ObjectIdentifier title="{RequestID}"/>
+						<Text text="{RequestType}"/>
+						<!--<Text text="{path:'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+						<Text text="{path: 'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy HH:mm:ss' } }"/>
+						<!--<Text text="{path: 'CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy hh:mm:ss a' } }"/>-->
+						<Text text="{Material}"/>
+						<Text text="{SLA}"/>
+						<Text text="{Price}"/>
+						<Text text="{Status}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

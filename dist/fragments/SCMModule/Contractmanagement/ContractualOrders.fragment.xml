@@ -1,0 +1,137 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>contractor}" required="true"/>
+				<Input valueState="{= ${/SupplierF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/SupplierF4/} === '' ? ${i18n>contractor} : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_Supplier_VH-com.swcc.Template.fragments.SCMModule.SupplierF4-/SupplierF4/" width="100%"
+					placeholder="{i18n>contractor}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SupplierF4/}">
+					<customData>
+						<core:CustomData key="Supplier" value="Supplier"/>
+						<core:CustomData key="SupplierName" value="Supplier Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>pono}" required="true"/>
+				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>pono} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/I_PurchaseOrder-com.swcc.Template.fragments.SCMModule.PonoF4-/PonoF4/" width="100%" placeholder="{i18n>pono}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PonoF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchasing Document"/>
+						<core:CustomData key="PurchaseOrderType" value="Document Type"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ContractManagement/ContractualChangeOrders/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ContractManagement/ContractualChangeOrders/Header/Descript/}"
+					valueHelpRequest=""/>
+				<!--	<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PR_JUST/}" showValueHelp="" valueHelpRequest=""/>-->
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<!--	<Label text="{i18n>requestingparty}" required="false"/>
+				<Input placeholder="{i18n>requestingparty}" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/ReqParty/}"
+					showValueHelp="" valueHelpRequest=""/>-->
+				<Label text="{i18n>prno}" required="true"/>
+				<Input valueState="{= ${/PrnoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PrnoF4/} === '' ? ${i18n>prno} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PR_VH-com.swcc.Template.fragments.SCMModule.PrnoF4-/PrnoF4/" width="100%" placeholder="{i18n>prno}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PrnoF4/}">
+					<customData>
+						<core:CustomData key="PurchasingDocument" value="Purchasing Document "/>
+						<core:CustomData key="PurchaseRequisition" value="Purchase Requisition"/>
+					</customData>
+				</Input>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1' ? true : false}" text="{i18n>contractvalue}" required="true"/>
+				<Input valueState="{= ${/PonoF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PonoF4/} === '' ? ${i18n>contractvalue} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PURORDER_VH-com.swcc.Template.fragments.SCMModule.ContractvalueF4-/ContractvalueF4/" width="100%"
+					placeholder="{i18n>contractvalue}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					change="handleLiveChangeContractPrcUnitPrice" value="{/ContractvalueF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="Purchase Order"/>
+						<core:CustomData key="NetPriceAmount" value="Net Price Amount"/>
+					</customData>
+				</Input>
+				<!--	<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${//ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? ${i18n>contractvalue} : '' }"
+					visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1' ? true : false}" placeholder="{i18n>contractvalue}"
+					value="{/ContractManagement/ContractualChangeOrders/Header/EstPrice}" change="handleLiveChangeContractPrcUnitPrice" showValueHelp=""
+					editable="true" valueHelpRequest=""/>-->
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1-A' ? true : false}" text="{i18n>changeordervalue}" required="true"/>
+				<Input valueState="{= ${/ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${//ContractManagement/ContractualChangeOrders/Header/EstPrice/} === '' ? ${i18n>contractvalue} : '' }"
+					visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2007-1-A' ? true : false}" placeholder="{i18n>changeordervalue}"
+					value="{/ContractManagement/ContractualChangeOrders/Header/EstPrice}" change="handleLiveChangeContractPrcUnitPrice" showValueHelp=""
+					editable="true" valueHelpRequest=""/>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/ContractManagement/ContractualChangeOrders/Header/TotalValue/}"
+					showValueHelp="" editable="true" valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ContractManagement/ContractualChangeOrders/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label required="true" text="{i18n>Attachments}"></Label>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

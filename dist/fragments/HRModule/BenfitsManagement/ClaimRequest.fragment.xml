@@ -1,0 +1,184 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}" valueHelpRequest=""/>
+				<Label text="{i18n>name}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/PadCname/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/PadCname/} === '' ? ${i18n>name} : '' }" placeholder="{i18n>name}"
+					value="{/BenefitsManagement/ClaimRequest/Header/PadCname/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>mobileNumber}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Zmobile/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zmobile/} === '' ? ${i18n>mobileNumber} : '' }"
+					placeholder="{i18n>mobileNumber}" type="Number" value="{/BenefitsManagement/ClaimRequest/Header/Zmobile/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>insurancepolicy}" required="true"/>
+				<Input valueState="{= ${/InsurancepolicyF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsurancepolicyF4/} === '' ? ${i18n>insurancepolicy} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_INSPOLICY-com.swcc.Template.fragments.HRModule.InsurancepolicyF4-/InsurancepolicyF4/" width="100%"
+					placeholder="{i18n>insurancepolicy}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/InsurancepolicyF4/}">
+					<customData>
+						<core:CustomData key="value_1" value="Insurance policy"/>
+						<core:CustomData key="keyfield" value="Insurance policy type"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>amount}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Zamount/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zamount/} === '' ? ${i18n>amount} : '' }" placeholder="{i18n>amount}"
+					type="Number" value="{/BenefitsManagement/ClaimRequest/Header/Zamount/}"/>
+				<Label text="{i18n>bankname}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Bankk/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Bankk/} === '' ? ${i18n>bankname} : '' }" placeholder="{i18n>bankname}"
+					value="{/BenefitsManagement/ClaimRequest/Header/Bankk/}"/>
+				<Label text="{i18n>country}" required="true"/>
+				<Input valueState="{= ${/CountryF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/CountryF4/} === '' ? ${i18n>country} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_COUNTRYCLAIM-com.swcc.Template.fragments.HRModule.ClaimCountryF4-/CountryF4/" width="100%"
+					placeholder="{i18n>country}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CountryF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Country"/>
+						<core:CustomData key="value_1" value="Country Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>providername}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Zproname/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zproname/} === '' ? ${i18n>providername} : '' }"
+					value="{/BenefitsManagement/ClaimRequest/Header/Zproname/}" placeholder="{i18n>providername}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/BenefitsManagement/ClaimRequest/Header/Descript/}"
+					valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>whenshould}" required="true"/>
+				<DatePicker valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Begda/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/ClaimRequest/Header/Begda/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>membershipnumber}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Zmemnum/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zmemnum/} === '' ? ${i18n>membershipnumber} : '' }"
+					placeholder="{i18n>membershipnumber}" value="{/BenefitsManagement/ClaimRequest/Header/Zmemnum/}" valueHelpRequest=""/>
+				<Label text="{i18n>National}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/P25Idcot/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/P25Idcot/} === '' ? ${i18n>National} : '' }"
+					value="{/BenefitsManagement/ClaimRequest/Header/P25Idcot/}" placeholder="{i18n>National}" valueHelpRequest=""/>
+				<Label text="{i18n>iban}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Iban/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Iban/} === '' ? ${i18n>iban} : '' }"
+					value="{/BenefitsManagement/ClaimRequest/Header/Iban/}" placeholder="{i18n>iban}" valueHelpRequest=""/>
+				<Label text="{i18n>gender}" required="true"/>
+				<!--<ComboBox selectedKey="{/BenefitsManagement/ClaimRequest/Header/Gesch/}" placeholder="Select Gender" width="100%" valueState="None">
+					<items>
+						<core:Item key="M" text="Male"/>
+						<core:Item key="F" text="Female"/>
+					</items>
+				</ComboBox>-->
+				<ComboBox valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Gesch/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Gesch/} === '' ? ${i18n>gender} : '' }"
+					selectedKey="{/BenefitsManagement/ClaimRequest/Header/Gesch/}" placeholder="{i18n>gender}">
+					<items>
+						<core:Item key="2" text="Male"/>
+						<core:Item key="3" text="Female"/>
+					</items>
+				</ComboBox>
+				<Label text="{i18n>City}" required="true"/>
+				<Input valueState="{= ${/BenefitsManagement/ClaimRequest/Header/PadOrt01/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/PadOrt01/} === '' ? ${i18n>City} : '' }" placeholder="{i18n>City}"
+					value="{/BenefitsManagement/ClaimRequest/Header/PadOrt01/}"/>
+				<Label text="{i18n>visitdate}" required="true"/>
+				<DatePicker valueState="{= ${/BenefitsManagement/ClaimRequest/Header/Zvisdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/BenefitsManagement/ClaimRequest/Header/Zvisdat/} === '' ? 'Enter Date' : '' }"
+					value="{/BenefitsManagement/ClaimRequest/Header/Zvisdat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>claimtype}" required="true"/>
+				<Input valueState="{= ${/ClaimtypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClaimtypeF4/} === '' ? ${i18n>mobileNumber} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLAIMTYPE-com.swcc.Template.fragments.HRModule.ClaimtypeF4-/ClaimtypeF4/" width="100%"
+					placeholder="{i18n>claimtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClaimtypeF4/}">
+					<customData>
+						<core:CustomData key="value_1" value="Claim"/>
+						<core:CustomData key="keyfield" value="Claim type"/>
+					</customData>
+				</Input>
+				<Label text=""/>
+				<Link text="{i18n>claimrequest}" press="onDownloadClaim" class="sapUiMediumMarginTop" emphasized="true"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>comments}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/BenefitsManagement/ClaimRequest/Header/Zcomment/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>medicalinsuranceattachement}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label text="{i18n>Attachments}" required="true" level="H1"></Label>
+							<Text text="{i18n>uploadtooltip1mb}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="1" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

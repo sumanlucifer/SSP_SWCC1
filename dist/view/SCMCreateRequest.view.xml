@@ -1,0 +1,73 @@
+<mvc:View controllerName="com.swcc.Template.controller.SCMCreateRequest" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage headerExpanded="true" showFooter="true" busy="{/busy}" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content>
+					<VBox
+						visible="{= ${/SCMAppVisible} === 'SSAPSCM20011-U' || ${/SCMAppVisible} === 'SSA-PSCM-2004-1' || ${/SCMAppVisible} === 'SSA-PSCM-2004-2' || ${/SCMAppVisible} === 'SSA-PSCM-2004-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementStrategic.RFCCareCenter" type="XML"/>
+					</VBox>
+					<VBox
+						visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2005-1' || ${/SCMAppVisible} === 'SSA-PSCM-2005-2' || ${/SCMAppVisible} === 'SSA-PSCM-2005-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Qualification.ProjectandGeneralQualification" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-2' || ${/SCMAppVisible} === 'SSA-PSCM-2010-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.MaterialIssue" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ChangeRequest" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.DuplicateResolution" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2012-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.ProjectMaterial" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2011-2-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ClassificationAndInventory.STO" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2001-1' || ${/SCMAppVisible} === 'SSA-PSCM-2001-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementADHOC.MaterialProcurement" type="XML"/>
+					</VBox>
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2002-1') || (${/SCMAppVisible} === 'SSA-PSCM-2002-2')}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.ProcurementADHOC.ServiceProcurement" type="XML"/>
+					</VBox>
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-1')|| (${/SCMAppVisible} === 'SSA-PSCM-2007-1-A')}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Contractmanagement.ContractualOrders" type="XML"/>
+					</VBox>
+					<VBox visible="{= (${/SCMAppVisible} === 'SSA-PSCM-2007-2-A')|| (${/SCMAppVisible} === 'SSA-PSCM-2007-2')}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.Contractmanagement.Issuingcontractletter" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2008-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Localtransport" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2008-2-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Localtransportsto" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.SCMModule.WarehouseLogistics.Scrapsale" type="XML"/>
+					</VBox>
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Save}" type="Accept" class="btn-proceed" press="onProceed"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

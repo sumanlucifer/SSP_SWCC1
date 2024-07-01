@@ -1,0 +1,189 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/RecordAsset/Header/quantity/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/AssetLifecycle/RecordAsset/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RecordAsset/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/RecordAsset/Header/Descript/}"
+					valueHelpRequest=""/>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>AssetClass}" required="true"/>
+				<Input valueState="{= ${/AssestclassF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssestclassF4/} === '' ? 'Select Asset Class' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_AssetClassStdVH-com.swcc.Template.fragments.FinanceModule.Assestclass-/AssestclassF4/" width="100%"
+					placeholder="Enter Assest Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestclassF4/}">
+					<customData>
+						<core:CustomData key="AssetClass" value="Asset Class"/>
+						<core:CustomData key="AssetClass_Text" value="Asset Class Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>SubNumber}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/"
+					width="100%" placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestF4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" valueState="{= ${/AssetLifecycle/RecordAsset/Header/Txt50/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RecordAsset/Header/Txt50/} === '' ? 'Enter Description' : '' }" required="true"
+					value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" width="100%"/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>AssetMainNoText}" required="false"/>
+				<Input enabled="false" placeholder="Enter Asset Main No." value="{/AssetLifecycle/RecordAsset/Header/Txt50/}" required="true" width="100%"/>
+				<Label text="{i18n>InventoryNumber}" required="false"/>
+				<Input placeholder="Enter Inventory No." value="{/AssetLifecycle/RecordAsset/Header/Invnr/}" width="100%"/>
+				<Label text="{i18n>InventoryNote}" required="false"/>
+				<Input placeholder="Enter Inventory Note" value="{/AssetLifecycle/RecordAsset/Header/Invzu/}" width="100%"/>
+				<Label text="{i18n>CaptitalizedOn}" required="false"/>
+				<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" enabled="true" value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}"
+					change="handleChange" class=""/>
+				<!--	<Input placeholder="Enter Capitalized On." value="{/AssetLifecycle/RecordAsset/Header/Aktiv/}" width="100%"/>-->
+				<Label text="{i18n>CostCenter}" required="true"/>
+				<Input valueState="{= ${/costF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/costF4/} === '' ? 'Enter Cost Center' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_COSTCTRVH-com.swcc.Template.fragments.FinanceModule.CostcenterF4-/costF4/" width="100%"
+					placeholder="Enter Cost Center" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/costF4/}">
+					<customData>
+						<core:CustomData key="CostCenter" value="Cost Center"/>
+						<core:CustomData key="CostCenterName" value="Cost Center Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>ProfitCenter}" required="false"/>
+				<Input enabled="false" width="100%" placeholder="Enter Profit Center" valueHelpOnly="false"
+					value="{/AssetLifecycle/RecordAsset/Header/ProfitCentr/}"></Input>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>Area}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group1AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.AreaF4-/AreaF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AreaF4/}">
+					<customData>
+						<core:CustomData key="Group1AssetEvaluationKey" value="Area"/>
+						<core:CustomData key="Group1AssetEvaluationKey_Text" value="Area Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Unit}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group2AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.UnitF4-/UnitF4/" width="100%"
+					placeholder="Enter Unit" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/UnitF4/}">
+					<customData>
+						<core:CustomData key="Group2AssetEvaluationKey" value="Unit"/>
+						<core:CustomData key="Group2AssetEvaluationKey_Text" value="Unit Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>System}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_Group3AssetEvaluationKey-com.swcc.Template.fragments.FinanceModule.SystemF4-/SystemF4/" width="100%"
+					placeholder="Enter System" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SystemF4/}">
+					<customData>
+						<core:CustomData key="Group3AssetEvaluationKey" value="System"/>
+						<core:CustomData key="Group3AssetEvaluationKey_Text" value="System Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>AssetSuperNumber}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_SUPER-com.swcc.Template.fragments.FinanceModule.Assestsupernumber-/AssestsupernumberF4/"
+					width="100%" placeholder="Enter Asset Super Number" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestsupernumberF4/}">
+					<customData>
+						<core:CustomData key="AssetSuperNum" value="Asset Super Num"/>
+						<core:CustomData key="AssetSuperText" value="Asset Super Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>NonTechnicalAsset}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_NONTECH_ASSET-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NonTechAssetF4-/AssestnontechF4/"
+					width="100%" placeholder="Enter Non Technical Asset" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AssestnontechF4/}">
+					<customData>
+						<core:CustomData key="AssetNonTech" value="Asset Non Tech"/>
+						<core:CustomData key="AssetNonTechText" value="Asset Non Tech Text"/>
+					</customData>
+				</Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/AssetLifecycle/RecordAsset/Header/NotifText/}" growing="true" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Title text="{i18n>Attachments}" level="H1"></Title>
+							<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text=""/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

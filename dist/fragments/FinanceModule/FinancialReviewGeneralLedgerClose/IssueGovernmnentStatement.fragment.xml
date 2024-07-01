@@ -1,0 +1,131 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input placeholder="Enter Quantity" enabled="false" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/quantity/}"/>
+				<!--<Input placeholder="Enter Quantity" value="{/PMCreateRequest/Header/MaterialQty/}"/>-->
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/Descript/}" valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>FinancialYear}" required="true"/>
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear} === '' ? 'Enter Financial Year' : '' }"
+					displayFormat="yyyy" valueFormat="yyyy" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/FiscalYear}"/>
+				<Label text="{i18n>FMAREA}" required="true"/>
+				<Input valueState="{= ${/FmareaF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/FmareaF4/} === '' ? 'Enter FM Area' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_FinMgmtAreaStdVH-com.swcc.Template.fragments.FinanceModule.FmareaF4-/FmareaF4/" width="100%"
+					placeholder="Enter FM Area" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/FmareaF4}">
+					<customData>
+						<core:CustomData key="FinancialManagementArea" value="FM Area"/>
+						<core:CustomData key="FinancialManagementArea_Text" value="FM Area Name"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>Period}" required="true"/>
+				<ComboBox valueState="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/Poper} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/IssueGovernment/Header/Poper} === '' ? 'Select Period' : '' }"
+					selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Poper}" width="100%" enabled="true" placeholder="Select Period">
+					<items>
+						<core:Item key="01" text="01"/>
+						<core:Item key="02" text="02"/>
+						<core:Item key="03" text="03"/>
+						<core:Item key="04" text="04"/>
+						<core:Item key="05" text="05"/>
+						<core:Item key="06" text="06"/>
+						<core:Item key="07" text="07"/>
+						<core:Item key="08" text="08"/>
+						<core:Item key="09" text="09"/>
+						<core:Item key="10" text="10"/>
+						<core:Item key="11" text="11"/>
+						<core:Item key="12" text="12"/>
+					</items>
+				</ComboBox>
+			</fm:content>
+		</fm:SimpleForm>
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>ResponsiblePerson}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>HeadoftheAccountingSection}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_HEAD_AS-com.swcc.Template.fragments.FinanceModule.HeadofaccountingF4-/HeadofaccountingF4/"
+					width="100%" placeholder="Enter Head of Accounting" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/HeadofaccountingF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Head of the Accounting Section"/>
+						<core:CustomData key="Name" value="Head of the Accounting Section"/>
+					</customData>
+				</Input>
+				<!--	<ComboBox width="100%" change="onCheckPlantVal" selectionChange="onSelectPlant" valueState="None"
+					placeholder="{i18n>HeadoftheAccountingSection}" selectedKey="{/FinancialReviewGeneralClose/IssueGovernment/Header/Position_key/}"
+					items="{/HeadAccountf4/}">
+					<core:Item key="{Position_key}" text="{Position_key} - {Name}"/>
+				</ComboBox>-->
+				<Label text="{i18n>DirectorofFinancialManagement}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_DRCTOR_FM-com.swcc.Template.fragments.FinanceModule.DirectorfmF4-/DirectorfmF4/" width="100%"
+					placeholder="Enter Director of Financial Management" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/DirectorfmF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Director of FM"/>
+						<core:CustomData key="Name" value="Director of FM Name"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>FinancialAuditor}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Financial_Auditor-com.swcc.Template.fragments.FinanceModule.FinancialauditorF4-/FinancialauditorF4/"
+					width="100%" placeholder="Enter Financial Auditor" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/FinancialauditorF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Financial Auditor"/>
+						<core:CustomData key="Name" value="Financial Auditor Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Authority}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_Authority-com.swcc.Template.fragments.FinanceModule.AuthorityF4-/AuthorityF4/" width="100%"
+					placeholder="Enter Authority" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AuthorityF4}">
+					<customData>
+						<core:CustomData key="Position_key" value="Authority"/>
+						<core:CustomData key="Name" value="Authority Name"/>
+					</customData>
+				</Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/FinancialReviewGeneralClose/IssueGovernment/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

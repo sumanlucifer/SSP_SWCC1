@@ -1,0 +1,106 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<HBox width="100%">
+		<fm:SimpleForm title="{i18n>customerreg}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2"
+			singleContainerFullSize="false" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>customerinformation}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>customername}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Company/} === '' ? 'Enter Customer Name' : '' }"
+					value="{/CustomerRegistrationData/Header/Company/}" type="text" placeholder="Enter Customer Name"/>
+				<Label text="{i18n>country}" required="true"/>
+				<ComboBox valueState="{= ${/CustomerRegistrationData/Header/Land1/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Land1/} === '' ? 'Select Country' : '' }" width="100%"
+					selectionChange="onCountryChange" placeholder="Select Country" selectedKey="{/CustomerRegistrationData/Header/Land1/}"
+					items="{/CustomerRegistrationData/CountryF4/}">
+					<core:Item key="{Country}" text="{CountryName}"/>
+				</ComboBox>
+				<Label text="{i18n>City}" required="true"/>
+				<ComboBox enabled="{= ${/CustomerRegistrationData/Header/Land1/} !== undefined ? true : false }"
+					valueState="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Regio/} === '' ? 'Select City' : '' }" width="100%" placeholder="Select City"
+					selectedKey="{/CustomerRegistrationData/Header/Regio/}" items="{/CustomerRegistrationData/RegionF4/}">
+					<core:Item key="{Region}" text="{RegionName}"/>
+				</ComboBox>
+				<Label text="{i18n>street}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Stras/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Stras/} === '' ? 'Enter Street' : '' }"
+					value="{/CustomerRegistrationData/Header/Stras/}" type="text" placeholder="Enter Street"/>
+				<Label text="{i18n>postalcode}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Pstlz/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Pstlz/} === '' ? 'Enter Postal Code' : '' }"
+					value="{/CustomerRegistrationData/Header/Pstlz/}" type="Number" placeholder="Enter Postal Code"/>
+				<Label text="{i18n>shortname}" required="false"/>
+				<Input value="{/CustomerRegistrationData/Header/SearchTerm/}" placeholder="Enter Short Name" ariaLabelledBy="Inputshortname"/>
+				<Label text="{i18n>PhoneNumber}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/PhoneNo/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/PhoneNo/} === '' ? 'Enter Phone' : '' }"
+					value="{/CustomerRegistrationData/Header/PhoneNo/}" type="Number" placeholder="Enter Phone Number"/>
+				<!--	<Label text="{i18n>POBOX}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/PoBox/} === '' ? 'Enter PO Box' : '' }"
+					value="{/CustomerRegistrationData/Header/PoBox/}" placeholder="Enter PO BOX"/>-->
+				<!--<Label text="{i18n>City}" required="true"/>-->
+				<!--<Input value="{/CustomerRegistrationData/Header/Ort01/}" placeholder="Enter PO BOX" ariaLabelledBy="Inputponumber"/>-->
+				<Label text="{i18n>Email}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Email/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Email/} === '' ? 'Enter Email' : '' }"
+					value="{/CustomerRegistrationData/Header/Email/}" type="Email" placeholder="Enter Email" ariaLabelledBy="InputEmailLabel"/>
+				<Label text="{i18n>crno}" required="true"/>
+				<Input valueState="{= ${/CustomerRegistrationData/Header/Cr_No/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CustomerRegistrationData/Header/Cr_No/} === '' ? 'Enter CR Number' : '' }"
+					value="{/CustomerRegistrationData/Header/Cr_No/}" enabled="true" type="Text" placeholder="Enter Customer Registration No"
+					ariaLabelledBy="Inputcrno"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</HBox>
+	<VBox class="uploadBox sapUiSmallMarginBeginEnd">
+		<Label text="{i18n>Attachments}" required="false"/>
+		<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+			sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+			fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+			placeholder="Choose a file" style="Emphasized"
+			mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+	</VBox>
+	<VBox>
+		<Table items="{/CustomerRegistrationData/UploadedData}" class="upload-table" mode="Delete" noDataText="{i18n>uploadtooltip}">
+			<!--	<headerToolbar >
+				<Toolbar>
+					<content>
+						<Image src="../webapp/util/Images/uploadfile.png" height="auto" class="hide-data" width="auto">
+							<layoutData>
+								<FlexItemData growFactor="1"/>
+							</layoutData>
+						</Image>
+					</content>
+				</Toolbar>
+			</headerToolbar>-->
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{Filesize}"/>
+						<Text textAlign="Center" text="{Delete}"/>
+						<!-- Add more cells as needed -->
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,62 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table id="idPendingUserTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="None"
+		items="{path : '/OpenItemRequestData/itemData'}" class="ssp-request-Table">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Requests" level="H2"/>
+				<ToolbarSpacer/>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+				<!--<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
+				<!--<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
+				<!--<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
+				<!--<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar id="vsdFilterBar" visible="false">
+				<Text id="vsdFilterLabel"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="12em">
+				<Text text="Request ID"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Date"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="First Name"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Last Name"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Email"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Mobile No"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text=""/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier text="{ID}"/>
+					<Text text="{CreatedOn}"/>
+					<Text text="{FirstName}"/>
+					<Text text="{LastName}"/>
+					<Text text="{Email}"/>
+					<Text text="{Phone}"/>
+					<HBox>
+						<Button icon="sap-icon://employee-approvals" class="swcc-pmy-btn" type="Accept" press="onApprove"/>
+						<Button type="Reject" class="swcc-sec-btn sapUiTinyMarginBegin" icon="sap-icon://employee-rejections" press="onReject"/>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

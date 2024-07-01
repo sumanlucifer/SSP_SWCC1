@@ -1,0 +1,36 @@
+<mvc:View controllerName="com.swcc.Template.controller.CustomerRegistration" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage id="dynamicPageId" headerExpanded="true" busy="{/busy}" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content>
+					<core:Fragment fragmentName="com.swcc.Template.fragments.Forms.CustomerRegistration" type="XML"/>
+					<!--<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>-->
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<HBox visible="{/ValidationFlag/}">
+					<MessageStrip text="{i18n>filldetails}" type="Error" showIcon="true" customIcon="sap-icon://status-error" design="Negative"
+						class="error-msg" close="handleClose"></MessageStrip>
+				</HBox>
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>submit}" type="Accept" class="btn-proceed" press="onSubmitBP"/>
+				<Button id="idcancel" text="{i18n>cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
+				<!--<Button id="idResetBTN" text="{i18n>Submit}" type="Emphasized" press="onResetPress"/>-->
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

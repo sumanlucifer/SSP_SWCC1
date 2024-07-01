@@ -1,0 +1,325 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>totalestimatedvalue}" required="false"/>
+				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalPrice/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>tenderpre}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/TenPre/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/TenPre/} === '' ? ${i18n>tenderpre} : '' }" placeholder="{i18n>tenderpre}"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TenPre/}">
+					<core:Item key="Y" text="Yes"/>
+					<core:Item key="N" text="No"/>
+				</ComboBox>
+				<Label text="{i18n>contractduration}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ContDur/} === '' ? ${i18n>contractduration} : '' }" showSuggestion=""
+					placeholder="{i18n>contractduration}" value="{/ProcurementAdhoc/ServiceProcurement/Header/ContDur/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>projecttype}" required="true"/>
+				<Input valueState="{= ${/ProjecttypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProjecttypeF4/} === '' ? ${i18n>projecttype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPROJ_TYP')/Set/-com.swcc.Template.fragments.SCMModule.ProjecttypeF4-/ProjecttypeF4/"
+					width="100%" placeholder="{i18n>projecttype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjecttypeF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Project type"/>
+						<core:CustomData key="Text" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>costestimationtype}" required="true"/>
+				<Input valueState="{= ${/CostestF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CostestF4/} === '' ? ${i18n>costestimationtype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZEST_TYP')/Set/-com.swcc.Template.fragments.SCMModule.CostestF4-/CostestF4/"
+					width="100%" placeholder="{i18n>costestimationtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/CostestF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Estimation Type"/>
+						<core:CustomData key="Text" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>technicalevaluationcriteria}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/TecEva/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/TecEva/} === '' ? ${i18n>technicalevaluationcriteria} : '' }"
+					placeholder="{i18n>technicalevaluationcriteria}" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/TecEva/}">
+					<core:Item key="A" text="Avaliable"/>
+					<core:Item key="N" text="Not Avaliable"/>
+				</ComboBox>
+				<!--	<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZTEC_EVA')/Set/-com.swcc.Template.fragments.SCMModule.TechnicalevalF4-/TechnicalevalF4/"
+					width="100%" placeholder="Enter Technical Evaluation Criteria" valueHelpOnly="false" showValueHelp="true"
+					valueHelpRequest="onValueHelpRequest" value="{/TechnicalevalF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Evaluation Type"/>
+						<core:CustomData key="Text" value="Description"/>
+					</customData>
+				</Input>-->
+				<Label text="{i18n>suggestedcompany}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/SugComp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/SugComp/} === '' ? ${i18n>suggestedcompany} : '' }"
+					placeholder="{i18n>suggestedcompany}" showSuggestion="" value="{/ProcurementAdhoc/ServiceProcurement/Header/SugComp/}"/>
+				<Label text="{i18n>servicelevel}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/} === '' ? ${i18n>servicelevel} : '' }"
+					placeholder="{i18n>servicelevel}" selectionChange="onChangeServiceLevel"
+					selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/ServiceLevel/}">
+					<core:Item key="N" text="Normal"/>
+					<core:Item key="U" text="Urgent"/>
+					<core:Item key="E" text="Emergency"/>
+				</ComboBox>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/ServiceProcurement/Header/Descript/}"
+					valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>extratermsconditions}" required="false"/>
+				<Input placeholder="Enter Terms and Conditions" value="{/ProcurementAdhoc/ServiceProcurement/Header/ExTc/}"/>
+				<Label text="{i18n>totalestvalue}" required="false"/>
+				<Input enabled="false" value="{/ProcurementAdhoc/ServiceProcurement/Header/EstPrice/}" valueHelpRequest=""/>
+				<Label text="{i18n>requeststat}" required="true"/>
+				<Input valueState="{= ${/RequeststatF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/RequeststatF4/} === '' ? ${i18n>requeststat} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZREQ_STAT')/Set/-com.swcc.Template.fragments.SCMModule.RequeststatF4-/RequiredstatF4/"
+					width="100%" placeholder="{i18n>requeststat}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/RequiredstatF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Text"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>confidentialproject}" required="true"/>
+				<Input valueState="{= ${/ConfidentialF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ConfidentialF4/} === '' ? ${i18n>confidentialproject} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCONF_PROJ')/Set/-com.swcc.Template.fragments.SCMModule.ConfidentialF4-/ConfidentialF4/"
+					width="100%" placeholder="{i18n>confidentialproject}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ConfidentialF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Status"/>
+						<core:CustomData key="Text" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>sitevisitrequired}" required="true"/>
+				<Input valueState="{= ${/SitevisitF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SitevisitF4/} === '' ? ${i18n>sitevisitrequired} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZSITE_VIS')/Set/-com.swcc.Template.fragments.SCMModule.SitevisitF4-/SitevisitF4/"
+					width="100%" placeholder="{i18n>sitevisitrequired}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/SitevisitF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Required Site Visit"/>
+						<core:CustomData key="Text" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>economicfeasibilitystudy}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/} === '' ? ${i18n>economicfeasibilitystudy} : '' }"
+					placeholder="{i18n>economicfeasibilitystudy}" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/EconFeas/}">
+					<core:Item key="Y" text="Yes"/>
+					<core:Item key="N" text="No"/>
+				</ComboBox>
+				<Label text="{i18n>securityprojectapproval}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/ServiceProcurement/Header/SecProj/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/ServiceProcurement/Header/SecProj/} === '' ? ${i18n>securityprojectapproval} : '' }"
+					placeholder="{i18n>securityprojectapproval}" selectedKey="{/ProcurementAdhoc/ServiceProcurement/Header/SecProj/}">
+					<core:Item key="A" text="Avaliable"/>
+					<core:Item key="NA" text="Not Required"/>
+				</ComboBox>
+				<Label text="{i18n>justification}" required="false"/>
+				<Input placeholder="{i18n>justification}" value="{/ProcurementAdhoc/ServiceProcurement/Header/PrJust/}" showSuggestion="" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/ServiceProcurement/Header/TotalServiceLevel/}" enabled="false"/>
+				<Label visible="false" text="{i18n>Plant}" required="false"/>
+				<Input enabled="false" visible="false" value="{/PlantF4/}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/ProcurementAdhoc/ServiceProcurement/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<Toolbar>
+			<Title level="H3" text="{i18n>itemoverview}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--<Button id="idItemOverviewTable" icon="sap-icon://add" press=".onAddItemsPress"/>-->
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="true" height="auto">
+			<Table items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>serviceshort}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>servicegroup}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>purchasinggroup}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>requisitioner}"/>
+					</Column>
+					<!--<Column width="5%"></Column>-->
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input placeholder="" showSuggestion="" value="{Txz01}" showValueHelp="" valueHelpRequest=""/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZhSrvGrpSet-com.swcc.Template.fragments.SCMModule.servicegroupF4-/servicegroupF4/" width="100%"
+								placeholder="Select Service Group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{servicegroupF4}">
+								<customData>
+									<core:CustomData key="Matkl" value="Service Code"/>
+									<core:CustomData key="Wgbez" value="Service Name"/>
+								</customData>
+							</Input>
+							<Input
+								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+								width="100%" placeholder="Select Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{PurchasinggroupF4}">
+								<customData>
+									<core:CustomData key="PurchasingGroup" value="Purchasing Group"/>
+									<core:CustomData key="PurchasingGroupName" value="Purchasing Group Name"/>
+								</customData>
+							</Input>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
+							<!--	<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>itemdetail}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table items="{path : '/ProcurementAdhoc/ServiceProcurement/itemData1'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>shorttext}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>estimatedunitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>costcenter}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input placeholder="Enter Short Text" showSuggestion="" value="{TXZ01}" showValueHelp="" valueHelpRequest="" liveChange=""/>
+							<Input placeholder="Enter Quantity" type="Number" showSuggestion="" value="{Menge}"/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/I_UnitOfMeasure-com.swcc.Template.fragments.SCMModule.uomF4-/uomF4/" width="100%"
+								placeholder="Select UOM" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{uomF4}">
+								<customData>
+									<core:CustomData key="UnitOfMeasure" value="Unit of Measure"/>
+									<core:CustomData key="UnitOfMeasure_Text" value="Name"/>
+								</customData>
+							</Input>
+							<Input enabled="{= ${Menge} !== '' ? true : false }" placeholder="Enter Unit Price" change="handleLiveChangeServcePrcUnitPrice"
+								type="Number" value="{UnitPrice}"/>
+							<Input valueState="{= ${/CostcenterF4/} === '' ? 'Error' : 'None' }"
+								valueStateText="{= ${/CostcenterF4/} === '' ? ${i18n>costcenter} : '' }"
+								ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_KOSTL_VH-com.swcc.Template.fragments.SCMModule.CostcenterF4-/CostcenterF4/" width="100%"
+								placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CostcenterF4/}">
+								<customData>
+									<core:CustomData key="usrid" value="user"/>
+									<core:CustomData key="costcenter" value="Cost Center"/>
+								</customData>
+							</Input>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label required="true" text="{i18n>Attachments}"></Label>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

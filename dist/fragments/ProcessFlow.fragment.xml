@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.suite.ui.commons" xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:m="sap.m">
+	<l:VerticalLayout class="sapUiContentPadding" width="100%">
+		<l:content>
+			<ProcessFlow scrollable="false" lanes="{/ProcessFlowData}" headerPress="onHeaderPress">
+				<lanes>
+					<ProcessFlowLaneHeader press="onLanePress" laneId="{id}" iconSrc="{icon}" text="{label}" position="{position}" state="{state}"/>
+				</lanes>
+			</ProcessFlow>
+		</l:content>
+	</l:VerticalLayout>
+</core:FragmentDefinition>

@@ -1,0 +1,193 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<!--	<Label text="{i18n>purchaseorg}" required="true"/>
+				<Input placeholder="" showSuggestion="true" showValueHelp="true" valueHelpRequest=".onValueHelpRequest"
+					suggestionItems="{/ProductCollection}">
+					<suggestionItems>
+						<core:Item text="{Name}"/>
+					</suggestionItems>
+				</Input>-->
+				<Label text="{i18n>supplyingplant}" required="true"/>
+				<Input valueState="{= ${/SuppPlantF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SuppPlantF4/} === '' ? ${i18n>supplyingplant} : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/SuppPlantF4/" width="100%"
+					placeholder="{i18n>supplyingplant}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/SuppPlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>
+				<!--	<Label text="{i18n>documenttype}" required="true"/>
+				<Input id="crdesc8" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
+				<Label text="{i18n>receivingplant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>purchasinggroup}" required="true"/>
+				<!--	<Input valueState="{= ${/PurchasinggroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PurchasinggroupF4/} === '' ? ${i18n>purchasinggroup} : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+					width="100%" placeholder="{i18n>purchasinggroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PurchasinggroupF4/}">
+					<customData>
+						<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
+						<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
+					</customData>
+				</Input>-->
+				<ComboBox valueState="{= ${/ClasssificationandInventory/STO/Header/Ekgrp/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/STO/Header/Ekgrp} === '' ? ${i18n>purchasinggroup} : '' }"
+					placeholder="{i18n>purchasinggroup}" selectedKey="{/ClasssificationandInventory/STO/Header/Ekgrp}">
+					<core:Item key="901" text="901-STO-PlantRequestor"/>
+					<core:Item key="902" text="902-STO-HQ Requestor"/>
+				</ComboBox>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ClasssificationandInventory/STO/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClasssificationandInventory/STO/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ClasssificationandInventory/STO/Header/Descript/}"
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Description}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ClasssificationandInventory/STO/Header/NotifText/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table items="{path : '/ClasssificationandInventory/STO/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>sapmaterial}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Description}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>supplyingplant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Storagelocation}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>stock}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>reqquantity}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
+								</customData>
+							</Input>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="Enter Plant" value="{Plant}" enabled="false"/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/C_StorageLocationVH-com.swcc.Template.fragments.SCMModule.StoragelocationF4-/StoragelocationF4/"
+								width="100%" placeholder="Select Storage Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{StoragelocationF4}">
+								<customData>
+									<core:CustomData key="StorageLocation" value="Storage Location"/>
+									<core:CustomData key="StorageLocationName" value="Storage Location Name"/>
+								</customData>
+							</Input>
+							<Input value="{Stock}" enabled="false"/>
+							<Input value="{Price}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" value="{Menge}" change="handleLiveChangeQty"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label text="{i18n>Attachments}"></Label>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

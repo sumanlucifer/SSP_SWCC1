@@ -1,0 +1,217 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>Company}" required="true"/>
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? ${i18n>Company} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_COMPANY-com.swcc.Template.fragments.HRModule.CompanyF4-/CompanyF4/" width="100%"
+					placeholder="{i18n>Company}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanyF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Company"/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Originstart}" required="true"/>
+				<DatePicker valueState="{= ${/TransportationCommision/Commisioning/Header/Zorgdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Zorgdat/} === '' ? 'Enter Date' : '' }"
+					value="{/TransportationCommision/Commisioning/Header/Zorgdat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>Servicedate}" required="true"/>
+				<DatePicker valueState="{= ${/TransportationCommision/Commisioning/Header/Zservdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Zservdat/} === '' ? 'Enter Date' : '' }"
+					value="{/TransportationCommision/Commisioning/Header/Zservdat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>Employeelocation}" required="true"/>
+				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>Employeelocation} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EMPLOC-com.swcc.Template.fragments.HRModule.EmployeeLocF4-/PayscalelevelF4/" width="100%"
+					placeholder="{i18n>Employeelocation}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Contracttype}" required="true"/>
+				<Input valueState="{= ${/ContracttypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ContracttypeF4/} === '' ? ${i18n>Contracttype} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CONTRACTTYPE-com.swcc.Template.fragments.HRModule.contracttypeF4-/ContracttypeF4/" width="100%"
+					placeholder="{i18n>Contracttype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ContracttypeF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Contract Type "/>
+						<core:CustomData key="value_1" value="Contract Dscription"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>payscalelevel}" required="true"/>
+				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>payscalelevel} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/" width="100%"
+					placeholder="{i18n>payscalelevel}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Timeprofile}" required="true"/>
+				<Input valueState="{= ${/TimeProfileF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeProfileF4/} === '' ? ${i18n>Timeprofile} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMEPROFILE-com.swcc.Template.fragments.HRModule.TimeProfileF4-/TimeProfileF4/" width="100%"
+					placeholder="{i18n>Timeprofile}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/TimeProfileF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Timerecordingadmin}" required="true"/>
+				<Input valueState="{= ${/TimeRecoringAdmisF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeRecoringAdmisF4/} === '' ? ${i18n>Timerecordingadmin} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGADMISS-com.swcc.Template.fragments.HRModule.TimeRecoringAdmisF4-/TimeRecoringAdmisF4/"
+					width="100%" placeholder="{i18n>Timerecordingadmin}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TimeRecoringAdmisF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>Clockinclockout}" required="true"/>
+				<Input valueState="{= ${/ClockInOutF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ClockInOutF4/} === '' ? ${i18n>Clockinclockout} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_CLOCKINOUTGROUP-com.swcc.Template.fragments.HRModule.ClockInOutF4-/ClockInOutF4/" width="100%"
+					placeholder="{i18n>Clockinclockout}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ClockInOutF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description "/>
+					</customData>
+				</Input>
+				<Label text="{i18n>paygroup}" required="true"/>
+				<Input valueState="{= ${/PayGroupF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PayGroupF4/} === '' ? ${i18n>paygroup} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYGROUP-com.swcc.Template.fragments.HRModule.PayGroupF4-/PayGroupF4/" width="100%"
+					placeholder="{i18n>paygroup}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayGroupF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Pay Group Code"/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>Hiredate}" required="true"/>
+				<DatePicker valueState="{= ${/TransportationCommision/Commisioning/Header/Zhiredat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Zhiredat/} === '' ? 'Enter Date' : '' }"
+					value="{/TransportationCommision/Commisioning/Header/Zhiredat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>eventreason}" required="true"/>
+				<Input valueState="{= ${/EventreasonF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/EventreasonF4/} === '' ? ${i18n>eventreason} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="{i18n>eventreason}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>senioritystartdate}" required="true"/>
+				<DatePicker valueState="{= ${/TransportationCommision/Commisioning/Header/Zseniordat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Zseniordat/} === '' ? 'Enter Date' : '' }"
+					value="{/TransportationCommision/Commisioning/Header/Zseniordat/}" displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" change="handleChange"/>
+				<Label text="{i18n>Position}" required="true"/>
+				<Input valueState="{= ${/PositionF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PositionF4/} === '' ? ${i18n>Position} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_POSITION-com.swcc.Template.fragments.HRModule.PositionF4-/PositionF4/" width="100%"
+					placeholder="{i18n>Position}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PositionF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Position "/>
+						<core:CustomData key="value_1" value="Position group"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>timezone}" required="true"/>
+				<ComboBox valueState="{= ${/TransportationCommision/Commisioning/Header/TimeZoneKey/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/TimeZoneKey/} === '' ? ${i18n>timezone} : '' }"
+					selectedKey="{/TransportationCommision/Commisioning/Header/TimeZoneKey/}" placeholder="{i18n>timezone}" items="{/TimeZoneData}">
+					<core:Item key="{value}" text="{label}"/>
+				</ComboBox>
+				<Label text="{i18n>payscale}" required="true"/>
+				<Input valueState="{= ${/PayscalegroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalegroupF4/} === '' ? ${i18n>payscale} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/" width="100%"
+					placeholder="{i18n>payscale}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayscalegroupF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>workschedule}" required="true"/>
+				<Input valueState="{= ${/WorkscheduleF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WorkscheduleF4/} === '' ? ${i18n>workschedule} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_WORKSCHEDULE-com.swcc.Template.fragments.HRModule.WorkscheduleF4-/WorkscheduleF4/" width="100%"
+					placeholder="{i18n>workschedule}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/WorkscheduleF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>timerecordingprofile}" required="true"/>
+				<Input valueState="{= ${/TimeRecoringF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeRecoringF4/} === '' ? ${i18n>timerecordingprofile} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGPROFILE-com.swcc.Template.fragments.HRModule.TimeRecoringF4-/TimeRecoringF4/"
+					width="100%" placeholder="Select Time Recording" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TimeRecoringF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Code "/>
+						<core:CustomData key="value_1" value="Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>timerecordingvariant}" required="true"/>
+				<Input valueState="{= ${/TimeRecoringVariantF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TimeRecoringVariantF4/} === '' ? ${i18n>timerecordingvariant} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_TIMERECORDINGVARIANT-com.swcc.Template.fragments.HRModule.TimeRecoringVariantF4-/TimeRecoringVariantF4/"
+					width="100%" placeholder="{i18n>timerecordingvariant}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TimeRecoringVariantF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>payrollid}" required="true"/>
+				<Input valueState="{= ${/Payrollid/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/Payrollid/} === '' ? ${i18n>payrollid} : '' }"
+					placeholder="{i18n>payrollid}" showSuggestion="" value="{/TransportationCommision/Commisioning/Header/Payrollid/}" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/TransportationCommision/Commisioning/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/TransportationCommision/Commisioning/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/TransportationCommision/Commisioning/Header/Descript/}"
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

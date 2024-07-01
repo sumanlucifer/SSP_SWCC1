@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table id="idProductsTable" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="None" items="" class="ssp-request-Table">
+		<!--	{path : '/OpenItemRequestData/itemData'}-->
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title level="H3" text="{i18n>viewreq}" class="ssp-tlbr-title"/>
+				<ToolbarSpacer/>
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar id="vsdFilterBar" visible="false">
+				<Text id="vsdFilterLabel"/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="12em">
+				<Text text="Request ID"/>
+			</Column>
+			<Column width="12em">
+				<Text text="Request Type"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Created On"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Service Product"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Sub Service Product"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Service Level"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Price"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Status"/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<Text text="876786"/>
+					<Text text="SLA"/>
+					<Text text="2023-11-20"/>
+					<Text text="Heavy Maintenance"/>
+					<Text text="Bolier"/>
+					<Text text="3 Days"/>
+					<Text text="125SAR"/>
+					<Text text="Open"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

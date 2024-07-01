@@ -1,0 +1,163 @@
+<core:FragmentDefinition xmlns:u="sap.ui.unified" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="true"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="true"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>nameOfsector}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/} === '' ? 'Enter name of sector' : '' }"
+					placeholder="Enter Name of Sector" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/SEC_NAME/}"
+					valueHelpRequest=""/>
+				<Label text="{i18n>typeOfcompetition}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZCOMP_TYPE')/Set/-com.swcc.Template.fragments.SCMModule.TypeofcompetitionF4-/TypeofcompetitionF4/"
+					width="100%" placeholder="Select Type of Competiton" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/TypeofcompetitionF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Competiton Code"/>
+						<core:CustomData key="Text" value="Competiton Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>implementationperiod}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/} === '' ? 'Enter Implementation Period' : '' }"
+					placeholder="Enter Implemenatation Period" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/IMP_PERIOD/}" valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/Descript/}"
+					valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<!--	<Label text="{i18n>workcenter}" required="true"/>
+				<Input placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
+				<Label text="{i18n>requestingparty}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/} === '' ? 'Enter requesting party' : '' }"
+					placeholder="{i18n>requestingparty}" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/REQ_PARTY/}" valueHelpRequest=""/>
+				<!--<Label text="{i18n>estimatedcost}" required="true"/>-->
+				<Label text="{i18n>estimatedprjvalue}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/} === '' ? 'Enter estimated value' : '' }"
+					placeholder="{i18n>estimatedcost}" change="handleLiveChangeContractPrcUnitPrice" type="Number" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/EST_COST/}" valueHelpRequest=""/>
+				<Label text="{i18n>projectdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/} === '' ? 'Enter Project Description' : '' }"
+					placeholder="Enter Project Description" showSuggestion="" showValueHelp=""
+					value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/PROJ_NAME/}" valueHelpRequest=""/>
+				<Label text="{i18n>totalservicevalue}" required="true"/>
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/TotalValue/}"
+					showValueHelp="" editable="true" valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/ProcurementAdhoc/PrepareofDirectpurchase/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<Toolbar>
+			<Title level="H3" text="{i18n>itemoverview}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table items="{path : '/ProcurementAdhoc/PrepareofDirectpurchase/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>shorttext}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input placeholder="" showSuggestion="" showValueHelp="" value="{Matnr}" valueHelpRequest=""/>
+							<Input placeholder="" showSuggestion="" type="Number" showValueHelp="" value="{Menge}" valueHelpRequest=""/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label text="{i18n>Attachments}"></Label>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

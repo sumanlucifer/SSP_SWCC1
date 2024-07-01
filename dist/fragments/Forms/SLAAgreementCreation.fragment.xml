@@ -1,0 +1,134 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm title="{i18n>Servicelevel}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2"
+			singleContainerFullSize="false" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>customerinformation}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>PhoneNumber}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/PhoneNo/}"/>
+				<Label text="{i18n>customerid}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Company/}"/>
+				<Label text="{i18n>crno}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Cr_No/}"/>
+				<Label text="{i18n>EMailid}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Email/}"/>
+				<Label text="{i18n>customername}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/UserName/}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>Address}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<!--	<Label text="{i18n>street}" required="true"/>
+				<Input value="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_nationalID}"/>
+				<Select selectedKey="{CreateAirpoPassModel>/cust_toAirportPassItem/cust_typeOfPass}"
+					items="{ path: '/SF_PickListValueV2', sorter : { path : 'label_defaultValue' }, filters : [ { path : 'PickListV2_id', operator : 'EQ', value1 : 'cust_typeOfPass'} ] }"
+					change="onTimeTyeChange">
+					<core:ListItem key="{externalCode}" text="{label_defaultValue}" additionalText="{externalCode}"/>
+				</Select>-->
+				<Label text="{i18n>street}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Stras/}"/>
+				<Label text="{i18n>Region}" required="false"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Regio/}"/>
+				<Label text="{i18n>POBOX}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/PoBox/}"/>
+				<Label text="{i18n>City}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Ort01/}"/>
+				<Label text="{i18n>country}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Land1/}"/>
+				<Label text="{i18n>postalcode}"/>
+				<Input enabled="false" value="{/SLARegistrationData/Header/Pstlz/}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>represenativedetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>reprenname}" required="true"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Represen/} === '' ? 'Enter Representative Name' : '' }"
+					placeholder="Enter Representative Name" value="{/SLARegistrationData/CustomData/P2_Represen/}"/>
+				<Label text="{i18n>repreposisition}" required="true"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_Rep_Pos/} === '' ? 'Enter Representative Position' : '' }"
+					placeholder="Enter Representative Position" value="{/SLARegistrationData/CustomData/P2_Rep_Pos/}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>correspondancedetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>correspondancename}" required="true"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorName/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorName/} === '' ? 'Enter Correspondance Name' : '' }"
+					placeholder="Enter Correspondance Name" value="{/SLARegistrationData/CustomData/P2_CorName/}"/>
+				<Label text="{i18n>correspondanceposisition}" required="true"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorPos/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorPos/} === '' ? 'Enter Correspondance Position' : '' }"
+					placeholder="Enter Correspondance Position" value="{/SLARegistrationData/CustomData/P2_CorPos/}"/>
+				<Label text="{i18n>correspondanceemail}" required="true"/>
+				<Input valueState="{= ${/SLARegistrationData/CustomData/P2_CorEmail/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/SLARegistrationData/CustomData/P2_CorEmail/} === '' ? 'Enter Correspondance Email' : '' }"
+					placeholder="Enter Correspondance Email" value="{/SLARegistrationData/CustomData/P2_CorEmail/}"/>
+				<Label text="{i18n>correspondanceext}" required="false"/>
+				<Input placeholder="Enter Correspondance Extension Number" value="{/SLARegistrationData/CustomData/P2_Ext/}"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm layout="GridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="false"
+			labelSpanXL="4" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>selectservice}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<!--<CheckBox text="select / deselect all" selected="{= ${/child1} || ${/child2} || ${/child3} }"
+					partiallySelected="{= !(${/child1} &amp;&amp; ${/child2} &amp;&amp; ${/child3})}" select="onParentClicked"/>-->
+				<CheckBox text="{i18n>FICO}" selected="{/SLARegistrationData/CustomData/Chk_FI/}" valueState="Information"/>
+				<CheckBox text="{i18n>PM}" selected="{/SLARegistrationData/CustomData/Chk_TECH/}" valueState="Information"/>
+				<CheckBox text="{i18n>SCM}" selected="{/SLARegistrationData/CustomData/Chk_SCM/}" valueState="Information"/>
+				<CheckBox text="{i18n>HR}" selected="{/SLARegistrationData/CustomData/Chk_HR/}" valueState="Information"/>
+				<CheckBox text="{i18n>IT}" selected="{/SLARegistrationData/CustomData/Chk_IT/}" valueState="Information"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%" class="ssp-form-txtarea">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="Enter Remarks" rows="5" cols="20" text="{/SLARegistrationData/CustomData/Remarks/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<HBox width="100%">
+		<CheckBox class="sapUiTinyMarginBegin" selected="{/SLACheckFlag}" id="accept_checkbox" tooltip="{i18n>clickheretoread}"
+			select="onSelectCheckagreement" valueState="Information"/>
+		<Link class="sapUiTinyMarginTop" text="{i18n>clickheretoread}" press="onPressAgreement"/>
+	</HBox>
+	<!--<VBox class="pdf-container">-->
+	<!--	<core:HTML id="pdfContainer" content=""/>-->
+	<!--</VBox>-->
+</core:FragmentDefinition>

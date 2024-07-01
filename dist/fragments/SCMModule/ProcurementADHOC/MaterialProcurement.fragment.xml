@@ -1,0 +1,177 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<!--	<Label text="{i18n>tenderpre}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/TenPre/} === '' ? ${i18n>tenderpre} : '' }"
+					selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/TenPre/}">
+					<core:Item key="Y" text="Yes"/>
+					<core:Item key="N" text="No"/>
+				</ComboBox>-->
+				<Label text="{i18n>servicelevel}" required="true"/>
+				<ComboBox valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/} === '' ? ${i18n>tenderpre} : '' }"
+					selectionChange="onChangeServiceLevel" selectedKey="{/ProcurementAdhoc/MaterialProcurement/Header/ServiceLevel/}">
+					<core:Item key="N" text="Normal"/>
+					<core:Item key="U" text="Urgent"/>
+					<core:Item key="E" text="Emergency"/>
+				</ComboBox>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
+				<Input placeholder="{i18n>totalservicevalue}" value="{/ProcurementAdhoc/MaterialProcurement/Header/TotalServiceLevel/}" enabled="false"/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>justification}" required="false"/>
+				<Input placeholder="" showSuggestion="" value="{/ProcurementAdhoc/MaterialProcurement/Header/PrJust/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>totalestvalue}" required="false"/>
+				<Input placeholder="Total Estimated Value" value="{/ProcurementAdhoc/MaterialProcurement/Header/EstPrice/}" enabled="false"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/ProcurementAdhoc/MaterialProcurement/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/ProcurementAdhoc/MaterialProcurement/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/ProcurementAdhoc/MaterialProcurement/Header/Descript/}"
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ProcurementAdhoc/MaterialProcurement/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table items="{path : '/ProcurementAdhoc/MaterialProcurement/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>material}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Description}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>uom}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>plant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>purchasinggroup}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>requisitioner}"/>
+					</Column>
+					<!--	<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TotalPrice}"/>
+					</Column>-->
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
+								</customData>
+							</Input>
+							<Input placeholder="Enter Description" value="{Description}" enabled="false"/>
+							<Input placeholder="QTY" type="Number" showSuggestion="" value="{Menge}" showValueHelp="" valueHelpRequest="" change="handleLiveChange"/>
+							<Input placeholder="Unit Price" type="Number" value="{UnitPrice}" change="handleLiveChangeUnit"/>
+							<Input value="{BaseUnit}" enabled="false"/>
+							<Input value="{Plant}" enabled="false"/>
+							<Input
+								ariaLabelledBy="-ZSSP_COMMON_SRV-/C_PurchasingGroupValueHelp-com.swcc.Template.fragments.SCMModule.PurchasinggroupF4-/PurchasinggroupF4/"
+								width="100%" placeholder="Enter Purchasing group" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{PurchasinggroupF4}">
+								<customData>
+									<core:CustomData key="PurchasingGroup" value="Purchasing group"/>
+									<core:CustomData key="PurchasingGroupName" value="Purchasing group name"/>
+								</customData>
+							</Input>
+							<Input placeholder="Req" showSuggestion="" value="{AFNAM}" showValueHelp="" valueHelpRequest=""/>
+							<!--	<Input enabled="false" value="{TotalPrice}"/>-->
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Label required="false" text="{i18n>Attachments}"></Label>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="5" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text=""/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

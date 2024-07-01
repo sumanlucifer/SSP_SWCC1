@@ -1,0 +1,139 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/quantity/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/} === '' ? 'Enter Short Description Code' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/Descript/}" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>GLAccount}" required="true"/>
+				<Input valueState="{= ${/GlaccountF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/GlaccountF4/} === '' ? 'Enter GL Account' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_GeneralLedgerAccountVH-com.swcc.Template.fragments.FinanceModule.GlaccountF4-/GlaccountF4/" width="100%"
+					placeholder="Enter GL Account" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/GlaccountF4/}">
+					<customData>
+						<core:CustomData key="GLAccount" value="GL Account Code"/>
+						<core:CustomData key="GLAccountName" value="GL Account Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
+			</fm:content>
+			<!--<Button text="Search" type="Default" press="onSearchMngePttyCash" width="65%" class="sapUiTinyMarginBegin sapUiContentPadding swcc-pmy-btn"/>-->
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>coderange}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<!--	<Button icon="sap-icon://add" press=".onAddItemsPress"/>-->
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<HBox>
+				<Label text=""/>
+				<RadioButtonGroup id="rbg1" columns="3" width="100%" class="">
+					<RadioButton id="RB1-1" text="Open Item"/>
+				</RadioButtonGroup>
+				<Label text="{i18n>Opendate}" required="true" class="sapUiTinyMarginTop"/>
+				<DatePicker valueState="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/} === '' ? 'Enter Open Date' : '' }"
+					valueFormat="dd/mm/yyyy" value="{/FinancialReviewGeneralClose/PeriodEndReconcilation/Header/OpenDate/}" placeholder="{i18n>EnterDate}"
+					change="handleChange" class="sapUiTinyMarginBegin"/>
+			</HBox>
+			<Table mode="None" items="" sticky="ColumnHeaders,HeaderToolbar" class="ssp-request-Table sapUiContentPadding" inset="false"
+				growingThreshold="5" growingScrollToLoad="true" growing="true" fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>ChartofAccount}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>glaccounttypecode}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>glaccounttype}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>From G/L Account}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>TO G/L Account}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="X"/>
+							<Text text="Balance Sheet Account"/>
+							<Text text="31110001"/>
+							<Text text="32299999"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="N"/>
+							<Text text="Primary Cost or Revenue"/>
+							<Text text="11411001"/>
+							<Text text="42319999"/>
+						</cells>
+					</ColumnListItem>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Text text="1000"/>
+							<Text text="P"/>
+							<Text text="Non Operative Expenses or Income"/>
+							<Text text="9000000000"/>
+							<Text text="9099999999"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>

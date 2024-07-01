@@ -1,0 +1,143 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="true"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>jobnumber}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjnum/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjnum/} === '' ? ${i18n>jobnumber} : '' }" placeholder="{i18n>jobnumber}"
+					value="{/Recruitment/InternalRecruitment/Header/Zjnum/}" type="Number"/>
+				<Label text="{i18n>jobtitle}" required="false"/>
+				<Input valueState="{= ${/JobtitleF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobtitleF4/} === '' ? ${i18n>jobtitle} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDS_SF_JOBTITLE-com.swcc.Template.fragments.HRModule.JobtitleF4-/JobtitleF4/" width="100%"
+					placeholder="{i18n>jobtitle}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobtitleF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>plant}" required="true"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<!--	<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>-->
+				<Label text="{i18n>jobgrade}" required="true"/>
+				<Input valueState="{= ${/JobgradeF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/JobgradeF4/} === '' ? ${i18n>jobgrade} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBGRADE-com.swcc.Template.fragments.HRModule.JobgradeF4-/JobgradeF4/" width="100%"
+					placeholder="{i18n>jobgrade}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JobgradeF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Grade"/>
+						<core:CustomData key="value_1" value="Job Desc"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>joblocation}" required="true"/>
+				<Input valueState="{= ${/JoblocationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/JoblocationF4/} === '' ? ${i18n>joblocation} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_JOBLOCATION-com.swcc.Template.fragments.HRModule.JoblocationF4-/JoblocationF4/" width="100%"
+					placeholder="{i18n>joblocation}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/JoblocationF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Job Code"/>
+						<core:CustomData key="value_1" value="Job Location"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>doyouhave}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zoreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zoreq/} === '' ? ${i18n>doyouhave} : '' }" placeholder="{i18n>doyouhave}"
+					value="{/Recruitment/InternalRecruitment/Header/Zoreq/}" showSuggestion="" showValueHelp="" valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="true"/>
+				<Input value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>jobdesc}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjdescr/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjdescr/} === '' ? ${i18n>jobdesc} : '' }" placeholder="{i18n>jobdesc}"
+					showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjdescr/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>requirementsandconditions}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjfreq/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjfreq/} === '' ? ${i18n>requirementsandconditions} : '' }"
+					placeholder="{i18n>requirementsandconditions}" value="{/Recruitment/InternalRecruitment/Header/Zjfreq/}" showSuggestion=""/>
+				<Label text="{i18n>scope}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zscopelevel/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zscopelevel/} === '' ? ${i18n>scope} : '' }" placeholder="{i18n>scope}"
+					showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zscopelevel/}" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>tasksrequired}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Zjtasks/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Zjtasks/} === '' ? ${i18n>tasksrequired} : '' }"
+					placeholder="{i18n>tasksrequired}" showSuggestion="" value="{/Recruitment/InternalRecruitment/Header/Zjtasks/}" showValueHelp=""
+					valueHelpRequest=""/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/Recruitment/InternalRecruitment/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/Recruitment/InternalRecruitment/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/Recruitment/InternalRecruitment/Header/Descript/}"
+					valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/Recruitment/InternalRecruitment/Header/Zcomment/}" growingMaxLines="7"
+					height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Title text="{i18n>Attachments}" level="H1"></Title>
+							<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text="Delete"/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

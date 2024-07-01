@@ -1,0 +1,40 @@
+<mvc:View controllerName="com.swcc.Template.controller.ITCreateRequest" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage headerExpanded="true" busy="{/busy}" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content >
+					<VBox visible="{= ${/ITAppVisible} === 'SSA-IT-4001-1' || ${/ITAppVisible} === 'SSA-IT-4002-1' || ${/ITAppVisible} === 'SSA-IT-4002-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
+					</VBox>
+					<VBox
+						visible="{= ${/ITAppVisible} === 'SSA-IT-4001-2' || ${/ITAppVisible} === 'SSA-IT-4003-1' || ${/ITAppVisible} === 'SSA-IT-4003-2' || ${/ITAppVisible} === 'SSA-IT-4003-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Procurement_ITRequest" type="XML"/>
+					</VBox>
+					<!--.........................................................................Account Receivable..........................................................			-->
+					<!--<VBox>
+						<core:Fragment fragmentName="com.swcc.Template.fragments.ITModule.Non_Procurement_ITRequest" type="XML"/>
+					</VBox>-->
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Submit}" type="Accept" class="btn-proceed" press="onProceed"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

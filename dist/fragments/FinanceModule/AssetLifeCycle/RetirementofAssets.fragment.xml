@@ -1,0 +1,103 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/AssetLifecycle/RetirementofAssets/Header/quantity/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/AssetLifecycle/RetirementofAssets/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RetirementofAssets/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" value="{/AssetLifecycle/RetirementofAssets/Header/Descript/}" valueHelpRequest=""/>
+				<Label text="{i18n>CompanyCode}" required="true"/>
+				<Input valueState="{= ${/CompanycodeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompanycodeF4/} === '' ? 'Enter Company Code' : '' }"
+					ariaLabelledBy="-ZSSP_COMMON_SRV-/C_CompanyCodeVHTemp-com.swcc.Template.fragments.CommonF4.CompanycodeF4-/CompanycodeF4/" width="100%"
+					placeholder="Enter Company code" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CompanycodeF4/}">
+					<customData>
+						<core:CustomData key="CompanyCode" value="Company Code"/>
+						<core:CustomData key="CompanyCodeName" value="Company Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>AssetNumber}" required="true"/>
+				<Input valueState="{= ${/AssestF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/AssestF4/} === '' ? 'Enter Asset Number' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDS_ASSET_MAIN-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.AssestF4-/AssestF4/" width="100%"
+					placeholder="Enter Subnumber" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/AssestF4}">
+					<customData>
+						<core:CustomData key="SubNumber" value="SubNumber"/>
+						<core:CustomData key="MainAssetNum" value="MainAssetNum"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>AccountingPrinciple}" required="true"/>
+				<Input valueState="{= ${/AccountingprincipalF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AccountingprincipalF4/} === '' ? 'Enter Accounting Principle' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_AccountingPrincipleText-com.swcc.Template.fragments.FinanceModule.AccountingprincipalF4-/AccountingprincipalF4/"
+					width="100%" placeholder="Enter Accounting Principal" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/AccountingprincipalF4/}">
+					<customData>
+						<core:CustomData key="AccountingPrinciple" value="Accounting Principle"/>
+						<core:CustomData key="AccountingPrincipleName" value="Accounting Principle Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>DepreciationArea}" required="true"/>
+				<Input valueState="{= ${/DepreciationF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/DepreciationF4/} === '' ? 'Enter Depreciation Area' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_DeprAreaForLedgerVH-com.swcc.Template.fragments.FinanceModule.DepreciationF4-/DepreciationF4/" width="100%"
+					placeholder="Enter Area" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/DepreciationF4/}">
+					<customData>
+						<core:CustomData key="AssetDepreciationArea" value="Asset Depreciation"/>
+						<core:CustomData key="AssetDepreciationArea_Text" value="Asset Depreciation Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>PostingDate}" required="true"/>
+				<DatePicker valueState="{= ${/AssetLifecycle/RetirementofAssets/Header/Budat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RetirementofAssets/Header/Budat/} === '' ? 'Enter Posting Date' : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/RetirementofAssets/Header/Budat/}" class=""/>
+				<Label text="{i18n>DocumentDate}" required="false"/>
+				<DatePicker displayFormat="dd/MM/yyyy" valueFormat="dd/MM/yyyy" enabled="false" value="{/AssetLifecycle/RetirementofAssets/Header/Budat/}"
+					change="handleChange" class=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>AssetValueDate}" required="true"/>
+				<DatePicker valueState="{= ${/AssetLifecycle/RetirementofAssets/Header/Bzdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RetirementofAssets/Header/Bzdat/} === '' ? 'Enter Asset Value Date' : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/MM/yyyy" value="{/AssetLifecycle/RetirementofAssets/Header/Bzdat/}" change="handleChange" class=""/>
+				<!--<Label text="{i18n>PartialRetirement}" required="true"/>-->
+				<!--<CheckBox required="true" width="100%"/>-->
+				<Label text="{i18n>Amount}" required="true"/>
+				<Input valueState="{= ${/AssetLifecycle/RetirementofAssets/Header/Anbtr/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/RetirementofAssets/Header/Anbtr/} === '' ? 'Enter Amount' : '' }" placeholder="Enter Amount"
+					type="Number" value="{/AssetLifecycle/RetirementofAssets/Header/Anbtr/}" required="true" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/AssetLifecycle/RetirementofAssets/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,2 +1,2 @@
-# SAPUI5_Proj_Template
-Project Structure Template
+# SSP_SWCC
+Shared service portal

@@ -1,0 +1,76 @@
+<mvc:View controllerName="com.swcc.Template.controller.HRCreateRequest" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.f"
+	xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" height="100%">
+	<f:DynamicPage headerExpanded="true" busy="{/busy}" showFooter="true" class="ssp-page">
+		<!-- DynamicPage Title -->
+		<!--	<f:title>
+			<f:DynamicPageTitle id="idDynamicPageTitle">
+				<f:heading>
+					<HBox alignItems="Center">
+						<Title textAlign="End" text="{i18n>CustomerRegistration}" class="sapUiSmallMarginBegin"/>
+					</HBox>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>-->
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content >
+					<!--.........................................................Insurance and Claim Management.....................................................-->
+					<VBox
+						visible="{= ${/HRAppVisible} === 'SSA-HR-1004-3' || ${/HRAppVisible} === 'SSA-HR-1004-2' || ${/HRAppVisible} === 'SSA-HR-1005-1' || ${/HRAppVisible} === 'SSA-HR-1004-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Termination.TerminationService" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Recruitment" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1001-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Recruiting.Externalrecruitment" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1010-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.MedicalInsurance" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1010-1-A'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.ClaimRequest" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1010-1-B'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.BenfitsManagement.SubmitComplaint" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1007-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Activatingaccesscards" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1007-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TimeManagement.Manageemployeeshifts" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1002-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TrainingandDevelopment.Employeelearninganddevelopment" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1003-2' || ${/HRAppVisible} === 'SSA-HR-1003-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.CompensationandRewards.Rewards" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1006-2'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TransportationandComission.Employeetransportation" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1006-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TransportationandComission.Transferandsecondment" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1006-3'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.TransportationandComission.Commisssioningofallkinds" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1008-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.Payroll.Employeevacations" type="XML"/>
+					</VBox>
+					<VBox visible="{= ${/HRAppVisible} === 'SSA-HR-1009-1'}">
+						<core:Fragment fragmentName="com.swcc.Template.fragments.HRModule.PeoplecareCenter.Updatemasterdata" type="XML"/>
+					</VBox>
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="true">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>submit}" type="Accept" class="btn-proceed" press="onProceed"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press="onCancel"/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

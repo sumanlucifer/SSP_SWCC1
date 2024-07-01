@@ -1,0 +1,40 @@
+<mvc:View xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:uxap="sap.uxap" xmlns:fm="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:tnt="sap.tnt" xmlns:f="sap.f" controllerName="com.swcc.Template.controller.DetailRequest">
+	<f:DynamicPage headerExpanded="true" showFooter="true" busy="{/busy}" class="ssp-page">
+		<f:content>
+			<l:VerticalLayout class="sapUiNoMargin sapUiNoContentPadding ssp-vtl" width="100%">
+				<l:content>
+					<VBox width="100%">
+						<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+							labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+							<fm:toolbar>
+								<Toolbar class="ssp-title">
+									<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+									<Title class="ssp-form-bg" text="{i18n>viewreq}"/>
+									<ToolbarSpacer/>
+								</Toolbar>
+							</fm:toolbar>
+						</fm:SimpleForm>
+					</VBox>
+					<FlexBox height="" alignItems="Start" justifyContent="End" class="view-reqbtn">
+						<Button text="{i18n>Approve}" type="Accept" class="sapUiSizeCompact sapUiTinyMarginEnd" press="onApprovePress"
+							visible="{= ${/RequestDetails/Header/Action} === true ? true : false}"/>
+						<Button text="{i18n>Reject}" visible="{= ${/RequestDetails/Header/Action} === true ? true : false}" type="Reject" press="onRejectPress"
+							class="sapUiSizeCompact sapUiTinyMarginEnd"/>
+						<Button text="{i18n>Close}" type="Reject" press="onCloseRequestPress" class="sapUiSizeCompact sapUiTinyMarginEnd"
+							visible="{= ${/RequestDetails/Header/Status} === 'Request Completed' || ${/RequestDetails/Header/Status} === 'Request Cancelled' ? false : true}"/>
+					</FlexBox>
+					<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.DetailRequest" type="XML"/>
+				</l:content>
+			</l:VerticalLayout>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar id="idOverflowToolbar" visible="false">
+				<ToolbarSpacer id="idToolbarSpacer"/>
+				<Button id="idproceed" text="{i18n>Submit}" type="Accept" class="btn-proceed" press="onSaveRequest"/>
+				<Button id="idcancel" text="{i18n>Cancel}" type="Reject" class="btn-cancel" press=""/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
+</mvc:View>

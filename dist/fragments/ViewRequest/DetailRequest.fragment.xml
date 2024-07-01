@@ -1,0 +1,69 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core"
+	xmlns:blockcolor="sap.uxap.sample.SharedBlocks">
+	<ObjectHeader responsive="true" fullScreenOptimized="true" intro="" title="Request ID: {/RequestDetails/Header/RequestID}" number=""
+		numberUnit="" numberState="Success" backgroundDesign="Solid" class="ssp-dtl-title">
+		<statuses>
+			<!--	<ObjectStatus title="Service" text="{/RequestDetails/Header/MatGroup}"/>-->
+			<!--	<ObjectStatus title="Created on"
+				text="{path:'/RequestDetails/Header/CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>-->
+			<!--	<ObjectStatus title="Request Status" text="{/RequestDetails/Header/Status}" state="Error"/>-->
+			<!--	<ObjectStatus title="SLA" text="{/RequestDetails/Header/Status}" visible="true" state="Error"/>-->
+			<ObjectStatus title="Request Status" text="{/RequestDetails/Header/Status}" emptyIndicatorMode="On" visible="true" state="Error"/>
+		</statuses>
+		<ObjectAttribute title="Module" text="{/RequestDetails/Header/MatType}"/>
+		<ObjectAttribute title="Created on"
+			text="{path:'/RequestDetails/Header/CreatedOn', type: 'sap.ui.model.type.DateTime', formatOptions: { pattern: 'MMMM dd, yyyy' } }"/>
+		<ObjectAttribute title="Elapsed Time" text="{/RequestDetails/Header/ElapsedTime}"/>
+		<ObjectAttribute title="Sub Service" text="{/RequestDetails/Header/Material}"/>
+		<ObjectAttribute title="Price" text="{/RequestDetails/Header/Price}"/>
+		<ObjectAttribute title="Service" text="{/RequestDetails/Header/MatGroup}"/>
+		<ObjectAttribute title="SLA" text="{/RequestDetails/Header/SLA}" visible="true" state="Error"/>
+		<ObjectAttribute title="Request Status" text="{/RequestDetails/Header/Status}"/>
+		<headerContainer>
+			<IconTabBar id="itb1" selectedKey="key3" upperCase="true" class="sapUiResponsivePadding--header sapUiResponsivePadding--content">
+				<items>
+					<IconTabFilter text="Request Details" count="" key="key1">
+						<l:VerticalLayout class="" width="100%">
+							<l:content>
+								<VBox >
+									<Toolbar>
+										<Title level="H3" text="{i18n>Request Details}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<Text text="{/RequestDetails/Header/MaterialLongText}"/>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ProcessFlow" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
+					<IconTabFilter visible="{= ${/RequestDetails/Attachments/}.length > 0}" text="Attachments">
+						<l:VerticalLayout class="" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Attachments}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.Attachments" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
+					<IconTabFilter visible="{= ${/RequestDetails/Header/Invoice/} === '' ? false : true }" text="Invoice">
+						<l:VerticalLayout class="" width="100%">
+							<l:content>
+								<VBox class="sapUiSmallMargin">
+									<Toolbar>
+										<Title level="H3" text="{i18n>Invoice}" class="ssp-dtl-title"/>
+										<ToolbarSpacer/>
+									</Toolbar>
+									<core:Fragment fragmentName="com.swcc.Template.fragments.ViewRequest.Invoices" type="XML"/>
+								</VBox>
+							</l:content>
+						</l:VerticalLayout>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</headerContainer>
+	</ObjectHeader>
+</core:FragmentDefinition>

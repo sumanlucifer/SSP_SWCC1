@@ -1,0 +1,96 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:viz="sap.viz.ui5.controls" height="100%">
+	<VBox width="100%" class="ssp-tile">
+		<fm:SimpleForm id="ssp-create-sr-3" title="{i18n>welcomeuser} {/LoginUser}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2"
+			columnsL="3" columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content></fm:content>
+		</fm:SimpleForm>
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
+			class="sapUiResponsiveContentPadding ne-flexbox2">
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-active" press="onPressCreateRequest"
+				header="{i18n>createservicerequest}">
+				<TileContent>
+					<ImageContent src="sap-icon://add-document"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserRequest" header="{i18n>viewservicerequest}">
+				<TileContent>
+					<ImageContent src="sap-icon://personnel-view"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/TileData/Header/BP} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
+				press="onPressBpRequest" header="{i18n>createbp}">
+				<TileContent>
+					<ImageContent src="sap-icon://create-session"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/TileData/Header/SLA} === true ? true : false}" class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive"
+				press="onPressSlaRequest" header="{i18n>createsla}">
+				<TileContent>
+					<ImageContent src="sap-icon://request"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/TileData/Header/UserMgmt} === true ? true : false}"
+				class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserManagement" header="{i18n>usermanage}">
+				<TileContent>
+					<ImageContent src="sap-icon://role"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile class="sapUiSmallMargin tileLayout ssp-viewservice ssp-inactive" press="onPressUserViewRequest" header="{i18n>viewallrequest}">
+				<TileContent>
+					<ImageContent src="sap-icon://user-edit"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+	</VBox>
+	<VBox width="100%" class="ssp-tile ssp-progress sapUiMediumMarginTop">
+		<fm:SimpleForm id="ssp-create-sr-4" title="{i18n>requeststatus}" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3"
+			columnsXL="3" singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content></fm:content>
+		</fm:SimpleForm>
+		<FlexBox alignItems="Start" justifyContent="Center" backgroundDesign="Solid" wrap="Wrap" fitContainer="true" height="100%"
+			class="sapUiResponsiveContentPadding">
+			<GenericTile id="Open" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-open" header="{i18n>openReqst}" press="onPressSubTile"
+				frameType="TwoByHalf">
+				<TileContent>
+					<NumericContent value="{/TileData/subTile/openRequest/}" icon="sap-icon://open-folder" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile id="In_Progress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-progress" header="{i18n>inProgresRqst}"
+				subheader="" press="onPressSubTile" frameType="TwoByHalf">
+				<TileContent>
+					<ImageContent src=""/>
+					<NumericContent value="{/TileData/subTile/inProgressRqt/}" icon="sap-icon://in-progress" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile id="Done" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout ssp-done" header="{i18n>doneRqst}" subheader=""
+				press="onPressSubTile" frameType="TwoByHalf">
+				<TileContent>
+					<ImageContent src=""/>
+					<NumericContent value="{/TileData/subTile/doneReqst/}" icon="sap-icon://accounting-document-verification" withMargin="false"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+	</VBox>
+	<!-- viz frame -->
+	<!--	<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='donut'>
+		<viz:dataset>
+			<viz.data:FlattenedDataset data="{/data}">
+				<viz.data:dimensions>
+					<viz.data:DimensionDefinition name="Category" value="{Category}"/>
+				</viz.data:dimensions>
+				<viz.data:measures>
+					<viz.data:MeasureDefinition name="Value" value="{Value}"/>
+				</viz.data:measures>
+			</viz.data:FlattenedDataset>
+		</viz:dataset>
+		<viz:feeds>
+			<viz.feeds:FeedItem uid="size" type="Measure" values="Value"/>
+			<viz.feeds:FeedItem uid="color" type="Dimension" values="Category"/>
+		</viz:feeds>
+		<viz:dependents>
+			<viz:Popover id="idPopOver"></viz:Popover>
+		</viz:dependents>
+	</viz:VizFrame>-->
+</core:FragmentDefinition>

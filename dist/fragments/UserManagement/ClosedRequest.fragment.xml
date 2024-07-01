@@ -1,0 +1,72 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<Table id="idAvailableUsers" sticky="ColumnHeaders,HeaderToolbar" inset="false" mode="None"
+		items="{path : '/ClosedItemRequestData/itemData'}" class="ssp-request-Table">
+		<headerToolbar>
+			<OverflowToolbar>
+				<Title text="Requests" level="H2"/>
+				<ToolbarSpacer/>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+				</OverflowToolbar>
+				<!--<Button tooltip="Sort" icon="sap-icon://sort" press="handleSortButtonPressed"/>-->
+				<!--<Button tooltip="Filter" icon="sap-icon://filter" press="handleFilterButtonPressed"/>-->
+				<!--<Button tooltip="Group" icon="sap-icon://group-2" press="handleGroupButtonPressed"/>-->
+				<!--<ToggleButton icon="sap-icon://menu" tooltip="Enable Custom Context Menu" press="onToggleContextMenu"/>-->
+			</OverflowToolbar>
+		</headerToolbar>
+		<infoToolbar>
+			<OverflowToolbar visible="false">
+				<Text/>
+			</OverflowToolbar>
+		</infoToolbar>
+		<columns>
+			<Column width="12em">
+				<Text text="User ID"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="First Name"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Last Name"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Email"/>
+			</Column>
+			<Column width="18rem" minScreenWidth="Tablet" demandPopin="true">
+				<Text text="Roles"/>
+			</Column>
+			<Column minScreenWidth="Tablet" demandPopin="true">
+				<Text text=""/>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem vAlign="Middle">
+				<cells>
+					<ObjectIdentifier text="{SapID}"/>
+					<Text text="{FirstName}"/>
+					<Text text="{LastName}"/>
+					<Text text="{Email}"/>
+					<HBox>
+						<CheckBox select="onSelectRole" visible="{= ${AccessHR} === 'NA' ? false : true }" selected="{= ${AccessHR} === 'X' ? true : false }"
+							enabled="{editFlag}" text="HR"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessFI} === 'NA' ? false : true }" selected="{= ${AccessFI} === 'X' ? true : false }"
+							enabled="{editFlag}" text="FI"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessIT} === 'NA' ? false : true }" selected="{= ${AccessIT} === 'X' ? true : false }"
+							enabled="{editFlag}" text="IT"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessPM} === 'NA' ? false : true }" selected="{= ${AccessPM} === 'X' ? true : false }"
+							enabled="{editFlag}" text="TECH"/>
+						<CheckBox select="onSelectRole" visible="{= ${AccessSC} === 'NA' ? false : true }" selected="{= ${AccessSC} === 'X' ? true : false }"
+							enabled="{editFlag}" text="SCM"/>
+					</HBox>
+					<HBox>
+						<Button icon="sap-icon://edit" visible="{= !${editFlag} }" text="Edit Role" class="swcc-pmy-btn" type="Accept" press="onEditUSer"/>
+						<Button icon="sap-icon://save" visible="{editFlag}" text="Save" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Emphasized"
+							press="onSaveUser"/>
+						<Button icon="sap-icon://cancel" visible="{editFlag}" text="Cancel" class="swcc-pmy-btn sapUiTinyMarginBegin" type="Reject"
+							press="onCancelUser"/>
+					</HBox>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+</core:FragmentDefinition>

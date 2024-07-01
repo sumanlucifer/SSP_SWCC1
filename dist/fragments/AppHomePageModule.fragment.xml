@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%" class="ssp-tile">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-home-bg" columnsM="2" columnsL="2" columnsXL="4" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title text="{i18n>welcome}"/>
+					<Button icon="sap-icon://home" class="home-btn" press="handleBackPress"/>
+				</Toolbar>
+			</fm:toolbar>
+		</fm:SimpleForm>
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" wrap="Wrap" backgroundDesign="Transparent" fitContainer="true"
+			height="100%" class="sapUiResponsiveContentPadding ne-flexbox2 module-tile">
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessFI} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
+				press="onPressTile" id="ZSSF" header="{i18n>FICO}">
+				<TileContent >
+					<ImageContent src="sap-icon://customer-financial-fact-sheet"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessPM} === 'X' ? true : false }" id="ZSSM"
+				class="sapUiSmallMargin tileLayout ssp-module" press=" onPressTile" header="{i18n>PM}">
+				<TileContent>
+					<ImageContent src="sap-icon://factory"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessSC} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
+				press="onPressTile" id="ZSSS" header="{i18n>SCM}">
+				<TileContent>
+					<ImageContent src="sap-icon://machine"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+		<FlexBox alignItems="Center" renderType="Div" justifyContent="Center" backgroundDesign="Transparent" fitContainer="true" height="100%"
+			class="sapUiResponsiveContentPadding ne-flexbox2">
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessHR} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
+				press="onPressTile" id="ZSSH" header="{i18n>HR}">
+				<TileContent>
+					<ImageContent src="sap-icon://family-care"/>
+				</TileContent>
+			</GenericTile>
+			<GenericTile visible="{= ${/AppHomeTileDisplay/Header/AccessIT} === 'X' ? true : false }" class="sapUiSmallMargin tileLayout ssp-module"
+				press="onPressTile" id="ZSSI" header="{i18n>IT}">
+				<TileContent>
+					<ImageContent src="sap-icon://laptop"/>
+				</TileContent>
+			</GenericTile>
+		</FlexBox>
+	</VBox>
+</core:FragmentDefinition>

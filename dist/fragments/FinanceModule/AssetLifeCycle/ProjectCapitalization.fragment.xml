@@ -1,0 +1,115 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input placeholder="Enter Quantity" enabled="false" value="{/AssetLifecycle/ProjectCaptilization/Header/quantity/}"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/AssetLifecycle/ProjectCaptilization/Header/Descript/}"
+					valueHelpRequest=""/>
+				<Label text="{i18n>Project}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.ProjectNtwrkF4-/ProjectNtwrkF4/"
+					width="100%" placeholder="Enter Project" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/ProjectNtwrkF4}">
+					<customData>
+						<core:CustomData key="Project" value="Project"/>
+						<core:CustomData key="ProjectDescription" value="Project Description"/>
+					</customData>
+				</Input>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>Network}" required="false"/>
+				<Input ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.NetworkF4-/NetworkF4/"
+					width="100%" placeholder="Enter Project Network" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/NetworkF4}">
+					<customData>
+						<core:CustomData key="ProjectNetwork" value="Project Network"/>
+						<core:CustomData key="ProjectNetworkDescription" value="Project Network Description"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>SettlementPeriod}" required="true"/>
+				<ComboBox valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/Poper/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/Poper/} === '' ? 'Enter Settlement Period' : '' }"
+					selectedKey="{/AssetLifecycle/ProjectCaptilization/Header/Poper/}" width="100%" enabled="true" placeholder="From">
+					<items>
+						<core:Item key="01" text="01"/>
+						<core:Item key="02" text="02"/>
+						<core:Item key="03" text="03"/>
+						<core:Item key="04" text="04"/>
+						<core:Item key="05" text="05"/>
+						<core:Item key="06" text="06"/>
+						<core:Item key="07" text="07"/>
+						<core:Item key="08" text="08"/>
+						<core:Item key="09" text="09"/>
+						<core:Item key="10" text="10"/>
+						<core:Item key="11" text="11"/>
+						<core:Item key="12" text="12"/>
+					</items>
+				</ComboBox>
+				<Label text="{i18n>FiscalYear}" required="true"/>
+				<DatePicker valueState="{= ${/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/} === '' ? 'Enter Fiscal Year' : '' }" valueFormat="yyyy"
+					displayFormat="yyyy" value="{/AssetLifecycle/ProjectCaptilization/Header/FiscalYear/}" change="handleChange" class=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>ProcessingType}" required="true"/>
+				<ComboBox placeholder="Select Processing Type" width="100%" valueState="None" enabled="true">
+					<items>
+						<core:Item key="2" text="Automatic"/>
+						<core:Item key="3" text="By Period"/>
+						<core:Item key="4" text="Partial Capitalization"/>
+						<core:Item key="5" text="Full Settlement"/>
+					</items>
+				</ComboBox>
+				<Label text="{i18n>WBSElement}" required="false"/>
+				<Input
+					ariaLabelledBy="-ZSSP_FI_SRV-/I_ProjectNtwkValueHelp-com.swcc.Template.fragments.FinanceModule.AssetLifeCycle.WBSElementF4-/WBSElementF4/"
+					width="100%" placeholder="Enter WBS Element" valueHelpOnly="true" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/WBSElementF4}">
+					<customData>
+						<core:CustomData key="WBSElement" value="WBS Element"/>
+						<core:CustomData key="WBSDescription" value="WBS Description"/>
+					</customData>
+				</Input>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>-->
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/AssetLifecycle/ProjectCaptilization/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,134 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button press=".handleBackPress" icon="sap-icon://nav-back"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}"/>
+				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>quantity}" required="false"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/InsuranceandClaim/CreateInsurance/Header/quantity/}"/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/InsuranceandClaim/CreateInsurance/Header/Descript/}"
+					valueHelpRequest=""/>
+				<!--	<Label text="{i18n>Vendor}" required="true"/>
+				<Input valueState="{= ${/VendorF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/VendorF4/} === '' ? 'Select Vendor' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_VENDORVH-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.VendorF4-/VendorF4/"
+					width="100%" placeholder="Select Vendor" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/VendorF4/}">
+					<customData>
+						<core:CustomData key="Supplier" value="Vendor Code"/>
+						<core:CustomData key="SupplierName" value="Name"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>PO}" required="true"/>
+				<Input enabled="{= ${/VendorF4/} !== undefined ? true : false }" valueState="{= ${/POF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/POF4/} === '' ? 'Select PO' : '' }"
+					ariaLabelledBy="-ZSSP_FI_SRV-/ZCDSV_FI_POVH2-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.POF4-/POF4/"
+					width="100%" placeholder="Select PO" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/POF4/}">
+					<customData>
+						<core:CustomData key="PurchaseOrder" value="PO"/>
+						<core:CustomData key="Supplier" value="Vendor Code"/>
+					</customData>
+				</Input>-->
+				<Label text="{i18n>PolicyStatus}" required="false"/>
+				<Input enabled="false" value="New" width="100%"/>
+				<Label text="{i18n>TotalPremiumAmount}" required="false"/>
+				<Input enabled="true" type="Number"
+					value="{/InsuranceandClaim/CreateInsurance/Header/ZzinsurAmount/} {/InsuranceandClaim/CreateInsurance/Header/currency/}" width="100%"/>
+				<Label text="{i18n>DepeciationRate}" required="true"/>
+				<Input placeholder="Enter Depreciation Rate"
+					valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/} === '' ? 'Enter Depreciation Rate' : '' }" type="Number"
+					value="{/InsuranceandClaim/CreateInsurance/Header/Zzdeprate/}" required="true" width="100%"/>
+				<Label text="{i18n>WarRiskPercetage}" required="true"/>
+				<Input valueState="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/} === '' ? 'Enter War Percentage' : '' }"
+					placeholder="Enter War Risk Percentage" type="Number" value="{/InsuranceandClaim/CreateInsurance/Header/Zzinsurper/}" showSuggestion=""
+					showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>PolicyType}" required="true"/>
+				<Input valueState="{= ${/PolicyTypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PolicyTypeF4/} === '' ? 'Select Policy Type' : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_DOMAINVH(p_domain='ZPOLICY_TYP_CODE')/Set/-com.swcc.Template.fragments.FinanceModule.InsuranceClaimManagement.F4Helps.PolicyTypeF4-/PolicyTypeF4/"
+					width="100%" placeholder="Select Policy Type" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PolicyTypeF4/}">
+					<customData>
+						<core:CustomData key="Status" value="Policy Code"/>
+						<core:CustomData key="Text" value="Name"/>
+					</customData>
+				</Input>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/InsuranceandClaim/CreateInsurance/Header/NotifText/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox>
+		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
+			<headerToolbar>
+				<Toolbar>
+					<content>
+						<FlexBox class="sapUiTinyMarginTop" alignItems="Start" justifyContent="SpaceBetween">
+							<Title text="{i18n>Attachments}" level="H1"></Title>
+							<Text text="{i18n>uploadtooltip}" class="sapUiTinyMarginBegin upload-info">
+								<layoutData>
+									<FlexItemData growFactor="1"/>
+								</layoutData>
+							</Text>
+							<u:FileUploader class="sapUiContentPadding" buttonOnly="true" multiple="true" icon="sap-icon://attachment" visible="true"
+								sameFilenameAllowed="false" buttonText="Upload file" change="onFileAdded" filenameLengthExceed="onFileNameLengthExceed"
+								fileSizeExceed="onFileSizeExceed" maximumFileSize="2" uploadComplete="onFileComplete1" typeMissmatch="handleMissmatch"
+								placeholder="Choose a file" style="Emphasized"
+								mimeType="application/msword,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document"/>
+						</FlexBox>
+					</content>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column>
+					<Text text="File Name"/>
+				</Column>
+				<Column>
+					<Text text="File Size"/>
+				</Column>
+				<Column>
+					<Text text=""/>
+				</Column>
+				<!-- Add more columns as needed -->
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{Filename}"/>
+						<Text text="{path:'Filesize',formatter:'.formatBytesToMB'}"/>
+						<Button type="Reject" text="Delete" press="onDeleteAttachment"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+	</VBox>
+</core:FragmentDefinition>

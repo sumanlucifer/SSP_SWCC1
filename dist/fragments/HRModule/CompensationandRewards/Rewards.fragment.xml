@@ -1,0 +1,92 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns="sap.m" xmlns:tnt="sap.tnt"
+	xmlns:fm="sap.ui.layout.form" xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>serviceproduct}" required="false"/>
+				<Input value="{/HRAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>plant}" required="false"/>
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>userid}" required="false"/>
+				<Input enabled="false" value="{/LoginUserID}"/>
+				<Label text="{i18n>event}" required="true"/>
+				<Input valueState="{= ${/EventF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/EventF4/} === '' ? ${i18n>event} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENT-com.swcc.Template.fragments.HRModule.EventF4-/EventF4/" width="100%" placeholder="{i18n>event}"
+					valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Description"/>
+					</customData>
+				</Input>
+				<!--	<Label text="{i18n>payscale}" required="true"/>
+				<Input valueState="{= ${/PayscalegroupF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalegroupF4/} === '' ? ${i18n>payscale} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALEGROUP-com.swcc.Template.fragments.HRModule.PayscalegroupF4-/PayscalegroupF4/" width="100%"
+					placeholder="{i18n>payscale}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PayscalegroupF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale group"/>
+					</customData>
+				</Input>-->
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>startdate}" required="true"/>
+				<DatePicker valueState="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Begda/} === '' ? ${i18n>startdate} : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/MM/yyyy" value="{/CompensationRewards/RegularRewards/Header/Begda/}" placeholder="{i18n>startdate}" change="handleChange"
+					class=""/>
+				<Label text="{i18n>eventreason}" required="true"/>
+				<Input valueState="{= ${/EventreasonF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/EventreasonF4/} === '' ? ${i18n>eventreason} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_EVENTREASON-com.swcc.Template.fragments.HRModule.EventreasonF4-/EventreasonF4/" width="100%"
+					placeholder="{i18n>eventreason}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/EventreasonF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Event"/>
+						<core:CustomData key="value_1" value="Event Reason"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/CompensationRewards/RegularRewards/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CompensationRewards/RegularRewards/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/CompensationRewards/RegularRewards/Header/Descript/}"
+					valueHelpRequest=""/>
+				<!--	<Label text="{i18n>payscalelevel}" required="true"/>
+				<Input valueState="{= ${/PayscalelevelF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/PayscalelevelF4/} === '' ? ${i18n>payscalelevel} : '' }"
+					ariaLabelledBy="-ZSSP_HR_SRV-/ZCDSV_SF_PAYSCALELEVEL-com.swcc.Template.fragments.HRModule.PayscalelevelF4-/PayscalelevelF4/" width="100%"
+					placeholder="{i18n>payscalelevel}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/PayscalelevelF4/}">
+					<customData>
+						<core:CustomData key="keyfield" value="Payscale "/>
+						<core:CustomData key="value_1" value="Payscale Level "/>
+					</customData>
+				</Input>-->
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Remarks}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" value="{/CompensationRewards/RegularRewards/Header/Zcomment/}" growing="true"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

@@ -1,0 +1,37 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ColumnLayout" class="ssp-form-bg" labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12" emptySpanXL="0"
+			emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3" columnsL="2" columnsM="2" singleContainerFullSize="false">
+			<fm:toolbar>
+				<Toolbar id="TB1" class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" id="Title1" text="{i18n>userprofile}"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{i18n>userdetails}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+				<Label text="{i18n>customerid}"/>
+				<Text text="{/UserDetails/Header/SapID/}" class="user-dtls"/>
+				<Label text="{i18n>slanumber}"/>
+				<Text text="{/UserDetails/Header/SLAno/}" class="user-dtls"/>
+				<Label text="{i18n>FirstName}"/>
+				<Text text="{/UserDetails/Header/FirstName/}" class="user-dtls"/>
+				<Label text="{i18n>PhoneNumber}"/>
+				<Text text="{/UserDetails/Header/Phone/}" class="user-dtls"/>
+				<Label text="{i18n>customername}"/>
+				<Text text="{/UserDetails/Header/Company/}" class="user-dtls"/>
+				<Label text="{i18n>poweruser}"/>
+				<Text text="{/UserDetails/Header/PowerUser/}" class="user-dtls"/>
+				<Label text="{i18n>LastName}"/>
+				<Text text="{/UserDetails/Header/LastName/}" class="user-dtls"/>
+				<Label text="{i18n>EMailid}"/>
+				<Text text="{/UserDetails/Header/Email/}" class="user-dtls"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

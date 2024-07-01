@@ -1,0 +1,162 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:fm="sap.ui.layout.form"
+	xmlns:upload="sap.m.upload" xmlns:core="sap.ui.core">
+	<VBox width="100%">
+		<fm:SimpleForm layout="ResponsiveGridLayout" class="ssp-form-bg" columnsM="2" columnsL="2" columnsXL="2" singleContainerFullSize="true"
+			labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:toolbar>
+				<Toolbar class="ssp-title">
+					<Button icon="sap-icon://nav-back" press="handleBackPress"/>
+					<Title class="ssp-form-bg" text="{i18n>createservicerequest}"/>
+					<Button icon="sap-icon://home" class="module-home-btn" press="handleBackHomePress"/>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</fm:toolbar>
+			<fm:content>
+				<Toolbar>
+					<Title level="H3" text="{/ServiceDescription/}" class="ssp-tlbr-title"/>
+					<ToolbarSpacer/>
+					<!--<Button icon="sap-icon://settings" press=".handleButtonPress"/>-->
+				</Toolbar>
+				<Label text="{i18n>Serviceproduct}" required="false"/>
+				<Input value="{/SCMAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
+				<Label text="{i18n>Plant}" required="false"/>
+				<!--	<Input ariaLabelledBy="-ZSSP_COMMON_SRV-/A_Plant-com.swcc.Template.fragments.CommonF4.PlantF4-/PlantF4/" width="100%"
+					placeholder="Enter Plant" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/PlantF4/}">
+					<customData>
+						<core:CustomData key="Plant" value="Plant"/>
+						<core:CustomData key="PlantName" value="Plant Name"/>
+					</customData>
+				</Input>-->
+				<Input enabled="false" value="{/PlantF4/}"/>
+				<Label text="{i18n>basedate}" required="true"/>
+				<DatePicker valueState="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/} === '' ? ${i18n>basedate} : '' }" displayFormat="dd/MM/yyyy"
+					valueFormat="dd/mm/yyyy" value="{/WarehouseandLogistics/IssueofMaterial/Header/Rsdat/}" placeholder="{i18n>basedate}" change="handleChange"
+					class=""/>
+				<Label text="{i18n>costcenter}" required="false"/>
+				<Input valueState="{= ${/CostcenterF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/CostcenterF4/} === '' ? ${i18n>costcenter} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_KOSTL_VH-com.swcc.Template.fragments.SCMModule.CostcenterF4-/CostcenterF4/" width="100%"
+					placeholder="{i18n>costcenter}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/CostcenterF4/}">
+					<customData>
+						<core:CustomData key="usrid" value="user"/>
+						<core:CustomData key="costcenter" value="Cost Center"/>
+					</customData>
+				</Input>
+				<Label text="{i18n>shortdescription}" required="true"/>
+				<Input valueState="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Descript/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/WarehouseandLogistics/IssueofMaterial/Header/Descript/} === '' ? 'Enter Short Description' : '' }"
+					placeholder="Allowed 40 Charcters" showSuggestion="" showValueHelp="" value="{/WarehouseandLogistics/IssueofMaterial/Header/Descript/}"
+					valueHelpRequest=""/>
+				<core:Title text=""/>
+				<Label text="{i18n>Description}" required="false"/>
+				<Input placeholder="Enter Description" value="{/ServiceDescription/}" enabled="false"/>
+				<Label text="{i18n>movementtype}" required="true"/>
+				<Input valueState="{= ${/MovementtypeF4/} === '' ? 'Error' : 'None' }"
+					valueStateText="{= ${/MovementtypeF4/} === '' ? ${i18n>movementtype} : '' }"
+					ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_GoodsMovementType-com.swcc.Template.fragments.SCMModule.MovementtypeF4-/MovementtypeF4/" width="100%"
+					placeholder="{i18n>movementtype}" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+					value="{/MovementtypeF4/}">
+					<customData>
+						<core:CustomData key="GoodsMovementType" value="Movement Type"/>
+						<core:CustomData key="GoodsMovementTypeName" value="Movement Name"/>
+					</customData>
+				</Input>
+				<Label visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" text="{i18n>goodsrecipient}" required="false"/>
+				<Input visible="{= ${/SCMAppVisible} === 'SSA-PSCM-2010-3' ? false : true}" placeholder="{i18n>goodsrecipient}"
+					value="{/WarehouseandLogistics/IssueofMaterial/Header/WEMPF/}"/>
+				<Label text="{i18n>totalservicevalue}" required="false"/>
+				<Input placeholder="{i18n>totalservicevalue}" enabled="false" value="{/WarehouseandLogistics/IssueofMaterial/Header/TotalServiceLevel/}"
+					showValueHelp="" editable="true" valueHelpRequest=""/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>Description}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/WarehouseandLogistics/IssueofMaterial/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
+	</VBox>
+	<VBox class="ssp-table-box">
+		<!--<fm:SimpleForm id="ssp-create-sr-2" layout="ColumnLayout" class="ssp-form-bg" columnsM="2" columnsL="3" columnsXL="3"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>-->
+		<Toolbar>
+			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
+			<ToolbarSpacer/>
+			<Button icon="sap-icon://add" press=".onAddItemsPress"/>
+		</Toolbar>
+		<ScrollContainer horizontal="true" vertical="false" height="auto">
+			<Table mode="None" items="{path : '/WarehouseandLogistics/IssueofMaterial/itemData'}" sticky="ColumnHeaders,HeaderToolbar"
+				class="ssp-request-Table sapUiContentPadding" inset="false" growingThreshold="5" growingScrollToLoad="true" growing="true"
+				fixedLayout="true">
+				<columns>
+					<Column>
+						<Text text="{i18n>material}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Quantity}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>UOM}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Plant}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Storagelocation}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Warehouseno}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>Storagebin}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>unitprice}"/>
+					</Column>
+					<Column width="5%"></Column>
+				</columns>
+				<items>
+					<ColumnListItem vAlign="Middle">
+						<cells>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SCM_PRODUCTVH-com.swcc.Template.fragments.SCMModule.ProductF4-/ProductF4/" width="100%"
+								placeholder="Select Product" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{ProductF4}">
+								<customData>
+									<core:CustomData key="Product" value="Product Code"/>
+									<core:CustomData key="Description" value="Product Name"/>
+								</customData>
+							</Input>
+							<Input placeholder="Enter Quantity" value="{Menge}"/>
+							<Input enabled="false" value="{BaseUnit}" liveChange=""/>
+							<Input value="{Plant}" enabled="false"/>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/C_StorageLocationVH-com.swcc.Template.fragments.SCMModule.StoragelocationF4-/StoragelocationF4/"
+								width="100%" placeholder="Select Storage Location" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest"
+								value="{StoragelocationF4}">
+								<customData>
+									<core:CustomData key="StorageLocation" value="Storage Location"/>
+									<core:CustomData key="StorageLocationName" value="Storage Location Name"/>
+								</customData>
+							</Input>
+							<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ZCDSV_SC_WAREHOUSE-com.swcc.Template.fragments.SCMModule.WarehouseF4-/WarehouseF4/" width="100%"
+								placeholder="Select Warehouse" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{WarehouseF4}">
+								<customData>
+									<core:CustomData key="Warehouse" value="Warehouse"/>
+									<core:CustomData key="WarehouseName" value="Warehouse Name"/>
+								</customData>
+							</Input>
+							<Input value="{Lgpla}" enabled="false"/>
+							<Input change="handleLiveChangeUnit" value="{UnitPrice}"/>
+							<Button icon="sap-icon://delete" press="onDeleteItemPress" type="Transparent"/></cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+		<!--	</fm:content>
+		</fm:SimpleForm>-->
+	</VBox>
+</core:FragmentDefinition>
