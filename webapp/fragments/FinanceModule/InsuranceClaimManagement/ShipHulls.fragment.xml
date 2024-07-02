@@ -20,7 +20,7 @@
 				<Label text="{i18n>serviceproduct}"/>
 				<Input value="{/FinanceAppVisible/}" showSuggestion="" enabled="false" showValueHelp="" valueHelpRequest=""/>
 				<Label text="{i18n>quantity}" required="true"/>
-				<Input enabled="false" placeholder="Enter Quantity" value="{/InsuranceandClaim/ShipHulls/Header/MaterialQty/}"/>
+				<Input enabled="false" placeholder="Enter Quantity" value="{/InsuranceandClaim/ShipHulls/Header/quantity/}"/>
 				<Label text="{i18n>plant}" required="false"/>
 				<Input enabled="false" value="{/PlantF4/}"/>
 				<Label text="{i18n>shortdescription}" required="true"/>

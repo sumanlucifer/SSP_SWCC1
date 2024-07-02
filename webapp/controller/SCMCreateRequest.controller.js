@@ -36,6 +36,7 @@ sap.ui.define([
 			},
 			/* Value help request */
 			onValueHelpRequest: function (oEve) {
+				debugger;
 				var iIndex = oEve.getSource().getBindingContext() ? parseInt(oEve.getSource().getBindingContext().getPath().split("/")[4]) : "";
 				this.getModel().setProperty("/itemIndex", iIndex);
 				var sValuehelpCheck = this.handleItemValuehelps(iIndex, oEve.getSource().getAriaLabelledBy()[0].split("-")[6], oEve.getSource().getBindingContext());
@@ -157,6 +158,7 @@ sap.ui.define([
 
 			},
 			setDependentFilterData: function () {
+				debugger;
 				// Procurement: Computer devices and accessories Screen
 				// if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-2" && !this.getModel().getProperty("/HeaderValueHelp") &&
 				// 	this.getModel()
@@ -324,10 +326,12 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", serviceUrl,
 						null,
 						`/ClasssificationandInventory/STO/itemData/${this.getModel().getProperty("/itemIndex")}/StoragelocationF4/`)
-				} else if (
+				}
+				/*else if (
 					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
 						this.getModel()
 						.getProperty("/valueHelpName") === "/ClassF4/")) {
+					debugger;
 					var filters = [{
 							path: "ClassInternalID",
 							value: this.getModel().getProperty(`${this.getModel().getProperty("/FragModel")}`).split("-")[0],
@@ -341,7 +345,8 @@ sap.ui.define([
 					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/I_ClfnClassCharcForKeyDate",
 						dynamicFilters.WareHouseFilter,
 						`${this.getModel().getProperty("/FragModel")}`)
-				} else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && !this.getModel().getProperty(
+				}*/
+				else if (this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2010-3-A" && !this.getModel().getProperty(
 						"/HeaderValueHelp") &&
 					this.getModel()
 					.getProperty("/valueHelpName") === "/ProductF4/") {
@@ -405,37 +410,54 @@ sap.ui.define([
 						`${this.getModel().getProperty("/FragModel")}`)
 
 				} else if (
-					(this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" && this.getModel().getProperty("/HeaderValueHelp") &&
-						this.getModel()
-						.getProperty("/valueHelpName") === "/ProductF4/")) {
-					debugger;
-					var filters = [
-
-						{
-							path: "Plant",
-							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
-							group: "Item_ProductFilter",
-							useOR: true
-
-						}, {
-							path: "Product",
-							value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
-							group: "Item_ProductFilter",
-							useOR: true
-
-						}
-
-					];
+					this.getModel().getProperty("/SCMAppVisible/") === "SSA-PSCM-2011-1" &&
+					this.getModel().getProperty("/HeaderValueHelp") &&
+					this.getModel().getProperty("/valueHelpName") === "/ProductF4/"
+				) {
+					var filters = [{
+						path: "Plant",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+						group: "Item_ProductFilter",
+						useOR: true
+					}, {
+						path: "Product",
+						value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+						group: "Item_ProductFilter",
+						useOR: true
+					}, {
+						path: "Plant",
+						value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
+						group: "Class_ProductFilter",
+						useOR: true
+					}, {
+						path: "Material",
+						value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+						group: "Class_ProductFilter",
+						useOR: true
+					}];
 
 					var dynamicFilters = this.getFilters(filters);
-					this.callDependentFilterAPI("ZSSP_SCM_SRV", "/ZCDSV_SCM_PRODUCTVH",
+
+					// Call the API for the first filter set
+					this.callDependentFilterAPI(
+						"ZSSP_SCM_SRV",
+						"/ZCDSV_SCM_PRODUCTVH",
 						dynamicFilters.Item_ProductFilter,
-						`${this.getModel().getProperty("/FragModel")}`)
+						`${this.getModel().getProperty("/FragModel")}`
+					);
+
+					// Call the API for the second filter set
+					this.callDependentFilterAPI(
+						"ZSSP_SCM_SRV",
+						"/ClassCharacteristicsSet",
+						dynamicFilters.Class_ProductFilter,
+						`${this.getModel().getProperty("/FragModel")}`
+					);
 				}
 
 			},
 			callDependentFilterAPI: function (entity, path, filter, model) {
-
+				debugger;
 				this.getModel().setProperty("/busy", true);
 				this.getAPI.oDataACRUDAPICall(
 					this.getOwnerComponent().getModel(entity), 'GET', path, null, filter, null
@@ -529,14 +551,15 @@ sap.ui.define([
 						.getProperty("/FragModel") ===
 						`${oModel}`)
 				) {
-					debugger;
 					this.getModel().setProperty("/uomF4/", aData[0].BaseUnit);
 					this.getModel().setProperty("/MaterialgroupF4/", aData[0].ExternalProductGroup);
 					this.getModel().setProperty("/servicegroupF4/", aData[0].ProductGroup);
-					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Maktx/`, aData[0].Description);
-					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Header/TXT50/`, aData[0].MaterialLongText);
+					this.getModel().setProperty("/MaterialtypeF4/", aData[0].ProductType);
+					this.getModel().setProperty("/ClassF4/", aData[0].Class);
+					this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Header/Mmsta/`, aData[0].ProfileCode);
+					/*	this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Maktx/`, aData[0].Description);
+						this.getModel().setProperty(`/ClasssificationandInventory/ChangeRequest/Header/TXT50/`, aData[0].MaterialLongText);*/
 				}
-
 			},
 			onValueHelpCancelPress: function () {
 				this.onHandleValueHelpCancelPress();
@@ -816,14 +839,15 @@ sap.ui.define([
 					.getProperty("/valueHelpName") === "/ClassF4/") {
 					debugger;
 					var filters = [{
+							path: "Material",
+							value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
+							group: "ProductFilter",
+							useOR: true
+						}, {
 							path: "Plant",
 							value: this.getModel().getProperty("/PlantF4/") ? this.getModel().getProperty("/PlantF4/") : "",
 							group: "ProductFilter"
-						}, {
-							path: "Material",
-							value: this.getModel().getProperty("/ProductF4/") ? this.getModel().getProperty("/ProductF4/").split("-")[0] : "",
-							group: "ProductFilter"
-						}
+						},
 
 					];
 					var dynamicFilters = this.getFilters(filters);
@@ -1345,6 +1369,7 @@ sap.ui.define([
 						"Matkl": this.getModel().getProperty("/servicegroupF4/") ? this.getModel().getProperty("/servicegroupF4/").split("-")[0] : "",
 						"Extwg": this.getModel().getProperty("/MaterialgroupF4/") ? this.getModel().getProperty("/MaterialgroupF4/").split("-")[0] : "",
 						"Maktx": oPayloadHeader.Maktx,
+						"Mmsta": oPayloadHeader.Mmsta,
 						"Clint": this.getModel().getProperty("/ClassF4/") ? this.getModel().getProperty("/ClassF4/").split("-")[0] : ""
 					},
 					"ServiceHeadertoItem": aItem.map(

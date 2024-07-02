@@ -69,7 +69,7 @@
 				</Input>
 				<Label text="{i18n>profilecode}" required="false"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
-					placeholder="Enter Profile Code" value="" enabled="true"/>
+					placeholder="Enter Profile Code" value="{/ClasssificationandInventory/ChangeRequest/Header/Mmsta/}" enabled="true"/>
 				<Label text="{i18n>plant}" required="true"/>
 				<Input visible="{= ${/ClasssificationandInventory/ChangeRequest/Header/MaterialVisible/} === true ? true : false }"
 					valueState="{= ${/PlantF4/} === '' ? 'Error' : 'None' }" valueStateText="{= ${/PlantF4/} === '' ? ${i18n>supplyingplant} : '' }"
@@ -138,19 +138,6 @@
 			</fm:content>
 		</fm:SimpleForm>
 	</VBox>
-	<VBox width="100%">
-		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
-			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
-			<fm:content>
-				<Label text="{i18n>mrp}" required="false"/>
-				<TextArea placeholder="" rows="3" cols="3" growing="true" value="{/ClasssificationandInventory/ChangeRequest/Header/TXT50/}"
-					growingMaxLines="7" height="6rem" width="100%"/>
-				<Label text="{i18n>materialong}" required="false"/>
-				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ClasssificationandInventory/ChangeRequest/Header/NotifText/}"
-					growingMaxLines="7" height="6rem" width="100%"/>
-			</fm:content>
-		</fm:SimpleForm>
-	</VBox>
 	<VBox class="ssp-table-box">
 		<Toolbar>
 			<Title level="H3" text="{i18n>Details}" class="ssp-tlbr-title"/>
@@ -191,6 +178,19 @@
 				</ColumnListItem>
 			</items>
 		</Table>
+	</VBox>
+	<VBox width="100%">
+		<fm:SimpleForm title="" layout="ResponsiveGridLayout" class="ssp-form-txtarea" columnsM="2" columnsL="3" columnsXL="4"
+			singleContainerFullSize="true" labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12">
+			<fm:content>
+				<Label text="{i18n>mrp}" required="false"/>
+				<TextArea placeholder="" rows="3" cols="3" growing="true" value="{/ClasssificationandInventory/ChangeRequest/Header/TXT50/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
+				<Label text="{i18n>materialong}" required="false"/>
+				<TextArea placeholder="" rows="5" cols="20" growing="true" value="{/ClasssificationandInventory/ChangeRequest/Header/NotifText/}"
+					growingMaxLines="7" height="6rem" width="100%"/>
+			</fm:content>
+		</fm:SimpleForm>
 	</VBox>
 	<VBox>
 		<Table items="{/UploadedData}" class="upload-data" noDataText="{i18n>uploadquotation}">
