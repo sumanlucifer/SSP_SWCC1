@@ -151,8 +151,8 @@
 				<Input ariaLabelledBy="-ZSSP_SCM_SRV-/ClassCharacteristicsSet-com.swcc.Template.fragments.SCMModule.ClassF4-/ClassF4/" width="100%"
 					placeholder="Enter Class" valueHelpOnly="false" showValueHelp="true" valueHelpRequest="onValueHelpRequest" value="{/ClassF4/}">
 					<customData>
-						<core:CustomData key="ClassInternalID" value="Class"/>
-						<core:CustomData key="Class" value="Description"/>
+						<core:CustomData key="Class" value="Class"/>
+						<core:CustomData key="CharValue" value="Description"/>
 					</customData>
 				</Input>
 				<!--<Input id="classdescription" placeholder="" showSuggestion="" showValueHelp="" valueHelpRequest=""/>-->
