@@ -7,8 +7,11 @@ sap.ui.define([
 	"sap/m/MessageBox",
 	"sap/ui/core/routing/History",
 	"sap/ui/Device",
-	"sap/m/library"
-], function (Controller, UIComponent, BusyIndicator, api, JSONModel, MessageBox, History, Device, mobileLibrary) {
+	"sap/m/library",
+	"sap/m/MessageStrip",
+	"sap/ui/core/Fragment",
+	"sap/m/MessageToast",
+], function (Controller, UIComponent, BusyIndicator, api, JSONModel, MessageBox, History, Device, mobileLibrary, MessageStrip, Fragment, MessageToast) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
@@ -629,7 +632,21 @@ sap.ui.define([
 				type: contentType
 			});
 		},
-// to print PDF 
+             //   Binary content to PDF
+	       convertingBinarytoPDF :  function(binaryContent){
+            let fileContent = binaryContent;
+            let decodedPdfContent = atob(fileContent);
+            let byteArray = new Uint8Array(decodedPdfContent.length);
+            for (let i = 0; i < decodedPdfContent.length; i++) {
+                byteArray[i] = decodedPdfContent.charCodeAt(i);
+            }
+            let blob = new Blob([byteArray.buffer], {
+                type: 'application/pdf',
+            });
+            let _pdfurl = URL.createObjectURL(blob);
+            commonMethod.printPdf(_pdfurl);
+        },
+               // to print PDF 
 	 printPdf : function (sUrl) {
             try {
                 let iframe = document.createElement("iframe");
@@ -646,6 +663,18 @@ sap.ui.define([
             } catch (err) {
                 MessageBox.error(err);
             }
+        },
+         // URL search params navigation.
+          navigateToUserDefaults = function () {
+            let redirectUrl;
+
+            if (window.location.origin.includes('epweb')) {
+                redirectUrl = `${window.location.origin}/irj/portal/ewm/default_settings`;
+            } else {
+                redirectUrl = `${window.location.origin}/userpreferences/index.html`;
+            }
+
+            location.replace(redirectUrl);
         },
 		// ___________________________File to Base 64 format from filecontent _______________________________
 		_getImageData: function (url, callback, fileName) {
