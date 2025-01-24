@@ -664,6 +664,43 @@ sap.ui.define([
                 MessageBox.error(err);
             }
         },
+
+        /*
+            Method to read I18n Texts either from Library/Controller message bundle
+            idText: I18n property name
+            cReference: Reference Controller (To be passed if text to be fetched from controller message bundle)
+        */
+        geti18nText = function (idText, cReference, ...[param1, param2]) {
+            let that;
+            if (!cReference) {
+                //If controller reference is not passed, get library's resource bundle
+                if (!this.resourceBundle) {
+                    this.resourceBundle = sap.ui.getCore().getLibraryResourceBundle("com.apple.ui.ewm.global.lib.reuselib");
+                }
+                that = this;
+            } else {
+                //Controller reference passed, get controller's resource bundle
+                if (!cReference.resourceBundle) {
+                    cReference.resourceBundle = cReference.getOwnerComponent().getModel("i18n").getResourceBundle();
+                }
+                that = cReference;
+            }
+            return that.resourceBundle.getText(idText, ...[param1, param2]);
+
+        },
+
+		
+     // Metadata loading check 
+      metadataCheck : function (cReference, oModel, successCallBackFn, errorCallBackFn, oRoute) {
+            oModel?.metadataLoaded(true).then(
+                function () {
+                    // model is ready now
+                    successCallBackFn(cReference, oRoute);
+                },
+                function () {
+                    errorCallBackFn(cReference);
+                });
+        },
          // URL search params navigation.
           navigateToUserDefaults = function () {
             let redirectUrl;
