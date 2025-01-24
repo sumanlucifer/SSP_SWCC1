@@ -311,6 +311,300 @@ sap.ui.define([
 				dialog.open();
 			};
 		},
+
+
+		
+        /*
+          Method for  opening message pop over
+              Author: Suman S
+              messagePopover, // Instance of the MessagePopover control
+              buttonId,       // ID of the button that triggers the MessagePopover
+              cReference      // Controller reference where the button and popover are used
+  
+        */
+
+        openMessagePopover : function (options) {
+            const {
+                
+                buttonId,       // ID of the button that triggers the MessagePopover
+                cReference      // Controller reference where the button and popover are used
+            } = options;
+
+            const oButton = cReference.byId(buttonId); // Get the button by its ID from the controller
+
+            if (cReference._MessagePopover && oButton) {
+                // Check if the button is rendered
+                if (!oButton.getDomRef()) {
+                    // Attach delegate to open popover after rendering
+                    oButton.addEventDelegate({
+                        onAfterRendering: function () {
+                            cReference._MessagePopover.toggle(oButton);
+                        }
+                    });
+                } else {
+                    // Button is already rendered, open or toggle the popover directly
+                    cReference._MessagePopover.toggle(oButton);
+                }
+            }
+        },
+
+
+        /*
+           Method for load Fragment
+           Author: Suman S
+           fragmentPath:  // (string) Path to the fragment file, e.g., "com.example.fragments.MyFragment"
+           fragmentId:  // (string) Unique identifier for the fragment instance, used for reference and storage
+           cReference:  // (string) Unique identifier for the fragment instance, used for reference and storage
+           fragmentType:  // (string, optional) Type of fragment, defaults to "XML"; can be "JS", "HTML" etc.
+   
+       */
+
+        loadFragment : function (options) {
+            const {
+                fragmentPath,
+                fragmentId,
+                cReference,
+                fragmentType = "XML"
+            } = options;
+
+            const oView = cReference.getView();
+            let oFragment = cReference[`_${fragmentId}`];
+
+            if (!oFragment) {
+                oFragment = sap.ui[`${fragmentType.toLowerCase()}fragment`](
+                    oView.getId(),
+                    fragmentPath,
+                    cReference
+                );
+                oView.addDependent(oFragment);
+                cReference[`_${fragmentId}`] = oFragment;
+            }
+
+            return oFragment;
+        },
+
+
+        /*
+            Method to OpenFragment
+            Author: Suman S
+            fragmentPath: Path of the fragment
+            fragmentId: FragmentId to be passed from controller or view
+            cReference: Controller Reference
+            oEvent: Event of an control
+            Ispopover: Set true if to load popover
+        */
+        openFragment : function (fragmentPath, fragmentId, cReference, oEvent, Ispopover) {
+            let oView = cReference.getView(),
+            oEventSource;
+                if (oEvent) {
+                    oEventSource = oEvent.getSource();
+                }
+            if (!cReference.byId(fragmentId)) {
+                Fragment.load({
+                    id: oView.getId(),
+                    name: fragmentPath,
+                    controller: cReference,
+                    event: oEvent
+                }).then(function (oDialog) {
+                    oView.addDependent(oDialog);
+                    if (Ispopover) {
+                        oDialog.openBy(oEventSource);
+                    } else {
+                        oDialog.open();
+                    }
+                });
+            } else {
+                cReference.byId(fragmentId).open();
+            }
+        },
+
+        /*
+            Method to CloseFragment
+            oEvent: Event of an control
+        */
+        closeFragment : function (oEvent) {
+            let dialog = oEvent.getSource().getParent();
+
+            if (!dialog.isOpen)
+                dialog = dialog.getParent();
+
+            dialog.close();
+            sap.ui.getCore().byId(dialog.sId).destroy(true);
+        },
+
+		 /*
+            Method to update button Icon Dynamically
+            Author: Suman S
+            sModelName   (string): The name of the model that contains the messages array.
+            sPath        (string): The path to the messages array within the specified model.
+            sButtonId    (string): The ID of the button whose icon and type will be updated based on message types.
+            cReference   (object): The controller reference, used to access the view and model.
+        */
+
+        _updateIcon : function (sModelName, sPath, sButtonId, cReference) {
+            // Get the array of messages from the specified model and path
+            const aMessages = cReference.getView().getModel(sModelName).getProperty(sPath);
+            const oButton = cReference.byId(sButtonId);
+
+            // Filter messages based on MessageType
+            const iErrors = aMessages.filter(oMessage => oMessage.MessageType === "E").length; // Errors
+            const iWarnings = aMessages.filter(oMessage => oMessage.MessageType === "W").length; // Warnings
+            const iSuccess = aMessages.filter(oMessage => oMessage.MessageType === "S").length; // Success
+
+            // Set default icon and type
+            let sIcon = "sap-icon://message-information";
+            let sButtonType = "Default";  // Default button type
+
+            // Determine the icon and button type based on the message types
+            if (iErrors > 0) {
+                sIcon = "sap-icon://message-error"; // Error icon
+                sButtonType = "Negative"; // Error type (Negative)
+            } else if (iWarnings > 0) {
+                sIcon = "sap-icon://message-warning"; // Warning icon
+                sButtonType = "Attention"; // Warning type (Attention)
+            } else if (iSuccess > 0) {
+                sIcon = "sap-icon://message-success"; // Success icon
+                sButtonType = "Accept"; // Success type (Accept)
+            }
+
+            // Update the icon and type of the button
+            oButton.setIcon(sIcon);
+            oButton.setType(sButtonType);
+
+            // Update the text of the button to show the total number of messages (Errors + Warnings + Success)
+            const iTotalMessages = iErrors + iWarnings + iSuccess;
+            oButton.setText(iTotalMessages > 0 ? iTotalMessages.toString() : "");
+        },
+
+            // error handler method
+        handleError : function (oError,cReference) {
+            let text;
+
+            try {
+                let errorObject = JSON.parse(oError.responseText);
+                text = errorObject.error.message.value;
+            } catch (e) {
+                text = oError.responseText;
+            }
+            this.getFilterValidations('', { Type: "msgDialog", icon: "error", State: "Error", class: "Error", Text: text }, cReference);
+        },
+
+
+      /*
+            Method to read Filter Validations before read or post data
+            text: i18n Properties
+            msgType: Refers to a types of message as "msgToast", "msgStrip", "msgDialog", "msgBox"
+            cReference: Reference Controller
+            sCallbackFn: Callback Function
+        */
+        getFilterValidations : function (text, msgType, cReference, sCallbackFn, title) {
+            if (msgType === "msgToast") {
+                cReference.oresponse = commonMethod.geti18nText(text, cReference);
+                MessageToast.show(cReference.oresponse, {
+                    duration: 4500,
+                    width: "30rem",
+                });
+            }
+            if (msgType.Type === "msgStrip") {
+                MessageStrip({
+                    text: msgType.Text,
+                    type: "Success"
+                })
+            }
+            if (msgType.Type === "msgDialog") {
+                let icon = "sap-icon://" + msgType.icon,
+                    that = this;
+                if (msgType.Text) {
+                    cReference.oresponse = msgType.Text;
+                } else {
+                    cReference.oresponse = commonMethod.geti18nText(text, cReference);
+                }
+                this.oDialog = new sap.m.Dialog({
+                    content: new sap.m.Text({ text: cReference.oresponse }).addStyleClass("sapUiSmallMarginBottom"),
+                    state: msgType.State,
+                    customHeader: new sap.m.Bar({
+                        contentLeft: [
+                            new sap.ui.core.Icon({ src: icon }).addStyleClass("sapMDialogIcon"),
+                            new sap.m.Title({ text: that.geti18nText(msgType.State) })
+                        ],
+                        contentRight: [
+                            new sap.ui.core.Icon({
+                                color: '#32363a',
+                                src: "sap-icon://decline",
+                                tooltip: that.geti18nText("close"),
+                                press: function (oEvent) {
+                                    oEvent.getSource().getParent().getParent().close();
+                                }
+                            }).addStyleClass("sapUiTinyMarginEnd")
+                        ]
+                    }).addStyleClass("zDialogBar"),
+                    resizable: false,
+                    verticalScrolling: false,
+                }).addStyleClass("sapMMessageDialog").addStyleClass(msgType.class);
+                this.oDialog.open();
+            }
+            if (msgType === "msgBox") {
+                this.msgBoxValidations(text, msgType, cReference, sCallbackFn, title);
+            }
+        },
+
+        msgBoxValidations : function (text, msgType, cReference, sCallbackFn, title) {
+            if (title === "Confirm") {
+                MessageBox.confirm(text, {
+                    title: "Confirmation",
+                    onClose: function (oAction) {
+                        if (oAction === "OK" && sCallbackFn) {
+                            sCallbackFn(cReference);
+                        }
+                    },
+                    actions: [sap.m.MessageBox.Action.OK, sap.m.MessageBox.Action.CANCEL],
+                    emphasizedAction: sap.m.MessageBox.Action.OK,
+                    initialFocus: null,
+                    textDirection: sap.ui.core.TextDirection.Inherit
+                });
+            }
+
+            if (title === 'Success') {
+                MessageBox.success(text, {
+                    title: "title",
+                    onClose: function (oAction) {
+                        if (oAction === "OK" && sCallbackFn) {
+                            sCallbackFn(cReference);
+                        }
+                    },
+                    actions: [sap.m.MessageBox.Action.OK],
+                    emphasizedAction: sap.m.MessageBox.Action.OK,
+                    initialFocus: null,
+                    textDirection: sap.ui.core.TextDirection.Inherit
+                });
+            }
+        },
+        /*
+            Method to get count of table line item
+            tableId: Id of a table
+            mName: Model name
+            cReference: Controller Reference
+        */
+        handleTableCount : function (tableId, mName, cReference) {
+            let oTable = cReference.getView().byId(tableId);
+            let Tablecount;
+            let oBinding;
+            if (tableId === "idRORTable") {
+                oBinding = oTable.getBinding("rows").getContexts();
+                if (oBinding.length > 0)
+                    Tablecount = oBinding.length;
+            } else if (tableId === "idPackingTable") {
+                oBinding = oTable.getTable().getItems();
+                Tablecount = oBinding.length;
+            }
+            else {
+                oBinding = oTable.getBinding("items");
+                if (!oBinding)
+                    Tablecount = oBinding.getLength();
+            }
+            cReference.getOwnerComponent().getModel(mName).setProperty("/Tablelength", Tablecount);
+        },
+
 		// 	___________________________________________________Adding glossy css to Application ___________________________________________________________
 		addContentDensityClass: function () {
 			return this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
@@ -335,6 +629,24 @@ sap.ui.define([
 				type: contentType
 			});
 		},
+// to print PDF 
+	 printPdf : function (sUrl) {
+            try {
+                let iframe = document.createElement("iframe");
+                iframe.setAttribute('id', 'pdfPreviewFrame');
+                iframe.style.display = "none";
+                iframe.src = sUrl;
+                document.body.appendChild(iframe);
+
+                iframe.onload = () => {
+                    iframe.contentWindow.focus();
+                    iframe.contentWindow.print();
+                }
+
+            } catch (err) {
+                MessageBox.error(err);
+            }
+        },
 		// ___________________________File to Base 64 format from filecontent _______________________________
 		_getImageData: function (url, callback, fileName) {
 			var reader = new FileReader();
