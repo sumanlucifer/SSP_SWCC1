@@ -1,0 +1,65 @@
+HeaderToItem
+: 
+Array(5)
+0
+: 
+AMOUNT IN LC
+: 
+""
+APN
+: 
+"202-001193-001"
+Amazon Allocation ID/Tracking Number
+: 
+""
+Component Type
+: 
+"CPU"
+Country
+: 
+"TW"
+Currency
+: 
+"USD"
+Event Date
+: 
+"5/6/23"
+FGID
+: 
+"100-011498-015"
+Item Description
+: 
+"CPU, Intel, Cascade Lake, 8259CL, 24C, 14"
+Location
+: 
+"XXX-CVG"
+Origin/Destination
+: 
+"XXX-SLC"
+PO ITEM NUMBER
+: 
+""
+Supplier Entity
+: 
+"RI Name"
+Total Value
+: 
+"2331000"
+Transaction Reference
+: 
+"4500091225"
+Transaction Type
+: 
+"Receipts"
+Unit Cost
+: 
+"2331"
+Unit Count
+: 
+"1000"
+UoM
+: 
+"EA"
+[[Prototype]]
+: 
+Object
