@@ -715,7 +715,7 @@ sap.ui.define([
 
             location.replace(redirectUrl);
         },
-		// ___________________________File to Base 64 format from filecontent _______________________________
+// ___________________________File to Base 64 format from filecontent _________________________________________________________________________________
 		_getImageData: function (url, callback, fileName) {
 			var reader = new FileReader();
 			reader.onloadend = function (evt) {
@@ -729,7 +729,7 @@ sap.ui.define([
 			};
 			reader.readAsBinaryString(url);
 		},
-		// ___________________________File Error _______________________________
+// ____________________________________________________File Missmatch error ____________________________________________________________________________________________
 		handleFileMissmatch: function () {
 			return MessageBox.error("Please upload only PDF and WORD document File.");
 		},
@@ -743,8 +743,8 @@ sap.ui.define([
 		},
 
 		
-		// ____________________________________________________ Excel Direct file posting to backend via Slug___________________________________________________
-    handleFileUpload: function (oFileUploader, uploadUrl, appId, token, onSuccess, onError) {
+// ____________________________________________________ Excel Direct file posting to backend via Slug___________________________________________________
+                 handleFileUpload: function (oFileUploader, uploadUrl, appId, token, onSuccess, onError) {
     var file = oFileUploader.oFileUpload.files[0];
     jQuery.ajax({
         type: 'POST',
@@ -805,8 +805,59 @@ genericHandleUploadComplete: function (oEvent) {
 //     this.genericHandleUploadComplete(oEvent);
 // }
 
+
+	 
+// ____________________________________________________  Excel File Export  functionality___________________________________________________
+exportTableData: function (oTable, aColumns, sFileName, hierarchyLevel = 'Level') {
+    var oRowBinding = oTable.getBinding('rows');
+    var oSettings = {
+        workbook: {
+            columns: aColumns,
+            hierarchyLevel: hierarchyLevel
+        },
+        dataSource: oRowBinding,
+        fileName: sFileName,
+        worker: false
+    };
+
+    var oSheet = new Spreadsheet(oSettings);
+    oSheet.build().finally(function () {
+        oSheet.destroy();
+    });
+},
+
+// Reusable column configuration generator
+createHeaderColumnConfig: function (columnsConfig) {
+    return columnsConfig.map(col => ({
+        label: col.label,
+        property: col.property,
+        type: col.type || undefined,
+        format: col.format || undefined,
+        utc: col.utc || undefined
+    }));
+},
+
+// Example Usage for the above method
+// onErrorDataExport: function () {
+//     var oTableUploaderror = this.getView().byId("idTableUploadfileError");
+//     var aColumnsConfig = [
+//         { label: 'Plant', property: 'Plant' },
+//         { label: 'PrimaryPart', property: 'PrimaryPart' },
+//         { label: 'ItcPart', property: 'ItcPart' },
+//         { label: 'Priority', property: 'Priority' },
+//         { label: 'Date', property: 'Erdat', type: EdmType.Date, format: 'MMM dd, yyyy', utc: true },
+//         { label: 'Time', property: 'Erzet', type: EdmType.Time },
+//         { label: 'ErrorMessage', property: 'ErrorMessage' },
+//         { label: 'CreatedBy', property: 'Ernam' }
+//     ];
+
+//     var aAllColsError = this.createHeaderColumnConfig(aColumnsConfig);
+//     var sUploadFileName = "UploadErrorReport";
+
+//     this.exportTableData(oTableUploaderror, aAllColsError, sUploadFileName);
+// }
 		
-		// ____________________________________________________set local session storage___________________________________________________
+// ____________________________________________________set local session storage___________________________________________________
 		handleSetLocalStaorage: function (sProperty, sVal) {
 			// Get access to local storage
 			var oStorage = jQuery.sap.storage(jQuery.sap.storage.Type.local);
