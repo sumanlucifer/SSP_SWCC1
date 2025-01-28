@@ -716,7 +716,7 @@ sap.ui.define([
             location.replace(redirectUrl);
         },
 // ___________________________File to Base 64 format from filecontent _________________________________________________________________________________
-		_getImageData: function (url, callback, fileName) {
+		_getImageData1: function (url, callback, fileName) {
 			var reader = new FileReader();
 			reader.onloadend = function (evt) {
 				if (evt.target.readyState === FileReader.DONE) {
@@ -728,6 +728,65 @@ sap.ui.define([
 				}
 			};
 			reader.readAsBinaryString(url);
+		},
+
+// _________________Function allows you to handle both Excel and Base64 processing to binary string(under testing but can be used) ______________________
+
+		// Usage Example for Excel Data : this._getImageData(url, callback, { type: 'excel', readAs: 'binaryString' });
+		// Usage Example for Base64 Data : this._getImageData(url, callback, { type: 'base64', readAs: 'binaryString' });
+		
+			_getImageData: function (url, callback, options) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				if (options && options.type === 'excel') {
+					var data = e.target.result;
+					var workbook = XLSX.read(data, { type: 'binary' });
+					var excelData = {};
+
+					workbook.SheetNames.forEach(function (sheetName) {
+						// Get the sheet data
+						var sheet = workbook.Sheets[sheetName];
+
+						// Handle missing headers
+						var headers = XLSX.utils.sheet_to_json(sheet, { header: 1 })[0]; // Get first row as headers
+						var rowObjectArray = XLSX.utils.sheet_to_row_object_array(sheet, { defval: "" }); // Handle missing cells
+
+						// Check if headers are missing, and fill them with default names (Column1, Column2, etc.)
+						if (headers.some(h => !h)) {  // If any header is missing
+							headers = headers.map((h, index) => h || `Column${index + 1}`);
+						}
+
+						// Reprocess data with cleaned headers
+						var processedData = rowObjectArray.map(row => {
+							var processedRow = {};
+							headers.forEach((header, index) => {
+								processedRow[header] = row[header] || ""; // Default empty string for missing cell values
+							});
+							return processedRow;
+						});
+
+						// Store processed data
+						excelData[sheetName] = processedData;
+					});
+
+					callback(excelData);
+				} else if (options && options.type === 'base64') {
+					var binaryString = e.target.result;
+					var base64file = btoa(binaryString);
+					callback(base64file);
+				}
+			};
+
+			reader.onerror = function (ex) {
+				console.error("Error reading file:", ex);
+			};
+
+			if (options && options.readAs === 'binaryString') {
+				reader.readAsBinaryString(url);
+			} else {
+				console.error("Invalid readAs option specified or missing");
+			}
+
 		},
 // ____________________________________________________File Missmatch error ____________________________________________________________________________________________
 		handleFileMissmatch: function () {
