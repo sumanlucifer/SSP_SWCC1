@@ -867,14 +867,20 @@ genericHandleUploadComplete: function (oEvent) {
 
 	 
 // ____________________________________________________  Excel File Export  functionality___________________________________________________
-exportTableData: function (oTable, aColumns, sFileName, hierarchyLevel = 'Level') {
+exportTableData: function (oTable, aColumns, sFileName, hierarchyLevel = 'Level', filterCondition = null) {
     var oRowBinding = oTable.getBinding('rows');
+
+    // Apply filter if a filter condition is provided
+    var aFilteredData = filterCondition ? 
+        oRowBinding.oList.filter(filterCondition) : 
+        oRowBinding.oList;
+
     var oSettings = {
         workbook: {
             columns: aColumns,
             hierarchyLevel: hierarchyLevel
         },
-        dataSource: oRowBinding,
+        dataSource: aFilteredData,
         fileName: sFileName,
         worker: false
     };
@@ -890,31 +896,45 @@ createHeaderColumnConfig: function (columnsConfig) {
     return columnsConfig.map(col => ({
         label: col.label,
         property: col.property,
-        type: col.type || undefined,
+        type: col.type || this.getEdmType().String,
         format: col.format || undefined,
         utc: col.utc || undefined
     }));
 },
 
+// Method to provide EdmType from BaseController
+getEdmType: function () {
+    if (!this._edmType) {
+        var exportLibrary = sap.ui.require("sap/ui/export/library");
+        this._edmType = exportLibrary.EdmType;
+    }
+    return this._edmType;
+},
+
+
 // Example Usage for the above method
 // onErrorDataExport: function () {
 //     var oTableUploaderror = this.getView().byId("idTableUploadfileError");
 //     var aColumnsConfig = [
-//         { label: 'Plant', property: 'Plant' },
-//         { label: 'PrimaryPart', property: 'PrimaryPart' },
-//         { label: 'ItcPart', property: 'ItcPart' },
-//         { label: 'Priority', property: 'Priority' },
-//         { label: 'Date', property: 'Erdat', type: EdmType.Date, format: 'MMM dd, yyyy', utc: true },
-//         { label: 'Time', property: 'Erzet', type: EdmType.Time },
-//         { label: 'ErrorMessage', property: 'ErrorMessage' },
-//         { label: 'CreatedBy', property: 'Ernam' }
+//         { label: 'Plant', property: 'Plant', type: this.getEdmType().String },
+//         { label: 'PrimaryPart', property: 'PrimaryPart', type: this.getEdmType().String },
+//         { label: 'ItcPart', property: 'ItcPart', type: this.getEdmType().String },
+//         { label: 'Priority', property: 'Priority', type: this.getEdmType().Number },
+//         { label: 'Date', property: 'Erdat', type: this.getEdmType().Date, format: 'MMM dd, yyyy', utc: true },
+//         { label: 'Time', property: 'Erzet', type: this.getEdmType().Time },
+//         { label: 'ErrorMessage', property: 'ErrorMessage', type: this.getEdmType().String },
+//         { label: 'CreatedBy', property: 'Ernam', type: this.getEdmType().String }
 //     ];
 
 //     var aAllColsError = this.createHeaderColumnConfig(aColumnsConfig);
 //     var sUploadFileName = "UploadErrorReport";
 
-//     this.exportTableData(oTableUploaderror, aAllColsError, sUploadFileName);
+//     // Filter condition: Export only rows where 'ErrorMessage' is not empty
+//     var filterCondition = row => row.ErrorMessage && row.ErrorMessage.trim() !== "";
+
+//     this.exportTableData(oTableUploaderror, aAllColsError, sUploadFileName, 'Level', filterCondition);
 // }
+
 		
 // ____________________________________________________set local session storage___________________________________________________
 		handleSetLocalStaorage: function (sProperty, sVal) {
