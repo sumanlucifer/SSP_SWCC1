@@ -868,7 +868,7 @@ genericHandleUploadComplete: function (oEvent) {
 	 
 // ____________________________________________________  Excel File Export  functionality___________________________________________________
 exportTableData: function (oTable, aColumns, sFileName, hierarchyLevel = 'Level', filterCondition = null) {
-    var oRowBinding = oTable.getBinding('rows');
+ var oRowBinding = oTable.getBinding(oTable.getBindingInfo('rows') ? 'rows' : 'items');
 
     // Apply filter if a filter condition is provided
     var aFilteredData = filterCondition ? 
