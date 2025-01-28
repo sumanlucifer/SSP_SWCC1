@@ -739,6 +739,71 @@ sap.ui.define([
 		handleFileSizeExceedScm: function () {
 			return MessageBox.error("File size exceeded, Please upload file upto 5MB.");
 		},
+
+		
+		// ____________________________________________________ Excel Direct file posting to backend via Slug___________________________________________________
+    handleFileUpload: function (oFileUploader, uploadUrl, appId, token, onSuccess, onError) {
+    var file = oFileUploader.oFileUpload.files[0];
+    jQuery.ajax({
+        type: 'POST',
+        url: uploadUrl,
+        cache: false,
+        useMultipart: false,
+        contentType: "application/xlsx",
+        processData: false,
+        data: file,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("X-CSRF-Token", token);
+            xhr.setRequestHeader("slug", oFileUploader.getValue());
+            xhr.setRequestHeader("Content-Type", "application/xlsx");
+            xhr.setRequestHeader("appid", appId);
+        },
+        success: function (data, response) {
+            sap.m.MessageToast.show("File upload Successful");
+            oFileUploader.setValue('');
+            if (onSuccess) onSuccess(data, response);
+        },
+        error: function (error) {
+            sap.m.MessageToast.show("File upload failed");
+            oFileUploader.setValue('');
+            if (onError) onError(error);
+        }
+    });
+},
+
+// Reusable function to handle upload complete
+genericHandleUploadComplete: function (oEvent) {
+    var sResponse = oEvent.getParameter("response"),
+        iHttpStatusCode = parseInt(/\d{3}/.exec(sResponse)[0]),
+        sMessage;
+
+    if (sResponse) {
+        sMessage = iHttpStatusCode === 200 ? sResponse + " (Upload Success)" : sResponse + " (Upload Error)";
+        sap.m.MessageToast.show(sMessage);
+    }
+},
+
+// Example usage for the above method:
+// uploadFile: function (oEvent) {
+//     var oFileUploader = this.getView().byId("fileUploader");
+//     var token = this.getView().getModel().getSecurityToken();
+//     var appId = this.getView().getModel("busyModel").getData().appId;
+//     var oUploadURL = "/ui5_pp/sap/opu/odata/sap/zod_ac_itc_srv/ITCUploadFileSet";
+
+//     this.handleFileUpload(oFileUploader, oUploadURL, appId, token, function () {
+//         this.bFileUploaded = true;
+//         this.setRefreshInterval();
+//         this.onRefresh();
+//     }.bind(this), function (error) {
+//         console.error("Upload failed", error);
+//     });
+// },
+
+// handleUploadComplete: function (oEvent) {
+//     this.genericHandleUploadComplete(oEvent);
+// }
+
+		
 		// ____________________________________________________set local session storage___________________________________________________
 		handleSetLocalStaorage: function (sProperty, sVal) {
 			// Get access to local storage
