@@ -11,7 +11,9 @@ sap.ui.define([
 	"sap/m/MessageStrip",
 	"sap/ui/core/Fragment",
 	"sap/m/MessageToast",
-], function (Controller, UIComponent, BusyIndicator, api, JSONModel, MessageBox, History, Device, mobileLibrary, MessageStrip, Fragment, MessageToast) {
+	"sap/ui/export/Spreadsheet",
+        "sap/ui/export/library"
+], function (Controller, UIComponent, BusyIndicator, api, JSONModel, MessageBox, History, Device, mobileLibrary, MessageStrip, Fragment, MessageToast, Spreadsheet, exportLibrary) {
 	"use strict";
 
 	return Controller.extend("com.swcc.Template.controller.BaseController", {
